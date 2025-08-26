@@ -1,0 +1,13 @@
+---
+sidebar: sidebar
+permalink: get-started/learn-about.html
+keywords: ai, data engine, learn more, learn about, get started
+summary: "AI Data Engine documentation provides information about NetApp AI Data Engine software and hardware."
+searchtitle: "Learn about AI Data Engine"
+---
+= Learn about AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+

@@ -1,0 +1,12 @@
+---
+sidebar: sidebar
+permalink: maintain-hardware.html
+keywords: afx, dcn, compute node, maintain, hardware
+summary: "Learn how to perform maintenance procedures on your AFX hardware."
+---
+= Maintain your AFX hardware
+:icons: font
+:imagesdir: ./media/
+
+[.lead]
+Go to the AFX maintenance documentation to learn how to perform maintenance procedures on your AFX hardware components.
