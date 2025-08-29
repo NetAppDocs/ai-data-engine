@@ -23,6 +23,8 @@ entries:
   entries:     
   - title: Set up the cluster
     url: "/install-setup/initialize-ontap-cluster.html"  
+  - title: Install AIDE licenses
+    url: "/install-setup/install-license-task.html"
   - title: Set up AI Data Engine
     url: "/install-setup/set-up-san-host.html"     
   - title: Set up data access

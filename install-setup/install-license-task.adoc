@@ -1,0 +1,62 @@
+---
+permalink: install-setup/install-license-task.html
+sidebar: sidebar
+keywords: ai data engine, license, install, enable, add, aide, ai data engine, software, entitlement, keys, codes, cluster, administrator, nlf, add license, license key, metadata engine, aipvs, vectorization, guardrails
+summary: "You can install AI Data Engine Engine licenses using System Manager."
+---
+
+= Install AIDE licenses in ONTAP
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Install AI Data Engine Engine (AIDE) licenses using System Manager. There are two licenses required. The Metadata Engine Basic license is typically factory-installed as part of the ONTAP One license, while the "AIPVS — Vectorization and Guardrails" license must be purchased and installed for each GPU in your data compute nodes (DCNs).
+
+.Before you begin
+* Ensure you have admin credentials to log in to System Manager.
+* Ensure that the cluster is running ONTAP 9.18.1 and later.
+* Download the license file to an accessible location.
+
+.About this task
+You need one Metadata Engine Basic license per data compute node (DCN) and one "AIPVS — Vectorization and Guardrails" license for each GPU in your DCN.
+
+.Steps
+
+If you have already obtained your NetApp license files for AIDE, you can use System Manager to install them.
+
+[role="tabbed-block"]
+====
+.System Manager
+--
+.. Select *Cluster* > *Settings*.
+.. Under *Licenses*, review the list of installed licenses to confirm if the Metadata Engine Basic license is present.
+.. To install a new license (such as "AIPVS — Vectorization and Guardrails"), click *Browse* and choose the license file (.txt or .lic) you downloaded from NetApp.
+.. Click *Upload*.
+.. After upload, verify that the new license appears in the *Licenses* list.
+.. For "AIPVS — Vectorization and Guardrails", ensure the number of installed licenses matches the number of GPUs in your DCN nodes.
+--
+
+.CLI
+--
+.. Add one or more license keys using the ONTAP CLI:
++
+[source,cli]
+----
+system license add
+----
+
+The following example installs a license file from the local node:
+----
+system license add -use-license-file true
+----
+The following example adds a license key directly:
+----
+system license add -license-code AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+----
+
+Refer to the link:https://docs.netapp.com/us-en/ontap-cli/system-license-add.html[system license add^] command in the ONTAP command reference for more details.
+--
+====
+
+
+
