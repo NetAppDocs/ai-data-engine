@@ -13,20 +13,20 @@ entries:
     url: /install-setup/install-setup-requirements.html    
   - title: Prepare to install
     url: /install-setup/prepare-hardware.html
-    - title: Install hardware
-      entries:
-        - title: Install switches
-          url: /install-setup/install-switches.html  
-        - title: Install storage system and shelves
-          url: /install-setup/deploy-hardware.html
-    - title: Cabling 
-      entries:
-        - title: Review supported configurations
-          url: /install-setup/aide-cable-overview.html
-        - title: Gather network information
-          url: /install-setup/install-network-reqs.html
-        - title: Cable hardware
-          url: /install-setup/cable-hardware.html  
+  - title: Install hardware
+    entries:
+      - title: Install switches
+        url: /install-setup/install-switches.html  
+      - title: Install storage system and shelves
+        url: /install-setup/deploy-hardware.html
+  - title: Cabling 
+    entries:
+      - title: Review supported configurations
+        url: /install-setup/aide-cable-overview.html
+      - title: Gather network information
+        url: /install-setup/install-network-reqs.html
+      - title: Cable hardware
+        url: /install-setup/cable-hardware.html  
   - title: Power on and configure switches
     url: /install-setup/power-on-configure-switch.html  
   - title: Power on system
