@@ -20,6 +20,8 @@ After you install the switches, you should install the hardware for your AIDE sy
 
 * Understand that the airflow through the system enters from the front where the bezel or end caps are installed and exhausts out the rear where the ports are located.
 
+NOTE: In general, the switches should be installed in the center of the cabinet. The storage shelves should be installed below the switch and above a second installed switch. The controller nodes can be installed above or below the switches within the cabinet. Data compute nodes can be installed above or below the controller nodes within the cabinet.
+
 .Steps
 
 . Install the rail kits for your storage system and storage shelves, as needed, using the instructions included with the kits.
@@ -46,8 +48,7 @@ image::../media/drw_affa1k_install_cable_mgmt_ieops-1697.svg[Install cable manag
 +
 
 .. Position the back of the storage shelf onto the rails, and then support the shelf from the bottom and slide it into the cabinet. 
-+
-In general, the switches should be installed in the center of the cabinet. The storage shelves should be installed below the switch and above a second installed switch. The controller nodes can be installed above or below the switches within the cabinet. Data compute nodes can be installed above or below the controller nodes within the cabinet.
+
 
 .. Secure the storage shelf to the cabinet using the included mounting screws.
 
