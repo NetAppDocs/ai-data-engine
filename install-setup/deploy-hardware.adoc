@@ -30,7 +30,12 @@ After you install the switches, you should install the hardware for your AIDE sy
 
 .. Secure the system to the cabinet using the included mounting screws.
 
-+
+. Install and secure your data compute nodes in the cabinet:
+
+.. Position the data compute node onto the rails in the middle of cabinet, and then support the appliance from the bottom and slide it into place.
+
+.. Secure the data compute node to the cabinet using the included mounting screws. .
+
 . Attach the bezel to the front of the controller.
 +
 . If your storage system came with a cable management device, attach it to the rear of the storage system.
