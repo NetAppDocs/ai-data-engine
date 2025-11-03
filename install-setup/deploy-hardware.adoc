@@ -16,9 +16,9 @@ After you install the switches, you should install the hardware for your AIDE sy
 
 * Make sure you have the instructions packaged with the rail kit.
 
-* Be aware of the safety concerns associated with the weight of the data compute node, controller, and storage shelf.
+* Understand the safety concerns related to the weight of the data compute node, storage system, and storage shelf.
 
-* Understand that the airflow through the system enters from the front where the bezel or end caps are installed and exhausts out the rear where the ports are located.
+* Understand that the airflow through the storage system enters from the front where the bezel or end caps are installed and exhausts out the rear where the ports are located.
 
 NOTE: In general, the switches should be installed in the center of the cabinet. The storage shelves should be installed below the switch and above a second installed switch. The controller nodes can be installed above or below the switches within the cabinet. Data compute nodes can be installed above or below the controller nodes within the cabinet.
 

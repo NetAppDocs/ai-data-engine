@@ -33,7 +33,7 @@ After you’ve ensured that the site and the cabinet or rack that you plan to us
 
 . Carefully open all the boxes and lay out the contents in an organized manner.
 
-. Compare the contents you’ve unpacked with the list on the packing slip. If there are any discrepancies, note them down for further action. 
+. Compare the contents you’ve unpacked with the list on the packing slip. If you find any discrepancies, record them down for further action. 
 
 +
 You can get your packing list by scanning the QR code on the side of the shipping carton.
@@ -101,7 +101,7 @@ a|
  .. Select *Systems* > *Register Systems*.
  .. Enter the storage system's serial number and requested details.
 
-After your registration is approved, you can download any required software. The approval process might take up to 24 hours.
+Once NetApp approves your registration, you can download the required software. Approval takes up to 24 hours.
 |===
 
 .What's next?

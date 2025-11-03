@@ -11,7 +11,7 @@ summary: Learn how to install the switches for the AIDE system and storage shelv
 [.lead]
 After you complete your preparation for the AIDE system installation, you should install the switches in the cabinet or telco rack.
 
-Depending on your configuration, you might need to install the Cisco Nexus 9332D-GX2B switch and pass-through panel in a NetApp cabinet. Standard brackets are included with the switch.
+Install Cisco Nexus 9332D-GX2B or 9364D-GX2A switches in the cabinet or rack. Install a pass-through panel kit if using the Cisco Nexus 9364D-GX2A switch.
 
 .Before you begin
 Make sure you have the following components available: 
@@ -27,7 +27,10 @@ The NetApp pass-through panel kit contains the following hardware:
 * For each switch, eight 10-32 or 12-24 screws and clip nuts to mount the brackets and slider rails to the front and rear cabinet posts.
 * The Cisco standard rail kit to install the switch in a NetApp cabinet.
 
-NOTE: The jumper cords are not included with the pass-through kit and should be included with your switches. If they were not shipped with the switches, contact NetApp to order the appropriate jumper cables for your configuration. 
+NOTE: Jumper cords are not included with the pass-through kit. Contact NetApp to order the right jumper cables if they are not shipped with your switches. 
+
+NOTE: The Cisco 9332D-GX2B and 9364D-GX2A are port-side intake switches. The network ports for the switches must be installed facing the front of the cabinet, and the exhaust fans must face the rear of the cabinet. With this configuration, you must ensure that you use cables long enough to run from the network ports in the front of the cabinet to the storage ports in the rear of the cabinet. + 
+For more detailed information about these switches, please visit the Cisco website: https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9332d-gx2b/cisco-nexus-9332d-gx2b-nx-os-mode-switch-hardware-installation-guide.html[Cisco Nexus 9332D-GX2B NX-OS Mode Switch Hardware Installation Guide^] and https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9364d-gx2a/cisco-nexus-9364d-gx2a-nx-os-mode-switch-hardware-installation-guide.html[Cisco Nexus 9364D-GX2A NX-OS Mode Switch Hardware Installation Guide^].
 
 .Steps
 . Install the pass-through blanking panel.
@@ -55,14 +58,14 @@ Female connector of the jumper cord.
 +
 image::../media/3132q_front_bracket.gif[front bracket]
 
- .. Repeat step <<SUBSTEP_9F2E2DDAEE084FE5853D1A6C6D945941,2a>> with the other front rack-mount bracket on the other side of the switch.
+ .. Repeat step 2a with the other front rack-mount bracket on the other side of the switch.
  .. Install the rear rack-mount bracket on the switch chassis.
- .. Repeat step <<SUBSTEP_53A502380D6D4F058F62ED5ED5FC2000,2c>> with the other rear rack-mount bracket on the other side of the switch.
+ .. Repeat step 2c with the other rear rack-mount bracket on the other side of the switch.
 . Install the clip nuts in the square hole locations for all four IEA posts.
 +
 image::../media/ru_locations_for_3132q_v.gif[]
 +
-It is recommended that the two 9332D-GX2B switches be mounted in locations within the cabinet that provide efficient access to the controllers and shelves, such as the middle rows of the rack.
+Mount the two 9332D-GX2B switches in cabinet locations that provide efficient access to controllers and shelves, such as the middle rows.
 
 . Install the slider rails in the cabinet or rack.
  .. Position the first slider rail at the desired location on the back side of the rear left post, insert screws with the matching thread type, and then tighten the screws with your fingers.
@@ -128,7 +131,7 @@ NOTE: To maintain redundancy, the two cords must be connected to different PDUs.
 
 . Connect the management port on each switch to either of the management switches (if ordered) or connect them directly to your management network.
 +
-The management network port is the RJ-45 port. The CAT6 cable for each switch needs to be routed through the pass-through panel after the switches are installed to connect to the management switches or management network.
+The management network port is the lower RJ-45 port near the right PSU. Route the CAT6 cable for each switch through the pass-through panel after installing the switches to connect to the management switches or network.
 
 .What's next?
 After you've installed the switches in the cabinet or rack, you link:deploy-hardware.html[install the AIDE system and shelves in the cabinet].
