@@ -16,7 +16,7 @@ Data compute nodes for the AI Data Engine are configured within an AFX storage s
 
 Additional data compute nodes can be used to expand on the initial AIDE configuration. Expanded AIDE configurations follow the same switch-based cabling methodology as the schema depicted below.
 
-image:../media/temp_aide_cable_overview.png[AIDE system overview cabling example]
+image:../media/dcn-aide_cable_overview_ieops-2656.svg[AIDE system overview cabling example]
 
 == Supported hardware components
 Review the compatible data compute nodes, controller nodes, disk shelves, switches, and cable types for the AIDE system.
