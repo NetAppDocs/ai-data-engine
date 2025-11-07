@@ -20,6 +20,30 @@ Contact your network administrator for information about connecting the storage 
 * The I/O slots on an AIDE data compute node are numbered 4 and 5. Slot 3 is reserved for the GPU. Slots 1 and 2 are not populated or accessible for use.
 +
 image::../media/drw_aide-dcn_back_slots_labeled_ieops-2646.svg[Slot numbering on an AIDE data compute node]
++
+[cols="1,4"]
+|===
+a|
+image::../media/icon_round_1.png[Callout number 1]
+a|
+Unused slot on the data compute node.
+a|
+image::../media/icon_round_2.png[Callout number 2]
+a|
+Unused slot on the data compute node.
+a|
+image::../media/icon_round_3.png[Callout number 3]
+a|
+GPU slot on the data compute node.
+a|
+image::../media/icon_round_4.png[Callout number 4]
+a|
+I/O slot on the data compute node.
+a|
+image::../media/icon_round_5.png[Callout number 5]
+a|
+I/O slot on the data compute node.
+|===
 
 * The I/O slots on an AFX controller are numbered 1 through 11.
 +
