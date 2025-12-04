@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: install-setup/power-on-hardware.html
-keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, power on
+keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, power on, dx50
 summary: Power on each shelf to assign a unique shelf ID, power on the AFX controller nodes, and secure the power cables. 
 ---
 = Power on your AIDE system

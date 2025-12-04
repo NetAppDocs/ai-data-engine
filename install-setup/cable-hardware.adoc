@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: install-setup/cable-hardware.html
-keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, cable controllers, Cisco Nexus 9332D-GX2B, Cisco Nexus 9364D-GX2A, switches, switch, cable hardware, cable storage shelves
+keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, cable controllers, Cisco Nexus 9332D-GX2B, Cisco Nexus 9364D-GX2A, switches, switch, cable hardware, cable storage shelves, dx50
 summary: Learn how to attach the AIDE cables to your network and cable the data compute nodes and controllers to the shelves. 
 ---
 = Cable the hardware for your AIDE system

@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: install-setup/install-switches.html
-keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, switches, cisco 9332, cisco 9336, switches,
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, switches, cisco 9332, cisco 9336, switches, dx50
 summary: Learn how to install the switches for the AIDE system and storage shelves. 
 ---
 = Install the switches for your AIDE system

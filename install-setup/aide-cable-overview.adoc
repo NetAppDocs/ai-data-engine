@@ -1,7 +1,7 @@
 ---
 permalink: install-setup/aide-cable-overview.html
 sidebar: sidebar
-keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, cable, overview, cisco 9332, cisco 9364, cabling, hardware, switches, storage shelves, disk shelves, controller nodes
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, cable, overview, cisco 9332, cisco 9364, cabling, hardware, switches, storage shelves, disk shelves, controller nodes, dx50
 summary: Learn how to cable your data compute nodes to the controllers, network, switches, and storage shelves. 
 ---
 = Supported configurations for your AIDE storage system

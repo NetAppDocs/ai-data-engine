@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: install-setup/prepare-hardware.html
-keywords: aide, ai, data engine, ai data engine, dcn, data compute node, prepare, hardware installation, afx, afx 1k
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, prepare, hardware installation, afx, afx 1k, dx50
 summary: Prepare to install the AIDE system in your ONTAP environment and register the hardware to access support benefits. 
 ---
 = Prepare to install your AIDE storage system

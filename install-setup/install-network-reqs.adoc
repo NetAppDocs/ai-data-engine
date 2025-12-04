@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: install-setup/install-network-reqs.html
-keywords: shared storage cluster switch
+keywords: shared storage cluster switch, dx50, aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, network requirements, cisco nexus 9332d-gx2b, cisco nexus 9364d-gx2a, switch, switches
 summary: From ONTAP 9.9.1, you can use Cisco Nexus 9364d-gx2a switches to combine storage and cluster functionality into a shared switch scenario.
 ---
 = Network requirements for your AIDE system

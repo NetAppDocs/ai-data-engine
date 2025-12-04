@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: install-setup/install-setup-workflow.html
-keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, workflow
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, workflow, dx50
 summary: Get started with the install and setup of your AI Data Engine system and deploy it in your ONTAP environment.
 ---
 = Installation and setup workflow for AI Data Engine systems

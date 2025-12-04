@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: install-setup/power-on-configure-switch.html
-keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, cable controllers, Cisco Nexus 9332D-GX2B, Cisco Nexus 9364D-GX2A, switches, switch, power on, configure switches,
+keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, cable controllers, Cisco Nexus 9332D-GX2B, Cisco Nexus 9364D-GX2A, switches, switch, power on, configure switches, dx50
 summary: Learn how to power on and configure the switches for your AFX 1K storage system. 
 ---
 = Power on and configure the switches for your AIDE system

@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: install-setup/deploy-hardware.html
-keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy, dx50
 summary: Learn how to install the rail kits for the AIDE system and storage shelves, and secure the AFX hardware in the cabinet. 
 ---
 = Install your AIDE storage system

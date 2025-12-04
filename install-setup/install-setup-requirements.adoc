@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: install-setup/install-setup-requirements.html
-keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, requirements, cautions
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, requirements, cautions, dx50
 summary: Review the equipment needed and the lifting precautions for your AIDE data compute nodes, storage controllers, and storage shelves.
 ---
 = Installation requirements for AIDE systems
