@@ -1,0 +1,74 @@
+---
+sidebar: sidebar
+permalink: get-started/aide-architecture.html
+keywords: aide, architecture, ontap, physical components, logical components, networking, security
+summary: "AIDE is built on a scalable, fault-tolerant architecture that separates storage and compute, enabling high performance and flexibility for AI workloads."
+---
+= AI Data Engine High-Level Architecture
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+AIDE is built on a scalable, fault-tolerant architecture that separates storage and compute, enabling high performance and flexibility for AI workloads.
+
+== Physical components
+
+=== ONTAP Nodes
+
+ONTAP nodes provide enterprise-class storage, data management, and protocol services (NFS, SMB, S3). They run the ONTAP software stack and support multi-protocol client access, treating file and object protocols as interchangeable peers.
+
+=== Data Compute Nodes (DCNs)
+
+DCNs are Linux-based servers with high CPU, RAM, and GPU resources, dedicated to AI data processing tasks. They host AI-specific services such as metadata cataloging, vector search, and embedding pipelines.
+
+=== Cluster/Storage Switches
+
+Redundant, high-speed (100GbE or higher) switches connect ONTAP and DCN nodes for low-latency data transfer and high availability.
+
+=== Storage Shelves
+
+NVMe-oF shelves with high-density SSDs provide ultra-low latency and redundancy, supporting PB-scale storage.
+
+== Logical components
+
+=== Metadata Catalog
+
+A centralized index of all data assets, supporting governance, discovery, and compliance. It enables efficient data search and management for AI workloads.
+
+=== Vector Database
+
+Stores embeddings for similarity search and retrieval-augmented generation (RAG) pipelines, optimized for high-dimensional data queries.
+
+=== Workspaces
+
+Collections of volumes and buckets, with access controls for data engineers and scientists. Workspaces define the scope of data available for AI processing.
+
+=== Data Collections
+
+Named subsets of files/objects within a workspace, used for AI model training and inference. Data collections are the unit of content processing.
+
+=== REST API Gateway
+
+Centralized endpoint for management, data access, and integration with external tools. Provides secure, scalable access to AIDE services.
+
+=== Microservices
+
+Modular services for orchestration, monitoring, logging, configuration, and security. Managed via Kubernetes for resilience and scalability.
+
+== Networking and Data Flow
+
+* Cluster Network: Private, isolated VLAN/IPspace for secure communication between ONTAP and DCN nodes.
+* Data Access: DCNs access ONTAP-managed volumes and buckets via NFS or S3 over the cluster network.
+* Management APIs: Exposed for cluster setup, monitoring, software upgrades, and user management.
+
+== High Availability and Scalability
+
+* Redundant hardware and network paths ensure 99.999% uptime.
+* Horizontal and vertical scaling supported for both compute and storage.
+* Rolling software upgrades and automated failover for minimal disruption.
+
+== Security and Multi-Tenancy
+
+* Encryption at rest and in transit.
+* RBAC for granular access control.
+* Tenant isolation for data and metadata.
