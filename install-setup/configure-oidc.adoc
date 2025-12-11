@@ -25,7 +25,7 @@ OpenID Connect (OIDC) is an authentication protocol that allows users to log in 
 * You must have administrator access to System Manager.
 * The OIDC IdP must be configured and accessible.
 
-.Step
+.Steps
 
 . In System Manager, navigate to *Cluster* > *Settings*. Locate the OpenID Connect card.
 +
