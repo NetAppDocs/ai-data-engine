@@ -14,7 +14,7 @@ sidebar:
   - section: release-notes
   - section: get-started
 ##  - section: manage-data 
-##  - section: administer
+  - section: administer
   - title: Maintain hardware 
     url: /maintain-hardware.html
 ##  - section: get-help

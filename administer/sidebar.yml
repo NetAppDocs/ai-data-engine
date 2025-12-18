@@ -1,0 +1,11 @@
+section: administer
+title: Administer and monitor
+entries:
+- title: Upgrade and update your AI Data Engine system
+  entries:
+  - title: Keep your AI Data Engine system up to date
+    url: "/administer/upgrades-aide-summary.html"
+  - title: Upgrade ONTAP
+    url: "/administer/upgrade-ontap-for-aide.html"
+  - title: Update DCN firmware and AIDE Console software
+    url: "/administer/update-aide-firmware-software.html"
