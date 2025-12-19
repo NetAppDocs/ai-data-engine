@@ -1,10 +1,10 @@
 ---
-permalink: authentication/configure-oidc-for-aide-task.html
+permalink: install-setup/configure-oidc-for-aide-task.html
 sidebar: sidebar
 keywords: openid connect, oidc, authentication, aide, system manager, configure, oauth
 summary: "You can use System Manager to configure OpenID Connect (OIDC) authentication for AI Data Engine (AIDE) clusters, enabling secure, centralized login via an external Identity Provider (IdP)."
 ---
-= Configure OpenID Connect for AIDE
+= Configure OpenID Connect for ONTAP AIDE
 :icons: font
 :imagesdir: ../media/
 

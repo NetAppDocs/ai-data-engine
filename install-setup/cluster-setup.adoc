@@ -1,11 +1,11 @@
 ---
-permalink: authentication/cluster-setup.html
+permalink: install-setup/cluster-setup.html
 sidebar: sidebar
 keywords: aide, ontap, cluster setup, data compute node, dcn, data engine
 summary: "After your AIDE hardware has been installed, you can complete the ONTAP cluster setup. This process includes additional steps for Data Compute Nodes (DCNs) and Data Engine services."
 ---
 
-= Set up your AIDE ONTAP cluster
+= Set up your ONTAP AIDE cluster
 :icons: font
 :imagesdir: ../media/
 
