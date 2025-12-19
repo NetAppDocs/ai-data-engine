@@ -44,6 +44,7 @@ Complete the standard ONTAP cluster setup as described in the [AFX documentation
 Follow these steps after completing the initial ONTAP cluster setup to finalize the AIDE configuration.
 
 .Steps
+. Navigate to the from the Cluster > Settings > Software Update tab and check that the DCN nodes are running the latest software version. If not, update the DCN software.
 . From the "Finish setting up the cluster" guide, click "Configure data engine networking." Configure a single Data Engine service IP address for the cluster. This address is load-balanced across all DCN nodes and used for Data Engine services. You can add or edit the Data Engine service interface from the dashboard or the Data Engine card.
 
 .What's next
