@@ -9,25 +9,32 @@ summary: "Learn about the different components of an AI Data Engine system that 
 :imagesdir: ../media/
 
 [.lead]
-//AI fluff and placeholders
-There are several components of an AI Data Engine system that need to be kept up to date to ensure optimal performance, security, and access to the latest features. This document provides an overview of the key components that require regular updates.
+To maintain optimal performance, security, and access to the latest features, there are several components of an AI Data Engine system that you need to keep up to date. You might need to update these components after a new deployment when newer software or firmware is available, when you add or replace nodes, or periodically as new features and improvements are released.
 
-== ONTAP Software
-ONTAP is the operating system that runs on NetApp storage systems, including those used in AI Data Engine deployments. Keeping ONTAP up to date is crucial for maintaining system stability, security, and compatibility with new features. Regular updates to ONTAP can include bug fixes, performance improvements, and new functionalities that enhance the overall user experience.
+== AIDE system components
+DCN firmware and AIDE Console software updates are distributed as a single, separate package (`dcn-image.tgz`) and are not embedded in ONTAP images.
 
-== Firmware Updates
-Firmware updates are essential for the proper functioning of hardware components within the AI Data Engine system, including data compute nodes (DCNs). This includes updates for storage controllers, network interfaces, and other critical hardware. Firmware updates often address security vulnerabilities, improve hardware performance, and ensure compatibility with the latest software versions.
+=== ONTAP Software
+ONTAP is the operating system that runs on NetApp storage systems, including those used in AI Data Engine deployments. Keeping ONTAP up to date is critical for maintaining system stability, security, and compatibility with AIDE system components that rely on ONTAP but are updated separately.
 
-== AI Data Engine Software
-The AI Data Engine software itself is a critical component that requires regular updates. These updates can include new features, performance enhancements, and bug fixes that improve the overall functionality of the AI Data Engine. Keeping the AI Data Engine software up to date ensures that users have access to the latest tools and capabilities for managing and analyzing their data. 
+=== DCN firmware updates
+Firmware updates are essential for the proper functioning of hardware components within the AI Data Engine system, including data compute nodes (DCNs). This includes updates for storage controllers, network interfaces, and other critical hardware.
 
-== Integration Components
-AI Data Engine often integrates with various third-party tools and platforms for data processing, analysis, and visualization. It is important to keep these integration components up to date to ensure seamless interoperability and to take advantage of new features and improvements offered by these third-party tools.
+=== AI Data Engine software
+The AI Data Engine Console software, including vectorization and guardrail capabilities, requires regular updates that can include new features, performance enhancements, and bug fixes.
 
-== Security Patches
-Regularly applying security patches to all components of the AI Data Engine system is vital for protecting sensitive data and maintaining compliance with industry standards. Security patches address known vulnerabilities and help safeguard the system against potential threats.
+== Compatibility matrix
+It's important to ensure compatibility between the software and firmware of all AI Data Engine system components, including ONTAP, DCN firmware, and AI Data Engine software.
 
-By keeping all components of the AI Data Engine system up to date, organizations can ensure optimal performance, security, and access to the latest features and capabilities.
+IMPORTANT: Revert functionality is not supported for DCN firmware or AI Data Engine Console software updates. After an update is installed, you cannot revert to a previous version. Before making any updates, ensure you have reviewed the release notes and compatibility requirements for each component.
 
+|===
+| ONTAP Version | Compatible AIDE Console and DCN Firmware Versions 
+| 9.18.1 and later | AIDE Console 1.0.x, DCN Firmware 1.0.x
+|===
 
+== Understand the update process
+AI Data Engine DCN and AIDE Console software updates can be managed through ONTAP System Manager, which provides options for partially automatic or manual updates.
+
+Administrators cannot enable fully automatic updates of DCN software. By default, AIDE admins will be notified of an available update, but the update will not be automatically downloaded or installed. Admins must acknowledge the pending update before it is downloaded and installed. 
 

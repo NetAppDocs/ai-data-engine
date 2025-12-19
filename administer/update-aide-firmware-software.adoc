@@ -1,81 +1,72 @@
 ---
 sidebar: sidebar
-permalink: administer/update-firmware.html
+permalink: administer/update-aide-firmware-software.html
 keywords: update, firmware, system files, automatic updates, automated updates, aide, disable, 
-summary: "ONTAP automatically updates software and firmware on AI Data Engine systems. You can use System Manager to disable automatic updates and view updates before they are installed."
+summary: "Update DCN firmware and AI Data Engine Console software using ONTAP System Manager's automatic updates functionality or make updates manually."
 ---
 = Update DCN firmware and AI Data Engine Console software
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-ONTAP automatically downloads and updates firmware, AI Data Engine Console software including vectorization and guardrails functionality, and other system files on your AI Data Engine system by default. If you want the flexibility of viewing recommended updates before they are downloaded and installed, you can use ONTAP System Manager to disable automated updates or to edit update parameters to show you notifications of available updates before any action is performed.
+You can update data compute node (DCN) firmware, AI Data Engine Console software including vectorization and guardrails functionality, and other system files on your AI Data Engine system using ONTAP System Manager's automatic updates functionality or make updates manually.
 
-== Enable automatic updates
+You might choose automatic updates for convenience, efficiency, and system notifications about updates. Alternatively, you might choose to make updates manually if you are in an air-gapped environment or want to review available updates before they are installed.
 
-Recommended updates for storage firmware, DCN firmware, AI Data Engine Console software including vectorization and guardrails functionality, and system files are automatically downloaded and installed on your AI Data Engine system by default. If automatic updates have been disabled, you can enable them to reinstate the default behavior.
+IMPORTANT: Revert functionality is not supported for DCN firmware or AI Data Engine Console software updates. After an update is installed, you cannot revert to a previous version.
+
+== Automate updates with System Manager
+
+Choose this approach if you want ONTAP to notify you when an update is available. You can choose to have DCN firmware and AI Data Engine Console software updates automatically downloaded and installed or you can manually download and install updates at a later time.
+
+=== Enable ONTAP automatic updates
+
+Enable automatic updates so that recommended updates for DCN firmware, AI Data Engine Console software including vectorization and guardrails functionality can be automatically downloaded and installed by default after you approve.
 
 .Steps
 
 . In System Manager, select *Cluster > Settings*.
 . Under *Software updates*, select *Enable*.
 . Read the EULA.
-. Accept the defaults to *Show notification* of recommended updates.  Optionally, select to *Automatically update* or to *Automatically dismiss* recommended updates.
+. Retain the defaults of *Show notification*.
++
+NOTE: The *Automatically update* option should not be used with AI Data Engine systems updates.
+
 . Select to acknowledge that your update modifications will be applied to all current and future updates.
 . Select *Save*.
 
-.Result
+=== Install recommended updates
 
-Recommended updates are automatically downloaded and installed on your ASA r2 system based upon your update selections.
+View a list of recommended firmware and software updates available for your AI Data Engine system and then install them.
 
-== Disable automatic updates
+.Steps
 
-Disable automatic updates if you want the flexibility to view recommended updates before they are installed.  If you disable automatic updates, you need to perform firmware and system file updates manually. 
+. In System Manager, select *Cluster > Settings*.
+. Next to *Software updates* select image:icon_arrow.gif[blue arrow pointing to the right], then select *View all automatic updates*.
+. Review the list of available updates.
+. Next each update in the list of recommended updates, select *Actions*.
+. Select *Update* to install the update immediately or *Schedule* to schedule it for later.
+
+== Perform updates manually with System Manager
+
+Choose this approach if you want more control over the updates process and you want to manually download and install the updates yourself.
+
+=== Disable automatic updates
+
+Ensure that automatic updates is disabled if you want the flexibility to view recommended updates and perform firmware and software updates manually. 
 
 .Steps
 
 . In System Manager, select *Cluster > Settings*.
 . Under *Software updates*, select *Disable*.
 
-.Result
-
-Automatic updates are disabled.  You should regularly check for recommended updates and decide if you want to perform a manual installation.
-
-== View automatic updates
-
-View a list of firmware and system file updates that have been downloaded to your cluster and are scheduled for automatic installation.  Also view updates that have been previously automatically installed.
-
-.Steps
-
-. In System Manager, select *Cluster > Settings*.
-. Next to *Software updates* select image:icon_arrow.gif[blue arrow pointing to the right], then select *View all automatic updates*.
-
-== Edit automatic updates
-
-You can select to have recommended updates for your storage firmware, DCN firmware, AI Data Engine Console software including vectorization and guardrails functionality, and your system files automatically downloaded and installed on your cluster, or you can select to have recommended updates automatically dismissed.  If you want to manually control installation or dismissal of updates, select to be notified when a recommended update is available; then you can manually select to install or dismiss it. 
-
-.Steps
-
-. In System Manager, select *Cluster > Settings*.
-. Next to *Software updates* select image:icon_arrow.gif[blue arrow pointing to the right], then select *All other updates*.
-. Update the selections for automatic updates.
-. Select *Save*.
-
-.Result
-
-Automatic updates are modified based on your selections.
-
-== Update firmware manually
+== Update software and firmware manually
 
 If you want the flexibility of viewing recommended updates before they are downloaded and installed, you can disable automated updates and update your firmware manually.
 
 .Steps
 
-. Download your firmware update file to a server or local client.
-. In System Manager, select *Cluster > Overview*, then select *All other updates*.
+. Download the combined DCN firmware and AIDE software update file to a server or local client.
+. In System Manager, select *Cluster > Settings*, then select *AI Data platform updates*.
 . Under *Manual Updates*, select *Add firmware files*; then select *Download from the server* or *Upload from the local client*.
-. Install the firmware update file.
-
-.Result
-
-Your firmware is updated.
+. Install the combined DCN firmware and AIDE software update file.
