@@ -13,6 +13,7 @@ sidebar:
     url: /index.html
   - section: release-notes
   - section: get-started
+  - section: workspaces
 ##  - section: manage-data 
 ##  - section: administer
   - title: Maintain hardware 

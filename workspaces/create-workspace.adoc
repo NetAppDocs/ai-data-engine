@@ -1,0 +1,33 @@
+---
+sidebar: sidebar
+permalink: workspaces/create-workspace.html
+keywords: aide, workspaces, create workspace, ai data engine
+summary: "After you create a cluster, you can create workspaces on the volumes you intend to use with AI Data Engine."
+---
+
+= Create a workspace
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+//ai template fluff
+A workspace is a dedicated environment within the AI Data Engine platform that provides users with isolated resources for their data science and machine learning projects. Workspaces enable collaboration, resource management, and streamlined workflows for data scientists and engineers.
+== Steps to create a workspace
+. Log in to the AI Data Engine management console using your credentials.
+. Navigate to the "Workspaces" section from the main dashboard.
+. Click on the "Create Workspace" button.
+. Fill in the required details for your workspace:
+  * **Workspace Name**: Enter a unique name for your workspace.
+  * **Description**: Provide a brief description of the workspace's purpose.
+  * **Resource Allocation**: Specify the resources (CPU, GPU, memory, storage) you want to allocate to this workspace.
+. Set up user access and permissions for the workspace.
+. Review the workspace configuration and click "Create" to finalize the setup.
+. Once created, you can access the workspace from the "Workspaces" section and start using it for your projects.
+
+== Managing workspaces
+After creating a workspace, you can manage it by:
+* **Modifying Resources**: Adjust the allocated resources as needed.
+* **User Management**: Add or remove users and update their permissions.
+* **Monitoring Usage**: Track resource usage and performance metrics.
+* **Deleting Workspaces**: Remove workspaces that are no longer needed, ensuring to back up any important data beforehand.
+For detailed instructions and best practices, refer to the AI Data Engine user guide or contact support for assistance.

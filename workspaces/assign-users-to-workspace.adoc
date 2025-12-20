@@ -1,0 +1,24 @@
+---
+sidebar: sidebar
+permalink: workspaces/assign-users-to-workspace.html
+keywords: aide, workspaces, assign users, user management, ai data engine
+summary: "After you create a workspace, you can assign users to it who will work with AI resources within that workspace."
+---
+= Assign users to a workspace
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+//ai template fluff
+Assigning users to a workspace in the AI Data Engine platform allows for controlled access and collaboration within that specific environment. By managing user permissions, you can ensure that team members have the appropriate level of access to resources and data within the workspace.
+
+== Steps to assign users to a workspace 
+. Log in to the AI Data Engine management console using your credentials.
+. Navigate to the "Workspaces" section from the main dashboard.
+. Select the workspace to which you want to assign users.
+. Click on the "Manage Users" or "User Access" option within the workspace settings.
+. Click on the "Add User" button.
+. Enter the email address or username of the user you want to assign to the workspace.
+. Select the appropriate role or permission level for the user (e.g., Admin, Editor, Viewer).
+. Click "Save" or "Add" to finalize the user assignment.        
+. Repeat the process for any additional users you want to assign to the workspace.
