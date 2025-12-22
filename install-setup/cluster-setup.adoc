@@ -12,7 +12,7 @@ summary: "After your AIDE hardware has been installed, you can complete the ONTA
 [.lead]
 After your AIDE hardware has been installed, you can complete the ONTAP cluster setup. This process includes additional configuration steps for Data Compute Nodes (DCNs).
 
-Refer to the [AFX storage system ONTAP cluster setup documentation](https://docs.netapp.com/us-en/ontap-afx/install-setup/cluster-setup.html) for the standard ONTAP cluster setup workflow. The procedures below describe the additional requirements and configuration for AIDE clusters.
+Refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/cluster-setup.html[AFX storage system ONTAP cluster setup documentation^] for the standard ONTAP cluster setup workflow. The procedures below describe the additional requirements and configuration for AIDE clusters.
 
 == About this task
 
@@ -28,7 +28,7 @@ AIDE clusters extend standard ONTAP clusters with DCNs to support AI data proces
   `number of DCNs + number of ONTAP nodes + 3`
 
 .Steps
-Complete the standard ONTAP cluster setup as described in the [AFX documentation](https://docs.netapp.com/us-en/ontap-afx/install-setup/cluster-setup.html). During this procedure, follow this additional procedure for AIDE DCN setup.
+Complete the standard ONTAP cluster setup as described in the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/cluster-setup.html[AFX documentation^]. During this procedure, follow this additional procedure for AIDE DCN setup.
 
 . Discover and validate Data Compute Nodes (DCNs). During cluster initialization, System Manager automatically discovers connected DCNs. The System Manager UI displays each DCN’s model and serial number. At least 3 DCNs must be connected. If only 1 or 2 are detected, System Manager will report an error and block cluster creation.
 . Configure the DCN backend network.

@@ -12,6 +12,7 @@ summary: "You can use System Manager to configure OpenID Connect (OIDC) authenti
 You can use System Manager to configure OpenID Connect (OIDC) authentication for AI Data Engine (AIDE) clusters, enabling secure, centralized login via an external Identity Provider (IdP).
 
 OIDC must be configured to access the AI Data Engine console.
+
 .About this task
 
 OpenID Connect (OIDC) is an authentication protocol that allows users to log in to System Manager and the Data Engine console using an identity provider (IdP) for authentication. When OIDC is enabled, all web-based logins are redirected to your IdP for authentication.
