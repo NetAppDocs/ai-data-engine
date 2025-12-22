@@ -4,21 +4,33 @@ permalink: workspaces/assign-users-to-workspace.html
 keywords: aide, workspaces, assign users, user management, ai data engine
 summary: "After you create a workspace, you can assign users to it who will work with AI resources within that workspace."
 ---
-= Assign users to a workspace
+= Manage users in AI Data Engine workspaces 
 :icons: font
 :imagesdir: ../media/
 
-[.lead]
-//ai template fluff
-Assigning users to a workspace in the AI Data Engine platform allows for controlled access and collaboration within that specific environment. By managing user permissions, you can ensure that team members have the appropriate level of access to resources and data within the workspace.
+[.lead] 
+System Manager enables you to manage which users have access to AI Data Engine workspaces. You can add or remove users to control who can view, modify, and interact with workspace data and activities.
 
-== Steps to assign users to a workspace 
-. Log in to the AI Data Engine management console using your credentials.
-. Navigate to the "Workspaces" section from the main dashboard.
-. Select the workspace to which you want to assign users.
-. Click on the "Manage Users" or "User Access" option within the workspace settings.
-. Click on the "Add User" button.
-. Enter the email address or username of the user you want to assign to the workspace.
-. Select the appropriate role or permission level for the user (e.g., Admin, Editor, Viewer).
-. Click "Save" or "Add" to finalize the user assignment.        
-. Repeat the process for any additional users you want to assign to the workspace.
+.Before you begin
+
+* Confirm that the workspace has been created and is visible in the Workspaces inventory.
+
+.Steps
+
+. Add a user to a workspace: 
+.. In System Manager, navigate to *AI Data Engine > Workspaces*. 
+.. Click the workspace name to open its details page. 
+.. Go to the Users tab. 
+.. Click the *Add* button to open the add user dialog. 
+.. Enter the user name. 
+.. Click *Add* to grant the user access to the workspace.
+
+. Remove a user from a workspace: 
+.. In the Users tab of the workspace details page, locate the user you want to remove. 
+.. Click the *Remove* option in the action menu next to the user. 
+.. Confirm the removal in the dialog. 
+.. The user will be removed and their access to the workspace will be revoked.
+
+.Result
+You have successfully managed user access for your AI Data Engine workspace. Only users listed in the workspace's Users tab will be able to access and interact with workspace data and activities.
+
