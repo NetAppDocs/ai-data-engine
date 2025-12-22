@@ -22,8 +22,8 @@ entries:
 - title: Set up your AIDE system
   entries:     
   - title: Set up your AIDE cluster
-    url: "install-setup/cluster-setup.html"
+    url: "/install-setup/cluster-setup.html"
   - title: Install AIDE licenses
     url: "/install-setup/install-license-task.html"
   - title: Configure OpenID Connect for AIDE
-    url: "install-setup/configure-oidc-for-aide-task.html"
+    url: "/install-setup/configure-oidc-for-aide-task.html"
