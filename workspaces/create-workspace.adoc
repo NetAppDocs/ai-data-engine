@@ -14,15 +14,20 @@ As a storage administrator, you use System Manager to create workspaces, view wo
 
 .Before you begin
 
+* You need storage administer privileges to create workspaces and data collections.
+* You've determined the remote and local data sources you intend to use with the workspace and with AI Data Engine.
+* You need to create a data container before it is available for workspace creation.
 * At least one data container (mounted volume) must be available to create a workspace.
 
 .Steps
 
 . Create a workspace:
 .. In System Manager, navigate to *AI Data Engine > Workspaces*.
-.. Select the *Add* button to open the workspace creation dialog.
-.. Select at least one available data container (mounted volume) to associate with the workspace.
-.. (Optional) Choose guard rails from the dropdown. If a guard rail is disabled or in test mode, review any warning messages.
+.. Select *Add*.
+.. In the *Add Workspace* dialog, select at least one available data container (mounted volume) to associate with the workspace.
+//.. (Optional) Choose guardrails from the dropdown. If a guardrail is disabled or in test mode, review any warning messages.
+.. Configure peered clusters so that the data from those clusters can be accessed within the workspace.
+.. Configure a refresh interval for the workspace data (default is one day).
 .. Select *Continue*.
 .. Enter a workspace name and description.
 .. Select *Add* to create the workspace.
@@ -38,3 +43,6 @@ As a storage administrator, you use System Manager to create workspaces, view wo
 .. Select the *Add* button to open the data collection dialog.
 .. Enter the required information for the new data collection.
 .. Select *Add* to associate the data collection with the workspace.
+
+.Result
+Metadata will be extracted automatically for all datasources and stored in a metadata store. After you assign users to the workspace, they can access and interact with the workspace affiliated data collections and resources for their AI workloads.

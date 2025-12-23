@@ -1,6 +1,8 @@
 section: workspaces
 title: Set up workspaces
 entries:
+- title: Create a data container
+  url: "/workspaces/create-data-container.html"
 - title: Create a workspace
   url: "/workspaces/create-workspace.html"
 - title: Assign users to a workspace

@@ -11,9 +11,12 @@ summary: "After you create a workspace, you can assign users to it who will work
 [.lead] 
 System Manager enables you to manage which users have access to AI Data Engine workspaces. You can add or remove users to control who can view, modify, and interact with workspace data and activities.
 
+//a note about data engineer and data scientist user roles and permissions in AIDE might go here
+
 .Before you begin
 
 * Confirm that the workspace has been created and is visible in the Workspaces inventory.
+* Confirm that data containers have been added to the workspace and are accessible.
 
 .Steps
 
