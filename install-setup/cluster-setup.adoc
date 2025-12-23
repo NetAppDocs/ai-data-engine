@@ -22,7 +22,7 @@ AIDE clusters extend standard ONTAP clusters with DCNs to support AI data proces
 
 .Before you begin
 
-* The required number of DCNs (minimum 3, maximum 10) must be physically connected to the cluster switches.
+* The required number of DCNs must be physically connected to the cluster switches. Exactly three DCNs are required to create an AIDE cluster, and expansion is not supported.
 * You must have sufficient IP addresses for the DCN network.  
   The required number of IP addresses is:  
   `number of DCNs + number of ONTAP nodes + 3`
