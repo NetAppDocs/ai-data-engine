@@ -10,17 +10,15 @@ summary: "After your AIDE hardware has been installed, you can complete the ONTA
 :imagesdir: ../media/
 
 [.lead]
-After your AIDE hardware has been installed, you can complete the ONTAP cluster setup. This process includes additional configuration steps for Data Compute Nodes (DCNs).
+After your AIDE hardware has been installed, you can complete the AIDE cluster setup with ONTAP. 
 
 //Refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/cluster-setup.html[AFX storage system ONTAP cluster setup documentation^] for the standard ONTAP cluster setup workflow. The procedures below describe the additional requirements and configuration for AIDE clusters.
 
-== About this task
-
-AIDE clusters extend standard ONTAP AFX clusters with DCNs to support AI data processing and cataloging. The setup process includes additional networking, validation, and configuration steps to ensure the DCNs are properly integrated and ready for AI workloads. 
+AIDE clusters extend standard ONTAP AFX clusters with Data Compute Nodes (DCNs) to support AI data processing and cataloging. The setup process includes networking, validation, and configuration steps to ensure the DCNs are properly integrated and ready for AI workloads. 
 
 == Perform initial AIDE cluster setup
 
-Connect your laptop device to the AFX cluster and set several global configuration values.
+Connect your laptop device to the AIDE cluster and set several global configuration values.
 
 .Before you begin
 
@@ -62,7 +60,7 @@ NOTE: For information on how to create a cluster for a non-Windows environment, 
 
 .What's next
 
-You'll be redirected to the System Manager sign-in page. Perform the steps described in <<Complete cluster setup>>.
+You'll be redirected to the System Manager sign-in page. Perform the steps described in <<Complete the AIDE cluster setup>>.
 
 //Complete the standard ONTAP cluster setup as described in the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/cluster-setup.html[AFX documentation^]. During this procedure, follow this additional procedure for AIDE DCN setup.
 
