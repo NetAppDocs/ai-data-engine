@@ -10,15 +10,20 @@ summary: "You can install AI Data Engine Engine licenses using System Manager."
 :imagesdir: ../media/
 
 [.lead]
-Install AI Data Engine Engine (AIDE) licenses using System Manager. There are two licenses required. The Metadata Engine Basic license is typically factory-installed as part of the ONTAP One license, while the "AIPVS — Vectorization and Guardrails" license must be purchased and installed for each GPU in your data compute nodes (DCNs).
+Install AI Data Engine Engine (AIDE) licenses using System Manager. There are two licenses for AIDE: The Metadata Engine Basic license that is typically factory-installed as part of the ONTAP One license and the "AIPVS — Vectorization and Guardrails" license that must be purchased and installed for each GPU in your data compute nodes (DCNs).
+
+The first license enables the Metadata Engine functionality in ONTAP, while the second license unlocks advanced AI capabilities such as vectorization and guardrails for AI workloads.
 
 .Before you begin
 * Ensure you have admin credentials to log in to System Manager.
 * Ensure that the cluster is running ONTAP 9.18.1 and later.
-* Download the license file to an accessible location.
+* Download each license file to an accessible location.
 
 .About this task
 You need one Metadata Engine Basic license per data compute node (DCN) and one "AIPVS — Vectorization and Guardrails" license for each GPU in your DCN.
+
+Additionally, ensure you have obtained and installed any supplementary license files that support ONTAP functionality or cloud storage. These include Amazon S3, NFS, and SnapMirror licenses.
+//contap-609777. Unclear if we need examples or full list of potential supplementary licenses.
 
 .Steps
 
@@ -30,10 +35,10 @@ If you have already obtained your NetApp license files for AIDE, you can use Sys
 --
 .. Select *Cluster* > *Settings*.
 .. Under *Licenses*, review the list of installed licenses to confirm if the Metadata Engine Basic license is present.
-.. To install a new license (such as "AIPVS — Vectorization and Guardrails"), click *Browse* and choose the license file (.txt or .lic) you downloaded from NetApp.
-.. Click *Upload*.
-.. After upload, verify that the new license appears in the *Licenses* list.
-.. For "AIPVS — Vectorization and Guardrails", ensure the number of installed licenses matches the number of GPUs in your DCN nodes.
+.. To install a new license (such as "AIPVS — Vectorization and Guardrails"), select *Add* and browse to and choose the license file (.txt or .lic) you downloaded from NetApp.
+.. Click *Add*.
+.. After adding the license, verify that the new license appears in the *Licenses* list.
+.. For "AIPVS — Vectorization and Guardrails", ensure that the number of installed licenses matches the number of GPUs in your DCN nodes.
 --
 
 .CLI
