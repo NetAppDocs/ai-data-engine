@@ -16,6 +16,7 @@ The first license enables the Metadata Engine functionality in ONTAP, while the 
 
 .Before you begin
 * Ensure you have admin credentials to log in to System Manager.
+// NAS license is preinstalled per spec. Probably don't need to doc.
 * Ensure that the cluster is running ONTAP 9.18.1 and later.
 * Download each license file to an accessible location.
 
