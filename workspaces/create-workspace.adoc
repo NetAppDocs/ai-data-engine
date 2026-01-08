@@ -5,36 +5,47 @@ keywords: aide, workspaces, create workspace, ai data engine
 summary: "After you create a cluster, you can create workspaces and add data collections you intend to use with AI Data Engine."
 ---
 
-= Set up a workspace and add a data collection in AI Data Engine
+= Set up a workspace in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-As a storage administrator, you use System Manager to create workspaces, view workspace details, and add data collections to support AI workloads. Workspaces are logical containers that help organize data containers and collections, making it easier to manage and prepare data for AI applications.
+After you set up a cluster, you can set up a workspace. Workspaces allow you to segment data on the cluster, control data access for individuals, and exclude data that should not be exposed to the AI Data Engine. For example, if you work in healthcare, you might segment clinical data into a workspace but leave out data pertaining to IT, legal, or other departments.
+
+As a storage administrator, you'll use System Manager to create and manage workspaces, and add data collections to support AI workloads.
+
+//.About this task
+//Strategies for workspace creation vary by organization. You might create workspaces based on teams, projects, data sensitivity levels, or other criteria relevant to your use cases.
 
 .Before you begin
 
 * You need storage administer privileges to create workspaces and data collections.
 * You've determined the remote and local data sources you intend to use with the workspace and with AI Data Engine.
-* You need to create a data container before it is available for workspace creation.
-* At least one data container (mounted volume) must be available to create a workspace.
+* You've created at last one data container that can be used by the workspace, such as a volume or an S3 bucket.
+//Should more clusters be added/peered?
 
 .Steps
 
-. Create a workspace:
-.. In System Manager, navigate to *AI Data Engine > Workspaces*.
+. Create the workspace:
+.. In System Manager, navigate to *Data Engine > Workspaces*.
 .. Select *Add*.
-.. In the *Add Workspace* dialog, select at least one available data container (mounted volume) to associate with the workspace.
-//.. (Optional) Choose guardrails from the dropdown. If a guardrail is disabled or in test mode, review any warning messages.
-.. Configure peered clusters so that the data from those clusters can be accessed within the workspace.
+.. In the *Add Workspace* dialog, select at least one available data container to associate with the workspace.
+.. Configure https://docs.netapp.com/us-en/ontap-afx/protect-data/snapshot-replication.html#step-1-create-a-cluster-peer-relationship[peered clusters^] so that the data from those clusters can be accessed within the workspace:
+
+//Needs more info on peered clusters. Should it be covered here fully, as AFX process, linked out to ONTAP docs, or just mentioned?
+
 .. Configure a refresh interval for the workspace data (default is one day).
 .. Select *Continue*.
 .. Enter a workspace name and description.
 .. Select *Add* to create the workspace.
++
+NOTE: The workspace creation process might take several minutes to complete, depending on the number of data containers associated with the workspace. It will show up in the *Workspaces* page in `Creating` state until the process is complete.
 
-. View the workspace:
-.. After creation, the workspace appears in the Workspaces inventory page.
-.. Review workspace details, including state, total size, and percentage of cluster capacity used.
+//.. (Optional) Choose guardrails from the dropdown. If a guardrail is disabled or in test mode, review any warning messages.
+
+. Review workspace details:
+.. After creation, the workspace appears in `ready` state on the *Workspaces* inventory page.
+.. Review workspace details, including total size, and percentage of cluster capacity used.
 .. Select the workspace name to open the details page.
 .. In the Overview tab, view workspace details and associated data containers.
 
