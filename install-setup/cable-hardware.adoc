@@ -127,9 +127,9 @@ image::../media/drw_afx_network_cabling_b_ieops-2351.svg[Cable to Ethernet netwo
 
 . Connect the following data compute node ports to your Ethernet data network switch A.
 * Data Compute Node 1
-** e4a
+** e4b
 * Data Compute Node 2
-** e4a
+** e4b
 +
 *200GbE cables*
 +
@@ -139,9 +139,9 @@ image::../media/drw_aide_network_cabling_a_ieops_2647.svg[Cable to Ethernet netw
 
 . Connect the following data compute node ports to your Ethernet data network switch B.
 * Data Compute Node 1
-** e5a
+** e5b
 * Data Compute Node 2
-** e5a
+** e5b
 +
 *200GbE cables*
 +
@@ -151,7 +151,7 @@ image::../media/drw_aide_network_cabling_b_ieops-2648.svg[Cable to Ethernet netw
 
 
 == Step 3: Cable the cluster and HA connections and data compute node cluster connections
-Use the Cluster and HA interconnect cable to connect controller ports e1a and e7a to switch A and e1b and e7b to switch B. The e1a/e1b controller ports are used for the HA connections, and the e7a/e7b controller ports are used for the cluster connections. For data compute nodes, the e1b/e2b ports are used for the cluster connections. 
+Use the Cluster and HA interconnect cable to connect controller ports e1a and e7a to switch A and e1b and e7b to switch B. The e1a/e1b controller ports are used for the HA connections, and the e7a/e7b controller ports are used for the cluster connections. For data compute nodes, the e4a/e5a ports are used for the cluster connections. 
 
 .Steps
 . Connect the following controller ports to any non-ISL port on the cluster network switch A.
@@ -184,9 +184,9 @@ image::../media/drw_afx_switched_cluster_cabling_b_ieops-2353.svg[Cable cluster 
 
 . Connect the following data compute nodes ports to cluster network any non-ISL port on switch A.
 * Data Compute Node 1
-** e4b
+** e4a
 * Data Compute Node 2
-** e4b
+** e4a
 +
 *100GbE cables*
 +
@@ -196,9 +196,9 @@ image::../media/drw_aide_switched_cluster_cabling_a_ieops-2649.svg[Cable to Ethe
 
 . Connect the following data compute nodes ports to cluster network any non-ISL port on switch B.
 * Data Compute Node 1
-** e5b
+** e5a
 * Data Compute Node 2
-** e5b
+** e5a
 +
 *100GbE cables*
 +
