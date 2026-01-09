@@ -34,9 +34,10 @@ As a storage administrator, you'll use System Manager to create and manage works
 
 //Needs more info on peered clusters. Should it be covered here fully, as AFX process, linked out to ONTAP docs, or just mentioned?
 
+.. If you'd like to configure user access to the workspace, you can do that now or link:assign-users-to-workspace.html[wait until after the workspace is created].
 .. Configure a refresh interval for the workspace data (default is one day).
 .. Select *Continue*.
-.. Enter a workspace name and description.
+.. In the *Finalize workspace* dialog, enter a workspace name and description.
 .. Select *Add* to create the workspace.
 +
 NOTE: The workspace creation process might take several minutes to complete, depending on the number of data containers associated with the workspace. It will show up in the *Workspaces* page in `Creating` state until the process is complete.
@@ -49,11 +50,15 @@ NOTE: The workspace creation process might take several minutes to complete, dep
 .. Select the workspace name to open the details page.
 .. In the Overview tab, view workspace details and associated data containers.
 
-. Add a data collection to the workspace:
-.. In the workspace details page, go to the Data Collection tab.
-.. Select the *Add* button to open the data collection dialog.
-.. Enter the required information for the new data collection.
-.. Select *Add* to associate the data collection with the workspace.
+//. Add a data collection to the workspace:
+//.. In the workspace details page, go to the Data Collection tab.
+//.. Select the *Add* button to open the data collection dialog.
+//.. Enter the required information for the new data collection.
+//.. Select *Add* to associate the data collection with the workspace.
 
 .Result
-Metadata will be extracted automatically for all datasources and stored in a metadata store. After you assign users to the workspace, they can access and interact with the workspace affiliated data collections and resources for their AI workloads.
+After creation, the workspace appears in `ready` state on the *Workspaces* inventory page.
+Review workspace details, including total size, and percentage of cluster capacity used.
+
+Metadata will be extracted automatically for all datasources and stored in a metadata catalog that users can use to locate the files they need for their projects. After you assign users to the workspace, they can access and interact with the workspace-affiliated data collections and resources for their AI workloads.
+

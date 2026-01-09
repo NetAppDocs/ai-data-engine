@@ -4,19 +4,19 @@ permalink: workspaces/assign-users-to-workspace.html
 keywords: aide, workspaces, assign users, user management, ai data engine
 summary: "After you create a workspace, you can assign users to it who will work with AI resources within that workspace."
 ---
-= Manage users in AI Data Engine workspaces 
+= Manage user access in AI Data Engine workspaces 
 :icons: font
 :imagesdir: ../media/
 
 [.lead] 
-System Manager enables you to manage which users have access to AI Data Engine workspaces. You can add or remove users to control who can view, modify, and interact with workspace data and activities.
+The users you assign to a workspace can be data engineers, data scientists, or other roles depending on your organization's structure and needs. Users will use their credentials to log in to the AI Data Engine Console and access the resources within the assigned workspace.
 
-//a note about data engineer and data scientist user roles and permissions in AIDE might go here
+System Manager enables you to manage which users have access to AI Data Engine workspaces. You can add or remove users to control who can view, modify, and interact with workspace data and activities.
 
 .Before you begin
 
 * Confirm that the workspace has been created and is visible in the Workspaces inventory.
-* Confirm that data containers have been added to the workspace and are accessible.
+* Confirm that all pertinent data containers have been added to the workspace and are accessible.
 
 .Steps
 
@@ -35,5 +35,5 @@ System Manager enables you to manage which users have access to AI Data Engine w
 .. The user will be removed and their access to the workspace will be revoked.
 
 .Result
-You have successfully managed user access for your AI Data Engine workspace. Only users listed in the workspace's Users tab will be able to access and interact with workspace data and activities.
+Only users listed in the workspace's Users tab will be able to access and interact with workspace data and activities.
 
