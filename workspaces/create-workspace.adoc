@@ -12,10 +12,11 @@ summary: "After you create a cluster, you can create workspaces and add data col
 [.lead]
 After you set up a cluster, you can set up a workspace. Workspaces allow you to segment data on the cluster, control data access for individuals, and exclude data that should not be exposed to the AI Data Engine. For example, if you work in healthcare, you might segment clinical data into a workspace but leave out data pertaining to IT, legal, or other departments.
 
-As a storage administrator, you'll use System Manager to create and manage workspaces, and add data collections to support AI workloads.
+If you are administering storage, you'll use System Manager to create and manage workspaces, and add data collections to support AI workloads. Strategies for workspace creation vary by organization. You might create workspaces based on teams, projects, data sensitivity levels, or other criteria relevant.
 
-//.About this task
-//Strategies for workspace creation vary by organization. You might create workspaces based on teams, projects, data sensitivity levels, or other criteria relevant to your use cases.
+.About this task
+Workspace creation is subject to system processing limits (typically up to 15 GB per day per cluster). If you create multiple workspaces in parallel or in quick succession, each workspace may take longer to process, and you may experience significant delays. Data collections and Retrieval-Augmented Generation (RAG) search capabilities become available only after the workspace creation process is fully complete. You can monitor the status of workspace creation from the *Workspaces* inventory page. For best results, avoid creating many workspaces at once if you need immediate access to these features.
+//CONTAP -612354
 
 .Before you begin
 
@@ -35,12 +36,16 @@ As a storage administrator, you'll use System Manager to create and manage works
 //Needs more info on peered clusters. Should it be covered here fully, as AFX process, linked out to ONTAP docs, or just mentioned?
 
 .. If you'd like to configure user access to the workspace, you can do that now or link:assign-users-to-workspace.html[wait until after the workspace is created].
-.. Configure a refresh interval for the workspace data (default is one day).
+.. Configure a refresh interval for the workspace data (for example, six hours).
 .. Select *Continue*.
 .. In the *Finalize workspace* dialog, enter a workspace name and description.
 .. Select *Add* to create the workspace.
 +
-NOTE: The workspace creation process might take several minutes to complete, depending on the number of data containers associated with the workspace. It will show up in the *Workspaces* page in `Creating` state until the process is complete.
+NOTE: The workspace creation process takes several minutes to hours to complete, depending on the associated dataset and its file count, file size, and other factors.
+
+//table of estimated times?
+
+It will show up in the *Workspaces* page in `Creating` state until the process is complete.
 
 //.. (Optional) Choose guardrails from the dropdown. If a guardrail is disabled or in test mode, review any warning messages.
 
