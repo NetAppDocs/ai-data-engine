@@ -10,12 +10,14 @@ summary: "After you create a cluster, you can create workspaces and add data col
 :imagesdir: ../media/
 
 [.lead]
-After you set up a cluster, you can set up a workspace. Workspaces allow you to segment data on the cluster, control data access for individuals, and exclude data that should not be exposed to the AI Data Engine. For example, if you work in healthcare, you might segment clinical data into a workspace but leave out data pertaining to IT, legal, or other departments.
+After you set up a cluster, you can set up a workspace. Workspaces allow you to segment data on the cluster, control data access for individuals, and exclude data that should not be exposed to the AI Data Engine.
 
-If you are administering storage, you'll use System Manager to create and manage workspaces, and add data collections to support AI workloads. Strategies for workspace creation vary by organization. You might create workspaces based on teams, projects, data sensitivity levels, or other criteria relevant.
+If you are administering storage, you'll use System Manager to create and manage workspaces, and add data collections to support AI workloads. 
+
+Strategies for workspace creation vary by organization. You might create workspaces based on teams, projects, data sensitivity levels, or other criteria relevant. For example, if you work in healthcare, you might segment clinical data into a workspace but leave out data pertaining to IT, legal, or other departments.
 
 .About this task
-Workspace creation is subject to system processing limits (typically up to 15 GB per day per cluster). If you create multiple workspaces in parallel or in quick succession, each workspace may take longer to process, and you may experience significant delays. Data collections and Retrieval-Augmented Generation (RAG) search capabilities become available only after the workspace creation process is fully complete. You can monitor the status of workspace creation from the *Workspaces* inventory page. For best results, avoid creating many workspaces at once if you need immediate access to these features.
+Workspace creation is subject to system processing limits (typically up to 15 GB per day per cluster). If you create multiple workspaces in parallel or in quick succession, each workspace may take longer to process, and you may experience significant delays. Data collections and Retrieval-Augmented Generation (RAG) search capabilities become available only after the workspace creation process is fully complete. You can monitor the status of workspace creation from the Workspaces inventory page. For best results, avoid creating many workspaces at once if you need immediate access to these features.
 //CONTAP -612354
 
 .Before you begin
@@ -45,7 +47,7 @@ NOTE: The workspace creation process takes several minutes to hours to complete,
 
 //table of estimated times?
 
-It will show up in the *Workspaces* page in `Creating` state until the process is complete.
+It will show up in the Workspaces page in `Creating` state until the process is complete.
 
 //.. (Optional) Choose guardrails from the dropdown. If a guardrail is disabled or in test mode, review any warning messages.
 
@@ -62,7 +64,7 @@ It will show up in the *Workspaces* page in `Creating` state until the process i
 //.. Select *Add* to associate the data collection with the workspace.
 
 .Result
-After creation, the workspace appears in `ready` state on the *Workspaces* inventory page.
+After creation, the workspace appears in `ready` state on the Workspaces inventory page.
 Review workspace details, including total size, and percentage of cluster capacity used.
 
 Metadata will be extracted automatically for all datasources and stored in a metadata catalog that users can use to locate the files they need for their projects. After you assign users to the workspace, they can access and interact with the workspace-affiliated data collections and resources for their AI workloads.
