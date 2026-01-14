@@ -10,13 +10,9 @@ searchtitle: "Learn about AI Data Engine"
 :imagesdir: ../media/
 
 [.lead]
-candidate1: NetApp AI Data Engine (AIDE) accelerates enterprise AI with confidence by delivering a storage-integrated AI data service that spans the entire AI lifecycle - from preparing raw data to serving it to GenAI, RAG, agentic AI apps and AI factories. It eliminates traditional barriers such as complex data movement and redundant copies by automating sync and change detection, ensuring a single, always-current view of the entire data estate for fast data discovery and curation. With policy-driven guardrails built directly into workflows, AIDE enforces governance and security at every step, so enterprises can trust their AI outcomes.
+The NetApp AI Data Engine (AIDE) is an enterprise-grade platform designed to accelerate and simplify AI-driven data processing, management, and governance. AIDE can help transform large amounts of unstructured data into structured, AI-ready datasets. It is engineered to meet the demands of modern machine learning (ML) and generative AI (GenAI) workloads, supporting both traditional IT operations and new AI-centric roles.
 
-//Beyond discovery and governance, AIDE makes data AI-ready with real-time vectorization for GenAI powered by NVIDIA NIMs, optimized compression and retrieval, and advanced semantic search. These capabilities transform massive unstructured data silos into efficient, compressed vector pipelines capable of powering any RAG-based GenAI application. By combining efficiency, clarity, and trust in one service, AIDE enables organizations to scale enterprise AI more simply, affordably, and securely  - empowering teams to innovate without sacrificing compliance or control.
-
-candidate2: The NetApp AI Data Engine (AIDE) is an enterprise-grade platform designed to accelerate and simplify AI-driven data processing, management, and governance. AIDE enables organizations to transform vast amounts of unstructured data into structured, AI-ready datasets. It is engineered to meet the demands of modern machine learning (ML) and generative AI (GenAI) workloads, supporting both traditional IT operations and new AI-centric roles.
-
-== Problems Solved
+== AIDE addresses AI challenges
 
 AIDE addresses several key challenges faced by organizations deploying AI at scale:
 
@@ -27,20 +23,24 @@ AIDE addresses several key challenges faced by organizations deploying AI at sca
 
 == High-Level Design Characteristics
 
-* Disaggregated Architecture: Separates compute (Data Compute Nodes, or DCNs) from storage (ONTAP Nodes), allowing independent scaling and optimization.
-* Microservices-Based: Uses Kubernetes to orchestrate modular, resilient services for metadata cataloging, vector search, and infrastructure management.
-* Enterprise-Grade Security: Implements encryption, role-based access control (RBAC), and auditing across all data and metadata.
-* Multi-Protocol Data Access: Supports NFS, SMB, and S3 for flexible data ingestion and retrieval.
-* Automated Data Pipelines: Tracks data changes, creates embeddings, and manages vector databases for AI applications.
+AI Data Engine is built on several key design principles:
 
-== User Personas
+* Disaggregated architecture: Separates compute (Data Compute Nodes, or DCNs) from storage (ONTAP Nodes), allowing independent scaling and optimization.
+* Microservices-based services: Uses Kubernetes to orchestrate modular, resilient services for metadata cataloging, vector search, and infrastructure management.
+* Enterprise-grade security: Implements encryption, role-based access control (RBAC), and auditing across all data and metadata.
+* Multi-protocol data access: Supports NFS, SMB, and S3 for flexible data ingestion and retrieval.
+* Automated data pipelines: Tracks data changes, creates embeddings, and manages vector databases for AI applications.
 
-=== Conventional Users
+== Storage and data focused user roles
 
-* System Administrators: Manage cluster setup, networking, storage provisioning, and user access.
-* Security Operations: Oversee compliance, audit logs, encryption, and data protection policies.
+AI Data Engine introduces new user roles while still supporting traditional system administration roles:
 
-=== New Users
+.Storage users
 
-* AI Engineers: Build and optimize AI/ML pipelines, manage data collections, and integrate AI models.
-* AI Data Scientists: Discover, curate, and analyze datasets, create data collections, and leverage retrieval endpoints for GenAI applications.
+* *System Administrators*: Manage cluster setup, networking, storage provisioning, and user access.
+* *Security Operations*: Oversee compliance, audit logs, encryption, and data protection policies.
+
+.Data users
+
+* *AI Engineers*: Build and optimize AI/ML pipelines, manage data collections, and integrate AI models.
+* *AI Data Scientists*: Discover, curate, and analyze datasets, create data collections, and leverage retrieval endpoints for GenAI applications.
