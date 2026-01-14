@@ -21,12 +21,7 @@ link:../install-setup/install-setup-workflow.html[Install and set up] your AFX h
 [role="quick-margin-para"]
 Use System Manager to guide you through a quick and easy process to link:../install-setup/cluster-setup.html[set up your AI Data Engine cluster].
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Set up data for workspaces
-
-[role="quick-margin-para"]
-Use System Manager to link:../workspaces/create-data-container.html[set up a data container] for data you intend to use with AI Data Engine.
-
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Set up workspaces and data access
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Set up workspaces and data access
 
 [role="quick-margin-para"]
 link:../workspaces/create-data-container.html[Set up a workspace and users for that workspace who can access AI Data Engine data].

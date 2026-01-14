@@ -42,7 +42,7 @@ Provide and verify the password for the `admin` account and select *Continue*.
 
 . Configure the storage system (cluster) name and management IP address, subnet, and gateway.
 
-. Configure IP addresses for the storage nodes.
+. Configure node management IP addresses for the storage nodes.
 
 . Configure the DCN backend network:
 .. Provide an IP range or ranges for the DCN nodes.
