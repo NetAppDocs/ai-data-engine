@@ -13,6 +13,8 @@ AIDE is built on a scalable, fault-tolerant architecture that separates storage 
 
 == Physical components
 
+image::../media/aide-architecture-diagram.png[AI Data Engine Architecture Diagram]
+
 === ONTAP Nodes
 
 ONTAP nodes provide enterprise-class storage, data management, and protocol services (NFS, SMB, S3). They run the ONTAP software stack and support multi-protocol client access, treating file and object protocols as interchangeable peers.
