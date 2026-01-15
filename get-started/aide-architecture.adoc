@@ -32,17 +32,15 @@ Redundant, high-speed (100GbE or higher) switches connect ONTAP and DCN nodes fo
 
 NVMe-oF shelves with high-density SSDs provide ultra-low latency and redundancy, supporting PB-scale storage.
 
-== Networking and data flow
+== Networking
 
-* Cluster network: Private, isolated VLAN/IPspace for secure communication between ONTAP and DCN nodes.
-* Data access: DCNs access ONTAP-managed volumes and buckets via NFS or S3 over the cluster network.
-* Management APIs: Exposed for cluster setup, monitoring, software upgrades, and user management.
+All Data Compute Nodes (DCNs) and ONTAP storage nodes are connected through redundant, high-speed cluster switches (minimum 100GbE). This architecture separates compute and storage resources, allowing each to scale independently and optimizing both performance and resource utilization.
+
+Networking between DCNs and ONTAP nodes is isolated using dedicated VLANs and IPspaces on the cluster switches. This ensures that all communications, such as data access, management APIs, and internal service traffic, remain secure, efficient, and do not interfere with other network operations.
 
 == Security and multi-tenancy
 
-* Encryption at rest and in transit.
-* RBAC for granular access control.
-* Tenant isolation for data and metadata.
+The platform enforces both role-based access control (RBAC) and resource-level access control lists (ACLs). All API and user actions are audited, and all data is encrypted at rest and in transit. Single tenants are isolated for data and metadata.
 
 == AI Data Engine primary features
 
@@ -170,11 +168,11 @@ A secure API endpoint that enables AI and GenAI applications to retrieve relevan
 .How each role uses it
 * Storage administrator: Supports and monitors the infrastructure that enables retrieval endpoints, ensuring security and performance.
 * Data engineer: Publishes data collections as RAG endpoints, configuring chunking and embedding parameters. Manages RBAC access and provides endpoint details for integration with AI applications.
-* Data scientist: Uses retrieval endpoints to power GenAI and RAG workflows, enabling models to “talk to their data” and provide context-aware responses.
+* Data scientist: Uses retrieval endpoints to power GenAI and RAG workflows, enabling models to connect to data and provide context-aware responses.
 
 === Classifiers
 
-Classifiers are tools (built-in or custom) that scan and tag files for specific types of sensitive data (e.g., PII, financial, healthcare) or categorize documents by type (e.g., legal, HR, sales).
+Classifiers are tools (built-in or custom) that scan and tag files for specific types of sensitive data (for example, PII, financial, healthcare) or categorize documents by type (for example, legal, HR, sales).
 
 .How each role uses it
 * Storage administrator: Creates, configures, and manages classifiers and their categories. Applies classifiers to workspaces and monitors their effectiveness.
