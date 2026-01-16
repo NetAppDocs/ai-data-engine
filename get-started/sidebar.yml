@@ -3,7 +3,7 @@ title: Get started
 entries:
   - title: Learn about your AI Data Engine system
     entries:
-      - title: Learn about AI Data Engine
+      - title: Learn about AIDE
         url: "/get-started/learn-about.html"
       - title: AIDE architecture details
         url: "/get-started/aide-architecture.html"

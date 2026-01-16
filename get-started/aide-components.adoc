@@ -135,67 +135,48 @@ AIDE exposes REST APIs for automation, integration, and programmatic access. The
 |Data scientist
 
 |System Manager
-|Manage
+|Manage (create, edit, delete)
 |No access
 |No access
 
 |AI Data Engine Console
 |No access
-|Manage
-|Manage
+|Manage (create, edit, delete)
+|Manage (create, edit, delete)
 
 |REST API
-|Manage
-|Manage
-|Manage
+|Manage (create, edit, delete)
+|Manage (create, edit, delete)
+|Manage (create, edit, delete)
 
 |Workspaces
-|Manage
-|View/use
-|View/use
+|Manage (create, edit, delete)
+|View/Use (read-only, consume for workflows)
+|View/Use (read-only, consume for workflows)
 
 |Data collections
-|View only
-|Manage
-|Manage
+|View (read-only)
+|Manage (create, edit, delete)
+|Manage (create, edit, delete)
 
 |Guardrails
-|Attach/view policies
-|View/enforce
-|View/enforce
+|Attach/View policies (assign, read-only)
+|View/Enforce (read-only, operate within)
+|View/Enforce (read-only, operate within)
 
 |Metadata catalog
-|Monitor
-|Query/use
-|Query/use
+|Monitor (view health, status, activity)
+|Query/Use (consume for workflows)
+|Query/Use (consume for workflows)
 
 |Vector database
-|Provision/monitor
-|Manage embeddings/search
-|Use search
+|Provision/Monitor (deploy, configure, view status)
+|Manage embeddings/Search (create, configure, query)
+|Use Search (query, consume for workflows)
 
 |Classifiers
-|Manage
-|Apply/review
-|Use
+|Manage (create, edit, delete)
+|Apply/Review (use existing, view results)
+|Use (consume classified data)
 
 |===
-
-[NOTE]
-====
-Manage: Create, edit, and delete resources.
-
-View: Read-only access to resources.
-
-Attach: Assign existing policies to resources.
-
-Provision: Deploy and configure infrastructure.
-
-Monitor: View health, status, and activity.
-
-Use: Consume for AI/ML workflows.
-
-Apply: Use existing classifiers.
-
-Enforce: Operate within assigned policies.
-====
