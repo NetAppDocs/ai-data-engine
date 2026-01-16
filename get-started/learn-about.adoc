@@ -30,17 +30,3 @@ AI Data Engine is built on several key design principles:
 * Enterprise-grade security: Implements encryption, role-based access control (RBAC), and auditing across all data and metadata.
 * Multi-protocol data access: Supports NFS, SMB, and S3 for flexible data ingestion and retrieval.
 * Automated data pipelines: Tracks data changes, creates embeddings, and manages vector databases for AI applications.
-
-== Storage and data focused user roles
-
-AI Data Engine introduces new user roles while still supporting traditional system administration roles:
-
-.Storage users
-
-* *System Administrators*: Manage cluster setup, networking, storage provisioning, and user access.
-* *Security Operations*: Oversee compliance, audit logs, encryption, and data protection policies.
-
-.Data users
-
-* *AI Engineers*: Build and optimize AI/ML pipelines, manage data collections, and integrate AI models.
-* *AI Data Scientists*: Discover, curate, and analyze datasets, create data collections, and leverage retrieval endpoints for GenAI applications.
