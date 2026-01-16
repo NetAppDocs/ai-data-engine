@@ -1,0 +1,78 @@
+---
+sidebar: sidebar
+permalink: get-started/aide-components-storage-admin.html
+keywords: aide, architecture, ontap, storage administrator, system manager, workspaces, guardrails
+summary: "Learn how storage administrators interact with AIDE components to manage cluster infrastructure, provision workspaces, and enforce governance policies."
+---
+= AIDE components and storage administrators
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+As a storage administrator, you manage the AIDE infrastructure through ONTAP System Manager, provisioning workspaces, attaching guardrail policies, and monitoring system health. Your role focuses on ensuring reliable, secure, and compliant data storage for AI workloads.
+
+== Storage administrator component access
+
+[cols="2h,3", options="header"]
+|===
+|Component
+|Storage administrator access
+
+|System Manager
+|Manage (create, edit, delete)
+
+|AI Data Engine Console
+|No access
+
+|REST API
+|Manage (create, edit, delete)
+
+|Workspaces
+|Manage (create, edit, delete)
+
+|Data collections
+|View (read-only)
+
+|Guardrails
+|Attach/View policies (assign, read-only)
+
+|Metadata catalog
+|Monitor (view health, status, activity)
+
+|Vector database
+|Provision/Monitor (deploy, configure, view status)
+
+|Classifiers
+|Manage (create, edit, delete)
+
+|===
+
+== AIDE system components
+
+=== Workspaces
+
+You create and manage workspaces using ONTAP System Manager. You select which data sources are included, assign permissions to data engineers and data scientists, and attach guardrail policies to enforce governance and compliance. You also monitor workspace health and access.
+
+=== Metadata catalog
+
+You ensure the metadata catalog is populated and up-to-date. You monitor catalog health and support access control.
+
+=== Classifiers
+
+You create, configure, and manage classifiers and their categories. You apply classifiers to workspaces and monitor their effectiveness.
+
+=== Data collections
+
+You view the status and health of data collections within each workspace using System Manager. You ensure underlying data sources are available and protected, but you do not create or modify collections.
+
+=== Vector database
+
+You provision and monitor the vector database infrastructure, ensuring data compute nodes with GPU resources and proper licensing are in place. You support the environment but do not manage embeddings or queries directly.
+
+=== Guardrails
+
+You define and attach guardrail policies to workspaces using System Manager. You monitor guardrail status and compliance reports. You ensure policies are enforced and updated as needed.
+
+=== Retrieval endpoint (RAG endpoint)
+
+You support and monitor the infrastructure that enables retrieval endpoints, ensuring security and performance.
