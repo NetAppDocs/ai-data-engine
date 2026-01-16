@@ -27,6 +27,62 @@ AI Data Engine introduces new user roles while still supporting traditional syst
 * *AI engineers*: Build and optimize AI/ML pipelines, manage data collections, and integrate AI models.
 * *AI data scientists*: Discover, curate, and analyze datasets, create data collections, and leverage retrieval endpoints for GenAI applications.
 
+== Roles and component access
+
+[cols="2h,2,2,2", options="header"]
+|===
+|Component
+|Storage administrator
+|Data engineer
+|Data scientist
+
+|System Manager
+|Manage (create, edit, delete)
+|No access
+|No access
+
+|AI Data Engine Console
+|No access
+|Manage (create, edit, delete)
+|Manage (create, edit, delete)
+
+|REST API
+|Manage (create, edit, delete)
+|Manage (create, edit, delete)
+|Manage (create, edit, delete)
+
+|Workspaces
+|Manage (create, edit, delete)
+|View/Use (read-only, consume for workflows)
+|View/Use (read-only, consume for workflows)
+
+|Data collections
+|View (read-only)
+|Manage (create, edit, delete)
+|Manage (create, edit, delete)
+
+|Guardrails
+|Attach/View policies (assign, read-only)
+|View/Enforce (read-only, operate within)
+|View/Enforce (read-only, operate within)
+
+|Metadata catalog
+|Monitor (view health, status, activity)
+|Query/Use (consume for workflows)
+|Query/Use (consume for workflows)
+
+|Vector database
+|Provision/Monitor (deploy, configure, view status)
+|Manage embeddings/Search (create, configure, query)
+|Use Search (query, consume for workflows)
+
+|Classifiers
+|Manage (create, edit, delete)
+|Apply/Review (use existing, view results)
+|Use (consume classified data)
+
+|===
+
 == AIDE system components
 
 Each AIDE user (storage administrators, data engineers, and data scientists) interacts with AIDE components according to their role.
@@ -90,93 +146,3 @@ A secure API endpoint that enables AI and GenAI applications to retrieve relevan
 * Storage administrator: Supports and monitors the infrastructure that enables retrieval endpoints, ensuring security and performance.
 * Data engineer: Publishes data collections as RAG endpoints, configuring chunking and embedding parameters. Manages RBAC access and provides endpoint details for integration with AI applications.
 * Data scientist: Uses retrieval endpoints to power GenAI and RAG workflows, enabling models to connect to data and provide context-aware responses.
-
-== User interfaces and APIs
-
-AIDE provides these interfaces for user interaction and automation:
-
-=== ONTAP System Manager
-
-ONTAP System Manager is a web-based interface designed for storage administrators. It provides workflows for cluster setup, workspace management, DCN node monitoring, and attaching guardrail policies. 
-
-.How each role uses it
-
-* Storage administrator: Uses System Manager to configure infrastructure, assign roles, and monitor health and compliance.
-* Data engineer: Does not use System Manager for their workflows.
-* Data scientist: Does not use System Manager for their workflows.
-
-=== AI Data Engine Console
-
-The AI Data Engine Console is a dedicated interface for data engineers and data scientists. It enables users to explore data sources, create and manage data collections, configure data pipelines, apply classifiers, and interact with guardrails and vector search features. The Console provides advanced tools for data discovery, curation, and integration with AI/ML workflows.
-
-.How each role uses it
-
-* Storage administrator: Typically does not use this interface.
-* Data engineer: Uses the AI Data Engine Console for day-to-day tasks including data discovery, collection management, and pipeline configuration.
-* Data scientist: Uses the AI Data Engine Console for day-to-day tasks including data exploration, curation, and integration with AI/ML workflows.
-
-=== REST API
-
-AIDE exposes REST APIs for automation, integration, and programmatic access. The API supports cluster setup, workspace and collection management, metadata queries, vector search, and retrieval endpoints. 
-
-.How each role uses it
-
-* Storage administrator: Uses the API for automation and programmatic cluster setup, workspace management, and monitoring.
-* Data engineer: Uses the API for automation of data workflows, collection management, metadata queries, and integration with external tools.
-* Data scientist: Uses the API for programmatic access to data collections, vector search, retrieval endpoints, and integration with AI/ML applications.
-
-== Roles and component access
-
-[cols="2h,2,2,2", options="header"]
-|===
-|Component
-|Storage administrator
-|Data engineer
-|Data scientist
-
-|System Manager
-|Manage (create, edit, delete)
-|No access
-|No access
-
-|AI Data Engine Console
-|No access
-|Manage (create, edit, delete)
-|Manage (create, edit, delete)
-
-|REST API
-|Manage (create, edit, delete)
-|Manage (create, edit, delete)
-|Manage (create, edit, delete)
-
-|Workspaces
-|Manage (create, edit, delete)
-|View/Use (read-only, consume for workflows)
-|View/Use (read-only, consume for workflows)
-
-|Data collections
-|View (read-only)
-|Manage (create, edit, delete)
-|Manage (create, edit, delete)
-
-|Guardrails
-|Attach/View policies (assign, read-only)
-|View/Enforce (read-only, operate within)
-|View/Enforce (read-only, operate within)
-
-|Metadata catalog
-|Monitor (view health, status, activity)
-|Query/Use (consume for workflows)
-|Query/Use (consume for workflows)
-
-|Vector database
-|Provision/Monitor (deploy, configure, view status)
-|Manage embeddings/Search (create, configure, query)
-|Use Search (query, consume for workflows)
-
-|Classifiers
-|Manage (create, edit, delete)
-|Apply/Review (use existing, view results)
-|Use (consume classified data)
-
-|===
