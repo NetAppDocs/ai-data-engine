@@ -18,13 +18,17 @@ Strategies for workspace creation vary by organization. You might create workspa
 
 .About this task
 Workspace creation is subject to system processing limits (typically up to 15 GB per day per cluster). If you create multiple workspaces in parallel or in quick succession, each workspace may take longer to process, and you may experience significant delays. Data collections and Retrieval-Augmented Generation (RAG) search capabilities become available only after the workspace creation process is fully complete. You can monitor the status of workspace creation from the Workspaces inventory page. For best results, avoid creating many workspaces at once if you need immediate access to these features.
-//CONTAP -612354
+//CONTAP-612354
 
 .Before you begin
 
-* You need storage administer privileges to create workspaces and data collections.
+* You need _storage administer_ privileges to create workspaces and data collections.
 * You've determined the remote and local data sources you intend to use with the workspace and with AI Data Engine.
 * You've created at last one data container that can be used by the workspace, such as a volume or an S3 bucket.
++
+NOTE: Ensure NFS is enabled on the volume but that the volume is not CIFS enabled. Workspaces only support volumes with NFS. Volumes with CIFS (SMB) are not supported with workspaces.
+
+// CONTAP-517543
 //Should more clusters be added/peered?
 
 .Steps
