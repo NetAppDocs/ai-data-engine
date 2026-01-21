@@ -16,16 +16,16 @@ The NetApp AI Data Engine (AIDE) is an enterprise-grade platform designed to acc
 
 AIDE addresses several key challenges faced by organizations deploying AI at scale:
 
-* Data Discovery and Governance: Centralizes metadata management, making it easy to find, classify, and govern datasets across the enterprise.
-* Scalable AI Data Processing: Automates and optimizes data pipelines for AI/ML workloads, including retrieval-augmented generation (RAG) and embedding creation.
-* Secure, Multi-Tenant Operations: Ensures robust data isolation, access control, and compliance for multiple teams or projects.
-* Operational Simplicity: Integrates with familiar NetApp management tools, reducing complexity for administrators and enabling self-service for data engineers and scientists.
+* Data discovery and governance: Centralizes metadata management, making it easy to find, classify, and govern datasets across the enterprise.
+* Scalable AI data processing: Automates and optimizes data pipelines for AI/ML workloads, including retrieval-augmented generation (RAG) and embedding creation.
+* Secure, multi-tenant operations: Ensures robust data isolation, access control, and compliance for multiple teams or projects.
+* Operational simplicity: Integrates with familiar NetApp management tools, reducing complexity for administrators and enabling self-service for data engineers and scientists.
 
-== High-Level Design Characteristics
+== High-level design characteristics
 
 AI Data Engine is built on several key design principles:
 
-* Disaggregated architecture: Separates compute (Data Compute Nodes, or DCNs) from storage (ONTAP Nodes), allowing independent scaling and optimization.
+* Disaggregated architecture: Separates compute (Data Compute Nodes, or DCNs) from storage (AFX nodes), allowing independent scaling and optimization.
 * Microservices-based services: Uses Kubernetes to orchestrate modular, resilient services for metadata cataloging, vector search, and infrastructure management.
 * Enterprise-grade security: Implements encryption, role-based access control (RBAC), and auditing across all data and metadata.
 * Multi-protocol data access: Supports NFS, SMB, and S3 for flexible data ingestion and retrieval.

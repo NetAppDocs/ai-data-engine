@@ -50,6 +50,7 @@ The AI Data Engine (AIDE) primary features work together to automate, secure, an
 
 The Metadata Engine automatically generates a structured, up-to-date, and interactive view of your NetApp data estate. 
 
+.License and access
 The MetaData Engine is included with the base ONTAP One license and is available upon AIDE installation.
 
 You can access it through System Manager.
@@ -67,6 +68,7 @@ You can access it through System Manager.
 
 Data Sync ensures that the metadata catalog and data collections remain current and consistent with the underlying data sources, even as source data changes.
 
+.License and access
 Data Sync is not included with the base ONTAP One license and requires a separate AIDE license.
 //need link to license docs
 
@@ -82,6 +84,7 @@ Data Sync is not included with the base ONTAP One license and requires a separat
 
 Data Guardrails provide continuous, automated governance and protection for sensitive data throughout the AI lifecycle. 
 
+.License and access
 Data guardrails is not included with the base ONTAP One license and requires a separate AIDE license.
 //need link to guardrails and license docs
 
@@ -100,6 +103,7 @@ You can access guardrail functionality through the AI Data Engine Console.
 
 The Data Curator service enables fast, frictionless data discovery, search, vectorization, and retrieval for AI and GenAI applications. 
 
+.License and access
 Data curator is provided as separate supplemental software update.
 //need link to curator docs
 
@@ -117,37 +121,3 @@ You can access Data Curator through the AI Data Engine Console.
 == Security and multi-tenancy
 
 The platform enforces both role-based access control (RBAC) and resource-level access control lists (ACLs). All API and user actions are audited, and all data is encrypted at rest and in transit. Single tenants are isolated for data and metadata.
-
-== User interfaces and APIs
-
-AIDE provides these interfaces for user interaction and automation:
-
-=== ONTAP System Manager
-
-ONTAP System Manager is a web-based interface designed for storage administrators. It provides workflows for cluster setup, workspace management, DCN node monitoring, and attaching guardrail policies. 
-
-.How each role uses it
-
-* Storage administrator: Uses System Manager to configure infrastructure, assign roles, and monitor health and compliance.
-* Data engineer: Does not use System Manager for their workflows.
-* Data scientist: Does not use System Manager for their workflows.
-
-=== AI Data Engine Console
-
-The AI Data Engine Console is a dedicated interface for data engineers and data scientists. It enables users to explore data sources, create and manage data collections, configure data pipelines, apply classifiers, and interact with guardrails and vector search features. The Console provides advanced tools for data discovery, curation, and integration with AI/ML workflows.
-
-.How each role uses it
-
-* Storage administrator: Typically does not use this interface.
-* Data engineer: Uses the AI Data Engine Console for day-to-day tasks including data discovery, collection management, and pipeline configuration.
-* Data scientist: Uses the AI Data Engine Console for day-to-day tasks including data exploration, curation, and integration with AI/ML workflows.
-
-=== REST API
-
-AIDE exposes REST APIs for automation, integration, and programmatic access. The API supports cluster setup, workspace and collection management, metadata queries, vector search, and retrieval endpoints. 
-
-.How each role uses it
-
-* Storage administrator: Uses the API for automation and programmatic cluster setup, workspace management, and monitoring.
-* Data engineer: Uses the API for automation of data workflows, collection management, metadata queries, and integration with external tools.
-* Data scientist: Uses the API for programmatic access to data collections, vector search, retrieval endpoints, and integration with AI/ML applications.
