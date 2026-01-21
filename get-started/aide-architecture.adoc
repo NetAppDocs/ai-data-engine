@@ -112,7 +112,8 @@ You can access Data Curator through the AI Data Engine Console.
 * Automated generation of vector embeddings at the storage layer, reducing data bloat and optimizing both cost and performance.
 * A secure retrieval endpoint for AI applications, enabling rapid vector semantic search and re-ranking.
 * Integration with popular AI tools and technologies, including direct support for Retrieval-Augmented Generation (RAG) pipelines and agentic AI frameworks.
-* REST APIs for programmatic access to data collections, vector search, and retrieval endpoints
+* REST APIs for programmatic access to data collections, vector search, and retrieval endpoints.
+
 == Security and multi-tenancy
 
 The platform enforces both role-based access control (RBAC) and resource-level access control lists (ACLs). All API and user actions are audited, and all data is encrypted at rest and in transit. Single tenants are isolated for data and metadata.

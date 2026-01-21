@@ -7,14 +7,17 @@ entries:
         url: "/get-started/learn-about.html"
       - title: AIDE architecture details
         url: "/get-started/aide-architecture.html"
-      - title: AIDE components and roles
-        url: "/get-started/aide-components.html"
+      - title: AIDE components and responsibilities by role
         entries:
-          - title: AIDE components and storage administrators
+          - title: AIDE components and roles
+            url: "/get-started/aide-components.html"
+          - title: AIDE interfaces
+            url: "/get-started/aide-interfaces.html"
+          - title: Storage administrator role
             url: "/get-started/aide-components-storage-admin.html"
-          - title: AIDE components and data engineers
+          - title: Data engineer role
             url: "/get-started/aide-components-data-engineer.html"
-          - title: AIDE components and data scientists
+          - title: Data scientist role
             url: "/get-started/aide-components-data-scientist.html"
   - title: Quick start
     url: "/get-started/quick-start.html"

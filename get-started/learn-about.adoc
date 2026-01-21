@@ -39,13 +39,13 @@ Understanding how data flows through AIDE helps illustrate the platform's value 
 
 . **Workspace creation**: Storage administrators define workspaces in System Manager, grouping related volumes and buckets for specific projects, teams, or workflows. Access permissions and governance policies are assigned at the workspace level.
 
-. **Metadata extraction**: AIDE automatically scans files and objects in workspaces, extracting metadata (file type, size, timestamps, custom attributes) and storing it in a centralized MongoDB catalog. This happens continuously as data changes.
+. **Metadata extraction**: AIDE automatically scans files and objects in workspaces, extracting metadata (file type, size, timestamps, custom attributes) and storing it in a centralized catalog. This happens continuously as data changes.
 
 . **Classification and governance**: Classifiers scan data for sensitive information (PII, financial data) or document types (legal, HR). Guardrail policies enforce redaction, access restrictions, or retention rules automatically.
 
 . **Data collection creation**: Data engineers and data scientists use the AI Data Engine Console to query the metadata catalog, filter results, and assemble curated data collections for specific AI tasks.
 
-. **Vectorization**: For collections requiring semantic search, AIDE generates embeddings using selected AI models. Vectors are stored in the Milvus vector database for high-performance retrieval.
+. **Vectorization**: For collections requiring semantic search, AIDE generates embeddings using selected AI models. Vectors are stored in the vector database for high-performance retrieval.
 
 . **AI/ML consumption**: Applications access data through multiple paths:
    * Direct file/object access via NFS, SMB, or S3

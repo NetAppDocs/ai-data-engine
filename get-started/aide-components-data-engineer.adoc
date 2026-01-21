@@ -4,7 +4,7 @@ permalink: get-started/aide-components-data-engineer.html
 keywords: aide, data engineer, ai data engine console, data collections, vector database, metadata catalog
 summary: "Learn how data engineers interact with AIDE components to discover data, build collections, manage pipelines, and integrate AI workflows."
 ---
-= AIDE components and data engineers
+= AIDE data engineers and component interactions
 :icons: font
 :imagesdir: ../media/
 
