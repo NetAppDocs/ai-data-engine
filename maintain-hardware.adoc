@@ -1,12 +1,12 @@
 ---
 sidebar: sidebar
 permalink: maintain-hardware.html
-keywords: afx, dcn, compute node, maintain, hardware
-summary: "Learn how to perform maintenance procedures on your AFX hardware."
+keywords: ai data engine, dcn, compute node, maintain, hardware
+summary: "Learn how to perform maintenance procedures on your AI Data Engine hardware."
 ---
-= Maintain your AFX hardware
+= Maintain your AI Data Engine hardware
 :icons: font
 :imagesdir: ./media/
 
 [.lead]
-Go to the AFX maintenance documentation to learn how to perform maintenance procedures on your AFX hardware components.
+Go to the link:https://docs.netapp.com/us-en/ontap-systems/aide-landing-install/index.html[AI Data Engine maintenance documentation^] to learn how to perform maintenance procedures on your AI Data Engine hardware components.
