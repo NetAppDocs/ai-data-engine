@@ -1,11 +1,23 @@
 section: administer
 title: Administer and monitor
 entries:
-- title: Upgrade and update your AI Data Engine system
-  entries:
-  - title: Keep your AI Data Engine system up to date
-    url: "/administer/upgrades-aide-summary.html"
-  - title: Upgrade ONTAP
-    url: "/administer/upgrade-ontap-for-aide.html"
-  - title: Update DCN firmware and AIDE Console software
-    url: "/administer/update-aide-firmware-software.html"
+  - title: Monitor cluster processes
+    entries:
+    - title: View dashboard and cluster status
+      url: /administer/view-dashboard.html
+    - title: View Insights
+      url: /administer/view-insights.html
+    - title: Monitor performance
+      url: /administer/monitor-cluster-performance.html
+    - title: View events and log
+      url: /administer/view-events-log.html
+    - title: View jobs
+      url: /administer/view-jobs.html
+  - title: Upgrade and maintain your AI Data Engine system
+    entries:
+    - title: Keep your AI Data Engine system up to date
+      url: "/administer/upgrades-aide-summary.html"
+    - title: Upgrade ONTAP
+      url: "/administer/upgrade-ontap-for-aide.html"
+    - title: Update DCN firmware and AIDE Console software
+      url: "/administer/update-aide-firmware-software.html"

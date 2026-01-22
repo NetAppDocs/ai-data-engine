@@ -26,12 +26,17 @@ The AI Data Engine Console software, including vectorization and guardrail capab
 == Compatibility matrix
 It's important to ensure compatibility between the software and firmware of all AI Data Engine system components, including ONTAP, DCN firmware, and AI Data Engine software.
 
-IMPORTANT: Revert functionality is not supported for DCN firmware or AI Data Engine Console software updates. After an update is installed, you cannot revert to a previous version. Before making any updates, ensure you have reviewed the release notes and compatibility requirements for each component.
-
 |===
 | ONTAP Version | Compatible AIDE Console and DCN Firmware Versions 
 | 9.18.1 and later | AIDE Console 1.0.x, DCN Firmware 1.0.x
 |===
+
+== Revert limitations
+Revert functionality is not supported for DCN firmware, AI Data Engine Console software updates, or ONTAP software for AFX storage systems. After an update or upgrade is installed, you cannot revert to a previous version. Before making any updates or upgrades, ensure you have reviewed the release notes and compatibility requirements for each component.
+
+// release note limitation
+// https://docs.netapp.com/us-en/ontap-afx/administer/revert-ontap.html
+
 
 == Understand the update process
 AI Data Engine DCN and AIDE Console software updates can be managed through ONTAP System Manager, which provides options for partially automatic or manual updates.
