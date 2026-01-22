@@ -26,10 +26,20 @@ The AI Data Engine Console software, including vectorization and guardrail capab
 == Compatibility matrix
 It's important to ensure compatibility between the software and firmware of all AI Data Engine system components, including ONTAP, DCN firmware, and AI Data Engine software.
 
+AIDE software and DCN firmware are updated in "U-releases" (such as U0 or U1). Each U-release is compatible only within its associated ONTAP major version. For example, this includes ONTAP 9.18.1 GA and any subsequent ONTAP patches for ONTAP 9.18.1.
+
+ONTAP upgrades must be sequential for major version releases (for example, 9.18.1 to 9.19.1). U-releases can be skipped within a major version (for example, 9.18.1 U0 to 9.18.1 U2). U-level AIDE release within 9.18.1 is compatible with both ONTAP 9.18.1 GA and any subsequent ONTAP patches for 9.18.1
+
+Major releases generally include new features, APIs, or changes affecting ONTAP.
+U-releases generally include fixes and updates that do not impact ONTAP integration.
+
+[cols="1,1",options="header"]
 |===
-| ONTAP Version | Compatible AIDE Console and DCN Firmware Versions 
-| 9.18.1 and later | AIDE Console 1.0.x, DCN Firmware 1.0.x
+| ONTAP major version | Supported AIDE (DCN) Update releases
+
+| 9.18.1 | 9.18.1 Ux
 |===
+//Needs bundle naming convention
 
 == Revert limitations
 Revert functionality is not supported for DCN firmware, AI Data Engine Console software updates, or ONTAP software for AFX storage systems. After an update or upgrade is installed, you cannot revert to a previous version. Before making any updates or upgrades, ensure you have reviewed the release notes and compatibility requirements for each component.

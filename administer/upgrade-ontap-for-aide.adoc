@@ -15,4 +15,6 @@ After you prepare for your upgrade, it is recommended that you perform upgrades 
 
 Learn more about link:https://docs.netapp.com/us-en/ontap/upgrade/index.html[ONTAP software upgrades^]. 
 
+IMPORTANT: Revert functionality is not supported for AFX software systems. After an upgrade is installed, you cannot revert to a previous version.
+
 //version compatibility matrix for ontap versions and aide versions

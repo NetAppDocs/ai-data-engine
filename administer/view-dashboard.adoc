@@ -2,9 +2,9 @@
 sidebar: sidebar
 permalink: administer/view-dashboard.html
 keywords: aide, aide system, dashboard, view dashboard, cluster status
-summary: "You can sign in to System Manager to access the AIDE dashboard and display the cluster status. This is a good first step before beginning your AIDE administrative tasks or if you suspect an operational issue."
+summary: "Access the AIDE dashboard and display the cluster status as a first step before beginning your AIDE administrative tasks."
 ---
-= View the AIDE storage system dashboard
+= View the AIDE storage system and cluster status
 :icons: font
 :imagesdir: ../media/
 
@@ -34,8 +34,10 @@ You'll need the following:
 
 . In the navigation pane, select *Cluster* and then *Overview*.
 
-. Review the cluster name, version, ONTAP personality and the other details.
+. Review the details such as the cluster name and version. 
 
-. At the top of the overview page, select *Cabling* for a visual display of the cluster hardware and connections.
+. Select *Data Compute* for associated DCN nodes and *Storage* for storage nodes.
+
+. Select *Cabling* for a visual display of the cluster hardware and connections.
 
 . In the navigation pane, select *Events & Jobs* and then *System alerts* to display and review the system alerts.

@@ -23,6 +23,10 @@ Choose this approach if you want ONTAP to notify you when an update is available
 
 Enable automatic updates so that recommended updates for DCN firmware, AI Data Engine Console software including vectorization and guardrails functionality can be automatically downloaded and installed by default after you approve.
 
+.Before you begin
+
+You need storage administrator privileges to enable automatic updates.
+
 .Steps
 
 . In System Manager, select *Cluster > Settings*.
@@ -35,16 +39,22 @@ NOTE: The *Automatically update* option should not be used with AI Data Engine s
 . Select to acknowledge that your update modifications will be applied to all current and future updates.
 . Select *Save*.
 
-=== Install recommended updates
+=== Install DCN and AI Data Engine updates
 
 View a list of recommended firmware and software updates available for your AI Data Engine system and then install them.
+
+For AIDE, software and firmware updates are combined in a single package and installed together.
+
+.Before you begin
+
+You need storage administrator privileges to install recommended updates.
 
 .Steps
 
 . In System Manager, select *Cluster > Settings*.
-. Next to *Software updates* select image:icon_arrow.gif[blue arrow pointing to the right], then select *View all automatic updates*.
+. Under *Software updates*, select *AI Data Engine updates*.
 . Review the list of available updates.
-. Next each update in the list of recommended updates, select *Actions*.
+. Next to each update in the list of recommended updates, select *Actions*.
 . Select *Update* to install the update immediately or *Schedule* to schedule it for later.
 
 == Perform updates manually with System Manager
