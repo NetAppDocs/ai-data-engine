@@ -1,6 +1,8 @@
 section: workspaces
 title: Set up workspaces
 entries:
+- title: Prepare data for AI Data Engine
+  url: "/workspaces/prepare-data-for-mde.html"
 - title: Create a workspace
   url: "/workspaces/create-workspace.html"
 - title: Assign users to a workspace
