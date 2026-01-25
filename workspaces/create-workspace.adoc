@@ -73,41 +73,16 @@ After workspace creation, review the workspace details.
 
 == Workspace refreshes and versioning
 
-Every workspace refresh creates a new version that captures the current state of all files and objects in the workspace. Versions are immutable and traceable, supporting auditing and reproducibility.
+Each workspace refresh creates an immutable version that captures the current state of all files and objects in the workspace. Versions include complete metadata, references to snapshots used during extraction, and a job ID for traceability. This supports data lineage, reproducibility, and auditing for AI/ML workloads.
 
-Each version includes:
-* Complete metadata of all files and objects
-* References to snapshots used
-* Job ID for traceability
+Refreshes occur either on the schedule you configure (such as every six hours) or when you trigger them manually. The minimum supported refresh interval is one hour; the maximum is one year. If a data container is included in multiple workspaces, the most frequent, shortest duration refresh interval is used for scheduling metadata extraction.
+//add link to manual refresh instructions
 
-You can list all versions, view diffs between versions, and audit changes over time.
+By default, the system retains previous, current, and next (in-progress) versions. Older versions are retained according to your organization's policy and can be purged as needed.
+//add link to workspace deletion and volume consequences
 
-.How Versioning Works
-Every workspace refresh creates a new version.
-
-A refresh is triggered either on schedule (per the workspace's refresh interval) or manually.
-The refresh captures the current state of all files/objects in the workspace's data containers.
-Each version is immutable and traceable, allowing you to audit changes over time.
-.What is included in a version?
-
-The full metadata of all files/objects in the workspace at the time of refresh.
-References to the specific snapshots used for extraction.
-A job ID for traceability (which job created the version).
-.Why is versioning important?
-
-Enables data lineage and reproducibility for AI/ML workloads.
-Supports auditing, rollback, and change tracking.
-Allows you to compare versions (diffs) to see what files/objects were added, modified, or deleted.
-Versioning in Practice
-Workspace versioning is automatic:
-
-You do not need to manage versions manually; each refresh creates a new version.
-The system retains previous, current, and next (in-progress) versions for each workspace.
-Older versions are retained per policy for traceability and can be purged as needed.
-APIs and UI:
-
-You can list all versions of a workspace.
-You can view diffs between versions to understand changes.
+You can list all versions of a workspace and view differences between versions to identify which files or objects were added, modified, or deleted. This allows you to track changes over time and understand the evolution of your workspace data.
+//Add API table or a link to that table as part of management
 
 
 //.Related information
