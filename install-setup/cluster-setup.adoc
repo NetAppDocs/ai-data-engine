@@ -85,7 +85,8 @@ You'll need the following configuration details:
 . Select *Network Services* and configure the client access protocols for the default data SVM.
 
 . Select *Data container* and create a volume or S3 bucket.
-//Data container for AI workloads? If this is created here, this affects the workspaces topics workflow
++
+NOTE: See documentation on how to best link:../workspaces/prepare-data-for-aide.html[prepare data for AI Data Engine^].
 
 . Navigate to *Cluster > Settings > Software Update* tab and check that the DCN nodes are running the latest software version. If not, update the DCN software.
 
