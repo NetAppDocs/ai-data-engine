@@ -9,13 +9,14 @@ summary: "After you create a workspace, you can assign users to it who will work
 :imagesdir: ../media/
 
 [.lead] 
-The users you assign to a workspace can be data engineers, data scientists, or other roles depending on your organization's structure and needs. Users will use their credentials to log in to the AI Data Engine Console and access the data container resources within the assigned workspace.
+The users you assign to a workspace can be data engineers, data scientists, or other roles depending on your organization's structure and needs. Users will use their credentials to log in to the AI Data Engine(AIDE)Console and access the data container resources within the assigned workspace.
 //Guardrails will prevent them from seeing some select files
 
 System Manager enables you to manage which users have access to AI Data Engine workspaces. You can add or remove users to control who can view, modify, and interact with workspace data and activities.
 
 .Before you begin
 
+* You need _storage administrator_ privileges to manage user access to workspaces.
 * Confirm that the workspace has been created and is visible in the Workspaces inventory.
 * Confirm that all pertinent data containers have been added to the workspace and are accessible.
 
