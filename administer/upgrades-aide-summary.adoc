@@ -9,19 +9,19 @@ summary: "Learn about the different components of an AI Data Engine system that 
 :imagesdir: ../media/
 
 [.lead]
-To maintain optimal performance, security, and access to the latest features, there are several components of an AI Data Engine (AIDE) system that you need to keep up to date. You might need to update these components after a new deployment when newer software or firmware is available, when you add or replace nodes, or periodically as new features and improvements are released.
+Keep AI Data Engine (AIDE) system components up to date to maintain performance and access to new features. Update components after deployment, when new software or firmware becomes available, when you add or replace nodes, or periodically for feature updates.
 
 == AIDE system components
-DCN firmware and AIDE Console software updates are distributed as a single, separate package (`dcn-image.tgz`) and are not embedded in ONTAP images.
+DCN firmware and AIDE Console software updates are distributed together as a single package (`dcn-image.tgz`) and are not embedded in ONTAP images.
 
 === ONTAP Software
-ONTAP is the operating system that runs on NetApp storage systems, including those used in AI Data Engine deployments. Keeping ONTAP up to date is critical for maintaining system stability, security, and compatibility with AIDE system components that rely on ONTAP but are updated separately.
+ONTAP is the operating system that runs on NetApp storage systems, including those used in AI Data Engine deployments. Keep ONTAP current to preserve system stability, security, and compatibility with AIDE components. AIDE components are updated separately.
 
 === DCN firmware updates
-Firmware updates are essential for the proper functioning of hardware components within the AI Data Engine system, including data compute nodes (DCNs). This includes updates for storage controllers, network interfaces, and other critical hardware.
+Update firmware to ensure the proper functioning of hardware components within the AI Data Engine system, including data compute nodes (DCNs), storage controllers, network interfaces, and other critical devices.
 
 === AI Data Engine software
-The AI Data Engine Console software, including vectorization and guardrail capabilities, requires regular updates that can include new features, performance enhancements, and bug fixes.
+Update the AI Data Engine software regularly to obtain new features, performance improvements, and bug fixes. AIDE software includes the AI Data Engine Console, vectorization, and guardrail components.
 
 == Compatibility matrix
 Ensure compatibility between ONTAP, DCN firmware, and AI Data Engine software when planning updates.
@@ -49,7 +49,7 @@ AIDE software and DCN firmware are released as "U releases" (such as U0, U1, U2)
 NOTE: "Px" denotes ONTAP patch releases (for example, 9.18.1 P1). "Ux" denotes AIDE update releases (for example, 9.18.1 U1).
 
 == Revert limitations
-Revert functionality is not supported for DCN firmware, AI Data Engine Console software updates, or ONTAP software for AFX storage systems. After an update or upgrade is installed, you cannot revert to a previous version. Before making any updates or upgrades, ensure you have reviewed the release notes and compatibility requirements for each component.
+AIDE systems do not support revert operations for DCN firmware, AIDE software updates, or ONTAP on AFX storage systems. After you install an update or upgrade, you cannot revert to a previous version. Review the release notes and compatibility requirements for each component before you update or upgrade.
 
 // release note limitation
 // https://docs.netapp.com/us-en/ontap-afx/administer/revert-ontap.html
@@ -58,5 +58,5 @@ Revert functionality is not supported for DCN firmware, AI Data Engine Console s
 == Understand the update process
 AI Data Engine DCN and AIDE Console software updates can be managed through ONTAP System Manager, which provides options for partially automatic or manual updates.
 
-Administrators cannot enable fully automatic updates of DCN software. By default, AIDE admins will be notified of an available update, but the update will not be automatically downloaded or installed. Admins must acknowledge the pending update before it is downloaded and installed. 
+AIDE does not support fully automatic DCN updates. By default, the system notifies admins about available updates. Admins must acknowledge an update before the system downloads or installs it.
 
