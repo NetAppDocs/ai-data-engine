@@ -9,7 +9,7 @@ summary: "Learn about the different components of an AI Data Engine system that 
 :imagesdir: ../media/
 
 [.lead]
-To maintain optimal performance, security, and access to the latest features, there are several components of an AI Data Engine system that you need to keep up to date. You might need to update these components after a new deployment when newer software or firmware is available, when you add or replace nodes, or periodically as new features and improvements are released.
+To maintain optimal performance, security, and access to the latest features, there are several components of an AI Data Engine (AIDE) system that you need to keep up to date. You might need to update these components after a new deployment when newer software or firmware is available, when you add or replace nodes, or periodically as new features and improvements are released.
 
 == AIDE system components
 DCN firmware and AIDE Console software updates are distributed as a single, separate package (`dcn-image.tgz`) and are not embedded in ONTAP images.
@@ -24,21 +24,32 @@ Firmware updates are essential for the proper functioning of hardware components
 The AI Data Engine Console software, including vectorization and guardrail capabilities, requires regular updates that can include new features, performance enhancements, and bug fixes.
 
 == Compatibility matrix
-It's important to ensure compatibility between the software and firmware of all AI Data Engine system components, including ONTAP, DCN firmware, and AI Data Engine software.
+It's important to ensure compatibility between the software and firmware of all AIDE system components, including ONTAP, DCN firmware, and AI Data Engine software.
 
-AIDE software and DCN firmware are updated in "U-releases" (such as U0 or U1). Each U-release is compatible only within its associated ONTAP major version. For example, this includes ONTAP 9.18.1 GA and any subsequent ONTAP patches for ONTAP 9.18.1.
+AIDE software and DCN firmware are updated in "U releases" (such as U0 or U1). Each U release is compatible only within its associated ONTAP major version. For example, all AIDE 9.18.1 software is compatible with ONTAP 9.18.1. This means that any AIDE release (initial release or U release) within 9.18.1 is compatible with both ONTAP 9.18.1 GA and any subsequent ONTAP patches for 9.18.1.
 
-ONTAP upgrades must be sequential for major version releases (for example, 9.18.1 to 9.19.1). U-releases can be skipped within a major version (for example, 9.18.1 U0 to 9.18.1 U2). U-level AIDE release within 9.18.1 is compatible with both ONTAP 9.18.1 GA and any subsequent ONTAP patches for 9.18.1
+When you upgrade ONTAP, you must upgrade it sequentially for major version releases (for example, ONTAP 9.18.1 to ONTAP 9.19.1). 
 
-Major releases generally include new features, APIs, or changes affecting ONTAP.
-U-releases generally include fixes and updates that do not impact ONTAP integration.
+For AIDE updates, you can update from any AIDE release to any newer U-release within a major version, and from one major version to the next immediate major versionAIDE U releases can be skipped within a major ONTAP version (for example, AIDE 9.18.1 U0 can be updated to 9.18.1 U2).
+//what about ONTAP P
+
+Major releases on AIDE functionality for ONTAP and in AIDE software and firmware packages generally include new features, APIs, or changes affecting ONTAP.
+ONTAP P releases and AIDE U releases generally include fixes and updates that do not impact ONTAP integration.
 
 [cols="1,1",options="header"]
 |===
 | ONTAP major version | Supported AIDE (DCN) Update releases
 
-| 9.18.1 | 9.18.1 Ux
+| 9.18.1 | 9.18.1 and 9.18.1 Ux
+| 9.18.1 Px | 9.18.1 and 9.18.1 Ux
 |===
+
+[NOTE]
+====
+* "P" denotes patch releases for ONTAP 
+* "U" denotes update releases for AIDE
+* "x" represents any patch number within the major release
+====
 //Needs bundle naming convention
 
 == Revert limitations
