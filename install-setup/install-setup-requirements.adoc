@@ -2,49 +2,34 @@
 sidebar: sidebar
 permalink: install-setup/install-setup-requirements.html
 keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, requirements, cautions, dx50
-summary: Review the equipment needed and the lifting precautions for your AIDE data compute nodes, storage controllers, and storage shelves.
+summary: Review the equipment needed and the lifting precautions for your AIDE data compute nodes.
 ---
 = Installation requirements for AIDE systems
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Review the equipment needed and the lifting precautions for your AIDE data compute nodes. storage controller, and storage shelves.
+Review the equipment needed and the lifting precautions for your AIDE data compute nodes.
 
 == Equipment needed for install
-To install your AIDE system, you need the following equipment and tools. 
+To install the data compute nodes for your AIDE system, you need the following equipment and tools. 
 
-** Access to a Web browser to configure your storage system
+** AN existing AIDE compatible storage installation, such as the AFX 1K. 
++ 
+NOTE: For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
+** Access to a web browser to configure your data compute nodes
 ** Electrostatic discharge (ESD) strap 
 ** Flashlight
 ** Laptop or console with a USB/serial connection
-** Paperclip or narrow tipped ball point pen for setting storage shelf IDs
 ** Phillips #2 screwdriver 
 
 == Lifting precautions 
-The storage controller, data compute node, and storage shelves are heavy. Exercise caution when lifting and moving these items.
+The data compute nodes are heavy. Exercise caution when lifting and moving these items.
 
 === AIDE data compute node weights 
 Take the necessary precautions when moving or lifting your AIDE data compute node.
 
-An AIDE data compute node can weight up to 46.3 lbs (21Kg). To lift the data compute node, use two people or a hydraulic lift.
-
-=== Storage controller weights
-Take the necessary precautions when moving or lifting your storage controller.
-
-An AIDE-compatible AFX 1K storage controller can weigh up to 62.83 lbs (28.5 kg). To lift the storage controller, use two people or a hydraulic lift.
-
-image::../media/drw_a1k_weight_caution_ieops-1698.svg[AFK 1K lifting caution icon]
-
-=== Storage shelf weights
-Take the necessary precautions when moving or lifting your shelf.
-
-.NX224 shelf
---
-
-An NX224 shelf can weigh up to 60.1 lbs (27.3 kg). To lift the shelf, use two people or a hydraulic lift. Keep all components in the shelf (both front and rear) to prevent unbalancing the shelf weight.
-
-image::../media/drw_nx224_lifting_weight_ieops-2437.svg[NX224 NSM100 lifting caution]
+An AIDE data compute node can weigh up to 46.3 lbs (21Kg). To lift the data compute node, use two people or a hydraulic lift.
 
 .Related information
 

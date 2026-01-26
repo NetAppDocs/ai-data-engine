@@ -2,14 +2,14 @@
 sidebar: sidebar
 permalink: install-setup/cable-hardware.html
 keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, cable controllers, Cisco Nexus 9332D-GX2B, Cisco Nexus 9364D-GX2A, switches, switch, cable hardware, cable storage shelves, dx50
-summary: Learn how to attach the AIDE cables to your network and cable the data compute nodes and controllers to the shelves. 
+summary: Learn how to attach the AIDE cables to your network and cable the data compute nodes. 
 ---
 = Cable the hardware for your AIDE system
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-After you install the rack hardware for your AIDE system, install the network cables for the controllers, data compute nodes, and connect the cables between the controllers and storage shelves.
+After you install the rack hardware for your AIDE system, install the network cables for the data compute nodes between the controllers and storage shelves.
 
 .Before you begin
 
@@ -17,6 +17,7 @@ Contact your network administrator for information about connecting the storage 
 
 .About this task
 * These procedures show common configurations. The specific cabling depends on the components ordered for your storage system. For comprehensive configuration details and slot priorities, see link:https://hwu.netapp.com[NetApp Hardware Universe^].
+* An existing AFX 1K storage system installation is required before cabling the AIDE data compute nodes. For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
 * The I/O slots on an AIDE data compute node are numbered 4 and 5. Slot 3 is reserved for the GPU. Slots 1 and 2 are not populated or accessible for use.
 +
 image::../media/drw_aide-dcn_back_slots_labeled_ieops-2646.svg[Slot numbering on an AIDE data compute node]
@@ -57,22 +58,10 @@ image:../media/drw_cable_pull_tab_direction_ieops-1699.svg[Cable pull tab direct
 +
 [NOTE]
 ====
-The connector components are delicate and care should be taken when clicking into place.
+Take care when clicking the delicate connector components into place. 
 ====
 
-* When cabling to an optical fiber connection, insert the optical transceiver into the controller port before cabling to the switch port.
-* The AIDE data compute nodes utilize 400Gbe to 100GbE (4x100GbE) breakout cables for the host network connections. A 400GbE connection is made to the host network and 100GbE connection is made to the data compute node I/O ports. In addition, a 400GbE connection is also made to the switch and 100GbE connections made to the I/O ports on the data compute node. 
-* The AFX 1K storage system utilizes 4x100GbE breakout cables on the cluster and storage network. The 400GbE connections are made to the switch ports, and the 100GbE connections are made to the controller and drive shelf ports. Storage and HA/Cluster connections can be made to any non-ISL port on the switch.
-+
-For a given 4x100GbE breakout cable connection to the specific switch port, you connect all 4 ports from a given controller to the switch over this single breakout cable.
-
-** 1 x HA port (slot 1)
-** 1 x cluster port (slot 7)
-** 2 x storage ports (slots 10, 11) 
-+
-All "a" ports connect to switch A, and all "b" ports connect to switch B.
-
-NOTE: Cisco Nexus 9332D-GX2B and 9364D-GX2A switch configurations to the AFX 1K system require 4x100GbE breakout cable connections.
+* The AIDE data compute nodes require 400-GbE-to-100-GbE (4x100GbE) breakout cables. A 400GbE connection is made to the switch and 100GbE connections made to the I/O ports on the data compute node. 
 
 == Step 1: Connect the controllers to the management network
 Connect the management port on each switch to either of the management switches (if ordered) or connect them directly to your management network.
@@ -131,7 +120,7 @@ image::../media/drw_afx_network_cabling_b_ieops-2351.svg[Cable to Ethernet netwo
 * Data Compute Node 2
 ** e4b
 +
-*200GbE cables*
+*100GbE cables*
 +
 image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
 +
@@ -143,7 +132,7 @@ image::../media/drw_aide_network_cabling_a_ieops_2647.svg[Cable to Ethernet netw
 * Data Compute Node 2
 ** e5b
 +
-*200GbE cables*
+*100GbE cables*
 +
 image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
 +
@@ -206,78 +195,6 @@ image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
 +
 image::../media/drw_aide_switched_cluster_cabling_b_ieops-2650.svg[Cable to Ethernet network]
 
-== Step 4: Cable the controller-to-switch storage connections
-Connect the controller storage ports to the switches.  Make sure you have the appropriate number and type of cables and cable connectors for your switches. See https://hwu.netapp.com[Hardware Universe^] for more information.
-
-. Connect the following storage ports to any non-ISL port on switch A.
-* Controller A
-** e10a
-** e11a
-* Controller B
-** e10a
-** e11a 
-+
-*100GbE cables*
-+
-image::../media/oie_cable100_gbe_qsfp28.png[100 Gb cable]
-+
-image::../media/drw_afx_controller_storage_cable_a_ieops-2354.svg[Cable controller storage to switch A]
-
-. Connect the following storage ports to any non-ISL port on switch B.
-* Controller A
-** e10b
-** e11b
-* Controller B
-** e10b
-** e11b 
-+
-*100GbE cables*
-+
-image::../media/oie_cable100_gbe_qsfp28.png[100 Gb cable]
-+
-image::../media/drw_afx_controller_storage_cable_b_ieops-2355.svg[Cable controller storage to switch B]
-
-== Step 5: Cable the shelf-to-switch connections
-Connect the NX224 storage shelves to the switches.   
-
-For the maximum number of shelves supported for your storage system and for all of your cabling options, see link:https://hwu.netapp.com[NetApp Hardware Universe^].
-
-. Connect the following shelf ports to any non-ISL port on switch A and switch B for module A.
-* Module A to switch A connections
-** e1a
-** e2a
-** e3a
-** e4a
-* Module A to switch B connections
-** e1b
-** e2b
-** e3b
-** e4b
-+
-*100GbE cables*
-+
-image::../media/oie_cable100_gbe_qsfp28.png[100 Gb cable]
-+
-image::../media/drw_afx_shelf_cabling_a_ieops-2356.svg[Cable shelf to switch A and switch B]
-
-. Connect the following shelf ports to any non-ISL port on switch A and switch B for module B.
-* Module B to switch A connections
-** e1a
-** e2a
-** e3a
-** e4a
-* Module B to switch B connections
-** e1b
-** e2b
-** e3b
-** e4b
-+ 
-*100GbE cables*
-+
-image::../media/oie_cable100_gbe_qsfp28.png[100 Gb cable]
-+
-image::../media/drw_afx_shelf_cabling_b_ieops-2357.svg[Cable shelf to switch A and switch B]
-
 .What's next?
 
-After you’ve cabled the hardware, you link:power-on-configure-switch.html[power on and configure the switches for your AIDE system].
+After you’ve cabled the hardware, you link:power-on-hardware.html[power on your AIDE system].
