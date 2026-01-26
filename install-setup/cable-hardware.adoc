@@ -61,7 +61,7 @@ image:../media/drw_cable_pull_tab_direction_ieops-1699.svg[Cable pull tab direct
 Take care when clicking the delicate connector components into place. 
 ====
 
-* The AIDE data compute nodes require 400-GbE-to-100-GbE (4x100GbE) breakout cables. A 400GbE connection is made to the switch and 100GbE connections made to the I/O ports on the data compute node. 
+* The AIDE data compute nodes require 400-GbE-to-100-GbE (4x100GbE) breakout cables. The 400GbE connections are made to the client and cluster switches. The 100GbE connections are made to the I/O ports on the data compute node. 
 
 == Step 1: Connect the controllers to the management network
 Connect the management port on each switch to either of the management switches (if ordered) or connect them directly to your management network.

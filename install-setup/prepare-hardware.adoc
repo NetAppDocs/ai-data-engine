@@ -97,5 +97,5 @@ Once NetApp approves your registration, you can download the required software. 
 |===
 
 .What's next?
-After you've prepared to install your AFX 1K hardware, you link:install-switches.html[install the switches for your AIDE system].
+After you've prepared to install your AFX 1K hardware, you link:deploy-hardware.html[install the data compute nodes for your AIDE system].
 

@@ -9,7 +9,7 @@ summary: Get started with the install and setup of your AI Data Engine system an
 :imagesdir: ../media/
 
 [.lead]
-To install and configure your AI Data Engine (AIDE) system, you review the hardware requirements, prepare your site, install the switches, install and cable the hardware components, power on the system, and set up your ONTAP cluster.
+To install and configure your AI Data Engine (AIDE) system, you review the hardware requirements, prepare your site,  install and cable the hardware components, power on the system, and set up your ONTAP cluster.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One]link:install-setup-requirements.html[Review the hardware installation requirements]
 [role="quick-margin-para"]
@@ -23,13 +23,13 @@ To prepare to install your AIDE system, you need to get the site ready, check th
 [role="quick-margin-para"]
 Install the rail kits for your data compute nodes. Secure your data compute nodes within the cabinet. Finally, attach cable management devices to the rear of the system for organized cable routing.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five]link:cable-hardware.html[Cable the data compute nodes, controllers, and shelves for your AIDE system]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five]link:cable-hardware.html[Cable the data compute nodes for your AIDE system]
 [role="quick-margin-para"]
 To cable the hardware, first connect the data compute nodes to your network, then connect the data compute nodes to the cluster switches.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png[Seven]link:power-on-hardware.html[Power on your AIDE system]
 [role="quick-margin-para"]
-Before you power on the controller nodes, power on each storage shelf and assign a unique shelf ID to ensure each shelf is uniquely identified within the setup.
+Before you power on the AIDE system, power on each storage shelf and assign a unique shelf ID to ensure each shelf is uniquely identified within the setup.
 
 // 2025, Jan 25, ONTAPDOC 2261
 // 2024 Sept 23, ONTAPDOC 1922
