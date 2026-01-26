@@ -13,7 +13,7 @@ To install and configure your AI Data Engine (AIDE) system, you review the hardw
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One]link:install-setup-requirements.html[Review the hardware installation requirements]
 [role="quick-margin-para"]
-Ensure that you have existing AI Data Engine compatible storage installed, such as AFX 1K, and then review the hardware requirements to install for the data compute nodes for your AIDE system. For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
+Ensure that you have existing AI Data Engine compatible storage installed, such as AFX 1K, and then review the hardware requirements for installing the data compute nodes for your AIDE system. For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two]link:prepare-hardware.html[Prepare to install your AIDE system]
 [role="quick-margin-para"]

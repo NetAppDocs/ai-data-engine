@@ -10,22 +10,22 @@ entries:
   - title: Install workflow
     url: /install-setup/install-setup-workflow.html
   - title: Review hardware requirements
-    url: /install-setup/install-setup-requirements.html    
+    url: /install-setup/install-setup-requirements.html
   - title: Prepare to install
     url: /install-setup/prepare-hardware.html
   - title: Install data compute nodes
     url: /install-setup/deploy-hardware.html
   - title: Cable hardware
-    url: /install-setup/cable-hardware.html  
+    url: /install-setup/cable-hardware.html
   - title: Power on system
-    url: /install-setup/power-on-hardware.html   
+    url: /install-setup/power-on-hardware.html
 - title: Set up your AIDE system
-  entries:     
+  entries:
   - title: Set up the cluster
-    url: "/install-setup/initialize-ontap-cluster.html"  
+    url: "/install-setup/initialize-ontap-cluster.html"
   - title: Install AIDE licenses
     url: "/install-setup/install-license-task.html"
   - title: Set up AI Data Engine
-    url: "/install-setup/set-up-san-host.html"     
+    url: "/install-setup/set-up-san-host.html"
   - title: Set up data access
-    url: "/install-setup/set-up-data-access.html"    
+    url: "/install-setup/set-up-data-access.html"

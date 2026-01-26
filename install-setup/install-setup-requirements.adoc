@@ -14,7 +14,7 @@ Review the equipment needed and the lifting precautions for your AIDE data compu
 == Equipment needed for install
 To install the data compute nodes for your AIDE system, you need the following equipment and tools. 
 
-** AN existing AIDE compatible storage installation, such as the AFX 1K. 
+** An existing AIDE compatible storage installation, such as the AFX 1K. 
 + 
 NOTE: For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
 ** Access to a web browser to configure your data compute nodes
