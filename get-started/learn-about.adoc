@@ -25,7 +25,7 @@ AIDE addresses several key challenges faced by organizations deploying AI at sca
 
 AI Data Engine is built on several key design principles:
 
-* Disaggregated architecture: Separates compute (Data Compute Nodes, or DCNs) from storage (AFX nodes), allowing independent scaling and optimization.
+* Disaggregated architecture: Separates compute (data compute nodes, or DCNs) from storage (AFX nodes), allowing independent scaling and optimization.
 * Microservices-based services: Uses Kubernetes to orchestrate modular, resilient services for metadata cataloging, vector search, and infrastructure management.
 * Enterprise-grade security: Implements encryption, role-based access control (RBAC), and auditing across all data and metadata.
 * Multi-protocol data access: Supports NFS, SMB, and S3 for flexible data ingestion and retrieval.
@@ -37,7 +37,7 @@ Understanding how data flows through AIDE helps illustrate the platform's value 
 
 . **Data ingestion**: Files and objects are stored in ONTAP volumes and buckets using standard protocols (NFS, SMB, S3). Data can reside on local AIDE storage or remote ONTAP clusters.
 
-. **Workspace creation**: Storage administrators define workspaces in System Manager, grouping related volumes and buckets for specific projects, teams, or workflows. Access permissions and governance policies are assigned at the workspace level.
+. **Workspace creation**: Storage administrators define workspaces in ONTAP System Manager, grouping related ONTAP volumes and buckets for specific projects, teams, or workflows. Access permissions and governance policies are assigned at the workspace level.
 
 . **Metadata extraction**: AIDE automatically scans files and objects in workspaces, extracting metadata (file type, size, timestamps, custom attributes) and storing it in a centralized catalog. This happens continuously as data changes.
 
@@ -48,10 +48,10 @@ Understanding how data flows through AIDE helps illustrate the platform's value 
 . **Vectorization**: For collections requiring semantic search, AIDE generates embeddings using selected AI models. Vectors are stored in the vector database for high-performance retrieval.
 
 . **AI/ML consumption**: Applications access data through multiple paths:
-   * Direct file/object access via NFS, SMB, or S3
+   * Direct file/object access using NFS, SMB, or S3
    * Semantic search queries against the vector database
    * RAG endpoints that combine data retrieval with GenAI model integration
-   * REST APIs for programmatic workflows
+   * REST APIs access for programmatic workflows
 
 This automated, policy-driven workflow reduces the time and manual effort required to prepare data for AI, enabling teams to focus on model development and insights rather than data wrangling.
 

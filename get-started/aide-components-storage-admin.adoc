@@ -18,13 +18,13 @@ As a storage administrator, you manage the AIDE infrastructure through ONTAP Sys
 |Component
 |Storage administrator access
 
-|System Manager
+|ONTAP System Manager
 |Manage (create, edit, delete)
 
 |AI Data Engine Console
 |No access
 
-|REST API
+|ONTAP REST API
 |Manage (create, edit, delete)
 
 |Workspaces
@@ -55,7 +55,7 @@ You create and manage workspaces using ONTAP System Manager. You select which da
 
 === Metadata catalog
 
-You ensure the metadata catalog is populated and up-to-date. You monitor catalog health and support access control.
+You ensure the metadata catalog is populated and up to date. You monitor catalog health and support access control.
 
 === Classifiers
 

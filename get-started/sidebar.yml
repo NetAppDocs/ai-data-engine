@@ -5,7 +5,7 @@ entries:
     entries:
       - title: Learn about AIDE
         url: "/get-started/learn-about.html"
-      - title: AIDE architecture details
+      - title: AIDE architecture
         url: "/get-started/aide-architecture.html"
       - title: AIDE components and responsibilities by role
         entries:

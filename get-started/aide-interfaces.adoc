@@ -13,7 +13,7 @@ AIDE provides three primary interfaces for user interaction and automation. Each
 
 == ONTAP System Manager
 
-ONTAP System Manager is a web-based interface designed for storage administrators. It provides workflows for cluster setup, workspace management, DCN node monitoring, and attaching guardrail policies. 
+ONTAP System Manager is a web-based interface designed for storage administrators. It provides workflows for cluster setup, workspace management, DCN monitoring, and attaching guardrail policies. 
 
 .How each role uses it
 
@@ -32,7 +32,7 @@ The AI Data Engine Console is a dedicated interface for data engineers and data 
 
 == REST API
 
-AIDE exposes REST APIs for automation, integration, and programmatic access. The API supports cluster setup, workspace and collection management, metadata queries, vector search, and retrieval endpoints. 
+AIDE exposes the ONTAP REST API for automation, integration, and programmatic access. The API supports cluster setup, workspace and collection management, metadata queries, vector search, and retrieval endpoints. 
 
 .How each role uses it
 

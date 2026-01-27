@@ -15,11 +15,11 @@ Each AIDE user interacts with AIDE components differently according to their rol
 
 == Storage and data focused user roles
 
-AI Data Engine introduces new user roles while still supporting traditional system administration roles:
+AI Data Engine introduces new user roles while still supporting traditional ONTAP system administration roles:
 
 === Storage users
 
-* *System administrators*: Manage cluster setup, networking, storage provisioning, and user access.
+* *System administrators*: Manage AFX and AIDE cluster setup, networking, storage provisioning, and user access.
 //* *Security operations*: Oversee compliance, audit logs, encryption, and data protection policies.
 
 === Data users

@@ -18,13 +18,13 @@ As a data scientist, you use the AI Data Engine Console to search for relevant d
 |Component
 |Data scientist access
 
-|System Manager
+|ONTAP System Manager
 |No access
 
 |AI Data Engine Console
 |Manage (create, edit, delete)
 
-|REST API
+|ONTAP REST API
 |Manage (create, edit, delete)
 
 |Workspaces

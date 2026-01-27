@@ -4,7 +4,7 @@ permalink: get-started/aide-architecture.html
 keywords: aide, architecture, ontap, physical components, logical components, networking, security
 summary: "AIDE is built on a scalable, fault-tolerant architecture that separates storage and compute, enabling high performance and flexibility for AI workloads."
 ---
-= AI Data Engine high-level architecture
+= AI Data Engine architecture
 :icons: font
 :imagesdir: ../media/
 
@@ -20,7 +20,7 @@ image::../media/aide-system-architecture.png[AI Data Engine Architecture Diagram
 AFX controller nodes run a specialized personality of the ONTAP software designed to support the requirements of the AFX environment. Clients access the nodes through multiple protocols, including NFS, SMB, and S3. Each node has a complete view of the storage, which it can access based on the client requests. The nodes are stateful with non-volatile memory to persist critical state information and include additional enhancements specific to the target workloads.
 //shared AFX text
 
-A minimum of four controller nodes are required for AIDE deployments to ensure high availability and performance.
+At least four AFX controller nodes are required for AIDE deployments to ensure high availability and performance.
 
 === Data compute nodes (DCNs)
 
@@ -30,7 +30,7 @@ Exactly _three_ data compute nodes are required for AIDE deployments.
 
 === Cluster/storage switches
 
-Redundant, high-speed (100GbE or higher) switches connect ONTAP and DCN nodes for low-latency data transfer and high availability.
+Redundant, high-speed (100GbE or higher) switches connect ONTAP and DCNs for low-latency data transfer and high availability.
 
 === Storage shelves
 
@@ -38,7 +38,7 @@ NVMe-oF shelves with high-density SSDs provide ultra-low latency and redundancy,
 
 == Networking
 
-All Data Compute Nodes (DCNs) and ONTAP storage nodes are connected through redundant, high-speed cluster switches (minimum 100GbE). This architecture separates compute and storage resources, allowing each to scale independently and optimizing both performance and resource utilization.
+All data compute nodes (DCNs) and ONTAP storage nodes are connected through redundant, high-speed cluster switches (minimum 100GbE). This architecture separates compute and storage resources, allowing each to scale independently and optimizing both performance and resource utilization.
 
 Networking between DCNs and ONTAP nodes is isolated using dedicated VLANs and IPspaces on the cluster switches. This ensures that all communications, such as data access, management APIs, and internal service traffic, remain secure, efficient, and do not interfere with other network operations.
 
@@ -59,17 +59,17 @@ You can access it through System Manager.
 
 * Centralized metadata cataloging for all data sources (local and remote ONTAP volumes).
 * Automated metadata extraction and catalog population as new data is ingested or changed.
-* REST APIs for querying metadata, enabling data practitioners and storage admins to collaboratively discover, classify, and understand data.
+* REST API access for querying metadata, enabling data practitioners and storage admins to collaboratively discover, classify, and understand data.
 * Significant reduction in NFS traffic load on storage systems by offloading metadata queries from the data path.
 * Support for large metadata records, with robust indexing and search capabilities.
 * Integration with workspace and data collection abstractions, allowing fine-grained access control and governance.
 
-=== Data Sync
+=== Data sync
 
-Data Sync ensures that the metadata catalog and data collections remain current and consistent with the underlying data sources, even as source data changes.
+Data sync service ensures that the metadata catalog and data collections remain current and consistent with the underlying data sources, even as source data changes.
 
 .License and access
-Data Sync is not included with the base ONTAP One license and requires a separate AIDE license.
+Data sync functionality is not included with the base ONTAP One license and requires a separate AIDE license.
 //need link to license docs
 
 .Capabilities
@@ -80,12 +80,12 @@ Data Sync is not included with the base ONTAP One license and requires a separat
 * Scheduling and monitoring of sync intervals, with configurable refresh rates for each workspace.
 * Integration with workspace creation workflows, so that metadata is always extracted and updated as new data sources are added.
 
-=== Data Guardrails
+=== Data guardrails
 
-Data Guardrails provide continuous, automated governance and protection for sensitive data throughout the AI lifecycle. 
+The Data Guardrails service provides continuous, automated governance and protection for sensitive data throughout the AI lifecycle. 
 
 .License and access
-Data guardrails is not included with the base ONTAP One license and requires a separate AIDE license.
+Data guardrails functionality is not included with the base ONTAP One license and requires a separate AIDE license.
 //need link to guardrails and license docs
 
 You can access guardrail functionality through the AI Data Engine Console. 
@@ -99,15 +99,15 @@ You can access guardrail functionality through the AI Data Engine Console.
 * The ability to restrict access to sensitive files or entire volumes as necessary, with audit logging and compliance reporting.
 * Integration with workspace and data collection management, so that guardrails are applied consistently across all AI data workflows.
 
-=== Data Curator
+=== Data curator
 
 The Data Curator service enables fast, frictionless data discovery, search, vectorization, and retrieval for AI and GenAI applications. 
 
 .License and access
-Data curator is provided as separate supplemental software update.
+Data curator functionality is provided as a separate supplemental software update.
 //need link to curator docs
 
-You can access Data Curator through the AI Data Engine Console.
+You can access data curator through the AI Data Engine Console.
 
 .Capabilities
 
