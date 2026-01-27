@@ -12,7 +12,7 @@ summary: Review the equipment needed and the lifting precautions for your AIDE d
 Review the equipment needed and the lifting precautions for your AIDE data compute nodes.
 
 == Equipment needed for install
-To install the data compute nodes for your AIDE system, you need the following equipment and tools. 
+To install the DX50 data compute nodes for your AIDE system, you need the following equipment and tools. 
 
 ** An existing AIDE compatible storage installation, such as the AFX 1K. 
 + 
@@ -26,10 +26,10 @@ NOTE: For information on installing the AFX 1K storage system, refer to the link
 == Lifting precautions 
 The data compute nodes are heavy. Exercise caution when lifting and moving these items.
 
-=== AIDE data compute node weights 
+=== AIDE DX50 data compute node weights 
 Take the necessary precautions when moving or lifting your AIDE data compute node.
 
-An AIDE data compute node can weigh up to 46.3 lbs (21Kg). To lift the data compute node, use two people or a hydraulic lift.
+A DX50 data compute node can weigh up to 46.3 lbs (21Kg). To lift the data compute node, use two people or a hydraulic lift.
 
 .Related information
 

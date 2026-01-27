@@ -13,7 +13,7 @@ To install and configure your AI Data Engine (AIDE) system, you review the hardw
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One]link:install-setup-requirements.html[Review the hardware installation requirements]
 [role="quick-margin-para"]
-Ensure that you have existing AI Data Engine compatible storage installed, such as AFX 1K, and then review the hardware requirements for installing the data compute nodes for your AIDE system. For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
+Ensure that you have existing AI Data Engine compatible storage installed, such as AFX 1K, and then review the hardware requirements for installing the DX50 data compute nodes for your AIDE system. For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two]link:prepare-hardware.html[Prepare to install your AIDE system]
 [role="quick-margin-para"]
@@ -21,11 +21,11 @@ To prepare to install your AIDE system, you need to get the site ready, check th
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four]link:deploy-hardware.html[Install the hardware for your AIDE system]
 [role="quick-margin-para"]
-Install the rail kits for your data compute nodes. Secure your data compute nodes within the cabinet. Finally, attach cable management devices to the rear of the system for organized cable routing.
+Install the rail kits for your data compute nodes. Secure your DX50 data compute nodes within the cabinet. Finally, attach cable management devices to the rear of the system for organized cable routing.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five]link:cable-hardware.html[Cable the data compute nodes for your AIDE system]
 [role="quick-margin-para"]
-To cable the hardware, first connect the data compute nodes to your network, then connect the data compute nodes to the cluster switches.
+To cable the hardware, first connect the DX50 data compute nodes to your network, then connect the DX50 data compute nodes to the cluster switches.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png[Seven]link:power-on-hardware.html[Power on your AIDE system]
 [role="quick-margin-para"]

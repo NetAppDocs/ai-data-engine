@@ -9,7 +9,7 @@ summary: Learn how to install the rail kits and secure the AIDE data compute nod
 :imagesdir: ../media/
 
 [.lead]
-Install and secure your data compute nodes in the cabinet for your AIDE system.
+Install and secure your DX50 data compute nodes in the cabinet for your AIDE system.
 
 .Before you begin
 

@@ -9,7 +9,7 @@ summary: Learn how to attach the AIDE cables to your network and cable the data 
 :imagesdir: ../media/
 
 [.lead]
-After you install the rack hardware for your AIDE system, install the network cables for the data compute nodes between the controllers and storage shelves.
+After you install the rack hardware for your AIDE system, install the network cables for the DX50 data compute nodes between the controllers and storage shelves.
 
 .Before you begin
 
@@ -17,10 +17,10 @@ Contact your network administrator for information about connecting the storage 
 
 .About this task
 * These procedures show common configurations. The specific cabling depends on the components ordered for your storage system. For comprehensive configuration details and slot priorities, see link:https://hwu.netapp.com[NetApp Hardware Universe^].
-* An existing AFX 1K storage system installation is required before cabling the AIDE data compute nodes. For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
-* The I/O slots on an AIDE data compute node are numbered 4 and 5. Slot 3 is reserved for the GPU. Slots 1 and 2 are not populated or accessible for use.
+* An existing AFX 1K storage system installation is required when cabling the DX50 data compute nodes. For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
+* The I/O slots on a DX50 data compute node are numbered 4 and 5. Slot 3 is reserved for the GPU. Slots 1 and 2 are not populated or accessible for use.
 +
-image::../media/drw_aide-dcn_back_slots_labeled_ieops-2646.svg[Slot numbering on an AIDE data compute node]
+image::../media/drw_aide-dcn_back_slots_labeled_ieops-2646.svg[Slot numbering on a DX50 data compute node]
 +
 [cols="1,4"]
 |===
@@ -46,10 +46,6 @@ a|
 I/O slot on the data compute node.
 |===
 
-* The I/O slots on an AFX controller are numbered 1 through 11.
-+
-image::../media/drw_a1K_back_slots_labeled_ieops-2162.svg[Slot numbering on an AFX controller]
-
 * The cabling graphics have arrow icons showing the proper orientation (up or down) of the cable connector pull-tab when inserting a connector into a port.
 +
 As you insert the connector, you should feel it click into place; if you do not feel it click, remove it, turn it over and try again.
@@ -61,7 +57,7 @@ image:../media/drw_cable_pull_tab_direction_ieops-1699.svg[Cable pull tab direct
 Take care when clicking the delicate connector components into place. 
 ====
 
-* The AIDE data compute nodes require 400-GbE-to-100-GbE (4x100GbE) breakout cables. The 400GbE connections are made to the client and cluster switches. The 100GbE connections are made to the I/O ports on the data compute node. 
+* The DX50 data compute nodes require 400-GbE-to-100-GbE (4x100GbE) breakout cables. The 400GbE connections are made to the client and cluster switches. The 100GbE connections are made to the I/O ports on the data compute node. 
 
 == Step 1: Connect the controllers to the management network
 Connect the management port on each switch to either of the management switches (if ordered) or connect them directly to your management network.
@@ -85,34 +81,6 @@ Connect the Ethernet module ports to your host network.
 This procedure may differ depending on your I/O module configuration. The following are some typical host network cabling examples. See  link:https://hwu.netapp.com[NetApp Hardware Universe^] for your specific system configuration.
 
 .Steps
-
-. Connect the following ports to your Ethernet data network switch A.
-* Controller A (Example)
-** e2a
-** e3a
-* Controller B (Example)
-** e2a
-** e3a
-+
-*200GbE cables*
-+
-image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
-+
-image::../media/drw_afx_network_cabling_a_ieops-2350.svg[Cable to Ethernet network]
-
-. Connect the following ports to your Ethernet data network switch B.
-* Controller A (Example)
-** e2b
-** e3b
-* Controller B (Example)
-** e2b
-** e3b
-+
-*200GbE cables*
-+
-image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
-+
-image::../media/drw_afx_network_cabling_b_ieops-2351.svg[Cable to Ethernet network]
 
 . Connect the following data compute node ports to your Ethernet data network switch A.
 * Data Compute Node 1
@@ -140,37 +108,9 @@ image::../media/drw_aide_network_cabling_b_ieops-2648.svg[Cable to Ethernet netw
 
 
 == Step 3: Cable the cluster and HA connections and data compute node cluster connections
-Use the Cluster and HA interconnect cable to connect controller ports e1a and e7a to switch A and e1b and e7b to switch B. The e1a/e1b controller ports are used for the HA connections, and the e7a/e7b controller ports are used for the cluster connections. For data compute nodes, the e4a/e5a ports are used for the cluster connections. 
+For data compute nodes, the e4a/e5a ports are used for the cluster connections. 
 
 .Steps
-. Connect the following controller ports to any non-ISL port on the cluster network switch A.
-* Controller A
-** e1a (HA)
-** e7a (Cluster)
-* Controller B
-** e1a (HA)
-** e7a (Cluster)
-+
-*100GbE cables*
-+
-image::../media/oie_cable_25Gb_Ethernet_SFP28_ieops-1069.png[Cluster HA cable]
-+
-image::../media/drw_afx_switched_cluster_cabling_a_ieops-2352.svg[Cable cluster connections to cluster network]
-
-. Connect the following controller ports to any non-ISL port on the cluster network switch B.
-* Controller A
-** e1b (HA)
-** e7b (Cluster)
-* Controller B
-** e1b (HA)
-** e7b (Cluster)
-+
-*100GbE cables*
-+
-image::../media/oie_cable_25Gb_Ethernet_SFP28_ieops-1069.png[Cluster HA cable]
-+
-image::../media/drw_afx_switched_cluster_cabling_b_ieops-2353.svg[Cable cluster connections to cluster network]
-
 . Connect the following data compute nodes ports to cluster network any non-ISL port on switch A.
 * Data Compute Node 1
 ** e4a

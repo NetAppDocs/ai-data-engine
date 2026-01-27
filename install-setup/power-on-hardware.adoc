@@ -9,7 +9,7 @@ summary: Power on each shelf to assign a unique shelf ID, power on the AFX contr
 :imagesdir: ../media/
 
 [.lead]
-After you install the rack hardware for your AIDE data compute nodes and install the cables for the controller nodes and storage shelves, you should power on your storage shelves and controller nodes.
+After you install the rack hardware for your DX50 data compute nodes and install the cables for the controller nodes and storage shelves, you should power on your storage shelves and controller nodes.
 
 .Before you begin
 * Make sure that your shelves are powered on and each assigned a unique shelf ID. For information on assigning shelf IDs for the AFX storage system, see the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/power-on-hardware.html#step-1-power-on-the-shelf-and-assign-shelf-id[Assign unique shelf IDs^].
