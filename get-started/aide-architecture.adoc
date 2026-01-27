@@ -57,7 +57,7 @@ You can access it through System Manager.
 
 .Capabilities
 
-* Centralized metadata cataloging for all data sources, including volumes and buckets stored locally on the AFX cluster and those synchronized from remote ONTAP clusters.
+* Centralized metadata cataloging for all data sources, including volumes stored locally on the AFX cluster and those synchronized from remote ONTAP clusters.
 * Automated metadata extraction and catalog population as new data is ingested or changed.
 * REST API access for querying metadata, enabling data practitioners and storage admins to collaboratively discover, classify, and understand data.
 * Significant reduction in NFS traffic load on storage systems by offloading metadata queries from the data path.

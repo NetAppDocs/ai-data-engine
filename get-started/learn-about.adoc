@@ -35,9 +35,11 @@ AI Data Engine is built on several key design principles:
 
 Understanding how data flows through AIDE helps illustrate the platform's value for AI/ML teams:
 
-. **Data ingestion**: Files and objects are stored in ONTAP volumes and buckets using standard protocols (NFS, SMB, S3). Data can reside on local AIDE storage (the AFX cluster within your AIDE deployment) or on remote ONTAP clusters. Data from remote clusters is synchronized to the local AFX cluster using ONTAP SnapMirror, so all data processed by AIDE is ultimately stored and accessed locally.
+. **Data ingestion**: Files and objects are stored in ONTAP volumes using standard protocols (NFS, SMB, S3). Data can reside on local AIDE storage (the AFX cluster within your AIDE deployment) or on remote ONTAP clusters. Data from remote clusters is synchronized to the local AFX cluster using ONTAP SnapMirror, so all data processed by AIDE is ultimately stored and accessed locally.
 
-. **Workspace creation**: Storage administrators define workspaces in ONTAP System Manager, grouping related ONTAP volumes and buckets for specific projects, teams, or workflows. Access permissions and governance policies are assigned at the workspace level.
+NOTE: S3 buckets are not supported as data sources for workspaces or data collections.
+
+. **Workspace creation**: Storage administrators define workspaces in ONTAP System Manager, grouping related ONTAP volumes for specific projects, teams, or workflows. Access permissions and governance policies are assigned at the workspace level.
 
 . **Metadata extraction**: AIDE automatically scans files and objects in workspaces, extracting metadata (file type, size, timestamps, custom attributes) and storing it in a centralized catalog. This happens continuously as data changes.
 
@@ -51,7 +53,7 @@ Understanding how data flows through AIDE helps illustrate the platform's value 
    * Direct file/object access using NFS, SMB, or S3
    * Semantic search queries against the vector database
    * RAG endpoints that combine data retrieval with GenAI model integration
-   * REST APIs access for programmatic workflows
+   * REST API access for programmatic workflows
 
 This automated, policy-driven workflow reduces the time and manual effort required to prepare data for AI, enabling teams to focus on model development and insights rather than data wrangling.
 

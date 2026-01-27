@@ -50,7 +50,7 @@ Storage administrators will assign RBAC roles (`admin`, `data-engineer`, `data-s
 Each AIDE user (storage administrators, data engineers, and data scientists) interacts with AIDE components according to their role.
 
 === Workspaces
-A workspace is a logical segment of data within the cluster, grouping volumes and buckets for a specific project, team, or workflow. Workspaces define the scope of data visibility, access, and governance in AIDE.
+A workspace is a logical segment of data within the cluster, grouping volumes for a specific project, team, or workflow. Workspaces define the scope of data visibility, access, and governance in AIDE.
 
 === Metadata catalog
 A centralized, scalable database storing metadata records for all files and objects across local or data synchronized from remote ONTAP clusters using ONTAP SnapMirror or cluster peering. Enables rich, interactive search and filtering.
