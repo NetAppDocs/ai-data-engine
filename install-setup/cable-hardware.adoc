@@ -59,7 +59,7 @@ Take care when clicking the delicate connector components into place.
 
 * The DX50 data compute nodes require 400-GbE-to-100-GbE (4x100GbE) breakout cables. The 400GbE connections are made to the client and cluster switches. The 100GbE connections are made to the I/O ports on the data compute node. 
 
-== Step 1: Connect the controllers to the management network
+== Step 1: Connect the controllers to the management network  
 Connect the management port on each switch to either of the management switches (if ordered) or connect them directly to your management network.
 
 The management port is the upper-right port located on the PSU side of the switch. The CAT6 cable for each switch needs to be routed through the pass-through panel after the switches are installed to connect to the management switches or management network.
@@ -75,8 +75,8 @@ IMPORTANT: Do not plug in the power cords yet.
 
 . Connect to host network. 
 
-== Step 2: Connect the controllers and data compute nodes to the host network
-Connect the Ethernet module ports to your host network. 
+== Step 2: Connect the data compute nodes to the host network (Optional)
+You can optionally connect the Ethernet module ports to your host network. 
 
 This procedure may differ depending on your I/O module configuration. The following are some typical host network cabling examples. See  link:https://hwu.netapp.com[NetApp Hardware Universe^] for your specific system configuration.
 
@@ -107,7 +107,7 @@ image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
 image::../media/drw_aide_network_cabling_b_ieops-2648.svg[Cable to Ethernet network]
 
 
-== Step 3: Cable the cluster and HA connections and data compute node cluster connections
+== Step 3: Cable the data compute node cluster connections
 For data compute nodes, the e4a/e5a ports are used for the cluster connections. 
 
 .Steps
