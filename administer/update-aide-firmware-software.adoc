@@ -9,9 +9,9 @@ summary: "Update DCN firmware and AI Data Engine Console software using ONTAP Sy
 :imagesdir: ../media/
 
 [.lead]
-You can update data compute node (DCN) firmware, AI Data Engine Console software including vectorization and guardrails functionality, and other system files on your AI Data Engine system using ONTAP System Manager's automatic updates functionality or make updates manually.
+You can update data compute node (DCN) firmware, AI Data Engine Console software including vectorization and guardrails functionality, and other system files on your AI Data Engine system using ONTAP System Manager.
 
-You might choose automatic updates for convenience, efficiency, and system notifications about updates. Alternatively, you might choose to make updates manually if you are in an air-gapped environment or want to review available updates before they are installed.
+AIDE does not support automatic updates. By default, admins must download and install an update.
 
 .Before you begin
 
@@ -20,68 +20,9 @@ You might choose automatic updates for convenience, efficiency, and system notif
 
 IMPORTANT: Revert functionality is not supported for DCN firmware or AI Data Engine software updates. After an update is installed, you cannot revert to a previous version.
 
-== Automate updates with System Manager
-
-Choose this approach if you want ONTAP to notify you when an update is available. You can choose to have DCN firmware and AI Data Engine Console software updates automatically downloaded and installed or you can manually download and install updates at a later time.
-
-=== Enable ONTAP automatic updates
-
-Enable automatic updates so that recommended updates for DCN firmware and AI Data Engine software, including vectorization and guardrails functionality, can be automatically downloaded and installed by default after you approve.
-
-.Before you begin
-
-You need storage administrator privileges to enable automatic updates.
-
 .Steps
 
-. In System Manager, select *Cluster > Settings*.
-. Under *Software updates*, select *Enable*.
-. Read the EULA.
-. Retain the defaults of *Show notification*.
-+
-NOTE: The *Automatically update* option should not be used with AI Data Engine systems updates.
-
-. Select to acknowledge that your update modifications will be applied to all current and future updates.
-. Select *Save*.
-
-=== Install DCN and AI Data Engine updates
-
-View a list of recommended firmware and software updates available for your AI Data Engine system and then install them.
-
-For AIDE, software and firmware updates are combined in a single package and installed together.
-
-.Before you begin
-
-You need storage administrator privileges to install recommended updates.
-
-.Steps
-
-. In System Manager, select *Cluster > Settings*.
-. Under Software updates, select *AI Data Engine updates*.
-. Review the list of available updates.
-. Next to each update in the list of recommended updates, select *Actions*.
-. Select *Update* to install the update immediately or *Schedule* to schedule it for later.
-
-== Perform updates manually with System Manager
-
-Choose this approach if you want more control over the updates process and you want to manually download and install the updates yourself.
-
-=== Disable automatic updates
-
-Ensure that automatic updates is disabled if you want the flexibility to view recommended updates and perform firmware and software updates manually. 
-
-.Steps
-
-. In System Manager, select *Cluster > Settings*.
-. Under *Software updates*, select *Disable*.
-
-== Update software and firmware manually
-
-If you want the flexibility of viewing recommended updates before they are downloaded and installed, you can disable automated updates and update your firmware manually.
-
-.Steps
-
-. Download the combined DCN firmware and AIDE software update file to a server or local client.
+. Download the combined DCN firmware and AIDE software update file to a local client.
 . In System Manager, select *Cluster > Settings*, then select *AI Data Engine updates*.
 . Under Update software, select *Add AI Data Engine software files* and select the update package.
 . After package upload is complete, select *Update* to begin installing updates on the DCN nodes.
