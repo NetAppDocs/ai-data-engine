@@ -60,3 +60,6 @@ AI Data Engine DCN and AIDE Console software updates can be managed through ONTA
 
 AIDE does not support fully automatic DCN updates. By default, the system notifies admins about available updates. Admins must acknowledge an update before the system downloads or installs it.
 
+.Related information
+
+link:https://docs.netapp.com/us-en/ontap-afx/administer/upgrade-ontap.html[Upgrade ONTAP software^]
