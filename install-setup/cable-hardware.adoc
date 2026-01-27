@@ -13,11 +13,14 @@ After you install the rack hardware for your AIDE system, install the network ca
 
 .Before you begin
 
-Contact your network administrator for information about connecting the storage system to your network switches.
+* An existing AFX 1K storage system installation is required when cabling the DX50 data compute nodes as part of the AIDE system.
++ 
+For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
+
+* Contact your network administrator for information about connecting the system to your network switches.
 
 .About this task
 * These procedures show common configurations. The specific cabling depends on the components ordered for your storage system. For comprehensive configuration details and slot priorities, see link:https://hwu.netapp.com[NetApp Hardware Universe^].
-* An existing AFX 1K storage system installation is required when cabling the DX50 data compute nodes. For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
 * The I/O slots on a DX50 data compute node are numbered 4 and 5. Slot 3 is reserved for the GPU. Slots 1 and 2 are not populated or accessible for use.
 +
 image::../media/drw_aide-dcn_back_slots_labeled_ieops-2646.svg[Slot numbering on a DX50 data compute node]
@@ -59,8 +62,8 @@ Take care when clicking the delicate connector components into place.
 
 * The DX50 data compute nodes require 400-GbE-to-100-GbE (4x100GbE) breakout cables. The 400GbE connections are made to the client and cluster switches. The 100GbE connections are made to the I/O ports on the data compute node. 
 
-== Step 1: Connect the controllers to the management network  
-Connect the management port on each switch to either of the management switches (if ordered) or connect them directly to your management network.
+== Step 1: Connect the controllers to the management network (Optional)  
+If not already configured as part of the AFX 1K storage system installation, connect the management port on each switch to either of the management switches (if ordered) or connect them directly to your management network.
 
 The management port is the upper-right port located on the PSU side of the switch. The CAT6 cable for each switch needs to be routed through the pass-through panel after the switches are installed to connect to the management switches or management network.
 
