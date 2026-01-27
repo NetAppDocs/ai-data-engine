@@ -57,35 +57,35 @@ You can access it through System Manager.
 
 .Capabilities
 
-* Centralized metadata cataloging for all data sources (local and remote ONTAP volumes).
+* Centralized metadata cataloging for all data sources, including volumes and buckets stored locally on the AFX cluster and those synchronized from remote ONTAP clusters.
 * Automated metadata extraction and catalog population as new data is ingested or changed.
 * REST API access for querying metadata, enabling data practitioners and storage admins to collaboratively discover, classify, and understand data.
 * Significant reduction in NFS traffic load on storage systems by offloading metadata queries from the data path.
 * Support for large metadata records, with robust indexing and search capabilities.
 * Integration with workspace and data collection abstractions, allowing fine-grained access control and governance.
 
-=== Data sync
+=== Data Sync
 
-Data sync service ensures that the metadata catalog and data collections remain current and consistent with the underlying data sources, even as source data changes.
+Data Sync is an automated background service that ensures that the metadata catalog and data collections remain current and consistent with the underlying data sources, even as source data changes.
 
 .License and access
-Data sync functionality is not included with the base ONTAP One license and requires a separate AIDE license.
+Data Sync functionality is not included with the base ONTAP One license and requires a separate AIDE license.
 //need link to license docs
 
 .Capabilities
 
-* Automated, policy-driven synchronization of data from remote or local ONTAP clusters using SnapMirror.
+* Automated, policy-driven synchronization of data from remote ONTAP clusters (separate ONTAP systems) or local ONTAP clusters (the AFX cluster in your AIDE deployment) using SnapMirror. Data from remote clusters is copied to the local AFX cluster, where it becomes available for AIDE processing.
 * Efficient, incremental updates from detected changes that propagate only changed data.
 * Secure, incremental data mobility and sync across the data estate, eliminating redundant copies and reducing storage costs.
 * Scheduling and monitoring of sync intervals, with configurable refresh rates for each workspace.
 * Integration with workspace creation workflows, so that metadata is always extracted and updated as new data sources are added.
 
-=== Data guardrails
+=== Data Guardrails
 
 The Data Guardrails service provides continuous, automated governance and protection for sensitive data throughout the AI lifecycle. 
 
 .License and access
-Data guardrails functionality is not included with the base ONTAP One license and requires a separate AIDE license.
+Data Guardrails functionality is not included with the base ONTAP One license and requires a separate AIDE license.
 //need link to guardrails and license docs
 
 You can access guardrail functionality through the AI Data Engine Console. 
@@ -99,12 +99,12 @@ You can access guardrail functionality through the AI Data Engine Console.
 * The ability to restrict access to sensitive files or entire volumes as necessary, with audit logging and compliance reporting.
 * Integration with workspace and data collection management, so that guardrails are applied consistently across all AI data workflows.
 
-=== Data curator
+=== Data Curator
 
 The Data Curator service enables fast, frictionless data discovery, search, vectorization, and retrieval for AI and GenAI applications. 
 
 .License and access
-Data curator functionality is provided as a separate supplemental software update.
+Data Curator functionality is provided as a separate supplemental software update.
 //need link to curator docs
 
 You can access data curator through the AI Data Engine Console.

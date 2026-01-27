@@ -35,7 +35,7 @@ AI Data Engine is built on several key design principles:
 
 Understanding how data flows through AIDE helps illustrate the platform's value for AI/ML teams:
 
-. **Data ingestion**: Files and objects are stored in ONTAP volumes and buckets using standard protocols (NFS, SMB, S3). Data can reside on local AIDE storage or remote ONTAP clusters.
+. **Data ingestion**: Files and objects are stored in ONTAP volumes and buckets using standard protocols (NFS, SMB, S3). Data can reside on local AIDE storage (the AFX cluster within your AIDE deployment) or on remote ONTAP clusters. Data from remote clusters is synchronized to the local AFX cluster using ONTAP SnapMirror, so all data processed by AIDE is ultimately stored and accessed locally.
 
 . **Workspace creation**: Storage administrators define workspaces in ONTAP System Manager, grouping related ONTAP volumes and buckets for specific projects, teams, or workflows. Access permissions and governance policies are assigned at the workspace level.
 
