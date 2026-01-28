@@ -111,7 +111,7 @@ AI Data Engine (AIDE) provides a Retrieval-Augmented Generation (RAG) API endpoi
 AIDE supports on-premises deployments and manages data across NetApp on-premises and cloud environments. It integrates directly with NetApp ONTAP AFX installations.
 
 .How is AIDE licensed?
-"AIPVS — Vectorization and Guardrails" is the data service and license, which includes all features: Metadata Engine, Data Sync, Data Guardrails, and Data Curator. AIDE is a single product with no variants. The AIDE software and license includes the Metadata Engine, Data Sync, Data Guardrails, and Data Curator.
+"AIPVS — Vectorization and Guardrails" is the license that includes all features: Metadata Engine, Data Sync, Data Guardrails, and Data Curator. AIDE is a single product with no variants.
 
 If you require only the Metadata Engine, an ONTAP One license provides entitlement for Metadata Engine-only capabilities.
 //Need to verify license name and link to license docs
