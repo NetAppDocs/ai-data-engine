@@ -4,7 +4,7 @@ permalink: get-started/aide-components-data-scientist.html
 keywords: aide, data scientist, ai data engine console, data collections, vector database, rag endpoints
 summary: "Learn how data scientists interact with AIDE components to discover data, curate collections, perform semantic search, and integrate GenAI workflows."
 ---
-= Learn how AIDE data scientists work with AI Data Engine components
+= Learn how AI Data Engine data scientists work with AIDE components
 :icons: font
 :imagesdir: ../media/
 

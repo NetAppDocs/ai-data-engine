@@ -4,7 +4,7 @@ permalink: get-started/aide-components-data-engineer.html
 keywords: aide, data engineer, ai data engine console, data collections, vector database, metadata catalog
 summary: "Learn how data engineers interact with AIDE components to discover data, build collections, manage pipelines, and integrate AI workflows."
 ---
-= Learn how AIDE data engineers work with AI Data Engine components
+= Learn how AI Data Engine data engineers work with AIDE components
 :icons: font
 :imagesdir: ../media/
 
@@ -71,7 +71,7 @@ You trigger embedding pipelines for data collections, select models and paramete
 
 === Guardrails
 
-You work within the guardrails attached to workspaces and data collections. You may request changes to guardrail policies for workflow needs but cannot override them. Guardrails ensure compliant and secure data processing.
+You work within the guardrails attached to workspaces and data collections. You might request changes to guardrail policies for workflow needs but cannot override them. Guardrails ensure compliant and secure data processing.
 
 === Retrieval endpoint (RAG endpoint)
 

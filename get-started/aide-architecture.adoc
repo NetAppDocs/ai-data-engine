@@ -57,12 +57,12 @@ You can access it through System Manager.
 
 .Capabilities
 
-* Centralized metadata cataloging for all data sources, including volumes stored locally on the AFX cluster and those synchronized from remote ONTAP clusters.
-* Automated metadata extraction and catalog population as new data is ingested or changed.
-* REST API access for querying metadata, enabling data practitioners and storage admins to collaboratively discover, classify, and understand data.
-* Significant reduction in NFS traffic load on storage systems by offloading metadata queries from the data path.
-* Support for large metadata records, with robust indexing and search capabilities.
-* Integration with workspace and data collection abstractions, allowing fine-grained access control and governance.
+* Catalogs metadata for all data sources, including volumes stored locally on the AFX cluster and those synchronized from remote ONTAP clusters.
+* Extracts metadata automatically and populates the catalog as data is ingested or changed.
+* Provides REST API access for querying metadata, allowing data practitioners and storage administrators to discover, classify, and understand data.
+* Offloads metadata queries from the data path, reducing NFS traffic load on storage systems.
+* Supports large metadata records with indexing and search capabilities.
+* Integrates with workspace and data collection abstractions to enforce access control and governance.
 
 === Data Sync
 
@@ -74,11 +74,11 @@ Data Sync functionality is not included with the base ONTAP One license and requ
 
 .Capabilities
 
-* Automated, policy-driven synchronization of data from remote ONTAP clusters (separate ONTAP systems) or local ONTAP clusters (the AFX cluster in your AIDE deployment) using SnapMirror. Data from remote clusters is copied to the local AFX cluster, where it becomes available for AIDE processing.
-* Efficient, incremental updates from detected changes that propagate only changed data.
-* Secure, incremental data mobility and sync across the data estate, eliminating redundant copies and reducing storage costs.
-* Scheduling and monitoring of sync intervals, with configurable refresh rates for each workspace.
-* Integration with workspace creation workflows, so that metadata is always extracted and updated as new data sources are added.
+* Synchronizes data from remote or local ONTAP clusters using policy-driven SnapMirror replication. Data from remote clusters is copied to the local AFX cluster for AIDE processing.
+* Updates incrementally based on detected changes, propagating only modified data.
+* Provides secure, incremental data mobility and synchronization across the data estate.
+* Schedules and monitors sync intervals with configurable refresh rates per workspace.
+* Integrates with workspace creation workflows to extract and update metadata as new data sources are added.
 
 === Data Guardrails
 
@@ -92,16 +92,16 @@ You can access guardrail functionality through the AI Data Engine Console.
 
 .Capabilities
 
-* Continuous scanning, classification, and categorization of data across hybrid cloud environments.
-* Identification of sensitive data and risks, leveraging built-in and customizable classifiers for such tasks as PII detection.
-* Policy-driven automation for handling sensitive data, including redaction, masking, and access restrictions.
-* Enforcement of company and regulatory standards through guardrail policies attached to workspaces.
-* The ability to restrict access to sensitive files or entire volumes as necessary, with audit logging and compliance reporting.
-* Integration with workspace and data collection management, so that guardrails are applied consistently across all AI data workflows.
+* Scans, classifies, and categorizes data continuously across hybrid cloud environments.
+* Identifies sensitive data and risks using built-in and customizable classifiers for tasks such as PII detection.
+* Automates handling of sensitive data through policy-driven redaction, masking, and access restrictions.
+* Enforces company and regulatory standards through guardrail policies attached to workspaces.
+* Restricts access to sensitive files or volumes as configured, with audit logging and compliance reporting.
+* Integrates with workspace and data collection management to apply guardrails consistently across AI data workflows.
 
 === Data Curator
 
-The Data Curator service enables fast, frictionless data discovery, search, vectorization, and retrieval for AI and GenAI applications. 
+The Data Curator service enables fast data discovery, search, vectorization, and retrieval for AI and GenAI applications. 
 
 .License and access
 Data Curator functionality is provided as a separate supplemental software update.
@@ -111,12 +111,12 @@ You can access data curator through the AI Data Engine Console.
 
 .Capabilities
 
-* Powerful search across hybrid cloud storage for relevant data, leveraging the centralized metadata catalog.
-* Tools for data scientists to easily create curated data collections with current data.
-* Automated generation of vector embeddings at the storage layer, reducing data bloat and optimizing both cost and performance.
-* A secure retrieval endpoint for AI applications, enabling rapid vector semantic search and re-ranking.
-* Integration with popular AI tools and technologies, including direct support for Retrieval-Augmented Generation (RAG) pipelines and agentic AI frameworks.
-* REST APIs for programmatic access to data collections, vector search, and retrieval endpoints.
+* Searches hybrid cloud storage for relevant data using the centralized metadata catalog.
+* Provides tools for data scientists to create curated data collections.
+* Generates vector embeddings automatically at the storage layer.
+* Provides a secure retrieval endpoint for AI applications, supporting vector semantic search and re-ranking.
+* Integrates with AI tools and technologies, including Retrieval-Augmented Generation (RAG) pipelines and agentic AI frameworks.
+* Provides REST APIs for programmatic access to data collections, vector search, and retrieval endpoints.
 
 == Security and multi-tenancy
 

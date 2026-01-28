@@ -14,24 +14,27 @@ The NetApp AI Data Engine (AIDE) is an enterprise-grade platform designed to acc
 
 == AIDE addresses AI challenges
 
-AIDE addresses several key challenges faced by organizations deploying AI at scale:
+AIDE is designed to help organizations manage data for AI workloads and provides the following key capabilities:
 
-* Data discovery and governance: Centralizes metadata management, making it easy to find, classify, and govern datasets across the enterprise.
-* Scalable AI data processing: Automates and optimizes data pipelines for AI/ML workloads, including retrieval-augmented generation (RAG) and embedding creation.
-* Secure, multi-tenant operations: Ensures robust data isolation, access control, and compliance for multiple teams or projects.
-* Operational simplicity: Integrates with familiar NetApp management tools, reducing complexity for administrators and enabling self-service for data engineers and scientists.
+* *Centralized metadata management*: AIDE collects and catalogs metadata from ONTAP volumes, making it possible to search, classify, and apply governance policies to datasets.
+
+* *Automated data processing*: AIDE supports the creation of data pipelines for AI and machine learning workloads, including the ability to generate vector embeddings for semantic search (with appropriate licensing).
+
+* *Data isolation and access control*: AIDE enforces access controls and basic data isolation for multiple teams or projects.
+
+* *Integration with NetApp tools*: AIDE works with ONTAP System Manager for storage administration and provides a dedicated interface (AI Data Engine Console) for data engineers and scientists to manage data collections and workflows.
 
 == High-level design characteristics
 
 AI Data Engine is built on several key design principles:
 
-* Disaggregated architecture: Separates compute (data compute nodes, or DCNs) from storage (AFX nodes), allowing independent scaling and optimization.
-* Microservices-based services: Uses Kubernetes to orchestrate modular, resilient services for metadata cataloging, vector search, and infrastructure management.
-* Enterprise-grade security: Implements encryption, role-based access control (RBAC), and auditing across all data and metadata.
-* Multi-protocol data access: Supports NFS, SMB, and S3 for flexible data ingestion and retrieval.
-* Automated data pipelines: Tracks data changes, creates embeddings, and manages vector databases for AI applications.
+* *Disaggregated architecture*: Separates compute (data compute nodes, or DCNs) from storage (AFX nodes), allowing independent scaling and optimization.
+* *Microservices-based services*: Uses Kubernetes to orchestrate modular, resilient services for metadata cataloging, vector search, and infrastructure management.
+* *Enterprise-grade security*: Implements encryption, role-based access control (RBAC), and auditing across all data and metadata.
+* *Multi-protocol data access*: Supports NFS, SMB, and S3 for flexible data ingestion and retrieval.
+* *Automated data pipelines*: Tracks data changes, creates embeddings, and manages vector databases for AI applications.
 
-== AIDE workflow at a glance
+== How data flows through AIDE
 
 Understanding how data flows through AIDE helps illustrate the platform's value for AI/ML teams:
 
@@ -56,5 +59,3 @@ NOTE: S3 buckets are not supported as data sources for workspaces or data collec
    * REST API access for programmatic workflows
 
 This automated, policy-driven workflow reduces the time and manual effort required to prepare data for AI, enabling teams to focus on model development and insights rather than data wrangling.
-
-

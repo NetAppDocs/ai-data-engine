@@ -4,7 +4,7 @@ permalink: get-started/aide-components.html
 keywords: aide, architecture, ontap, logical components, networking, security
 summary: "Each AIDE component plays a specific role in data discovery, curation, governance, and integration with applications, with interactions varying by user role."
 ---
-= AIDE components and role-based interactions
+= AI Data Engine components and role-based interactions
 :icons: font
 :imagesdir: ../media/
 
@@ -15,35 +15,32 @@ Each AIDE user interacts with AIDE components differently according to their rol
 
 == Storage and data focused user roles
 
-AI Data Engine introduces new user roles while still supporting traditional ONTAP system administration roles:
+AIDE introduces new user roles while still supporting traditional ONTAP system administration roles:
 
 === Storage users
 
-* *System administrators*: Manage AFX and AIDE cluster setup, networking, storage provisioning, and user access.
+* *Storage administrator*: Manages AFX and AIDE cluster setup, networking, storage provisioning, and user access.
 //* *Security operations*: Oversee compliance, audit logs, encryption, and data protection policies.
 
 === Data users
 
-* *AI engineers*: Build and optimize AI/ML pipelines, manage data collections, and integrate AI models.
-* *AI data scientists*: Discover, curate, and analyze datasets, create data collections, and leverage retrieval endpoints for GenAI applications.
+* *AI data engineer*: Builds and optimizes AI/ML pipelines, manages data collections, and integrates AI models.
+* *AI data scientist*: Discovers, curates, and analyzes datasets, creates data collections, and leverages retrieval endpoints for GenAI applications.
 
 [cols="2h,3", options="header"]
 |===
 |Role (RBAC name)
 |Description
 
-| System administrator (`admin`)
-|Manages AFX and AIDE cluster setup, networking, storage provisioning, and user access. Has full management access via ONTAP System Manager and AI Data Engine Console.
+| Storage administrator (`admin`)
+|Manages AFX and AIDE cluster setup, networking, storage provisioning, and user access. Assigns RBAC roles to users that determine the level of access to AIDE interfaces and features. This admin role has full management access using ONTAP System Manager and AI Data Engine Console. 
 
 | AI data engineer (`data-engineer`)
-|Builds and optimizes AI/ML pipelines, manages data collections, and integrates AI models. Has access to the AI Data Engine Console for data engineering workflows.
+|Builds and optimizes AI/ML pipelines, manages data collections, and integrates AI models. This role has access to the AI Data Engine Console for data engineering workflows.
 
 | AI data scientist (`data-scientist`)
-|Discovers, curates, and analyzes datasets, creates data collections, and leverages retrieval endpoints for GenAI applications. Has access to the AI Data Engine Console for data science workflows.
+|Discovers, curates, and analyzes datasets, creates data collections, and leverages retrieval endpoints for GenAI applications. This role has access to the AI Data Engine Console for data science workflows.
 |===
-
-[NOTE]
-Storage administrators will assign RBAC roles (`admin`, `data-engineer`, `data-scientist`) to users that determine access to AIDE interfaces and features.
 
 == AIDE system components
 
@@ -53,7 +50,7 @@ Each AIDE user (storage administrators, data engineers, and data scientists) int
 A workspace is a logical segment of data within the cluster, grouping volumes for a specific project, team, or workflow. Workspaces define the scope of data visibility, access, and governance in AIDE.
 
 === Metadata catalog
-A centralized, scalable database storing metadata records for all files and objects across local or data synchronized from remote ONTAP clusters using ONTAP SnapMirror or cluster peering. Enables rich, interactive search and filtering.
+A centralized, scalable database storing metadata records for all files and objects across the local cluster, including data synchronized from remote ONTAP clusters using ONTAP SnapMirror or cluster peering. It enables rich, interactive search and filtering.
 
 === Classifiers
 
@@ -70,11 +67,11 @@ Guardrails are policy-driven mechanisms that enforce data governance, classifica
 
 === Retrieval endpoint (RAG endpoint)
 
-A retrieval endpoint (sometimes called a Retrieval-Augmented Generation (RAG) endpoint) is a secure API that enables AI and GenAI applications to access relevant data, context, or embeddings from curated collections and the vector database. 
+A retrieval endpoint (sometimes called a Retrieval-Augmented Generation or "RAG" endpoint) is a secure API that enables AI and GenAI applications to access relevant data, context, or embeddings from curated collections and the vector database. 
 
 RAG endpoints are designed to support advanced AI workflows, such as semantic search and context-aware responses in generative AI models. By connecting your AI applications to a retrieval endpoint, you can enhance model accuracy and relevance by providing real-time access to curated, AI-ready datasets managed by AIDE.
 
 .Related information
-* link:aide-components-storage-admin.html[AIDE components and storage administrators]
-* link:aide-components-data-engineer.html[AIDE components and data engineers]
-* link:aide-components-data-scientist.html[AIDE components and data scientists]
+* link:aide-components-storage-admin.html[How AIDE storage administrators work with AIDE components]
+* link:aide-components-data-engineer.html[How AIDE data engineers work with AIDE components]
+* link:aide-components-data-scientist.html[How AIDE data scientists work with AIDE components]

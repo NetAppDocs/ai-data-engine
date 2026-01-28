@@ -4,7 +4,7 @@ permalink: get-started/aide-components-storage-admin.html
 keywords: aide, architecture, ontap, storage administrator, system manager, workspaces, guardrails
 summary: "Learn how storage administrators interact with AIDE components to manage cluster infrastructure, provision workspaces, and enforce governance policies."
 ---
-= Learn how AIDE storage administrators work with AI Data Engine components
+= Learn how AI Data Engine storage administrators work with AIDE components
 :icons: font
 :imagesdir: ../media/
 

@@ -9,7 +9,7 @@ summary: "AIDE provides three primary interfaces for user interaction and automa
 :imagesdir: ../media/
 
 [.lead]
-AIDE provides three primary interfaces for user interaction and automation. Each role, such as storage administrators, data engineers, and data scientists, utilizes these interfaces based on their specific tasks and responsibilities.
+AI Data Engine (AIDE) provides three primary interfaces for user interaction and automation. Each role, such as storage administrators, data engineers, and data scientists, utilizes these interfaces based on their specific tasks and responsibilities.
 
 == ONTAP System Manager
 
