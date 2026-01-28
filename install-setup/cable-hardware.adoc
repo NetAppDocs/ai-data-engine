@@ -61,6 +61,11 @@ Take care when clicking the delicate connector components into place.
 ====
 
 * The DX50 data compute nodes require 400-GbE-to-100-GbE (4x100GbE) breakout cables. The 400GbE connections are made to the client and cluster switches. The 100GbE connections are made to the I/O ports on the data compute node. 
++
+[NOTE]
+====
+The initial configuration of the AIDE system supports a minimum of three data compute nodes for a cluster.
+====
 
 == Step 1: Connect the controllers to the management network (Optional)  
 If not already configured as part of the AFX 1K storage system installation, connect the management port on each switch to either of the management switches (if ordered) or connect them directly to your management network.
@@ -80,8 +85,6 @@ IMPORTANT: Do not plug in the power cords yet.
 
 == Step 2: Connect the data compute nodes to the host network (Optional)
 You can optionally connect the Ethernet module ports to your host network. 
-
-This procedure may differ depending on your I/O module configuration. The following are some typical host network cabling examples. See  link:https://hwu.netapp.com[NetApp Hardware Universe^] for your specific system configuration.
 
 .Steps
 

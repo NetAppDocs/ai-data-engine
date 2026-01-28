@@ -21,8 +21,8 @@ To install your AIDE system, ensure that the site and the cabinet or rack that y
 . Make sure you have adequate cabinet space for your AIDE data compute nodes within the existing AFX 1K storage system installation. 
 +
 
-** 1U for each AIDE data compute node
-** 2U for each AFX controller node 
+** 1U for each DX50 data compute node
+** 2U for each AFX 1K controller node 
 ** 2U for each NX224 shelf
 ** 1U or 2U per switch, depending on switch model.
 
