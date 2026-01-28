@@ -15,8 +15,8 @@ As a data scientist, you use the AI Data Engine Console to search for relevant d
 
 [cols="2h,3", options="header"]
 |===
-|Component
-|Data scientist access
+h|Component
+h|Data scientist access
 
 |ONTAP System Manager
 |No access

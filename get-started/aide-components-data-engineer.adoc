@@ -15,8 +15,8 @@ As a data engineer, you use the AI Data Engine Console to explore workspaces, cr
 
 [cols="2h,3", options="header"]
 |===
-|Component
-|Data engineer access
+h|Component
+h|Data engineer access
 
 |ONTAP System Manager
 |No access

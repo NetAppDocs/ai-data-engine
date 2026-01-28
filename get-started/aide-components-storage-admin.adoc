@@ -15,8 +15,8 @@ As a storage administrator, you manage the AIDE infrastructure through ONTAP Sys
 
 [cols="2h,3", options="header"]
 |===
-|Component
-|Storage administrator access
+h|Component
+h|Storage administrator access
 
 |ONTAP System Manager
 |Manage (create, edit, delete)
