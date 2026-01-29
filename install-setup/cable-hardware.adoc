@@ -17,6 +17,8 @@ After you install the rack hardware for your AIDE system, install the network ca
 + 
 For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
 
+* Data compute nodes can be added to an existing AFX 1K storage system that is already powered on and configured. As such, the AFX 1K storage system does not need to be powered off when cabling the data compute nodes for your AIDE system.
+
 * Contact your network administrator for information about connecting the system to your network switches.
 
 .About this task
@@ -83,8 +85,8 @@ IMPORTANT: Do not plug in the power cords yet.
 
 . Connect to host network. 
 
-== Step 2: Connect the data compute nodes to the host network (Optional)
-You can optionally connect the Ethernet module ports to your host network. 
+== Step 2: Connect the data compute nodes to the host network
+You can connect the Ethernet module ports to your host network. 
 
 .Steps
 
