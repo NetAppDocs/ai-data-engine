@@ -28,7 +28,7 @@ Data collections and Retrieval-Augmented Generation (RAG) search capabilities be
 
 * You need _storage administer_ privileges to create workspaces and associate data collections.
 * You've determined the remote and local data sources you intend to use with the workspace and with AI Data Engine.
-* You've link:workspaces/prepare-data-for-aide.html[created at least one data container] that can be used by the workspace, such as a volume or an S3 bucket.
+* You've link:workspaces/prepare-data-for-aide.html[created at least one data container] that can be used by the workspace, such as a local volume or a volume from a peered cluster.
 +
 NOTE: Ensure NFS is enabled on the volume but that the volume is not CIFS enabled. Workspaces only support volumes with NFS. Volumes with CIFS (SMB) are not supported with workspaces.
 
