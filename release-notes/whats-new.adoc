@@ -1,0 +1,61 @@
+---
+permalink: release-notes/whats-new.html
+sidebar: sidebar
+keywords: release notes, new features, AI Data Engine, AIDE, metadata engine, ONTAP 9.18.1
+summary: "Learn about the new capabilities available in AI Data Engine (AIDE)."
+---
+= AI Data Engine 9.18.1 release highlights
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+AI Data Engine (AIDE) 9.18.1 introduces a metadata engine and management workflows, enabling organizations to catalog, organize, and govern their unstructured data for AI workloads. This release focuses on foundational metadata engine capabilities, workspace management, and integration with ONTAP clusters.
+
+== What's new in AIDE 9.18.1
+
+AIDE 9.18.1 delivers the following innovations and enhancements for metadata management:
+
+* xref:../metadata-engine/index.html[Integrated Metadata Engine for AI Data Cataloging]
++
+AIDE introduces a high-performance metadata engine, enabling organizations to catalog millions to billions of files and objects across ONTAP clusters. The metadata engine supports:
+** Automated extraction of metadata (core and extended attributes, object tags) from local and remote ONTAP volumes.
+** Centralized querying and filtering APIs for applications needing a global view of enterprise data.
+** Storage of metadata in a scalable MongoDB-based store.
+** Metadata extraction is triggered automatically when workspaces are created.
+
+* xref:../workspaces/index.html[Workspace management for AI projects]
++
+Workspaces provide logical grouping of data sources (volumes) for AI projects. New capabilities include:
+** Creation of workspaces spanning local and remote ONTAP volumes (via cluster peering).
+** Assignment of access controls to workspaces, supporting multi-user and multi-tenant environments.
+** Integration with guardrail policies for data governance (view-only in System Manager).
+** Automatic metadata extraction and catalog population upon workspace creation.
+
+* xref:../data-collections/index.html[Data collection observability]
++
+System Manager now displays data collections created by data engineers, allowing storage admins to monitor cataloged subsets of data. Management of data collections is performed via the Data Engine console.
+
+* xref:../cluster-management/index.html[Enhanced cluster setup and management]
++
+** Discovery and addition of Data Compute Nodes (DCNs) during cluster setup.
+** Creation of dedicated metadata storage VMs for the metadata engine.
+** Configuration of Data Engine service interfaces for cluster-wide metadata access.
+** Support for peering with other ONTAP clusters to extend metadata cataloging across the data estate.
+
+* xref:../networking/index.html[Network and subnet management for metadata engine]
++
+** Dedicated network configuration for Data Engine services and DCN-ONTAP communication.
+** Flexible subnet expansion for scaling DCN clusters.
+
+* xref:../security/index.html[OpenID Connect (OIDC) authentication]
++
+** Support for OIDC/OAuth-based authentication for secure access to System Manager and Data Engine console.
+** Role-based access controls for workspace and metadata management.
+
+== Additional notes
+
+* The metadata engine is available only on AIDE clusters running ONTAP 9.18.1 or later.
+* Management of policies (global exclusions, classifiers, guardrails) is performed via the Data Engine console; System Manager provides view-only access for guardrails during workspace creation.
+* Support for ONTAP S3 buckets and StorageGRID as data sources is not included in this release.
+* For upgrade guidance and compatibility, see xref:../upgrade/prepare.html[Upgrade to the latest version of AIDE].
+
