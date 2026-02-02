@@ -1,31 +1,59 @@
 section: get-started
 title: Get started
 entries:
-- title: Learn about your AIDE system
-  url: "/get-started/learn-about.html"
-- title: Quick start
-  url: "/get-started/quick-start.html"
-- title: Install your AIDE system
-  entries:
-  - title: Install workflow
-    url: /install-setup/install-setup-workflow.html
-  - title: Review hardware requirements
-    url: /install-setup/install-setup-requirements.html
-  - title: Prepare to install
-    url: /install-setup/prepare-hardware.html
-  - title: Install data compute nodes
-    url: /install-setup/deploy-hardware.html
-  - title: Cable hardware
-    url: /install-setup/cable-hardware.html
-  - title: Power on system
-    url: /install-setup/power-on-hardware.html
-- title: Set up your AIDE system
-  entries:
-  - title: Set up the cluster
-    url: "/install-setup/initialize-ontap-cluster.html"
-  - title: Install AIDE licenses
-    url: "/install-setup/install-license-task.html"
-  - title: Set up AI Data Engine
-    url: "/install-setup/set-up-san-host.html"
-  - title: Set up data access
-    url: "/install-setup/set-up-data-access.html"
+  - title: Learn about your AI Data Engine system
+    entries:
+      - title: Learn about AIDE
+        url: "/get-started/learn-about.html"
+      - title: AIDE architecture
+        url: "/get-started/aide-architecture.html"
+      - title: AIDE components and responsibilities by role
+        entries:
+          - title: AIDE components and roles
+            url: "/get-started/aide-components.html"
+          - title: AIDE interfaces
+            url: "/get-started/aide-interfaces.html"
+          - title: Storage administrators and components
+            url: "/get-started/aide-components-storage-admin.html"
+          - title: Data engineers and components
+            url: "/get-started/aide-components-data-engineer.html"
+          - title: Data scientists and components
+            url: "/get-started/aide-components-data-scientist.html"
+  - title: Quick start
+    url: "/get-started/quick-start.html"
+  - title: Install your AIDE system
+    entries:
+    - title: Install workflow
+      url: /install-setup/install-setup-workflow.html
+    - title: Review hardware requirements
+      url: /install-setup/install-setup-requirements.html    
+    - title: Prepare to install
+      url: /install-setup/prepare-hardware.html
+    - title: Install hardware
+      entries:
+        - title: Install switches
+          url: /install-setup/install-switches.html  
+        - title: Install storage system and shelves
+          url: /install-setup/deploy-hardware.html
+    - title: Cabling 
+      entries:
+        - title: Review supported configurations
+          url: /install-setup/aide-cable-overview.html
+        - title: Gather network information
+          url: /install-setup/install-network-reqs.html
+        - title: Cable hardware
+          url: /install-setup/cable-hardware.html  
+    - title: Power on and configure switches
+      url: /install-setup/power-on-configure-switch.html  
+    - title: Power on system
+      url: /install-setup/power-on-hardware.html   
+  - title: Set up your AIDE system
+    entries:     
+    - title: Set up the cluster
+      url: "/install-setup/initialize-ontap-cluster.html"  
+    - title: Install AIDE licenses
+      url: "/install-setup/install-license-task.html"
+    - title: Set up AI Data Engine
+      url: "/install-setup/set-up-san-host.html"     
+    - title: Set up data access
+      url: "/install-setup/set-up-data-access.html"    

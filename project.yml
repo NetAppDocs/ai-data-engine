@@ -17,7 +17,9 @@ sidebar:
 ##  - section: administer
   - title: Maintain hardware 
     url: /maintain-hardware.html
-##  - section: get-help
+  - title: FAQs
+    url: /faq-aide.html
+  - section: get-help
   - title: Legal notices
     url: /legal-notices.html
 

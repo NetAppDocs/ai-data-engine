@@ -1,0 +1,20 @@
+---
+sidebar: sidebar
+permalink: get-help/view-submit-support-case.html
+keywords: autosupport, support case, submit support case, view support case
+summary: "Learn how to submit and view support cases for your AI Data Engine systems using ONTAP System Manager."
+---
+= Submit and view support cases for AI Data Engine systems
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+
+If you have an issue that requires assistance, you can use ONTAP System Manager to submit a case to technical support. You can also use ONTAP System Manager to view cases that are closed or in progress.
+
+You must be link:https://activeiq-link.netapp.com/[registered with Active IQ] to view support cases for your AI Data Engine system.
+
+.Steps
+
+. To submit a support case, in System Manager select *Cluster > Support*, then select *Go to NetApp Support*.
+. To view a previously submitted case, in System Manager select *Cluster > Support*, then select *View my cases*.
