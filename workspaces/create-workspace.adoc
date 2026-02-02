@@ -30,7 +30,11 @@ Data collections and Retrieval-Augmented Generation (RAG) search capabilities be
 * You've determined the remote and local data sources you intend to use with the workspace and with AI Data Engine.
 * You've link:workspaces/prepare-data-for-aide.html[created at least one data container] that can be used by the workspace, such as a local volume or a volume from a peered cluster.
 +
-NOTE: Ensure NFS is enabled on the volume but that the volume is not CIFS enabled. Workspaces only support volumes with NFS. Volumes with CIFS (SMB) are not supported with workspaces.
+IMPORTANT: Do not delete volumes once they are part of a workspace as this will cause a workspace to enter a failed state. Be confident in the longer term viability of the data container you are using prior to establishing a workspace.
+
+//aidedoc-4
+
+*Ensure NFS is enabled on the volume but that the volume is not CIFS enabled. Workspaces only support volumes with NFS. Volumes with CIFS (SMB) are not supported with workspaces.
 
 // CONTAP-517543
 //Should more clusters be added/peered?
