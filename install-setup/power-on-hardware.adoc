@@ -15,7 +15,7 @@ After you install the rack hardware and cable your DX50 data compute nodes, you 
 * Make sure that your shelves are powered on and each assigned a unique shelf ID. For information on assigning shelf IDs for the AFX storage system, see the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/power-on-hardware.html#step-1-power-on-the-shelf-and-assign-shelf-id[Assign unique shelf IDs^].
 
 .Steps
-After you've turned on your storage shelves and assigned them unique IDs, turn on the power to the storage controller nodes if they are not already powered on.
+After you've turned on your storage shelves and assigned the unique IDs, turn on the power to the storage controller nodes if they are not already powered on.
 
 . Connect your laptop to the serial console port. This allows you to monitor the boot sequence when the controllers are powered on.
 

@@ -31,6 +31,8 @@ Take the necessary precautions when moving or lifting your AIDE data compute nod
 
 A DX50 data compute node can weigh up to 46.3 lbs (21Kg). To lift the data compute node, use two people or a hydraulic lift.
 
+image::../media/drw_compute_node_lifting_weight_ieops-2743.svg[DX50 data compute node lifting weight]
+
 .Related information
 
 *  https://library.netapp.com/ecm/ecm_download_file/ECMP12475945[Safety information and regulatory notices^]
