@@ -17,7 +17,7 @@ If you are administering storage, you'll use System Manager to create and manage
 Strategies for workspace creation vary by organization. You might create workspaces based on teams, projects, data sensitivity levels, or other criteria relevant. For example, if you work in healthcare, you might segment clinical data into a workspace but leave out data pertaining to IT, legal, or other departments.
 
 .About this task
-Workspace creation is subject to system processing limits (typically up to 15 GB per day per cluster). If you create multiple workspaces in parallel or in quick succession, each workspace may take longer to process, and you may experience significant delays. 
+Workspace creation is subject to system processing limits (typically up to 15 GB per day per cluster). If you create multiple workspaces in parallel or in quick succession, each workspace might take longer to process, and you might experience significant delays. 
 
 You can monitor the status of workspace creation from the Workspaces inventory page. For best results, avoid creating many workspaces at once if you need immediate access to these features.
 //CONTAP-612354
@@ -71,9 +71,9 @@ The new workspace will show up in the Workspaces page in `Creating` state until 
 After workspace creation, review the workspace details.
 
 .Steps
-. Review workspace details, including total size, and percentage of cluster capacity used.
+. Review workspace details, including total size, percentage of cluster capacity used, and the date of most recent workspace refresh.
 . Select the workspace name to open the details page.
-. In the Overview tab, view workspace details and associated data containers.
+. In the Overview tab, view workspace details that include associated data containers, users, and activity.
 
 == Workspace refreshes and versioning
 
