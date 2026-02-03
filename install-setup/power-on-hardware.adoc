@@ -47,8 +47,11 @@ image::../media/drw_affa1k_power_source_icon_ieops-1700.svg[A power connection d
 [start=4]
 . Plug the power cords into the data compute node power supplies, and then connect them to power sources on different circuits.
 . Secure the power cords using the securing device on each power supply.
+. Power on the data compute nodes.
++
+You might have to remove the bezel to access the power switch; if so, remember to reinstall it afterwards.
 
 .What's next?
-After you've turned on your AIDE system, you link:../install-setup/initialize-ontap-cluster.html[set up an ONTAP AIDE cluster].
+After you've turned on your DX50 data compute nodes, you link:../install-setup/initialize-ontap-cluster.html[set up an ONTAP AIDE cluster].
 
 // 2024 Sept 23, ONTAPDOC 1922
