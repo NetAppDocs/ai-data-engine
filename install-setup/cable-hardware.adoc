@@ -4,20 +4,20 @@ permalink: install-setup/cable-hardware.html
 keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, cable controllers, Cisco Nexus 9332D-GX2B, Cisco Nexus 9364D-GX2A, switches, switch, cable hardware, cable storage shelves, dx50
 summary: Learn how to attach the AIDE cables to your network and cable the data compute nodes. 
 ---
-= Cable the hardware for your AIDE system
+= Cable the hardware for your DX50 data compute nodes
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-After you install the rack hardware for your AIDE system, install the network cables for the DX50 data compute nodes between the controllers and storage shelves.
+After you install the rack hardware for your DX50 data compute nodes, install the network cables for the DX50 data compute nodes between the controllers and storage shelves.
 
 .Before you begin
 
-* An existing AFX 1K storage system installation is required when cabling the DX50 data compute nodes as part of the AIDE system.
+* An existing AFX 1K storage system installation is required when cabling the DX50 data compute nodes as part of AIDE.
 + 
 For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
 
-* Data compute nodes can be added to an existing AFX 1K storage system that is already powered on and configured. As such, the AFX 1K storage system does not need to be powered off when cabling the data compute nodes for your AIDE system.
+* DX50 data compute nodes can be added to an existing AFX 1K storage system that is already powered on and configured. As such, the AFX 1K storage system does not need to be powered off when cabling the data compute nodes for AIDE.
 
 * Contact your network administrator for information about connecting the system to your network switches.
 
@@ -66,7 +66,7 @@ Take care when clicking the delicate connector components into place.
 +
 [NOTE]
 ====
-The initial configuration of the AIDE system supports a minimum of three data compute nodes for a cluster.
+The initial configuration of AIDE supports a minimum of three DX50 data compute nodes for a cluster.
 ====
 
 == Step 1: Connect the controllers to the management network (Optional)  
@@ -145,4 +145,4 @@ image::../media/drw_aide_switched_cluster_cabling_b_ieops-2650.svg[Cable to Ethe
 
 .What's next?
 
-After you’ve cabled the hardware, you link:power-on-hardware.html[power on your AIDE system].
+After you’ve cabled the hardware, you link:power-on-hardware.html[power on your DX50 data compute nodes].

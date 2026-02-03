@@ -4,18 +4,18 @@ permalink: install-setup/power-on-hardware.html
 keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, power on, dx50
 summary: Power on each shelf to assign a unique shelf ID, power on the AFX controller nodes, and secure the power cables. 
 ---
-= Power on your AIDE system
+= Power on your DX50 data compute nodes
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-After you install the rack hardware and cable your DX50 data compute nodes, you should power on your controller nodes for the AFX storage system if not already powered on.
+After you install the rack hardware and cable your DX50 data compute nodes, you should power on your DCNs and your controller nodes for the AFX storage system if not already powered on.
 
 .Before you begin
 * Make sure that your shelves are powered on and each assigned a unique shelf ID. For information on assigning shelf IDs for the AFX storage system, see the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/power-on-hardware.html#step-1-power-on-the-shelf-and-assign-shelf-id[Assign unique shelf IDs^].
 
 .Steps
-After you've turned on your storage shelves and assigned the unique IDs, turn on the power to the storage controller nodes if they are not already powered on.
+After you've turned on your storage shelves and assigned the unique IDs, power on your DCNs and power on the storage controller nodes if they are not already powered on.
 
 . Connect your laptop to the serial console port. This allows you to monitor the boot sequence when the controllers are powered on.
 

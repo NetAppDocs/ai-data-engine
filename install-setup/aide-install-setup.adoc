@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, install, setup, initial configuration, dx50
 summary: 'Install and set up your system.'
 ---
-= Install and setup your AIDE systems
+= Install and setup your DX50 data compute nodes (DCN)
 :icons: font
 :imagesdir: ../media/
 

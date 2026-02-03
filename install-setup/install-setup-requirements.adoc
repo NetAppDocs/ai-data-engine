@@ -2,21 +2,25 @@
 sidebar: sidebar
 permalink: install-setup/install-setup-requirements.html
 keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, requirements, cautions, dx50
-summary: Review the equipment needed and the lifting precautions for your AIDE data compute nodes.
+summary: Review the equipment needed and the lifting precautions for your DX50 data compute nodes.
 ---
-= Installation requirements for AIDE systems
+= Installation requirements for DX50 data compute nodes
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Review the equipment needed and the lifting precautions for your AIDE data compute nodes.
+Review the equipment needed and the lifting precautions for your DX50 data compute nodes.
+
+== Prerequisites
+Before you install the DX50 data compute nodes for AIDE, ensure that you have:
+
+** An AFX 1K storage system. 
++
+NOTE: For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
 
 == Equipment needed for install
-To install the DX50 data compute nodes for your AIDE system, you need the following equipment and tools. 
+To install the DX50 data compute nodes for AIDE, you need the following equipment and tools. 
 
-** An existing AFX 1K storage system. 
-+ 
-NOTE: For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
 ** Access to a web browser to configure your data compute nodes
 ** Electrostatic discharge (ESD) strap 
 ** Flashlight
@@ -26,8 +30,8 @@ NOTE: For information on installing the AFX 1K storage system, refer to the link
 == Lifting precautions 
 The data compute nodes are heavy. Exercise caution when lifting and moving these items.
 
-=== AIDE DX50 data compute node weights 
-Take the necessary precautions when moving or lifting your AIDE data compute node.
+=== DX50 data compute node weights 
+Take the necessary precautions when moving or lifting your DX50 data compute node.
 
 A DX50 data compute node can weigh up to 46.3 lbs (21Kg). To lift the data compute node, use two people or a hydraulic lift.
 
@@ -38,6 +42,6 @@ image::../media/drw_compute_node_lifting_weight_ieops-2743.svg[DX50 data compute
 *  https://library.netapp.com/ecm/ecm_download_file/ECMP12475945[Safety information and regulatory notices^]
 
 .What's next?
-After you've reviewed the hardware requirements, you link:prepare-hardware.html[prepare to install your AIDE system].
+After you've reviewed the hardware requirements, you link:prepare-hardware.html[prepare to install your DX50 data compute nodes].
 
 // 2024 Sept 23, ONTAPDOC 1922
