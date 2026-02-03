@@ -10,7 +10,7 @@ summary: "After you create a cluster, you can create a data container containing
 :imagesdir: ../media/
 
 [.lead]
-After you create a cluster, you'll want to establish a data container that can be used with AI Data Engine (AIDE). This data container must be an ONTAP volume, either a local volume or a volume from a peered ONTAP cluster.
+After you create a cluster, establish a data container that AIDE can use. This data container must be an ONTAP volume, either a local volume or a volume from a peered ONTAP cluster.
 
 Rather than manually upload ONTAP cluster data to AIDE, you'll need to peer targeted clusters and SVMs with the AIDE cluster and then decide which NFS volumes you want to use with the AIDE metadata catalog. After you've created the data container, you can create a workspace and associate the data container with that workspace. Users of that workspace can then access and interact with the workspace affiliated data collections and resources for their AI workloads.
 

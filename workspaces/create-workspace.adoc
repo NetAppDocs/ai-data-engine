@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: workspaces/create-workspace.html
 keywords: aide, workspaces, create workspace, ai data engine
-summary: "After you create a cluster, you can create workspaces that allow you to segment data, control data access, and exclude data so as not to expose it to AIDE."
+summary: "After you create a cluster, you can create workspaces that allow you to segment data, control data access, and exclude data that AIDE should not access."
 ---
 
 = Set up a workspace in AI Data Engine
@@ -10,31 +10,31 @@ summary: "After you create a cluster, you can create workspaces that allow you t
 :imagesdir: ../media/
 
 [.lead]
-After you set up a cluster, you can set up a workspace. Workspaces allow you to segment data on the cluster, control data access for individuals, and exclude data that should not be exposed to the AI Data Engine (AIDE).
+After you set up a cluster, you can create a workspace. Workspaces allow you to segment data on the cluster, control data access for individuals, and exclude data that AI Data Engine (AIDE) should not access.
 
-If you are administering storage, you'll use System Manager to create and manage workspaces, and add data collections to support AI workloads. 
+If you administer storage, you'll use System Manager to create and manage workspaces, and add data collections to support AI workloads. 
 
-Strategies for workspace creation vary by organization. You might create workspaces based on teams, projects, data sensitivity levels, or other criteria relevant. For example, if you work in healthcare, you might segment clinical data into a workspace but leave out data pertaining to IT, legal, or other departments.
+Organizations create workspaces based on teams, projects, data sensitivity levels, or other relevant criteria. For example, if you work in healthcare, you might segment clinical data into a workspace but leave out data pertaining to IT, legal, or other departments.
 
 .About this task
-Workspace creation is subject to system processing limits (typically up to 15 GB per day per cluster). If you create multiple workspaces in parallel or in quick succession, each workspace might take longer to process, and you might experience significant delays. 
+System processing limits affect workspace creation (typically up to 15 GB per day per cluster). If you create multiple workspaces in parallel or in quick succession, each workspace might take longer to process, and you might experience significant delays. 
 
-You can monitor the status of workspace creation from the Workspaces inventory page. For best results, avoid creating many workspaces at once if you need immediate access to these features.
+Monitor the status of workspace creation from the Workspaces inventory page. For best results, avoid creating many workspaces at once if you need immediate access to these features.
 //CONTAP-612354
 
-Data collections and Retrieval-Augmented Generation (RAG) search capabilities become available only after the workspace creation process is fully complete.
+Data collections and Retrieval-Augmented Generation (RAG) search capabilities become available only after the workspace creation process completes.
 
 .Before you begin
 
 * You need _storage administrator_ privileges to create workspaces and associate data collections.
 * You've determined the remote and local data sources you intend to use with the workspace and with AI Data Engine.
-* You've link:workspaces/prepare-data-for-aide.html[created at least one data container] that can be used by the workspace, such as a local volume or a volume from a peered cluster.
+* You've link:workspaces/prepare-data-for-aide.html[created at least one data container] that the workspace can use, such as a local volume or a volume from a peered cluster.
 +
-IMPORTANT: You want to add a volume to a workspace that won't be deleted for the expected lifetime of that workspace. If you delete a volume once it is part of a workspace, the workspace will enter a failed state. Be confident in the longer term viability of the volume you are using prior to establishing a workspace.
+IMPORTANT: Add a volume to a workspace that you won't delete during the expected lifetime of that workspace. If you delete a volume after adding it to a workspace, the workspace will enter a failed state. Confirm the longer-term viability of the volume before establishing a workspace.
 
 //aidedoc-4
 
-*Ensure NFS is enabled on the volume but that the volume is not CIFS enabled. Workspaces only support volumes with NFS. Volumes with CIFS (SMB) are not supported with workspaces.
+Ensure NFS is enabled on the volume but that CIFS is not enabled. Workspaces only support volumes with NFS. Volumes with CIFS (SMB) are not supported.
 
 // CONTAP-517543
 //Should more clusters be added/peered?
@@ -51,7 +51,7 @@ Create a workspace and associate data containers that contain the data you want 
 . If you'd like to configure user access to the workspace, you can do that now or link:assign-users-to-workspace.html[wait until after the workspace is created].
 . Configure a refresh interval for how often the workspace synchronizes with the associated data containers to capture new or updated data (for example, six hours).
 +
-TIP: Choose an interval that balances data freshness with system performance. If you add a data container to multiple workspaces, the system will automatically use the most aggressive (shortest) interval. To learn more, see documentation about <<Workspace refreshes and versioning,workspaces refreshes and versioning>>.
+TIP: Choose an interval that balances data freshness with system performance. If you add a data container to multiple workspaces, the system automatically uses the most aggressive (shortest) interval. To learn more, see documentation about <<Workspace refreshes and versioning,workspace refreshes and versioning>>.
 
 . Select *Continue*.
 . In the *Finalize workspace* dialog, enter a workspace name and description.
@@ -60,9 +60,9 @@ TIP: Choose an interval that balances data freshness with system performance. If
 .Result
 The workspace creation process takes several minutes to hours to complete, depending on the associated dataset and its file count, file size, and other factors.
 
-Metadata will be extracted automatically for all data sources and stored in a metadata catalog that users can use to locate the files they need for their projects. After you assign users to the workspace, they can access and interact with the workspace-affiliated data collections and resources for their AI workloads.
+The system automatically extracts metadata for all data sources and stores it in a metadata catalog that users can use to locate the files they need for their projects. After you assign users to the workspace, they can access and interact with workspace-affiliated data collections and resources for their AI workloads.
 
-The new workspace will show up in the Workspaces page in `Creating` state until the process is complete and the state changes to `ready`.
+The new workspace appears on the Workspaces page in `Creating` state until the process completes and the state changes to `ready`.
 
 //.. (Optional) Choose guardrails from the dropdown. If a guardrail is disabled or in test mode, review any warning messages.
 
@@ -79,10 +79,10 @@ After workspace creation, review the workspace details.
 
 Each workspace refresh creates an immutable version that captures the current state of all files and objects in the workspace. Versions include complete metadata, references to snapshots used during extraction, and a job ID for traceability. This supports data lineage, reproducibility, and auditing for AI/ML workloads.
 
-Refreshes occur either on the schedule you configure (such as every six hours) or when you trigger them manually. The minimum supported refresh interval is one hour; the maximum is one year. If a data container is included in multiple workspaces, the most frequent, shortest duration refresh interval is used for scheduling metadata extraction.
+Refreshes occur either on the schedule you configure (such as every six hours) or when you trigger them manually. The minimum supported refresh interval is one hour; the maximum is one year. If a data container is included in multiple workspaces, the system uses the most frequent, shortest duration refresh interval for scheduling metadata extraction.
 //add link to manual refresh instructions
 
-By default, the system retains previous, current, and next (in-progress) versions. Older versions are retained according to your organization's policy and can be purged as needed.
+By default, the system retains previous, current, and next (in-progress) versions. The system retains older versions according to your organization's policy and can purge them as needed.
 //add link to workspace deletion and volume consequences
 
 You can list all versions of a workspace and view differences between versions to identify which files or objects were added, modified, or deleted. This allows you to track changes over time and understand the evolution of your workspace data.
