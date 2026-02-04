@@ -1,0 +1,18 @@
+---
+sidebar: sidebar
+permalink: aide-afx-install.html
+keywords: ai data engine, dcn, compute node, maintain, hardware
+summary: "To setup your AI Data Engine, an installation of the AFX storage system and the DX50 data compute nodes is required. The DX50 data compute nodes can be installed with a fresh AFX installation or after the AFX storage system installation is complete."
+---
+= Install your AFX storage system for the AI Data Engine
+:icons: font
+:imagesdir: ./media/
+
+[.lead]
+To setup your AI Data Engine, an installation of the AFX storage system and the DX50 data compute nodes is required. The DX50 data compute nodes can be installed with a fresh AFX installation or after the AFX storage system installation is complete.
+
+== AFX storage system installation
+For information about installing the AFX storage system, see the link:https://docs.netapp.com/us-en/ontap-systems/aide-landing-install/index.html[AI Data Engine installation documentation^]. Once the AFX storage system installation is complete, you can proceed with the DX50 data compute node installation.
+
+== DX50 data compute node installation
+For information on installing the DX50 data compute nodes for the AI Data Engine, see the link:https://docs.netapp.com/us-en/ontap-systems/aide-landing-install/index.html[AI Data Engine installation documentation^]. 
