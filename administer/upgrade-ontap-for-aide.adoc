@@ -17,4 +17,6 @@ Learn more about link:https://docs.netapp.com/us-en/ontap/upgrade/index.html[ONT
 
 IMPORTANT: Revert functionality is not supported for AFX software systems. After an upgrade is installed, you cannot revert to a previous version.
 
-//version compatibility matrix for ontap versions and aide versions
+.Related information
+
+link:upgrades-aide-summary.html#compatibility-matrix[Compatibility matrix for ONTAP, DCN firmware, and AI Data Engine software]

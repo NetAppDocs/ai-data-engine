@@ -12,15 +12,18 @@ summary: "Learn about the different components of an AI Data Engine system that 
 Keep AI Data Engine (AIDE) system components up to date to maintain performance and access to new features. Update components after deployment, when new software or firmware becomes available, when you add or replace nodes, or periodically for feature updates.
 
 == AIDE system components
-DCN firmware and AIDE Console software updates are distributed together as a single package (`dcn-image.tgz`) and are not embedded in ONTAP images.
+There are two main components that require updates in an AI Data Engine system: ONTAP software and AI Data Engine software, which includes DCN firmware.
 
 === ONTAP Software
 ONTAP is the operating system that runs on NetApp storage systems, including those used in AI Data Engine deployments. Keep ONTAP current to preserve system stability, security, and compatibility with AIDE components. AIDE components are updated separately.
 
-=== DCN firmware updates
+=== AI Data Engine software
+DCN firmware and AIDE Console software updates are distributed together as a single package (.tgz) and are not embedded in ONTAP images.
+
+.DCN firmware updates
 Update firmware to ensure the proper functioning of hardware components within the AI Data Engine system, including data compute nodes (DCNs), storage controllers, network interfaces, and other critical devices.
 
-=== AI Data Engine software
+.AI Data Engine software
 Update the AI Data Engine software regularly to obtain new features, performance improvements, and bug fixes. AIDE software includes the AI Data Engine Console, vectorization, and guardrail components.
 
 == Compatibility matrix
@@ -51,7 +54,7 @@ NOTE: "Px" denotes ONTAP patch releases (for example, 9.18.1 P1). "Ux" denotes A
 == Revert limitations
 AIDE systems do not support revert operations for DCN firmware, AIDE software updates, or ONTAP on AFX storage systems. After you install an update or upgrade, you cannot revert to a previous version. Review the release notes and compatibility requirements for each component before you update or upgrade.
 
-// release note limitation
+// documented as release note limitation
 // https://docs.netapp.com/us-en/ontap-afx/administer/revert-ontap.html
 
 
@@ -62,4 +65,5 @@ AIDE does not support fully automatic DCN updates. By default, the system notifi
 
 .Related information
 
-link:https://docs.netapp.com/us-en/ontap-afx/administer/upgrade-ontap.html[Upgrade ONTAP software^]
+link:upgrade-ontap-for-aide.html[Upgrade ONTAP software for AI Data Engine systems]
+link:update-aide-firmware-software.html[Update DCN firmware and AI Data Engine Console software]
