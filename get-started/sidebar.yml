@@ -24,7 +24,7 @@ entries:
   - title: Install your AI Data Engine  
     entries:
       - title: Install your AFX storage system for the AI Data Engine
-        url: "/install-setup/aide-afx-install.html"
+        url: /install-setup/aide-afx-install.html
       - title: Install your DX50 Data Compute Nodes
         entries:
           - title: Install workflow

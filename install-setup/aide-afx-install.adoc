@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
-permalink: aide-afx-install.html
-keywords: ai data engine, dcn, compute node, maintain, hardware
+permalink: install-setup/aide-afx-install.html
+keywords: ai data engine, dcn, compute node, install, hardware, dx50, afx, afx 1k
 summary: "To setup your AI Data Engine, an installation of the AFX storage system and the DX50 data compute nodes is required. The DX50 data compute nodes can be installed with a fresh AFX installation or after the AFX storage system installation is complete."
 ---
 = Install your AFX storage system for the AI Data Engine
