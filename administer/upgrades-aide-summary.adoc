@@ -29,7 +29,7 @@ Update the AI Data Engine Console software regularly to obtain new features, per
 == Understand the update process
 AI Data Engine software updates can be managed through ONTAP System Manager.
 
- AIDE does not fully support ONTAP automatic software updates functionality. If you use ONTAP automatic updates, the system can notify admins about available updates but not make the updates for them. Admins must complete the process manually after notification.
+AIDE does not fully support ONTAP automatic software updates functionality. If you use ONTAP automatic updates, the system can notify admins about available updates but not make the updates for them. Admins must complete the process manually after notification.
 
 Release types and scope:
 
