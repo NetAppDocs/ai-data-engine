@@ -9,7 +9,7 @@ summary: "Learn about the different components of an AI Data Engine system that 
 :imagesdir: ../media/
 
 [.lead]
-Keep AI Data Engine (AIDE) system components up to date to maintain performance and access to new features. Update components after deployment, when new software or firmware becomes available, when you add or replace nodes, or periodically for feature updates.
+Keep AI Data Engine (AIDE) system components up to date to maintain optimal performance and access to new features. Update components after deployment, when new software or firmware becomes available, when you add or replace nodes, or periodically for feature updates.
 
 == AIDE system components
 There are two main components that require updates in an AI Data Engine system: ONTAP software and AI Data Engine software, which includes DCN firmware.
@@ -26,43 +26,108 @@ Update firmware to ensure the proper functioning of hardware components within t
 .AI Data Engine software
 Update the AI Data Engine software regularly to obtain new features, performance improvements, and bug fixes. AIDE software includes the AI Data Engine Console, vectorization, and guardrail components.
 
-== Compatibility matrix
-Ensure compatibility between ONTAP, DCN firmware, and AI Data Engine software when planning updates.
+== Understand the update process
+AI Data Engine DCN and AIDE Console software updates can be managed through ONTAP System Manager.
 
-AI Data Engine software is released as "U releases". An AIDE major release is a "U0" release and subsequent updates will be "U1" and later. AIDE major releases and update releases within that major release are compatible with the corresponding ONTAP major releases and patch releases. For example, AIDE 9.18.1 U0 (major release) and AIDE 9.18.1 U1 (update) are compatible with ONTAP 9.18.1 GA (major release) and all ONTAP 9.18.1 P (patch) releases.
-//Update for future ONTAPs
+ONTAP automatic software updates functionality does not fully support AIDE. If you use ONTAP automatic updates, the system can notify admins about available updates but not make the updates for them. Admins must complete the process manually after notification.
 
-.Upgrade paths
-
-* *AIDE major releases*: Upgrade sequentially between major versions (for example, 9.18.1 to 9.19.1). You cannot skip major versions.
-* *AIDE update releases*: You can skip U releases within the same major version (for example, 9.18.1 U0 to 9.18.1 U2). When upgrading to a new AIDE major version, upgrade any AIDE U version to any U version in the corresponding next major version (for example, AIDE 9.18.1 U1 to 9.19.1 U2).
-
-[cols="1,1",options="header"]
-|===
-| AIDE Releases | Supported ONTAP Version
-
-| 9.18.1 and all 9.18.1 Ux releases | 9.18.1 GA
-| 9.18.1 and all 9.18.1 Ux releases | 9.18.1 Px
-|===
-
-NOTE: "Px" denotes ONTAP patch releases (for example, 9.18.1 P1). "Ux" denotes AIDE update releases (for example, 9.18.1 U1).
-
-.Release types and scope
+Release types and scope:
 
 * ONTAP major releases and AIDE major releases introduce new features, APIs, or changes that affect ONTAP integration.
 * ONTAP patch releases and AIDE update releases contain fixes and updates that do not impact ONTAP integration.
 
+== Compatibility matrix
+Ensure compatibility between ONTAP, DCN firmware, and AI Data Engine software when planning updates.
+
+AI Data Engine software is released as "U releases". An AIDE major release is a "U0" release and subsequent minor releases will be "U1" and later.
+
+=== ONTAP and AIDE compatibility
+[cols="1,1",options="header"]
+|===
+| AIDE Releases | Supported ONTAP Versions
+
+| 9.18.1 | 9.18.1 GA and all 9.18.1 Px (and the next three major ONTAP 9.xx.x releases)
+| 9.18.1 Ux | 9.18.1 GA and all 9.18.1 Px (and the next three major ONTAP 9.xx.x releases)
+|===
+
+[NOTE]
+====
+"Px" denotes ONTAP patch releases (for example, 9.18.1 P1).
+
+"Ux" denotes AIDE update releases (for example, 9.18.1 U1).
+====
+
+=== AIDE upgrade paths
+
+//Update for future ONTAPs. Current version plus 3 major versions is ONTAP support window for each major AIDE release and its minor releases.
+
+The following examples use hypothetical future versions to show permitted upgrade and update paths permitted from AIDE 9.18.1 U0 and 9.18.1 U1.
+
+[cols="25,25,50", options="header"]
+|===
+|If your current AIDE release is… |And your target AIDE release is… |Your upgrade or update path is…
+
+// Same-major direct update (no skip)
+|9.18.1 U0
+|9.18.1 U1
+|Direct
+
+// Same-major update with skipped U-levels
+|9.18.1 U0
+|9.18.1 U3
+|Direct (you can skip intermediate U-levels within the same major release)
+
+// Same-major update from U1
+|9.18.1 U1
+|9.18.1 U4
+|Direct (you can update from any Ux to any later Ux in 9.18.1)
+
+// Cross-major N -> N+1 (allowed)
+.2+|9.18.1 U1
+
+|9.19.1 U0
+|Direct (across major releases to any U release in that major release)
+
+|9.19.1 U3
+|Direct (you can upgrade directly to a later U release in the next major release)
+|===
+
 == Revert limitations
-AIDE systems do not support revert operations for DCN firmware, AIDE software updates, or ONTAP on AFX storage systems. After you install an update or upgrade, you cannot revert to a previous version. Review the release notes and compatibility requirements for each component before you update or upgrade.
+AIDE systems do not support revert operations for DCN firmware, AIDE software updates, or ONTAP on AFX storage systems. After you install an update or upgrade, you cannot revert to a previous version. Review compatibility requirements before you update or upgrade.
+
+[cols="25,25,50", options="header"]
+|===
+|If your current AIDE release is… |And your target AIDE release is… |Your upgrade or update path is…
+
+// Cross-major N -> N+2 (not allowed)
+|9.18.1 U1
+|9.20.1 U0
+a| Not allowed.
+
+You must upgrade sequentially by major release:
+
+* 9.18.1 U1 -> 9.19.1 Ux
+* 9.19.1 Ux -> 9.20.1 Ux
+
+// Downgrade within same major (not allowed)
+|9.18.1 U3
+|9.18.1 U1
+a| Not allowed.
+
+Downgrading from a later U to an earlier U in the same major release is not supported.
+
+// Downgrade across majors (not allowed)
+|9.19.1 U2
+|9.18.1 U2
+a| Not allowed.
+
+Downgrading AIDE to an earlier major release is not supported.
+|===
+
 
 // documented as release note limitation
 // https://docs.netapp.com/us-en/ontap-afx/administer/revert-ontap.html
 
-
-== Understand the update process
-AI Data Engine DCN and AIDE Console software updates can be managed through ONTAP System Manager, which provides options for partially automatic or manual updates.
-
-AIDE does not support fully automatic software updates. If you use ONTAP automatic updates, the system can notify admins about available updates. Admins must then complete the process manually.
 
 .Related information
 
