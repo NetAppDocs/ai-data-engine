@@ -21,9 +21,11 @@ entries:
             url: "/get-started/aide-components-data-scientist.html"
   - title: Quick start
     url: "/get-started/quick-start.html"
-  - title: Install your AI Data Engine  
+  - title: Install your AIDE system  
     entries:
-      - title: Install your AFX storage system for the AI Data Engine
+      - title: Deployment requirements
+        url: /install-setup/aide-hardware-requirements.html
+      - title: Install your AFX storage system
         url: /install-setup/aide-afx-install.html
       - title: Install your DX50 Data Compute Nodes
         entries:
