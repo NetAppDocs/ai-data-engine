@@ -1,28 +1,19 @@
 ---
 sidebar: sidebar
 permalink: install-setup/aide-afx-install.html
-keywords: ai data engine, dcn, compute node, install, hardware, dx50, afx, afx 1k
-summary: "Install the AFX storage system and DX50 data compute nodes to set up your AI Data Engine. The DX50 nodes can be installed during the initial AFX installation or after the AFX system is operational."
+keywords: ai data engine, afx, afx 1k, install, hardware, storage system
+summary: "Install the AFX storage system as the first step in deploying AI Data Engine. The AFX system provides the storage infrastructure foundation required for AIDE deployment."
 ---
-= Install the AFX storage system and DX50 compute nodes for AI Data Engine
+= Install the AFX storage system for AI Data Engine
 :icons: font
 :imagesdir: ./media/
 
 [.lead]
-Install the AFX storage system and DX50 data compute nodes to set up your AI Data Engine. You can install the DX50 nodes during the initial AFX installation or after the AFX system is operational.
+Install the AFX storage system as the first step in deploying AI Data Engine. The AFX system provides the storage infrastructure foundation and is required before installing the DX50 data compute nodes.
 
-.Before you begin
+Follow the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[AFX 1K installation documentation^] to install the AFX storage system. 
 
-Review the link:aide-hardware-requirements.html[hardware requirements] to ensure you have the necessary components before beginning installation.
 
-== Install the AFX storage system
+.What's next
 
-The AFX storage system provides the foundation for AIDE deployment. The AFX system includes the controller, disk shelf, and network switch.
-
-Follow the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[AFX 1K installation documentation^] to install the AFX storage system. After completing the AFX installation, proceed with installing the DX50 data compute nodes.
-
-== Install the DX50 data compute nodes
-
-The DX50 data compute nodes host the AIDE software stack, which includes the Metadata Engine, Data Sync, Data Curator, and Data Guardrails. A minimum of three DX50 nodes are required for AIDE deployment.
-
-Follow the link:https://docs.netapp.com/us-en/ontap-systems/aide-landing-install/index.html[AI Data Engine installation documentation^] to install the DX50 data compute nodes. 
+After completing the AFX storage system installation, link:install-setup-workflow.html[install the DX50 data compute nodes]. 
