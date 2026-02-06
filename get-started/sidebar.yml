@@ -21,7 +21,7 @@ entries:
             url: "/get-started/aide-components-data-scientist.html"
   - title: Quick start
     url: "/get-started/quick-start.html"
-  - title: Install your AIDE system  
+  - title: Install AIDE   
     entries:
       - title: Installation requirements
         url: /install-setup/aide-hardware-requirements.html
