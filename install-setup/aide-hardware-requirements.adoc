@@ -4,16 +4,16 @@ permalink: install-setup/aide-hardware-requirements.html
 keywords: ai data engine, aide, hardware, requirements, afx, dx50, dcn, data compute node
 summary: "Review the hardware requirements for AI Data Engine, including the AFX storage system and DX50 data compute nodes."
 ---
-= Deployment requirements for the AI Data Engine
+= Requirements for installing your AIDE system
 :icons: font
 :imagesdir: ./media/
 
 [.lead]
-Review the requirements for deploying the AI Data Engine. The system requires an AFX storage system, a minimum of three DX50 data compute nodes, network switches, and cables.
+Review the requirements for installing the AI Data Engine. The AIDE system requires an AFX storage system, a minimum of three DX50 data compute nodes, network switches, and cables.
 
 == Hardware requirements
 
-AI Data Engine deployment requires an AFX storage system and DX50 data compute nodes. The AFX system provides the storage infrastructure, while the DX50 nodes host the AIDE software components that enable data management, curation, and AI capabilities.
+AI Data Engine installation requires an AFX storage system and a minimum of three DX50 data compute nodes. The AFX system provides the storage infrastructure, while the DX50 nodes host the AIDE software components that enable data management, curation, and AI capabilities.
 
 * *AFX storage system*: Includes an AFX controller, disk shelf, and network switch. AFX is required for AIDE deployment.
 * *DX50 data compute nodes*: A minimum of three DX50 nodes are required. The DX50 is a NetApp-provided hardware node that hosts the AIDE software, including the Metadata Engine, Data Sync, Data Curator, and Data Guardrails.

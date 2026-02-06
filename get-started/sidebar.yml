@@ -23,7 +23,7 @@ entries:
     url: "/get-started/quick-start.html"
   - title: Install your AIDE system  
     entries:
-      - title: Deployment requirements
+      - title: Installation requirements
         url: /install-setup/aide-hardware-requirements.html
       - title: Install your AFX storage system
         url: /install-setup/aide-afx-install.html
