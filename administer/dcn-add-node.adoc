@@ -11,13 +11,11 @@ summary: "Add Data Compute Nodes (DCNs) to an existing AI Data Engine cluster us
 [.lead]
 You can add new Data Compute Nodes (DCNs) to an existing AI Data Engine (AIDE) cluster using ONTAP System Manager. This expands compute capacity for the Metadata Engine and related services.
 
-== Before you begin
+.Before you begin
 
-Make sure:
-
-* The ONTAP cluster is already initialized and reachable via the cluster management LIF.
+* Ensure the ONTAP cluster is already initialized and reachable from the cluster management LIF.
 * New DCN hardware is racked, powered on, and cabled to the cluster switches.
-* DCN software is compatible with the ONTAP version.
+* link:upgrades-aide-summary.adoc[DCN software is compatible with the ONTAP version].
 * You have an IP address range available for the DCN-ONTAP backend subnet.
 
 NOTE: A minimum of three DCNs is required for an AIDE deployment. System Manager does not allow you to build a DCN cluster with fewer than three nodes.
@@ -75,7 +73,7 @@ Optionally, if the Data Engine service interface is not configured yet, the *Add
 * Network mask.
 * Gateway (if required for your environment).
 
-. Confirm the settings. This single IP will be load‑balanced across DCNs and used as the front‑end address for the AI Data Engine console and related APIs.
+. Confirm the settings. This single IP will be load-balanced across DCNs and used as the frontend address for the AI Data Engine console and related APIs.
 
 == Validate software version compatibility
 
@@ -90,7 +88,7 @@ If a node is incompatible:
 * An error is shown next to the affected DCN in the *Add* dialog.
 * You must first update the DCN software (or ONTAP, as appropriate) to a compatible version.
 
-== Complete the add operation
+== Complete the add node operation
 
 . Review the selected nodes, backend subnet, and Data Engine service interface settings.
 
@@ -99,28 +97,10 @@ If a node is incompatible:
 . Wait for the operation to complete. System Manager:
 +
 * Adds the selected DCN nodes to the DCN cluster.
-* Provisions backend networking and joins nodes to the Kubernetes‑based DCN cluster.
+* Provisions backend networking and joins nodes to the Kubernetes-based DCN cluster.
 * Updates internal metadata for DCN discovery.
 
 . After completion:
 +
 * Return to *Cluster > Overview > Data compute* and confirm that new DCNs appear as part of the cluster and are *Healthy*.
 * Verify that the dashboard *Health* card shows the updated DCN count.
-
-== Troubleshooting
-
-* **Not enough IP addresses in subnet**
-+
-Extend the DCN backend subnet IP range using *Edit subnet* in the Add dialog, then retry.
-
-* **Version mismatch errors**
-+
-Use the DCN software update workflow to align DCN software with the ONTAP version, then add the nodes again.
-
-* **Add button not available**
-+
-Verify that:
-+
-** DCNs are cabled to the correct switches.
-** DCNs are powered on.
-** The ONTAP cluster is running a version that supports DCNs (9.18.1 or later for AIDE).

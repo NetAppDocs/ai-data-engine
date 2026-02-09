@@ -20,7 +20,7 @@ You'll need the following:
 
 == Monitor AIDE health and capacity from the dashboard
 
-. Connect to System Manager using the cluster management address:
+. Connect to ONTAP System Manager using the cluster management address:
 +
 `\https://$FQDN_OR_IP/`
 
@@ -94,44 +94,7 @@ This tab shows all DCN nodes in the cluster with:
 ** Their state, size, and last updated time
 * On the *Users* tab, check which data engineers have access.
 
-== Monitor AIDE activities, events, and jobs
 
-. In the navigation pane, select *Data engine* and then *Activity*.
-
-. Select the *Events* tab:
-+
-* Review recent AIDE‑specific events related to:
-** Workspace creation, update, or deletion
-** Data container add/remove operations
-** Data collection publishing (if present)
-** DCN‑related issues that affect metadata operations
-* Use filters (by severity, object type, workspace, or time range) to focus on active or critical events.
-
-. Select an individual event to open the peek view and review:
-+
-* Description and timestamp
-* Affected workspace, data collection, or node
-* Recommended action, if provided
-
-. Select the *Jobs* tab:
-+
-* Monitor long‑running jobs such as:
-** Initial metadata extraction for a workspace
-** Workspace refresh / catalog update jobs
-** Data collection publishing or refresh jobs
-* Check job status (Running, Completed, Failed) and progress.
-
-. Select a job to open the peek view and review:
-+
-* Start and end time
-* Progress percentage and phase (for example, *Scanning*, *Publishing*)
-* Affected workspace or data collection
-* Error messages for failed jobs
-
-. For workspace‑specific troubleshooting, open the workspace details (*Data engine > Workspaces*, select a workspace) and use the *Activity* tab:
-+
-* Review events and jobs scoped to that workspace only.
-* Use this view to isolate issues such as a single workspace stuck in *Processing*.
 
 == Monitor metadata Storage VM and AIDE‑managed protection
 
