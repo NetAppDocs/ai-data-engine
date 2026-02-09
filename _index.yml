@@ -5,7 +5,7 @@ indexpage:
   keywords: ai, netapp, data, engine, ontap, system manager
   tiles:
     # Tile definition
-    # DP - Feb 9 minor change to force build
+    # DP - Feb 9 2026 minor change to force build
     - title: Get started
       links: 
         # Link definition
