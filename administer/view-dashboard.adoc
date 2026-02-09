@@ -15,29 +15,159 @@ You can sign in to System Manager to access the AIDE dashboard and display the c
 
 You'll need the following:
 
-* IP address or domain name of the cluster management LIF
-* Administrator account credentials
+* The cluster management IP address or FQDN.
+* An ONTAP administrator account. Data engineer and data scientist roles cannot access System Manager.
 
-.Steps
+== Monitor AIDE health and capacity from the dashboard
 
-. Connect to System Manager using a browser and the cluster management IP address:
+. Connect to System Manager using the cluster management address:
 +
-`\https://$FQDN_IPADDR/`
-+
-*Example*
-+
-`\https://10.61.25.33/`
+`\https://$FQDN_OR_IP/`
 
-. Provide the username and password for the administrator account and select *Sign in*.
+. Sign in with an administrator account.
 
-. Select *Dashboard* in the left navigation pane and review the tiles on the page including the cluster *Health*.
+. Select *Dashboard* in the left navigation pane.
+
+. Review the *Health* tile:
++
+* Confirm overall cluster health.
+* Verify the **Data compute nodes** count and status.
+* Check for alerts:
+** DCN node issues or connectivity problems
+** Workspaces or data collections in error (for example, collection publishing failures)
+
+. Review the *Capacity* tile:
++
+* Note total cluster capacity and used capacity.
+* For AIDE clusters, verify:
+** Capacity used by AIDE metadata and application volumes (metadata Storage VM)
+** Capacity used by workspaces and data collections (if inferencing is licensed later)
+
+. Optionally review *Network*, *Performance*, and *Data protection* tiles to understand cluster-wide behavior that might impact AIDE workloads (for example, network congestion or protection lag).
+
+== View data DCN health and utilization
 
 . In the navigation pane, select *Cluster* and then *Overview*.
 
-. Review the details such as the cluster name and version. 
+. Select the *Data compute* tab.
++
+This tab shows all DCN nodes in the cluster with:
++
+* Node name, model, serial, and software version
+* Overall node state
+* CPU and memory utilization
+* GPU utilization (if GPUs are present)
+* Any node-level error indicators
 
-. Select *Data Compute* for associated DCN nodes and *Storage* for storage nodes.
+. Expand a DCN node to open the detailed view and check:
++
+* System CPU and memory usage
+* GPU memory usage
+* Reported hardware or service issues
 
-. Select *Cabling* for a visual display of the cluster hardware and connections.
+. Select *Cabling* on the *Cluster > Overview* page to verify that DCN nodes are correctly cabled to the cluster switches and to identify any port or link issues.
 
-. In the navigation pane, select *Events & Jobs* and then *System alerts* to display and review the system alerts.
+== Monitor workspaces and metadata footprint
+
+. In the navigation pane, select *Data engine* and then *Workspaces*.
+
+. Review the workspace summary at the top of the page:
++
+* Count of workspaces by state (for example, `Processing`, `Healthy`, `Error`).
+* Total workspace size.
+* Percentage of cluster capacity consumed by all workspaces.
+
+. Review the workspace grid:
++
+* Confirm that critical workspaces show a *Healthy* state.
+* Check workspace sizes and capacity consumption.
+* Look for any workspaces in *Error* or long-running *Processing* state.
+
+. To review details for a specific workspace, select its name:
++
+* On the *Overview* tab, confirm:
+** Workspace state and size
+** Data containers (volumes) included and their item counts
+** Last updated time for each data source
+* On the *Data collections* tab, confirm:
+** Which data collections exist for that workspace (read-only in System Manager)
+** Their state, size, and last updated time
+* On the *Users* tab, check which data engineers have access.
+
+== Monitor AIDE activities, events, and jobs
+
+. In the navigation pane, select *Data engine* and then *Activity*.
+
+. Select the *Events* tab:
++
+* Review recent AIDE‑specific events related to:
+** Workspace creation, update, or deletion
+** Data container add/remove operations
+** Data collection publishing (if present)
+** DCN‑related issues that affect metadata operations
+* Use filters (by severity, object type, workspace, or time range) to focus on active or critical events.
+
+. Select an individual event to open the peek view and review:
++
+* Description and timestamp
+* Affected workspace, data collection, or node
+* Recommended action, if provided
+
+. Select the *Jobs* tab:
++
+* Monitor long‑running jobs such as:
+** Initial metadata extraction for a workspace
+** Workspace refresh / catalog update jobs
+** Data collection publishing or refresh jobs
+* Check job status (Running, Completed, Failed) and progress.
+
+. Select a job to open the peek view and review:
++
+* Start and end time
+* Progress percentage and phase (for example, *Scanning*, *Publishing*)
+* Affected workspace or data collection
+* Error messages for failed jobs
+
+. For workspace‑specific troubleshooting, open the workspace details (*Data engine > Workspaces*, select a workspace) and use the *Activity* tab:
++
+* Review events and jobs scoped to that workspace only.
+* Use this view to isolate issues such as a single workspace stuck in *Processing*.
+
+== Monitor metadata Storage VM and AIDE‑managed protection
+
+. In the navigation pane, select *Storage* and then *Storage VMs*.
+
+. Locate the Storage VM with subtype `data-engine` (the metadata SVM):
++
+* Confirm that the metadata SVM is online.
+* Optionally open its details to see counts for:
+** Volumes
+** LIFs with type `Data compute network` (used for DCN–ONTAP communication)
+
+. Select *Protection* and then *Relationships* to observe protection for remote data sources used in workspaces:
++
+* Identify AIDE‑created SnapMirror relationships by naming pattern:
+** Destination volume: `<source_volume_name>_dest<source_volume_UUID>`
+** Policy: `<source_volume_name>_dest_aidp_policy<source_volume_UUID>`
+* Use this view to verify that relationships are healthy and that lag time aligns with workspace refresh expectations.
+
+NOTE: You should not modify the metadata SVM or AIDE‑created SnapMirror relationships directly. Use workspace workflows in *Data engine > Workspaces* to control refresh behavior.
+
+== Review AIDE‑related alerts and notifications
+
+. In the navigation pane, select *Events & Jobs* and then *System alerts*.
+
+. Review active alerts related to:
++
+* DCN node health or connectivity
+* Data engine networking issues
+* Workspace or data collection errors
+* Software version mismatches between ONTAP and DCN cluster
+
+. As needed, configure notification destinations (for example, email, syslog) in *Cluster > Settings > Notification management* to ensure AIDE‑related alerts are forwarded to your operations tooling.
+
+== What’s next
+
+* Use workspace views and the Activity page to investigate any workspaces in *Error* or long‑running *Processing* state.
+* Use the Data compute tab to validate DCN health before onboarding new workspaces or data sources.
+* Use Protection views to confirm that AIDE‑managed SnapMirror relationships are healthy, especially when cataloging remote ONTAP data.
