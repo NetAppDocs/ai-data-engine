@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: install-setup/aide-afx-install.html
-keywords: ai data engine, afx, afx 1k, install, hardware, storage system
+keywords: ai data engine, afx, afx 1k, install, hardware, storage system, dx50, data compute node, aide
 summary: "Install the AFX storage system as the first step in deploying the AI Data Engine. The AFX system provides the storage infrastructure foundation required for AIDE deployment."
 ---
 = Install the AFX storage system for the AI Data Engine
