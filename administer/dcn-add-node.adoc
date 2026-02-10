@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar
-permalink: administer/dcn-add-nodes.html
+permalink: administer/dcn-add-node.html
 keywords: aide, ai data engine, data compute node, dcn, add dcn, expand dcn cluster
 summary: "Add Data Compute Nodes (DCNs) to an existing AI Data Engine cluster using ONTAP System Manager."
 ---

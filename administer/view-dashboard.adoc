@@ -9,14 +9,12 @@ summary: "Access the AIDE dashboard and display the cluster status as a first st
 :imagesdir: ../media/
 
 [.lead]
-You can sign in to System Manager to access the AIDE dashboard and display the cluster status. This is a good first step before beginning your AIDE administrative tasks or if you suspect an operational issue.
+You can use ONTAP System Manager to access the AIDE dashboard and display the cluster status. This is a good first step before beginning your AIDE administrative tasks or if you suspect an operational issue.
 
 .Before you begin
 
-You'll need the following:
-
+* You need _storage administrator_ privileges to perform AIDE ONTAP-related administrative tasks.
 * The cluster management IP address or FQDN.
-* An ONTAP administrator account. Data engineer and data scientist roles cannot access System Manager.
 
 == Monitor AIDE health and capacity from the dashboard
 
@@ -25,9 +23,7 @@ You'll need the following:
 `\https://$FQDN_OR_IP/`
 
 . Sign in with an administrator account.
-
 . Select *Dashboard* in the left navigation pane.
-
 . Review the *Health* tile:
 +
 * Confirm overall cluster health.
@@ -96,7 +92,7 @@ This tab shows all DCN nodes in the cluster with:
 
 
 
-== Monitor metadata Storage VM and AIDE‑managed protection
+== Monitor metadata Storage VM and AIDE-managed protection
 
 . In the navigation pane, select *Storage* and then *Storage VMs*.
 
@@ -105,18 +101,18 @@ This tab shows all DCN nodes in the cluster with:
 * Confirm that the metadata SVM is online.
 * Optionally open its details to see counts for:
 ** Volumes
-** LIFs with type `Data compute network` (used for DCN–ONTAP communication)
+** LIFs with type `Data compute network` (used for DCN-ONTAP communication)
 
 . Select *Protection* and then *Relationships* to observe protection for remote data sources used in workspaces:
 +
-* Identify AIDE‑created SnapMirror relationships by naming pattern:
+* Identify AIDE-created SnapMirror relationships by naming pattern:
 ** Destination volume: `<source_volume_name>_dest<source_volume_UUID>`
 ** Policy: `<source_volume_name>_dest_aidp_policy<source_volume_UUID>`
 * Use this view to verify that relationships are healthy and that lag time aligns with workspace refresh expectations.
 
-NOTE: You should not modify the metadata SVM or AIDE‑created SnapMirror relationships directly. Use workspace workflows in *Data engine > Workspaces* to control refresh behavior.
+NOTE: You should not modify the metadata SVM or AIDE-created SnapMirror relationships directly. Use workspace workflows in *Data engine > Workspaces* to control refresh behavior.
 
-== Review AIDE‑related alerts and notifications
+== Review AIDE-related alerts and notifications
 
 . In the navigation pane, select *Events & Jobs* and then *System alerts*.
 
@@ -127,10 +123,9 @@ NOTE: You should not modify the metadata SVM or AIDE‑created SnapMirror relati
 * Workspace or data collection errors
 * Software version mismatches between ONTAP and DCN cluster
 
-. As needed, configure notification destinations (for example, email, syslog) in *Cluster > Settings > Notification management* to ensure AIDE‑related alerts are forwarded to your operations tooling.
+. As needed, configure notification destinations (for example, email, syslog) in *Cluster > Settings > Notification management* to ensure AIDE-related alerts are forwarded to your operations tooling.
 
-== What’s next
+//== What’s next
 
-* Use workspace views and the Activity page to investigate any workspaces in *Error* or long‑running *Processing* state.
-* Use the Data compute tab to validate DCN health before onboarding new workspaces or data sources.
-* Use Protection views to confirm that AIDE‑managed SnapMirror relationships are healthy, especially when cataloging remote ONTAP data.
+//* Use the Data compute tab to validate DCN health before onboarding new workspaces or data sources.
+//* Use Protection views to confirm that AIDE-managed SnapMirror relationships are healthy, especially when cataloging remote ONTAP data.

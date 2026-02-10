@@ -7,8 +7,6 @@ entries:
       url: /administer/view-dashboard.html
     - title: View Insights
       url: /administer/view-insights.html
-    - title: Monitor performance
-      url: /administer/monitor-cluster-performance.html
     - title: View events, jobs, and audit log
       url: /administer/view-events-log.html
   - title: Upgrade and maintain your AI Data Engine system
