@@ -25,7 +25,7 @@ The AI Data Engine requires an AFX storage system and a minimum of three DX50 da
 
 AI Data Engine requires network switches to enable host network connectivity and inter-node communication for the DX50 data compute nodes.
 
-** Client switches for host network connectivity (Cisco Nexus 9364D-GX2A)
+** Client switches for host network connectivity (Cisco Nexus 9332D-GX2B or Cisco Nexus 9364D-GX2A)
 ** Cluster switches for inter-node communication (Cisco Nexus 9332D-GX2B or Cisco Nexus 9364D-GX2A)
 ** Optional management switches for network management
 
@@ -34,7 +34,6 @@ AI Data Engine requires network switches to enable host network connectivity and
 The following cables are required to connect the DX50 data compute nodes to the network switches and management network.
 
 ** 400-GbE-to-100-GbE (4x100GbE) breakout cables for connecting DX50 nodes to client and cluster switches
-** 1000BASE-T RJ-45 cables for management network connections
 
 == Multi-cluster support
 After AIDE is deployed with AFX, it can connect to and manage data from other ONTAP 9.18.1 and later clusters using SnapMirror and cluster peering.
