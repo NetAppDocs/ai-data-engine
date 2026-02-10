@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: get-started/learn-about.html
 keywords: ai, data engine, learn more, learn about, get started
-summary: "AI Data Engine documentation provides information about NetApp AI Data Engine software and hardware."
+summary: "Learn about the architecture and components of the AI Data Engine system, including architecture, common roles, and definitions."
 searchtitle: "Learn about AI Data Engine"
 ---
 = Learn about AI Data Engine
@@ -10,4 +10,52 @@ searchtitle: "Learn about AI Data Engine"
 :imagesdir: ../media/
 
 [.lead]
+The NetApp AI Data Engine (AIDE) is an enterprise-grade platform designed to accelerate and simplify AI-driven data processing, management, and governance. AIDE can help transform large amounts of unstructured data into structured, AI-ready datasets. It is engineered to meet the demands of modern machine learning (ML) and generative AI (GenAI) workloads, supporting both traditional IT operations and new AI-centric roles.
 
+== AIDE addresses AI challenges
+
+AIDE is designed to help organizations manage data for AI workloads and provides the following key capabilities:
+
+* *Centralized metadata management*: AIDE collects and catalogs metadata from ONTAP volumes, making it possible to search, classify, and apply governance policies to datasets.
+
+* *Automated data processing*: AIDE supports the creation of data pipelines for AI and machine learning workloads, including the ability to generate vector embeddings for semantic search (with appropriate licensing).
+
+* *Data isolation and access control*: AIDE enforces access controls and basic data isolation for multiple teams or projects.
+
+* *Integration with NetApp tools*: AIDE works with ONTAP System Manager for storage administration and provides a dedicated interface (AI Data Engine Console) for data engineers and scientists to manage data collections and workflows.
+
+== High-level design characteristics
+
+AI Data Engine is built on several key design principles:
+
+* *Disaggregated architecture*: Separates compute (data compute nodes, or DCNs) from storage (AFX nodes), allowing independent scaling and optimization.
+* *Microservices-based services*: Uses Kubernetes to orchestrate modular, resilient services for metadata cataloging, vector search, and infrastructure management.
+* *Enterprise-grade security*: Implements encryption, role-based access control (RBAC), and auditing across all data and metadata.
+* *Multi-protocol data access*: Supports NFS, SMB, and S3 for flexible data ingestion and retrieval.
+* *Automated data pipelines*: Tracks data changes, creates embeddings, and manages vector databases for AI applications.
+
+== How data flows through AIDE
+
+Understanding how data flows through AIDE helps illustrate the platform's value for AI/ML teams:
+
+. **Data ingestion**: Files and objects are stored in ONTAP volumes using standard protocols (NFS, SMB, S3). Data can reside on local AIDE storage (the AFX cluster within your AIDE deployment) or on remote ONTAP clusters. Data from remote clusters is synchronized to the local AFX cluster using ONTAP SnapMirror, so all data processed by AIDE is ultimately stored and accessed locally.
+
+NOTE: S3 buckets are not supported as data sources for workspaces or data collections.
+
+. **Workspace creation**: Storage administrators define workspaces in ONTAP System Manager, grouping related ONTAP volumes for specific projects, teams, or workflows. Access permissions and governance policies are assigned at the workspace level.
+
+. **Metadata extraction**: AIDE automatically scans files and objects in workspaces, extracting metadata (file type, size, timestamps, custom attributes) and storing it in a centralized catalog. This happens continuously as data changes.
+
+. **Classification and governance**: Classifiers scan data for sensitive information (PII, financial data) or document types (legal, HR). Guardrail policies enforce redaction, access restrictions, or retention rules automatically.
+
+. **Data collection creation**: Data engineers and data scientists use the AI Data Engine Console to query the metadata catalog, filter results, and assemble curated data collections for specific AI tasks.
+
+. **Vectorization**: For collections requiring semantic search, AIDE generates embeddings using selected AI models. Vectors are stored in the vector database for high-performance retrieval.
+
+. **AI/ML consumption**: Applications access data through multiple paths:
+   * Direct file/object access using NFS, SMB, or S3
+   * Semantic search queries against the vector database
+   * RAG endpoints that combine data retrieval with GenAI model integration
+   * REST API access for programmatic workflows
+
+This automated, policy-driven workflow reduces the time and manual effort required to prepare data for AI, enabling teams to focus on model development and insights rather than data wrangling.
