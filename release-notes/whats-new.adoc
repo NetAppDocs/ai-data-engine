@@ -15,18 +15,18 @@ AI Data Engine (AIDE) 9.18.1 is the initial release of NetApp's platform for AI 
 
 AIDE 9.18.1 introduces the following foundational capabilities:
 
-.xref:../metadata-engine/index.html[Metadata engine for AI data cataloging]
+.link:../get-started/aide-architecture.html#metadata-engine[Metadata engine for AI data cataloging]
 
 The initial release includes a metadata engine that catalogs files and objects across ONTAP clusters. 
 
 Key features include:
 
-* Automated extraction of metadata (core and extended attributes, object tags) from local and remote ONTAP volumes from peered clusters.
+* Automated extraction of metadata (core and extended attributes, object tags) from local and remote ONTAP volumes on peered clusters.
 * Centralized querying and filtering REST APIs for applications requiring a global view of enterprise data.
 * Scalable metadata storage.
 * Automatic metadata extraction triggered during workspace creation.
 
-.xref:../workspaces/index.html[Workspace management]
+.link:../workspaces/create-workspace.html[Workspace management]
 
 Workspaces provide logical grouping of data sources (volumes) for AI projects.
 
@@ -43,19 +43,19 @@ The initial release supports:
 
 .xref:../cluster-management/index.html[Cluster setup and management]
 
-The initial release includes these workflows:
+The initial release includes the following workflows:
 
 * Discovery and addition of Data Compute Nodes (DCNs) during cluster setup.
 * Creation of dedicated metadata storage VMs for the metadata engine.
 * Configuration of Data Engine service interfaces for cluster-wide metadata access.
 * Peering with other ONTAP clusters to extend metadata cataloging across the data estate.
 
-.xref:../security/index.html[OpenID Connect (OIDC) authentication]
+.link:../install-setup/configure-oidc.html[OpenID Connect (OIDC) authentication]
 
 * OIDC/OAuth-based authentication for secure access to ONTAP System Manager and Data Engine Console.
 * Role-based access controls for workspace and metadata management.
 
-.Technology preview features (early access)
+== Technology preview features (early access)
 
 The following capabilities are available as technology previews for customers who opt in and have the appropriate AI Data Engine licenses:
 
@@ -64,3 +64,6 @@ The following capabilities are available as technology previews for customers wh
 
 Technology preview features are intended for evaluative use only and might change before general availability.
 
+.Related information
+
+* link:known-limitations.html[Known limitations of AI Data Engine]

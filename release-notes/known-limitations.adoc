@@ -4,7 +4,6 @@ permalink: release-notes/known-limitations.html
 keywords: limitations, known issues, AI Data Engine, AIDE, metadata engine, ONTAP 9.18.1
 summary: Known limitations identify platforms, devices, or functions that are not supported by this release of the product, or that do not interoperate correctly with it. Review these limitations carefully.
 ---
-
 = Known limitations of AI Data Engine
 :icons: font
 :imagesdir: ./media/
@@ -30,7 +29,7 @@ DCN node upgrades and additions must be performed using ONTAP System Manager, no
 
 * **No support for ONTAP S3 buckets or StorageGRID as data sources**
 +
-Only ONTAP NAS volumes (local or remote) are supported as data sources for workspaces and metadata cataloging. ONTAP S3 buckets and StorageGRID objects cannot be added to workspaces and are not indexed by the Metadata Engine in this release.
+Only ONTAP volumes (local or remote) are supported as data sources for workspaces and metadata cataloging. ONTAP S3 buckets and StorageGRID objects cannot be added to workspaces and are not indexed by the Metadata Engine in this release.
 
 * **No support for workspace creation with FlexCache volumes**
 +
@@ -59,3 +58,7 @@ Deleting a workspace is permanent. There is no option to restore deleted workspa
 * **No support for OIDC configuration during initial cluster setup**
 +
 OIDC/OAuth configuration must be performed after cluster creation using ONTAP System Manager.
+
+.Related information
+
+* link:whats-news.html[AI Data Engine release highlights]
