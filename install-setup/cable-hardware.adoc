@@ -66,22 +66,8 @@ Take care when clicking the delicate connector components into place.
 The initial configuration of AIDE supports a minimum of three DX50 data compute nodes for a cluster.
 ====
 
-== Step 1: Connect the controllers to the management network (Optional)  
-If not already configured as part of the AFX 1K storage system installation, connect the management port on each switch to either of the management switches (if ordered) or connect them directly to your management network.
-
-The management port is the upper-right port located on the PSU side of the switch. Route the CAT6 cable for each switch through the pass-through panel after you install the switches to connect to the management switches or management network.
-
-Use the 1000BASE-T RJ-45 cables to connect the management (wrench) ports on each controller to the management network switches.
-
-image::../media/oie_cable_rj45.png[RJ-45 cables,width=100px]
-*1000BASE-T RJ-45 cables*
-
-image::../media/drw_afx_management_connection_ieops-2349.svg[Connect to your management network]
-
-IMPORTANT: Do not plug in the power cords yet. 
-
 == Step 2: Connect the data compute nodes to the host network
-You can connect the Ethernet module ports to your host network. 
+You can connect the data compute node ports to your host network. 
 
 .Steps
 
