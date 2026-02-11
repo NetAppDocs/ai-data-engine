@@ -24,17 +24,17 @@ NOTE: You do not need to power off the AFX 1K storage system when cabling the DX
 
 
 == Step 1: Connect the data compute nodes to the host network
-You can connect the data compute node ports to your host network. 
+
+Connect the DX50 data compute nodes to redundant host network switches to enable client data access and AI workload processing. Use ports e4b and e5b on each node to establish dual connections for high availability and load balancing.
 
 NOTE: Take care when clicking the delicate connector components into place.
 
 .Steps
 
-. Connect the following data compute node ports to Ethernet data network switch A:
-* Data Compute Node 1
-** e4b
-* Data Compute Node 2
-** e4b
+. Connect port e4b from the following data compute nodes to Ethernet data network switch A:
++
+* Data Compute Node 1, port e4b
+* Data Compute Node 2, port e4b
 +
 *100GbE cables*
 +
@@ -42,11 +42,10 @@ image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
 +
 image::../media/drw_aide_network_cabling_a_ieops_2647.svg[Cable to Ethernet network]
 
-. Connect the following data compute node ports to Ethernet data network switch B:
-* Data Compute Node 1
-** e5b
-* Data Compute Node 2
-** e5b
+. Connect port e5b from the following data compute nodes to Ethernet data network switch B:
++
+* Data Compute Node 1, port e5b
+* Data Compute Node 2, port e5b
 +
 *100GbE cables*
 +
@@ -56,14 +55,14 @@ image::../media/drw_aide_network_cabling_b_ieops-2648.svg[Cable to Ethernet netw
 
 
 == Step 2: Cable the data compute node cluster connections
-Data compute nodes use the e4a/e5a ports for cluster connections. 
+
+Connect the DX50 data compute nodes to the same cluster switches used by the AFX 1K controller nodes to enable communication within the storage cluster. Use ports e4a and e5a on each node for redundant cluster network connectivity. Connect to non-ISL ports on the cluster switches to ensure proper network segmentation. 
 
 .Steps
-. Connect the following data compute node ports to a non-ISL port on cluster network switch A:
-* Data Compute Node 1
-** e4a
-* Data Compute Node 2
-** e4a
+. Connect port e4a from the following data compute nodes to a non-ISL port on cluster network switch A:
++
+* Data Compute Node 1, port e4a
+* Data Compute Node 2, port e4a
 +
 *100GbE cables*
 +
@@ -71,11 +70,10 @@ image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
 +
 image::../media/drw_aide_switched_cluster_cabling_a_ieops-2649.svg[Cable to Ethernet network]
 
-. Connect the following data compute node ports to a non-ISL port on cluster network switch B:
-* Data Compute Node 1
-** e5a
-* Data Compute Node 2
-** e5a
+. Connect port e5a from the following data compute nodes to a non-ISL port on cluster network switch B:
++
+* Data Compute Node 1, port e5a
+* Data Compute Node 2, port e5a
 +
 *100GbE cables*
 +
