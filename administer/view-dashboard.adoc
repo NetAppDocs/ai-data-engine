@@ -14,7 +14,6 @@ You can use ONTAP System Manager to access the AIDE dashboard and display the cl
 .Before you begin
 
 * You need _storage administrator_ privileges to perform AIDE ONTAP-related administrative tasks.
-* The cluster management IP address or FQDN.
 
 == Monitor AIDE health and capacity from the dashboard
 
@@ -37,7 +36,7 @@ You can use ONTAP System Manager to access the AIDE dashboard and display the cl
 * Note total cluster capacity and used capacity.
 * For AIDE clusters, verify:
 ** Capacity used by AIDE metadata and application volumes (metadata Storage VM)
-** Capacity used by workspaces and data collections (if inferencing is licensed later)
+** Capacity used by workspaces and data collections (if available)
 
 . Optionally review *Network*, *Performance*, and *Data protection* tiles to understand cluster-wide behavior that might impact AIDE workloads (for example, network congestion or protection lag).
 
@@ -69,7 +68,7 @@ This tab shows all DCN nodes in the cluster with:
 
 . Review the workspace summary at the top of the page:
 +
-* Count of workspaces by state (for example, `Processing`, `Healthy`, `Error`).
+* Count of workspaces and their states (for example, `Processing`, `Healthy`, `Error`).
 * Total workspace size.
 * Percentage of cluster capacity consumed by all workspaces.
 
@@ -77,7 +76,7 @@ This tab shows all DCN nodes in the cluster with:
 +
 * Confirm that critical workspaces show a *Healthy* state.
 * Check workspace sizes and capacity consumption.
-* Look for any workspaces in *Error* or long-running *Processing* state.
+* Look for any workspaces in `Error` or long-running `Processing` states.
 
 . To review details for a specific workspace, select its name:
 +
@@ -86,15 +85,13 @@ This tab shows all DCN nodes in the cluster with:
 ** Data containers (volumes) included and their item counts
 ** Last updated time for each data source
 * On the *Data collections* tab, confirm:
-** Which data collections exist for that workspace (read-only in System Manager)
+** Which data collections exist for that workspace (data collections are read-only in System Manager)
 ** Their state, size, and last updated time
-* On the *Users* tab, check which data engineers have access.
-
-
+* On the *Users* tab, check which AI Data Engine console users have access.
 
 == Monitor metadata Storage VM and AIDE-managed protection
 
-. In the navigation pane, select *Storage* and then *Storage VMs*.
+. In the navigation pane, select *Cluster* and then *Storage VMs*.
 
 . Locate the Storage VM with subtype `data-engine` (the metadata SVM):
 +
@@ -110,7 +107,7 @@ This tab shows all DCN nodes in the cluster with:
 ** Policy: `<source_volume_name>_dest_aidp_policy<source_volume_UUID>`
 * Use this view to verify that relationships are healthy and that lag time aligns with workspace refresh expectations.
 
-NOTE: You should not modify the metadata SVM or AIDE-created SnapMirror relationships directly. Use workspace workflows in *Data engine > Workspaces* to control refresh behavior.
+IMPORTANT: You should not modify the metadata SVM or AIDE-created SnapMirror relationships directly. Use workspace workflows in *Data engine > Workspaces* to control refresh behavior.
 
 == Review AIDE-related alerts and notifications
 
@@ -124,8 +121,3 @@ NOTE: You should not modify the metadata SVM or AIDE-created SnapMirror relation
 * Software version mismatches between ONTAP and DCN cluster
 
 . As needed, configure notification destinations (for example, email, syslog) in *Cluster > Settings > Notification management* to ensure AIDE-related alerts are forwarded to your operations tooling.
-
-//== What’s next
-
-//* Use the Data compute tab to validate DCN health before onboarding new workspaces or data sources.
-//* Use Protection views to confirm that AIDE-managed SnapMirror relationships are healthy, especially when cataloging remote ONTAP data.
