@@ -41,7 +41,7 @@ The initial release supports:
 
 //ONTAP System Manager displays data collections created by data engineers, allowing storage administrators to monitor cataloged subsets of data. Data collection management is performed via the Data Engine Console.
 
-.xref:../cluster-management/index.html[Cluster setup and management]
+.link:../install-setup/cluster-setup.html[Cluster setup and management]
 
 The initial release includes the following workflows:
 
