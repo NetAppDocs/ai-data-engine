@@ -14,7 +14,7 @@ Known limitations identify platforms, devices, or functions that are not support
 
 == Known limitations for AIDE 9.18.1 initial release
 
-These limitations apply to the Metadata Engine and management workflows in AIDE 9.18.1.
+These limitations apply to the Metadata Engine, Data Compute Nodes, and management workflows in AIDE 9.18.1.
 
 === Compute node requirements and management
 
@@ -28,9 +28,9 @@ DCN node upgrades and additions must be performed using ONTAP System Manager, no
 
 === Supported data sources
 
-* **No support for ONTAP S3 Buckets or StorageGRID as Data Sources**
+* **No support for ONTAP S3 buckets or StorageGRID as data sources**
 +
-Only ONTAP volumes (local or remote) are supported as data sources for workspaces and metadata cataloging. ONTAP S3 buckets and StorageGRID objects are not supported in this release.
+Only ONTAP NAS volumes (local or remote) are supported as data sources for workspaces and metadata cataloging. ONTAP S3 buckets and StorageGRID objects cannot be added to workspaces and are not indexed by the Metadata Engine in this release.
 
 * **No support for workspace creation with FlexCache volumes**
 +
@@ -44,11 +44,11 @@ Automatic software updates for DCN clusters are not supported in AIDE 9.18.1. DC
 
 * **No revert of DCN cluster software**
 +
-Reverting DCN cluster software to an earlier version is not supported. Only upgrades to later versions are allowed.
+DCN cluster software cannot be reverted to an earlier version. Only upgrades to later versions are allowed.
 
-* **ONTAP upgrade restrictions**
+* **No ONTAP revert of AFX storage clusters**
 +
-AIDE clusters cannot be reverted to earlier ONTAP versions.
+AFX storage clusters cannot be reverted to earlier ONTAP versions. Only upgrades to later versions are allowed.
 
 === Workspace lifecycle and access configuration
 
