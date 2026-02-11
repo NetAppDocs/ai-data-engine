@@ -1,0 +1,41 @@
+---
+sidebar: sidebar
+permalink: get-started/aide-interfaces.html
+keywords: aide, interfaces, ontap, architecture
+summary: "AIDE provides three primary interfaces for user interaction and automation."
+---
+= AI Data Engine interfaces
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+AI Data Engine (AIDE) provides three primary interfaces for user interaction and automation. Each role, such as storage administrators, data engineers, and data scientists, utilizes these interfaces based on their specific tasks and responsibilities.
+
+== ONTAP System Manager
+
+ONTAP System Manager is a web-based interface designed for storage administrators. It provides workflows for cluster setup, workspace management, DCN monitoring, and attaching guardrail policies. 
+
+.How each role uses it
+
+* Storage administrator: Uses System Manager to configure infrastructure, assign roles, and monitor health and compliance.
+* Data engineers and data scientists do not use System Manager for their workflows.
+
+== AI Data Engine Console
+
+The AI Data Engine Console is a dedicated interface for data engineers and data scientists. It enables users to explore data sources, create and manage data collections, configure data pipelines, apply classifiers, and interact with guardrails and vector search features. The console provides advanced tools for data discovery, curation, and integration with AI/ML workflows.
+
+.How each role uses it
+
+* Data engineer: Uses the AI Data Engine Console for day-to-day tasks including data discovery, collection management, and pipeline configuration.
+* Data scientist: Uses the AI Data Engine Console for day-to-day tasks including data exploration, curation, and integration with AI/ML workflows.
+* Storage administrator: Typically does not use this interface.
+
+== REST API
+
+AIDE exposes the ONTAP REST API for automation, integration, and programmatic access. The API supports cluster setup, workspace and collection management, metadata queries, vector search, and retrieval endpoints. 
+
+.How each role uses it
+
+* Storage administrator: Uses the API for automation and programmatic cluster setup, workspace management, and monitoring.
+* Data engineer: Uses the API for automation of data workflows, collection management, metadata queries, and integration with external tools.
+* Data scientist: Uses the API for programmatic access to data collections, vector search, retrieval endpoints, and integration with AI/ML applications.
