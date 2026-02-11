@@ -4,7 +4,7 @@ permalink: install-setup/cable-overview.html
 keywords: aide, ai data engine, dx50, cable, overview, cabling, hardware, switches, cluster network, host network, data compute nodes
 summary: "Learn about the cabling configuration for DX50 data compute nodes, including I/O slot usage, cable types, and connection requirements for host and cluster networks."
 ---
-= Learn about DX50 data compute node cabling configuration
+= Requirements for cabling the DX50 data compute nodes
 :icons: font
 :imagesdir: ../media/
 
