@@ -66,7 +66,7 @@ Take care when clicking the delicate connector components into place.
 The initial configuration of AIDE supports a minimum of three DX50 data compute nodes for a cluster.
 ====
 
-== Step 2: Connect the data compute nodes to the host network
+== Step 1: Connect the data compute nodes to the host network
 You can connect the data compute node ports to your host network. 
 
 .Steps
@@ -96,7 +96,7 @@ image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
 image::../media/drw_aide_network_cabling_b_ieops-2648.svg[Cable to Ethernet network]
 
 
-== Step 3: Cable the data compute node cluster connections
+== Step 2: Cable the data compute node cluster connections
 Data compute nodes use the e4a/e5a ports for cluster connections. 
 
 .Steps
