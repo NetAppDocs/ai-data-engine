@@ -1,7 +1,7 @@
 section: release-notes
 title: Release notes
 entries:
-- title: What's new in ONTAP 9.18.1
+- title: What's new in AIDE 9.18.1
   url: "/release-notes/whats-new.html"  
 - title: AIDE known limitations 
   url: "/release-notes/known-limitations.html"
