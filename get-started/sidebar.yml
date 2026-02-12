@@ -37,6 +37,8 @@ entries:
             url: /install-setup/prepare-hardware.html
           - title: Install data compute nodes
             url: /install-setup/deploy-hardware.html
+          - title: Review cabling requirements
+            url: /install-setup/cable-overview.html
           - title: Cable hardware
             url: /install-setup/cable-hardware.html
           - title: Power on system

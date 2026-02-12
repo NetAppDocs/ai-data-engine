@@ -9,73 +9,29 @@ summary: Learn how to attach the AIDE cables to your network and cable the data 
 :imagesdir: ../media/
 
 [.lead]
-After you install the rack hardware for your DX50 data compute nodes, install the network cables for the DX50 data compute nodes between the controllers and storage shelves.
+Connect your DX50 data compute nodes to the host network and cluster network switches to enable AI workload processing and integration with your AFX 1K storage system. This procedure uses 100GbE connections for both host network access and cluster communication, allowing the DX50 nodes to leverage the existing cluster infrastructure without powering down the AFX system.
 
 .Before you begin
 
 * You have an existing AFX 1K storage system installed. For information on installing the AFX 1K storage system, refer to link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[install your AFX 1K storage system^].
 * You have the required network switches installed and configured.Contact your network administrator for information about connecting the system to your network switches.
-
-NOTE: You do not need to power off the AFX 1K storage system when cabling the DX50 data compute nodes. You can add the DX50 data compute nodes to an existing AFX 1K storage system that is already powered on and configured.
+* You have reviewed the link:https://docs.netapp.com/us-en/ai-data-engine/install-setup/cable-overview.html[cabling requirements for the DX50 data compute nodes^].
 
 .About this task
-* These procedures show common configurations. The specific cabling depends on the components ordered for your storage system. For comprehensive configuration details and slot priorities, see link:https://hwu.netapp.com[NetApp Hardware Universe^].
-* The I/O slots on a DX50 data compute node are numbered 4 and 5. Slot 3 is reserved for the GPU. Slots 1 and 2 are not populated or accessible for use.
-+
-image::../media/drw_aide-dcn_back_slots_labeled_ieops-2646.svg[Slot numbering on a DX50 data compute node]
-+
-[cols="1,4"]
-|===
-a|
-image::../media/icon_round_1.png[Callout number 1]
-a|
-Unused slot on the data compute node.
-a|
-image::../media/icon_round_2.png[Callout number 2]
-a|
-Unused slot on the data compute node.
-a|
-image::../media/icon_round_3.png[Callout number 3]
-a|
-GPU slot on the data compute node.
-a|
-image::../media/icon_round_4.png[Callout number 4]
-a|
-I/O slot on the data compute node.
-a|
-image::../media/icon_round_5.png[Callout number 5]
-a|
-I/O slot on the data compute node.
-|===
+These procedures show common configurations. The specific cabling depends on the components ordered for your storage system. For comprehensive configuration details and slot priorities, see link:https://hwu.netapp.com[NetApp Hardware Universe^].
 
-* The cabling graphics have arrow icons showing the proper orientation (up or down) of the cable connector pull-tab when inserting a connector into a port.
-+
-As you insert the connector, you should feel it click into place; if you do not feel it click, remove it, turn it over and try again.
-+
-image:../media/drw_cable_pull_tab_direction_ieops-1699.svg[Cable pull tab direction]
-+
-[NOTE]
-====
-Take care when clicking the delicate connector components into place. 
-====
+NOTE: You do not need to power off the AFX 1K storage system when cabling the DX50 data compute nodes. You can add the DX50 data compute nodes to an existing AFX 1K storage system that is already powered on and configured. 
 
-* The DX50 data compute nodes require 400-GbE-to-100-GbE (4x100GbE) breakout cables. The 400GbE connections are made to the client and cluster switches. The 100GbE connections are made to the I/O ports on the data compute node. 
-+
-[NOTE]
-====
-The initial configuration of AIDE supports a minimum of three DX50 data compute nodes for a cluster.
-====
 
 == Step 1: Connect the data compute nodes to the host network
 You can connect the data compute node ports to your host network. 
 
 .Steps
 
-. Connect the following data compute node ports to your Ethernet data network switch A.
-* Data Compute Node 1
-** e4b
-* Data Compute Node 2
-** e4b
+. Connect port e4b from the following data compute nodes to Ethernet data network switch A:
++
+* Data Compute Node 1, port e4b
+* Data Compute Node 2, port e4b
 +
 *100GbE cables*
 +
@@ -83,11 +39,10 @@ image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
 +
 image::../media/drw_aide_network_cabling_a_ieops_2647.svg[Cable to Ethernet network]
 
-. Connect the following data compute node ports to your Ethernet data network switch B.
-* Data Compute Node 1
-** e5b
-* Data Compute Node 2
-** e5b
+. Connect port e5b from the following data compute nodes to Ethernet data network switch B:
++
+* Data Compute Node 1, port e5b
+* Data Compute Node 2, port e5b
 +
 *100GbE cables*
 +
@@ -100,11 +55,10 @@ image::../media/drw_aide_network_cabling_b_ieops-2648.svg[Cable to Ethernet netw
 For data compute nodes, the e4a/e5a ports are used for the cluster connections. 
 
 .Steps
-. Connect the following data compute nodes ports to cluster network any non-ISL port on switch A.
-* Data Compute Node 1
-** e4a
-* Data Compute Node 2
-** e4a
+. Connect port e4a from the following data compute nodes to a non-ISL port on cluster network switch A:
++
+* Data Compute Node 1, port e4a
+* Data Compute Node 2, port e4a
 +
 *100GbE cables*
 +
@@ -112,11 +66,10 @@ image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
 +
 image::../media/drw_aide_switched_cluster_cabling_a_ieops-2649.svg[Cable to Ethernet network]
 
-. Connect the following data compute nodes ports to cluster network any non-ISL port on switch B.
-* Data Compute Node 1
-** e5a
-* Data Compute Node 2
-** e5a
+. Connect port e5a from the following data compute nodes to a non-ISL port on cluster network switch B:
++
+* Data Compute Node 1, port e5a
+* Data Compute Node 2, port e5a
 +
 *100GbE cables*
 +
