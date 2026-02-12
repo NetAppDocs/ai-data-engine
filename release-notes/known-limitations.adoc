@@ -61,4 +61,4 @@ OIDC/OAuth configuration must be performed after cluster creation using ONTAP Sy
 
 .Related information
 
-* link:whats-news.html[AI Data Engine release highlights]
+* link:whats-new.html[AI Data Engine release highlights]

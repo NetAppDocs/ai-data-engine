@@ -2,14 +2,14 @@
 sidebar: sidebar
 permalink: administer/view-dashboard.html
 keywords: aide, aide system, dashboard, view dashboard, cluster status
-summary: "Access the AIDE dashboard and display the cluster status as a first step before beginning your AIDE administrative tasks."
+summary: "Access ONTAP System Manager as a first step before beginning your AIDE administrative tasks."
 ---
-= View the AIDE storage system and cluster status
+= View the AIDE system and cluster status
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-You can use ONTAP System Manager to access the AIDE dashboard and display the cluster status. This is a good first step before beginning your AIDE administrative tasks or if you suspect an operational issue.
+You can use ONTAP System Manager to access the dashboard and display the cluster status. This is a good first step before beginning your AIDE administrative tasks or if you suspect an operational issue.
 
 .Before you begin
 
@@ -121,3 +121,7 @@ IMPORTANT: You should not modify the metadata SVM or AIDE-created SnapMirror rel
 * Software version mismatches between ONTAP and DCN cluster
 
 . As needed, configure notification destinations (for example, email, syslog) in *Cluster > Settings > Notification management* to ensure AIDE-related alerts are forwarded to your operations tooling.
+
+.Related information
+
+https://docs.netapp.com/us-en/ontap-afx/get-started/prepare-cluster-admin.html[Prepare to administer your AFX storage system^]
