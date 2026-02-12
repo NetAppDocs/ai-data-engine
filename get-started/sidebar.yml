@@ -47,7 +47,7 @@ entries:
       url: /install-setup/power-on-configure-switch.html  
     - title: Power on system
       url: /install-setup/power-on-hardware.html   
-- title: Set up your AIDE system
+  - title: Set up your AIDE system
     entries:     
     - title: Set up the cluster
       url: "/install-setup/initialize-ontap-cluster.html"  
