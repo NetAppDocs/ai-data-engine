@@ -4,14 +4,14 @@ permalink: administer/update-aide-firmware-software.html
 keywords: update, firmware, system files, automatic updates, automated updates, aide, disable, 
 summary: "Update DCN firmware and AI Data Engine Console software using ONTAP System Manager's automatic updates functionality or make updates manually."
 ---
-= Update DCN firmware and AI Data Engine Console software
+= Update AI Data Engine software
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-You can update data compute node (DCN) firmware, AI Data Engine Console software including vectorization and guardrails functionality, and other system files on your AI Data Engine system using ONTAP System Manager.
+You can update data AI Data Engine software, data compute node (DCN) firmware, and other system files on your AI Data Engine system using ONTAP System Manager.
 
-AIDE does not fully support ONTAP automatic software updates functionality. If you use ONTAP automatic updates, the system can notify admins about available updates but not make the updates for them. Admins must complete the process manually after notification.
+AIDE does not support ONTAP automatic software updates functionality. You can sign up to receive notifications from link:https://mysupport.netapp.com/site/downloads[NetApp Support Site downloads^], but all updates of AIDE software are performed manually by the admin.
 
 .About this task
 
@@ -19,7 +19,7 @@ The combined AI Data Engine software package is significantly larger than a typi
 
 .Before you begin
 
-* You need _storage administrator_ privileges to update DCN firmware and AI Data Engine Console software.
+* You need _storage administrator_ privileges to update DCN firmware and AI Data Engine software.
 * You need your NetApp Support Site credentials for your active account.
 * link:upgrades-aide-summary.html#compatibility-matrix[Ensure compatibility between ONTAP, DCN firmware, and AI Data Engine software when planning updates].
 
