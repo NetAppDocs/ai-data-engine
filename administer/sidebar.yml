@@ -7,17 +7,19 @@ entries:
       url: /administer/view-dashboard.html
     - title: View Insights
       url: /administer/view-insights.html
-    - title: Monitor performance
-      url: /administer/monitor-cluster-performance.html
-    - title: View events and log
+    - title: View events, jobs, and audit log
       url: /administer/view-events-log.html
-    - title: View jobs
-      url: /administer/view-jobs.html
-  - title: Upgrade and maintain your AI Data Engine system
+  - title: Upgrade and maintain your AIDE system
     entries:
-    - title: Keep your AI Data Engine system up to date
+    - title: Keep your AIDE system up to date
       url: "/administer/upgrades-aide-summary.html"
     - title: Upgrade ONTAP
       url: "/administer/upgrade-ontap-for-aide.html"
     - title: Update DCN firmware and AIDE Console software
       url: "/administer/update-aide-firmware-software.html"
+    - title: Expand your compute cluster
+      url: "/administer/dcn-add-node.html"
+  - title: Manage cluster components
+    entries:
+    - title: Manage workspaces
+      url: "/administer/manage-workspace.html"

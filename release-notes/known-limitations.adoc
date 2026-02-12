@@ -1,0 +1,64 @@
+---
+sidebar: sidebar
+permalink: release-notes/known-limitations.html
+keywords: limitations, known issues, AI Data Engine, AIDE, metadata engine, ONTAP 9.18.1
+summary: Known limitations identify platforms, devices, or functions that are not supported by this release of the product, or that do not interoperate correctly with it. Review these limitations carefully.
+---
+= Known limitations of AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Known limitations identify platforms, devices, or functions that are not supported by this release of the product, or that do not interoperate correctly with it. Review these limitations carefully.
+
+== Known limitations for AIDE 9.18.1 initial release
+
+These limitations apply to the Metadata Engine, Data Compute Nodes, and management workflows in AIDE 9.18.1.
+
+=== Compute node requirements and management
+
+* **Minimum data compute node requirement**
++
+AIDE clusters require a minimum and maximum of 3 Data Compute Nodes (DCNs) for Metadata Engine functionality. Clusters with fewer than 3 DCNs cannot enable metadata engine features.
+
+* **No support for adding DCN nodes using NetApp Console**
++
+DCN node upgrades and additions must be performed using ONTAP System Manager, not through NetApp Console.
+
+=== Supported data sources
+
+* **No support for ONTAP S3 buckets or StorageGRID as data sources**
++
+Only ONTAP volumes (local or remote) are supported as data sources for workspaces and metadata cataloging. ONTAP S3 buckets and StorageGRID objects cannot be added to workspaces and are not indexed by the Metadata Engine in this release.
+
+* **No support for workspace creation with FlexCache volumes**
++
+FlexCache volumes cannot be added as data sources to workspaces.
+
+=== Software update and revert limitations
+
+* **Manual software updates for DCN nodes only**
++
+Automatic software updates for DCN clusters are not supported in AIDE 9.18.1. DCN node software can only be updated by uploading the image from a local client. Downloading images from external servers (HTTP/FTP) is not supported.
+
+* **No revert of DCN cluster software**
++
+DCN cluster software cannot be reverted to an earlier version. Only upgrades to later versions are allowed.
+
+* **No ONTAP revert of AFX storage clusters**
++
+AFX storage clusters cannot be reverted to earlier ONTAP versions. Only upgrades to later versions are allowed.
+
+=== Workspace lifecycle and access configuration
+
+* **No soft delete or restore for workspaces**
++
+Deleting a workspace is permanent. There is no option to restore deleted workspaces.
+
+* **No support for OIDC configuration during initial cluster setup**
++
+OIDC/OAuth configuration must be performed after cluster creation using ONTAP System Manager.
+
+.Related information
+
+* link:whats-new.html[AI Data Engine release highlights]

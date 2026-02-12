@@ -1,0 +1,147 @@
+---
+sidebar: sidebar
+permalink: administer/manage-workspace.html
+keywords: aide, ai data engine, workspaces, metadata engine, manage workspaces, add data containers, users
+summary: "Manage the lifecycle of AI Data Engine workspaces, including viewing, editing, adding data containers, managing users, and deleting workspaces."
+---
+= Manage AI Data Engine workspaces
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+A workspace is a set of data sources (volumes) that the AI Data Engine (AIDE) uses to build and refresh a metadata catalog for a particular project or use case. As a storage administrator, you can use ONTAP System Manager to monitor workspace health, adjust configuration, control data sources, manage users, and delete workspaces when they are no longer needed.
+
+.Before you begin
+
+* You need _storage administrator_ privileges to manage workspaces.
+
+== Review workspace status
+
+Review workspace health, capacity usage, and metadata status to ensure the Metadata Engine is operating as expected and not consuming unexpected resources.
+
+.Steps
+
+. From ONTAP System Manager, in the navigation pane select *Data engine > Workspaces*.
+
+. Review the summary at the top of the page for total workspaces, overall workspace health, and capacity usage.
+
+. For workspace-specific information, select a workspace name. On the *Overview* tab confirm:
++
+* Workspace state and size.
+* Data containers (volumes) included in the workspace.
+* Item counts and last updated time per data source.
+* Any workspace-level warnings.
+
+. Select the *Data collections* tab to see:
++
+* All data collections associated with this workspace.
+* State (such as `Published` or `Error`), size, and last updated time.
++
+NOTE: System Manager is read-only for data collections. Data engineers can create and manage data collections in the AI Data Engine console.
+
+. Select the *Users* tab to view:
++
+* The list of users with access to this workspace.
+
+. Select the *Activity* tab to see events and jobs related to this workspace only.
+
+== Edit workspace properties and refresh schedule
+
+You can adjust a workspace's name, description, refresh interval, and (if licensed) its guardrail policy.
+
+.Steps
+
+. From *Data engine > Workspaces*, select image:icon_kabob.gif[three vertical blue dots] next to a workspace and select *Edit*.
+
+. Edit workspace properties:
++
+* Update *Name* and *Description* as needed.
+* Adjust the *Refresh interval* (metadata update frequency) within the allowed range (hours and days).
+* If an AIDE license is installed, you can select *Guardrail policy*.
+
+. Select *Save*.
+
+NOTE: Changes to the refresh interval or metadata processing might affect how often remote SnapMirror relationships are updated for this workspace.
+
+== Add data containers to an existing workspace
+
+You can add additional mounted volumes (local or from a peered remote cluster) so that their metadata is included in the workspace catalog.
+
+. From *Data engine > Workspaces*, do one of the following:
++
+* Select image:icon_kabob.gif[three vertical blue dots] next to the workspace and select *Add data containers*.
+* Open the workspace, select the *Overview* tab, and then select *Add* in the data containers section.
+
+. In the *Add data containers to workspace* dialog:
++
+* Locate local volumes on the AIDE cluster.
+* Expand peered clusters to select remote volumes (remote volumes require cluster and SVM peering).
+
++
+NOTE: Only eligible, online volumes that are not globally excluded and not already part of the workspace can be selected.
+
+. If you are prompted for remote volume mapping:
++
+* Select the target Storage VM on the AIDE cluster to receive SnapMirror destinations for the chosen remote volumes.
+
+. Select *Add*.
+
+. Use the workspace *Activity* tab or *Data engine > Activity* to track metadata extraction and any SnapMirror initialization for new data sources.
+
+== Remove data containers from a workspace
+
+You might remove a data container when it is no longer relevant to the workspace's purpose or if you want to reduce the scope of metadata management for that workspace. Removing a data container stops metadata refresh for that volume and removes its metadata from the metadata catalog.
+
+IMPORTANT: Do not delete a source volume from ONTAP that has been added to a workspace. If you delete the volume, the workspace will enter a failed state. Always remove the data container from the workspace first before deleting any underlying ONTAP volumes.
+
+// AIDEDOC-4/CONTAP-517517
+.Steps
+
+. Navigate to *Data engine > Workspaces* and select the workspace that contains the data container.
+
+. On the *Overview* tab, locate the data container to remove.
+
+. Select *Remove* next to the data container.
+
+. Review the confirmation dialog and select *Remove*.
+
+NOTE: Removing a data container from a workspace does not delete the underlying ONTAP volume or its SnapMirror relationship. It only affects metadata usage within the AI Data Engine.
+
+// impacts for data engineers that need to be coordinated? 
+
+== Manage workspace users
+
+You can grant or revoke access for data engineer and data scientist users to a workspace. These users are defined in your identity provider (OIDC) and mapped to ONTAP roles. See link:../workspaces/assign-users-to-workspace.html[assign users to workspaces] documentation to learn how to manage user access.
+
+== Delete a workspace
+
+You can delete a workspace to remove the workspace definition and associated AIDE metadata. Any data collections and vector embeddings tied to the workspace are also removed. 
+
+NOTE: Underlying ONTAP data (volumes, SnapMirror relationships) are not deleted.
+
+.Steps
+
+. In *Data engine > Workspaces*, do one of the following:
++
+* Delete a single workspace, select image:icon_kabob.gif[three vertical blue dots] and select *Delete*.
+* Delete multiple workspaces, select the checkboxes for the workspaces, and then select *Delete*.
+
+. In the confirmation dialog, review the impacts of the action before proceeding:
++
+* Workspace metadata is permanently deleted.
+* Data collections and embeddings associated with the workspace are permanently deleted.
+
++
+NOTE: There is no soft-delete or restore option.
+
+. Select the checkbox to confirm your understanding, and select *Delete*.
+
+//== Best practices
+
+//* Use separate workspaces for projects with different governance or refresh requirements.
+//* Avoid adding volumes that are part of global exclusion policies; System Manager will automatically prevent selecting them.
+//* Set refresh intervals based on how frequently underlying data changes and how quickly metadata updates are required.
+
+.Related information
+
+* link:../workspaces/assign-users-to-workspace.html[Assign users to workspaces]
