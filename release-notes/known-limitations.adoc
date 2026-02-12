@@ -6,7 +6,7 @@ summary: Known limitations identify platforms, devices, or functions that are no
 ---
 = Known limitations of AI Data Engine
 :icons: font
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 [.lead]
 Known limitations identify platforms, devices, or functions that are not supported by this release of the product, or that do not interoperate correctly with it. Review these limitations carefully.
@@ -61,4 +61,4 @@ OIDC/OAuth configuration must be performed after cluster creation using ONTAP Sy
 
 .Related information
 
-* link:whats-news.html[AI Data Engine release highlights]
+* link:whats-new.html[AI Data Engine release highlights]

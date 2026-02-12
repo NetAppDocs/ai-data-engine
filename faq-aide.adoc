@@ -6,7 +6,7 @@ summary: "Frequently asked questions about NetApp AI Data Engine (AIDE) covering
 ---
 = FAQ for NetApp AI Data Engine 
 :icons: font
-:imagesdir: ../media/
+:imagesdir: ./media/
 
 [.lead]
 This FAQ covers common questions about NetApp AI Data Engine (AIDE), including its architecture, deployment, user types, technical features, integration, and licensing.
@@ -119,5 +119,5 @@ If you require only the Metadata Engine, the ONTAP One license, which is include
 
 .Related information
 
-* link:../get-started/aide-license-task.html[Install AIDE licenses in ONTAP System Manager]
-* link:../get-started/aide-architecture.html[Learn about AIDE architecture and components]
+* link:./get-started/aide-license-task.html[Install AIDE licenses in ONTAP System Manager]
+* link:./get-started/aide-architecture.html[Learn about AIDE architecture and components]
