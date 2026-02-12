@@ -111,33 +111,7 @@ NOTE: Removing a data container from a workspace does not delete the underlying 
 
 == Manage workspace users
 
-You can grant or revoke access for data engineer and data scientist users to a workspace. These users are defined in your identity provider (OIDC) and mapped to ONTAP roles.
-
-=== Add users to a workspace
-
-. Navigate to *Data engine > Workspaces* and select the workspace.
-
-. Select the *Users* tab.
-
-. Select *Add*.
-
-. In the *Add users* dialog, enter one or more usernames or groups as recognized by your OIDC provider or ONTAP.
-
-. Select *Add*.
-
-The new users will be able to see and use resources in this workspace from the AI Data Engine console according to their role.
-
-=== Remove users from a workspace
-
-. Navigate to *Data engine > Workspaces* and select the workspace.
-
-. Select the *Users* tab.
-
-. Next to the user you want to remove, select image:icon_kabob.gif[three vertical blue dots] and choose *Remove*.
-
-. Review the confirmation message and select *Remove*.
-
-Removing the user revokes their access to this workspace in the AI Data Engine console.
+You can grant or revoke access for data engineer and data scientist users to a workspace. These users are defined in your identity provider (OIDC) and mapped to ONTAP roles. See link:../workspaces/assign-users-to-workspace.html[assign users to workspaces] documentation to learn how to manage user access.
 
 == Delete a workspace
 
@@ -170,4 +144,4 @@ NOTE: There is no soft-delete or restore option.
 
 .Related information
 
-* link:../workspaces/assign-users-to-workspace.adoc[Assign users to workspaces]
+* link:../workspaces/assign-users-to-workspace.html[Assign users to workspaces]

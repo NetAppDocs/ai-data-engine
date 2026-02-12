@@ -16,7 +16,7 @@ You can add new Data Compute Nodes (DCNs) to an existing AI Data Engine (AIDE) c
 * You need _storage administrator_ privileges to perform AIDE cluster expansion-related tasks.
 * Ensure the ONTAP cluster is already initialized and reachable from the cluster management LIF.
 * New DCN hardware is racked, powered on, and cabled to the cluster switches.
-* link:upgrades-aide-summary.adoc[DCN software is compatible with the ONTAP version].
+* link:upgrades-aide-summary.html[DCN software is compatible with the ONTAP version].
 * You have an IP address range available for the DCN-ONTAP backend subnet.
 
 NOTE: A minimum of three DCNs is required for an AIDE deployment. System Manager does not allow you to build a DCN cluster with fewer than three nodes.
