@@ -54,10 +54,10 @@ indexpage:
           url: /administer/update-aide-firmware-software.html
         - title: Add data compute nodes
           url: /administer/dcn-add-node.html
-    - title: Data governance and security
+    - title: Understand roles and components
       links:
-        - title: Define data policies
-          url: /guardrails/define-data-policies.html
+##        - title: Define data policies
+##          url: /guardrails/define-data-policies.html
         - title: AIDE components by role
           url: /get-started/aide-components.html
         - title: Storage administrator tasks
