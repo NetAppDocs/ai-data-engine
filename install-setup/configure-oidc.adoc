@@ -1,0 +1,182 @@
+---
+permalink: install-setup/configure-oidc.html
+sidebar: sidebar
+keywords: openid connect, oidc, authentication, aide, system manager, configure, oauth
+summary: "You can use System Manager to configure OpenID Connect (OIDC) authentication for AI Data Engine (AIDE) clusters, enabling secure, centralized login via an external Identity Provider (IdP)."
+---
+= Configure OpenID Connect for ONTAP AIDE
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+You can use System Manager to configure OpenID Connect (OIDC) authentication for AI Data Engine (AIDE) clusters, enabling secure, centralized login via an external Identity Provider (IdP).
+
+OIDC must be configured to access the AI Data Engine console.
+
+.About this task
+
+OpenID Connect (OIDC) is an authentication protocol that allows users to log in to System Manager and the Data Engine console using an identity provider (IdP) for authentication. When OIDC is enabled, all web-based logins are redirected to your IdP for authentication.
+
+* OIDC can be configured after cluster creation and is not part of the initial setup workflow.
+* If you need to modify the OIDC configuration, you must first disable OIDC in System Manager, then edit and re-enable the configuration.
+* Removing OIDC will revert System Manager to local ONTAP user authentication.
+
+== Configure third-party IdP
+
+//This content from https://docs.netapp.com/us-en/ontap/system-admin/configure-saml-authentication-task.html#configure-third-party-idp
+//Need to verify which IdPs are supported for AIDE, and if the below info is accurate for AIDE.
+
+.About this task
+
+In order to authenticate with OIDC, you need to configure an external IdP. The following sections provide configuration information for supported IdPs.
+
+[role="tabbed-block"]
+====
+
+.Entra ID
+--
+When configuring Entra ID, create a new application and configure SAML sign-on with the metadata provided by ONTAP. After the application is created, edit the "Attributes & Claims" section of the application SAML settings to match the following:
+
+[cols="2,2" options="header"]
+|===
+
+| Setting
+| Value
+
+| Name
+| urn:oid:0.9.2342.19200300.100.1.1
+
+| Namespace
+| _Leave blank_
+
+| Name format
+| URI
+
+| Source
+| Attribute
+
+| Source attribute
+| user.userprincipalname
+
+|===
+
+If you want to use groups with Entra ID, add a group claim with the following settings:
+
+[cols="2,2" options="header"]
+|===
+
+| Setting
+| Value
+
+| Name
+| urn:oid:1.3.6.1.4.1.5923.1.5.1.1
+
+| Namespace
+| _Leave blank_
+
+| Source attribute
+| Group ID
+
+|===
+
+Entra ID provides group information in UUID format. For more information on using groups with Entra ID, refer to link:../authentication/authentication-groups.html#manage-groups-with-uuids[Manage groups with UUIDs].
+
+The _App Federation Metadata URL_ provided in the "SAML certificate" section of the application SAML settings is the IdP URI that you will enter in ONTAP.
+
+For information on configuring Entra ID multifactor authentication, refer to link:https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-getstarted[Plan a Microsoft Entra multifactor authentication deployment^].
+
+For more information, refer to the link:https://learn.microsoft.com/en-us/entra/identity/[Entra ID documentation^].
+--
+
+.Active Directory Federation Services
+--
+When configuring Active Directory Federation Services (AD FS), you must add a new claims-aware Relying Party Trust with the service provider metadata provided by ONTAP. Once the Relying Party Trust is created, add the following claim rules to the Relying Party Trust's Claim Issuance Policy using the "Send LDAP Attributes as Claims" template:
+
+[cols="1,2,2" options="header"]
+|===
+
+| Attribute store
+| LDAP attribute
+| Outgoing claim type
+
+| Active Directory
+| SAM-account-name
+| Name ID
+
+| Active Directory
+| SAM-account-name
+| urn:oid:0.9.2342.19200300.100.1.1
+
+| Active Directory
+| Name Format
+| urn:oasis:names:tc:SAML:2.0:attrname-format:uri
+
+| Active Directory
+| Token groups - Qualified by Domain Name
+| urn:oid:1.3.6.1.4.1.5923.1.5.1.1
+
+| Active Directory
+| sAMAccountName
+| urn:oid:1.2.840.113556.1.4.221
+
+|===
+
+AD FS provides group information in name format. For more information on using groups with AD FS, refer to link:../authentication/authentication-groups.html#manage-groups-with-names[Manage groups with names].
+
+For more information, refer to the link:https://learn.microsoft.com/en-us/windows-server/identity/ad-fs/ad-fs-overview[AD FS documentation^].
+
+--
+
+.Cisco Duo
+--
+Refer to the link:https://duo.com/docs/sso-netapp-ontap[Cisco Duo documentation^] for configuration information.
+--
+
+.Shibboleth
+--
+Prior to configuring the Shibboleth IdP, you must have configured an LDAP server.
+
+When enabling SAML on ONTAP, save the provided host metadata XML. On the host where Shibboleth is installed, replace the contents of `metadata/sp-metadata.xml` with the host metadata XML within the Shibboleth IdP home directory.
+
+For more information, refer to link:https://www.shibboleth.net[Shibboleth^].
+--
+
+====
+
+
+== Configure OIDC in System Manager
+
+.Before you begin
+
+* You must have administrator access to System Manager.
+* The OIDC IdP must be configured and accessible.
+
+.Steps
+
+. In System Manager, navigate to *Cluster* > *Settings*. Locate the OpenID Connect card.
++
+. If OIDC is already configured, you can edit or disable the configuration. If OIDC is not configured, click the gear icon to start the setup.
+. Under Configure OpenID Connect, enter the following details:
+.. Provider
+.. Issuer URI
+.. JSON web key set URI
+.. Authorization endpoint URI
+.. Token endpoint URI
+.. End session endpoint URI 
+.. Access Token Issuer (optional)
++
+. Under Client configuration, enter the following details:
+.. Client ID
+.. Remote user claim
+.. Refresh interval
++
+. Under Connection details, enter the following details:
+.. Cluster IP address or FQDN
+.. Outgoing proxy (optional)
++
+. Under External role mapping, select existing role mapping or define a new role for the ONTAP `admin` user.
+
+. Check "Enable now" and click Save. System Manager will refresh to apply the new authentication settings.
+. Log in with your IdP credentials. Upon successful authentication, you will be returned to System Manager.
+
+//12-11-25 ONTAPDOC-3534
