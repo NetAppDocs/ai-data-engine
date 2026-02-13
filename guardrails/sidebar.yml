@@ -1,0 +1,7 @@
+section: release-notes
+title: Guardrails
+entries:
+  - title: Guardrails and governance
+    entries:
+      - title: Define your data estate and governance policies
+        url: /guardrails/define-data-policies.html

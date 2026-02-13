@@ -1,0 +1,70 @@
+---
+sidebar: sidebar
+permalink: vectorization/zero-to-rag.html
+keywords: ai, data engine, aide, quick start, zero to rag, retrieval augmented generation, data collection, workspace
+summary: "Go from a newly deployed AI Data Engine (AIDE) system to a working retrieval-augmented generation (RAG) endpoint using workspaces, data collections, and guardrails."
+searchtitle: "Zero-to-RAG quick start for AI Data Engine"
+---
+= Zero-to-RAG quick start for AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Go from a newly deployed AI Data Engine (AIDE) system to a working retrieval-augmented generation (RAG) endpoint using this workflow. Understand how storage administrators, data engineers, and data scientists collaborate using System Manager and AIDE Console.
+
+.Before you begin
+
+* Data Compute Nodes are installed and attached to the ONTAP cluster.
+* AI Data Engine software is installed and licensed for vectorization and guardrails.
+* OpenID Connect (OIDC) is configured and roles are mapped for admin, data engineer, and data scientist personas.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] Define data scope and governance
+
+[role="quick-margin-para"]
+A storage administrator and security administrator prepare the environment:
+
+* Configure global exclusions, classifiers, and guardrail policies in AIDE Console.
+* link:../workspaces/create-workspace.html[Create one or more workspaces] from local and remote data sources.
+* Assign data engineer and data scientist access to the workspaces.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Explore workspace metadata
+
+[role="quick-margin-para"]
+A data engineer explores the workspace metadata in AIDE Console:
+
+* link:explore-workspace-metadata.html[Explore workspace metadata] to understand available content.
+* Define one or more logical subsets of data that should feed RAG (for example, support articles, product manuals, or anonymized clinical notes).
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Create and publish a data collection
+
+[role="quick-margin-para"]
+The data engineer turns the chosen subset into a RAG-ready collection:
+
+* link:create-data-collections.html[Create a data collection] from the workspace using the selected filters.
+* Configure embedding and chunking options appropriate for the target LLM.
+* Publish the data collection and monitor indexing until it reaches `Ready` state.
+* link:observe-data-collections.html[Observe data collection status and vector footprint] as needed.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Connect a RAG client to the collection
+
+[role="quick-margin-para"]
+A data scientist or application developer integrates the collection into notebooks or applications:
+
+* link:use-collections.html[Discover data collections] in AIDE Console and evaluate their suitability.
+* Copy the retrieval endpoint URI for the chosen collection.
+* Call the endpoint from notebooks or services and feed retrieved snippets into an LLM as context.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five] Iterate on relevance and safety
+
+[role="quick-margin-para"]
+All roles collaborate to refine both data and governance:
+
+* Data scientists review answer quality and identify gaps.
+* Data engineers adjust collection filters, embedding, and chunking, or create additional collections for new use cases.
+* Administrators tune classifiers, exclusions, and guardrail policies, moving from test to enforced modes as confidence grows.
+
+.What's next?
+
+* link:../guardrails/define-data-estate.html[Define your data estate and governance policies in AI Data Engine]
+* link:create-data-collections.html[Create data collections in AI Data Engine Console]
+* link:use-collections.html[Use data collections and RAG endpoints as a data scientist]

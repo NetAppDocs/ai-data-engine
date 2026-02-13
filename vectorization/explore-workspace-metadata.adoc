@@ -1,0 +1,119 @@
+---
+sidebar: sidebar
+permalink: vectorization/explore-workspace-metadata.html
+keywords: aide, data engineer, explore metadata, workspace, metadata catalog, ai data engine, search
+summary: "As a data engineer, use AI Data Engine Console to explore workspace metadata, discover relevant files and objects, and prepare candidate subsets for data collections."
+---
+= Explore workspace metadata in AI Data Engine Console
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+As a data engineer, your first task in AI Data Engine (AIDE) is to understand what data is available in your workspaces. You use AIDE Console to query the metadata catalog, search for relevant files and objects, and identify subsets of data to turn into data collections.
+
+== Before you begin
+
+* You need _data engineer_ privileges in AI Data Engine Console and access to at least one workspace.
+* A storage administrator has:
+** Created one or more workspaces in System Manager.
+** Assigned your user or group access to the relevant workspaces.
+* Metadata extraction for the workspace has completed and the workspace is in `Ready` state.
+* Classifiers are enabled as needed, so that metadata includes classification tags (for example, PII indicators).
+
+== Sign in to AIDE Console as a data engineer
+
+.Steps
+. In a browser, go to the AIDE Console URL:
++
+`https://<cluster_management_ip>/console`
+. Authenticate through your organization's OIDC provider.
+. Confirm that your role is recognized as a data engineer (for example, by the available workspace and data collection actions).
+
+.Result
+You are logged into AIDE Console and see only those workspaces to which you have been granted access.
+
+NOTE: Data engineers cannot access ONTAP System Manager and do not see cluster-level infrastructure details.
+
+== View your accessible workspaces
+
+.Steps
+. In AIDE Console, navigate to *Workspaces*.
+. Review the list of workspaces you can access:
+.. Workspace name and description.
+.. Size and item counts.
+.. Guardrail policy (if shown).
+.. Last refreshed time.
+. Select a workspace to open its details.
+
+.Result
+You now have a scoped view of the data estate that storage administrators have made available for your projects.
+
+TIP: Use workspace descriptions and naming conventions (for example, `CustomerSupportKB`, `Clinical_Notes_Anonymized`) to quickly locate the best starting point for your AI use case.
+
+== Search and filter metadata in a workspace
+
+Use the workspace metadata catalog to find files and objects that match your use case.
+
+.Steps
+. From the workspace details page, open the *Metadata* or *Search* view (name may vary by deployment).
+. Start with a simple query:
+.. Filter by *Path* or *Name* (for example, files under `/customer_support/kb/`).
+.. Filter by file type (for example, `.pdf`, `.docx`, `.html`).
+. Add filters based on classifications and attributes:
+.. Apply classifier tags (for example, *PII detected = false* to screen out sensitive items).
+.. Filter by modification time or creation time to focus on recent data.
+.. Filter by SVM or source volume if the workspace spans multiple storage systems.
+. Refine the query iteratively:
+.. Add or remove filters to narrow or broaden the result set.
+.. Sort by size, last modified, or other relevant fields.
+. (Optional) Save the query in Console if your deployment supports saved searches.
+
+.Result
+You have a filtered list of candidate files and objects that could feed a data collection for RAG or other AI tasks.
+
+TIP: When working with sensitive domains (such as healthcare or finance), always combine path filters with classifier-based filters so that you do not unintentionally include regulated content.
+
+== Inspect individual items
+
+Before committing data into a collection, inspect a few representative items to verify data quality and sensitivity.
+
+.Steps
+. In the metadata search results, select a file or object.
+. Review its metadata:
+.. Full path or URI.
+.. Size and timestamps.
+.. Classification tags (for example, PII categories, risk levels).
+.. Any additional tags or attributes.
+. If permitted in your environment, open a preview of the content to check:
+.. Whether the content structure matches your expectations (for example, well-formed documents compared to logs).
+.. Whether guardrails or preprocessing might be required (for example, heavy PII presence).
+
+.Result
+You gain confidence that the subset you are about to use for a data collection is appropriate for your AI use case and complies with internal policies.
+
+== Group search results into logical subsets
+
+Often you'll want to define logical subsets that reflect different RAG use cases or model behaviors.
+
+.Examples
+* Support knowledge base articles instead of troubleshooting logs.
+* Public marketing collateral instead of internal training documents.
+* Anonymized clinical notes instead of operational reports.
+
+.Steps
+. Use a combination of:
+.. Path prefixes (for example, `/kb/articles/` or `/kb/incidents/`).
+.. File types.
+.. Classification tags.
+.. Time ranges.
+. For each logical subset, refine a query until the result set looks correct in size and composition.
+. Make note of the query parameters for each subset; you'll use them when defining data collections.
+
+.Result
+You have one or more well-defined metadata queries that represent the subsets you want to feed into data collections.
+
+== What's next?
+
+* link:create-data-collections.html[Create data collections for RAG from a workspace]
+* link:observe-data-collections.html[Observe and monitor data collections]
+* link:zero-to-rag.html[Zero-to-RAG quick start for AI Data Engine]

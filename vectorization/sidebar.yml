@@ -1,0 +1,13 @@
+section: vectorization
+title: Vectorization and data collections
+entries:
+  - title: Zero-to-RAG quick start
+    url: /vectorization/zero-to-rag.html
+  - title: Explore workspace metadata
+    url: /vectorization/explore-workspace-metadata.html
+  - title: Create data collections
+    url: /vectorization/create-data-collections.html
+  - title: Observe data collections
+    url: /vectorization/observe-data-collections.html
+  - title: Use data collections and RAG endpoints
+    url: /vectorization/use-collections.html

@@ -1,0 +1,157 @@
+---
+sidebar: sidebar
+permalink: vectorization/use-collections.html
+keywords: aide, data scientist, data collection, retrieval endpoint, rag, ai data engine
+summary: "As a data scientist, discover ready-to-use data collections in AI Data Engine Console and integrate their retrieval endpoints into notebooks and AI applications."
+---
+= Use data collections and RAG endpoints as a data scientist
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+As a data scientist, you'll use AI Data Engine (AIDE) to discover curated data collections and integrate their retrieval endpoints into notebooks, pipelines, and AI applications for retrieval-augmented generation (RAG) and search.
+
+This topic describes how to find collections you can access and how to use their retrieval endpoints.
+
+== Before you begin
+
+* You need _data scientist_ privileges in AI Data Engine Console and access to at least one workspace.
+* A storage administrator has granted your user or group access to one or more workspaces.
+* Data engineers have created and published at least one ready data collection in those workspaces.
+* The `AIPVS - Vectorization and Guardrails` license is installed and inferencing features are enabled.
+* You know the cluster management address for your AI Data Engine deployment.
+
+== Sign in to AIDE Console as a data scientist
+
+.Steps
+. In a browser, navigate to:
++
+`https://<cluster_management_ip>/console`
+. Authenticate through your organization's OIDC provider.
+. Verify that you see data scientist capabilities (for example, you can view but not modify data collection definitions or workspaces).
+
+.Result
+You are logged into AIDE Console with a data scientist context.
+
+NOTE: Data scientists cannot access ONTAP System Manager and cannot modify workspaces, data collections, or guardrail policies.
+
+== Discover accessible workspaces and collections
+
+.Steps
+. In AIDE Console, go to *Workspaces*.
+. Review the list of workspaces to which you have access.
+. For a given workspace, select its name to open the details page.
+. Open the *Data collections* tab.
+. For each collection, observe:
+.. Name and description.
+.. Status (for example, `Ready`, `Publishing`, `Failed`).
+.. Approximate size and item count.
+.. Any visible indicators of guardrail or classification constraints (for example, "PII redaction enabled").
+
+.Result
+You have an inventory of ready-to-use data collections scoped to your projects.
+
+TIP: Prefer collections whose names and descriptions clearly align with your use case (for example, `Support_KB_RAG_EN` for English support knowledge base RAG).
+
+== Evaluate a data collection for your use case
+
+Before wiring a collection into your pipelines, evaluate its suitability.
+
+.Steps
+. From the *Data collections* tab, select a collection name.
+. In the collection overview, review:
+.. Workspace context and description.
+.. Indexing and embedding settings (granularity, model, dimensions) if exposed.
+.. Classification and guardrail notes (for example, whether PII is redacted).
+. If sample browsing is supported:
+.. Preview a small number of items or chunks.
+.. Confirm that content is in the expected language and domain.
+. Consider:
+.. Whether the chunk size is appropriate for your LLM's context window.
+.. Whether guardrails might hide or redact fields critical to your analysis.
+
+.Result
+You have determined whether this collection is appropriate for your planned model and use case.
+
+== Obtain the retrieval endpoint URI
+
+Applications and notebooks interact with data collections via a retrieval endpoint for the underlying vector index.
+
+.About this task
+The retrieval endpoint URI is built from:
+
+* The Data Engine service IP.
+* The workspace UUID.
+* The data collection UUID.
+
+AIDE Console exposes this in a user-friendly way.
+
+.Steps
+. From the collection detail page in AIDE Console, locate the *Retrieval endpoint* or *Endpoint URI* section.
+. Copy the URI shown (for example):
++
+`https://<data_engine_ip>/<workspace_uuid>/<data_collection_uuid>`
+. Note any additional parameters required by your environment, such as:
+.. API key or bearer token mechanism.
+.. Query schema (for example, JSON payload structure including `query`, `top_k`, and optional filters).
+
+.Result
+You have the precise endpoint necessary to integrate the collection into your RAG pipelines.
+
+TIP: Store endpoint URIs and related metadata (workspace name, collection name, guardrail notes) in your project documentation so that your team can reuse them consistently.
+
+== Use a retrieval endpoint from a notebook or service
+
+The exact integration details depend on the SDK or HTTP client you use. The following pseudocode illustrates the general pattern.
+
+.Example: Query a data collection endpoint
+
+----
+python
+import requests
+
+endpoint = "https://<data_engine_ip>/<workspace_uuid>/<data_collection_uuid>/search"
+headers = {
+    "Authorization": f"Bearer {access_token}",
+    "Content-Type": "application/json",
+}
+
+payload = {
+    "query": "How do I reset a customer's password?",
+    "top_k": 5,
+    "filters": {
+        # Optional metadata filters, for example PII-free or date range
+    }
+}
+
+response = requests.post(endpoint, json=payload, headers=headers, timeout=10)
+response.raise_for_status()
+results = response.json()
+
+for hit in results.get("hits", []):
+    print(hit["score"], hit["snippet"])
+----
+
+NOTE: The exact path (/search or equivalent) and JSON schema are defined by the AI Data Engine API for your release. Coordinate with your platform team or refer to the API reference for the precise contract.
+
+.Result 
+
+Your code receives semantically relevant snippets from the data collection that you can feed into your large language model (LLM) as context.
+
+== Respect guardrails and policy constraints
+
+Guardrail policies assigned at the workspace level apply when you query a collection's retrieval endpoint.
+
+* Sensitive data may be: ** Masked or redacted from returned snippets. ** Completely blocked, causing some items to be skipped.
+* Some queries or topics may be rejected outright, depending on policy.
+
+Best practices:
+
+* Design your application to handle: ** Empty result sets. ** Explicit "blocked" or "policy violation" signals from the endpoint.
+* Log both the original query and guardrail-related responses for debugging and compliance reviews.
+* If guardrails prevent legitimate use cases, work with data engineers and data governance stakeholders to refine classifier and guardrail configuration—data scientists do not change guardrails directly.
+
+== What's next?
+
+link:zero-to-rag.html[Zero-to-RAG quick start for AI Data Engine]
+Collaborate with data engineers to request new collections or adjusted filters when your experiment needs change.

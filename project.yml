@@ -16,6 +16,8 @@ sidebar:
   - section: workspaces
 ##  - section: manage-data 
 ##  - section: administer
+  - section: vectorization
+  - section: guardrails
   - title: Maintain hardware 
     url: /maintain-hardware.html
   - title: FAQs

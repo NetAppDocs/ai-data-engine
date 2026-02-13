@@ -1,0 +1,147 @@
+---
+sidebar: sidebar
+permalink: guardrails/define-data-policies.html
+keywords: aide, policies, global exclusion, classifiers, guardrails, ai data engine, data governance
+summary: "Define global data policies in AI Data Engine Console to control which data can be used for AI, how it is classified, and how guardrails are enforced at query time."
+---
+= Define your data estate and governance policies in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+As a data or platform owner, you use AI Data Engine (AIDE) Console to define which data is in scope for AI, which data is always off-limits, and what safety rules apply when that data is used for classification and retrieval-augmented generation (RAG).
+
+This topic describes how to define those policies in AIDE Console so that System Manager can enforce them when storage administrators create workspaces.
+
+== Before you begin
+
+* You need _AIDE administrator_ or _security administrator_ privileges in AI Data Engine Console to create and manage global policies.
+* You have an AI Data Engine cluster with Data Compute Nodes deployed and healthy.
+* OpenID Connect (OIDC) is configured, and your IdP role is mapped to an AIDE admin role that allows policy management.
+* The `AIPVS – Vectorization and Guardrails` license is installed so that guardrail and inferencing features are enabled.
+* At least one workspace exists, or you have coordinated with the storage administrator to understand which data sources (volumes) will be used in workspaces.
+
+== Understand policy types
+
+AIDE Console exposes three policy types that shape your data estate:
+
+* *Global data exclusion policy*: A single global list of volumes that must never appear in any workspace.
+* *Classifier categories and classifiers*: Which classification jobs run on every workspace to detect PII, security issues, or other patterns.
+* *Guardrail policies*: Safety and redaction rules applied at retrieval/inference time.
+
+System Manager does not create or manage these policies. It only reads them and enforces them when a storage admin creates or edits workspaces. All policy definition and maintenance occurs in AIDE Console.
+
+== Create or update a global data exclusion policy
+
+Use a global data exclusion policy to permanently exclude highly sensitive or out-of-scope data from *all* AI workspaces.
+
+.About this task
+The global exclusion policy is evaluated whenever a storage admin selects data sources for a workspace. Excluded volumes:
+
+* Never appear as selectable data containers in System Manager.
+* Cause workspace edits to fail if a volume that is already in a workspace later becomes globally excluded.
+
+.Steps
+. In AIDE Console, navigate to *Governance* (or the equivalent policy section for your deployment).
+. Select *Global exclusions*.
+. If no policy exists yet, select *Create global exclusion policy*. Otherwise, select the existing policy and choose *Edit*.
+. Add or remove volumes:
+.. Use search or filters to locate volumes by name, SVM, or cluster.
+.. Select each volume that must never be used in any workspace.
+.. Deselect volumes that you want to make available again.
+. Save the policy.
+
+.Result
+System Manager immediately honors the updated global exclusion policy:
+
+* Globally excluded volumes no longer appear as data container options in the *Add workspace* and *Edit workspace* workflows.
+* If a storage administrator attempts to add a workspace that includes a now-excluded volume, the operation fails with an error indicating that the volume is excluded by policy.
+
+TIP: Use global exclusion for data that must stay out of AI entirely (for example, executive HR volumes or legal holds), not just for data that needs masking. For masking and selective access, use classifiers and guardrails instead.
+
+== Manage classifier categories and classifiers
+
+Classifiers analyze both metadata and content to annotate files and objects (for example, detecting PII or sensitive categories). Classifier behavior is controlled globally in AIDE Console.
+
+.About this task
+* All *enabled* classifiers run on *every* workspace.
+* System Manager does not provide per-workspace classifier controls; it simply runs whatever is enabled in Console.
+* You can group classifiers into compliance categories (such as "PII" or "Financial data") and enable/disable entire categories.
+
+.Steps
+. In AIDE Console, go to *Governance* > *Classifiers*.
+. View existing classifier categories.
+. To enable or disable a whole category:
+.. Select the category (for example, *PII*).
+.. Toggle the category state to *Enabled* or *Disabled*.
+. To manage individual classifiers within a category:
+.. Open the category detail.
+.. For each classifier, review its description (for example, "Detects US Social Security Numbers").
+.. Toggle each classifier *On* or *Off* based on your organizational policy.
+. Save your changes.
+
+.Result
+* All newly created and existing workspaces run the enabled classifiers during metadata processing.
+* Classification tags are written to the metadata catalog and become available to data engineers for filtering when creating data collections.
+
+TIP: Start with a minimal set of classifiers (for example, a single PII pack) and expand over time. Enabling a large number of classifiers increases processing time for workspace creation and refresh.
+
+== Create and manage guardrail policies
+
+Guardrail policies determine how AIDE responds when classifiers detect sensitive content or when prompts and retrieval results violate content rules.
+
+Typical guardrail behaviors include:
+
+* Masking or redacting PII from retrieved snippets.
+* Blocking answers that violate compliance rules.
+* Logging or tagging violations for audit.
+
+.About this task
+* Guardrail policies are created and managed only in AIDE Console.
+* Workspaces in System Manager can be associated with a single guardrail policy at a time.
+* Guardrails can be in *Disabled*, *Test*, or *Enforced* state:
+** *Disabled*: Policy exists but is not enforced.
+** *Test*: Policy runs and may log violations but does not block or alter responses.
+** *Enforced*: Policy actively redacts or blocks responses.
+
+.Steps
+. In AIDE Console, navigate to *Governance* > *Guardrails*.
+. Select *Create guardrail policy*.
+. Enter a *Name* and *Description* that clearly describe the scope (for example, `Customer PII redaction for support KB`).
+. Configure classifier-driven rules:
+.. Choose the classifier tags or categories this policy reacts to (for example, *PII* or specific PII types).
+.. Define actions for each tag:
+*** *Redact*: Remove or mask fields from retrieved content.
+*** *Block*: Prevent the retrieval endpoint from returning content that matches the rule.
+*** *Allow with logging*: Permit content but record a violation for audit.
+. Configure global content rules as needed (for example, disallow toxic language or certain topics).
+. Set the policy state:
+.. Choose *Test* if you want to validate impact before enforcing.
+.. Choose *Enforced* once you've validated the policy behavior.
+. Save the policy.
+
+.Result
+The new guardrail policy becomes available for selection in System Manager when storage administrators create or edit workspaces. When a data retrieval endpoint is used, the guardrail policy for the workspace is applied to retrieved content before responses are returned.
+
+TIP: Use *Test* mode with a pilot workspace and a non‑production data collection to understand how many responses would be affected before enabling strict enforcement.
+
+== How policies interact with workspaces
+
+Once policies are defined:
+
+* The storage admin uses System Manager to create workspaces, pick data sources, and associate a guardrail policy.
+* Global exclusions determine which volumes appear at all.
+* Classifiers run automatically on workspace content based on what you've enabled.
+* Guardrails attached to the workspace influence how retrieval endpoints behave.
+
+For data engineers and data scientists:
+
+* The visible data estate (workspaces and data collections) is already filtered by global exclusions.
+* Metadata they query (for example, PII tags) is driven by the classifiers you enabled.
+* The responses their RAG pipelines receive are constrained by the guardrails you configured at the workspace level.
+
+== Related information
+
+* link:../collections/observe-data-collections.html[Observe data collections in AI Data Engine]
+* link:../collections/create-data-collections.html[Create data collections for RAG in AIDE Console]
+* link:../get-started/zero-to-rag.html[Zero-to-RAG quick start for AI Data Engine]
