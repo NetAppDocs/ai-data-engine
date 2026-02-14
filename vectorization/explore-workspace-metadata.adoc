@@ -17,7 +17,7 @@ As a data engineer, your first task in AI Data Engine (AIDE) is to understand wh
 
 * You need _data engineer_ privileges in AI Data Engine Console and access to at least one workspace.
 * A storage administrator has:
-** Created one or more workspaces in System Manager.
+** Created one or more workspaces in ONTAP System Manager.
 ** Assigned your user or group access to the relevant workspaces.
 * Metadata extraction for the workspace has completed and the workspace is in `Ready` state.
 // Workstream 3: guardrails and policies to comment out

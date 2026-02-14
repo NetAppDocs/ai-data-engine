@@ -12,11 +12,11 @@ summary: "Use AI Data Engine tools to observe data collections, track indexing a
 // Workstream 2: vectorization
 After data engineers create and publish data collections from workspaces, both storage administrators and data engineers need visibility into their status, size, and impact on the AI Data Engine cluster.
 
-If you're a storage administrator or data engineer, you can observe data collections across System Manager and AIDE Console.
+If you're a storage administrator or data engineer, you can observe data collections across ONTAP System Manager and AIDE Console.
 
 == Before you begin
 
-* You need either _storage administrator_ privileges in System Manager or _data engineer_ privileges in AI Data Engine Console to observe data collections.
+* You need either _storage administrator_ privileges in ONTAP System Manager or _data engineer_ privileges in AI Data Engine Console to observe data collections.
 * At least one workspace exists with successfully extracted metadata.
 * Data engineers have created and published at least one data collection from AI Data Engine Console.
 * The `AIPVS - Vectorization and Guardrails` license is installed and inferencing features are enabled, so that vectorization and retrieval endpoints are active.
@@ -26,7 +26,7 @@ If you're a storage administrator or data engineer, you can observe data collect
 System Manager provides a cluster-wide view of data collections and their footprint but does not allow admins to create or modify them.
 
 .Steps
-. In System Manager, navigate to *Data Engine > Data collections*.
+. In ONTAP System Manager, navigate to *Data Engine > Data collections*.
 . Review the inventory summary at the top of the page:
 .. Total number of data collections by status (for example, `Ready`, `Publishing`, `Error`).
 .. Total space consumed by the vector database across all collections.
@@ -45,7 +45,7 @@ TIP: Use the search and filter controls to focus on a single workspace, a status
 
 == Inspect a single data collection (admin view)
 
-For deeper insight into a particular data collection, open its details page in System Manager.
+For deeper insight into a particular data collection, open its details page in ONTAP System Manager.
 
 .Steps
 . From *Data Engine > Data collections*, select the name of a data collection.
@@ -101,10 +101,10 @@ Data engineers can iterate on collection definitions and publish them again whil
 
 == Understand vector footprint and capacity impact
 
-Large data collections can grow the vector database significantly. Use the System Manager inventory view to keep vector space under control.
+Large data collections can grow the vector database significantly. Use the ONTAP System Manager inventory view to keep vector space under control.
 
 .Steps
-. In System Manager, open *Data Engine > Data collections*.
+. In ONTAP System Manager, open *Data Engine > Data collections*.
 . Review the following:
 .. Total vector database size across all collections.
 .. Vector space as percentage of total cluster capacity.

@@ -69,10 +69,10 @@ Publishing runs the indexing pipeline: canonicalization, classification (if enab
 . Confirm the settings and start the job.
 
 .Result
-The collection enters a `Publishing` or `Processing` state. AIDE Console and System Manager both show job progress:
+The collection enters a `Publishing` or `Processing` state. AIDE Console and ONTAP System Manager both show job progress:
 
 * In AIDE Console, the collection's status updates and a progress bar appears.
-* In System Manager, corresponding jobs appear under *Data Engine > Activity > Jobs* and under the workspace's *Activity* tab.
+* In ONTAP System Manager, corresponding jobs appear under *Data Engine > Activity > Jobs* and under the workspace's *Activity* tab.
 
 TIP: For large collections, consider scheduling initial publish and major re-publishes during off-peak times to minimize resource contention.
 
