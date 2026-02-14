@@ -2,7 +2,7 @@
 permalink: install-setup/install-license-task.html
 sidebar: sidebar
 keywords: ai data engine, license, install, enable, add, aide, ai data engine, software, entitlement, keys, codes, cluster, administrator, nlf, add license, license key, metadata engine, aipvs, vectorization, guardrails, dx50, dcn, data compute node, afx, afx 1k
-summary: "You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). You can perform license management through the ONTAP AFX System Manager interface."
+summary: "You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). You can perform license management using the ONTAP AFX System Manager."
 ---
 
 = Install AIDE licenses in ONTAP
@@ -10,39 +10,30 @@ summary: "You'll need to install a NetApp license to access the full features of
 :imagesdir: ../media/
 
 [.lead]
-You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). You can perform license management through the ONTAP AFX System Manager interface.
+You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). You can perform license management using the ONTAP AFX System Manager.
 
-== Prepare to install the AIDE license
+== Prepare to license the AI Data Engine
 
 A license is a record of one or more software entitlements. All the AFX licenses are delivered as a NetApp license file (NLF), which is a single file that enables multiple features. There are several things you should consider before installing a license on your AFX storage system.
 
 === Types of licenses
 
-There are two types of licenses needed to use AIDE through your AFX storage system.
+There are two primary types of licenses needed to begin using AIDE through your AFX storage system.
 
 .ONTAP One license
 
-The Metadata Engine Basic license is typically factory-installed as part of the ONTAP One license. It enables access to the Metadata Engine functionality which is the essential foundation for AIDE to operate. All of the core capabilities needed to administer your ONTAP system are also included.
-
-
-
-
-There are two licenses for AIDE: The Metadata Engine Basic license that is typically factory-installed as part of the ONTAP One license and the "AIPVS — Vectorization and Guardrails" license that must be purchased and installed for each GPU in your data compute nodes (DCNs).
-
-The first license enables the Metadata Engine functionality in ONTAP, while the second license unlocks advanced AI capabilities such as vectorization and guardrails for AI workloads.
+The Metadata Engine Basic license is typically factory-installed as part of the ONTAP One license. It enables access to the Metadata Engine functionality which provides the essential foundation for AIDE operations. All the core capabilities needed to administer your ONTAP system are also included.
 
 .AI Data Engine
 
-PREMIUM SERVICE
+You need to purchase and install the AI Data Engine license to access the premium services needed to activate the full capabilities of AIDE. The license unlocks your data compute nodes (DCNs), enabling AI features such as vectorization, governance guardrails, inferencing, and an integrated UI experience. The license includes a GPU count as well as an expiration date.
 
-You need to purchase and install the AI Data Engine license to access the premium services needed to access the full capabilities of AIDE. The license unlocks your data compute nodes (DCNs) by enabling advanced AI features such as vectorization, governance guardrails, inferencing, and an integrated UI experience. The license includes a GPU count as well as an expiration date.
+=== Installation requirements
 
-=== Prepare to install an AIDE license
+You'll need to purchase the license and download the associated NLF file to your local system. You can upload the file to your AFX storage system through System Manager. Also make sure you have the following:
 
-You'll need to purchase and download the NLF file to your local system and then upload it to your AFX storage system through System Manager. Also ensure the following:
-
-* You have administrator credentials to sign in to AFX System Manager
-* The AFX cluster is running ONTAP 9.18.1 and later
+* Administrator credentials to sign in to AFX System Manager
+* An AFX cluster is running ONTAP 9.18.1 and later
 
 == Install a license on your AFX system
 
