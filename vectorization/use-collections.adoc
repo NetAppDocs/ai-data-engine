@@ -11,7 +11,7 @@ summary: "As a data scientist, discover ready-to-use data collections in AI Data
 [.lead]
 As a data scientist, you'll use AI Data Engine (AIDE) to discover curated data collections and integrate their retrieval endpoints into notebooks, pipelines, and AI applications for retrieval-augmented generation (RAG) and search.
 
-This topic describes how to find collections you can access and how to use their retrieval endpoints.
+Use these procedures to find collections you can access and understand how to use their retrieval endpoints.
 
 == Before you begin
 
@@ -138,6 +138,7 @@ NOTE: The exact path (/search or equivalent) and JSON schema are defined by the 
 
 Your code receives semantically relevant snippets from the data collection that you can feed into your large language model (LLM) as context.
 
+//Workstream 3 section
 == Respect guardrails and policy constraints
 
 Guardrail policies assigned at the workspace level apply when you query a collection's retrieval endpoint.

@@ -9,6 +9,7 @@ summary: "Use AI Data Engine tools to observe data collections, track indexing a
 :imagesdir: ../media/
 
 [.lead]
+// Workstream 2: vectorization
 After data engineers create and publish data collections from workspaces, both storage administrators and data engineers need visibility into their status, size, and impact on the AI Data Engine cluster.
 
 If you're a storage administrator or data engineer, you can observe data collections across System Manager and AIDE Console.
@@ -54,7 +55,7 @@ For deeper insight into a particular data collection, open its details page in S
 .. Current status and last publish time.
 .. Reported size and item counts.
 . If the collection is in `Publishing` or `Processing` state, monitor the progress indicator on this page.
-. If an error is reported, note the error message and cross‑check with the *Activity* page for related jobs and events.
+. If an error is reported, note the error message and cross-check with the *Activity* page for related jobs and events.
 
 .Result
 You can see whether the collection is actively being updated, when it last completed, and whether any failures are blocking RAG usage.
@@ -96,7 +97,7 @@ Data engineers typically monitor data collections directly from AIDE Console, wh
 . If needed, open job details or logs (where available) to understand failures or incomplete runs.
 
 .Result
-Data engineers can iterate on collection definitions and re‑publish them while monitoring status and health, without involving storage administrators.
+Data engineers can iterate on collection definitions and publish them again while monitoring status and health, without involving storage administrators.
 
 == Understand vector footprint and capacity impact
 
@@ -104,14 +105,14 @@ Large data collections can grow the vector database significantly. Use the Syste
 
 .Steps
 . In System Manager, open *Data Engine > Data collections*.
-. Review:
+. Review the following:
 .. Total vector database size across all collections.
 .. Vector space as percentage of total cluster capacity.
 . Sort the collection grid by *Size* to identify the largest contributors.
 . Coordinate with data engineers to:
 .. Retire unused collections.
 .. Adjust filters to reduce scope where appropriate.
-.. Schedule re‑publishes during lower‑usage periods to minimize performance impact.
+.. Schedule re-publishes during lower-usage periods to minimize performance impact.
 
 .Result
 You can proactively manage capacity consumption and prevent unbounded growth of embeddings from rarely used or overly broad data collections.

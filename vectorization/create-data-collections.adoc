@@ -9,6 +9,7 @@ summary: "Create and publish data collections from workspace metadata in AI Data
 :imagesdir: ../media/
 
 [.lead]
+//Workstream 2 focused
 Data collections are the core RAG building blocks in AI Data Engine (AIDE). As a data engineer, you define which files and objects belong in a collection, configure embedding and indexing options, and publish the collection so that applications can query it through a retrieval endpoint.
 
 == Before you begin
@@ -31,7 +32,7 @@ Data collections are the core RAG building blocks in AI Data Engine (AIDE). As a
 *** *Dynamic* (if supported): Automatically tracks new items that match the same criteria during workspace refreshes.
 . Specify the source subset:
 .. Start from a saved metadata query, or
-.. Build a query in this step by applying filters (path, file type, classifier tags, timestamps, etc.).
+.. Build a query in this step by applying filters (path, file type, timestamps, and other attributes).
 . Review the estimated item count and approximate size.
 
 .Result

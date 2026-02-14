@@ -10,19 +10,20 @@ searchtitle: "Zero-to-RAG quick start for AI Data Engine"
 :imagesdir: ../media/
 
 [.lead]
+//Workstream 3 topic due to detail integration
 Go from a newly deployed AI Data Engine (AIDE) system to a working retrieval-augmented generation (RAG) endpoint using this workflow. Understand how storage administrators, data engineers, and data scientists collaborate using System Manager and AIDE Console.
 
 .Before you begin
 
 * Data Compute Nodes are installed and attached to the ONTAP cluster.
 * AI Data Engine software is installed and licensed for vectorization and guardrails.
-* OpenID Connect (OIDC) is configured and roles are mapped for admin, data engineer, and data scientist personas.
+* link:../install-setup/configure-oidc.html[OpenID Connect (OIDC)] is configured and roles are mapped for admin, data engineer, and data scientist roles.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] Define data scope and governance
 
 [role="quick-margin-para"]
-A storage administrator and security administrator prepare the environment:
-
+As a storage administrator or security administrator, you want to prepare the environment in AIDE Console and System Manager:
++
 * Configure global exclusions, classifiers, and guardrail policies in AIDE Console.
 * link:../workspaces/create-workspace.html[Create one or more workspaces] from local and remote data sources.
 * Assign data engineer and data scientist access to the workspaces.
@@ -30,17 +31,17 @@ A storage administrator and security administrator prepare the environment:
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Explore workspace metadata
 
 [role="quick-margin-para"]
-A data engineer explores the workspace metadata in AIDE Console:
-
+As a data engineer, you want to explore the workspace metadata using AIDE Console:
++
 * link:explore-workspace-metadata.html[Explore workspace metadata] to understand available content.
 * Define one or more logical subsets of data that should feed RAG (for example, support articles, product manuals, or anonymized clinical notes).
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Create and publish a data collection
 
 [role="quick-margin-para"]
-The data engineer turns the chosen subset into a RAG-ready collection:
-
-* link:create-data-collections.html[Create a data collection] from the workspace using the selected filters.
+As a data engineer, you want to turn the chosen subset into a RAG-ready collection:
++
+* link:create-data-collections.html[Create a data collection] from the workspace using selected filters.
 * Configure embedding and chunking options appropriate for the target LLM.
 * Publish the data collection and monitor indexing until it reaches `Ready` state.
 * link:observe-data-collections.html[Observe data collection status and vector footprint] as needed.
@@ -48,8 +49,8 @@ The data engineer turns the chosen subset into a RAG-ready collection:
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Connect a RAG client to the collection
 
 [role="quick-margin-para"]
-A data scientist or application developer integrates the collection into notebooks or applications:
-
+As a data scientist or application developer, you want to integrate the collection into notebooks or applications:
++
 * link:use-collections.html[Discover data collections] in AIDE Console and evaluate their suitability.
 * Copy the retrieval endpoint URI for the chosen collection.
 * Call the endpoint from notebooks or services and feed retrieved snippets into an LLM as context.
@@ -58,7 +59,7 @@ A data scientist or application developer integrates the collection into noteboo
 
 [role="quick-margin-para"]
 All roles collaborate to refine both data and governance:
-
++
 * Data scientists review answer quality and identify gaps.
 * Data engineers adjust collection filters, embedding, and chunking, or create additional collections for new use cases.
 * Administrators tune classifiers, exclusions, and guardrail policies, moving from test to enforced modes as confidence grows.
