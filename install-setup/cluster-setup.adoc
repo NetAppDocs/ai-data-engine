@@ -2,7 +2,7 @@
 permalink: install-setup/cluster-setup.html
 sidebar: sidebar
 keywords: aide, ontap, cluster setup, data compute node, dcn, data engine
-summary: "After your AIDE hardware has been installed, you can complete the ONTAP cluster setup. This process includes additional steps for Data Compute Nodes (DCNs) and Data Engine services."
+summary: ""
 ---
 
 = Set up your ONTAP AIDE cluster
@@ -10,6 +10,40 @@ summary: "After your AIDE hardware has been installed, you can complete the ONTA
 :imagesdir: ../media/
 
 [.lead]
+You can optionally set up an AIDE cluster as part of deploying a new AFX cluster.
+
+[TIP]
+If you want to integrate a new AIDE cluster with an existing AFX cluster, see link:../install-setup/setup-aide-existing-afx.html[Set up an AIDE cluster with an existing AFX cluster^].
+
+== Prepare to set up your cluster
+
+xxx
+
+=== Learn about AIDE and the setup process
+
+xxx
+
+=== Install the AIDE hardware
+
+xxx
+
+== Set up your AIDE cluster
+
+xxx
+
+== Complete the initial AIDE configuration
+
+xxx
+
+>> license
+>> ODIC
+
+https://docs.netapp.com/us-en/ontap-afx/install-setup/cluster-setup.html[Set up your AFX storage system ONTAP cluster^]
+
+
+//------------------------------------------------------------------------------
+[.big.red]*--- Ben's content from here to the end of the page.*
+
 After your AIDE hardware has been installed, you can complete the AIDE cluster setup with ONTAP. 
 
 //Refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/cluster-setup.html[AFX storage system ONTAP cluster setup documentation^] for the standard ONTAP cluster setup workflow. The procedures below describe the additional requirements and configuration for AIDE clusters.
@@ -96,3 +130,4 @@ Configure a single AI Data Engine service IP address for the cluster. This addre
 
 .What's next
 After completing the AIDE cluster setup, you can proceed to link:../install-setup/install-license-task.html[install AIDE licenses] and link:../install-setup/configure-oidc.adoc[configure OpenID Connect (OIDC) authentication] for secure access to System Manager and Data Engine services.
+//------------------------------------------------------------------------------

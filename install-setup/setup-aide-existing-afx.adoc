@@ -1,0 +1,12 @@
+---
+sidebar: sidebar
+permalink: install-setup/setup-aide-existing-afx.html
+keywords: 
+summary: ""
+---
+= Set up AIDE with an existing AFX cluster
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+xxx
