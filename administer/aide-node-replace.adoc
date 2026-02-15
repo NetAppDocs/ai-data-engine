@@ -24,7 +24,7 @@ There are several several restrictions to be aware of when replacing a node in y
 * The new node should match the cluster’s software version; ONTAP will update it if needed.
 * The failed node must not be powered on while connected to the cluster network to avoid IP address conflicts.
 
-== Requirements
+=== Requirements
 
 You'll need the following:
 
@@ -40,7 +40,7 @@ You can replace a DCN node in your AIDE cluster using the following procedure.
 +
 Power off and disconnect the node from the cluster network. Make sure the node is not booted up on the network during the replacement process.
 
-. Delete the node from the cluster
+. Delete the node from the cluster using the following command:
 +
 `dcn cluster node delete -name <node_name> -force true`
 +
@@ -50,13 +50,13 @@ Provide the actual name for the <node_name> value.
 +
 Make sure the node is cabled in, powered on, and discoverable.
 
-. Add the node to the cluster
+. Add the node to the cluster using the following command:
 +
 `dcn cluster node create -serial-number <new_node_serial>`
 +
 ONTAP will allocate an IP address for the new node. If the node’s software version does not match the cluster, ONTAP will automatically update the node.
 
-. Verify cluster health and node integration
+. Verify cluster health and node integration with either of the following commands:
 +
 `dcn cluster node show`
 +
