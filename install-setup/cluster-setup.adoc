@@ -2,7 +2,7 @@
 permalink: install-setup/cluster-setup.html
 sidebar: sidebar
 keywords: aide, ontap, cluster setup, data compute node, dcn, data engine
-summary: ""
+summary: "You can optionally set up and integrate an AIDE cluster as part of deploying a new AFX cluster."
 ---
 
 = Set up AIDE with a new AFX cluster
@@ -13,11 +13,11 @@ summary: ""
 You can optionally set up and integrate an AIDE cluster as part of deploying a new AFX cluster.
 
 [TIP]
-If you need to integrate a new AIDE cluster with an existing AFX cluster, see link:../install-setup/setup-aide-existing-afx.html[Set up AIDE with an existing AFX cluster] instead.
+If you need to integrate a new AIDE cluster with an existing AFX cluster, see link:../install-setup/setup-aide-existing-afx.html[Set up AIDE with an existing AFX cluster].
 
 == 1. Prepare to set up your cluster
 
-xxx
+You need to prepare for cluster setup by learning about AIDE and preparing the environment.
 
 === Learn about the AIDE setup process
 

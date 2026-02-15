@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: install-setup/setup-aide-existing-afx.html
 keywords: 
-summary: ""
+summary: "You can optionally set up and integrate an AIDE cluster with an existing AFX cluster."
 ---
 = Set up AIDE with an existing AFX cluster
 :icons: font
@@ -12,17 +12,74 @@ summary: ""
 You can optionally set up and integrate an AIDE cluster with an existing AFX cluster.
 
 [TIP]
-If you need to set up AIDE and a new AFX cluster at the same time, see link:../install-setup/cluster-setup.html[Set up AIDE with a new AFX cluster^] instead.
+If you need to set up AIDE and a new AFX cluster together at the same time, see link:../install-setup/cluster-setup.html[Set up AIDE with a new AFX cluster].
 
-== DCN discovery and initial network configuration
+== 1. Prepare to set up your cluster
+
+You need to prepare for cluster setup by learning about AIDE and preparing the environment.
+
+=== Learn about the AIDE setup process
+
+You should understand the AIDE architecture and the cluster setup process before you begin. The following resources provide information about AIDE and the cluster setup workflow:
+
+* link:../get-started/learn-about.html[Learn about your AI Daa Engine system]
+* link:../get-started/quick-start.html[Quick start for AI Data Engine]
+
+=== Install the AIDE hardware
+
+Before setting up your AIDE cluster, you need to have the AIDE hardware installed and connected to the AFX cluster storage network. The AIDE hardware includes Data Compute Nodes (DCNs) which provide the AI data processing capabilities. See:
+
+* link:../install-setup/install-setup-workflow.html[Install your AIDE system]
+
+== 2. Discover and display the DCN nodes
+
+After the DCN hardware has been installed and connected to the AFX cluster storage network, the nodes are automatically discovered by the AFX cluster. There are two paths available to display the list of available nodes for the AIDE cluster.
+
+.AFX Dashboard
+In System Manager, select *Dashboard* in the left navigation pane.
+
+.Cluster overview page
+In System Manager, select *Cluster* in the left navigation pane and then select *Overview*. Select the *Data compute* tab at the top of the page.
+
+== 3. Add the DCN nodes and perform initial configuration
 
 xxx
+
+== 4. Finish setting up your cluster
+
+After you have added the DCN nodes and completed the initial network configuration, you can finish setting up your AIDE cluster. A panel on the right side of the page displays the remaining configuration steps needed to complete the AFX cluster setup.
+
+The steps with a check mark and the text grayed out have already been completed. You should focus on any of the steps with an arrow on the left and bold text need to be completed.
+
+.Steps
+
+. Configure link aggregation groups and VLANs
++
+Based on your configuration, this step may be required for your environment.
+
+. Configure network protocols
+
+. Update data compute software
+
+. Configure data engine networking
+
+. Create intercluster network interfaces
++
+This step is required if you plan to cataglog remote data.
+
+== 5. Complete the initial configuration
+
+After completing the initial cluster setup, you can complete the AIDE configuration by setting up the required licenses and authentication. See:
+
+* link:../install-setup/install-license-task.html[Install AIDE licenses in your AFX system]
+* link:../install-setup/configure-oidc.html[Configure OpenID Connect for ONTAP AIDE]
+
+
+
+
 
 When you set up AIDE with an existing AFX cluster, the DCNs are not automatically discovered and included in the cluster configuration as part of the standard AFX cluster setup workflow. You need to perform additional steps to discover the DCNs and configure the network settings for the AIDE cluster.
 
-== Finish setting up your cluster
-
-xxx
 
 == Related information
 
