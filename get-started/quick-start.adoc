@@ -14,19 +14,19 @@ To get up and running with your AI Data Engine system, you need to install your 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] Will AIDE be installed with a new or existing AFX cluster?
 
 [role="quick-margin-para"]
-You need to decide if AIDE and AFX will be installed together at the same time or if AIDE will be added to an existing AFX cluster.
+You need to decide if AIDE and AFX will be installed together at the same time or if AIDE will be integrated with an existing AFX cluster.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[Two] Install and set up your hardware
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Install and set up your hardware
 
 [role="quick-margin-para"]
 link:../install-setup/install-setup-workflow.html[Install and set up] your AFX hardware, including DCN compute nodes.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Three] Set up your cluster
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Set up your cluster
 
 [role="quick-margin-para"]
-Use System Manager to guide you through a quick and easy process to link:../install-setup/cluster-setup.html[set up your AI Data Engine cluster].
+Use System Manager to guide you through a quick and easy process to set up your cluster. Select either link:../install-setup/cluster-setup.html[Set up AIDE with a new AFX cluster] or link:../install-setup/setup-aide-existing-afx.html[Set up AIDE with an existing AFX cluster].
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Four] Set up workspaces and data access
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Set up workspaces and data access
 
 [role="quick-margin-para"]
 link:../workspaces/create-data-container.html[Set up a workspace and users for that workspace who can access AI Data Engine data].
