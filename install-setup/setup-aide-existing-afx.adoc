@@ -35,14 +35,14 @@ After the AIDE hardware has been installed, you can complete the AIDE cluster se
 
 == 2. Add the DCN nodes to the AIDE cluster
 
-After the AIDE hardware has been installed, you can add the DCN nodes to the AIDE cluster using ONTAP System  Manager. See link:../administer/dcn-add-node.html[Add Data Compute Nodes to an AI Data Engine cluster] for instructions on adding the nodes. Also note the following:
+After the AIDE hardware has been installed, you can add the DCN nodes to the AIDE cluster using ONTAP System  Manager. See link:../administer/dcn-add-node.html[Add Data Compute Nodes to an AI Data Engine cluster] for details about adding the nodes. Also note the following:
 
 * The nodes must be physically connected to the cluster switches. Exactly three DCNs are required when creating an AIDE cluster. 
 * You must have sufficient IP addresses for the DCN network and other configuration information to configure the network.
 
 == 3. Finish setting up your cluster
 
-After you have added the DCN nodes and completed the initial network configuration, you can finish setting up your AIDE cluster. A panel on the right side of the page displays the remaining configuration steps needed to complete the AFX cluster setup.
+After you have added the DCN nodes and completed the initial network configuration, you can finish setting up your AIDE cluster. A welcome panel on the right side of the page displays the remaining configuration steps to complete the AFX cluster setup.
 
 The steps with a check mark and the text grayed out have already been completed. You should focus on any of the steps with an arrow on the left and bold text need to be completed.
 
@@ -64,7 +64,7 @@ This step is required if you plan to cataglog remote data.
 
 == 4. Complete the initial configuration
 
-After completing the initial cluster setup, you can complete the AIDE configuration by setting up the required licenses and authentication. See:
+After completing the initial cluster setup, you can finish the AIDE configuration by setting up the required licenses and authentication. See:
 
 * link:../install-setup/install-license-task.html[Install AIDE licenses in your AFX system]
 * link:../install-setup/configure-oidc.html[Configure OpenID Connect for ONTAP AIDE]
