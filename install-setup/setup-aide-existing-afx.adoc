@@ -26,4 +26,5 @@ xxx
 
 == Related information
 
-xxx
+* https://docs.netapp.com/us-en/ontap-afx/[AFX documentation^]
+* link:../install-setup/cluster-setup.html[Set up AIDE with a new AFX cluster]

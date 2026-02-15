@@ -10,16 +10,16 @@ summary: ""
 :imagesdir: ../media/
 
 [.lead]
-You can optionally set up an AIDE cluster as part of deploying a new AFX cluster.
+You can optionally set up and integrate an AIDE cluster as part of deploying a new AFX cluster.
 
 [TIP]
-If you need to integrate a new AIDE cluster with an existing AFX cluster, see link:../install-setup/setup-aide-existing-afx.html[Set up AIDE with an existing AFX cluster^] instead.
+If you need to integrate a new AIDE cluster with an existing AFX cluster, see link:../install-setup/setup-aide-existing-afx.html[Set up AIDE with an existing AFX cluster] instead.
 
-== Prepare to set up your cluster
+== 1. Prepare to set up your cluster
 
 xxx
 
-=== Learn about AIDE and the setup process
+=== Learn about the AIDE setup process
 
 You should understand the AIDE architecture and the cluster setup process before you begin. The following resources provide information about AIDE and the cluster setup workflow:
 
@@ -32,13 +32,13 @@ Before setting up your AIDE cluster, you need to have the AIDE hardware installe
 
 * link:../install-setup/install-setup-workflow.html[Install your AIDE system]
 
-== Set up your AIDE cluster
+== 2. Set up your AIDE cluster
 
 When integrating AIDE with a new AFX cluster, the setup process is part of the standard AFX cluster setup workflow. During the AFX cluster setup, System Manager automatically discovers connected DCNs and includes them in the cluster configuration. See:
 
 * link:../install-setup/cluster-setup.html[Set up your ONTAP AIDE cluster]
 
-== Complete the initial AIDE configuration
+== 3. Complete the initial configuration
 
 After completing the initial cluster setup, you can complete the AIDE configuration by setting up the required licenses and authentication. See:
 
@@ -47,7 +47,8 @@ After completing the initial cluster setup, you can complete the AIDE configurat
 
 == Related information
 
-xxx
+* https://docs.netapp.com/us-en/ontap-afx/[AFX documentation^]
+* link:../install-setup/setup-aide-existing-afx.html[Set up AIDE with a new AFX cluster]
 
 //------------------------------------------------------------------------------
 [.big.red]*--- Ben's content from here to the end of the page ---*
