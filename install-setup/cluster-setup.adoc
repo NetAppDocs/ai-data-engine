@@ -10,7 +10,7 @@ summary: "You can optionally set up and integrate an AIDE cluster as part of dep
 :imagesdir: ../media/
 
 [.lead]
-You can optionally set up and integrate an AIDE cluster as part of deploying a new AFX cluster.
+You can optionally set up and integrate a new AIDE cluster as part of deploying a new AFX cluster.
 
 [TIP]
 If you need to integrate a new AIDE cluster with an existing AFX cluster, see link:../install-setup/setup-aide-existing-afx.html[Set up AIDE with an existing AFX cluster].
