@@ -2,24 +2,36 @@
 sidebar: sidebar
 permalink: administer/dcn-add-node.html
 keywords: aide, ai data engine, data compute node, dcn, add dcn, expand dcn cluster
-summary: "Add Data Compute Nodes (DCNs) to an existing AI Data Engine cluster using ONTAP System Manager."
+summary: ""
 ---
 = Add Data Compute Nodes to an AI Data Engine cluster
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-You can add new Data Compute Nodes (DCNs) to an existing AI Data Engine (AIDE) cluster using ONTAP System Manager. This expands compute capacity for the Metadata Engine and related services.
+You can add Data Compute Nodes (DCNs) as part of creating a new AI Data Engine (AIDE) cluster or expanding an existing cluster. In both cases, the add node workflow is essentially the same and can be performed using ONTAP System Manager.
 
-.Before you begin
+== Prepare to add DCN nodes
 
-* You need _storage administrator_ privileges to perform AIDE cluster expansion-related tasks.
-* Ensure the ONTAP cluster is already initialized and reachable from the cluster management LIF.
+There are several considerations when adding DCN nodes to an AIDE cluster.
+
+.Creating a new AIDE cluster
+
+Exactly three DCN nodes are required to create a new AIDE cluster. If you are expanding an existing cluster, you can add one or more nodes at a time.
+
+.Hardware installation and addressability
+
 * New DCN hardware is racked, powered on, and cabled to the cluster switches.
-* link:upgrades-aide-summary.html[DCN software is compatible with the ONTAP version].
 * You have an IP address range available for the DCN-ONTAP backend subnet.
+* Ensure the ONTAP cluster is already initialized and reachable from the cluster management LIF.
 
-NOTE: A minimum of three DCNs is required for an AIDE deployment. System Manager does not allow you to build a DCN cluster with fewer than three nodes.
+.System Manager credentials
+
+You need _storage administrator_ privileges to perform AIDE cluster expansion-related tasks.
+
+.Software compatibility
+
+* link:upgrades-aide-summary.html[DCN software is compatible with the ONTAP version].
 
 == Discover DCNs to be added
 

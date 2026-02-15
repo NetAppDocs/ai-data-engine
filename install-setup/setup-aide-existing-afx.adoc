@@ -22,10 +22,10 @@ You need to prepare for cluster setup by learning about AIDE and preparing the e
 
 You should understand the AIDE architecture and the cluster setup process before you begin. The following resources provide information about AIDE and the cluster setup workflow:
 
-* link:../get-started/learn-about.html[Learn about your AI Daa Engine system]
+* link:../get-started/learn-about.html[Learn about your AI Data Engine system]
 * link:../get-started/quick-start.html[Quick start for AI Data Engine]
 
-=== 2. Install the AIDE hardware
+=== Install the AIDE hardware
 
 Before setting up your AIDE cluster, you need to have the AIDE hardware installed and connected to the AFX cluster storage network. The AIDE hardware includes Data Compute Nodes (DCNs) which provide the AI data processing capabilities. See:
 
@@ -33,14 +33,14 @@ Before setting up your AIDE cluster, you need to have the AIDE hardware installe
 
 After the AIDE hardware has been installed, you can complete the AIDE cluster setup with ONTAP.
 
-== 3. Add the DCN nodes to the AIDE cluster
+== 2. Add the DCN nodes to the AIDE cluster
 
-After the AIDE hardware has been installed, you can add the DCN nodes to the AIDE cluster using ONTAP System  Manager. See link:..administer/dcn-add-node.html[Add Data Compute Nodes to an AI Data Engine cluster] for instructions on adding the nodes. Also note the following:
+After the AIDE hardware has been installed, you can add the DCN nodes to the AIDE cluster using ONTAP System  Manager. See link:../administer/dcn-add-node.html[Add Data Compute Nodes to an AI Data Engine cluster] for instructions on adding the nodes. Also note the following:
 
 * The nodes must be physically connected to the cluster switches. Exactly three DCNs are required when creating an AIDE cluster. 
 * You must have sufficient IP addresses for the DCN network and other configuration information to configure the network.
 
-== 6. Finish setting up your cluster
+== 3. Finish setting up your cluster
 
 After you have added the DCN nodes and completed the initial network configuration, you can finish setting up your AIDE cluster. A panel on the right side of the page displays the remaining configuration steps needed to complete the AFX cluster setup.
 
@@ -62,7 +62,7 @@ Based on your configuration, this step may be required for your environment.
 +
 This step is required if you plan to cataglog remote data.
 
-== 5. Complete the initial configuration
+== 4. Complete the initial configuration
 
 After completing the initial cluster setup, you can complete the AIDE configuration by setting up the required licenses and authentication. See:
 
