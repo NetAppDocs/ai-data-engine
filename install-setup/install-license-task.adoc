@@ -28,7 +28,7 @@ The Metadata Engine Basic license is typically factory-installed as part of the 
 
 You need to purchase and install the AI Data Engine license to access the premium services needed to activate the full capabilities of AIDE. The license unlocks your data compute nodes (DCNs), enabling AI features such as vectorization, governance guardrails, inferencing, and an integrated UI experience. The license includes a GPU count as well as an expiration date.
 
-=== Installation requirements
+=== License installation requirements
 
 You'll need to purchase the AIDE license and download the associated NLF file to your local system. You can then upload the file to your AFX storage system through System Manager. Also make sure you have the following:
 
