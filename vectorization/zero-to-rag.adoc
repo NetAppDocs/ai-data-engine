@@ -25,7 +25,7 @@ Go from a newly deployed AI Data Engine (AIDE) system to a working retrieval-aug
 As a storage administrator or security administrator, you want to prepare the environment in AIDE Console and ONTAP System Manager:
 
 * link:../workspaces/create-workspace.html[Create one or more workspaces] from local and remote data sources.
-* Configure global exclusions, classifiers, and guardrail policies in AIDE Console.
+* Configure classifiers and guardrail policies in AIDE Console.
 * Assign data engineer and data scientist access to the workspaces.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Explore workspace metadata
@@ -42,7 +42,6 @@ As a data engineer, you want to explore the workspace metadata using AIDE Consol
 As a data engineer, you want to turn the chosen subset into a RAG-ready collection:
 
 * link:create-data-collections.html[Create a data collection] from the workspace using selected filters.
-* Configure embedding and chunking options appropriate for the target LLM.
 * Publish the data collection and monitor indexing until it reaches `Ready` state.
 * link:observe-data-collections.html[Observe data collection status and vector footprint] as needed.
 
@@ -67,5 +66,6 @@ All roles collaborate to refine both data and governance:
 .What's next?
 
 * link:../guardrails/define-data-estate.html[Define your data estate and governance policies in AI Data Engine]
+* link:explore-workspace-metadata.html[Explore workspace metadata in AI Data Engine Console]
 * link:create-data-collections.html[Create data collections in AI Data Engine Console]
 * link:use-collections.html[Use data collections and RAG endpoints as a data scientist]

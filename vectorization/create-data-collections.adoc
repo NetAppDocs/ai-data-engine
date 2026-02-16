@@ -10,11 +10,13 @@ summary: "Create and publish data collections from workspace metadata in AI Data
 
 [.lead]
 //Workstream 2 focused
-Data collections are the core RAG building blocks in AI Data Engine (AIDE). As a data engineer, you define which files and objects belong in a collection, configure embedding and indexing options, and publish the collection so that applications can query it through a retrieval endpoint.
+Data collections are the core RAG building blocks in AI Data Engine (AIDE). As a data engineer, you define which files belong in a collection, configure embedding and indexing options, and publish the collection so that applications can query it through a retrieval endpoint. 
+
+You'll perform all data collection tasks in the AI Data Engine Console (`https://<cluster_management_ip>/console`).
 
 == Before you begin
 
-* You need _data engineer_ privileges in AI Data Engine Console (`https://<cluster_management_ip>/console`) and access to at least one workspace.
+* You need _data engineer_ privileges in AI Data Engine Console and access to at least one workspace.
 * You have access to at least one workspace with metadata extracted and in `Ready` state.
 * You have explored the workspace metadata and identified queries or filters that define meaningful subsets of data.
 * The `AIPVS - Vectorization and Guardrails` license is installed and inferencing features are enabled.
@@ -22,92 +24,73 @@ Data collections are the core RAG building blocks in AI Data Engine (AIDE). As a
 == Create a data collection from workspace metadata
 
 .Steps
-. In AIDE Console, navigate to *Workspaces* and select the workspace that contains your target data.
-. Go to the *Data collections* tab.
-. Select *Create data collection*.
-. In the *Define collection* step:
-.. Enter a *Name* and *Description* for the collection (for example, `Support_KB_RAG_EN`).
+. Navigate to *Data Curator > Workspaces* and select the workspace that contains your target data.
+. Select *Add data collection*.
+. In the *Create new data collection* page, do the following:
+.. Enter a name and description for the collection (for example, `Support_KB_RAG_EN`).
 .. Choose whether the collection should be:
-*** *Static*: A fixed snapshot of the matched items.
-*** *Dynamic* (if supported): Automatically tracks new items that match the same criteria during workspace refreshes.
+*** *Dynamic*: New files are automatically identified and added to the data collection based on the filtering criteria you define. This happens during workspace refreshes.
+*** *Static*: You choose which files are included in the collection. Files can be edited until as long as data collection remains in `draft` state. After the data collection moves to `Published` state, it cannot be edited.
 . Specify the source subset:
-.. Start from a saved metadata query, or
-.. Build a query in this step by applying filters (path, file type, timestamps, and other attributes).
-. Review the estimated item count and approximate size.
+.. Use keywords and filters (file type, timestamps, and other attributes) to find the relevant files to include.
+. Add and save these files to the data collection.
+. Select *Save* to finalize the collection.
+//Add "files and objects" with S3 support
 
 .Result
-You have defined the logical scope of the data collection. The actual embeddings and vector index will be created during publishing.
+You have defined the logical scope of the data collection and added the required files to it. The actual embeddings and vector index will be created during publishing.
 
 TIP: Create small, focused collections (for example, per use case or domain) rather than a single "everything" collection. This improves retrieval relevance and manageability.
 
-== Configure embedding and indexing settings
-
-.Steps
-. In the *Embedding and indexing* step of the collection wizard:
-.. Choose an *Embedding model* from the supported list.
-.. Select embedding dimensionality if the model offers multiple options (for example, 512, 768, 1024).
-.. Configure *Chunking*:
-*** Choose granularity (sentence, paragraph, page, or full file).
-*** Adjust max tokens or characters per chunk, if available.
-.. (Optional) Set language or MIME-type filters if you want to exclude certain file types from embedding.
-. Review any system-provided estimates:
-.. Expected embedding size.
-.. Expected vector DB footprint.
-
-.Result
-The collection now has a complete indexing configuration that AIDE will use to generate embeddings and build the vector index.
-
-NOTE: Changing embedding settings after publishing typically requires a re-publish of the collection, which re-processes the content.
+//== Configure embedding and indexing settings
+//
+//.Steps
+//. In the *Embedding and indexing* step of the collection wizard:
+//.. Choose an *Embedding model* from the supported list.
+//.. Select embedding dimensionality if the model offers multiple options (for example, 512, 768, 1024).
+//.. Configure *Chunking*:
+//*** Choose granularity (sentence, paragraph, page, or full file).
+//*** Adjust max tokens or characters per chunk, if available.
+//.. (Optional) Set language or MIME-type filters if you want to exclude certain file types from embedding.
+//. Review any system-provided estimates:
+//.. Expected embedding size.
+//.. Expected vector DB footprint.
+//
+//.Result
+//The collection now has a complete indexing configuration that AIDE will use to generate embeddings and build the vector index.
+//
+//NOTE: Changing embedding settings after publishing typically requires a re-publish of the collection, which re-processes the content.
 
 == Publish a data collection
 
-Publishing runs the indexing pipeline: canonicalization, classification (if enabled), embedding generation, and vector DB indexing.
-
-.Steps
-. From the *Data collections* tab for the workspace, select your new collection.
-. Click *Publish* (or *Start indexing*).
-. Confirm the settings and start the job.
-
-.Result
-The collection enters a `Publishing` or `Processing` state. AIDE Console and ONTAP System Manager both show job progress:
-
-* In AIDE Console, the collection's status updates and a progress bar appears.
-* In ONTAP System Manager, corresponding jobs appear under *Data Engine > Activity > Jobs* and under the workspace's *Activity* tab.
+Publish the data collection to make it queryable by AI applications through a RAG retrieval endpoint. Publishing generates vector embeddings from your selected files and indexes them for semantic search. After the collection reaches `Ready` state, its endpoint becomes available for data scientists to integrate into notebooks, pipelines, and AI applications for retrieval-augmented generation (RAG) and search.
 
 TIP: For large collections, consider scheduling initial publish and major re-publishes during off-peak times to minimize resource contention.
 
-== Monitor publish progress and resolve failures
-
 .Steps
-. In AIDE Console, open the collection detail view.
-. Observe:
-.. Current status (`Publishing`, `Ready`, `Failed`).
-.. Progress indicators and counts.
-. If the collection fails:
-.. Review the error message in the collection detail.
-.. Open the job details or logs (where available) to identify causes such as:
-*** Unsupported file types.
-*** Access or permission errors.
-*** Resource limits or timeouts.
-.. Adjust the collection definition or workspace configuration as needed (for example, exclude problematic paths or file types).
-.. Publish the collection again.
+. Navigate to *Data Curator > Data collections* and select the options menu for your data collection.
+. Select *Publish*.
+. Select a default or custom optimization configuration.
+//LOTS OF INFO HERE FOR WORKSTREAM RELEASES 
+. Select *Publish* to initiate the data transformation.
+. In AIDE Console, open the collection detail view (*Data Curator > Data collections*) for status updates.
 
 .Result
 The collection reaches the `Ready` state and is available for use by downstream applications and data scientists.
 
 == Update or delete a data collection
 
-Over time you might need to refine or retire collections.
+Over time you might need to refine or retire collections. Refining a collection might involve adjusting filters to add or remove files, changing embedding settings, or updating the collection description. Deleting a collection removes it permanently and makes its retrieval endpoint unavailable.
 
-=== Update a collection definition
+=== Update a data collection
 
 .Steps
-. In AIDE Console, open the workspace and select the *Data collections* tab.
+. Navigate to *Data Curator > Data collections*.
 . Select the collection you want to modify.
 . Choose *Edit*.
 . Adjust:
 .. Filters (paths, file types, classification tags).
-.. Static/dynamic behavior (if supported).
+.. Static/dynamic behavior.
 .. Embedding and chunking settings.
 . Save your changes.
 . Publish the collection again so that the new definition and embeddings take effect.
@@ -117,15 +100,15 @@ A new indexing job runs with the updated configuration, and the collection retur
 
 === Delete a collection
 
+Deleting a collection is permanent. Ensure that no production application still depends on the collection's retrieval endpoint before deleting it.
+
 .Steps
-. From the *Data collections* tab, select the collection.
+. Navigate to *Data Curator > Data collections*, and select the options menu for the collection.
 . Choose *Delete*.
 . Confirm the deletion.
 
 .Result
-The collection definition and its embeddings are removed from AI Data Engine. Applications attempting to query the former retrieval endpoint will fail once the collection is removed.
-
-CAUTION: Deleting a collection is permanent. Ensure that no production application still depends on the collection's retrieval endpoint before deleting it.
+The collection definition and its embeddings are removed from AI Data Engine. Applications attempting to query the former retrieval endpoint will fail after the collection is removed.
 
 == What's next?
 

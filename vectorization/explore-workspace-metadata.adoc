@@ -10,7 +10,7 @@ summary: "As a data engineer, use AI Data Engine Console to explore workspace me
 
 [.lead]
 //Workstream 2 focused
-// Workstream 3: guardrails and policies is commented out
+// Needs validation. Last two sections especially
 As a data engineer, your first task in AI Data Engine (AIDE) is to understand what data is available in your workspaces. You use AIDE Console to query the metadata catalog, search for relevant files and objects, and identify subsets of data to turn into data collections.
 
 == Before you begin
@@ -35,48 +35,40 @@ As a data engineer, your first task in AI Data Engine (AIDE) is to understand wh
 .Result
 You are logged into AIDE Console and see only those workspaces to which you have been granted access.
 
-NOTE: Data engineers cannot access ONTAP System Manager and do not see cluster-level infrastructure details.
-
 == View your accessible workspaces
 
 .Steps
-. In AIDE Console, navigate to *Workspaces*.
-. Review the list of workspaces you can access:
-.. Workspace name and description.
-.. Size and item counts.
-.. Guardrail policy (if shown).
-.. Last refreshed time.
+. In AIDE Console, navigate to *Data Curator > Workspaces*.
+. Review the list of workspaces you can access.
 . Select a workspace to open its details.
 
 .Result
-You now have a scoped view of the data estate that storage administrators have made available for your projects.
+You now have a workspace-scoped view of the data estate that storage administrators have made available for your projects.
 
-TIP: Use workspace descriptions and naming conventions (for example, `CustomerSupportKB`, `Clinical_Notes_Anonymized`) to quickly locate the best starting point for your AI use case.
-
-== Search and filter metadata in a workspace
-
-Use the workspace metadata catalog to find files and objects that match your use case.
-
-.Steps
-. From the workspace details page, open the *Metadata* or *Search* view (name may vary by deployment).
-. Start with a simple query:
-.. Filter by *Path* or *Name* (for example, files under `/customer_support/kb/`).
-.. Filter by file type (for example, `.pdf`, `.docx`, `.html`).
+//== Search and filter metadata in a workspace
+//
+//Use the workspace metadata catalog to find files and objects that match your use case.
+//
+//.Steps
+//. From the workspace details page, open the *Metadata* or *Search* view (name may vary by deployment).
+//. Start with a simple query:
+//.. Filter by *Path* or *Name* (for example, files under `/customer_support/kb/`).
+//.. Filter by file type (for example, `.pdf`, `.docx`, `.html`).
 // Workstream 3: guardrails and policies to comment out
-. Add filters based on classifications and attributes:
-.. Apply classifier tags (for example, *PII detected = false* to screen out sensitive items).
-.. Filter by modification time or creation time to focus on recent data.
-.. Filter by SVM or source volume if the workspace spans multiple storage systems.
-. Refine the query iteratively:
-.. Add or remove filters to narrow or broaden the result set.
-.. Sort by size, last modified, or other relevant fields.
-. (Optional) Save the query in Console if your deployment supports saved searches.
-
-.Result
-You have a filtered list of candidate files and objects that could feed a data collection for RAG or other AI tasks.
+//. Add filters based on classifications and attributes:
+//.. Apply classifier tags (for example, *PII detected = false* to screen out sensitive items).
+//.. Filter by modification time or creation time to focus on recent data.
+//.. Filter by SVM or source volume if the workspace spans multiple storage systems.
+//. Refine the query iteratively:
+//.. Add or remove filters to narrow or broaden the result set.
+//.. Sort by size, last modified, or other relevant fields.
+//. (Optional) Save the query in Console if your deployment supports saved searches.
+//
+//.Result
+//You have a filtered list of candidate files and objects that could feed a data collection for RAG or other AI tasks.
 
 // Workstream 3: guardrails and policies to comment out
-TIP: When working with sensitive domains (such as healthcare or finance), always combine path filters with classifier-based filters so that you do not unintentionally include regulated content.
+//TIP: When working with sensitive domains (such as healthcare or finance), always combine path filters with classifier-based filters so that you do not unintentionally include regulated content.
 
 == Inspect individual items
 
