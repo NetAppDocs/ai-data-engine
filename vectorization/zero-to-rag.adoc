@@ -15,7 +15,7 @@ Go from a newly deployed AI Data Engine (AIDE) system to a working retrieval-aug
 
 .Before you begin
 
-* Data Compute Nodes are installed and attached to the ONTAP cluster.
+* Data compute nodes (DCNs) are installed and added to the ONTAP cluster.
 * AI Data Engine software is installed and licensed for vectorization and guardrails.
 * link:../install-setup/configure-oidc.html[OpenID Connect (OIDC)] is configured and roles are mapped for admin, data engineer, and data scientist roles.
 
@@ -24,8 +24,8 @@ Go from a newly deployed AI Data Engine (AIDE) system to a working retrieval-aug
 [role="quick-margin-para"]
 As a storage administrator or security administrator, you want to prepare the environment in AIDE Console and ONTAP System Manager:
 
-* Configure global exclusions, classifiers, and guardrail policies in AIDE Console.
 * link:../workspaces/create-workspace.html[Create one or more workspaces] from local and remote data sources.
+* Configure global exclusions, classifiers, and guardrail policies in AIDE Console.
 * Assign data engineer and data scientist access to the workspaces.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Explore workspace metadata

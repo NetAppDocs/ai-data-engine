@@ -16,7 +16,7 @@ If you're a storage administrator or data engineer, you can observe data collect
 
 == Before you begin
 
-* You need either _storage administrator_ privileges in ONTAP System Manager or _data engineer_ privileges in AI Data Engine Console to observe data collections.
+* You need either _storage administrator_ privileges in ONTAP System Manager or _data engineer_ privileges in AI Data Engine Console (`https://<cluster_management_ip>/console`)to observe data collections.
 * At least one workspace exists with successfully extracted metadata.
 * Data engineers have created and published at least one data collection from AI Data Engine Console.
 * The `AIPVS - Vectorization and Guardrails` license is installed and inferencing features are enabled, so that vectorization and retrieval endpoints are active.

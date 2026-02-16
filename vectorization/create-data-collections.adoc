@@ -14,7 +14,7 @@ Data collections are the core RAG building blocks in AI Data Engine (AIDE). As a
 
 == Before you begin
 
-* You need _data engineer_ privileges in AI Data Engine Console and access to at least one workspace.
+* You need _data engineer_ privileges in AI Data Engine Console (`https://<cluster_management_ip>/console`) and access to at least one workspace.
 * You have access to at least one workspace with metadata extracted and in `Ready` state.
 * You have explored the workspace metadata and identified queries or filters that define meaningful subsets of data.
 * The `AIPVS - Vectorization and Guardrails` license is installed and inferencing features are enabled.
