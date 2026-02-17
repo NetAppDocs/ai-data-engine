@@ -10,14 +10,13 @@ summary: "You can use System Manager to configure OpenID Connect (OIDC) authenti
 :imagesdir: ../media/
 
 [.lead]
-You can use System Manager to configure OpenID Connect (OIDC) authentication for an AI Data Engine (AIDE) cluster. This provides a secure and centralized login through an external Identity Provider (IdP).
+As an ONTAP cluster administrator, you can use System Manager to configure OpenID Connect (OIDC) authentication for an AI Data Engine (AIDE) cluster. This provides a secure and centralized login through an external Identity Provider (IdP).
 
 [CAUTION]
-You must configure OIDC to access the AI Data Engine console. If OIDC is not configured, you will not be able to log in to the console.
+You must configure OIDC to access the AI Data Engine console. If OIDC is not configured, the console will be inaccessible to you and the data engineers and data scientists.
 
 You should be aware of the following about OIDC configuration for AIDE access:
 
-* OIDC can be configured after cluster creation and is not part of the initial setup workflow.
 * If you need to modify the OIDC configuration, you must first disable OIDC in System Manager, then edit and re-enable the configuration.
 * Removing OIDC will revert System Manager to local ONTAP user authentication.
 

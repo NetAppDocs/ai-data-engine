@@ -32,7 +32,7 @@ You need to purchase and install the AI Data Engine license to access the premiu
 
 You'll need to purchase the AIDE license and download the associated NLF file to your local system. You can then upload the file to your AFX storage system through System Manager. Also make sure you have the following:
 
-* Administrator credentials to sign in to AFX System Manager
+* Administrator credentials to sign in to ONTAP System Manager
 * An AFX cluster running ONTAP 9.18.1 and later
 
 == Install a license on your AFX system
