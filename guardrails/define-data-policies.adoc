@@ -4,7 +4,7 @@ permalink: guardrails/define-data-policies.html
 keywords: aide, policies, global exclusion, classifiers, guardrails, ai data engine, data governance
 summary: "Define global data policies in AI Data Engine Console to control which data can be used for AI, how it is classified, and how guardrails are enforced during queries."
 ---
-= Define your data estate and governance policies in AI Data Engine
+= Define your guardrail policies in AI Data Engine for your data estate
 :icons: font
 :imagesdir: ../media/
 
@@ -12,7 +12,7 @@ summary: "Define global data policies in AI Data Engine Console to control which
 // Workstream 3: guardrails and policies
 As a data or platform owner, you use AI Data Engine (AIDE) Console to define which data is in scope for AI, which data is always off-limits, and what safety rules apply when that data is used for classification and retrieval-augmented generation (RAG).
 
-Use these procedures to define those policies in AIDE Console so that ONTAP System Manager can enforce them when storage administrators create workspaces.
+Use these procedures to define those policies in AIDE Console so that ONTAP System Manager can enforce them on all data in workspaces.
 
 == Before you begin
 
@@ -68,20 +68,23 @@ Classifiers analyze both metadata and content to annotate files and objects (for
 
 .About this task
 
-Classifier behavior is controlled globally in AIDE Console. All enabled classifiers run on every workspace. Because they are globally applied, they cannot be modified for an individual workspace. They can be enabled or disabled globally only. 
-
-NOTE: You can only use the classifiers provided with AIDE. Custom classifiers are not supported.
+Classifier behavior is controlled globally in AIDE Console. All enabled classifiers run on every workspace. Because they are globally applied, they cannot be modified for an individual workspace. They can be enabled or disabled globally only.
 
 .Steps
 
 . In AIDE Console, go to *Data Guardrails > Classifiers*.
-. View existing classifier categories. There are two major categories of classification:
-** Content or data classification: Detects sensitive content within the files.
-** Document classification: Classifies the type of document based on the content.
-. To enable or disable a classifier:
-.. Select the *Classifiers list* tab.
-.. Select an individual classifier (for example, *PII*) or all classifiers to make changes in bulk.
-.. Change the classifier state to *Enable* or *Disable*.
+. View the existing classifier categories. There are two major categories of classification:
+** Content or data: Detects sensitive data within files.
+** Document: Classifies the type of document based on the content.
+. Determine if the default classifier subcategories are sufficient or if you want to create your own subcategory.
+** If you are using a default classifier subcategory (for example, *General Privacy*): 
+... Select the category name in *Classifier categories* to reveal the associated classifiers.
+... Examine the list of classifiers and do any of the following:
+... Click *Add* to find and add unlisted classifiers from the complete list of available classifiers.
+** If you want to create a custom category, select image:icon_add.gif[blue plus sign followed by the word Add].
+... Add a unique name, description, and assign available classifiers to the category.
+... Select *Add*
+. For your selected category, select image:icon_kabob_horizonatal.png[three horizontal blue dots] for each classifier and choose *Enable* or *Disable*. You can also select all rows to make state changes in bulk.
 
 .Result
 * All newly created and existing workspaces run the enabled classifiers during metadata processing.
@@ -99,44 +102,45 @@ Typical guardrail behaviors include:
 
 .About this task
 
-Guardrail policies are created and managed only in AIDE Console.
+You create and manage guardrail policies only in AIDE Console.
 
 You can only associate workspaces in ONTAP System Manager with a single guardrail policy at a time.
 
 .Steps
 . In AIDE Console, navigate to *Data guardrails* > *Guardrail policies*.
 . Select *Add*.
-. Enter a *Name* and *Description* that clearly describe the scope (for example, `Customer PII redaction for support KB`).
+. Enter a name and description that clearly describe the scope (for example, `Customer PII redaction for support KB`).
 . Configure data classifier-driven conditions required for guardrail activation:
-.. Choose the classifier category or tag (for example, specific PII types) and select *Add*.
+.. Define the conditions for guardrail activation: 
+...Choose the classifier category and associated classifiers (for example, specific PII types) for each condition.
+... Add and define additional conditions as needed.
 .. Define actions for the guardrail policy, such as anonymizing content or blocking and removing a file from a data collection.
 . Select the workspace that the guardrail will be applied to.
 . Set the policy state:
+** *Enabled*: Activates the policy immediately.
+** *Test Mode*: Allows you to validate the impact of the policy before activating it.
+** *Disabled*: Saves the guardrail without enforcing it.
+. Select *Add* to save the policy and apply it to the workspace.
+
 +
 TIP: Use *Test Mode* with a pilot workspace and a non-production data collection to understand how many responses would be affected before enabling strict enforcement.
 
-.. *Enabled*: Activates the policy immediately.
-.. *Test Mode*: Allows you to validate the impact of the policy in simulation.
-.. *Disabled*: Saves the guardrail without enforcing it.
-. Select *Add* to save the policy and apply it to the workspace.
-
 .Result
-The new guardrail policy is attached to the selected workspace.
+The new guardrail policy is active and scoped to the selected workspace.
 
 == How policies interact with workspaces
 
 After policies are defined:
 
-* The storage admin uses ONTAP System Manager to create workspaces, pick data sources, and associate a guardrail policy.
-* Global exclusions determine which volumes appear at all.
+* The storage admin uses ONTAP System Manager to create workspaces, select data containers, and associate a guardrail policy.
 * Classifiers run automatically on workspace content based on what you've enabled.
 * Guardrails attached to the workspace influence how retrieval endpoints behave.
 
 For data engineers and data scientists:
 
-* The visible data estate (workspaces and data collections) is already filtered by global exclusions.
-* Metadata they query (for example, PII tags) is driven by the classifiers you enabled.
-* The responses their RAG pipelines receive are constrained by the guardrails you configured at the workspace level.
+* The visible data estate (workspaces and data collections) is already filtered by role assignment.
+* Metadata you query (for example, PII tags) is driven by the classifiers that are enabled.
+* The responses your RAG pipelines receive are constrained by the guardrails configured at the workspace level.
 
 == Related information
 
