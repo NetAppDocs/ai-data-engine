@@ -9,9 +9,9 @@ summary: ""
 :imagesdir: ../media/
 
 [.lead]
-You can add Data Compute Nodes (DCNs) as part of creating a new AI Data Engine (AIDE) cluster or expanding an existing cluster. In both cases, the workflow consists of discovering and configuring the nodes using ONTAP System Manager.
+You can add Data Compute Nodes (DCNs) as part of creating a new AI Data Engine (AIDE) cluster or expanding an existing cluster. The workflow consists of discovering and configuring the nodes using ONTAP System Manager.
 
-== Prepare to add DCN nodes
+== Prepare to add nodes
 
 There are several considerations when adding DCN nodes.
 
@@ -49,11 +49,7 @@ If a node is incompatible:
 
 == Add the Data Compute Nodes
 
-xxx
-
-.About this task
-
-xxx
+You add DCN nodes as part of creating a new AIDE cluster or expanding an existing cluster.
 
 .Steps
 
@@ -65,7 +61,7 @@ The list contains discovered nodes that are not yet part of the AIDE cluster
 
 . Alternatively, you can select *Cluster* and *Overview* and the *Data compute* tab to see the list.
 
-. Select *Add* above the list of nodes at the bottom of the data compute page.
+. At the bottom of the data compute page, select *Add* above the list of nodes .
 
 . In the *Add data compute nodes* dialog, select the DCN nodes you want to add.
 +
@@ -73,8 +69,8 @@ You can optionally rename individual nodes before adding them.
 
 . If this is the first time you're adding nodes and no backend subnet exists, select *Add subnet* and provide:
 +
-* A subnet name (for internal use)
-* Subnet address and mask (for example, `10.10.40.0/24`)
+* Subnet name (for internal use)
+* Subnet address and mask
 * IP address range for DCN and ONTAP nodes on this backend network
 +
 System Manager validates the range includes enough free IP addresses for all DCNs being added and all ONTAP nodes in the cluster and additional cluster-level floating IPs used for DCN to ONTAP communication.
@@ -96,14 +92,13 @@ The single IP will be load-balanced across DCNs and used as the frontend address
 
 . Review the selected nodes, backend subnet, and Data Engine service interface settings.
 
-. Select *Add*.
-
-. Wait for the operation to complete. System Manager will perform the following actions:
+. Select *Add* and wait for the operation to complete; System Manager will perform the following actions:
 +
 * Add the selected nodes to the DCN cluster
 * Provision the backend networking and join nodes to the Kubernetes-based DCN cluster
 * Updates internal metadata for DCN discovery
 
-. After completion, select *Cluster* and *Overview*; under the *Data compute* tab confirm the new DCNs appear as part of the cluster and are *Healthy*.
-
-* Verify the dashboard *Health* card shows the updated node count.
+. After completion, select *Cluster* and *Overview* and confirm:
+.. Under *Data compute* the new DCNs appear as part of the cluster
+.. All nodes are *Healthy*
+.. Verify the dashboard *Health* card shows the updated node count
