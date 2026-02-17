@@ -49,10 +49,8 @@ entries:
       url: /install-setup/power-on-hardware.html   
   - title: Set up your AIDE system
     entries:     
-    - title: Set up AIDE with a new AFX cluster
-      url: /install-setup/cluster-setup.html
-    - title: Set up AIDE with an existing AFX cluster
-      url: /install-setup/setup-aide-existing-afx.html
+    - title: Set up AIDE with an AFX cluster
+      url: /install-setup/cluster-setup-afx.html
     - title: Install an AIDE license
       url: /install-setup/install-license-task.html
     - title: Configure OIDC authentication
