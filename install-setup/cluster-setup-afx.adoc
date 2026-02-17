@@ -1,5 +1,5 @@
 ---
-permalink: install-setup/cluster-setup.html
+permalink: install-setup/cluster-setup-afx.html
 sidebar: sidebar
 keywords: 
 summary: ""
