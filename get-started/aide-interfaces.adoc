@@ -28,7 +28,7 @@ The AI Data Engine Console is a dedicated interface for data engineers and data 
 
 * Data engineer: Uses the AI Data Engine Console for day-to-day tasks including data discovery, collection management, and pipeline configuration.
 * Data scientist: Uses the AI Data Engine Console for day-to-day tasks including data exploration, curation, and integration with AI/ML workflows.
-* Storage administrator: Typically does not use this interface.
+* Storage administrator: Uses the AI Data Engine Console to define classifiers and guardrail policies.
 
 == REST API
 
