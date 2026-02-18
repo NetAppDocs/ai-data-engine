@@ -14,12 +14,12 @@ Data collections are the core RAG building blocks in AI Data Engine (AIDE). As a
 
 You'll perform all data collection tasks in the AI Data Engine Console (`https://<cluster_management_ip>/console`).
 
-== Before you begin
+.Before you begin
 
 * You need _data engineer_ privileges in AI Data Engine Console.
 * You have access to at least one workspace with metadata extracted and in `Ready` state.
 * You have explored the workspace metadata and identified queries or filters that define meaningful subsets of data.
-* The `AIPVS - Vectorization and Guardrails` license is installed and inferencing features are enabled.
+* The AI Data Engine software license is installed and inferencing features are enabled.
 
 == Create a data collection from workspace metadata
 
@@ -34,14 +34,14 @@ You'll perform all data collection tasks in the AI Data Engine Console (`https:/
 . Specify the source subset:
 .. Use keywords and filters (file type, timestamps, and other attributes) to find the relevant files to include.
 +
-NOTE: You can click on a file name to open a preview window of the content.
+NOTE: You can select a file name to open a preview window of the content.
 
-. Add and save these files to the data collection.
+. Add these files to the data collection.
 . Select *Save* to finalize the collection.
 //Add "files and objects" with S3 support
 
 .Result
-You have defined the scope of the data collection and added the required files to it. The embeddings and vector index will be created during publishing.
+You have defined the scope of the data collection and added the required files to it. AIDE generates embeddings and builds the vector index when you publish the collection.
 
 TIP: Create small, focused collections (for example, per use case or domain) rather than a single "everything" collection. This improves retrieval relevance and manageability.
 
@@ -62,7 +62,7 @@ TIP: For large collections, consider scheduling initial publish and major re-pub
 .Result
 The collection reaches the `Ready` state and is available for use by downstream applications and data scientists.
 
-From *Data Curator > Data collections*, you can select *Copy URI* to obtain the information needed to access the data collection using anAPI. 
+From *Data Curator > Data collections*, you can select *Copy URI* to obtain the information needed to access the data collection using an API. 
 
 == Update or delete a data collection
 
@@ -99,6 +99,6 @@ The collection definition and its embeddings are removed from AI Data Engine. Ap
 
 == What's next?
 
-* link:use-collections.html[Use data collections and retrieval endpoints as a data scientist]
-* link:observe-data-collections.html[Observe data collection status and vector footprint]
+//* link:use-collections.html[Use data collections and retrieval endpoints as a data scientist]
+* link:observe-data-collections.html[Observe data collections]
 * link:zero-to-rag.html[Zero-to-RAG quick start for AI Data Engine]

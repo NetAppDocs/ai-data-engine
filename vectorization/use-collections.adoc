@@ -18,7 +18,7 @@ Use these procedures to find collections you can access and understand how to us
 * You need _data scientist_ privileges in AI Data Engine Console and access to at least one workspace.
 * A storage administrator has granted you user or group access to one or more workspaces.
 * Data engineers have created and published at least one ready data collection in those workspaces.
-* The `AIPVS - Vectorization and Guardrails` license is installed and inferencing features are enabled.
+* The AI Data Engine software license is installed and inferencing features are enabled.
 * You know the cluster management address for your AI Data Engine deployment.
 
 == Sign in to AIDE Console as a data scientist

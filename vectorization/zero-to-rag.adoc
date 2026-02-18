@@ -20,7 +20,6 @@ Go from a newly deployed AI Data Engine (AIDE) system to a working retrieval-aug
 * link:../install-setup/configure-oidc.html[OpenID Connect (OIDC)] is configured and roles are mapped for admin, data engineer, and data scientist roles.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] Define data scope and governance
-
 [role="quick-margin-para"]
 As a storage administrator or security administrator, you want to prepare the environment in AIDE Console and ONTAP System Manager:
 
@@ -29,7 +28,6 @@ As a storage administrator or security administrator, you want to prepare the en
 * Assign data engineer and data scientist access to the workspaces.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Explore workspace metadata
-
 [role="quick-margin-para"]
 As a data engineer, you want to explore the workspace metadata using AIDE Console:
 
@@ -37,7 +35,6 @@ As a data engineer, you want to explore the workspace metadata using AIDE Consol
 * Define one or more logical subsets of data that should feed RAG (for example, support articles, product manuals, or anonymized clinical notes).
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Create and publish a data collection
-
 [role="quick-margin-para"]
 As a data engineer, you want to turn the chosen subset into a RAG-ready collection:
 
@@ -47,7 +44,6 @@ As a data engineer, you want to turn the chosen subset into a RAG-ready collecti
 * link:observe-data-collections.html[Observe data collection status and vector footprint] as needed.
 
 //.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Connect a RAG client to the collection
-//
 //[role="quick-margin-para"]
 //As a data scientist or application developer, you want to integrate the collection into notebooks or applications:
 //
@@ -56,7 +52,6 @@ As a data engineer, you want to turn the chosen subset into a RAG-ready collecti
 //* Call the endpoint from notebooks or services and feed retrieved snippets into an LLM as context.
 //
 //.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five] Iterate on relevance and safety
-//
 //[role="quick-margin-para"]
 //All roles collaborate to refine both data and governance:
 //
@@ -66,7 +61,7 @@ As a data engineer, you want to turn the chosen subset into a RAG-ready collecti
 
 .What's next?
 
-* link:../guardrails/define-data-estate.html[Define your data estate and guardrail policies in AI Data Engine]
+* link:../guardrails/define-data-policies.html[Define your data estate and guardrail policies in AI Data Engine]
 * link:explore-workspace-metadata.html[Explore workspace metadata in AI Data Engine Console]
 * link:create-data-collections.html[Create data collections in AI Data Engine Console]
 //* link:use-collections.html[Use data collections and RAG endpoints as a data scientist]

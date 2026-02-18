@@ -21,7 +21,7 @@ As a data engineer, your first task in AI Data Engine (AIDE) is to understand wh
 ** Assigned your user or group access to the relevant workspaces.
 * Metadata extraction for the workspace has completed and the workspace is in `Ready` state.
 // Workstream 3: guardrails and policies to comment out
-* Classifiers are enabled as needed, so that metadata includes classification tags (for example, PII indicators).
+* Classifiers are enabled, so that metadata includes classification tags (for example, PII indicators).
 
 == Sign in to AIDE Console as a data engineer
 
