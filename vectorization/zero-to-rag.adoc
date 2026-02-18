@@ -61,7 +61,7 @@ All roles collaborate to refine both data and governance:
 
 * Data scientists review answer quality and identify gaps.
 * Data engineers adjust collection filters, embedding, and chunking, or create additional collections for new use cases.
-* Administrators tune classifiers, exclusions, and guardrail policies, moving from test to enforced modes as confidence grows.
+* Administrators tune classifiers, exclusions, and guardrail policies, moving from test to active modes.
 
 .What's next?
 

@@ -30,7 +30,7 @@ As a data engineer, your first task in AI Data Engine (AIDE) is to understand wh
 +
 `https://<cluster_management_ip>/console`
 . Authenticate through your organization's OIDC provider.
-. Confirm that your role is recognized as a data engineer (for example, by the available workspace and data collection actions).
+. Confirm that your role is recognized as a data engineer (for example, by the available workspace and data collection actions). For more information see, link:../get-started/aide-components-data-engineer.html[Learn how AI Data Engine data engineers work with AIDE components]. 
 
 .Result
 You are logged into AIDE Console and see only those workspaces to which you have been granted access.

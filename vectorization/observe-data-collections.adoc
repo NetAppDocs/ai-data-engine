@@ -21,9 +21,9 @@ If you're a storage administrator or data engineer, you can observe data collect
 * Data engineers have created and published at least one data collection from AI Data Engine Console.
 * The `AIPVS - Vectorization and Guardrails` license is installed and inferencing features are enabled, so that vectorization and retrieval endpoints are active.
 
-== View all data collections (admin view in System Manager)
+== View all data collections 
 
-System Manager provides a cluster-wide view of data collections and their footprint but does not allow admins to create or modify them.
+For storage administrators, System Manager provides a cluster-wide view of data collections and their footprint but does not allow admins to create or modify them.
 
 .Steps
 . In ONTAP System Manager, navigate to *Data Engine > Data collections*.
@@ -43,9 +43,9 @@ You now have a high-level view of all data collections in the cluster and their 
 
 TIP: Use the search and filter controls to focus on a single workspace, a status (such as `Error`), or a specific collection name.
 
-== Inspect a single data collection (admin view)
+== Inspect a single data collection
 
-For deeper insight into a particular data collection, open its details page in ONTAP System Manager.
+For storage administrators, you can gain deeper insight into a particular data collection by opening its details page in ONTAP System Manager.
 
 .Steps
 . From *Data Engine > Data collections*, select the name of a data collection.
@@ -82,7 +82,7 @@ You can track the lifecycle of data collections, identify stalled or failed jobs
 
 TIP: When a data collection remains in `Publishing` state for an extended period, check for a corresponding long-running job in the Activity page before assuming a failure.
 
-== Observe data collections from AIDE Console (data engineer view)
+== Observe data collections from AIDE Console 
 
 Data engineers typically monitor data collections directly from AIDE Console, where they are created and published.
 

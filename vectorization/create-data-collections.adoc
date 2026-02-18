@@ -16,7 +16,7 @@ You'll perform all data collection tasks in the AI Data Engine Console (`https:/
 
 == Before you begin
 
-* You need _data engineer_ privileges in AI Data Engine Console and access to at least one workspace.
+* You need _data engineer_ privileges in AI Data Engine Console.
 * You have access to at least one workspace with metadata extracted and in `Ready` state.
 * You have explored the workspace metadata and identified queries or filters that define meaningful subsets of data.
 * The `AIPVS - Vectorization and Guardrails` license is installed and inferencing features are enabled.
@@ -30,15 +30,18 @@ You'll perform all data collection tasks in the AI Data Engine Console (`https:/
 .. Enter a name and description for the collection (for example, `Support_KB_RAG_EN`).
 .. Choose whether the collection should be:
 *** *Dynamic*: New files are automatically identified and added to the data collection based on the filtering criteria you define. This happens during workspace refreshes.
-*** *Static*: You choose which files are included in the collection. Files can be edited until as long as data collection remains in `draft` state. After the data collection moves to `Published` state, it cannot be edited.
+*** *Static*: You choose which files are included in the collection. Files can be edited as long as data collection remains in `draft` state. After the data collection moves to `Published` state, it cannot be edited.
 . Specify the source subset:
 .. Use keywords and filters (file type, timestamps, and other attributes) to find the relevant files to include.
++
+NOTE: You can click on a file name to open a preview window of the content.
+
 . Add and save these files to the data collection.
 . Select *Save* to finalize the collection.
 //Add "files and objects" with S3 support
 
 .Result
-You have defined the logical scope of the data collection and added the required files to it. The actual embeddings and vector index will be created during publishing.
+You have defined the scope of the data collection and added the required files to it. The embeddings and vector index will be created during publishing.
 
 TIP: Create small, focused collections (for example, per use case or domain) rather than a single "everything" collection. This improves retrieval relevance and manageability.
 
@@ -68,7 +71,7 @@ Publish the data collection to make it queryable by AI applications through a RA
 TIP: For large collections, consider scheduling initial publish and major re-publishes during off-peak times to minimize resource contention.
 
 .Steps
-. Navigate to *Data Curator > Data collections* and select the options menu for your data collection.
+. Navigate to *Data Curator > Data collections* and select the options menu (image:icon_kabob_horizontal.png[three horizontal blue dots]) for your data collection.
 . Select *Publish*.
 . Select a default or custom optimization configuration.
 //LOTS OF INFO HERE FOR WORKSTREAM RELEASES 
@@ -80,7 +83,7 @@ The collection reaches the `Ready` state and is available for use by downstream 
 
 == Update or delete a data collection
 
-Over time you might need to refine or retire collections. Refining a collection might involve adjusting filters to add or remove files, changing embedding settings, or updating the collection description. Deleting a collection removes it permanently and makes its retrieval endpoint unavailable.
+Over time you might need to refine or retire data collections. Refining a collection might involve adjusting filters to add or remove files, changing embedding settings, or updating the collection description. Deleting a collection removes it permanently and makes its retrieval endpoint unavailable.
 
 === Update a data collection
 
@@ -88,10 +91,11 @@ Over time you might need to refine or retire collections. Refining a collection 
 . Navigate to *Data Curator > Data collections*.
 . Select the collection you want to modify.
 . Choose *Edit*.
-. Adjust:
-.. Filters (paths, file types, classification tags).
-.. Static/dynamic behavior.
-.. Embedding and chunking settings.
+. Adjust any of the following:
+** Name and description
+** Filters (paths, file types, classification tags).
+** Static/dynamic behavior.
+** Embedding and chunking settings.
 . Save your changes.
 . Publish the collection again so that the new definition and embeddings take effect.
 
@@ -103,7 +107,7 @@ A new indexing job runs with the updated configuration, and the collection retur
 Deleting a collection is permanent. Ensure that no production application still depends on the collection's retrieval endpoint before deleting it.
 
 .Steps
-. Navigate to *Data Curator > Data collections*, and select the options menu for the collection.
+. Navigate to *Data Curator > Data collections*, and select the options menu (image:icon_kabob_horizontal.png[three horizontal blue dots]) for the collection.
 . Choose *Delete*.
 . Confirm the deletion.
 
