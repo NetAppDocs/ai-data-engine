@@ -21,48 +21,33 @@ If you're a storage administrator or data engineer, you can observe data collect
 * Data engineers have created and published at least one data collection from AI Data Engine Console.
 * The `AIPVS - Vectorization and Guardrails` license is installed and inferencing features are enabled, so that vectorization and retrieval endpoints are active.
 
-== View all data collections 
+== View data collections 
 
 For storage administrators, System Manager provides a cluster-wide view of data collections and their footprint but does not allow admins to create or modify them.
 
 .Steps
 . In ONTAP System Manager, navigate to *Data Engine > Data collections*.
 . Review the inventory summary at the top of the page:
-.. Total number of data collections by status (for example, `Ready`, `Publishing`, `Error`).
-.. Total space consumed by the vector database across all collections.
-.. Vector space as a percentage of overall cluster capacity.
-. In the data collection grid, review:
-.. Collection name and description.
-.. Associated workspace.
-.. Status (for example, `Publishing`, `Ready`, `Failed`).
-.. Collection size.
-.. Last updated time.
+** Total number of data collections by status
+** Total space consumed by the vector database across all collections
+** Vector space as a percentage of overall cluster capacity
+. Select an individual data collection and review:
+** Collection name and description
+** UUID
+** Associated workspace
+** Status
+** Collection size
+** Creator
+** Last refresh time
 
 .Result
 You now have a high-level view of all data collections in the cluster and their storage impact. Use this view to identify collections that are large, stale, or stuck in a non-ready state.
 
-TIP: Use the search and filter controls to focus on a single workspace, a status (such as `Error`), or a specific collection name.
-
-== Inspect a single data collection
-
-For storage administrators, you can gain deeper insight into a particular data collection by opening its details page in ONTAP System Manager.
-
-.Steps
-. From *Data Engine > Data collections*, select the name of a data collection.
-. In the *Overview* tab, review:
-.. Workspace association.
-.. Definition summary (for example, filtered file types or metadata criteria).
-.. Current status and last publish time.
-.. Reported size and item counts.
-. If the collection is in `Publishing` or `Processing` state, monitor the progress indicator on this page.
-. If an error is reported, note the error message and cross-check with the *Activity* page for related jobs and events.
-
-.Result
-You can see whether the collection is actively being updated, when it last completed, and whether any failures are blocking RAG usage.
+You can also see whether an individual data collection is actively being updated and whether any failures are blocking RAG usage.
 
 == Monitor collection-related jobs and events
 
-Jobs that build and update collections can be monitored from the cluster-wide *Activity* page and from the workspace details.
+As a storage administrator, you can monitor jobs that build and update collections from the cluster-wide *Activity* page and from the workspace details.
 
 .Steps
 . In System Manager, go to *Data Engine > Activity*.
@@ -70,12 +55,12 @@ Jobs that build and update collections can be monitored from the cluster-wide *A
 .. Filter by type (for example, workspace, data collection) or severity.
 .. Expand any event related to data collections (for example, "Data collection publish failed") to see more details.
 . On the *Jobs* tab:
-.. Filter by *Workspace* or *Job type* to focus on data collection indexing and publishing jobs.
+.. Filter to focus on data collection indexing and publishing jobs.
 .. For each job, open the peek view to see:
 *** Progress percentage.
 *** Start and end times.
 *** Any reported error messages or warnings.
-. Optionally, navigate back to the affected workspace and open its *Activity* tab to see events and jobs scoped only to that workspace.
+. Optionally, navigate back to the affected workspace (*Data Engine > Workspaces*) and open its *Activity* tab to see events and jobs scoped only to that workspace.
 
 .Result
 You can track the lifecycle of data collections, identify stalled or failed jobs, and gather contextual information to pass to data engineers or support.
@@ -88,37 +73,36 @@ Data engineers typically monitor data collections directly from AIDE Console, wh
 
 .Steps
 . Log in to AIDE Console as a data engineer.
-. Go to *Workspaces* and select the desired workspace.
-. Open the *Data collections* tab.
+. Go to *Data Collections* and select the desired data collection.
 . For each collection:
-.. Check the status (`Draft`, `Publishing`, `Ready`, `Failed`).
-.. Review definition details (filters, included file types, classifier options, embedding settings).
+.. Check the state (`Draft`, `Publishing`, `Ready`, or `Failed`).
+.. Click the data collection name to review definition details (filters, included file types, classifier options, embedding settings).
 .. Inspect timestamps for last publish or update.
 . If needed, open job details or logs (where available) to understand failures or incomplete runs.
 
 .Result
 Data engineers can iterate on collection definitions and publish them again while monitoring status and health, without involving storage administrators.
 
-== Understand vector footprint and capacity impact
-
-Large data collections can grow the vector database significantly. Use the ONTAP System Manager inventory view to keep vector space under control.
-
-.Steps
-. In ONTAP System Manager, open *Data Engine > Data collections*.
-. Review the following:
-.. Total vector database size across all collections.
-.. Vector space as percentage of total cluster capacity.
-. Sort the collection grid by *Size* to identify the largest contributors.
-. Coordinate with data engineers to:
-.. Retire unused collections.
-.. Adjust filters to reduce scope where appropriate.
-.. Schedule re-publishes during lower-usage periods to minimize performance impact.
-
-.Result
-You can proactively manage capacity consumption and prevent unbounded growth of embeddings from rarely used or overly broad data collections.
+//== Understand vector footprint and capacity impact
+//
+//For storage administrators, large data collections can grow the vector database significantly. Use the ONTAP System Manager inventory view to keep vector space under control.
+//
+//.Steps
+//. In ONTAP System Manager, open *Data Engine > Data collections*.
+//. Review the following:
+//.. Total vector database size across all collections.
+//.. Vector space as percentage of total cluster capacity.
+//. Sort the collection grid by *Size* to identify the largest contributors.
+//. Coordinate with data engineers to:
+//.. Retire unused collections.
+//.. Adjust filters to reduce scope where appropriate.
+//.. Schedule re-publishes during lower-usage periods to minimize performance impact.
+//
+//.Result
+//You can proactively manage capacity consumption and prevent unbounded growth of embeddings from rarely used or overly broad data collections.
 
 == What's next?
 
 * link:create-data-collections.html[Create data collections for RAG in AIDE Console]
-* link:explore-workspace-metadata.html[Explore workspace metadata as a data engineer]
 * link:zero-to-rag.html[Zero-to-RAG quick start for AI Data Engine]
+* link:use-collections.html[Use data collections and RAG endpoints as a data scientist]

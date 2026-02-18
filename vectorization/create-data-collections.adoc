@@ -45,25 +45,6 @@ You have defined the scope of the data collection and added the required files t
 
 TIP: Create small, focused collections (for example, per use case or domain) rather than a single "everything" collection. This improves retrieval relevance and manageability.
 
-//== Configure embedding and indexing settings
-//
-//.Steps
-//. In the *Embedding and indexing* step of the collection wizard:
-//.. Choose an *Embedding model* from the supported list.
-//.. Select embedding dimensionality if the model offers multiple options (for example, 512, 768, 1024).
-//.. Configure *Chunking*:
-//*** Choose granularity (sentence, paragraph, page, or full file).
-//*** Adjust max tokens or characters per chunk, if available.
-//.. (Optional) Set language or MIME-type filters if you want to exclude certain file types from embedding.
-//. Review any system-provided estimates:
-//.. Expected embedding size.
-//.. Expected vector DB footprint.
-//
-//.Result
-//The collection now has a complete indexing configuration that AIDE will use to generate embeddings and build the vector index.
-//
-//NOTE: Changing embedding settings after publishing typically requires a re-publish of the collection, which re-processes the content.
-
 == Publish a data collection
 
 Publish the data collection to make it queryable by AI applications through a RAG retrieval endpoint. Publishing generates vector embeddings from your selected files and indexes them for semantic search. After the collection reaches `Ready` state, its endpoint becomes available for data scientists to integrate into notebooks, pipelines, and AI applications for retrieval-augmented generation (RAG) and search.
@@ -80,6 +61,8 @@ TIP: For large collections, consider scheduling initial publish and major re-pub
 
 .Result
 The collection reaches the `Ready` state and is available for use by downstream applications and data scientists.
+
+From *Data Curator > Data collections*, you can select *Copy URI* to obtain the information needed to access the data collection using anAPI. 
 
 == Update or delete a data collection
 
