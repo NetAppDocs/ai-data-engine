@@ -59,15 +59,11 @@ You use the metadata catalog in the AI Data Engine Console to discover, filter, 
 
 === Classifiers
 
-You review classification results on files in your data collections and use 
-classification tags to filter or annotate data for AI workflows. You cannot enable or 
-disable classifiers globally.
+You review classification results on files in your data collections and use classification tags to filter or annotate data for AI workflows. You cannot enable or disable classifiers globally.
 
 === Data collections
 
-You create and manage data collections by querying the workspace's metadata catalog in 
-the AI Data Engine Console. You filter data by tags, classification, or other attributes. 
-You manage the lifecycle of collections, including creating, editing, and publishing. You publish collections as RAG endpoints for AI/ML use.
+You create and manage data collections by querying the workspace's metadata catalog in the AI Data Engine Console. You filter data by tags, classification, or other attributes. You manage the lifecycle of collections, including creating, editing, and publishing. You publish collections as RAG endpoints for AI/ML use.
 
 === Vector database
 
@@ -79,5 +75,4 @@ You work within the guardrails attached to workspaces and data collections. You 
 
 === Retrieval endpoint (RAG endpoint)
 
-You publish data collections as RAG endpoints, configuring chunking and embedding parameters. You provide endpoint URIs and integration details for use by data scientists 
-and AI applications.
+You publish data collections as RAG endpoints, configuring chunking and embedding parameters. You provide endpoint URIs and integration details for use by data scientists and AI applications.
