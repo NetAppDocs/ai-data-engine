@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar
-permalink: install-setup/install-setup-workflow.html
+permalink: install-setup/install-workflow.html
 keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, workflow, dx50
 summary: Get started with the install and setup of your DX50 data compute nodes and deploy them in your ONTAP environment.
 ---
