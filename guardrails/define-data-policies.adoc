@@ -20,7 +20,7 @@ Use these procedures to define those policies in AIDE Console so that ONTAP Syst
 //You do not need to be the same person as the ONTAP cluster admin, but you do need a role that allows you to log into Console and access the *Governance* section.
 * You have an AIDE cluster with deployed and healthy data compute nodes.
 * link:../install-setup/configure-oidc.html[OpenID Connect (OIDC)] is configured, and your IdP role is mapped to an AIDE admin role that allows data policy management.
-* The `AIPVS - Vectorization and Guardrails` license is installed so that guardrail and inferencing features are enabled.
+* The AI Data Engine software license is installed so that guardrail and inferencing features are enabled.
 * At least one workspace exists, or you have coordinated with the administrator to understand which data sources (volumes) will be used in workspaces.
 
 == Understand policy types

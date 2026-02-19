@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar
-permalink: vectorization/observe-data-collections.html
+permalink: vectorization/view-data-collections.html
 keywords: aide, data collections, monitor collections, vector database, ai data engine, activity
-summary: "Use AI Data Engine tools to observe data collections, track indexing and publishing jobs, and understand vector footprint across workspaces."
+summary: "Use AI Data Engine tools to view data collections, track indexing and publishing jobs, and understand vector footprint across workspaces."
 ---
-= Observe data collections in AI Data Engine
+= View data collections in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
@@ -12,7 +12,7 @@ summary: "Use AI Data Engine tools to observe data collections, track indexing a
 // Workstream 2: vectorization
 After data engineers create and publish data collections from workspaces, both storage administrators and data engineers need visibility into their status, size, and impact on the AI Data Engine cluster.
 
-If you're a storage administrator or data engineer, you can observe data collections across ONTAP System Manager and AIDE Console.
+If you're a storage administrator or data engineer, you can view data collections across ONTAP System Manager and AIDE Console.
 
 .Before you begin
 
@@ -21,7 +21,7 @@ If you're a storage administrator or data engineer, you can observe data collect
 * Data engineers have created and published at least one data collection from AI Data Engine Console.
 * The AI Data Engine software license is installed and inferencing features are enabled, so that vectorization and retrieval endpoints are active.
 
-== View data collections 
+== View cluster-wide data collections 
 
 For storage administrators, System Manager provides a cluster-wide view of data collections and their footprint but does not allow admins to create or modify them.
 
@@ -67,7 +67,7 @@ You can track the lifecycle of data collections, identify stalled or failed jobs
 
 TIP: When a data collection remains in `Publishing` state for an extended period, check for a corresponding long-running job in the Activity page before assuming a failure.
 
-== Observe data collections from AIDE Console 
+== View data collections from AIDE Console 
 
 Data engineers typically monitor data collections directly from AIDE Console, where they are created and published.
 

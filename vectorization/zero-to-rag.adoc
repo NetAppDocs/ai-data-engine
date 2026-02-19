@@ -24,8 +24,8 @@ Go from a newly deployed AI Data Engine (AIDE) system to a working retrieval-aug
 As a storage administrator or security administrator, you want to prepare the environment in AIDE Console and ONTAP System Manager:
 
 * link:../workspaces/create-workspace.html[Create one or more workspaces] from local and remote data sources.
-* Configure classifiers and guardrail policies in AIDE Console.
-* Assign data engineer and data scientist access to the workspaces.
+* link:../guardrails/define-data-policies.html[Configure classifiers and guardrail policies] in AIDE Console.
+* link:../workspaces/assign-users-to-workspace.html[Assign data engineer and data scientist access to the workspaces].
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Explore workspace metadata
 [role="quick-margin-para"]
@@ -39,9 +39,9 @@ As a data engineer, you want to explore the workspace metadata using AIDE Consol
 As a data engineer, you want to turn the chosen subset into a RAG-ready collection:
 
 * link:create-data-collections.html[Create a data collection] from the workspace using selected filters.
-* Publish the data collection and monitor indexing until it reaches `Ready` state.
+* link:create-data-collections.html#publish-a-data-collection[Publish the data collection] and monitor indexing until it reaches `Ready` state.
 * Copy the retrieval endpoint URI for the chosen collection and provide to data scientists or application developers.
-* link:observe-data-collections.html[Observe data collection status and vector footprint] as needed.
+* link:view-data-collections.html[View data collection status and vector footprint] as needed.
 
 //.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Connect a RAG client to the collection
 //[role="quick-margin-para"]
