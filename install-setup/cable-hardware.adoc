@@ -15,7 +15,7 @@ Connect your DX50 data compute nodes to the host network and cluster network swi
 
 * You have an existing AFX 1K storage system installed. For information on installing the AFX 1K storage system, refer to link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[install your AFX 1K storage system^].
 * You have the required network switches installed and configured.Contact your network administrator for information about connecting the system to your network switches.
-* You have reviewed the link:https://docs.netapp.com/us-en/ai-data-engine/install-setup/cable-overview.html[cabling requirements for the DX50 data compute nodes^].
+* You have reviewed the link:cable-overview.html[cabling requirements for the DX50 data compute nodes^].
 
 .About this task
 These procedures show common configurations. The specific cabling depends on the components ordered for your storage system. For comprehensive configuration details and slot priorities, see link:https://hwu.netapp.com[NetApp Hardware Universe^].

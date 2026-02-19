@@ -6,7 +6,7 @@ summary: "Install the AFX storage system as the first step in deploying the AI D
 ---
 = Install the AFX storage system for the AI Data Engine
 :icons: font
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 [.lead]
 Install the AFX storage system as the first step in deploying the AI Data Engine. The AFX storage system provides the storage infrastructure foundation and is required before installing the DX50 data compute nodes.

@@ -6,7 +6,7 @@ summary: "Review the requirements for installing AI Data Engine, including the A
 ---
 = Requirements for installing AIDE
 :icons: font
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 [.lead]
 Review the requirements for installing the AI Data Engine. AIDE requires an AFX storage system, a minimum of three DX50 data compute nodes, network switches, and cables.
