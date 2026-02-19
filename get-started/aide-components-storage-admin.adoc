@@ -34,7 +34,7 @@ h|Storage administrator access
 |View (read-only)
 
 |Guardrails
-|Attach/View policies (assign, read-only)
+|Manage (create, edit, delete)
 
 |Metadata catalog
 |Monitor (view health, status, activity)

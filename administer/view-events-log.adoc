@@ -106,7 +106,7 @@ Configure notification destinations to automatically forward AIDE events and aud
 .. Event destinations: Select *View event destinations*
 .. Audit log destinations: Select *View audit destinations*
 
-. Select image:icon_add_blue_bg.png[blue rectangle containing a plus sign followed by the word add in white letters] as appropriate and provide the destination information.
+. Select *Add* as appropriate and provide the destination information.
 
 . Select *Save*.
 

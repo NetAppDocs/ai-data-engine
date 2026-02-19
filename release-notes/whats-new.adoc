@@ -59,8 +59,8 @@ The initial release includes the following workflows:
 
 AI Data Engine 9.18.1 runs on ONTAP AI data platform clusters that combine:
 
-* AFX storage nodes
-* Data compute nodes deployed on AFX storage platforms with DX50-based data compute appliances.
+* AFX 1K storage nodes
+* DX50 data compute nodes
 
 == Technology preview features (early access)
 

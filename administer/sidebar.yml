@@ -15,10 +15,12 @@ entries:
       url: "/administer/upgrades-aide-summary.html"
     - title: Upgrade ONTAP
       url: "/administer/upgrade-ontap-for-aide.html"
-    - title: Update DCN firmware and AIDE Console software
+    - title: Update AIDE software
       url: "/administer/update-aide-firmware-software.html"
     - title: Expand your compute cluster
       url: "/administer/dcn-add-node.html"
+    - title: Replace an AIDE node
+      url: "/administer/aide-node-replace.html"
   - title: Manage cluster components
     entries:
     - title: Manage workspaces

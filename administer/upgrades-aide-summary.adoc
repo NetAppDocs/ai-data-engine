@@ -18,26 +18,20 @@ There are two main components that require updates in an AI Data Engine system: 
 ONTAP is the operating system that runs on NetApp storage systems, including those used in AI Data Engine deployments. Keep ONTAP current to preserve system stability, security, and compatibility with AIDE components. AIDE components are updated separately.
 
 === AI Data Engine software updates
-AIDE Console software and DCN firmware updates are distributed together as a single package (.tgz) and are not embedded in ONTAP images.
-
-.DCN firmware updates
-Update firmware to ensure the proper functioning of hardware components within the AI Data Engine system, including data compute nodes (DCNs), storage controllers, network interfaces, and other critical devices.
-
-.AI Data Engine Console software
-Update the AI Data Engine Console software regularly to obtain new features, performance improvements, and bug fixes. AIDE software includes the AI Data Engine Console, vectorization, and guardrail components.
+AIDE Console software and DCN firmware updates are distributed together as a single package (.tgz) and are not embedded in ONTAP images. Updates ensure the proper functioning of hardware components within the AI Data Engine system and provide new features, performance improvements, and bug fixes.
 
 == Understand the update process
 AI Data Engine software updates can be managed through ONTAP System Manager.
 
-AIDE does not fully support ONTAP automatic software updates functionality. If you use ONTAP automatic updates, the system can notify admins about available updates but not make the updates for them. Admins must complete the process manually after notification.
+AIDE does not support ONTAP automatic software updates functionality. You can sign up to receive notifications from link:https://mysupport.netapp.com/site/downloads[NetApp Support Site downloads^], but all updates of AIDE software are performed manually by the admin.
 
 Release types and scope:
 
-* ONTAP major releases and AIDE major releases introduce new features, APIs, or changes that affect ONTAP integration.
-* ONTAP patch releases and AIDE update releases contain fixes and updates that do not impact ONTAP integration.
+* ONTAP major releases (9.x.x) and AIDE major releases (9.x.x U0) introduce new features, APIs, or changes that affect ONTAP integration.
+* ONTAP patch releases (9.x.x Px) and AIDE update releases (9.x.x Ux) contain fixes and updates that do not impact ONTAP integration.
 
 == Compatibility matrix
-Ensure compatibility between ONTAP, DCN firmware, and AI Data Engine software when planning updates.
+Ensure compatibility between ONTAP and AI Data Engine software when planning updates.
 
 AI Data Engine software is released as "U" releases. An AIDE major release is a "U0" release and subsequent minor releases will be "U1" and later.
 
@@ -123,4 +117,4 @@ AIDE systems do not support revert operations for DCN firmware, AIDE software up
 .Related information
 
 * link:upgrade-ontap-for-aide.html[Upgrade ONTAP software for AI Data Engine systems]
-* link:update-aide-firmware-software.html[Update DCN firmware and AI Data Engine Console software]
+* link:update-aide-firmware-software.html[Update AI Data Engine software]
