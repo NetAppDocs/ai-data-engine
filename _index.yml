@@ -13,7 +13,7 @@ indexpage:
         - title: Quick start
           url: /get-started/quick-start.html
         - title: Install workflow
-          url: /install-setup/install-setup-workflow.html
+          url: /install-setup/install-workflow.html
         - title: Set up AIDE cluster
           url: /install-setup/cluster-setup.html
     - title: Install and setup
