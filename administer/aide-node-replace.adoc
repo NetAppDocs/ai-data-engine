@@ -1,0 +1,14 @@
+---
+sidebar: sidebar
+permalink: administer/aide-node-replace.html
+keywords: 
+summary: 
+---
+= Replace a node in your AIDE cluster
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+xxx
+
+*Placeholder*

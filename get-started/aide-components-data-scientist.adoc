@@ -34,7 +34,7 @@ h|Data scientist access
 |Manage (create, edit, delete)
 
 |Guardrails
-|View/Enforce (read-only, operate within)
+|No access
 
 |Metadata catalog
 |Query/Use (consume for workflows)
