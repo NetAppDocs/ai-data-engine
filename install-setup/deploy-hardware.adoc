@@ -2,15 +2,14 @@
 sidebar: sidebar
 permalink: install-setup/deploy-hardware.html
 keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy, dx50
-summary: Learn how to install the rail kits for the AIDE system and storage shelves, and secure the AFX hardware in the cabinet. 
+summary: Learn how to install the rail kits and secure the DX50 data compute nodes in the cabinet. 
 ---
-= Install your AIDE storage system
+= Install your DX50 data compute nodes
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-After you install the switches, you should install the hardware for your AIDE system. First, install the rail kits. Next, install and secure your data compute nodes and storage system in a cabinet.
-
+Install and secure your DX50 data compute nodes in the cabinet.
 
 .Before you begin
 
@@ -24,36 +23,17 @@ NOTE: In general, the switches should be installed in the center of the cabinet.
 
 .Steps
 
-. Install the rail kits for your storage system and storage shelves, as needed, using the instructions included with the kits.
-
-. Install and secure your controller in the cabinet:
-
-.. Position the storage system onto the rails in the middle of the cabinet, and then support the system from the bottom and slide it into place.
-
-.. Secure the system to the cabinet using the included mounting screws.
+. Install the rail kits for your data compute nodes, as needed, using the instructions included with the kits.
 
 . Install and secure your data compute nodes in the cabinet:
 
-.. Position the data compute node onto the rails in the middle of cabinet, and then support the appliance from the bottom and slide it into place.
+.. Position the data compute node onto the rails in the middle of the cabinet, and then support the appliance from the bottom and slide it into place.
 
-.. Secure the data compute node to the cabinet using the included mounting screws. .
+.. Secure the data compute node to the cabinet using the included mounting screws.
 
-. Attach the bezel to the front of the controller.
-+
-. If your storage system came with a cable management device, attach it to the rear of the storage system.
-+
-image::../media/drw_affa1k_install_cable_mgmt_ieops-1697.svg[Install cable management device]
-+
-. Install and secure the storage shelf:
-+
-
-.. Position the back of the storage shelf onto the rails, and then support the shelf from the bottom and slide it into the cabinet. 
-
-
-.. Secure the storage shelf to the cabinet using the included mounting screws.
-
+. Attach the bezel to the front of the data compute node.
 
 .What's next?
-After you've installed the hardware for your AIDE system, review the link:afx-cable-overview.html[supported cabling configurations for your AIDE system].
+After you've installed the data compute nodes, you link:cable-hardware.html[cable the DX50 data compute nodes for AIDE].
 
 // 2024 Sept 23, ONTAPDOC 1922
