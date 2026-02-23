@@ -66,12 +66,12 @@ There are four main features of AIDE:
 * APIs query metadata to provide capabilities while reducing NFS traffic load on storage systems.
 * Metadata extraction and cataloging capability is built specifically for AIDE and works on a continuous basis and leverages ONTAP capabilities like snapshots. 
 
-.Data Sync (available as a limited preview)
+.Data Sync
 * Maintains data recency automatically as source data changes without manual intervention.
 * Admins define the data refresh interval in days or hours.
 * Provides incremental data mobility and sync across the data to eliminate redundant copies of AI data.
 
-.Data Guardrails (available as a limited preview)
+.Data Guardrails
 * Automatically identifies and protects sensitive data throughout the AI lifecycle. It's accessible through AI Data Engine Console.
 * Continuously scans, classifies, and categorizes data.
 * Identifies sensitive data (such as PII) and risks.
@@ -79,7 +79,7 @@ There are four main features of AIDE:
 * Provides automatic sensitive information redaction for data protection.
 * Restricts access to sensitive files or entire volumes as necessary.
 
-.Data Curator (available as a limited preview)
+.Data Curator
 * Allows data scientists to search across storage for relevant data.
 * Creates curated data collections with data existing on AFX volumes.
 * Generates vector embeddings at the storage layer to reduce data bloat and increase performance.

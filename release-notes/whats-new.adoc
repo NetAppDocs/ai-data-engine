@@ -9,7 +9,7 @@ summary: "Learn about the new capabilities available in AI Data Engine (AIDE)."
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine (AIDE) 9.18.1 is the initial release of NetApp's platform for AI data management. This release introduces a metadata engine and management workflows that enable organizations to catalog and organize unstructured data for AI workloads, providing the foundation for advanced governance and vectorization capabilities. Advanced governance (guardrails) and vectorization are available as technology previews for customers who opt in and have the appropriate AI Data Engine licenses.
+AI Data Engine (AIDE) 9.18.1 is the initial release of NetApp's platform for AI data management. This release introduces a metadata engine and management workflows that enable organizations to catalog and organize unstructured data for AI workloads, providing the foundation for advanced governance and vectorization capabilities. Advanced governance (guardrails) and vectorization are available for customers who have the appropriate AI Data Engine licenses.
 
 == What's new in the AIDE 9.18.1 initial release
 
@@ -55,21 +55,19 @@ The initial release includes the following workflows:
 * OIDC/OAuth-based authentication for secure access to ONTAP System Manager and Data Engine Console.
 * Role-based access controls for workspace and metadata management.
 
+.link:../vectorization/zero-to-rag.html[Advanced data curation and governance capabilities]
+
+The following capabilities are available for customers who have the appropriate AI Data Engine licenses:
+
+* *Vectorization and RAG*: Creation of data collections, embeddings, and retrieval endpoints in the AI Data Engine console, using metadata from AIDE workspaces.
+* *Guardrail-based governance*: Definition of guardrail policies in the AI Data Engine console and association of those policies with workspaces in ONTAP System Manager.
+
 === Supported hardware and platforms
 
 AI Data Engine 9.18.1 runs on ONTAP AI data platform clusters that combine:
 
 * AFX 1K storage nodes
 * NetApp data compute nodes
-
-== Technology preview features (early access)
-
-The following capabilities are available as technology previews for customers who opt in and have the appropriate AI Data Engine licenses:
-
-* *Vectorization and RAG*: Creation of data collections, embeddings, and retrieval endpoints in the AI Data Engine console, using metadata from AIDE workspaces.
-* *Guardrail-based governance*: Definition of guardrail policies in the AI Data Engine console and association of those policies with workspaces in ONTAP System Manager.
-
-Technology preview features are intended for evaluative use only and might change before general availability.
 
 .Related information
 
