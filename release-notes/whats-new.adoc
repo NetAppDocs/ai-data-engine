@@ -60,7 +60,7 @@ The initial release includes the following workflows:
 AI Data Engine 9.18.1 runs on ONTAP AI data platform clusters that combine:
 
 * AFX 1K storage nodes
-* DX50 data compute nodes
+* NetApp data compute nodes
 
 == Technology preview features (early access)
 
