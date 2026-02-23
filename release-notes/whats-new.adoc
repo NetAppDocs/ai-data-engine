@@ -41,6 +41,17 @@ The initial release supports:
 
 //ONTAP System Manager displays data collections created by data engineers, allowing storage administrators to monitor cataloged subsets of data. Data collection management is performed via the Data Engine Console.
 
+.link:../get-started/aide-architecture.html#data-sync[Data Sync for automated data currency]
+
+Data Sync keeps metadata catalogs and data collections current as source data changes, without manual intervention.
+
+Key features include:
+
+* Automated synchronization of data from remote or local ONTAP clusters using policy-driven SnapMirror replication.
+* Incremental updates that propagate only modified data, reducing overhead.
+* Configurable refresh intervals per workspace.
+* Workspace-level monitoring of sync status and activity.
+
 .link:../install-setup/cluster-setup.html[Cluster setup and management]
 
 The initial release includes the following workflows:
