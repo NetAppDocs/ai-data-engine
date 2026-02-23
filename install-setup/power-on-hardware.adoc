@@ -1,15 +1,15 @@
 ---
 sidebar: sidebar
 permalink: install-setup/power-on-hardware.html
-keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, power on, dx50
+keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, power on,
 summary: Power on each shelf to assign a unique shelf ID, power on the AFX controller nodes, and secure the power cables. 
 ---
-= Power on your DX50 data compute nodes
+= Power on your data compute nodes
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-After you install the rack hardware and cable your DX50 data compute nodes, you should power on your DCNs and your controller nodes for the AFX storage system if not already powered on.
+After you install the rack hardware and cable your data compute nodes, you should power on your DCNs and your controller nodes for the AFX storage system if not already powered on.
 
 .Before you begin
 * Make sure that your shelves are powered on and each assigned a unique shelf ID. For information on assigning shelf IDs for the AFX storage system, see the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/power-on-hardware.html#step-1-power-on-the-shelf-and-assign-shelf-id[Assign unique shelf IDs^].
@@ -52,6 +52,6 @@ image::../media/drw_affa1k_power_source_icon_ieops-1700.svg[A power connection d
 You might have to remove the bezel to access the power switch; if so, remember to reinstall it afterwards.
 
 .What's next?
-After you've turned on your DX50 data compute nodes, you link:../install-setup/cluster-setup.html[set up an ONTAP AIDE cluster].
+After you've turned on your data compute nodes, you link:../install-setup/cluster-setup.html[set up an ONTAP AIDE cluster].
 
 // 2024 Sept 23, ONTAPDOC 1922

@@ -1,32 +1,32 @@
 ---
 sidebar: sidebar
 permalink: install-setup/prepare-hardware.html
-keywords: aide, ai, data engine, ai data engine, dcn, data compute node, prepare, hardware installation, afx, afx 1k, dx50
-summary: Prepare to install the DX50 data compute nodes in your ONTAP environment and register the hardware to access support benefits. 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, prepare, hardware installation, afx, afx 1k,
+summary: Prepare to install the data compute nodes in your ONTAP environment and register the hardware to access support benefits. 
 ---
-= Prepare to install your DX50 data compute nodes
+= Prepare to install your data compute nodes
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Prepare to install your DX50 data compute nodes by getting the site ready, unpacking the boxes and comparing the contents of the boxes to the packing slip, and registering the system to access support benefits.
+Prepare to install your data compute nodes by getting the site ready, unpacking the boxes and comparing the contents of the boxes to the packing slip, and registering the system to access support benefits.
 
 == Step 1: Prepare the site
-To install your DX50 data compute nodes, ensure that the site and the cabinet or rack that you plan to use meet specifications for your configuration.
+To install your data compute nodes, ensure that the site and the cabinet or rack that you plan to use meet specifications for your configuration.
 
 .Steps
 
-. Use https://hwu.netapp.com[NetApp Hardware Universe^] to confirm that your site meets the environmental and electrical requirements for your DX50 data compute nodes.
-. Make sure you have adequate cabinet space for your DX50 data compute nodes within the existing AFX 1K storage system installation. 
+. Use https://hwu.netapp.com[NetApp Hardware Universe^] to confirm that your site meets the environmental and electrical requirements for your data compute nodes.
+. Make sure you have adequate cabinet space for your data compute nodes within the existing AFX 1K storage system installation. 
 +
 
-** 1U for each DX50 data compute node
+** 1U for each data compute node
 ** 2U for each AFX 1K controller node 
 ** 2U for each NX224 shelf
 ** 1U or 2U per switch, depending on switch model.
 
 == Step 2: Unpack the boxes
-After you’ve ensured that the site and the cabinet or rack that you plan to use for your DX50 data compute nodes meet the required specifications, unpack all boxes and compare the contents to the items on the packing slip.
+After you’ve ensured that the site and the cabinet or rack that you plan to use for your data compute nodes meet the required specifications, unpack all boxes and compare the contents to the items on the packing slip.
 
 .Steps
 
@@ -53,7 +53,7 @@ a|* Power cords|
 |===
 
 == Step 3: Register your data compute nodes
-After you’ve ensured that your site meets the requirements for your DX50 data compute node specifications, and you’ve verified that you have all the parts you ordered, you should register your system.
+After you’ve ensured that your site meets the requirements for your data compute node specifications, and you’ve verified that you have all the parts you ordered, you should register your system.
 
 .Steps
 
@@ -96,5 +96,5 @@ Once NetApp approves your registration, you can download the required software. 
 |===
 
 .What's next?
-After you've prepared to install your DX50 data compute nodes, you link:deploy-hardware.html[install the DX50 data compute nodes].
+After you've prepared to install your data compute nodes, you link:deploy-hardware.html[install the data compute nodes].
 
