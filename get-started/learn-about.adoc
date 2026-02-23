@@ -26,19 +26,18 @@ AIDE is designed to help organizations manage data for AI workloads and provides
 
 == High-level design characteristics
 
-AI Data Engine is built on several key design principles:
+The following design characteristics define how AI Data Engine is built to meet the needs of AI workloads:
 
-* *Disaggregated architecture*: Separates compute (data compute nodes, or DCNs) from storage (AFX nodes), allowing independent scaling and optimization.
 * *Microservices-based services*: Uses Kubernetes to orchestrate modular, resilient services for metadata cataloging, vector search, and infrastructure management.
 * *Enterprise-grade security*: Implements encryption, role-based access control (RBAC), and auditing across all data and metadata.
-* *Multi-protocol data access*: Supports NFS, SMB, and S3 for flexible data ingestion and retrieval.
+* *Multi-protocol data access*: Supports NFS and SMB for flexible data ingestion and retrieval.
 * *Automated data pipelines*: Tracks data changes, creates embeddings, and manages vector databases for AI applications.
 
 == How data flows through AIDE
 
 Understanding how data flows through AIDE helps illustrate the platform's value for AI/ML teams:
 
-. **Data ingestion**: Files and objects are stored in ONTAP volumes using standard protocols (NFS, SMB, S3). Data can reside on local AIDE storage (the AFX cluster within your AIDE deployment) or on remote ONTAP clusters. Data from remote clusters is synchronized to the local AFX cluster using ONTAP SnapMirror, so all data processed by AIDE is ultimately stored and accessed locally.
+. **Data ingestion**: Files are stored in ONTAP volumes using standard protocols (NFS and SMB). Data can reside on local AIDE storage (the AFX cluster within your AIDE deployment) or on remote ONTAP clusters. Data from remote clusters is synchronized to the local AFX cluster using ONTAP SnapMirror, so all data processed by AIDE is ultimately stored and accessed locally.
 
 NOTE: S3 buckets are not supported as data sources for workspaces or data collections.
 
@@ -46,7 +45,7 @@ NOTE: S3 buckets are not supported as data sources for workspaces or data collec
 
 . **Metadata extraction**: AIDE automatically scans files and objects in workspaces, extracting metadata (file type, size, timestamps, custom attributes) and storing it in a centralized catalog. This happens continuously as data changes.
 
-. **Classification and governance**: Classifiers scan data for sensitive information (PII, financial data) or document types (legal, HR). Guardrail policies enforce redaction, access restrictions, or retention rules automatically.
+. **Classification and governance**: Classifiers scan data for sensitive information (PII, financial data) or document types (legal, HR). Guardrail policies enforce redaction or access restrictions automatically.
 
 . **Data collection creation**: Data engineers and data scientists use the AI Data Engine Console to query the metadata catalog, filter results, and assemble curated data collections for specific AI tasks.
 

@@ -67,7 +67,7 @@ You create and manage data collections by querying the workspace's metadata cata
 
 === Vector database
 
-You trigger embedding pipelines for data collections, select models and parameters, and monitor vectorization status in the AI Data Engine Console. You use APIs to perform semantic search and integrate retrieval endpoints into AI applications.
+You trigger embedding pipelines for data collections and monitor vectorization status in the AI Data Engine Console. You use APIs to perform semantic search and integrate retrieval endpoints into AI applications.
 
 === Guardrails
 

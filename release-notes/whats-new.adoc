@@ -63,7 +63,7 @@ The initial release includes the following workflows:
 
 .link:../install-setup/configure-oidc.html[OpenID Connect (OIDC) authentication]
 
-* OIDC/OAuth-based authentication for secure access to ONTAP System Manager and Data Engine Console.
+* OIDC/OAuth-based authentication for secure access to ONTAP System Manager and Data Engine Console with Microsoft Entra ID and Active Directory Federation Services (ADFS).
 * Role-based access controls for workspace and metadata management.
 
 .link:../vectorization/zero-to-rag.html[Advanced data curation and governance capabilities]
