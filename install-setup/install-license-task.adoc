@@ -1,7 +1,7 @@
 ---
 permalink: install-setup/install-license-task.html
 sidebar: sidebar
-keywords: ai data engine, license, install, enable, add, aide, ai data engine, software, entitlement, keys, codes, cluster, administrator, nlf, add license, license key, metadata engine, aipvs, vectorization, guardrails, dx50, dcn, data compute node, afx, afx 1k
+keywords: ai data engine, license, install, enable, add, aide, ai data engine, software, entitlement, keys, codes, cluster, administrator, nlf, add license, license key, metadata engine, aipvs, vectorization, guardrails, dcn, data compute node, afx, afx 1k
 summary: "You can install AI Data Engine Engine licenses using System Manager."
 ---
 

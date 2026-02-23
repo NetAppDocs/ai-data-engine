@@ -27,7 +27,7 @@ entries:
         url: /install-setup/aide-hardware-requirements.html
       - title: Install your AFX storage system
         url: /install-setup/aide-afx-install.html
-      - title: Install your DX50 Data Compute Nodes
+      - title: Install your Data Compute Nodes
         entries:
           - title: Install workflow
             url: /install-setup/install-workflow.html

@@ -1,15 +1,15 @@
 ---
 sidebar: sidebar
 permalink: install-setup/deploy-hardware.html
-keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy, dx50
-summary: Learn how to install the rail kits and secure the DX50 data compute nodes in the cabinet. 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy,
+summary: Learn how to install the rail kits and secure the data compute nodes in the cabinet. 
 ---
-= Install your DX50 data compute nodes
+= Install your data compute nodes
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Install and secure your DX50 data compute nodes in the cabinet.
+Install and secure your data compute nodes in the cabinet.
 
 .Before you begin
 
@@ -34,6 +34,6 @@ NOTE: In general, the switches should be installed in the center of the cabinet.
 . Attach the bezel to the front of the data compute node.
 
 .What's next?
-After you've installed the data compute nodes, you link:cable-hardware.html[cable the DX50 data compute nodes for AIDE].
+After you've installed the data compute nodes, you link:cable-hardware.html[cable the data compute nodes for AIDE].
 
 // 2024 Sept 23, ONTAPDOC 1922

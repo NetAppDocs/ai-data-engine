@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: install-setup/aide-afx-install.html
-keywords: ai data engine, afx, afx 1k, install, hardware, storage system, dx50, data compute node, aide
+keywords: ai data engine, afx, afx 1k, install, hardware, storage system, data compute node, aide
 summary: "Install the AFX storage system as the first step in deploying the AI Data Engine. The AFX system provides the storage infrastructure foundation required for AIDE deployment."
 ---
 = Install the AFX storage system for the AI Data Engine
@@ -9,11 +9,11 @@ summary: "Install the AFX storage system as the first step in deploying the AI D
 :imagesdir: ../media/
 
 [.lead]
-Install the AFX storage system as the first step in deploying the AI Data Engine. The AFX storage system provides the storage infrastructure foundation and is required before installing the DX50 data compute nodes.
+Install the AFX storage system as the first step in deploying the AI Data Engine. The AFX storage system provides the storage infrastructure foundation and is required before installing the data compute nodes.
 
 Follow the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[AFX 1K installation documentation^] to install the AFX storage system. 
 
 
 .What's next
 
-After completing the AFX storage system installation, link:install-workflow.html[install the DX50 data compute nodes]. 
+After completing the AFX storage system installation, link:install-workflow.html[install the data compute nodes]. 
