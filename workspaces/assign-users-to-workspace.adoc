@@ -23,7 +23,7 @@ System Manager enables you to manage which users have access to AI Data Engine w
 
 .Steps
 
-. Add a user to a workspace: 
+* Add a user to a workspace: 
 .. In System Manager, navigate to *Data Engine > Workspaces*. 
 .. Select the workspace name to open its details page. 
 .. Go to the Users tab. 
@@ -32,7 +32,7 @@ System Manager enables you to manage which users have access to AI Data Engine w
 //need examples of user formats? 
 .. Select *Add* to grant the user access to the workspace.
 
-. Remove a user from a workspace: 
+* Remove a user from a workspace: 
 .. In the Users tab of the workspace details page, locate and select the user you want to remove. 
 .. Select the *Remove* button. 
 .. Confirm the removal in the dialog. 
