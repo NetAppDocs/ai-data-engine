@@ -9,7 +9,7 @@ summary: "Learn how storage administrators interact with AIDE components to mana
 :imagesdir: ../media/
 
 [.lead]
-As a storage administrator, you manage the AIDE infrastructure through ONTAP System Manager, provisioning workspaces, attaching guardrail policies, and monitoring system health. Your role focuses on ensuring reliable, secure, and compliant data storage for AI workloads.
+As a storage administrator, you manage the AIDE infrastructure through ONTAP and the AIDE Console, provisioning workspaces, attaching guardrail policies, and monitoring system health. Your role focuses on ensuring reliable, secure, and compliant data storage for AI workloads.
 
 == Storage administrator component access
 
@@ -22,7 +22,7 @@ h|Storage administrator access
 |Manage (create, edit, delete)
 
 |AI Data Engine Console
-|No access
+|Manage (create, edit, delete)
 
 |ONTAP REST API
 |Manage (create, edit, delete)
@@ -34,7 +34,7 @@ h|Storage administrator access
 |View (read-only)
 
 |Guardrails
-|Attach/View policies (assign, read-only)
+|Manage (create, edit, delete)
 
 |Metadata catalog
 |Monitor (view health, status, activity)

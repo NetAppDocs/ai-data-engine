@@ -92,7 +92,7 @@ You can access guardrail functionality through the AI Data Engine Console.
 
 .Capabilities
 
-* Scans, classifies, and categorizes data continuously across hybrid cloud environments.
+* Continuously scans, classifies, and categorizes data.
 * Identifies sensitive data and risks using built-in and customizable classifiers for tasks such as PII detection.
 * Automates handling of sensitive data through policy-driven redaction, masking, and access restrictions.
 * Enforces company and regulatory standards through guardrail policies attached to workspaces.
@@ -104,14 +104,14 @@ You can access guardrail functionality through the AI Data Engine Console.
 The Data Curator service enables fast data discovery, search, vectorization, and retrieval for AI and GenAI applications. 
 
 .License and access
-Data Curator functionality is provided as a separate supplemental software update.
+Data Curator functionality is not included with the base ONTAP One license and requires a separate AIDE license.
 //need link to curator docs
 
 You can access data curator through the AI Data Engine Console.
 
 .Capabilities
 
-* Searches hybrid cloud storage for relevant data using the centralized metadata catalog.
+* Searches storage for relevant data using the centralized metadata catalog.
 * Provides tools for data scientists to create curated data collections.
 * Generates vector embeddings automatically at the storage layer.
 * Provides a secure retrieval endpoint for AI applications, supporting vector semantic search and re-ranking.

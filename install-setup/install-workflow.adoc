@@ -1,0 +1,35 @@
+---
+sidebar: sidebar
+permalink: install-setup/install-workflow.html
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, workflow,
+summary: Get started with the install and setup of your data compute nodes and deploy them in your ONTAP environment.
+---
+= Installation and setup workflow for data compute nodes
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+To install and configure your data compute nodes (DCN), you review the hardware requirements, prepare your site,  install and cable the hardware components, power on the system, and set up your ONTAP cluster.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One]link:install-setup-requirements.html[Review the hardware installation requirements]
+[role="quick-margin-para"]
+Ensure that you have an existing AFX 1K storage system installed, and then review the hardware requirements for installing the data compute nodes for AIDE. For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two]link:prepare-hardware.html[Prepare to install your data compute nodes]
+[role="quick-margin-para"]
+To prepare to install your data compute nodes, you need to get the site ready, check the environmental and electrical requirements, and ensure there's enough cabinet space. Then, unpack the equipment, compare its contents to the packing slip, and register the hardware to access support benefits.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three]link:deploy-hardware.html[Install the hardware for your data compute nodes]
+[role="quick-margin-para"]
+Install the rail kits for your data compute nodes. Secure your data compute nodes within the cabinet. Finally, attach cable management devices to the rear of the system for organized cable routing.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four]link:cable-hardware.html[Cable your data compute nodes]
+[role="quick-margin-para"]
+To cable the hardware, first connect the data compute nodes to your data and cluster network, then connect the data compute nodes to the cluster switches.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five]link:power-on-hardware.html[Power on your data compute nodes]
+[role="quick-margin-para"]
+After you install the rack hardware and cable your data compute nodes, you should power on your DCNs and your controller nodes for the AFX storage system if not already powered on.
+
+// 2025, Jan 25, ONTAPDOC 2261
+// 2024 Sept 23, ONTAPDOC 1922
