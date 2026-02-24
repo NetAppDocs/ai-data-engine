@@ -19,7 +19,7 @@ System Manager enables you to manage which users have access to AI Data Engine w
 * You need _storage administrator_ privileges to manage user access to workspaces.
 * Confirm that you created the workspace and that it is active in the Workspaces inventory.
 * Confirm that all pertinent data containers have been added to the workspace and are accessible.
-* link:../install-setup/configure-oidc-for-aide-task.html[Confirm OIDC is enabled and configured for the cluster]. Role mapping from IdP to ONTAP roles must be completed for each relevant data engineer and data scientist IdP user or group.
+* link:../install-setup/configure-oidc.html[Confirm OIDC is enabled and configured for the cluster]. Role mapping from IdP to ONTAP roles must be completed for each relevant data engineer and data scientist IdP user or group.
 
 .Steps
 

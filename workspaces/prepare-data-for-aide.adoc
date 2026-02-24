@@ -35,7 +35,7 @@ You don't need to create SnapMirror relationships between the ONTAP clusters and
 .Steps
 
 . https://docs.netapp.com/us-en/ontap-afx/protect-data/create-peer-relationship.html[Peer each ONTAP cluster and SVM^] that contains data you want to use with AI Data Engine.
-. link:../install-setup/cluster-setup.html#complete-the-aide-cluster-setup[Select the volumes you want to use with AI Data Engine].
+. link:../install-setup/cluster-setup.html[Select the volumes you want to use with AI Data Engine].
 +
 For each of volume, note the following information:
 
