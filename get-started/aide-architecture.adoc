@@ -17,7 +17,7 @@ image::../media/aide-system-architecture.png[AI Data Engine Architecture Diagram
 
 === AFX controller nodes
 
-AFX controller nodes run a specialized personality of the ONTAP software designed to support the requirements of the AFX environment. Clients access the nodes through multiple protocols, including NFS, SMB, and S3. Each node has a complete view of the storage, which it can access based on the client requests. The nodes are stateful with non-volatile memory to persist critical state information and include additional enhancements specific to the target workloads.
+AFX controller nodes run a specialized personality of the ONTAP software designed to support the requirements of the AFX environment. Clients access the nodes through multiple protocols, including NFS and SMB. Each node has a complete view of the storage, which it can access based on the client requests. The nodes are stateful with non-volatile memory to persist critical state information and include additional enhancements specific to the target workloads.
 //shared AFX text
 
 At least four AFX controller nodes are required for AIDE deployments to ensure high availability and performance.
