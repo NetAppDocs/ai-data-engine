@@ -13,66 +13,38 @@ As a data engineer, you use the AI Data Engine Console to explore workspaces, cr
 
 == Data engineer component access
 
-[cols="2h,3", options="header"]
+[cols="2h,3,4", options="header"]
 |===
 h|Component
 h|Data engineer access
-
-|ONTAP System Manager
-|No access
+h|Your workflow
 
 |AI Data Engine Console
 |Manage (create, edit, delete)
+|The AI Data Engine Console is your primary interface for all day-to-day tasks, including data discovery, collection management, pipeline configuration, and publishing RAG endpoints.
 
 |ONTAP REST API
 |Manage (create, edit, delete)
+|You use the REST API to automate collection lifecycle operations, trigger embedding pipelines, and integrate data workflows with external tools programmatically.
 
 |Workspaces
-|View/Use (read-only, consume for workflows)
+|View/use (read-only)
+|You explore assigned workspaces to identify and understand available data sources before building collections.
 
 |Data collections
 |Manage (create, edit, delete)
-
-|Guardrails
-|No access
+|You build data collections by selecting and filtering source data using tags, classification, and other attributes, and you manage the full collection lifecycle from creation through publishing as RAG endpoints for AI/ML use.
 
 |Metadata catalog
-|Query/Use (consume for workflows)
+|Query/use (consume for workflows)
+|You use the metadata catalog to evaluate and select data sources for ingestion, running queries to locate relevant files and confirm they meet the requirements of the collections you are building.
 
 |Vector database
-|Manage embeddings/Search (create, configure, query)
+|Manage embeddings/search (create, configure, query)
+|You trigger embedding pipelines, monitor vectorization status, configure chunking and embedding parameters, and integrate retrieval endpoints into AI applications via the API.
 
 |Classifiers
 |Use (consume classified data)
+|You use classification results to annotate and tag source data during collection preparation, ensuring that content entering your pipelines is properly labeled for downstream AI workflows.
 
 |===
-
-== AIDE system components
-
-=== Workspaces
-
-You receive access to assigned workspaces. You use the AI Data Engine Console to explore, query, and understand available data sources. You build data collections from workspace data and manage data pipelines.
-
-=== Metadata catalog
-
-You use the metadata catalog in the AI Data Engine Console to discover, filter, and understand data sources before building data collections. You run queries to identify relevant files and objects.
-
-=== Classifiers
-
-You review classification results on files in your data collections and use classification tags to filter or annotate data for AI workflows. You cannot enable or disable classifiers globally.
-
-=== Data collections
-
-You create and manage data collections by querying the workspace's metadata catalog in the AI Data Engine Console. You filter data by tags, classification, or other attributes. You manage the lifecycle of collections, including creating, editing, and publishing. You publish collections as RAG endpoints for AI/ML use.
-
-=== Vector database
-
-You trigger embedding pipelines for data collections and monitor vectorization status in the AI Data Engine Console. You use APIs to perform semantic search and integrate retrieval endpoints into AI applications.
-
-=== Guardrails
-
-You work within the guardrails attached to workspaces and data collections. You might request changes to guardrail policies for workflow needs but cannot override them. Guardrails ensure compliant and secure data processing.
-
-=== Retrieval endpoint (RAG endpoint)
-
-You publish data collections as RAG endpoints, configuring chunking and embedding parameters. You provide endpoint URIs and integration details for use by data scientists and AI applications.
