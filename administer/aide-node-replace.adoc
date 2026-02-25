@@ -20,7 +20,7 @@ There are several things to consider before replacing a node in your AIDE cluste
 
 === Restrictions
 
-There are several several restrictions to be aware of when replacing a node in your AIDE cluster:
+You should be aware of the following restrictions when replacing a node in your AIDE cluster:
 
 * Node replacement is only supported using the CLI and optionally the REST API.
 * You cannot perform node replacement using System Manager.
@@ -43,7 +43,7 @@ You can replace a DCN node in your AIDE cluster using the following procedure.
 +
 Power off and disconnect the node from the cluster network. Make sure the node is not booted up on the network during the replacement process.
 
-. Delete the node from the cluster using the following command:
+. Delete the failed node from the cluster using the following command:
 +
 `dcn cluster node delete -name <node_name> -force true`
 +
@@ -52,6 +52,10 @@ Provide the actual name for the <node_name> value.
 . Physically attach the new node to the cluster
 +
 Make sure the node is cabled in, powered on, and discoverable.
+
+. View the discoverable and unconfigured nodes to verify the new node is online:
++
+`dcn cluster node show -membership available`
 
 . Add the node to the cluster using the following command:
 +
