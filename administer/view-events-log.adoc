@@ -31,13 +31,12 @@ Monitor workspace operations, troubleshoot metadata extraction issues, and track
 ** Workspace creation, update, or deletion
 ** Data container add/remove operations
 ** Data collection publishing (if present)
-** DCN-related issues that affect metadata operations
 * Use filters (by severity, object type, workspace, or time range) to focus on active or critical events.
 
 . Select an individual event to open and review:
 +
 * Description and timestamp
-* Affected workspace, data collection, or node
+* Affected workspace, data collection, or data source
 * Recommended action, if provided
 
 . Select the *Jobs* tab:
@@ -52,7 +51,7 @@ Monitor workspace operations, troubleshoot metadata extraction issues, and track
 +
 * Start and end time
 * Progress percentage and phase (for example, *Scanning*, *Publishing*)
-* Affected workspace or data collection
+* Affected workspace, data collection, or data source
 * Error messages for failed jobs
 
 === View workspace-specific activity

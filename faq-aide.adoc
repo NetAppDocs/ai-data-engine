@@ -32,7 +32,7 @@ Primary users of AIDE include:
 == Requirements and Deployment
 
 .What hardware is required?
-AIDE requires AFX systems for deployment (including an AFX controller, disk shelf, and network switch), but can use cluster data from clusters running ONTAP 9.18.1 and later using SnapMirror and cluster peering.
+AIDE requires AFX systems for deployment (including an AFX controller, disk shelf, and network switch), but can use cluster data from clusters running ONTAP 9.18.1 and later using SnapMirror and cluster peering. At least four AFX controller nodes are required for AIDE deployments to ensure high availability and performance.
 
 AIDE runs on a NetApp data compute node (DCN). Three data compute nodes are required. The DCN hosts the AIDE software, which includes the Metadata Engine, Data Sync, Data Curator, and Data Guardrails.
 
@@ -46,7 +46,8 @@ At least three data compute nodes are required.
 The data compute nodes run a NetApp-provided software stack with AIDE. 
 
 .Can AIDE be deployed without AFX?
-No. AIDE requires AFX for deployment. However, the AFX cluster providing storage for AIDE can be peered with any ONTAP 9 system or cluster. It uses cluster peering and SnapMirror to sync data from the remote ONTAP cluster to the AFX system.
+No. AIDE requires AFX for deployment. AIDE uses Trident to consume the AFX volumes for internal storage (persistent volumes). The AFX cluster providing storage for AIDE can be peered with any ONTAP 9 system or cluster. It uses cluster peering and SnapMirror to sync data from the remote ONTAP cluster to the AFX system. 
+//Check elsewhere for 9.18.1 system statement. All ONTAP 9 is likely correct.
 
 == Management and Interfaces
 
@@ -61,7 +62,7 @@ There are four main features of AIDE:
 .Metadata Engine 
 
 * Automatically generates a structured, up-to-date, interactive view of your data.
-* It's accessible through ONTAP System Manager and will only work with data stored on ONTAP.
+* Works with data stored on ONTAP.
 * Enables data practitioners to collaborate with storage admins to find and understand data.
 * APIs query metadata to provide capabilities while reducing NFS traffic load on storage systems.
 * Metadata extraction and cataloging capability is built specifically for AIDE and works on a continuous basis and leverages ONTAP capabilities like snapshots. 
@@ -77,7 +78,7 @@ There are four main features of AIDE:
 * Identifies sensitive data (such as PII) and risks.
 * Facilitates the creation of policies for automatic handling of sensitive data in line with company and regulatory standards.
 * Provides automatic sensitive information redaction for data protection.
-* Restricts access to sensitive files or entire volumes as necessary.
+* Restricts access to sensitive files as necessary.
 
 .Data Curator
 * Allows data scientists to search across storage for relevant data.
@@ -90,8 +91,8 @@ There are four main features of AIDE:
 .Does AIDE support federated metadata across multiple ONTAP clusters?
 AIDE can connect to multiple ONTAP clusters using SnapMirror and cluster peering, enabling centralized metadata visibility.
 
-.Where is the metadata stored and how is it protected?
-AIDE stores metadata on the connected AFX cluster. The data compute nodes use local storage for internal operations. AIDE versions and backs up metadata on a scheduled basis to ensure durability and recoverability.
+.Where is the metadata stored?
+AIDE stores metadata on the connected AFX cluster using a persistent volume provided by AFX. The data compute nodes use local storage for internal operations.
 
 .Does the AIDE Metadata Engine classify data?
 No. The Metadata Engine catalogs filesystem metadata and provides APIs to query this cataloged metadata.
@@ -119,5 +120,5 @@ If you require only the Metadata Engine, the ONTAP One license, which is include
 
 .Related information
 
-* link:./install-setup/install-license-task.html[Install AIDE licenses in ONTAP System Manager]
+* link:./get-started/aide-license-task.html[Install AIDE licenses in ONTAP System Manager]
 * link:./get-started/aide-architecture.html[Learn about AIDE architecture and components]
