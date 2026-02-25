@@ -52,7 +52,7 @@ Key features include:
 * Configurable refresh intervals per workspace.
 * Workspace-level monitoring of sync status and activity.
 
-.link:../install-setup/cluster-setup.html[Cluster setup and management]
+.link:../install-setup/cluster-setup-afx.html[Cluster setup and management]
 
 The initial release includes the following workflows:
 
