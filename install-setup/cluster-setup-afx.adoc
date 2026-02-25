@@ -1,8 +1,8 @@
 ---
 permalink: install-setup/cluster-setup-afx.html
 sidebar: sidebar
-keywords: 
-summary: ""
+keywords: cluster setup, afx, ai data engine, aide, install, set up
+summary: "Set up your AIDE cluster with an AFX storage system. You can set up AIDE as part of an initial AFX cluster deployment or add AIDE to an existing AFX cluster."
 ---
 
 = Set up AI Data Engine
@@ -21,11 +21,11 @@ Before setting up AIDE, make sure you have the DX50 data compute nodes (DCNs) in
 
 === Set up AIDE with a new AFX cluster
 
-If you’re setting up AIDE as part of an initial AFX system deployment, the AIDE setup process is part of the standard AFX cluster setup workflow. During the AFX cluster setup, System Manager automatically discovers the connected DCNs and includes them as part of the cluster configuration. After that you’re ready to add complete the AIDE configuration, including the required licensing and OIDC configuration.
+If you're setting up AIDE as part of an initial AFX system deployment, the AIDE setup process is part of the standard AFX cluster setup workflow. During the AFX cluster setup, System Manager automatically discovers the connected DCNs and includes them as part of the cluster configuration. After that you're ready to add complete the AIDE configuration, including the required licensing and OIDC configuration.
 
 === Set up AIDE with an existing AFX cluster
 
-If you’re adding an AIDE cluster to an existing AFX storage system, you need to configure the DCN nodes and finish setting up your cluster.
+If you're adding an AIDE cluster to an existing AFX storage system, you need to configure the DCN nodes and finish setting up your cluster.
 
 ==== Add the DCN nodes to the AIDE cluster
 

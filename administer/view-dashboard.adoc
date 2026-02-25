@@ -38,7 +38,7 @@ You can use ONTAP System Manager to access the dashboard and display the cluster
 ** Capacity used by AIDE metadata and application volumes (metadata Storage VM)
 ** Capacity used by workspaces and data collections (if available)
 
-. Optionally review *Network*, *Performance*, and *Data protection* tiles to understand cluster-wide behavior that might impact AIDE workloads (for example, network congestion or protection lag).
+. Optionally review *Network* and *Performance* tiles to understand cluster-wide behavior that might impact AIDE workloads (for example, network congestion or protection lag).
 
 == View data DCN health and utilization
 

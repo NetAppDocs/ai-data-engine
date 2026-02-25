@@ -15,7 +15,7 @@ indexpage:
         - title: Install workflow
           url: /install-setup/install-workflow.html
         - title: Set up AIDE cluster
-          url: /install-setup/cluster-setup.html
+          url: /install-setup/cluster-setup-afx.html
     - title: Install and setup
       links:
         - title: Installation requirements
@@ -78,5 +78,3 @@ indexpage:
           url: /get-help/manage-autosupport.html
         - title: Submit support cases
           url: /get-help/view-submit-support-case.html
-        - title: Maintain hardware
-          url: /maintain-hardware.html

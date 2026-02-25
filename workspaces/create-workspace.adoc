@@ -75,7 +75,7 @@ After workspace creation, review the workspace details.
 
 == Workspace refreshes and versioning
 
-Each workspace refresh creates an immutable version that captures the current state of all files and objects in the workspace. Versions include complete metadata, references to snapshots used during extraction, and a job ID for traceability. This supports data lineage, reproducibility, and auditing for AI/ML workloads.
+Each workspace refresh creates an immutable version that captures the current state of all files and objects in the workspace. Versions include complete metadata, references to snapshots used during extraction, and a job ID for traceability. This supports data lineage, reproducibility, and auditing.
 
 Refreshes occur either on the schedule you configure (such as every six hours) or when you trigger them manually. The minimum supported refresh interval is one hour; the maximum is one year. If a data container is included in multiple workspaces, the system uses the most frequent, shortest duration refresh interval for scheduling metadata extraction.
 //add link to manual refresh instructions
