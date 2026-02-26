@@ -62,10 +62,8 @@ indexpage:
           url: /get-started/aide-components.html
         - title: Storage administrator tasks
           url: /get-started/aide-components-storage-admin.html
-        - title: Data engineer tasks
-          url: /get-started/aide-components-data-engineer.html
-        - title: Data scientist tasks
-          url: /get-started/aide-components-data-scientist.html
+        - title: Data engineer and data scientist tasks
+          url: /get-started/aide-components-data-users.html
     - title: Get help and more information
       links:
         - title: What's new
