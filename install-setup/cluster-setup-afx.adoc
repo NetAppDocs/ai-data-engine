@@ -42,7 +42,7 @@ After integrating the DCN nodes and completing the initial network configuration
 
 . Configure link aggregation groups and VLANs
 +
-This step might not be required based on your environment.
+This step might be required based on your environment.
 
 . Configure network protocols
 
@@ -52,7 +52,19 @@ This step might not be required based on your environment.
 
 . Create intercluster network interfaces
 +
-Perform this step if you intend ti catalog remote data.
+Perform this step if you intend to catalog remote data.
+
+. Peer with other ONTAP storage systems
++
+Perform this step if you intend to catalog remote data.
+
+. Add a data container
+
+. Add workspaces
+
+. link:../install-setup/configure-oidc.html[Configure OpenID Connect for ONTAP AIDE]
++
+You must configure OIDC authentication to access the AI Data Engine Console.
 
 == 2. Complete AIDE configuration
 
