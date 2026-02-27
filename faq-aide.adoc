@@ -120,5 +120,5 @@ If you require only the Metadata Engine, the ONTAP One license, which is include
 
 .Related information
 
-* link:./get-started/aide-license-task.html[Install AIDE licenses in ONTAP System Manager]
+* link:./install-setup/install-license-task.html[Install AIDE licenses in ONTAP System Manager]
 * link:./get-started/aide-architecture.html[Learn about AIDE architecture and components]
