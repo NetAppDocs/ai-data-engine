@@ -1,39 +1,38 @@
 ---
 sidebar: sidebar
 permalink: install-setup/prepare-hardware.html
-keywords: aide, ai, data engine, ai data engine, dcn, data compute node, prepare, hardware installation, afx, afx 1k, dx50
-summary: Prepare to install the AIDE system in your ONTAP environment and register the hardware to access support benefits. 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, prepare, hardware installation, afx, afx 1k,
+summary: Prepare to install the data compute nodes in your ONTAP environment and register the hardware to access support benefits. 
 ---
-= Prepare to install your AIDE storage system
+= Prepare to install your data compute nodes
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Prepare to install your AIDE system by getting the site ready, unpacking the boxes and comparing the contents of the boxes to the packing slip, and registering the system to access support benefits.
+Prepare to install your data compute nodes by getting the site ready, unpacking the boxes and comparing the contents of the boxes to the packing slip, and registering the system to access support benefits.
 
 == Step 1: Prepare the site
-To install your AIDE system, ensure that the site and the cabinet or rack that you plan to use meet specifications for your configuration.
+To install your data compute nodes, ensure that the site and the cabinet or rack that you plan to use meet specifications for your configuration.
 
 .Steps
 
-. Use https://hwu.netapp.com[NetApp Hardware Universe^] to confirm that your site meets the environmental and electrical requirements for your AIDE system.
-
-. Make sure you have adequate cabinet or rack space for your AIDE data compute nodes, storage system, shelves, and switches:
+. Use https://hwu.netapp.com[NetApp Hardware Universe^] to confirm that your site meets the environmental and electrical requirements for your data compute nodes.
+. Make sure you have adequate cabinet space for your data compute nodes within the existing AFX 1K storage system installation. 
 +
 
-** 1U for each AIDE data compute node
-** 2U for each AFX controller node 
+** 1U for each data compute node
+** 2U for each AFX 1K controller node 
 ** 2U for each NX224 shelf
 ** 1U or 2U per switch, depending on switch model.
 
 == Step 2: Unpack the boxes
-After you’ve ensured that the site and the cabinet or rack that you plan to use for your AIDE data compute nodes meet the required specifications, unpack all boxes and compare the contents to the items on the packing slip.
+After you’ve ensured that the site and the cabinet or rack that you plan to use for your data compute nodes meet the required specifications, unpack all boxes and compare the contents to the items on the packing slip.
 
 .Steps
 
 . Carefully open all the boxes and lay out the contents in an organized manner.
 
-. Compare the contents you’ve unpacked with the list on the packing slip. If you find any discrepancies, record them down for further action. 
+. Compare unpacked items against the packing slip and note any discrepancies. 
 
 +
 You can get your packing list by scanning the QR code on the side of the shipping carton.
@@ -48,32 +47,23 @@ The following items are some of the contents you might see in the boxes.
 |*Hardware*
 |*Cables* |
 a|* Bezel
-* Storage system
 * Rail kits with instructions 
-* Storage shelf
-* Cisco Nexus 9332D-GX2B or 9364D-GX2A switch
 * Data compute node(s)
-a|* Management Ethernet cables (RJ-45 cables)
-* Network cables
-* Power cords
-* Storage cables 
-* USB-C serial port cable |
+a|* Power cords|
 |===
 
-
-
-== Step 3: Register your storage system
-After you’ve ensured that your site meets the requirements for your AIDE system specifications, and you’ve verified that you have all the parts you ordered, you should register your system.
+== Step 3: Register your data compute nodes
+After you’ve ensured that your site meets the requirements for your data compute node specifications, and you’ve verified that you have all the parts you ordered, you should register your system.
 
 .Steps
 
-. Locate the serial numbers for your storage system. 
+. Locate the serial numbers for your data compute nodes. 
 +
 You can find the serial numbers in the following locations:
 
 - On the packing slip
 - In your confirmation email
-- On each controller or for some systems, on the system management module of each controller
+- On each data compute node, or on some systems, on the system management module of each data compute node.
 +
 image::../media/drw_ssn_label.svg[Example of the system serial number,width=200]
 +
@@ -98,7 +88,7 @@ a|
 New NetApp customer
 a|
 
- .. Click *Register Now*, and create an account.
+ .. Click *Register Now* to create an account.
  .. Select *Systems* > *Register Systems*.
  .. Enter the storage system's serial number and requested details.
 
@@ -106,5 +96,5 @@ Once NetApp approves your registration, you can download the required software. 
 |===
 
 .What's next?
-After you've prepared to install your AFX 1K hardware, you link:install-switches.html[install the switches for your AIDE system].
+After you've prepared to install your data compute nodes, you link:deploy-hardware.html[install the data compute nodes].
 

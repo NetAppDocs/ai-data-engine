@@ -1,0 +1,27 @@
+section: administer
+title: Administer and monitor
+entries:
+  - title: Monitor cluster processes
+    entries:
+    - title: View dashboard and cluster status
+      url: /administer/view-dashboard.html
+    - title: View Insights
+      url: /administer/view-insights.html
+    - title: View events, jobs, and audit log
+      url: /administer/view-events-log.html
+  - title: Upgrade and maintain your AIDE system
+    entries:
+    - title: Keep your AIDE system up to date
+      url: "/administer/upgrades-aide-summary.html"
+    - title: Upgrade ONTAP
+      url: "/administer/upgrade-ontap-for-aide.html"
+    - title: Update AIDE software
+      url: "/administer/update-aide-firmware-software.html"
+    - title: Add nodes to your AIDE cluster
+      url: "/administer/dcn-add-node.html"
+    - title: Replace an AIDE node
+      url: "/administer/aide-node-replace.html"
+  - title: Manage cluster components
+    entries:
+    - title: Manage workspaces
+      url: "/administer/manage-workspace.html"

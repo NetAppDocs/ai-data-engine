@@ -2,61 +2,54 @@
 permalink: install-setup/install-license-task.html
 sidebar: sidebar
 keywords: ai data engine, license, install, enable, add, aide, ai data engine, software, entitlement, keys, codes, cluster, administrator, nlf, add license, license key, metadata engine, aipvs, vectorization, guardrails, dx50, dcn, data compute node, afx, afx 1k
-summary: "You can install AI Data Engine Engine licenses using System Manager."
+summary: "You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). You can perform license management using the ONTAP AFX System Manager."
 ---
 
-= Install AIDE licenses in ONTAP
+= Install AIDE licenses in your AFX system
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Install AI Data Engine Engine (AIDE) licenses using System Manager. There are two licenses required. The Metadata Engine Basic license is typically factory-installed as part of the ONTAP One license, while the "AIPVS — Vectorization and Guardrails" license must be purchased and installed for each GPU in your data compute nodes (DCNs).
+You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). You can perform license management using the ONTAP AFX System Manager.
 
-.Before you begin
-* Ensure you have admin credentials to log in to System Manager.
-* Ensure that the cluster is running ONTAP 9.18.1 and later.
-* Download the license file to an accessible location.
+== Prepare to license the AI Data Engine
 
-.About this task
-You need one Metadata Engine Basic license per data compute node (DCN) and one "AIPVS — Vectorization and Guardrails" license for each GPU in your DCN.
+A license is a record of one or more software entitlements. All the AFX licenses are delivered as a NetApp license file (NLF), which is a single file that enables multiple features. There are several things you should consider before installing a license on your AFX storage system in support of AIDE.
+
+=== Types of licenses
+
+There are two primary types of licenses needed to begin using AIDE through your AFX storage system.
+
+.ONTAP One license
+
+The Metadata Engine Basic license is typically factory-installed as part of the ONTAP One license. It enables access to the Metadata Engine functionality which provides the essential foundation for AIDE operations. All the core capabilities needed to administer your ONTAP system are also included.
+
+.AI Data Engine
+
+You need to purchase and install the AI Data Engine license to access the premium services needed to activate the full capabilities of AIDE. The license unlocks your data compute nodes (DCNs), enabling AI features such as vectorization, governance guardrails, inferencing, and an integrated UI experience. The license includes a GPU count as well as an expiration date.
+
+=== License installation requirements
+
+You'll need to purchase the AIDE license and download the associated NLF file to your local system. You can then upload the file to your AFX storage system through System Manager. Also make sure you have the following:
+
+* Administrator credentials to sign in to ONTAP System Manager
+* An AFX cluster running ONTAP 9.18.1 and later
+
+== Install a license on your AFX system
+
+You can install an AIDE license to activate the additional AIDE features needed for your AFX storage system.
 
 .Steps
 
-If you have already obtained your NetApp license files for AIDE, you can use System Manager to install them.
+. In System Manager, select *Cluster* and then *Settings*.
+. Next to *Licenses*, select image:icon_arrow.gif[blue arrow pointing to the right].
+. Select the *Features* tab to display the available ONTAP features.
+. To install a license, select the *Installed licenses* tab.
+. Select image:icon_add_blue_bg.png[blue rectangle containing a plus sign followed by the word add in white letters].
+. Select a local license file and select *Add*.
 
-[role="tabbed-block"]
-====
-.System Manager
---
-.. Select *Cluster* > *Settings*.
-.. Under *Licenses*, review the list of installed licenses to confirm if the Metadata Engine Basic license is present.
-.. To install a new license (such as "AIPVS — Vectorization and Guardrails"), click *Browse* and choose the license file (.txt or .lic) you downloaded from NetApp.
-.. Click *Upload*.
-.. After upload, verify that the new license appears in the *Licenses* list.
-.. For "AIPVS — Vectorization and Guardrails", ensure the number of installed licenses matches the number of GPUs in your DCN nodes.
---
+== Related information
 
-.CLI
---
-.. Add one or more license keys using the ONTAP CLI:
-+
-[source,cli]
-----
-system license add
-----
-
-The following example installs a license file from the local node:
-----
-system license add -use-license-file true
-----
-The following example adds a license key directly:
-----
-system license add -license-code AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-----
-
-Refer to the link:https://docs.netapp.com/us-en/ontap-cli/system-license-add.html[system license add^] command in the ONTAP command reference for more details.
---
-====
-
-
+* https://docs.netapp.com/us-en/ontap/system-admin/manage-licenses-concept.html[ONTAP licensing overview^]
+* https://docs.netapp.com/us-en/ontap-cli/system-license-add.html[CLI: system license add^]
 

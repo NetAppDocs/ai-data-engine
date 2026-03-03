@@ -1,0 +1,104 @@
+---
+sidebar: sidebar
+permalink: administer/dcn-add-node.html
+keywords: aide, ai data engine, data compute node, dcn, add dcn, expand dcn cluster
+summary: ""
+---
+= Add Data Compute Nodes to your AIDE cluster
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+You can add Data Compute Nodes (DCNs) as part of creating a new AI Data Engine (AIDE) cluster or expanding an existing cluster. The workflow consists of discovering and configuring the nodes using ONTAP System Manager.
+
+== Prepare to add nodes
+
+There are several considerations when adding DCN nodes.
+
+.When creating a new AIDE cluster
+
+Exactly three DCN nodes are required for a new AIDE cluster.
+
+.Hardware installation and addressability
+
+Make sure the following prerequisites are met:
+
+* The new DCN hardware is racked, powered on, and cabled to the cluster switches.
+* You have an IP address space range available for the DCN to ONTAP backend subnet.
+* The ONTAP cluster has been initialized and is reachable from the cluster management LIF.
+
+.System Manager credentials
+
+You need storage administrator privileges to perform AIDE cluster creating or expansion tasks.
+
+.Software compatibility
+
+Review the following documentation to confirm that your DCN hardware and software versions are compatible with your ONTAP cluster:
+
+* link:../administer/upgrades-aide-summary.html[DCN software is compatible with the ONTAP version].
+
+During the node add operation, System Manager will confirm the new nodes run a software version compatible with:
+
+* The ONTAP cluster effective version (ECV) if this is the first DCN join.
+* The existing DCN cluster version if DCNs are already present.
+
+If a node is incompatible:
+
+* An error is shown next to the affected DCN in the *Add* dialog.
+* You must first update the DCN software (or ONTAP, as appropriate) to a compatible version.
+
+== Add the Data Compute Nodes
+
+You add DCN nodes as part of creating a new AIDE cluster or expanding an existing cluster.
+
+.Steps
+
+. In System Manager, select *Dashboard* in the navigation pane and then the *Health* card.
+
+. Confirm there are nodes to add and select *View details* to display the list.
++
+The list contains discovered nodes that are not yet part of the AIDE cluster
+
+. Alternatively, you can select *Cluster* and *Overview* and the *Data compute* tab to see the list.
+
+. At the bottom of the data compute page, select *Add* above the list of nodes .
+
+. In the *Add data compute nodes* dialog, select the DCN nodes you want to add.
++
+You can optionally rename individual nodes before adding them.
+
+. If this is the first time you're adding nodes and no backend subnet exists, select *Add subnet* and provide:
++
+* Subnet name (for internal use)
+* Subnet address and mask
+* IP address range for DCN and ONTAP nodes on this backend network
++
+System Manager validates the range includes enough free IP addresses for all DCNs being added and all ONTAP nodes in the cluster and additional cluster-level floating IPs used for DCN to ONTAP communication.
+
+. Whether you added the backend subnet or it already exists:
+.. Review the available IP addresses.
+.. If needed, select *Edit subnet* and extend the IP range.
++
+* You can only grow the range. Shrinking or changing the subnet is not supported.
+* Changing the subnet or IP range might require recreating the underlying Kubernetes cluster on DCNs and can take several minutes.
+
+. Optionally configure the Data Engine service interface by providing:
++
+* Service IP address
+* Network mask
+* Gateway (if required for your environment)
++
+The single IP will be load-balanced across DCNs and used as the frontend address for the AI Data Engine console and related APIs.
+
+. Review the selected nodes, backend subnet, and Data Engine service interface settings.
+
+. Select *Add* and wait for the operation to complete; System Manager will perform the following actions:
++
+* Add the selected nodes to the DCN cluster
+* Provision the backend networking and join nodes to the Kubernetes-based DCN cluster
+* Updates internal metadata for DCN discovery
+
+. After completion, select *Cluster* and *Overview* and confirm:
+.. Under *Data compute* the new DCNs appear as part of the cluster
+.. All nodes are *Healthy*
+.. Verify the dashboard *Health* card shows the updated node count

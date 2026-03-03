@@ -1,0 +1,92 @@
+---
+sidebar: sidebar
+permalink: workspaces/create-workspace.html
+keywords: aide, workspaces, create workspace, ai data engine
+summary: "After you create a cluster, you can create workspaces that allow you to segment data, control data access, and exclude data that AIDE should not access."
+---
+
+= Set up a workspace in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+After you set up a cluster, you can create a workspace. Workspaces allow you to segment data on the cluster, control data access for individuals, and exclude data that AI Data Engine (AIDE) should not access.
+
+If you administer storage, you'll use System Manager to create and manage workspaces. 
+
+Organizations create workspaces based on teams, projects, data sensitivity levels, or other relevant criteria. For example, if you work in healthcare, you might segment clinical data into a workspace but leave out data pertaining to IT, legal, or other departments.
+
+.About this task
+System processing limits affect workspace creation (typically up to 15 GB per day per cluster). If you create multiple workspaces in parallel or in quick succession, each workspace might take longer to process, and you might experience significant delays. 
+
+Monitor the status of workspace creation from the Workspaces inventory page. For best results, avoid creating many workspaces at once if you need immediate access to these features.
+//CONTAP-612354
+
+.Before you begin
+
+* You need _storage administrator_ privileges to create workspaces and associate data collections.
+* You've determined the remote (peered) and local data sources you intend to use with the workspace and with AI Data Engine.
+* You've link:prepare-data-for-aide.html[created at least one data container] that the workspace can use, such as a local volume or a volume from a peered cluster.
++
+IMPORTANT: Add a volume to a workspace that you won't delete during the expected lifetime of that workspace. If you delete a volume after adding it to a workspace, the workspace will enter a failed state. Confirm the longer-term viability of the volume before establishing a workspace.
+
+//aidedoc-4
+
+* Ensure NFS is enabled on the volume but that CIFS is not enabled. Workspaces only support volumes with NFS. Volumes with CIFS (SMB) are not supported.
+
+// CONTAP-517543
+//Should more clusters be added/peered?
+
+== Create a workspace
+
+Create a workspace and associate data containers that contain the data you want to use with AI Data Engine.
+
+.Steps
+. In System Manager, navigate to *Data Engine > Workspaces*.
+. Select *Add*.
+. In the *Add Workspace* dialog, select at least one available data container to associate with the workspace.
+. Configure link:prepare-data-for-aide.html[peered clusters] so that the data from those clusters can be accessed within the workspace
+. If you'd like to configure user access to the workspace, you can do that now or link:assign-users-to-workspace.html[wait until after the workspace is created].
+. Configure a refresh interval for how often the workspace synchronizes with the associated data containers to capture new or updated data (for example, six hours).
++
+TIP: Choose an interval that balances data freshness with system performance. If you add a data container to multiple workspaces, the system automatically uses the most aggressive (shortest) interval. To learn more, see documentation about <<Workspace refreshes and versioning,workspace refreshes and versioning>>.
+
+. Select *Continue*.
+. In the *Finalize workspace* dialog, enter a workspace name and description.
+. Select *Add* to create the workspace.
+
+.Result
+The workspace creation process takes several minutes to hours to complete, depending on the associated dataset and its file count, file size, and other factors.
+
+The system automatically extracts metadata for all data sources and stores it in a metadata catalog that users can use to locate the files they need for their projects. After you assign users to the workspace, data engineer users can set up and interact with workspace-affiliated components from AI Data Engine Console.
+
+The new workspace appears on the Workspaces page in `Creating` state until the process completes and the state changes to `ready`.
+
+//.. (Optional) Choose guardrails from the dropdown. If a guardrail is disabled or in test mode, review any warning messages.
+
+== Review workspace details
+
+After workspace creation, review the workspace details.
+
+.Steps
+. Review workspace details, including total size, percentage of cluster capacity used, and the date of most recent workspace refresh.
+. Select the workspace name to open the details page.
+. In the Overview tab, view workspace details that include associated data containers, users, and activity.
+
+== Workspace refreshes and versioning
+
+Each workspace refresh creates an immutable version that captures the current state of all files and objects in the workspace. Versions include complete metadata, references to snapshots used during extraction, and a job ID for traceability. This supports data lineage, reproducibility, and auditing.
+
+Refreshes occur either on the schedule you configure (such as every six hours) or when you trigger them manually. The minimum supported refresh interval is one hour; the maximum is one year. If a data container is included in multiple workspaces, the system uses the most frequent, shortest duration refresh interval for scheduling metadata extraction.
+//add link to manual refresh instructions
+
+By default, the system retains previous, current, and next (in-progress) versions. The system retains older versions according to your organization's policy and can purge them as needed.
+//add link to workspace deletion and volume consequences
+
+You can list all versions of a workspace and view differences between versions to identify which files or objects were added, modified, or deleted. This allows you to track changes over time and understand the evolution of your workspace data.
+//Add API table or a link to that table as part of management
+
+
+//.Related information
+//Link to workspace management
+
