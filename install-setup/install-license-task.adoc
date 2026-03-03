@@ -5,7 +5,7 @@ keywords: ai data engine, license, install, enable, add, aide, ai data engine, s
 summary: "You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). You can perform license management using the ONTAP AFX System Manager."
 ---
 
-= Install AIDE licenses in your AFX system
+= Install an AIDE license in your AFX system
 :icons: font
 :imagesdir: ../media/
 
@@ -51,5 +51,5 @@ You can install an AIDE license to activate the additional AIDE features needed 
 == Related information
 
 * https://docs.netapp.com/us-en/ontap/system-admin/manage-licenses-concept.html[ONTAP licensing overview^]
-* https://docs.netapp.com/us-en/ontap-cli/system-license-add.html[CLI: system license add^]
-
+* https://kb.netapp.com/nss/Licensing/How_to_download_NLF_licenses_from_the_NetApp_Support_Site[How to download NLF licenses from the NetApp Support Site^]
+//https://docs.netapp.com/us-en/ontap-cli/system-license-add.html[CLI: system license add^]
