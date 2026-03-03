@@ -73,5 +73,5 @@ RAG endpoints are designed to support advanced AI workflows, such as semantic se
 
 .Related information
 * link:aide-components-storage-admin.html[How AIDE storage administrators work with AIDE components]
-* link:aide-components-data-engineer.html[How AIDE data engineers work with AIDE components]
-* link:aide-components-data-scientist.html[How AIDE data scientists work with AIDE components]
+* link:aide-components-data-users.html[How AIDE data engineers work with AIDE components]
+* link:aide-components-data-users.html[How AIDE data scientists work with AIDE components]
