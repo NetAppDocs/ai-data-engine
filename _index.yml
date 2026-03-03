@@ -72,7 +72,7 @@ indexpage:
           url: /release-notes/known-limitations.html
         - title: FAQ for AI Data Engine
           url: /faq-aide.html
-        - title: Manage AutoSupport
-          url: /get-help/manage-autosupport.html
-        - title: Submit support cases
-          url: /get-help/view-submit-support-case.html
+##        - title: Manage AutoSupport
+##          url: /get-help/manage-autosupport.html
+##        - title: Submit support cases
+##          url: /get-help/view-submit-support-case.html
