@@ -15,7 +15,7 @@ AI Data Engine (AIDE) 9.18.1 is the initial release of NetApp's platform for AI 
 
 AIDE 9.18.1 introduces the following foundational capabilities:
 
-.link:../get-started/aide-architecture.html#metadata-engine[Metadata engine for AI data cataloging]
+.link:../get-started/aide-architecture.html#metadata-engine[Metadata Engine for AI data cataloging]
 
 The initial release includes a metadata engine that catalogs files and objects across ONTAP clusters. 
 
@@ -70,8 +70,8 @@ The initial release includes the following workflows:
 
 The following capabilities are available for customers who have the appropriate AI Data Engine licenses:
 
-* *Vectorization and RAG*: Creation of data collections, embeddings, and retrieval endpoints in the AI Data Engine console, using metadata from AIDE workspaces.
-* *Guardrail-based governance*: Definition of guardrail policies in the AI Data Engine console and association of those policies with workspaces in ONTAP System Manager.
+* *Vectorization and RAG*: Creation of data collections, embeddings, and retrieval endpoints in the AI Data Engine Console, using metadata from AIDE workspaces.
+* *Guardrail-based governance*: Definition of guardrail policies in the AI Data Engine Console and association of those policies with workspaces in ONTAP System Manager.
 
 === Supported hardware and platforms
 

@@ -37,7 +37,7 @@ Review workspace health, capacity usage, and metadata status to ensure the Metad
 * All data collections associated with this workspace.
 * State (such as `Published` or `Error`), size, and last updated time.
 +
-NOTE: System Manager is read-only for data collections. Data engineers can create and manage data collections in the AI Data Engine console.
+NOTE: System Manager is read-only for data collections. Data engineers can create and manage data collections in the AI Data Engine Console.
 
 . Select the *Users* tab to view:
 +

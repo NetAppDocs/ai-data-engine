@@ -14,8 +14,8 @@ indexpage:
           url: /get-started/quick-start.html
         - title: Install workflow
           url: /install-setup/install-workflow.html
-        - title: Set up AIDE cluster
-          url: /install-setup/cluster-setup-afx.html
+        - title: Install AIDE licenses
+          url: /install-setup/install-license-task.html
     - title: Install and setup
       links:
         - title: Installation requirements
@@ -26,8 +26,8 @@ indexpage:
           url: /install-setup/cable-hardware.html
         - title: Power on system
           url: /install-setup/power-on-hardware.html
-        - title: Install AIDE licenses
-          url: /install-setup/install-license-task.html
+        - title: Set up AIDE cluster
+          url: /install-setup/cluster-setup-afx.html
         - title: Configure OIDC authentication
           url: /install-setup/configure-oidc.html
     - title: Workspaces and data access

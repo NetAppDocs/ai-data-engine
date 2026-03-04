@@ -10,10 +10,10 @@ summary: "As an ONTAP cluster administrator, you can use System Manager to confi
 :imagesdir: ../media/
 
 [.lead]
-As an ONTAP cluster administrator, you can use System Manager to configure OpenID Connect (OIDC) authentication for an AI Data Engine (AIDE) cluster. This provides a secure and centralized login through an external identity provider (IdP).
+As an ONTAP cluster administrator, you can use ONTAP System Manager to configure OpenID Connect (OIDC) authentication for an AI Data Engine (AIDE) cluster. This provides a secure and centralized login through an external identity provider (IdP).
 
 [CAUTION]
-You must configure OIDC to be able to access the AI Data Engine console. If OIDC is not configured, the console will be inaccessible to you and the data engineers and data scientists.
+You must configure OIDC to be able to access the AI Data Engine Console. If OIDC is not configured, the console will be inaccessible to you and the data engineers and data scientists.
 
 Also note the following about OIDC configuration for AIDE access:
 
@@ -24,7 +24,7 @@ Also note the following about OIDC configuration for AIDE access:
 
 OpenID Connect (OIDC) is an authentication protocol built on top of the OAuth 2.0 framework. It extends OAuth 2.0, which is used primarily for authorization, by adding an identity layer. OIDC introduces the concept of an ID token—a JSON Web Token (JWT)-that contains claims about the authentication event and the identity of the user.
 
-An important first step in configuring OIDC is selecting and configuring an external Identity Provider (IdP) that is supported by AIDE and AFX. The IdP authenticates users and issues ID tokens that System Manager can use to grant access to the AIDE console.
+An important first step in configuring OIDC is selecting and configuring an external Identity Provider (IdP) that is supported by AIDE and AFX. The IdP authenticates users and issues ID tokens that System Manager can use to grant access to the AIDE Console.
 
 == Configure third-party identity providers
 
@@ -53,12 +53,12 @@ See https://learn.microsoft.com/en-us/azure/active-directory-b2c/identity-provid
 
 == Configure OIDC in System Manager
 
-After configuring your IdP, you can set up OIDC authentication in System Manager to enable secure access to the AIDE console.
+After configuring your IdP, you can set up OIDC authentication in System Manager to enable secure access to the AIDE Console.
 
 .Before you begin
 
 * You need to have administrator access to System Manager.
-* Your ODIC identity provider must be configured and accessible.
+* Your OIDC identity provider must be configured and accessible.
 
 .Steps
 
