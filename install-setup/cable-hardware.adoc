@@ -79,4 +79,4 @@ image::../media/drw_aide_switched_cluster_cabling_b_ieops-2650.svg[Cable to Ethe
 
 .What's next?
 
-After you’ve cabled the hardware, you link:power-on-hardware.html[power on your data compute nodes].
+After you've cabled the hardware, you link:power-on-hardware.html[power on your data compute nodes].

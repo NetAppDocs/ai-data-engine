@@ -9,7 +9,7 @@ summary:
 :imagesdir: ../media/
 
 [.lead]
-You need to replace a data compute node (DCN) in your cluster if it stops functioning or needs to be swapped due to hardware failure, upgrade, or maintenance. This ensures the AIDE cluster remains healthy and operational. The procedure can be performed without disrupting ongoing services.
+You need to replace a data compute node (DCN) in your AI Data Engine (AIDE) cluster if it stops functioning or needs to be swapped due to hardware failure, upgrade, or maintenance. This ensures the AIDE cluster remains healthy and operational. The procedure can be performed without disrupting ongoing services.
 
 [TIP]
 [.red]*DP: Need to review the following page:* link:../administer/dcn-add-node.html[Expand your compute cluster]
@@ -24,7 +24,7 @@ There are several several restrictions to be aware of when replacing a node in y
 
 * Node replacement is only supported using the CLI and optionally the REST API.
 * You cannot perform node replacement using System Manager.
-* The new node should match the cluster’s software version; ONTAP will update it if needed.
+* The new node should match the cluster's software version; ONTAP will update it if needed.
 * The failed node must not be powered on while connected to the cluster network to avoid IP address conflicts.
 
 === Requirements
@@ -57,7 +57,7 @@ Make sure the node is cabled in, powered on, and discoverable.
 +
 `dcn cluster node create -serial-number <new_node_serial>`
 +
-ONTAP will allocate an IP address for the new node. If the node’s software version does not match the cluster, ONTAP will automatically update the node.
+ONTAP will allocate an IP address for the new node. If the node's software version does not match the cluster, ONTAP will automatically update the node.
 
 . Verify cluster health and node integration with either of the following commands:
 +

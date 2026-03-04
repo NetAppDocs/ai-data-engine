@@ -53,7 +53,7 @@ The Metadata Engine automatically generates a structured, up-to-date, and intera
 .License and access
 The MetaData Engine is included with the base ONTAP One license and is available upon AIDE installation.
 
-You can access it through System Manager.
+You can access it through ONTAP System Manager.
 
 .Capabilities
 

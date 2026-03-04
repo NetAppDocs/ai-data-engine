@@ -88,7 +88,7 @@ System Manager validates the range includes enough free IP addresses for all DCN
 * Network mask
 * Gateway (if required for your environment)
 +
-The single IP will be load-balanced across DCNs and used as the frontend address for the AI Data Engine console and related APIs.
+The single IP will be load-balanced across DCNs and used as the frontend address for the AI Data Engine Console and related APIs.
 
 . Review the selected nodes, backend subnet, and Data Engine service interface settings.
 

@@ -25,7 +25,7 @@ If you're setting up AIDE as part of an initial AFX system deployment, the AIDE 
 
 === Set up AIDE with an existing AFX cluster
 
-If you're adding an AIDE cluster to an existing AFX storage system, you need to configure the DCN nodes and finish setting up your cluster.
+If you're adding an AIDE DCN cluster to an existing AFX storage system, you need to configure the DCN nodes and finish setting up your AIDE cluster.
 
 ==== Add the DCN nodes to the AIDE cluster
 

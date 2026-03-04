@@ -19,7 +19,7 @@ These limitations apply to the Metadata Engine, Data Compute Nodes, and manageme
 
 * **Minimum data compute node requirement**
 +
-AIDE clusters require a minimum and maximum of 3 Data Compute Nodes (DCNs) for Metadata Engine functionality. Clusters with fewer than 3 DCNs cannot enable metadata engine features.
+AIDE clusters require a minimum and maximum of 3 Data Compute Nodes (DCNs) for Metadata Engine functionality. Clusters with fewer than 3 DCNs cannot enable Metadata Engine features.
 
 * **No support for adding DCN nodes using NetApp Console**
 +
