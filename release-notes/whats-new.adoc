@@ -83,3 +83,4 @@ AI Data Engine 9.18.1 runs on ONTAP AI data platform clusters that combine:
 .Related information
 
 * link:known-limitations.html[Known limitations of AI Data Engine]
+* link:../get-started/learn-about.html[Learn about AI Data Engine architecture and components]

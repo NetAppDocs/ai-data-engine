@@ -28,8 +28,7 @@ ONTAP System Manager enables you to manage which users have access to AI Data En
 .. Select the workspace name to open its details page. 
 .. Go to the Users tab. 
 .. Select the *Add* button to open the add users dialog. 
-.. Enter the details of one or more users. Enter the details as a comma-separated list of local, SAML, AD domain, or OIDC users.
-//need examples of user formats? 
+.. Enter the details of one or more users. Enter the details as a comma-separated list of OIDC users.
 .. Select *Add* to grant the user access to the workspace.
 
 * Remove a user from a workspace: 
