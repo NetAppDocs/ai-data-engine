@@ -12,7 +12,7 @@ summary: "After you create a workspace, you can assign users to it who will work
 You assign users to a workspace based on their roles: data engineers, data scientists, or other roles depending on your organization's structure and needs. Users log in to the AI Data Engine (AIDE) Console using their credentials and access the data container resources within the assigned workspace.
 //Guardrails will prevent them from seeing some select files
 
-System Manager enables you to manage which users have access to AI Data Engine workspaces. You can add or remove users to control who can view, modify, and interact with workspace data and activities.
+ONTAP System Manager enables you to manage which users have access to AI Data Engine workspaces. You can add or remove users to control who can view, modify, and interact with workspace data and activities.
 
 .Before you begin
 
@@ -24,12 +24,11 @@ System Manager enables you to manage which users have access to AI Data Engine w
 .Steps
 
 * Add a user to a workspace: 
-.. In System Manager, navigate to *Data Engine > Workspaces*. 
+.. In ONTAP System Manager, navigate to *Data Engine > Workspaces*. 
 .. Select the workspace name to open its details page. 
 .. Go to the Users tab. 
 .. Select the *Add* button to open the add users dialog. 
-.. Enter the details of one or more users. Enter the details as a comma-separated list of local, SAML, AD domain, or OIDC users.
-//need examples of user formats? 
+.. Enter the details of one or more users. Enter the details as a comma-separated list of OIDC users.
 .. Select *Add* to grant the user access to the workspace.
 
 * Remove a user from a workspace: 

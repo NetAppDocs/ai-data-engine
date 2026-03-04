@@ -15,10 +15,8 @@ entries:
             url: "/get-started/aide-interfaces.html"
           - title: Storage administrators and components
             url: "/get-started/aide-components-storage-admin.html"
-          - title: Data engineers and components
-            url: "/get-started/aide-components-data-engineer.html"
-          - title: Data scientists and components
-            url: "/get-started/aide-components-data-scientist.html"
+          - title: Data engineers and data scientists and components
+            url: "/get-started/aide-components-data-users.html"
   - title: Quick start
     url: "/get-started/quick-start.html"
   - title: Install AIDE   

@@ -18,7 +18,7 @@ AIDE is designed to help organizations manage data for AI workloads and provides
 
 * *Centralized metadata management*: AIDE collects and catalogs metadata from ONTAP volumes, making it possible to search, classify, and apply governance policies to datasets.
 
-* *Automated data processing*: AIDE supports the creation of data pipelines for AI and machine learning workloads, including the ability to generate vector embeddings for semantic search (with appropriate licensing).
+* *Automated data processing*: AIDE supports the creation of data pipelines for AI and ML workloads, including the ability to generate vector embeddings for semantic search (with appropriate licensing).
 
 * *Data isolation and access control*: AIDE enforces access controls and basic data isolation for multiple teams or projects.
 
@@ -52,7 +52,7 @@ NOTE: S3 buckets are not supported as data sources for workspaces or data collec
 . **Vectorization**: For collections requiring semantic search, AIDE generates embeddings using selected AI models. Vectors are stored in the vector database for high-performance retrieval.
 
 . **AI/ML consumption**: Applications access data through multiple paths:
-   * Direct file/object access using NFS, SMB, or S3
+   * Direct file/object access using NFS or SMB
    * Semantic search queries against the vector database
    * RAG endpoints that combine data retrieval with GenAI model integration
    * REST API access for programmatic workflows

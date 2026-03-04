@@ -12,7 +12,7 @@ summary: "After you create a cluster, you can create workspaces that allow you t
 [.lead]
 After you set up a cluster, you can create a workspace. Workspaces allow you to segment data on the cluster, control data access for individuals, and exclude data that AI Data Engine (AIDE) should not access.
 
-If you administer storage, you'll use System Manager to create and manage workspaces. 
+If you administer storage, you'll use ONTAP System Manager to create and manage workspaces. 
 
 Organizations create workspaces based on teams, projects, data sensitivity levels, or other relevant criteria. For example, if you work in healthcare, you might segment clinical data into a workspace but leave out data pertaining to IT, legal, or other departments.
 
@@ -42,7 +42,7 @@ IMPORTANT: Add a volume to a workspace that you won't delete during the expected
 Create a workspace and associate data containers that contain the data you want to use with AI Data Engine.
 
 .Steps
-. In System Manager, navigate to *Data Engine > Workspaces*.
+. In ONTAP System Manager, navigate to *Data Engine > Workspaces*.
 . Select *Add*.
 . In the *Add Workspace* dialog, select at least one available data container to associate with the workspace.
 . Configure link:prepare-data-for-aide.html[peered clusters] so that the data from those clusters can be accessed within the workspace

@@ -29,7 +29,7 @@ Make sure the following prerequisites are met:
 
 .System Manager credentials
 
-You need storage administrator privileges to perform AIDE cluster creating or expansion tasks.
+You need _storage administrator_ privileges to perform AIDE cluster creating or expansion tasks.
 
 .Software compatibility
 
@@ -55,7 +55,7 @@ You add DCN nodes as part of creating a new AIDE cluster or expanding an existin
 
 . In System Manager, select *Dashboard* in the navigation pane and then the *Health* card.
 
-. Confirm there are nodes to add and select *View details* to display the list.
+. Confirm that there are nodes to add and select *View details* to display the list.
 +
 The list contains discovered nodes that are not yet part of the AIDE cluster
 
@@ -88,11 +88,11 @@ System Manager validates the range includes enough free IP addresses for all DCN
 * Network mask
 * Gateway (if required for your environment)
 +
-The single IP will be load-balanced across DCNs and used as the frontend address for the AI Data Engine console and related APIs.
+The single IP will be load-balanced across DCNs and used as the frontend address for the AI Data Engine Console and related APIs.
 
 . Review the selected nodes, backend subnet, and Data Engine service interface settings.
 
-. Select *Add* and wait for the operation to complete; System Manager will perform the following actions:
+. Select *Add* and wait for the operation to complete. System Manager will perform the following actions:
 +
 * Add the selected nodes to the DCN cluster
 * Provision the backend networking and join nodes to the Kubernetes-based DCN cluster

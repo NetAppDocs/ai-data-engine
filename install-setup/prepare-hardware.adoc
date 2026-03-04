@@ -26,7 +26,7 @@ To install your data compute nodes, ensure that the site and the cabinet or rack
 ** 1U or 2U per switch, depending on switch model.
 
 == Step 2: Unpack the boxes
-After you’ve ensured that the site and the cabinet or rack that you plan to use for your data compute nodes meet the required specifications, unpack all boxes and compare the contents to the items on the packing slip.
+After you've ensured that the site and the cabinet or rack that you plan to use for your data compute nodes meet the required specifications, unpack all boxes and compare the contents to the items on the packing slip.
 
 .Steps
 
@@ -53,7 +53,7 @@ a|* Power cords|
 |===
 
 == Step 3: Register your data compute nodes
-After you’ve ensured that your site meets the requirements for your data compute node specifications, and you’ve verified that you have all the parts you ordered, you should register your system.
+After you've ensured that your site meets the requirements for your data compute node specifications, and you've verified that you have all the parts you ordered, you should register your system.
 
 .Steps
 

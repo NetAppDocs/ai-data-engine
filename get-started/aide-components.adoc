@@ -57,7 +57,7 @@ A centralized, scalable database storing metadata records for all files and obje
 Classifiers are tools (built-in or custom) that scan and tag files for specific types of sensitive data (for example, PII, financial, healthcare) or categorize documents by type (for example, legal, HR, sales).
 
 === Data collections
-A data collection is a curated group of related files or objects from a workspace, defined by a user specified query for use in GenAI workflows. The content of the files in the data collection, after publication, is available for semantic search by APIs for GenAI applications.
+A data collection is a curated group of related files or objects from a workspace, defined by a user-specified query for use in GenAI workflows. The content of the files in the data collection, after publication, is available for semantic search by APIs for GenAI applications.
 
 === Vector database
 The vector database stores embeddings generated from data collections, enabling high-performance semantic search and retrieval for AI and GenAI applications.
@@ -73,5 +73,5 @@ RAG endpoints are designed to support advanced AI workflows, such as semantic se
 
 .Related information
 * link:aide-components-storage-admin.html[How AIDE storage administrators work with AIDE components]
-* link:aide-components-data-engineer.html[How AIDE data engineers work with AIDE components]
-* link:aide-components-data-scientist.html[How AIDE data scientists work with AIDE components]
+* link:aide-components-data-users.html[How AIDE data engineers work with AIDE components]
+* link:aide-components-data-users.html[How AIDE data scientists work with AIDE components]
