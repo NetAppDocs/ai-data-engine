@@ -20,7 +20,7 @@ There are several things to consider before replacing a node in your AIDE cluste
 
 === Restrictions
 
-There are several several restrictions to be aware of when replacing a node in your AIDE cluster:
+There are several restrictions to be aware of when replacing a node in your AIDE cluster:
 
 * Node replacement is only supported using the CLI and optionally the REST API.
 * You cannot perform node replacement using System Manager.

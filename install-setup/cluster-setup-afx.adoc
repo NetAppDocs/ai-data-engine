@@ -21,7 +21,7 @@ Before setting up AIDE, make sure you have the DX50 data compute nodes (DCNs) in
 
 === Set up AIDE with a new AFX cluster
 
-If you're setting up AIDE as part of an initial AFX system deployment, the AIDE setup process is part of the standard AFX cluster setup workflow. During the AFX cluster setup, System Manager automatically discovers the connected DCNs and includes them as part of the cluster configuration. After that you're ready to add complete the AIDE configuration, including the required licensing and OIDC configuration.
+If you're setting up AIDE as part of an initial AFX system deployment, the AIDE setup process is part of the standard AFX cluster setup workflow. During the AFX cluster setup, System Manager automatically discovers the connected DCNs and includes them as part of the cluster configuration. After that, you're ready to complete the AIDE configuration, including the required licensing and OIDC configuration.
 
 === Set up AIDE with an existing AFX cluster
 
@@ -52,11 +52,11 @@ This step might not be required based on your environment.
 
 . Create intercluster network interfaces
 +
-Perform this step if you intend ti catalog remote data.
+Perform this step if you intend to catalog remote data.
 
 == 2. Complete AIDE configuration
 
-After your AIDE cluster is set up and integrated it with the AFX storage system, you need to complete the AIDE configuration.
+After your AIDE cluster is set up and integrated with the AFX storage system, you need to complete the AIDE configuration.
 
 .Steps
 

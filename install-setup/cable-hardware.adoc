@@ -14,7 +14,7 @@ Connect your data compute nodes to the host network and cluster network switches
 .Before you begin
 
 * You have an existing AFX 1K storage system installed. For information on installing the AFX 1K storage system, refer to link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[install your AFX 1K storage system^].
-* You have the required network switches installed and configured.Contact your network administrator for information about connecting the system to your network switches.
+* You have the required network switches installed and configured. Contact your network administrator for information about connecting the system to your network switches.
 * You have reviewed the link:../install-setup/cable-overview.html[cabling requirements for the data compute nodes^].
 
 .About this task

@@ -51,7 +51,7 @@ The AI Data Engine (AIDE) primary features work together to automate, secure, an
 The Metadata Engine automatically generates a structured, up-to-date, and interactive view of your NetApp data estate. 
 
 .License and access
-The MetaData Engine is included with the base ONTAP One license and is available upon AIDE installation.
+The Metadata Engine is included with the base ONTAP One license and is available upon AIDE installation.
 
 You can access it through ONTAP System Manager.
 
@@ -120,4 +120,4 @@ You can access data curator through the AI Data Engine Console.
 
 == Security and multi-tenancy
 
-The platform enforces both role-based access control (RBAC) and resource-level access control lists (ACLs). All API and user actions are audited, and all data is encrypted at rest and in transit. Single tenants are isolated for data and metadata.
+The platform enforces both role-based access control (RBAC) and resource-level access control lists (ACLs). All API and user actions are audited, and all data is encrypted at rest and in transit. Individual tenants are isolated for data and metadata.

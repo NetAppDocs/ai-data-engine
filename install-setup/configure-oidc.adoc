@@ -58,7 +58,7 @@ After configuring your IdP, you can set up OIDC authentication in System Manager
 .Before you begin
 
 * You need to have administrator access to System Manager.
-* Your ODIC identity provider must be configured and accessible.
+* Your OIDC identity provider must be configured and accessible.
 
 .Steps
 
