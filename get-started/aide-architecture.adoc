@@ -22,11 +22,11 @@ AFX controller nodes run a specialized personality of the ONTAP software designe
 
 At least four AFX controller nodes are required for AIDE deployments to ensure high availability and performance.
 
-=== Data compute nodes (DCNs)
+=== Data compute nodes
 
-DCNs are Linux-based servers with high CPU, RAM, and GPU resources, dedicated to AI data processing tasks. They host AI-specific services such as metadata cataloging, vector search, and embedding pipelines.
+Data compute nodes (DCNs) are Linux-based servers with high CPU, RAM, and GPU resources, dedicated to AI data processing tasks. They host AI-specific services such as metadata cataloging, vector search, and embedding pipelines.
 
-Exactly _three_ data compute nodes are required for AIDE deployments.
+Exactly _three_ DCNs are required for AIDE deployments.
 
 === Cluster/storage switches
 
@@ -38,13 +38,13 @@ NVMe-oF shelves with high-density SSDs provide ultra-low latency and redundancy,
 
 == Networking
 
-All data compute nodes (DCNs) and ONTAP storage nodes are connected through redundant, high-speed cluster switches (minimum 100GbE). This architecture separates compute and storage resources, allowing each to scale independently and optimizing both performance and resource utilization.
+All DCNs and ONTAP storage nodes are connected through redundant, high-speed cluster switches (minimum 100GbE). This architecture separates compute and storage resources, allowing each to scale independently and optimizing both performance and resource utilization.
 
 Networking between DCNs and ONTAP nodes is isolated using dedicated VLANs and IPspaces on the cluster switches. This ensures that all communications, such as data access, management APIs, and internal service traffic, remain secure, efficient, and do not interfere with other network operations.
 
 == AI Data Engine primary features
 
-The AI Data Engine (AIDE) primary features work together to automate, secure, and accelerate the AI data lifecycle. Each feature is implemented as a set of microservices running on data compute nodes (DCNs), integrated with ONTAP storage, and exposed through REST APIs and management interfaces.
+The AI Data Engine (AIDE) primary features work together to automate, secure, and accelerate the AI data lifecycle. Each feature is implemented as a set of microservices running on DCNs, integrated with ONTAP storage, and exposed through REST APIs and management interfaces.
 
 === Metadata Engine
 

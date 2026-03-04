@@ -22,7 +22,7 @@ Also note the following about OIDC configuration for AIDE access:
 
 == OIDC overview
 
-OpenID Connect (OIDC) is an authentication protocol built on top of the OAuth 2.0 framework. It extends OAuth 2.0, which is used primarily for authorization, by adding an identity layer. OIDC introduces the concept of an ID token—a JSON Web Token (JWT)-that contains claims about the authentication event and the identity of the user.
+OpenID Connect (OIDC) is an authentication protocol built on top of the OAuth 2.0 framework. It extends OAuth 2.0, which is used primarily for authorization, by adding an identity layer. OIDC introduces the concept of an ID token, a JSON Web Token (JWT) that contains claims about the authentication event and the identity of the user.
 
 An important first step in configuring OIDC is selecting and configuring an external Identity Provider (IdP) that is supported by AIDE and AFX. The IdP authenticates users and issues ID tokens that System Manager can use to grant access to the AIDE Console.
 

@@ -29,7 +29,7 @@ Make sure the following prerequisites are met:
 
 .System Manager credentials
 
-You need storage administrator privileges to perform AIDE cluster creating or expansion tasks.
+You need _storage administrator_ privileges to perform AIDE cluster creating or expansion tasks.
 
 .Software compatibility
 

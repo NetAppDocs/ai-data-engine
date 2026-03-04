@@ -18,6 +18,10 @@ You need to replace a data compute node (DCN) in your AI Data Engine (AIDE) clus
 
 There are several things to consider before replacing a node in your AIDE cluster.
 
+.System Manager credentials
+
+You need _storage administrator_ privileges to perform AIDE cluster node replacement tasks.
+
 === Restrictions
 
 There are several restrictions to be aware of when replacing a node in your AIDE cluster:
