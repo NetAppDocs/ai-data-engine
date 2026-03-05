@@ -16,7 +16,7 @@ If you're a storage administrator or data engineer, you can view data collection
 
 .Before you begin
 
-* You need either _storage administrator_ privileges in ONTAP System Manager or _data engineer_ privileges in AI Data Engine Console (`https://<cluster_management_ip>/console`)to observe data collections.
+* You need either _storage administrator_ privileges in ONTAP System Manager or _data engineer_ privileges in AI Data Engine Console (`\https://<cluster_management_ip>/console`) to view data collections.
 * At least one workspace exists with successfully extracted metadata.
 * Data engineers have created and published at least one data collection from AI Data Engine Console.
 * The AI Data Engine software license is installed and inferencing features are enabled, so that vectorization and retrieval endpoints are active.
@@ -104,5 +104,4 @@ Data engineers can iterate on collection definitions and publish them again whil
 == What's next?
 
 * link:create-data-collections.html[Create data collections for RAG in AIDE Console]
-* link:zero-to-rag.html[Zero-to-RAG quick start for AI Data Engine]
 //* link:use-collections.html[Use data collections and RAG endpoints as a data scientist]

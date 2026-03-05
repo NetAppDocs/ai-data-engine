@@ -26,7 +26,7 @@ Use these procedures to find collections you can access and understand how to us
 .Steps
 . In a browser, navigate to:
 +
-`https://<cluster_management_ip>/console`
+`\https://<cluster_management_ip>/console`
 . Authenticate through your organization's OIDC provider.
 . Verify that you see data scientist capabilities (for example, you can view but not modify data collection definitions or workspaces).
 
@@ -42,7 +42,7 @@ NOTE: Data scientists cannot access ONTAP System Manager and cannot modify works
 . Review the list of workspaces to which you have access.
 . For a given workspace, select its name to open the details page.
 . Open the *Data collections* tab.
-. For each collection, observe:
+. For each collection, observe the following:
 .. Name and description.
 .. Status (for example, `Ready`, `Publishing`, `Failed`).
 .. Approximate size and item count.
@@ -156,6 +156,6 @@ Best practices:
 * Log both the original query and guardrail-related responses for debugging and compliance reviews.
 * If guardrails prevent legitimate use cases, work with data engineers and data governance stakeholders to refine classifier and guardrail configuration. Data scientists do not change guardrails directly. Collaborate with data engineers to request new collections or adjusted filters when your experiment needs change.
 
-== What's next?
+== Related information
 
 link:zero-to-rag.html[Zero-to-RAG quick start for AI Data Engine]

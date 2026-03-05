@@ -144,6 +144,5 @@ For data engineers and data scientists:
 
 == Related information
 
-* link:../collections/observe-data-collections.html[Observe data collections in AI Data Engine]
-* link:../collections/create-data-collections.html[Create data collections for RAG in AIDE Console]
-* link:../get-started/zero-to-rag.html[Zero-to-RAG quick start for AI Data Engine]
+* link:../vectorization/view-data-collections.html[View data collections in AI Data Engine]
+* link:../vectorization/zero-to-rag.html[Zero-to-RAG quick start for AI Data Engine]

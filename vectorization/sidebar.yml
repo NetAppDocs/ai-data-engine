@@ -1,5 +1,5 @@
 section: vectorization
-title: Vectorization and data collections
+title: Manage vectorization and data collections
 entries:
   - title: Zero-to-RAG quick start
     url: /vectorization/zero-to-rag.html

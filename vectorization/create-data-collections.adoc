@@ -16,7 +16,7 @@ You'll perform all data collection tasks in the AI Data Engine Console.
 
 .Before you begin
 
-* You need _data engineer_ privileges in AI Data Engine Console (`https://<cluster_management_ip>/console`).
+* You need _data engineer_ privileges in AI Data Engine Console (`\https://<cluster_management_ip>/console`).
 * You have access to at least one workspace with metadata extracted and in `Ready` state.
 * You have explored the workspace metadata and identified queries or filters that define meaningful subsets of data.
 * The AI Data Engine software license is installed and inferencing features are enabled.
@@ -102,5 +102,4 @@ The collection definition and its embeddings are removed from AI Data Engine. Ap
 == What's next?
 
 //* link:use-collections.html[Use data collections and retrieval endpoints as a data scientist]
-* link:view-data-collections.html[Observe data collections]
-* link:zero-to-rag.html[Zero-to-RAG quick start for AI Data Engine]
+* link:view-data-collections.html[View data collections]
