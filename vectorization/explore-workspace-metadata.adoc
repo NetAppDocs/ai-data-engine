@@ -13,7 +13,7 @@ summary: "As a data engineer, use AI Data Engine Console to explore workspace me
 // Needs validation. Last two sections especially
 As a data engineer, your first task in AI Data Engine (AIDE) is to understand what data is available in your workspaces. You use AIDE Console to query the metadata catalog, search for relevant files, and identify subsets of data to turn into data collections.
 
-== Before you begin
+.Before you begin
 
 * You need _data engineer_ privileges in AI Data Engine Console and access to at least one workspace.
 * A storage administrator has:

@@ -30,7 +30,7 @@ You'll perform all data collection tasks in the AI Data Engine Console.
 .. Enter a name and description for the collection (for example, `Support_KB_RAG_EN`).
 .. Choose whether the collection should be:
 *** *Dynamic*: New files are automatically identified and added to the data collection based on the filtering criteria you define. This happens during workspace refreshes.
-*** *Static*: You choose which files are included in the collection. Files can be edited as long as data collection remains in `draft` state. After the data collection moves to `Published` state, it cannot be edited.
+*** *Static*: You choose which files are included in the collection. You can edit the files if the data collection is in `draft` state. After the data collection moves to `Published` state, it cannot be edited.
 . Specify the source subset:
 .. Use keywords and filters (file type, timestamps, and other attributes) to find the relevant files to include.
 +
@@ -69,6 +69,8 @@ From *Data Curator > Data collections*, you can select *Copy URI* to obtain the 
 Over time you might need to refine or retire data collections. Refining a collection might involve adjusting filters to add or remove files, changing embedding settings, or updating the collection description. Deleting a collection removes it permanently and makes its retrieval endpoint unavailable.
 
 === Update a data collection
+
+You can update a data collection when it's in `draft` state.
 
 .Steps
 . Navigate to *Data Curator > Data collections*.

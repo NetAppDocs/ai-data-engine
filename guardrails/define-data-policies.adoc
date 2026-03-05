@@ -14,7 +14,7 @@ As a data or platform owner, you use AI Data Engine (AIDE) Console to define whi
 
 Use these procedures to define those policies in AIDE Console so that ONTAP System Manager can enforce them on all data in workspaces.
 
-== Before you begin
+.Before you begin
 
 * You need _storage administrator_ privileges in AI Data Engine Console (`https://<cluster_management_ip>/console`) to create and manage global policies. 
 //You do not need to be the same person as the ONTAP cluster admin, but you do need a role that allows you to log into Console and access the *Governance* section.
@@ -84,7 +84,7 @@ Classifier behavior is controlled globally in AIDE Console. All enabled classifi
 ** If you want to create a custom category, select image:icon_add.gif[blue plus sign followed by the word Add].
 ... Add a unique name, description, and assign available classifiers to the category.
 ... Select *Add*
-. For your selected category, select image:icon_kabob_horizonatal.png[three horizontal blue dots] for each classifier and choose *Enable* or *Disable*. You can also select all rows to make state changes in bulk.
+. For your selected category, select image:icon_kabob_horizontal.png[three horizontal blue dots] for each classifier and choose *Enable* or *Disable*. You can also select all rows to make state changes in bulk.
 
 .Result
 * All newly created and existing workspaces run the enabled classifiers during metadata processing.
