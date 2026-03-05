@@ -4,14 +4,12 @@ permalink: administer/view-insights.html
 keywords: aide, aide system, insights, view insights
 summary: "You can use the Insights feature of ONTAP System Manager to display suggested configuration updates that align with NetApp best practices. These changes can optimize the security and performance as well as other areas of your AIDE cluster."
 ---
-= View Insights to optimize your AIDE storage system
+= View Insights to optimize your AIDE system
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
 You can use the _Insights_ feature of ONTAP System Manager to display suggested configuration updates that align with NetApp best practices. These changes can optimize the security and performance of your AIDE cluster.
-
-//Cite cluster peering? For example, the Autonomous Ransomware Protection (ARP) feature is available with AIDE and provides anti-ransomware protection. Insights will inform you if ARP is not configured.
 
 .About this task
 

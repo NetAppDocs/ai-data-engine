@@ -9,70 +9,51 @@ summary: "Learn how storage administrators interact with AIDE components to mana
 :imagesdir: ../media/
 
 [.lead]
-As a storage administrator, you manage the AIDE infrastructure through ONTAP System Manager, provisioning workspaces, attaching guardrail policies, and monitoring system health. Your role focuses on ensuring reliable, secure, and compliant data storage for AI workloads.
+As a storage administrator, you manage the AIDE infrastructure through ONTAP and the AIDE Console, provisioning workspaces, attaching guardrail policies, and monitoring system health. Your role focuses on ensuring reliable, secure, and compliant data storage for AI workloads.
 
 == Storage administrator component access
 
-[cols="2h,3", options="header"]
+[cols="2h,2,3", options="header"]
 |===
 h|Component
-h|Storage administrator access
+h|Access level
+h|Storage administrator workflow
 
 |ONTAP System Manager
 |Manage (create, edit, delete)
+|You use ONTAP System Manager as your primary interface for cluster administration, workspace provisioning, guardrail policy management, and monitoring system health.
 
 |AI Data Engine Console
-|No access
+|Manage (create, edit, delete)
+|You use the AI Data Engine Console to monitor workspaces, view collection status, and oversee system activity across the AIDE environment.
 
 |ONTAP REST API
 |Manage (create, edit, delete)
+|You use the REST API to automate infrastructure tasks, manage workspaces and guardrail policies programmatically, and integrate AIDE administration with external tools and workflows.
 
 |Workspaces
 |Manage (create, edit, delete)
+|You create and manage workspaces using ONTAP System Manager. You select which data sources are included, assign permissions to data engineers and data scientists, and attach guardrail policies to enforce governance and compliance. You also monitor workspace health and access.
 
 |Data collections
 |View (read-only)
+|You view the status and health of data collections within each workspace using System Manager. You ensure underlying data sources are available and protected, but you do not create or modify collections.
 
 |Guardrails
 |Manage (create, edit, delete)
+|You define and attach guardrail policies to workspaces using System Manager. You monitor guardrail status and compliance reports. You ensure policies are enforced and updated as needed.
 
 |Metadata catalog
 |Monitor (view health, status, activity)
+|You ensure the metadata catalog is populated and up to date. You monitor catalog health and support access control.
 
 |Vector database
 |Provision/Monitor (deploy, configure, view status)
+|You provision and monitor the vector database infrastructure, ensuring data compute nodes with GPU resources and proper licensing are in place. You support the environment but do not manage embeddings or queries directly.
 
 |Classifiers
 |Manage (create, edit, delete)
+|You create, configure, and manage classifiers and their categories. You apply classifiers to workspaces and monitor their effectiveness.
 
 |===
 
-== AIDE system components
-
-=== Workspaces
-
-You create and manage workspaces using ONTAP System Manager. You select which data sources are included, assign permissions to data engineers and data scientists, and attach guardrail policies to enforce governance and compliance. You also monitor workspace health and access.
-
-=== Metadata catalog
-
-You ensure the metadata catalog is populated and up to date. You monitor catalog health and support access control.
-
-=== Classifiers
-
-You create, configure, and manage classifiers and their categories. You apply classifiers to workspaces and monitor their effectiveness.
-
-=== Data collections
-
-You view the status and health of data collections within each workspace using System Manager. You ensure underlying data sources are available and protected, but you do not create or modify collections.
-
-=== Vector database
-
-You provision and monitor the vector database infrastructure, ensuring data compute nodes with GPU resources and proper licensing are in place. You support the environment but do not manage embeddings or queries directly.
-
-=== Guardrails
-
-You define and attach guardrail policies to workspaces using System Manager. You monitor guardrail status and compliance reports. You ensure policies are enforced and updated as needed.
-
-=== Retrieval endpoint (RAG endpoint)
-
-You support and monitor the infrastructure that enables retrieval endpoints, ensuring security and performance.

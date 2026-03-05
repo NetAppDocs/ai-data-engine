@@ -13,9 +13,9 @@ indexpage:
         - title: Quick start
           url: /get-started/quick-start.html
         - title: Install workflow
-          url: /install-setup/install-setup-workflow.html
-        - title: Set up AIDE cluster
-          url: /install-setup/cluster-setup.html
+          url: /install-setup/install-workflow.html
+        - title: Install AIDE licenses
+          url: /install-setup/install-license-task.html
     - title: Install and setup
       links:
         - title: Installation requirements
@@ -26,8 +26,8 @@ indexpage:
           url: /install-setup/cable-hardware.html
         - title: Power on system
           url: /install-setup/power-on-hardware.html
-        - title: Install AIDE licenses
-          url: /install-setup/install-license-task.html
+        - title: Set up AIDE cluster
+          url: /install-setup/cluster-setup-afx.html
         - title: Configure OIDC authentication
           url: /install-setup/configure-oidc.html
     - title: Workspaces and data access
@@ -62,10 +62,8 @@ indexpage:
           url: /get-started/aide-components.html
         - title: Storage administrator tasks
           url: /get-started/aide-components-storage-admin.html
-        - title: Data engineer tasks
-          url: /get-started/aide-components-data-engineer.html
-        - title: Data scientist tasks
-          url: /get-started/aide-components-data-scientist.html
+        - title: Data engineer and data scientist tasks
+          url: /get-started/aide-components-data-users.html
     - title: Get help and more information
       links:
         - title: What's new
@@ -74,9 +72,7 @@ indexpage:
           url: /release-notes/known-limitations.html
         - title: FAQ for AI Data Engine
           url: /faq-aide.html
-        - title: Manage AutoSupport
-          url: /get-help/manage-autosupport.html
-        - title: Submit support cases
-          url: /get-help/view-submit-support-case.html
-        - title: Maintain hardware
-          url: /maintain-hardware.html
+##        - title: Manage AutoSupport
+##          url: /get-help/manage-autosupport.html
+##        - title: Submit support cases
+##          url: /get-help/view-submit-support-case.html

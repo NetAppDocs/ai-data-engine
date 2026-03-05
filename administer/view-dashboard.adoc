@@ -38,7 +38,7 @@ You can use ONTAP System Manager to access the dashboard and display the cluster
 ** Capacity used by AIDE metadata and application volumes (metadata Storage VM)
 ** Capacity used by workspaces and data collections (if available)
 
-. Optionally review *Network*, *Performance*, and *Data protection* tiles to understand cluster-wide behavior that might impact AIDE workloads (for example, network congestion or protection lag).
+. Optionally review *Network* and *Performance* tiles to understand cluster-wide behavior that might impact AIDE workloads (for example, network congestion or protection lag).
 
 == View data DCN health and utilization
 
@@ -87,7 +87,7 @@ This tab shows all DCN nodes in the cluster with:
 * On the *Data collections* tab, confirm:
 ** Which data collections exist for that workspace (data collections are read-only in System Manager)
 ** Their state, size, and last updated time
-* On the *Users* tab, check which AI Data Engine console users have access.
+* On the *Users* tab, check which AI Data Engine Console users have access.
 
 == Monitor metadata Storage VM and AIDE-managed protection
 
@@ -100,11 +100,11 @@ This tab shows all DCN nodes in the cluster with:
 ** Volumes
 ** LIFs with type `Data compute network` (used for DCN-ONTAP communication)
 
-. Select *Protection* and then *Relationships* to observe protection for remote data sources used in workspaces:
+. Select *Protection* and then *Relationships* to view protection for remote data sources used in workspaces:
 +
 * Identify AIDE-created SnapMirror relationships by naming pattern:
-** Destination volume: `<source_volume_name>_dest<source_volume_UUID>`
-** Policy: `<source_volume_name>_dest_aidp_policy<source_volume_UUID>`
+** Destination volume: `<source_volume_name>_dest_<source_volume_UUID>`
+** Policy: `<source_volume_name>_dest_aide_policy_<source_volume_UUID>`
 * Use this view to verify that relationships are healthy and that lag time aligns with workspace refresh expectations.
 
 IMPORTANT: You should not modify the metadata SVM or AIDE-created SnapMirror relationships directly. Use workspace workflows in *Data engine > Workspaces* to control refresh behavior.
@@ -113,7 +113,7 @@ IMPORTANT: You should not modify the metadata SVM or AIDE-created SnapMirror rel
 
 . In the navigation pane, select *Events & Jobs* and then *System alerts*.
 
-. Review active alerts related to:
+. Review any active alerts related to:
 +
 * DCN node health or connectivity
 * Data engine networking issues

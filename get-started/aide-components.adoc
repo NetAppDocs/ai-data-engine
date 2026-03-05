@@ -24,8 +24,8 @@ AIDE introduces new user roles while still supporting traditional ONTAP system a
 
 === Data users
 
-* *AI data engineer*: Builds and optimizes AI/ML pipelines, manages data collections, and integrates AI models.
-* *AI data scientist*: Discovers, curates, and analyzes datasets, creates data collections, and leverages retrieval endpoints for GenAI applications.
+* *Data engineer*: Builds and optimizes AI/ML pipelines, manages data collections, and integrates AI models.
+* *Data scientist*: Discovers, curates, and analyzes datasets, creates data collections, and leverages retrieval endpoints for GenAI applications.
 
 [cols="2h,3", options="header"]
 |===
@@ -35,10 +35,10 @@ AIDE introduces new user roles while still supporting traditional ONTAP system a
 | Storage administrator (`admin`)
 |Manages AFX and AIDE cluster setup, networking, storage provisioning, and user access. Assigns RBAC roles to users that determine the level of access to AIDE interfaces and features. This admin role has full management access using ONTAP System Manager and AI Data Engine Console. 
 
-| AI data engineer (`data-engineer`)
+| Data engineer (`data-engineer`)
 |Builds and optimizes AI/ML pipelines, manages data collections, and integrates AI models. This role has access to the AI Data Engine Console for data engineering workflows.
 
-| AI data scientist (`data-scientist`)
+| Data scientist (`data-scientist`)
 |Discovers, curates, and analyzes datasets, creates data collections, and leverages retrieval endpoints for GenAI applications. This role has access to the AI Data Engine Console for data science workflows.
 |===
 
@@ -57,7 +57,7 @@ A centralized, scalable database storing metadata records for all files and obje
 Classifiers are tools (built-in or custom) that scan and tag files for specific types of sensitive data (for example, PII, financial, healthcare) or categorize documents by type (for example, legal, HR, sales).
 
 === Data collections
-A data collection is a curated group of related files or objects from a workspace, defined by a user specified query for use in GenAI workflows. The content of the files in the data collection, after publication, is available for semantic search by APIs for GenAI applications.
+A data collection is a curated group of related files or objects from a workspace, defined by a user-specified query for use in GenAI workflows. The content of the files in the data collection, after publication, is available for semantic search by APIs for GenAI applications.
 
 === Vector database
 The vector database stores embeddings generated from data collections, enabling high-performance semantic search and retrieval for AI and GenAI applications.
@@ -73,5 +73,5 @@ RAG endpoints are designed to support advanced AI workflows, such as semantic se
 
 .Related information
 * link:aide-components-storage-admin.html[How AIDE storage administrators work with AIDE components]
-* link:aide-components-data-engineer.html[How AIDE data engineers work with AIDE components]
-* link:aide-components-data-scientist.html[How AIDE data scientists work with AIDE components]
+* link:aide-components-data-users.html[How AIDE data engineers work with AIDE components]
+* link:aide-components-data-users.html[How AIDE data scientists work with AIDE components]

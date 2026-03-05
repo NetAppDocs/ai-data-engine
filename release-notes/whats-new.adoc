@@ -9,13 +9,13 @@ summary: "Learn about the new capabilities available in AI Data Engine (AIDE)."
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine (AIDE) 9.18.1 is the initial release of NetApp's platform for AI data management. This release introduces a metadata engine and management workflows that enable organizations to catalog and organize unstructured data for AI workloads, providing the foundation for advanced governance and vectorization capabilities. Advanced governance (guardrails) and vectorization are available as technology previews for customers who opt in and have the appropriate AI Data Engine licenses.
+AI Data Engine (AIDE) 9.18.1 is the initial release of NetApp's platform for AI data management. This release introduces a metadata engine and management workflows that enable organizations to catalog and organize unstructured data for AI workloads, providing the foundation for advanced governance and vectorization capabilities. Advanced governance (guardrails) and vectorization are available for customers who have the appropriate AI Data Engine licenses.
 
 == What's new in the AIDE 9.18.1 initial release
 
 AIDE 9.18.1 introduces the following foundational capabilities:
 
-.link:../get-started/aide-architecture.html#metadata-engine[Metadata engine for AI data cataloging]
+.link:../get-started/aide-architecture.html#metadata-engine[Metadata Engine for AI data cataloging]
 
 The initial release includes a metadata engine that catalogs files and objects across ONTAP clusters. 
 
@@ -41,7 +41,18 @@ The initial release supports:
 
 //ONTAP System Manager displays data collections created by data engineers, allowing storage administrators to monitor cataloged subsets of data. Data collection management is performed via the Data Engine Console.
 
-.link:../install-setup/cluster-setup.html[Cluster setup and management]
+.link:../get-started/aide-architecture.html#data-sync[Data Sync for automated data currency]
+
+Data Sync keeps metadata catalogs and data collections current as source data changes, without manual intervention.
+
+Key features include:
+
+* Automated synchronization of data from remote or local ONTAP clusters using policy-driven SnapMirror replication.
+* Incremental updates that propagate only modified data, reducing overhead.
+* Configurable refresh intervals per workspace.
+* Workspace-level monitoring of sync status and activity.
+
+.link:../install-setup/cluster-setup-afx.html[Cluster setup and management]
 
 The initial release includes the following workflows:
 
@@ -52,25 +63,24 @@ The initial release includes the following workflows:
 
 .link:../install-setup/configure-oidc.html[OpenID Connect (OIDC) authentication]
 
-* OIDC/OAuth-based authentication for secure access to ONTAP System Manager and Data Engine Console.
+* OIDC/OAuth-based authentication for secure access to ONTAP System Manager and Data Engine Console with Microsoft Entra ID and Active Directory Federation Services (ADFS).
 * Role-based access controls for workspace and metadata management.
+
+.link:../vectorization/zero-to-rag.html[Advanced data curation and governance capabilities]
+
+The following capabilities are available for customers who have the appropriate AI Data Engine licenses:
+
+* *Vectorization and RAG*: Creation of data collections, embeddings, and retrieval endpoints in the AI Data Engine Console, using metadata from AIDE workspaces.
+* *Guardrail-based governance*: Definition of guardrail policies in the AI Data Engine Console and association of those policies with workspaces in ONTAP System Manager.
 
 === Supported hardware and platforms
 
 AI Data Engine 9.18.1 runs on ONTAP AI data platform clusters that combine:
 
 * AFX 1K storage nodes
-* DX50 data compute nodes
-
-== Technology preview features (early access)
-
-The following capabilities are available as technology previews for customers who opt in and have the appropriate AI Data Engine licenses:
-
-* *Vectorization and RAG*: Creation of data collections, embeddings, and retrieval endpoints in the AI Data Engine console, using metadata from AIDE workspaces.
-* *Guardrail-based governance*: Definition of guardrail policies in the AI Data Engine console and association of those policies with workspaces in ONTAP System Manager.
-
-Technology preview features are intended for evaluative use only and might change before general availability.
+* NetApp data compute nodes
 
 .Related information
 
 * link:known-limitations.html[Known limitations of AI Data Engine]
+* link:../get-started/learn-about.html[Learn about AI Data Engine architecture and components]
