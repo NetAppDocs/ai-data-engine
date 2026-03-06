@@ -102,7 +102,7 @@ Classifiers are organized into categories (such as "PII" or "Financial data"). C
 ... Select the category name in Classifier categories to reveal the associated classifiers.
 ... Examine the list of classifiers.
 ... Select *Add* to find and add unlisted classifiers from the complete list of available classifiers.
-** If you want to create a custom category, select image:icon_add.gif[blue plus sign followed by the word Add].
+** If you want to create a custom category, select image:icon_add_white_bg.png[blue plus sign followed by the word Add].
 ... Add a unique name, description, and assign available classifiers to the category.
 ... Select *Add*
 . To disable a classifier within a category, select image:icon_kabob_horizontal.png[three horizontal blue dots] for the classifier and choose *Disable*. You can also select all rows to make state changes in bulk.
