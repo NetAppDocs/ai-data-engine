@@ -28,7 +28,8 @@ Use these procedures to define those policies in AIDE Console so that ONTAP Syst
 AIDE Console exposes these policy types that shape your data estate:
 
 //* *Global data exclusion policy*: A single global list of volumes that must never appear in any workspace.
-* *Classifier categories and classifiers*: Which classification jobs run on every workspace to detect PII, security issues, or other patterns.
+* *Classifiers*: Enable classifiers to detect PII, security issues, or other patterns across all workspaces.
+* *Classifier categories*: Group classifiers into compliance categories for organization and management.
 * *Guardrail policies*: Safety and redaction rules applied at the time of retrieval or inference.
 
 You can't use ONTAP System Manager to create or manage these guardrail policies. It only reads them and enforces them when a storage admin applies them to workspaces. All policy definition and maintenance occurs in AIDE Console.
@@ -62,33 +63,52 @@ You can't use ONTAP System Manager to create or manage these guardrail policies.
 //
 //TIP: Use global exclusion for data that must stay out of AI entirely (for example, executive HR volumes or legal holds), not just for data that needs masking. For masking and selective access, use classifiers and guardrails instead.
 
-== Manage classifier categories and classifiers
+== Enable classifiers
 
-Classifiers analyze both metadata and content to annotate files and objects (for example, detecting PII or sensitive categories). You can group classifiers into compliance categories (such as "PII" or "Financial data") and enable and disable classifiers.
+Classifiers analyze both metadata and content to annotate files and objects (for example, detecting PII or sensitive categories). Before classifiers can run on workspace data, you must enable them in AIDE Console.
 
 .About this task
 
-Classifier behavior is controlled globally in AIDE Console. All enabled classifiers run on every workspace. Because they are globally applied, they cannot be modified for an individual workspace. They can be enabled or disabled globally only.
+Classifier behavior is controlled globally in AIDE Console. All enabled classifiers run on every workspace. Because they are globally applied, they cannot be enabled or disabled for an individual workspace. They can be enabled or disabled globally only.
+
+.Steps
+
+. In AIDE Console, go to *Data Guardrails > Classifiers*.
+. Select a classifier category to reveal the classifiers it contains.
+. Select the checkboxes for the classifiers you want to enable, or select all rows to enable classifiers in bulk.
+. Select *Enable*.
+
++
+TIP: Use the bulk-select option to enable multiple classifiers at once. Each time you enable a classifier, a workspace refresh is triggered across all workspaces. To minimize unnecessary refreshes, enable multiple classifiers at once rather than one at a time.
+
+.Result
+
+All newly created and existing workspaces run the enabled classifiers during metadata processing.
+
+Classification tags are written to the metadata catalog and become available to data engineers for filtering when creating data collections.
+
+== Manage classifier categories
+
+Classifiers are organized into categories (such as "PII" or "Financial data"). Categories help you group related classifiers for easier management and compliance visibility. You can use the default categories that AIDE provides or create custom categories to match your compliance requirements.
 
 .Steps
 
 . In AIDE Console, go to *Data Guardrails > Classifiers*.
 . View the existing classifier categories. There are two major categories of classification:
-** Content or data: Detects sensitive data within files.
+** Content or data: Detects particular types of data within files.
 ** Document: Classifies the type of document based on the content.
 . Determine if the default classifier subcategories are sufficient or if you want to create your own subcategory.
-** If you are using a default classifier subcategory (for example, *General Privacy*): 
-... Select the category name in *Classifier categories* to reveal the associated classifiers.
-... Examine the list of classifiers and do any of the following:
+** If you are using a default classifier subcategory (for example, *General Privacy*):
+... Select the category name in Classifier categories to reveal the associated classifiers.
+... Examine the list of classifiers.
 ... Select *Add* to find and add unlisted classifiers from the complete list of available classifiers.
 ** If you want to create a custom category, select image:icon_add.gif[blue plus sign followed by the word Add].
 ... Add a unique name, description, and assign available classifiers to the category.
 ... Select *Add*
-. For your selected category, select image:icon_kabob_horizontal.png[three horizontal blue dots] for each classifier and choose *Enable* or *Disable*. You can also select all rows to make state changes in bulk.
+. To disable a classifier within a category, select image:icon_kabob_horizontal.png[three horizontal blue dots] for the classifier and choose *Disable*. You can also select all rows to make state changes in bulk.
 
 .Result
-* All newly created and existing workspaces run the enabled classifiers during metadata processing.
-* Classification tags are written to the metadata catalog and become available to data engineers for filtering when creating data collections.
+Categories organize classifiers for compliance visibility. Data engineers can use classification tags when filtering and creating data collections.
 
 == Create and manage guardrail policies
 
