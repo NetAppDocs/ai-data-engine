@@ -83,7 +83,7 @@ After configuring your IdP, you can set up OIDC authentication in System Manager
 .. Cluster IP address or FQDN
 .. Outgoing proxy (optional)
 +
-. Under External role mapping, select existing role mapping or define a new role for the ONTAP `admin` user.
+. Under External Role mapping, select an existing role mapping or define a new role for the ONTAP `admin` user.
 . Select *Enable now* and then *Save*. System Manager will refresh to apply the new authentication settings.
 . Log in with your IdP credentials; after successful authentication you'll be returned to System Manager.
 

@@ -17,7 +17,7 @@ As an ONTAP storage administrator, you can integrate AI Data Engine (AIDE) with 
 There are two ways to set up AIDE and integrate it with an AFX storage system. Select the option that's appropriate for your environment.
 
 [NOTE]
-Before setting up AIDE, make sure you have the DX50 data compute nodes (DCNs) installed and connected to the cluster switches. See link:../install-setup/install-setup-workflow.html[Install your AIDE system] for more information.
+Before setting up AIDE, make sure you have the data compute nodes installed and connected to the cluster switches. See link::/install-setup/aide-hardware-requirements.html[Install AIDE] for more information.
 
 === Set up AIDE with a new AFX cluster
 
@@ -27,9 +27,9 @@ If you're setting up AIDE as part of an initial AFX system deployment, the AIDE 
 
 If you're adding a DCN cluster to an existing AFX storage system, you need to configure the DCN nodes and finish setting up your AIDE cluster.
 
-==== Add the DCN nodes to the AIDE cluster
+==== Add the data compute nodes to the AIDE cluster
 
-ONTAP dynamically detects the new DCNs connected to your cluster network and displays them in System Manager. You can link:../administer/dcn-add-node.html[Add Data Compute Nodes to an AI Data Engine cluster]. Also note the following:
+ONTAP dynamically detects the new data compute nodes connected to your cluster network and displays them in System Manager. You can link:../administer/dcn-add-node.html[Add Data Compute Nodes to an AI Data Engine cluster]. Also note the following:
 
 * The data compute nodes must be physically connected to the cluster switches. Exactly three DCNs are required when creating an AIDE cluster.
 * You must have sufficient IP addresses for the DCN network and other configuration information to configure the network. 
