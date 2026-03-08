@@ -1,8 +1,8 @@
 ---
 permalink: install-setup/configure-oidc.html
 sidebar: sidebar
-keywords: openid connect, oidc, authentication, aide, system manager, configure, oauth
-summary: "As an ONTAP cluster administrator, you can use System Manager to configure OpenID Connect (OIDC) authentication for an AI Data Engine (AIDE) cluster. This provides a secure and centralized login through an external identity provider (IdP)."
+keywords: openid connect, oidc, oauth 2.0, authentication, aide, system manager, entra id, adfs
+summary: "As an ONTAP cluster administrator, you can use ONTAP System Manager to configure OpenID Connect (OIDC) authentication for an AI Data Engine (AIDE) cluster. This provides a secure and centralized login through an external identity provider (IdP)."
 ---
 
 = Configure OpenID Connect for ONTAP AIDE
@@ -34,10 +34,10 @@ To authenticate using OIDC, you need to first configure an external IdP. The ONT
 
 At a high level, the steps needed to configure Entra ID are as follows:
 
-* Create a new App Registration at the Entra ID configuration page
-* Set the Redirect URI (Web) value to "https://$CLUSTER_MGMT_IP/oidc/callback” substituting the appropriate cluster management IP or FQDN
-* Create the required roles under App Roles and assign them to your users
-* Update the token claims to under Token Configuration to return roles in id-token and access-token
+. Create a new App Registration at the Entra ID configuration page
+. Set the Redirect URI (Web) value to `\https://$CLUSTER_MGMT_IP/oidc/callback` substituting the appropriate cluster management IP or FQDN
+. Create the required roles under App Roles and assign them to your users
+. Update the token claims to under Token Configuration to return roles in id-token and access-token
 
 See https://learn.microsoft.com/en-us/power-pages/security/authentication/openid-settings[Set up an OpenID Connect provider with Entra ID^] for more information.
 
@@ -45,9 +45,9 @@ See https://learn.microsoft.com/en-us/power-pages/security/authentication/openid
 
 At a high level, the steps needed to configure AD FS are as follows:
 
-* Create new Application Group and select "Server application accessing a web API"
-* Set the Redirect URI (Web) value to "https://$CLUSTER_MGMT_IP/oidc/callback” substituting the appropriate cluster management IP or FQDN
-* Configure claims to return roles in tokens.
+. Create new Application Group and select "Server application accessing a web API"
+. Set the Redirect URI (Web) value to "https://$CLUSTER_MGMT_IP/oidc/callback” substituting the appropriate cluster management IP or FQDN
+. Configure claims to return roles in tokens
 
 See https://learn.microsoft.com/en-us/azure/active-directory-b2c/identity-provider-adfs?pivots=b2c-user-flow[Add AD FS as an OpenID Connect identity provider^] for more information.
 
@@ -84,7 +84,7 @@ After configuring your IdP, you can set up OIDC authentication in System Manager
 .. Outgoing proxy (optional)
 +
 . Under External role mapping, select existing role mapping or define a new role for the ONTAP `admin` user.
-. Select "Enable now" and click Save. System Manager will refresh to apply the new authentication settings.
+. Select *Enable now* and then *Save*. System Manager will refresh to apply the new authentication settings.
 . Log in with your IdP credentials; after successful authentication you'll be returned to System Manager.
 
 == Related information
