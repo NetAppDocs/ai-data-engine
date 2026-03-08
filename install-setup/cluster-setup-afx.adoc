@@ -1,8 +1,8 @@
 ---
 permalink: install-setup/cluster-setup-afx.html
 sidebar: sidebar
-keywords: cluster setup, afx, ai data engine, aide, install, set up
-summary: "Set up your AIDE cluster with an AFX storage system. You can set up AIDE as part of an initial AFX cluster deployment or add AIDE to an existing AFX cluster."
+keywords: ai data engine, aide, cluster setup, afx, install, set up
+summary: "As an ONTAP storage administrator, you can integrate AI Data Engine (AIDE) with your ONTAP cluster. You can either set up AIDE as part of an initial AFX storage system deployment or add AIDE to an AFX cluster that's already been deployed and serving data. In both cases, you'll need to also complete the AIDE configuration after finishing the basic setup."
 ---
 
 = Set up AI Data Engine
@@ -60,9 +60,13 @@ Perform this step if you intend to catalog remote data.
 
 . Add a data container
 
-. Add workspaces
+. Add a workspace
++
+link:../workspaces/prepare-data-for-aide.html[Set up workspaces]
 
-. link:../install-setup/configure-oidc.html[Configure OpenID Connect for ONTAP AIDE]
+. Configure OIDC authentication
++
+link:../install-setup/configure-oidc.html[Configure OpenID Connect for ONTAP AIDE]
 +
 You must configure OIDC authentication to access the AI Data Engine Console.
 
