@@ -165,4 +165,4 @@ For data engineers and data scientists:
 == Related information
 
 * link:../vectorization/view-data-collections.html[View data collections in AI Data Engine]
-* link:../vectorization/zero-to-rag.html[Zero-to-RAG quick start for AI Data Engine]
+* link:../vectorization/zero-to-rag.html[Data-to-RAG quick start for AI Data Engine]

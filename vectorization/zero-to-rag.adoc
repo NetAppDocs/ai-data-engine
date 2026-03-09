@@ -3,9 +3,9 @@ sidebar: sidebar
 permalink: vectorization/zero-to-rag.html
 keywords: ai, data engine, aide, quick start, zero to rag, retrieval augmented generation, data collection, workspace
 summary: "Go from a newly deployed AI Data Engine (AIDE) system to a working retrieval-augmented generation (RAG) endpoint using workspaces, data collections, and guardrails."
-searchtitle: "Zero-to-RAG quick start for AI Data Engine"
+searchtitle: "Data-to-RAG quick start for AI Data Engine"
 ---
-= Zero-to-RAG quick start for AI Data Engine
+= Data-to-RAG quick start for AI Data Engine
 :icons: font
 :imagesdir: ../media/
 

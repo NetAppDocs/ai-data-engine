@@ -32,9 +32,13 @@ IMPORTANT: Revert functionality is not supported for DCN firmware or AI Data Eng
 . Next to *Software updates*, select image:icon_arrow.gif[blue arrow pointing to the right].
 . Under AI Data Engine updates, select *Add AI Data Engine software files* and select the update package.
 . After package upload is complete, select *Update* to begin installing updates on the DCN nodes.
++
+NOTE: AIDE Console is not available or accessible when the DCN node update is in progress.
+
+//CONTAP-609782
 
 .Result
-The DCNs are updated with AI Data Engine software and the updated version is displayed for each node.
+DCNs are updated with AI Data Engine software and the updated version is displayed for each node. 
 
 .Related information
 
