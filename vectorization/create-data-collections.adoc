@@ -1,0 +1,105 @@
+---
+sidebar: sidebar
+permalink: vectorization/create-data-collections.html
+keywords: aide, data engineer, create data collection, rag, embeddings, ai data engine, indexing
+summary: "Create and publish data collections from workspace metadata in AI Data Engine Console to power retrieval-augmented generation (RAG) and other AI workloads."
+---
+= Create data collections in AI Data Engine Console
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+//Workstream 2 focused
+Data collections are the core RAG building blocks in AI Data Engine (AIDE). As a data engineer, you define which files belong in a collection, configure embedding and indexing options, and publish the collection so that applications can query it through a retrieval endpoint. 
+
+You'll perform all data collection tasks in the AI Data Engine Console.
+
+.Before you begin
+
+* You need _data engineer_ privileges in AI Data Engine Console (`\https://<cluster_management_ip>/console`).
+* You have access to at least one workspace with metadata extracted and in `Ready` state.
+* You have explored the workspace metadata and identified queries or filters that define meaningful subsets of data.
+* The AI Data Engine software license is installed and inferencing features are enabled.
+
+== Create a data collection from workspace metadata
+
+.Steps
+. Navigate to *Data Curator > Workspaces* and select the workspace that contains your target data.
+. Select *Add data collection*.
+. In the *Create new data collection* page, do the following:
+.. Enter a name and description for the collection (for example, `Support_KB_RAG_EN`).
+.. Choose whether the collection should be:
+*** *Dynamic*: New files are automatically identified and added to the data collection based on the filtering criteria you define. This happens during workspace refreshes.
+*** *Static*: You choose which files are included in the collection. You can edit the files if the data collection is in `draft` state. After the data collection moves to `Published` state, it cannot be edited.
+. Specify the source subset:
+.. Use keywords and filters (file type, timestamps, and other attributes) to find the relevant files to include.
++
+NOTE: You can select a file name to open a preview window of the content.
+
+. Add these files to the data collection.
+. Select *Save* to finalize the collection.
+//Add "files and objects" with S3 support
+
+.Result
+You have defined the scope of the data collection and added the required files to it. AIDE generates embeddings and builds the vector index when you publish the collection.
+
+TIP: Create small, focused collections (for example, per use case or domain) rather than a single "everything" collection. This improves retrieval relevance and manageability.
+
+== Publish a data collection
+
+Publish the data collection to make it queryable by AI applications through a RAG retrieval endpoint. Publishing generates vector embeddings from your selected files and indexes them for semantic search. After the collection reaches `Ready` state, its endpoint becomes available for data scientists to integrate into notebooks, pipelines, and AI applications for retrieval-augmented generation (RAG) and search.
+
+TIP: For large collections, consider scheduling initial publish and major re-publishes during off-peak times to minimize resource contention.
+
+.Steps
+. Navigate to *Data Curator > Data collections* and select the options menu (image:icon_kabob_horizontal.png[three horizontal blue dots]) for your data collection.
+. Select *Publish*.
+. Select a default or custom optimization configuration.
+//LOTS OF INFO HERE FOR WORKSTREAM RELEASES 
+. Select *Publish* to initiate the data transformation.
+. In AIDE Console, open the collection detail view (*Data Curator > Data collections*) for status updates.
+
+.Result
+The collection reaches the `Ready` state and is available for use by downstream applications and data scientists.
+
+From *Data Curator > Data collections*, you can select *Copy URI* to obtain the information needed to access the data collection using an API. 
+
+== Update or delete a data collection
+
+Over time you might need to refine or retire data collections. Refining a collection might involve adjusting filters to add or remove files, changing embedding settings, or updating the collection description. Deleting a collection removes it permanently and makes its retrieval endpoint unavailable.
+
+=== Update a data collection
+
+You can update a data collection when it's in `draft` state.
+
+.Steps
+. Navigate to *Data Curator > Data collections*.
+. Select the collection you want to modify.
+. Choose *Edit*.
+. Adjust any of the following:
+** Name and description
+** Filters (paths, file types, classification tags).
+** Static/dynamic behavior.
+** Embedding and chunking settings.
+. Save your changes.
+. Publish the collection again so that the new definition and embeddings take effect.
+
+.Result
+A new indexing job runs with the updated configuration, and the collection returns to a `Ready` state when complete.
+
+=== Delete a collection
+
+Deleting a collection is permanent. Ensure that no production application still depends on the collection's retrieval endpoint before deleting it.
+
+.Steps
+. Navigate to *Data Curator > Data collections*, and select the options menu (image:icon_kabob_horizontal.png[three horizontal blue dots]) for the collection.
+. Choose *Delete*.
+. Confirm the deletion.
+
+.Result
+The collection definition and its embeddings are removed from AI Data Engine. Applications attempting to query the former retrieval endpoint will fail after the collection is removed.
+
+== What's next?
+
+//* link:use-collections.html[Use data collections and retrieval endpoints as a data scientist]
+* link:view-data-collections.html[View data collections]
