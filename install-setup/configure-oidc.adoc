@@ -64,7 +64,7 @@ After configuring your IdP, you can set up OIDC authentication in System Manager
 
 . In System Manager, select *Cluster* and then *Settings*; locate the OpenID Connect card.
 +
-. If OIDC is already configured, you can edit or disable the configuration. If OIDC is not configured, click the gear icon to start the setup.
+. If OIDC is already configured, you can edit or disable the configuration. If OIDC is not configured, select image:icon_gear_white_bg.png[gear icon] to start the setup.
 . Under Configure OpenID Connect, provide values for the following fields:
 .. Provider
 .. Issuer

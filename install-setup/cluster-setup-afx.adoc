@@ -17,7 +17,7 @@ As an ONTAP storage administrator, you can integrate AI Data Engine (AIDE) with 
 There are two ways to set up AIDE and integrate it with an AFX storage system. Select the option that's appropriate for your environment.
 
 [NOTE]
-Before setting up AIDE, make sure you have the data compute nodes installed and connected to the cluster switches. See link::/install-setup/aide-hardware-requirements.html[Install AIDE] for more information.
+Before setting up AIDE, make sure you have the data compute nodes installed and connected to the cluster switches. See link:../install-setup/aide-hardware-requirements.html[Install AIDE] for more information.
 
 === Set up AIDE with a new AFX cluster
 
