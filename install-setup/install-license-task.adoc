@@ -2,7 +2,7 @@
 permalink: install-setup/install-license-task.html
 sidebar: sidebar
 keywords: ai data engine, install license, add license, software entitlement, keys, nlf, nlf file
-summary: "You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). You can perform license management using the ONTAP System Manager."
+summary: "You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). As an ONTAP cluster administrator, you can perform license management using ONTAP System Manager."
 ---
 
 = Install an AIDE license in your AFX system
@@ -10,7 +10,7 @@ summary: "You'll need to install a NetApp license to access the full features of
 :imagesdir: ../media/
 
 [.lead]
-You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). You can perform license management using the ONTAP System Manager.
+You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). As an ONTAP cluster administrator, you can perform license management using ONTAP System Manager.
 
 == Prepare to license the AI Data Engine
 

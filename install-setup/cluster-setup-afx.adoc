@@ -63,8 +63,6 @@ Perform this step if you intend to catalog remote data.
 . link:../workspaces/prepare-data-for-aide.html[Add a workspace].
 
 . link:../install-setup/configure-oidc.html[Configure OIDC authentication].
-+
-You must configure OIDC authentication to access the AI Data Engine Console.
 
 == 2. Complete AIDE configuration
 
