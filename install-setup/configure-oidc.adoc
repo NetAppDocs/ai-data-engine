@@ -66,13 +66,13 @@ After configuring your IdP, you can set up OIDC authentication in System Manager
 +
 . If OIDC is already configured, you can edit or disable the configuration. If OIDC is not configured select image:icon_gear_white_bg.png[gear icon] to start the setup process.
 . Under Configure OpenID Connect, provide values for the following fields:
-.. Provider
-.. Issuer
-.. JSON web key set URI
-.. Authorization endpoint
-.. Token endpoint
-.. End session endpoint
-.. Access Token Issuer (optional)
+** Provider
+** Issuer
+** JSON web key set URI
+** Authorization endpoint
+** Token endpoint
+** End session endpoint
+** Access Token Issuer (optional)
 
 . Under Client configuration, provide values for the following fields:
 .. Client ID
