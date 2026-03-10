@@ -40,33 +40,29 @@ After integrating the DCN nodes and completing the initial network configuration
 
 .Steps 
 
-. Configure link aggregation groups and VLANs
+. Configure link aggregation groups and VLANs.
 +
 This step might be required based on your environment.
 
-. Configure network protocols
+. Configure network protocols.
 
-. Update data compute software 
+. Update data compute software.
 
-. Configure data engine networking
+. Configure data engine networking.
 
-. Create intercluster network interfaces
+. Create intercluster network interfaces.
 +
 Perform this step if you intend to catalog remote data.
 
-. Peer with other ONTAP storage systems
+. Peer with other ONTAP storage systems.
 +
 Perform this step if you intend to catalog remote data.
 
-. Add a data container
+. Add a data container.
 
-. Add a workspace
-+
-link:../workspaces/prepare-data-for-aide.html[Set up workspaces]
+. link:../workspaces/prepare-data-for-aide.html[Add a workspace].
 
-. Configure OIDC authentication
-+
-link:../install-setup/configure-oidc.html[Configure OpenID Connect for ONTAP AIDE]
+. link:../install-setup/configure-oidc.html[Configure OIDC authentication].
 +
 You must configure OIDC authentication to access the AI Data Engine Console.
 
@@ -76,10 +72,6 @@ After your AIDE cluster is set up and integrated with the AFX storage system, yo
 
 .Steps
 
-. Add the required AIDE licenses.
-+
-link:../install-setup/install-license-task.html[Install an AIDE license to your AFX system]
+. link:../install-setup/install-license-task.html[Add the required AIDE licenses].
 
-. Configure OIDC for AIDE authentication.
-+
-link:../install-setup/configure-oidc.html[Configure OpenID Connect for ONTAP AIDE]
+. link:../install-setup/configure-oidc.html[Configure OIDC for AIDE authentication].
