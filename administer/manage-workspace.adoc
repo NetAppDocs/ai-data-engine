@@ -32,6 +32,10 @@ Review workspace health, capacity usage, and metadata status to ensure the Metad
 * Item counts and last updated time per data source.
 * Any workspace-level warnings.
 
++
+NOTE: If a workspace or data collection shows an error state, verify that all source volumes are online and accessible.
+//CONTAP-609775
+
 . Select the *Data collections* tab to see:
 +
 * All data collections associated with this workspace.

@@ -1,7 +1,7 @@
 section: vectorization
 title: Manage vectorization and data collections
 entries:
-  - title: Zero-to-RAG quick start
+  - title: Data-to-RAG quick start
     url: /vectorization/zero-to-rag.html
   - title: Explore workspace metadata
     url: /vectorization/explore-workspace-metadata.html

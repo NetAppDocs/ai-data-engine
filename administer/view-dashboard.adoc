@@ -107,7 +107,7 @@ This tab shows all DCN nodes in the cluster with:
 ** Policy: `<source_volume_name>_dest_aide_policy_<source_volume_UUID>`
 * Use this view to verify that relationships are healthy and that lag time aligns with workspace refresh expectations.
 
-IMPORTANT: You should not modify the metadata SVM or AIDE-created SnapMirror relationships directly. Use workspace workflows in *Data engine > Workspaces* to control refresh behavior.
+IMPORTANT: Do not modify the metadata Storage VM, AIDE-created SnapMirror relationships, or AIDE-managed snapshots (or their schedules) directly in ONTAP. Changes can disrupt AIDE version history. link:../administer/manage-workspace.html#edit-workspace-properties-and-refresh-schedule[Adjust workspace refresh settings] if you need to adjust refresh behavior.
 
 == Review AIDE-related alerts and notifications
 

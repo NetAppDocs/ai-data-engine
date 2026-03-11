@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: vectorization/create-data-collections.html
-keywords: aide, data engineer, create data collection, rag, embeddings, ai data engine, indexing
+keywords: aide, create data collection, rag, data engineer, data scientist, embeddings, ai data engine, indexing
 summary: "Create and publish data collections from workspace metadata in AI Data Engine Console to power retrieval-augmented generation (RAG) and other AI workloads."
 ---
 = Create data collections in AI Data Engine Console
@@ -9,14 +9,13 @@ summary: "Create and publish data collections from workspace metadata in AI Data
 :imagesdir: ../media/
 
 [.lead]
-//Workstream 2 focused
-Data collections are the core RAG building blocks in AI Data Engine (AIDE). As a data engineer, you define which files belong in a collection, configure embedding and indexing options, and publish the collection so that applications can query it through a retrieval endpoint. 
+Data collections are the core RAG building blocks in AI Data Engine (AIDE). As a data engineer or data scientist, you define which files belong in a collection, configure embedding and indexing options, and publish the collection so that applications can query it through a retrieval endpoint. 
 
 You'll perform all data collection tasks in the AI Data Engine Console.
 
 .Before you begin
 
-* You need _data engineer_ privileges in AI Data Engine Console (`\https://<cluster_management_ip>/console`).
+* You need _data engineer_ or _data scientist_ privileges in AI Data Engine Console (`\https://<cluster_management_ip>/console`).
 * You have access to at least one workspace with metadata extracted and in `Ready` state.
 * You have explored the workspace metadata and identified queries or filters that define meaningful subsets of data.
 * The AI Data Engine software license is installed and inferencing features are enabled.
@@ -38,7 +37,6 @@ NOTE: You can select a file name to open a preview window of the content.
 
 . Add these files to the data collection.
 . Select *Save* to finalize the collection.
-//Add "files and objects" with S3 support
 
 .Result
 You have defined the scope of the data collection and added the required files to it. AIDE generates embeddings and builds the vector index when you publish the collection.
@@ -55,7 +53,6 @@ TIP: For large collections, consider scheduling initial publish and major re-pub
 . Navigate to *Data Curator > Data collections* and select the options menu (image:icon_kabob_horizontal.png[three horizontal blue dots]) for your data collection.
 . Select *Publish*.
 . Select a default or custom optimization configuration.
-//LOTS OF INFO HERE FOR WORKSTREAM RELEASES 
 . Select *Publish* to initiate the data transformation.
 . In AIDE Console, open the collection detail view (*Data Curator > Data collections*) for status updates.
 
@@ -79,7 +76,6 @@ You can update a data collection when it's in `draft` state.
 . Adjust any of the following:
 ** Name and description
 ** Filters (paths, file types, classification tags).
-** Static/dynamic behavior.
 ** Embedding and chunking settings.
 . Save your changes.
 . Publish the collection again so that the new definition and embeddings take effect.
@@ -101,5 +97,4 @@ The collection definition and its embeddings are removed from AI Data Engine. Ap
 
 == What's next?
 
-//* link:use-collections.html[Use data collections and retrieval endpoints as a data scientist]
 * link:view-data-collections.html[View data collections]

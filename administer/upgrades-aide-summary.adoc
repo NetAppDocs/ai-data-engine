@@ -116,5 +116,5 @@ AIDE systems do not support revert operations for DCN firmware, AIDE software up
 
 .Related information
 
-* link:upgrade-ontap-for-aide.html[Upgrade ONTAP software for AIDE systems]
+* https://docs.netapp.com/us-en/ontap-afx/administer/upgrade-ontap.html[Upgrade ONTAP software for AFX systems^]
 * link:update-aide-firmware-software.html[Update AIDE software]

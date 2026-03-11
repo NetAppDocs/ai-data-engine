@@ -10,14 +10,20 @@ indexpage:
           url: /get-started/learn-about.html
         - title: AIDE architecture
           url: /get-started/aide-architecture.html
-        - title: Quick start
+        - title: What's new
+          url: /release-notes/whats-new.html
+        - title: Known limitations
+          url: /release-notes/known-limitations.html
+        - title: AIDE quick start
           url: /get-started/quick-start.html
-        - title: Install workflow
-          url: /install-setup/install-workflow.html
         - title: Install AIDE licenses
           url: /install-setup/install-license-task.html
+        - title: FAQ for AIDE
+          url: /faq-aide.html
     - title: Install and setup
       links:
+        - title: Install data compute nodes workflow
+          url: /install-setup/install-workflow.html
         - title: Installation requirements
           url: /install-setup/install-setup-requirements.html
         - title: Prepare hardware
@@ -46,32 +52,28 @@ indexpage:
           url: /administer/view-dashboard.html
         - title: View events and audit log
           url: /administer/view-events-log.html
-        - title: View insights
-          url: /administer/view-insights.html
-        - title: Upgrade ONTAP
-          url: /administer/upgrade-ontap-for-aide.html
         - title: Update AIDE software
           url: /administer/update-aide-firmware-software.html
         - title: Add data compute nodes
           url: /administer/dcn-add-node.html
+        - title: Replace data compute node
+          url: /administer/aide-node-replace.html
     - title: Understand roles and components
       links:
-##        - title: Define data policies
-##          url: /guardrails/define-data-policies.html
         - title: AIDE components by role
           url: /get-started/aide-components.html
         - title: Storage administrator tasks
           url: /get-started/aide-components-storage-admin.html
         - title: Data engineer and data scientist tasks
           url: /get-started/aide-components-data-users.html
-    - title: Get help and more information
+    - title: Use data collections and guardrails
       links:
-        - title: What's new
-          url: /release-notes/whats-new.html
-        - title: Known limitations
-          url: /release-notes/known-limitations.html
-        - title: FAQ for AI Data Engine
-          url: /faq-aide.html
+        - title: Data-to-RAG quick start
+          url: /vectorization/zero-to-rag.html
+        - title: Create and publish data collections
+          url: /vectorization/create-data-collections.html
+        - title: Define guardrail policies
+          url: /guardrails/define-data-policies.html
 ##        - title: Manage AutoSupport
 ##          url: /get-help/manage-autosupport.html
 ##        - title: Submit support cases
