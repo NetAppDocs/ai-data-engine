@@ -78,7 +78,7 @@ After creating the intercluster network interfaces, you can establish peering re
 
 . Select *Add a data container*.
 +
-You can create a volume for use by AIDE and associate it with a specific SVM. In System Manager, optionally select *Storage* and then *Overview*.
+You can create a volume for use by AIDE and associate it with a specific SVM. Also, in System Manager optionally select *Storage* and then *Overview*.
 
 . Select *Add Workspaces*.
 +
@@ -105,3 +105,5 @@ There is an AI Data Engine license you must install for all deployments.
 . link:../install-setup/configure-oidc.html[Configure OIDC authentication].
 +
 Make sure to configure OIDC for all deployments, including when you are deploying an AFX storage system and AIDE at the same time.
+
+// AIDEDOC-25 - March 11, 2026
