@@ -15,8 +15,6 @@ entries:
     entries:
     - title: Keep your AIDE system up to date
       url: "/administer/upgrades-aide-summary.html"
-    - title: Upgrade ONTAP
-      url: "/administer/upgrade-ontap-for-aide.html"
     - title: Update AIDE software
       url: "/administer/update-aide-firmware-software.html"
     - title: Add nodes to your AIDE cluster
