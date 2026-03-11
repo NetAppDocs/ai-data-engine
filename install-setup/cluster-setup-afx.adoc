@@ -40,21 +40,21 @@ After integrating the data compute nodes and completing the initial network conf
 
 .About this task
 
-A welcome setup guidance window is displayed on the right side of the page with the necessary configuration steps. A checkmark displayed to the left of each step or action item that has already been completed. An arrow (image:icon_arrow.gif[arrow]) is displayed for items that have not yet been completed. For each of the incomplete actions:
+A welcome setup guidance window is displayed on the right side of the page with the necessary configuration steps. A checkmark is displayed to the left of each step or action item that has already been completed. An arrow (image:icon_arrow.gif[arrow]) is displayed for items that have not yet been completed. For each of the incomplete actions:
 
 * Select the enabled title link and complete the setup action for your environment.
 
-* If the link is disabled, hover over the title to display the action required to enable the link and continue with the setup action.
+* If the link is disabled, hover over the title to display the action required to enable it and continue with the setup action.
 
 .Before you begin
 
-The steps have links to documentation where possible. Some of the configuration might be included as part of the AFX cluster setup. See the https://docs.netapp.com/us-en/ontap-afx/[AFX documentation^] for more information.
+Each step has a link to additional documentation where possible. Some of the configuration might be included as part of the AFX cluster setup. See the https://docs.netapp.com/us-en/ontap-afx/[AFX documentation^] for more information.
 
 .Steps 
 
 . Select *Configure link aggregation groups and VLANs*.
 +
-If required for your environment, you can set up cluster-level LAG and VLANs. Selecting the option launches the Ethernet ports page.
+If required for your environment, you can set up cluster-level LAGs and VLANs. Selecting this option launches the Ethernet ports page.
 
 . Select *Configure network protocols*.
 +
@@ -62,7 +62,7 @@ You can configure the storage VM (SVM) network protocols.
 
 . Select *Update data compute software*.
 +
-If a data compute software image is available for update, this option will be enabled. Select it to launch the data compute software update page. Also see link:../administer/update-aide-firmware-software.html[Update AI Data Engine software].
+If a data compute software image is available for update, this option will be enabled. Select it to launch the data compute software update page. Also refer to link:../administer/update-aide-firmware-software.html[Update AI Data Engine software].
 
 . Select *Configure data engine networking*.
 +
@@ -78,19 +78,19 @@ After creating the intercluster network interfaces, you can establish peering re
 
 . Select *Add a data container*.
 +
-You can create a volume and associate it with a specific SVM. In System Manager, you can also select *Storage* and then *Overview*.
+You can create a volume for use by AIDE and associate it with a specific SVM. In System Manager, optionally select *Storage* and then *Overview*.
 
 . Select *Add Workspaces*.
 +
-This launches the Data Engine workspaces page where you can create a workspaces. Also see link:../workspaces/prepare-data-for-aide.html[Add a workspace].
+This launches the Data Engine workspaces page where you can create a workspace. Also refer to link:../workspaces/prepare-data-for-aide.html[Add a workspace].
 
 . Select *Configure OpenID Connect*.
-
-You'll need to configure OpenID authentication to enable access to the AIDE console. Also see link:../install-setup/configure-oidc.html[Configure OIDC authentication].
++
+You'll need to configure OpenID authentication to enable access to the AIDE console. Also refer to link:../install-setup/configure-oidc.html[Configure OIDC authentication].
 
 .After you finish
 
-Once all the action items are completed then the guidance option will be hidden. User could close the guidance using the X icon at the top right and reopen it again by clicking on the blue tick mark icon attached to the right side.
+After all the action items are completed, the guidance window is hidden. You can manually close and reopen it as needed using the *X* and tick mark icons at the top right of the page.
 
 == 2. Complete AIDE configuration
 
@@ -104,4 +104,4 @@ There is an AI Data Engine license you must install for all deployments.
 
 . link:../install-setup/configure-oidc.html[Configure OIDC authentication].
 +
-Complete this step when you are deploying an AFX storage system and setting up AIDE at the same time.
+Make sure to configure OIDC for all deployments, including when you are deploying an AFX storage system and AIDE at the same time.
