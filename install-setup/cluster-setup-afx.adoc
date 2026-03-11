@@ -36,33 +36,61 @@ ONTAP dynamically detects the new data compute nodes connected to your cluster n
 
 ==== Finish setting up your AIDE cluster
 
-After integrating the DCN nodes and completing the initial network configuration, you can finish setting up your new AIDE cluster.
+After integrating the data compute nodes and completing the initial network configuration, you can finish setting up your new AIDE cluster.
 
 .About this task
 
-A welcome panel on the right side of the page displays a list of the configuration steps. You should complete the steps with an arrow (image:icon_arrow.gif[arrow]) and active link. For each of these, select the link and complete the setup for your environment.
+A welcome setup guidance window is displayed on the right side of the page with the necessary configuration steps. A checkmark displayed to the left of each step or action item that has already been completed. An arrow (image:icon_arrow.gif[arrow]) is displayed for items that have not yet been completed. For each of the incomplete actions:
 
-The steps have links to documentation where possible. Some of the configuration might be included as part of the AFX cluster setup. See https://docs.netapp.com/us-en/ontap-afx/[AFX documentation^] for more information as needed.
+* Select the enabled title link and complete the setup action for your environment.
+
+* If the action link is disabled, hover over the title to display the action required to enable the link and complete the setup action.
+
+.Before you begin
+
+The steps have links to documentation where possible. Some of the configuration might be included as part of the AFX cluster setup. See the https://docs.netapp.com/us-en/ontap-afx/[AFX documentation^] for more information.
 
 .Steps 
 
-. Select *Configure link aggregation groups and VLANs* and select the network options appropriate for your environment.
+. Select *Configure link aggregation groups and VLANs*.
++
+If required for your environment, you can set up cluster-level LAG and VLANs. Selecting the option launches the Ethernet ports page.
 
-. Configure network protocols.
+. Select *Configure network protocols*.
++
+You can configure the storage VM (SVM) network protocols.
 
-. link:../administer/update-aide-firmware-software.html[Update data compute software].
+. Select *Update data compute software*.
++
+If a data compute software image is available for update, this option will be enabled. Select it to launch the data compute software update page. Also see link:../administer/update-aide-firmware-software.html[Update AI Data Engine software].
 
-. Select *Configure data engine networking* to set up the data engine network.
+. Select *Configure data engine networking*.
++
+This option displays the page to configure the data engine network address.
 
-. Select *Create intercluster network interfaces* if you intend to catalog remote data.
+. Select *Create intercluster network interfaces*
++
+This option launches the page to configure the intercluster network interfaces as part of a two-step procedure if you intend to catalog remote data.
 
-. Select *Peer with other ONTAP storage systems* if you intend to catalog remote data.
+. Select *Peer with other ONTAP storage systems*.
++
+After creating the intercluster network interfaces, you can establish peering relationships with other ONTAP storage systems.
 
-. Select *Add a data container* to add a volume to hold your data.
+. Select *Add a data container*.
++
+You can create a volume and associate it with a specific SVM. In System Manager, you can also select *Storage* and then *Overview*.
 
-. link:../workspaces/prepare-data-for-aide.html[Add a workspace].
+. Select *Add Workspaces*.
++
+This launches the Data Engine workspaces page where you can create a workspaces. Also see link:../workspaces/prepare-data-for-aide.html[Add a workspace].
 
-. link:../install-setup/configure-oidc.html[Configure OIDC authentication].
+. Select *Configure OpenID Connect*.
+
+You'll need to configure OpenID authentication to enable access to the AIDE console. Also see link:../install-setup/configure-oidc.html[Configure OIDC authentication].
+
+.After you finish
+
+Once all the action items are completed then the guidance option will be hidden. User could close the guidance using the X icon at the top right and reopen it again by clicking on the blue tick mark icon attached to the right side.
 
 == 2. Complete AIDE configuration
 
