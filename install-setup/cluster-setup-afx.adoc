@@ -2,7 +2,7 @@
 permalink: install-setup/cluster-setup-afx.html
 sidebar: sidebar
 keywords: ai data engine, aide, cluster setup, afx, install, set up
-summary: "As an ONTAP storage administrator, you can integrate AI Data Engine (AIDE) with your AFX system deployment. You can either set up AIDE as part of an initial AFX storage system deployment or add AIDE to an AFX cluster that's already been deployed and serving data. In both cases, you'll need to also complete the AIDE configuration after finishing the basic setup."
+summary: "As an ONTAP storage administrator, you can integrate AI Data Engine (AIDE) with your AFX system deployment. You can either set up AIDE as part of an initial AFX storage system deployment or add AIDE to an AFX cluster that's already been deployed and serving data. In both cases, you'll also need to complete the AIDE configuration after finishing the basic setup."
 ---
 
 = Set up AI Data Engine
@@ -10,7 +10,7 @@ summary: "As an ONTAP storage administrator, you can integrate AI Data Engine (A
 :imagesdir: ../media/
 
 [.lead]
-As an ONTAP storage administrator, you can integrate AI Data Engine (AIDE) with your AFX system deployment. You can either set up AIDE as part of an initial AFX storage system deployment or add AIDE to an AFX cluster that's already been deployed and serving data. In both cases, you'll need to also complete the AIDE configuration after finishing the basic setup.
+As an ONTAP storage administrator, you can integrate AI Data Engine (AIDE) with your AFX system deployment. You can either set up AIDE as part of an initial AFX storage system deployment or add AIDE to an AFX cluster that's already been deployed and serving data. In both cases, you'll also need to complete the AIDE configuration after finishing the basic setup.
 
 == 1. Set up AIDE and integrate it with an AFX storage system
 
@@ -21,7 +21,7 @@ Before setting up AIDE, make sure you have the data compute nodes installed and 
 
 === Set up AIDE with a new AFX cluster
 
-If you're setting up AIDE as part of an initial AFX system deployment, the AIDE setup process is part of the standard AFX cluster setup workflow. During the ONTAP cluster setup, System Manager automatically discovers the connected DCNs and includes them as part of the cluster configuration. After that, you're ready to complete the AIDE configuration, including the required licensing and OIDC configuration.
+If you're setting up AIDE as part of an initial AFX system deployment, the AIDE setup process is part of the standard AFX cluster setup workflow. During the ONTAP cluster setup, System Manager automatically discovers the connected DCNs and includes them as part of the cluster configuration. After that, you're ready to complete the AIDE configuration, including the required license configuration.
 
 === Set up AIDE with an existing AFX cluster
 
@@ -29,10 +29,10 @@ If you're adding an AIDE cluster to an existing AFX storage system, you need to 
 
 ==== Add the data compute nodes to the cluster
 
-ONTAP dynamically detects the new data compute nodes connected to your cluster network and displays them in System Manager. You can link:../administer/dcn-add-node.html[Add Data Compute Nodes to an AI Data Engine cluster]. Also note the following:
+ONTAP dynamically detects the new data compute nodes connected to your cluster network and displays them in System Manager. You can link:../administer/dcn-add-node.html[Add Data Compute Nodes to your AIDE cluster]. Also note the following:
 
 * The data compute nodes must be physically connected to the cluster switches. Exactly three DCNs are required when creating an AIDE cluster.
-* You must have sufficient IP addresses for the DCN network and other configuration information to configure the network. 
+* You must have sufficient IP addresses for the DCN network and other required network configuration information.
 
 ==== Finish setting up your AIDE cluster
 
@@ -44,7 +44,7 @@ A welcome setup guidance window is displayed on the right side of the page with 
 
 * Select the enabled title link and complete the setup action for your environment.
 
-* If the action link is disabled, hover over the title to display the action required to enable the link and complete the setup action.
+* If the link is disabled, hover over the title to display the action required to enable the link and continue with the setup action.
 
 .Before you begin
 
@@ -99,5 +99,9 @@ After your AIDE cluster is set up and integrated with the AFX storage system, yo
 .Steps
 
 . link:../install-setup/install-license-task.html[Add required AIDE licenses].
++
+There is an AI Data Engine license you must install for all deployments.
 
 . link:../install-setup/configure-oidc.html[Configure OIDC authentication].
++
+Complete this step when you are deploying an AFX storage system and setting up AIDE at the same time.
