@@ -40,9 +40,9 @@ After integrating the DCN nodes and completing the initial network configuration
 
 .About this task
 
-A welcome panel on the right side of the page displays a list of the configuration steps. The remaining steps are shown with an arrow (image:icon_arrow.gif) and active link. For each of these, select the active link and complete the setup for your environment.
+A welcome panel on the right side of the page displays a list of the configuration steps. You should complete the steps with an arrow (image:icon_arrow.gif[arrow]) and active link. For each of these, select the link and complete the setup for your environment.
 
-Some of the required configuration might included as part of the AFX cluster. See https://docs.netapp.com/us-en/ontap-afx/[AFX documentation^] for more information as needed.
+The steps have links to documentation where possible. Some of the configuration might be included as part of the AFX cluster setup. See https://docs.netapp.com/us-en/ontap-afx/[AFX documentation^] for more information as needed.
 
 .Steps 
 
@@ -50,19 +50,15 @@ Some of the required configuration might included as part of the AFX cluster. Se
 
 . Configure network protocols.
 
-. Update data compute software.
+. link:../administer/update-aide-firmware-software.html[Update data compute software].
 
-. Configure data engine networking.
+. Select *Configure data engine networking* to set up the data engine network.
 
-. Create intercluster network interfaces.
-+
-Perform this step if you intend to catalog remote data.
+. Select *Create intercluster network interfaces* if you intend to catalog remote data.
 
-. Peer with other ONTAP storage systems.
-+
-Perform this step if you intend to catalog remote data.
+. Select *Peer with other ONTAP storage systems* if you intend to catalog remote data.
 
-. Add a data container.
+. Select *Add a data container* to add a volume to hold your data.
 
 . link:../workspaces/prepare-data-for-aide.html[Add a workspace].
 
