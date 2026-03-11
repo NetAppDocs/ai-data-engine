@@ -40,13 +40,13 @@ After integrating the DCN nodes and completing the initial network configuration
 
 .About this task
 
-A welcome panel on the right side of the page displays the configuration steps. You need to complete the remaining steps shown with an arrow (image:icon_arrow.gif). For each step, select the active link and complete the configurtion for your environment.
+A welcome panel on the right side of the page displays a list of the configuration steps. The remaining steps are shown with an arrow (image:icon_arrow.gif) and active link. For each of these, select the active link and complete the setup for your environment.
+
+Some of the required configuration might included as part of the AFX cluster. See https://docs.netapp.com/us-en/ontap-afx/[AFX documentation^] for more information as needed.
 
 .Steps 
 
-. Configure link aggregation groups and VLANs.
-+
-This step might be required based on your environment.
+. Select *Configure link aggregation groups and VLANs* and select the network options appropriate for your environment.
 
 . Configure network protocols.
 
