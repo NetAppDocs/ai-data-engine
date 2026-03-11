@@ -15,7 +15,7 @@ Use these procedures to define those policies in AIDE Console so that ONTAP Syst
 
 .Before you begin
 
-* You need _storage administrator_ privileges in AI Data Engine Console (`https://<cluster_management_ip>/console`) to create and manage global policies. 
+* You need _storage administrator_ privileges in AI Data Engine Console (`\<cluster_management_ip>/console`) to create and manage global policies. 
 * You have an AIDE cluster with deployed and healthy data compute nodes.
 * link:../install-setup/configure-oidc.html[OpenID Connect (OIDC)] is configured, and your IdP role is mapped to an AIDE admin role that allows data policy management.
 * The AI Data Engine software license is installed so that guardrail and inferencing features are enabled.
@@ -41,7 +41,7 @@ Classifier behavior is controlled globally in AIDE Console. All enabled classifi
 
 .Steps
 
-. In AIDE Console, go to *Data Guardrails > Classifiers*.
+. In AIDE Console, navigate to *Data Guardrails > Classifiers*.
 . Select a classifier category to reveal the classifiers it contains.
 . Select the checkboxes for the classifiers you want to enable, or select all rows to enable classifiers in bulk.
 . Select *Enable*.
@@ -61,7 +61,7 @@ Classifiers are organized into categories (such as "PII" or "Financial data"). C
 
 .Steps
 
-. In AIDE Console, go to *Data Guardrails > Classifiers*.
+. In AIDE Console, navigate to *Data Guardrails > Classifiers*.
 . View the existing classifier categories. There are two major categories of classification:
 ** Content or data: Detects particular types of data within files.
 ** Document: Classifies the type of document based on the content.

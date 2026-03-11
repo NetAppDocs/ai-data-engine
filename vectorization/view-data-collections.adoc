@@ -49,7 +49,7 @@ You can also see whether an individual data collection is actively being updated
 As a storage administrator, you can monitor jobs that build and update collections from the cluster-wide *Activity* page and from the workspace details.
 
 .Steps
-. In System Manager, go to *Data Engine > Activity*.
+. In System Manager, navigate to *Data Engine > Activity*.
 . On the *Events* tab:
 .. Filter by type (for example, workspace, data collection) or severity.
 .. Expand any event related to data collections (for example, "Data collection publish failed") to see more details.
@@ -72,7 +72,7 @@ Data engineers and data scientists typically monitor data collections directly f
 
 .Steps
 . Log in to AIDE Console as a data engineer or data scientist.
-. Go to *Data Collections* and select the desired data collection.
+. Navigate to *Data Collections* and select the desired data collection.
 . For each collection:
 .. Check the state (`Draft`, `Publishing`, `Ready`, or `Failed`).
 .. Select the data collection name to review definition details (filters, included file types, classifier options, embedding settings).

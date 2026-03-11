@@ -23,11 +23,11 @@ As a data engineer or data scientist, your first task in AI Data Engine (AIDE) i
 == Sign in to AIDE Console as a data engineer or data scientist
 
 .Steps
-. In a browser, go to the AIDE Console URL:
+. In a browser, navigate to the AIDE Console URL:
 +
 `\https://<cluster_management_ip>/console`
 . Authenticate through your organization's OIDC provider.
-. Confirm that your role is recognized as a data engineer or data scientist (for example, by the available workspace and data collection actions). For more information, see link:../get-started/aide-components-data-users.html[Learn how AI Data Engine data engineers and data scientists work with AIDE components]. 
+. Confirm that your role is recognized as a data engineer or data scientist (for example, by the available workspace and data collection actions). For more information, see link:../get-started/aide-components-data-users.html[AIDE role documentation] to learn how data engineers and data scientists work with AIDE components. 
 
 .Result
 You are logged into AIDE Console and see only those workspaces to which you have been granted access.
