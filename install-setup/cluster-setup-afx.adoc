@@ -36,7 +36,11 @@ ONTAP dynamically detects the new data compute nodes connected to your cluster n
 
 ==== Finish setting up your AIDE cluster
 
-After integrating the DCN nodes and completing the initial network configuration, you can finish setting up your new AIDE cluster. A welcome panel on the right side of the page displays the remaining configuration steps.
+After integrating the DCN nodes and completing the initial network configuration, you can finish setting up your new AIDE cluster.
+
+.About this task
+
+A welcome panel on the right side of the page displays the configuration steps. You need to complete the remaining steps shown with an arrow (image:icon_arrow.gif). For each step, select the active link and complete the configurtion for your environment.
 
 .Steps 
 
@@ -70,6 +74,6 @@ After your AIDE cluster is set up and integrated with the AFX storage system, yo
 
 .Steps
 
-. link:../install-setup/install-license-task.html[Add the required AIDE licenses].
+. link:../install-setup/install-license-task.html[Add required AIDE licenses].
 
-. link:../install-setup/configure-oidc.html[Configure OIDC for AIDE authentication].
+. link:../install-setup/configure-oidc.html[Configure OIDC authentication].

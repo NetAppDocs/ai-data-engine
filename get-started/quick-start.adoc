@@ -19,7 +19,7 @@ You need to decide if AIDE and AFX will be installed together at the same time o
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Install and set up your hardware
 
 [role="quick-margin-para"]
-link:../install-setup/aide-hardware-requirements.html[Install and set up] your AIDE cluster compute nodes. Depending on the installation environment, make sure to also https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[install^] the AFX hardware.
+link:../install-setup/aide-hardware-requirements.html[Install and set up] your AIDE cluster compute nodes. Depending on the installation environment, also make sure to https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[install^] the AFX hardware.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Set up your cluster
 
