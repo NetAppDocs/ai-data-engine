@@ -1,0 +1,25 @@
+---
+sidebar: sidebar
+permalink: administer/view-insights.html
+keywords: aide, aide system, insights, view insights
+summary: "You can use the Insights feature of ONTAP System Manager to display suggested configuration updates that align with NetApp best practices. These changes can optimize the security and performance as well as other areas of your AIDE cluster."
+---
+= View Insights to optimize your AIDE system
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+As a storage administrator, you can use the _Insights_ feature of ONTAP System Manager to display suggested configuration updates that align with NetApp best practices. These changes can optimize the security and performance of your AIDE cluster.
+
+.About this task
+
+Each of the insights is presented as a separate tile or card on the page that you can choose to implement or dismiss. You can also select the associated documentation link to learn more about a specific technology.
+
+.Steps
+
+. In System Manager, select *Analysis* and then *Insights*.
+. Review the available recommendations.
+
+.What's next
+
+Perform any of the recommended actions to implement configuration best practices.

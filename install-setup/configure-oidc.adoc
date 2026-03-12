@@ -1,0 +1,93 @@
+---
+permalink: install-setup/configure-oidc.html
+sidebar: sidebar
+keywords: openid connect, oidc, oauth 2.0, authentication, aide, system manager, entra id, adfs
+summary: "As an ONTAP cluster administrator, you can use ONTAP System Manager to configure OpenID Connect (OIDC) authentication for an AI Data Engine (AIDE) cluster. This provides a secure and centralized login through an external identity provider (IdP)."
+---
+
+= Configure OpenID Connect for AIDE in ONTAP
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+As an ONTAP cluster administrator, you can use ONTAP System Manager to configure OpenID Connect (OIDC) authentication for an AI Data Engine (AIDE) cluster. This provides a secure and centralized login through an external identity provider (IdP).
+
+[CAUTION]
+You must configure OIDC to access the AI Data Engine Console. When configured, all authentication flows through OIDC. If OIDC is not configured, the console will be unavailable to administrators as well as the data engineers and data scientists. In this case, signing in to System Manager reverts to local authentication.
+
+Also note the following about OIDC configuration for AIDE access:
+
+* You cannot modify an existing OIDC configuration. If you need to make a change, first delete the configuration and create a new one with the desired settings.
+* If you disable or remove OIDC, System Manager will revert to local ONTAP user authentication.
+
+== OIDC overview
+
+OpenID Connect (OIDC) is an authentication protocol built on the OAuth 2.0 framework. It extends OAuth 2.0, which is used primarily for authorization, by adding an identity layer. OIDC introduces the concept of an ID token, which is a JSON Web Token (JWT) containing claims about the authentication event and the identity of the user.
+
+You need to select and configure an external identity provider (IdP) supported by AFX with AIDE. The IdP authenticates users and issues tokens that AFX, through System Manager, can use to grant access to the AIDE Console.
+
+== Configure third-party identity providers
+
+To authenticate using OIDC, you need to first configure an external IdP. The ONTAP implementation of OIDC uses role claims in the tokens to enforce RBAC. When setting up an IdP, make sure it's configured to return role claims in the id token and access token. ONTAP supports two IdPs for OIDC authentication: Entra ID and Active Directory Federation Services (AD FS).
+
+=== Entra ID
+
+You can configure Entra ID using the following high-level steps:
+
+. Create a new App Registration at the Entra ID configuration page.
+. Set the Redirect URI (Web) value to `\https://$CLUSTER_MGMT_IP/oidc/callback`, substituting the appropriate cluster management IP address or FQDN.
+. Create the required roles under App Roles and assign them to your users.
+. Update the token claims to under Token Configuration to return roles in id-token and access-token.
+
+See https://learn.microsoft.com/en-us/power-pages/security/authentication/openid-settings[Set up an OpenID Connect provider with Entra ID^] for more information.
+
+=== Active Directory Federation Services
+
+You can configure AD FS using the following high-level steps:
+
+. Create new Application Group and select *Server application accessing a web API*.
+. Set the Redirect URI (Web) value to `\https://$CLUSTER_MGMT_IP/oidc/callback`, substituting the appropriate cluster management IP address or FQDN.
+. Configure claims to return roles in tokens.
+
+See https://learn.microsoft.com/en-us/azure/active-directory-b2c/identity-provider-adfs?pivots=b2c-user-flow[Add AD FS as an OpenID Connect identity provider^] for more information.
+
+== Configure OIDC in System Manager
+
+After configuring your IdP, you can set up OIDC authentication in System Manager to enable secure access to the AIDE Console.
+
+.Before you begin
+
+* You need to have administrator access to System Manager.
+* Your OIDC identity provider must be configured and accessible.
+
+.Steps
+
+. In System Manager, select *Cluster* and then *Settings*; locate the OpenID Connect card.
++
+. If OIDC is already configured, you can edit or disable the configuration. If OIDC is not configured select image:icon_gear_white_bg.png[gear icon] to start the setup process.
+. Under Configure OpenID Connect, provide values for the following fields:
+** Provider
+** Issuer
+** JSON web key set URI
+** Authorization endpoint
+** Token endpoint
+** End session endpoint
+** Access Token Issuer (optional)
+
+. Under Client configuration, provide values for the following fields:
+** Client ID
+** Remote user claim
+** Refresh interval
+
+. Under Connection details, provide values for the following fields:
+** Cluster IP address or FQDN
+** Outgoing proxy (optional)
++
+. Under External Role mapping, select an existing role mapping or define a new role for the ONTAP `admin` user.
+. Select *Enable now* and then *Save*. System Manager will refresh to apply the new authentication settings.
+. Log in with your IdP credentials; after successful authentication you'll be returned to System Manager.
+
+== Related information
+
+* https://openid.net/[OpenID Foundation^]
+* https://docs.netapp.com/us-en/ontap/authentication/overview-oauth2.html[ONTAP OAuth 2.0 implementation^]

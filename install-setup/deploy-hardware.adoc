@@ -1,0 +1,37 @@
+---
+sidebar: sidebar
+permalink: install-setup/deploy-hardware.html
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy,
+summary: Learn how to install the rail kits and secure the data compute nodes in the cabinet. 
+---
+= Install your data compute nodes for AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Install and secure your data compute nodes in the cabinet.
+
+.Before you begin
+
+* Make sure you have the instructions packaged with the rail kit.
+
+* Understand the safety concerns related to the weight of the data compute node, storage system, and storage shelf.
+
+* Understand that the airflow through the storage system enters from the front where the bezel or end caps are installed and exhausts out the rear where the ports are located.
+
+NOTE: In general, the switches should be installed in the center of the cabinet. The storage shelves should be installed below the switch and above a second installed switch. The controller nodes can be installed above or below the switches within the cabinet. Data compute nodes can be installed above or below the controller nodes within the cabinet.
+
+.Steps
+
+. Install the rail kits for your data compute nodes, as needed, using the instructions included with the kits.
+
+. Install and secure your data compute nodes in the cabinet:
+
+.. Position the data compute node onto the rails in the middle of the cabinet, and then support the appliance from the bottom and slide it into place.
+
+.. Secure the data compute node to the cabinet using the included mounting screws.
+
+. Attach the bezel to the front of the data compute node.
+
+.What's next?
+After you've installed the data compute nodes, you link:cable-hardware.html[cable the data compute nodes for AIDE].

@@ -1,0 +1,47 @@
+---
+sidebar: sidebar
+permalink: vectorization/explore-workspace-metadata.html
+keywords: aide, explore metadata, workspace, metadata catalog, ai data engine, data engineer, data scientist, search
+summary: "As a data engineer or data scientist, use AI Data Engine Console to explore workspace metadata, discover relevant files and objects, and prepare candidate subsets for data collections."
+---
+= Explore workspace metadata in AI Data Engine Console
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+As a data engineer or data scientist, your first task in AI Data Engine (AIDE) is to understand what data is available in your workspaces. You use AIDE Console to query the metadata catalog, search for relevant files, and identify subsets of data to turn into data collections.
+
+.Before you begin
+
+* You need _data engineer_ or _data scientist_ privileges in AI Data Engine Console and access to at least one workspace.
+* A storage administrator has:
+** Created one or more workspaces in ONTAP System Manager.
+** Assigned your user or group access to the relevant workspaces.
+* Metadata extraction for the workspace has completed and the workspace is in `Ready` state.
+* Classifiers are enabled, so that metadata includes classification tags (for example, PII indicators).
+
+== Sign in to AIDE Console as a data engineer or data scientist
+
+.Steps
+. In a browser, navigate to the AIDE Console URL:
++
+`\https://<cluster_management_ip>/console`
+. Authenticate through your organization's OIDC provider.
+. Confirm that your role is recognized as a data engineer or data scientist (for example, by the available workspace and data collection actions). For more information, see link:../get-started/aide-components-data-users.html[AIDE role documentation] to learn how data engineers and data scientists work with AIDE components. 
+
+.Result
+You are logged into AIDE Console and see only those workspaces to which you have been granted access.
+
+== View your accessible workspaces
+
+.Steps
+. In AIDE Console, navigate to *Data Curator > Workspaces*.
+. Review the list of workspaces you can access.
+. Select a workspace to open its details.
+
+.Result
+You now have a workspace-scoped view of the data estate that storage administrators have made available for your projects.
+
+== What's next?
+
+* link:create-data-collections.html[Create data collections for RAG from a workspace]

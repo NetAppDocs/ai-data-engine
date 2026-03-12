@@ -1,0 +1,39 @@
+---
+sidebar: sidebar
+permalink: install-setup/aide-hardware-requirements.html
+keywords: ai data engine, aide, hardware, requirements, afx, dcn, data compute node
+summary: "Review the requirements for installing AI Data Engine, including the AFX storage system and data compute nodes."
+---
+= Requirements for installing AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Review the requirements for installing the AI Data Engine. AIDE requires an AFX storage system, a minimum of three data compute nodes, network switches, and cables.
+
+== Hardware requirements
+
+The AI Data Engine requires an AFX storage system and a minimum of three data compute nodes. The AFX system provides the storage infrastructure, while the data compute nodes host the AIDE software components that enable data management, curation, and AI capabilities.
+
+* *AFX storage system*: Includes an AFX controller, disk shelf, and network switch. The AFX storage system is required for AIDE deployment.
+* *Data compute nodes*: A minimum of three data compute nodes are required. The data compute nodes are NetApp-provided hardware nodes that host the AIDE software, including the Metadata Engine, Data Sync, Data Curator, and Data Guardrails.
+** Each data compute node has I/O slots 4 and 5 available for connectivity. Slot 3 is reserved for the GPU. Slots 1 and 2 are not populated or accessible.
+** Ports e4a and e5a are used for cluster connections.
+** Ports e4b and e5b are used for host network connections.
+
+== Network switch requirements
+
+AI Data Engine requires network switches to enable host network connectivity and inter-node communication for the data compute nodes.
+
+** Client switches for host network connectivity (Cisco Nexus 9332D-GX2B or Cisco Nexus 9364D-GX2A)
+** Cluster switches for inter-node communication (Cisco Nexus 9332D-GX2B or Cisco Nexus 9364D-GX2A)
+** Optional management switches for network management
+
+== Cabling requirements
+
+The following cables are required to connect the data compute nodes to the network switches and management network.
+
+** 400-GbE-to-100-GbE (4x100GbE) breakout cables for connecting nodes to client and cluster switches
+
+== Multi-cluster support
+After AIDE is deployed with AFX, it can connect to and manage data from other ONTAP 9.18.1 and later clusters using SnapMirror and cluster peering.
