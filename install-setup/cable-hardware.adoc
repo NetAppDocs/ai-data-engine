@@ -18,9 +18,9 @@ NOTE: You do not need to power off the AFX 1K storage system when cabling the da
 
 .Before you begin
 
-* You have an existing AFX 1K storage system installed. For information on installing the AFX 1K storage system, refer to link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[install your AFX 1K storage system^].
+* You have an existing AFX 1K storage system installed. For information on installing the AFX 1K storage system, refer to link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[AFX 1K storage system installation documentation^].
 * You have the required network switches installed and configured. Contact your network administrator for information about connecting the system to your network switches.
-* You have reviewed the link:../install-setup/cable-overview.html[cabling requirements for the data compute nodes^].
+* You have reviewed the link:../install-setup/cable-overview.html[cabling requirements for the data compute nodes].
 
 == Step 1: Connect the data compute nodes to the host network
 You can connect the data compute node ports to your host network. 
@@ -78,4 +78,4 @@ image::../media/drw_aide_switched_cluster_cabling_b_ieops-2650.svg[Cable to Ethe
 
 .What's next?
 
-After you've cabled the hardware, you link:power-on-hardware.html[power on your data compute nodes].
+After you've cabled the hardware, link:power-on-hardware.html[power on your data compute nodes].

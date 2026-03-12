@@ -16,7 +16,7 @@ Before you install the data compute nodes for AIDE, ensure that you have:
 
 ** An AFX 1K storage system. 
 +
-NOTE: For information on installing the AFX 1K storage system, refer to the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[Install your AFX 1K storage system^].
+NOTE: For information on installing the AFX 1K storage system, refer to link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[AFX 1K storage system installation documentation^].
 
 == Equipment needed for install
 To install the data compute nodes for AIDE, you need the following equipment and tools. 
@@ -33,7 +33,7 @@ The data compute nodes are heavy. Exercise caution when lifting and moving these
 === Data compute node weights 
 Take the necessary precautions when moving or lifting your data compute node.
 
-A data compute node can weigh up to 46.3 lbs (21Kg). To lift the data compute node, use two people or a hydraulic lift.
+A data compute node can weigh up to 46.3 lbs (21 kg). To lift the data compute node, use two people or a hydraulic lift.
 
 image::../media/drw_compute_node_lifting_weight_ieops-2743.svg[Data compute node lifting weight]
 
@@ -42,4 +42,4 @@ image::../media/drw_compute_node_lifting_weight_ieops-2743.svg[Data compute node
 *  https://library.netapp.com/ecm/ecm_download_file/ECMP12475945[Safety information and regulatory notices^]
 
 .What's next?
-After you've reviewed the hardware requirements, you link:prepare-hardware.html[prepare to install your data compute nodes].
+After you've reviewed the hardware requirements, link:prepare-hardware.html[prepare to install your data compute nodes].

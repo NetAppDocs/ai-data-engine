@@ -34,4 +34,4 @@ NOTE: In general, the switches should be installed in the center of the cabinet.
 . Attach the bezel to the front of the data compute node.
 
 .What's next?
-After you've installed the data compute nodes, you link:cable-hardware.html[cable the data compute nodes for AIDE].
+After you've installed the data compute nodes, link:cable-hardware.html[cable the data compute nodes for AIDE].
