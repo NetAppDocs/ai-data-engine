@@ -16,8 +16,6 @@ indexpage:
           url: /release-notes/known-limitations.html
         - title: AIDE quick start
           url: /get-started/quick-start.html
-        - title: Install AIDE licenses
-          url: /install-setup/install-license-task.html
         - title: FAQ for AIDE
           url: /faq-aide.html
     - title: Install and setup
@@ -26,8 +24,6 @@ indexpage:
           url: /install-setup/install-workflow.html
         - title: Installation requirements
           url: /install-setup/install-setup-requirements.html
-        - title: Prepare hardware
-          url: /install-setup/prepare-hardware.html
         - title: Cable hardware
           url: /install-setup/cable-hardware.html
         - title: Power on system
@@ -52,6 +48,8 @@ indexpage:
           url: /administer/view-dashboard.html
         - title: View events and audit log
           url: /administer/view-events-log.html
+        - title: Install AIDE licenses
+          url: /install-setup/install-license-task.html
         - title: Update AIDE software
           url: /administer/update-aide-firmware-software.html
         - title: Add data compute nodes

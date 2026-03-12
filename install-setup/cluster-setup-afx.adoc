@@ -40,7 +40,7 @@ After integrating the data compute nodes and completing the initial network conf
 
 .About this task
 
-A welcome setup guidance window is displayed on the right side of the page with the necessary configuration steps. A checkmark is displayed to the left of each step or action item that has already been completed. An arrow (image:icon_arrow.gif[arrow]) is displayed for items that have not yet been completed. For each of the incomplete actions:
+A welcome setup guidance window is displayed on the right side of the page with the necessary configuration steps. A checkmark is displayed to the left of each step or action item that has already been completed. An arrow (image:icon_arrow.gif[blue arrow pointing to the right]) is displayed for items that have not yet been completed. For each of the incomplete actions:
 
 * Select the enabled title link and complete the setup action for your environment.
 

@@ -42,4 +42,4 @@ DCNs are updated with AI Data Engine software and the updated version is display
 
 .Related information
 
-link:upgrade-ontap-for-aide.html[Upgrade ONTAP software for AIDE systems]
+* https://docs.netapp.com/us-en/ontap-afx/administer/upgrade-ontap.html[Upgrade ONTAP software for AFX systems^]
