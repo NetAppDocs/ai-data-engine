@@ -4,7 +4,7 @@ permalink: install-setup/aide-hardware-requirements.html
 keywords: ai data engine, aide, hardware, requirements, afx, dcn, data compute node
 summary: "Review the requirements for installing AI Data Engine, including the AFX storage system and data compute nodes."
 ---
-= Requirements for installing AIDE
+= Requirements for installing AI Data Engine
 :icons: font
 :imagesdir: ../media/
 

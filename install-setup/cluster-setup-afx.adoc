@@ -29,7 +29,7 @@ If you're adding a cluster of data compute nodes to an existing AFX storage syst
 
 ==== Add the data compute nodes to the cluster
 
-ONTAP dynamically detects the new data compute nodes connected to your cluster network and displays them in System Manager. You can link:../administer/dcn-add-node.html[Add Data Compute Nodes to your AIDE cluster]. Also note the following:
+ONTAP dynamically detects the new data compute nodes connected to your cluster network and displays them in System Manager. You can link:../administer/dcn-add-node.html[Add data compute nodes to your AIDE cluster]. Also note the following:
 
 * The data compute nodes must be physically connected to the cluster switches. Exactly three DCNs are required when creating an AIDE cluster.
 * You must have sufficient IP addresses for the DCN network and other required network configuration information.
@@ -40,7 +40,7 @@ After integrating the data compute nodes and completing the initial network conf
 
 .About this task
 
-A welcome setup guidance window is displayed on the right side of the page with the necessary configuration steps. A checkmark is displayed to the left of each step or action item that has already been completed. An arrow (image:icon_arrow.gif[arrow]) is displayed for items that have not yet been completed. For each of the incomplete actions:
+A welcome setup guidance window is displayed on the right side of the page with the necessary configuration steps. A checkmark is displayed to the left of each step or action item that has already been completed. An arrow (image:icon_arrow.gif[blue arrow pointing to the right]) is displayed for items that have not yet been completed. For each of the incomplete actions:
 
 * Select the enabled title link and complete the setup action for your environment.
 
@@ -103,5 +103,3 @@ There is an AI Data Engine license you must install for full AIDE functionality,
 . link:../install-setup/configure-oidc.html[Configure OIDC authentication].
 +
 Make sure to configure OIDC for all deployments. You must configure OIDC to access the AI Data Engine Console.
-
-// AIDEDOC-25 - March 11, 2026

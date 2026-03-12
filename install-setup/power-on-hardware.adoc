@@ -4,7 +4,7 @@ permalink: install-setup/power-on-hardware.html
 keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, power on,
 summary: Power on each shelf to assign a unique shelf ID, power on the AFX controller nodes, and secure the power cables. 
 ---
-= Power on your data compute nodes
+= Power on your data compute nodes for AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
@@ -53,5 +53,3 @@ You might have to remove the bezel to access the power switch; if so, remember t
 
 .What's next?
 After you've turned on your data compute nodes, you link:../install-setup/cluster-setup-afx.html[set up an ONTAP AIDE cluster].
-
-// 2024 Sept 23, ONTAPDOC 1922

@@ -13,7 +13,7 @@ entries:
     url: "/administer/manage-workspace.html"
   - title: Upgrade and maintain your AIDE system
     entries:
-    - title: Keep your AIDE system up to date
+    - title: AIDE system updates and compatibility
       url: "/administer/upgrades-aide-summary.html"
     - title: Update AIDE software
       url: "/administer/update-aide-firmware-software.html"

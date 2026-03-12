@@ -13,13 +13,13 @@ Known limitations identify platforms, devices, or functions that are not support
 
 == Known limitations for AIDE 9.18.1 initial release
 
-These limitations apply to the Metadata Engine, Data Compute Nodes, and management workflows in AIDE 9.18.1.
+These limitations apply to the Metadata Engine, data compute nodes, and management workflows in AIDE 9.18.1.
 
 === Compute node requirements and management
 
 * **Minimum data compute node requirement**
 +
-AIDE clusters require a minimum and maximum of 3 Data Compute Nodes (DCNs) for Metadata Engine functionality. Clusters with fewer than 3 DCNs cannot enable Metadata Engine features.
+AIDE clusters require a minimum and maximum of 3 data compute nodes (DCNs) for Metadata Engine functionality. Clusters with fewer than 3 DCNs cannot enable Metadata Engine features.
 
 * **No support for adding DCN nodes using NetApp Console**
 +
@@ -61,4 +61,4 @@ OIDC/OAuth configuration must be performed after cluster creation using ONTAP Sy
 
 .Related information
 
-* link:whats-new.html[AI Data Engine release highlights]
+* link:whats-new.html[What's new in AI Data Engine]

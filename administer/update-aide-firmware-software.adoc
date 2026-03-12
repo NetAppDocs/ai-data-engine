@@ -9,7 +9,7 @@ summary: "Update DCN firmware and AI Data Engine Console software using ONTAP Sy
 :imagesdir: ../media/
 
 [.lead]
-You can update AI Data Engine (AIDE) software, data compute node (DCN) firmware, and other system files on your AIDE system using ONTAP System Manager.
+As a storage administrator, you can update AI Data Engine (AIDE) software, data compute node (DCN) firmware, and other system files on your AIDE system using ONTAP System Manager.
 
 AIDE does not support ONTAP automatic software updates functionality. You can sign up to receive notifications from link:https://mysupport.netapp.com/site/downloads[NetApp Support Site downloads^], but all updates of AIDE software are performed manually by the admin.
 
@@ -42,4 +42,4 @@ DCNs are updated with AI Data Engine software and the updated version is display
 
 .Related information
 
-link:upgrade-ontap-for-aide.html[Upgrade ONTAP software for AIDE systems]
+* https://docs.netapp.com/us-en/ontap-afx/administer/upgrade-ontap.html[Upgrade ONTAP software for AFX systems^]

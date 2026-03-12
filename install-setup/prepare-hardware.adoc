@@ -2,14 +2,14 @@
 sidebar: sidebar
 permalink: install-setup/prepare-hardware.html
 keywords: aide, ai, data engine, ai data engine, dcn, data compute node, prepare, hardware installation, afx, afx 1k,
-summary: Prepare to install the data compute nodes in your ONTAP environment and register the hardware to access support benefits. 
+summary: Prepare to install the data compute nodes for AI Data Engine in your ONTAP environment and register the hardware to access support benefits. 
 ---
-= Prepare to install your data compute nodes
+= Prepare to install your data compute nodes for AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Prepare to install your data compute nodes by getting the site ready, unpacking the boxes and comparing the contents of the boxes to the packing slip, and registering the system to access support benefits.
+Prepare to install your data compute nodes for AI Data Engine by getting the site ready, unpacking the boxes and comparing the contents of the boxes to the packing slip, and registering the system to access support benefits.
 
 == Step 1: Prepare the site
 To install your data compute nodes, ensure that the site and the cabinet or rack that you plan to use meet specifications for your configuration.
@@ -68,7 +68,7 @@ You can find the serial numbers in the following locations:
 image::../media/drw_ssn_label.svg[Example of the system serial number,width=200]
 +
 
-. Go to the http://mysupport.netapp.com/[NetApp Support Site^].
+. Navigate to the http://mysupport.netapp.com/[NetApp Support Site^].
 
 . Determine whether you need to register your storage system:
 +

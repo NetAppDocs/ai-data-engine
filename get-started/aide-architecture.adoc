@@ -70,7 +70,6 @@ Data Sync is an automated background service that ensures that the metadata cata
 
 .License and access
 Data Sync functionality is not included with the base ONTAP One license and requires a separate AIDE license.
-//need link to license docs
 
 .Capabilities
 
@@ -86,7 +85,6 @@ The Data Guardrails service provides continuous, automated governance and protec
 
 .License and access
 Data Guardrails functionality is not included with the base ONTAP One license and requires a separate AIDE license.
-//need link to guardrails and license docs
 
 You can access guardrail functionality through the AI Data Engine Console. 
 
@@ -105,7 +103,6 @@ The Data Curator service enables fast data discovery, search, vectorization, and
 
 .License and access
 Data Curator functionality is not included with the base ONTAP One license and requires a separate AIDE license.
-//need link to curator docs
 
 You can access data curator through the AI Data Engine Console.
 
@@ -121,3 +118,8 @@ You can access data curator through the AI Data Engine Console.
 == Security and multi-tenancy
 
 The platform enforces both role-based access control (RBAC) and resource-level access control lists (ACLs). All API and user actions are audited, and all data is encrypted at rest and in transit. Individual tenants are isolated for data and metadata.
+
+.Related information
+
+* link:../install-setup/install-license-task.html[Install an AIDE license]
+* link:../vectorization/zero-to-rag.html[Data-to-RAG quick start]
