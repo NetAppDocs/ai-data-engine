@@ -1,16 +1,16 @@
 ---
 permalink: install-setup/install-license-task.html
 sidebar: sidebar
-keywords: ai data engine, license, install, enable, add, aide, ai data engine, software, entitlement, keys, codes, cluster, administrator, nlf, add license, license key, metadata engine, aipvs, vectorization, guardrails, dx50, dcn, data compute node, afx, afx 1k
-summary: "You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). You can perform license management using the ONTAP AFX System Manager."
+keywords: ai data engine, install license, add license, software entitlement, keys, nlf, nlf file
+summary: "You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). As an ONTAP cluster administrator, you can perform license management using ONTAP System Manager."
 ---
 
-= Install AIDE licenses in your AFX system
+= Install an AIDE license in your AFX system
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). You can perform license management using the ONTAP AFX System Manager.
+You'll need to install a NetApp license to access the full features of the AI Data Engine (AIDE). As an ONTAP cluster administrator, you can perform license management using ONTAP System Manager.
 
 == Prepare to license the AI Data Engine
 
@@ -26,7 +26,7 @@ The Metadata Engine Basic license is typically factory-installed as part of the 
 
 .AI Data Engine
 
-You need to purchase and install the AI Data Engine license to access the premium services needed to activate the full capabilities of AIDE. The license unlocks your data compute nodes (DCNs), enabling AI features such as vectorization, governance guardrails, inferencing, and an integrated UI experience. The license includes a GPU count as well as an expiration date.
+You need to purchase and install the AI Data Engine license to access the premium services needed to activate the full capabilities of AIDE. The license unlocks your data compute nodes, enabling AI features such as vectorization, governance guardrails, inferencing, and an integrated UI experience. The license includes a GPU count as well as an expiration date.
 
 === License installation requirements
 
@@ -51,5 +51,7 @@ You can install an AIDE license to activate the additional AIDE features needed 
 == Related information
 
 * https://docs.netapp.com/us-en/ontap/system-admin/manage-licenses-concept.html[ONTAP licensing overview^]
-* https://docs.netapp.com/us-en/ontap-cli/system-license-add.html[CLI: system license add^]
+* https://kb.netapp.com/nss/Licensing/How_to_download_NLF_licenses_from_the_NetApp_Support_Site[How to download NLF licenses from the NetApp Support Site^]
+* https://docs.netapp.com/us-en/ontap-cli/system-license-add.html[ONTAP CLI: system license add^]
 
+// AIDEDOC-25 - March 11, 2026
