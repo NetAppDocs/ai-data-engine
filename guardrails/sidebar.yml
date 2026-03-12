@@ -1,0 +1,5 @@
+section: guardrails
+title: Implement guardrails
+entries:
+  - title: Define your guardrail policies in AIDE
+    url: /guardrails/define-data-policies.html

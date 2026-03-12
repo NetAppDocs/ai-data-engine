@@ -1,0 +1,105 @@
+---
+permalink: install-setup/cluster-setup-afx.html
+sidebar: sidebar
+keywords: ai data engine, aide, cluster setup, afx, install, set up
+summary: "As an ONTAP storage administrator, you can integrate AI Data Engine (AIDE) with your AFX system deployment. You can either set up AIDE as part of an initial AFX storage system deployment or add AIDE to an AFX cluster that's already been deployed and serving data. In both cases, you'll also need to complete the AIDE configuration after finishing the basic setup."
+---
+
+= Set up AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+As an ONTAP storage administrator, you can integrate AI Data Engine (AIDE) with your AFX system deployment. You can either set up AIDE as part of an initial AFX storage system deployment or add AIDE to an AFX cluster that's already been deployed and serving data. In both cases, you'll also need to complete the AIDE configuration after finishing the basic setup.
+
+== 1. Set up AIDE and integrate it with an AFX storage system
+
+There are two ways to set up AIDE and integrate it with an AFX storage system. Select the option that's appropriate for your environment.
+
+[NOTE]
+Before setting up AIDE, make sure you have the data compute nodes installed and connected to the cluster switches. See link:../install-setup/aide-hardware-requirements.html[Install AIDE] for more information.
+
+=== Set up AIDE with a new AFX cluster
+
+If you're setting up AIDE as part of an initial AFX system deployment, the AIDE setup process is part of the standard AFX cluster setup workflow. During the ONTAP cluster setup, System Manager automatically discovers the connected DCNs and includes them as part of the cluster configuration. After that, you're ready to complete the AIDE configuration, including the required license configuration.
+
+=== Set up AIDE with an existing AFX cluster
+
+If you're adding a cluster of data compute nodes to an existing AFX storage system, you need to configure the DCNs and finish setting up your AIDE cluster.
+
+==== Add the data compute nodes to the cluster
+
+ONTAP dynamically detects the new data compute nodes connected to your cluster network and displays them in System Manager. You can link:../administer/dcn-add-node.html[Add data compute nodes to your AIDE cluster]. Also note the following:
+
+* The data compute nodes must be physically connected to the cluster switches. Exactly three DCNs are required when creating an AIDE cluster.
+* You must have sufficient IP addresses for the DCN network and other required network configuration information.
+
+==== Finish setting up your AIDE cluster
+
+After integrating the data compute nodes and completing the initial network configuration, you can finish setting up your new AIDE cluster.
+
+.About this task
+
+A welcome setup guidance window is displayed on the right side of the page with the necessary configuration steps. A checkmark is displayed to the left of each step or action item that has already been completed. An arrow (image:icon_arrow.gif[blue arrow pointing to the right]) is displayed for items that have not yet been completed. For each of the incomplete actions:
+
+* Select the enabled title link and complete the setup action for your environment.
+
+* If the link is disabled, hover over the title to display the action required to enable it and continue with the setup action.
+
+Each step has a link to additional documentation where possible. Some of the configuration might be included as part of the AFX cluster setup. See the https://docs.netapp.com/us-en/ontap-afx/[AFX documentation^] for more information.
+
+.Steps 
+
+. Select *Configure link aggregation groups and VLANs*.
++
+If required for your environment, you can set up cluster-level LAGs and VLANs. Selecting this option launches the Ethernet ports page.
+
+. Select *Configure network protocols*.
++
+You can configure the storage VM (SVM) network protocols.
+
+. Select *Update data compute software*.
++
+If a data compute software image is available for update, this option will be enabled. Select it to launch the data compute software update page. Also refer to link:../administer/update-aide-firmware-software.html[Update AI Data Engine software].
+
+. Select *Configure data engine networking*.
++
+This option displays the page to configure the data engine network address.
+
+. Select *Create intercluster network interfaces*
++
+This option launches the page to configure the intercluster network interfaces as part of a two-step procedure if you intend to catalog remote data.
+
+. Select *Peer with other ONTAP storage systems*.
++
+After creating the intercluster network interfaces, you can establish peering relationships with other ONTAP storage systems.
+
+. Select *Add a data container*.
++
+You can add a volume for use by AIDE and associate it with a specific SVM.
+
+. Select *Add Workspaces*.
++
+This launches the Data Engine workspaces page where you can link:../workspaces/create-workspace.html[create a workspace].
+
+. Select *Configure OpenID Connect*.
++
+You'll need to link:../install-setup/configure-oidc.html[configure OpenID authentication] to enable access to the AIDE console.
+
+.After you finish
+
+After all the action items are completed, the guidance window is hidden. You can manually close and reopen it as needed.
+
+== 2. Complete AIDE configuration
+
+After your AIDE cluster is set up and integrated with the AFX storage system, you need to complete the AIDE configuration.
+
+.Steps
+
+. link:../install-setup/install-license-task.html[Add required AIDE licenses].
++
+There is an AI Data Engine license you must install for full AIDE functionality, including vectorization and guardrails capabilities.
+
+. link:../install-setup/configure-oidc.html[Configure OIDC authentication].
++
+Make sure to configure OIDC for all deployments. You must configure OIDC to access the AI Data Engine Console.

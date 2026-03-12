@@ -1,0 +1,125 @@
+---
+sidebar: sidebar
+permalink: get-started/aide-architecture.html
+keywords: aide, architecture, ontap, physical components, logical components, networking, security
+summary: "AIDE is built on a scalable, fault-tolerant architecture that separates storage and compute, enabling high performance and flexibility for AI workloads."
+---
+= AI Data Engine architecture
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+AIDE is built on a scalable, fault-tolerant architecture that separates storage and compute, enabling high performance and flexibility for AI workloads.
+
+== Physical components
+
+image::../media/aide-system-architecture.png[AI Data Engine Architecture Diagram]
+
+=== AFX controller nodes
+
+AFX controller nodes run a specialized personality of the ONTAP software designed to support the requirements of the AFX environment. Clients access the nodes through multiple protocols, including NFS and SMB. Each node has a complete view of the storage, which it can access based on the client requests. The nodes are stateful with non-volatile memory to persist critical state information and include additional enhancements specific to the target workloads.
+//shared AFX text
+
+At least four AFX controller nodes are required for AIDE deployments to ensure high availability and performance.
+
+=== Data compute nodes
+
+Data compute nodes (DCNs) are Linux-based servers with high CPU, RAM, and GPU resources, dedicated to AI data processing tasks. They host AI-specific services such as metadata cataloging, vector search, and embedding pipelines.
+
+Exactly _three_ DCNs are required for AIDE deployments.
+
+=== Cluster/storage switches
+
+Redundant, high-speed (100GbE or higher) switches connect ONTAP and DCNs for low-latency data transfer and high availability.
+
+=== Storage shelves
+
+NVMe-oF shelves with high-density SSDs provide ultra-low latency and redundancy, supporting PB-scale storage.
+
+== Networking
+
+All DCNs and ONTAP storage nodes are connected through redundant, high-speed cluster switches (minimum 100GbE). This architecture separates compute and storage resources, allowing each to scale independently and optimizing both performance and resource utilization.
+
+Networking between DCNs and ONTAP nodes is isolated using dedicated VLANs and IPspaces on the cluster switches. This ensures that all communications, such as data access, management APIs, and internal service traffic, remain secure, efficient, and do not interfere with other network operations.
+
+== AI Data Engine primary features
+
+The AI Data Engine (AIDE) primary features work together to automate, secure, and accelerate the AI data lifecycle. Each feature is implemented as a set of microservices running on DCNs, integrated with ONTAP storage, and exposed through REST APIs and management interfaces.
+
+=== Metadata Engine
+
+The Metadata Engine automatically generates a structured, up-to-date, and interactive view of your NetApp data estate. 
+
+.License and access
+The Metadata Engine is included with the base ONTAP One license and is available upon AIDE installation.
+
+You can access it through ONTAP System Manager.
+
+.Capabilities
+
+* Catalogs metadata for all data sources, including volumes stored locally on the AFX cluster and those synchronized from remote ONTAP clusters.
+* Extracts metadata automatically and populates the catalog as data is ingested or changed.
+* Provides REST API access for querying metadata, allowing data practitioners and storage administrators to discover, classify, and understand data.
+* Offloads metadata queries from the data path, reducing NFS traffic load on storage systems.
+* Supports large metadata records with indexing and search capabilities.
+* Integrates with workspace and data collection abstractions to enforce access control and governance.
+
+=== Data Sync
+
+Data Sync is an automated background service that ensures that the metadata catalog and data collections remain current and consistent with the underlying data sources, even as source data changes.
+
+.License and access
+Data Sync functionality is not included with the base ONTAP One license and requires a separate AIDE license.
+
+.Capabilities
+
+* Synchronizes data from remote or local ONTAP clusters using policy-driven SnapMirror replication. Data from remote clusters is copied to the local AFX cluster for AIDE processing.
+* Updates incrementally based on detected changes, propagating only modified data.
+* Provides secure, incremental data mobility and synchronization across the data estate.
+* Schedules and monitors sync intervals with configurable refresh rates per workspace.
+* Integrates with workspace creation workflows to extract and update metadata as new data sources are added.
+
+=== Data Guardrails
+
+The Data Guardrails service provides continuous, automated governance and protection for sensitive data throughout the AI lifecycle. 
+
+.License and access
+Data Guardrails functionality is not included with the base ONTAP One license and requires a separate AIDE license.
+
+You can access guardrail functionality through the AI Data Engine Console. 
+
+.Capabilities
+
+* Continuously scans, classifies, and categorizes data.
+* Identifies sensitive data and risks using built-in and customizable classifiers for tasks such as PII detection.
+* Automates handling of sensitive data through policy-driven redaction, masking, and access restrictions.
+* Enforces company and regulatory standards through guardrail policies attached to workspaces.
+* Restricts access to sensitive files or volumes as configured, with audit logging and compliance reporting.
+* Integrates with workspace and data collection management to apply guardrails consistently across AI data workflows.
+
+=== Data Curator
+
+The Data Curator service enables fast data discovery, search, vectorization, and retrieval for AI and GenAI applications. 
+
+.License and access
+Data Curator functionality is not included with the base ONTAP One license and requires a separate AIDE license.
+
+You can access data curator through the AI Data Engine Console.
+
+.Capabilities
+
+* Searches storage for relevant data using the centralized metadata catalog.
+* Provides tools for data scientists to create curated data collections.
+* Generates vector embeddings automatically at the storage layer.
+* Provides a secure retrieval endpoint for AI applications, supporting vector semantic search and re-ranking.
+* Integrates with AI tools and technologies, including Retrieval-Augmented Generation (RAG) pipelines and agentic AI frameworks.
+* Provides REST APIs for programmatic access to data collections, vector search, and retrieval endpoints.
+
+== Security and multi-tenancy
+
+The platform enforces both role-based access control (RBAC) and resource-level access control lists (ACLs). All API and user actions are audited, and all data is encrypted at rest and in transit. Individual tenants are isolated for data and metadata.
+
+.Related information
+
+* link:../install-setup/install-license-task.html[Install an AIDE license]
+* link:../vectorization/zero-to-rag.html[Data-to-RAG quick start]

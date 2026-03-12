@@ -1,0 +1,87 @@
+---
+sidebar: sidebar
+permalink: vectorization/view-data-collections.html
+keywords: aide, data collections, monitor collections, vector database, ai data engine, data engineer, data scientist, activity
+summary: "Use AI Data Engine tools to view data collections, track indexing and publishing jobs, and understand vector footprint across workspaces."
+---
+= View data collections in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+After data engineers or data scientists create and publish data collections from workspaces, you need visibility into their status, size, and impact on the AI Data Engine cluster.
+
+If you're a storage administrator, data engineer, or data scientist, you can view data collections across ONTAP System Manager and AIDE Console.
+
+.Before you begin
+
+* You need either _storage administrator_ privileges in ONTAP System Manager or _data engineer_ or _data scientist_ privileges in AI Data Engine Console (`\https://<cluster_management_ip>/console`) to view data collections.
+* At least one workspace exists with successfully extracted metadata.
+* Data engineers or data scientists have created and published at least one data collection from AI Data Engine Console.
+* The AI Data Engine software license is installed and inferencing features are enabled, so that vectorization and retrieval endpoints are active.
+
+== View cluster-wide data collections 
+
+For storage administrators, ONTAP System Manager provides a cluster-wide view of data collections and their footprint but does not allow admins to create or modify them.
+
+.Steps
+. In System Manager, navigate to *Data Engine > Data collections*.
+. Review the inventory summary at the top of the page:
+** Total number of data collections by status
+** Total space consumed by the vector database across all collections
+** Vector space as a percentage of overall cluster capacity
+. Select an individual data collection and review:
+** Collection name and description
+** UUID
+** Associated workspace
+** Status
+** Collection size
+** Creator
+** Last refresh time
+
+.Result
+You now have a high-level view of all data collections in the cluster and their storage impact. Use this view to identify collections that are large, stale, or stuck in a non-ready state.
+
+You can also see whether an individual data collection is actively being updated and whether any failures are blocking RAG usage.
+
+== Monitor collection-related jobs and events
+
+As a storage administrator, you can monitor jobs that build and update collections from the cluster-wide *Activity* page and from the workspace details.
+
+.Steps
+. In System Manager, navigate to *Data Engine > Activity*.
+. On the *Events* tab:
+.. Filter by type (for example, workspace, data collection) or severity.
+.. Expand any event related to data collections (for example, "Data collection publish failed") to see more details.
+. On the *Jobs* tab:
+.. Filter to focus on data collection indexing and publishing jobs.
+.. For each job, open the peek view to see:
+*** Progress percentage.
+*** Start and end times.
+*** Any reported error messages or warnings.
+. Optionally, navigate back to the affected workspace (*Data Engine > Workspaces*) and open its *Activity* tab to see events and jobs scoped only to that workspace.
+
+.Result
+You can track the lifecycle of data collections, identify stalled or failed jobs, and gather contextual information to pass to data engineers, data scientists, or support.
+
+TIP: When a data collection remains in `Publishing` state for an extended period, check for a corresponding long-running job in the Activity page before assuming a failure.
+
+== View data collections from AIDE Console 
+
+Data engineers and data scientists typically monitor data collections directly from AIDE Console, where they are created and published.
+
+.Steps
+. Log in to AIDE Console as a data engineer or data scientist.
+. Navigate to *Data Collections* and select the desired data collection.
+. For each collection:
+.. Check the state (`Draft`, `Publishing`, `Ready`, or `Failed`).
+.. Select the data collection name to review definition details (filters, included file types, classifier options, embedding settings).
+.. Inspect timestamps for last publish or update.
+. If needed, open job details or logs (where available) to understand failures or incomplete runs.
+
+.Result
+Data engineers and data scientists can iterate on collection definitions and publish them again while monitoring status and health, without involving storage administrators.
+
+== What's next?
+
+* link:create-data-collections.html[Create data collections for RAG in AIDE Console]

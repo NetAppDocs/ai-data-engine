@@ -1,14 +1,78 @@
 indexpage:
-  title: # Unquoted string 
-  lead: # Quoted string
-  summary: # Quoted string 
-  keywords: # Unquoted comma-delimited list of keywords 
-  tiles: 
-    # Tile definition 
-    - title: # Quoted or unquoted string
-      links: 
-        # Link definition
-        - title: # Quoted or unquoted string
-          url: # Path to target
-        # Next link on this tile (title/url pair)
-    # Next tile on this page (title/links)
+  title: AI Data Engine documentation
+  lead: "NetApp AI Data Engine (AIDE) is an enterprise-grade platform designed to accelerate and simplify AI-driven data processing, management, and governance. AIDE transforms unstructured data into structured, AI-ready datasets for machine learning and generative AI workloads."
+  summary: "AI Data Engine documentation provides comprehensive information about installing, configuring, and managing AIDE systems, including metadata cataloging, workspace management, data collections, and integration with AI/ML workflows."
+  keywords: aide, ai data engine, ontap, metadata engine, workspaces, data collections, vector database, guardrails, dcn, data compute nodes
+  tiles:
+    - title: Get started
+      links:
+        - title: Learn about AI Data Engine
+          url: /get-started/learn-about.html
+        - title: AIDE architecture
+          url: /get-started/aide-architecture.html
+        - title: What's new
+          url: /release-notes/whats-new.html
+        - title: Known limitations
+          url: /release-notes/known-limitations.html
+        - title: AIDE quick start
+          url: /get-started/quick-start.html
+        - title: FAQ for AIDE
+          url: /faq-aide.html
+    - title: Install and setup
+      links:
+        - title: Install data compute nodes workflow
+          url: /install-setup/install-workflow.html
+        - title: Installation requirements
+          url: /install-setup/install-setup-requirements.html
+        - title: Cable hardware
+          url: /install-setup/cable-hardware.html
+        - title: Power on system
+          url: /install-setup/power-on-hardware.html
+        - title: Set up AIDE cluster
+          url: /install-setup/cluster-setup-afx.html
+        - title: Configure OIDC authentication
+          url: /install-setup/configure-oidc.html
+    - title: Workspaces and data access
+      links:
+        - title: Prepare data for AIDE
+          url: /workspaces/prepare-data-for-aide.html
+        - title: Create a workspace
+          url: /workspaces/create-workspace.html
+        - title: Assign users to workspaces
+          url: /workspaces/assign-users-to-workspace.html
+        - title: Manage workspaces
+          url: /administer/manage-workspace.html
+    - title: Administer and monitor
+      links:
+        - title: View dashboard and cluster status
+          url: /administer/view-dashboard.html
+        - title: View events and audit log
+          url: /administer/view-events-log.html
+        - title: Install AIDE licenses
+          url: /install-setup/install-license-task.html
+        - title: Update AIDE software
+          url: /administer/update-aide-firmware-software.html
+        - title: Add data compute nodes
+          url: /administer/dcn-add-node.html
+        - title: Replace data compute node
+          url: /administer/aide-node-replace.html
+    - title: Understand roles and components
+      links:
+        - title: AIDE components by role
+          url: /get-started/aide-components.html
+        - title: Storage administrator tasks
+          url: /get-started/aide-components-storage-admin.html
+        - title: Data engineer and data scientist tasks
+          url: /get-started/aide-components-data-users.html
+    - title: Use data collections and guardrails
+      links:
+        - title: Data-to-RAG quick start
+          url: /vectorization/zero-to-rag.html
+        - title: Create and publish data collections
+          url: /vectorization/create-data-collections.html
+        - title: Define guardrail policies
+          url: /guardrails/define-data-policies.html
+##        - title: Manage AutoSupport
+##          url: /get-help/manage-autosupport.html
+##        - title: Submit support cases
+##          url: /get-help/view-submit-support-case.html
