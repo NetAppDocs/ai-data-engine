@@ -96,5 +96,5 @@ Once NetApp approves your registration, you can download the required software. 
 |===
 
 .What's next?
-After you've prepared to install your data compute nodes, you link:deploy-hardware.html[install the data compute nodes].
+After you've prepared to install your data compute nodes, link:deploy-hardware.html[install the data compute nodes].
 

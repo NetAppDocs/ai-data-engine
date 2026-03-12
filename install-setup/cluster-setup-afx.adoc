@@ -29,7 +29,7 @@ If you're adding a cluster of data compute nodes to an existing AFX storage syst
 
 ==== Add the data compute nodes to the cluster
 
-ONTAP dynamically detects the new data compute nodes connected to your cluster network and displays them in System Manager. You can link:../administer/dcn-add-node.html[Add data compute nodes to your AIDE cluster]. Also note the following:
+ONTAP dynamically detects the new data compute nodes connected to your cluster network and displays them in System Manager. You can link:../administer/dcn-add-node.html[add data compute nodes to your AIDE cluster]. Also note the following:
 
 * The data compute nodes must be physically connected to the cluster switches. Exactly three DCNs are required when creating an AIDE cluster.
 * You must have sufficient IP addresses for the DCN network and other required network configuration information.
@@ -60,7 +60,7 @@ You can configure the storage VM (SVM) network protocols.
 
 . Select *Update data compute software*.
 +
-If a data compute software image is available for update, this option will be enabled. Select it to launch the data compute software update page. Also refer to link:../administer/update-aide-firmware-software.html[Update AI Data Engine software].
+If a data compute software image is available for update, this option will be enabled. Select it to launch the data compute software update page. For more information, refer to link:../administer/update-aide-firmware-software.html[Update AI Data Engine software].
 
 . Select *Configure data engine networking*.
 +
