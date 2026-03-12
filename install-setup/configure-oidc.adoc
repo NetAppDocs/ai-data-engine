@@ -5,7 +5,7 @@ keywords: openid connect, oidc, oauth 2.0, authentication, aide, system manager,
 summary: "As an ONTAP cluster administrator, you can use ONTAP System Manager to configure OpenID Connect (OIDC) authentication for an AI Data Engine (AIDE) cluster. This provides a secure and centralized login through an external identity provider (IdP)."
 ---
 
-= Configure OpenID Connect for ONTAP AIDE
+= Configure OpenID Connect for AIDE in ONTAP
 :icons: font
 :imagesdir: ../media/
 

@@ -25,7 +25,7 @@ If you're setting up AIDE as part of an initial AFX system deployment, the AIDE 
 
 === Set up AIDE with an existing AFX cluster
 
-If you're adding an AIDE cluster to an existing AFX storage system, you need to configure the data compute nodes and finish setting up your AIDE cluster.
+If you're adding a cluster of data compute nodes to an existing AFX storage system, you need to configure the DCNs and finish setting up your AIDE cluster.
 
 ==== Add the data compute nodes to the cluster
 
@@ -45,8 +45,6 @@ A welcome setup guidance window is displayed on the right side of the page with 
 * Select the enabled title link and complete the setup action for your environment.
 
 * If the link is disabled, hover over the title to display the action required to enable it and continue with the setup action.
-
-.Before you begin
 
 Each step has a link to additional documentation where possible. Some of the configuration might be included as part of the AFX cluster setup. See the https://docs.netapp.com/us-en/ontap-afx/[AFX documentation^] for more information.
 
@@ -78,19 +76,19 @@ After creating the intercluster network interfaces, you can establish peering re
 
 . Select *Add a data container*.
 +
-You can create a volume for use by AIDE and associate it with a specific SVM. Also, in System Manager optionally select *Storage* and then *Overview*.
+You can add a volume for use by AIDE and associate it with a specific SVM.
 
 . Select *Add Workspaces*.
 +
-This launches the Data Engine workspaces page where you can create a workspace. Also refer to link:../workspaces/prepare-data-for-aide.html[Add a workspace].
+This launches the Data Engine workspaces page where you can link:../workspaces/create-workspace.html[create a workspace].
 
 . Select *Configure OpenID Connect*.
 +
-You'll need to configure OpenID authentication to enable access to the AIDE console. Also refer to link:../install-setup/configure-oidc.html[Configure OIDC authentication].
+You'll need to link:../install-setup/configure-oidc.html[configure OpenID authentication] to enable access to the AIDE console.
 
 .After you finish
 
-After all the action items are completed, the guidance window is hidden. You can manually close and reopen it as needed using the *X* and tick mark icons at the top right of the page.
+After all the action items are completed, the guidance window is hidden. You can manually close and reopen it as needed.
 
 == 2. Complete AIDE configuration
 
@@ -100,10 +98,10 @@ After your AIDE cluster is set up and integrated with the AFX storage system, yo
 
 . link:../install-setup/install-license-task.html[Add required AIDE licenses].
 +
-There is an AI Data Engine license you must install for all deployments.
+There is an AI Data Engine license you must install for full AIDE functionality, including vectorization and guardrails capabilities.
 
 . link:../install-setup/configure-oidc.html[Configure OIDC authentication].
 +
-Make sure to configure OIDC for all deployments, including when you are deploying an AFX storage system and AIDE at the same time.
+Make sure to configure OIDC for all deployments. You must configure OIDC to access the AI Data Engine Console.
 
 // AIDEDOC-25 - March 11, 2026
