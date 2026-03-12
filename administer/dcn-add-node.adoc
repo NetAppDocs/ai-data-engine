@@ -4,12 +4,12 @@ permalink: administer/dcn-add-node.html
 keywords: aide, ai data engine, data compute node, dcn, add dcn, expand dcn cluster
 summary: ""
 ---
-= Add Data Compute Nodes to your AIDE cluster
+= Add data compute nodes to your AIDE cluster
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-You can add Data Compute Nodes (DCNs) as part of creating a new AI Data Engine (AIDE) cluster or expanding an existing cluster. The workflow consists of discovering and configuring the nodes using ONTAP System Manager.
+You can add data compute nodes (DCNs) as part of creating a new AI Data Engine (AIDE) cluster or expanding an existing cluster. The workflow consists of discovering and configuring the nodes using ONTAP System Manager.
 
 == Prepare to add nodes
 
@@ -47,7 +47,7 @@ If a node is incompatible:
 * An error is shown next to the affected DCN in the *Add* dialog.
 * You must first update the DCN software (or ONTAP, as appropriate) to a compatible version.
 
-== Add the Data Compute Nodes
+== Add the data compute nodes
 
 You add DCN nodes as part of creating a new AIDE cluster or expanding an existing cluster.
 

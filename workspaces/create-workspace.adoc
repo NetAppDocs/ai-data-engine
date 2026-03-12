@@ -5,7 +5,7 @@ keywords: aide, workspaces, create workspace, ai data engine
 summary: "After you create a cluster, you can create workspaces that allow you to segment data, control data access, and exclude data that AIDE should not access."
 ---
 
-= Set up a workspace in AI Data Engine
+= Create a workspace in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
@@ -35,7 +35,6 @@ IMPORTANT: Add a volume to a workspace that you won't delete during the expected
 * Ensure NFS is enabled on the volume but that CIFS is not enabled. Workspaces only support volumes with NFS. Volumes with CIFS (SMB) are not supported.
 
 // CONTAP-517543
-//Should more clusters be added/peered?
 
 == Create a workspace
 

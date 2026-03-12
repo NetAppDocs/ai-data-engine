@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: release notes, new features, AI Data Engine, AIDE, metadata engine, ONTAP 9.18.1
 summary: "Learn about the new capabilities available in AI Data Engine (AIDE)."
 ---
-= AI Data Engine 9.18.1 release highlights
+= What's new in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
@@ -34,12 +34,7 @@ The initial release supports:
 
 * Creation of workspaces spanning local and remote ONTAP volumes (using cluster peering).
 * Assignment of access controls to workspaces, supporting multi-user and multi-tenant environments.
-//* Integration with guardrail policies for data governance.
 * Automatic metadata extraction and catalog population upon workspace creation.
-
-//.xref:../data-collections/index.html[Data collection observability]
-
-//ONTAP System Manager displays data collections created by data engineers, allowing storage administrators to monitor cataloged subsets of data. Data collection management is performed via the Data Engine Console.
 
 .link:../get-started/aide-architecture.html#data-sync[Data Sync for automated data currency]
 
@@ -56,7 +51,7 @@ Key features include:
 
 The initial release includes the following workflows:
 
-* Discovery and addition of Data Compute Nodes (DCNs) during cluster setup.
+* Discovery and addition of data compute nodes (DCNs) during cluster setup.
 * Creation of dedicated metadata storage VMs for the metadata engine.
 * Configuration of Data Engine service interfaces for cluster-wide metadata access.
 * Peering with other ONTAP clusters to extend metadata cataloging across the data estate.

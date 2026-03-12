@@ -25,7 +25,7 @@ entries:
         url: /install-setup/aide-hardware-requirements.html
       - title: Install your AFX storage system
         url: /install-setup/aide-afx-install.html
-      - title: Install your Data Compute Nodes
+      - title: Install your data compute nodes
         entries:
           - title: Install workflow
             url: /install-setup/install-workflow.html

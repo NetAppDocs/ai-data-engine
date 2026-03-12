@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: workspaces/prepare-data-for-aide.html
 keywords: aide, workspaces, create data container, ai data engine
-summary: "After you create a cluster, you can create a data container containing data you intend to use with AI Data Engine."
+summary: "After you create a cluster, you can create a data container that contains data you intend to use with AI Data Engine."
 ---
 
 = Prepare data for AI Data Engine
@@ -10,10 +10,16 @@ summary: "After you create a cluster, you can create a data container containing
 :imagesdir: ../media/
 
 [.lead]
-After you create a cluster, establish a data container that AI Data Engine (AIDE) can use. This data container must be an ONTAP volume, either a local volume or a volume from a peered ONTAP cluster running ONTAP 9.
-//Check elsewhere for 9.18.1 system statement. All ONTAP 9 is likely correct.
+After you create a cluster, establish a data container that contains data you intend to use with AI Data Engine (AIDE). This data container must be an ONTAP volume, either a local volume or a volume from a peered ONTAP cluster running ONTAP 9.
 
 Rather than manually upload ONTAP cluster data to AIDE, you'll need to peer targeted clusters and SVMs with the AIDE cluster and then decide which NFS volumes you want to use with the AIDE metadata catalog. After you've created the data container, you can create a workspace and associate the data container with that workspace. Users of that workspace can then access and interact with the workspace affiliated data collections and resources for their AI workloads.
+
+.About this task
+You must peer each SVM that contains data you want to use with AI Data Engine. Peering only the cluster is not sufficient. This ensures the AI Data Engine can access, onboard, and index your data as intended.
+
+You should peer the SVM in the AIDE cluster that will act as the SnapMirror destination.
+
+You don't need to create SnapMirror relationships between the ONTAP clusters and the AIDE cluster. These relationships will be created during workspace creation automatically.
 
 .Before you begin
 
@@ -25,13 +31,6 @@ Rather than manually upload ONTAP cluster data to AIDE, you'll need to peer targ
 //AIDEDOC-2 and CONTAP-517143
 ** Volumes are not FlexCache volumes.
 ** Data sources are read-write volumes. Data protection volumes are not supported.
-
-.About this task
-You must peer each SVM that contains data you want to use with AI Data Engine. Peering only the cluster is not sufficient. This ensures the AI Data Engine can access, onboard, and index your data as intended.
-
-You should peer the SVM in the AIDE cluster that will act as the SnapMirror destination.
-
-You don't need to create SnapMirror relationships between the ONTAP clusters and the AIDE cluster. These relationships will be created during workspace creation automatically.
 
 .Steps
 

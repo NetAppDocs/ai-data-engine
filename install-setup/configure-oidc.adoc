@@ -91,5 +91,3 @@ After configuring your IdP, you can set up OIDC authentication in System Manager
 
 * https://openid.net/[OpenID Foundation^]
 * https://docs.netapp.com/us-en/ontap/authentication/overview-oauth2.html[ONTAP OAuth 2.0 implementation^]
-
-// AIDEDOC-25 - March 11, 2026

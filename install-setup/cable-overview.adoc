@@ -4,7 +4,7 @@ permalink: install-setup/cable-overview.html
 keywords: aide, ai data engine, cable, overview, cabling, hardware, switches, cluster network, host network, data compute nodes
 summary: "Learn about the cabling configuration for data compute nodes, including I/O slot usage, cable types, and connection requirements for host and cluster networks."
 ---
-= Requirements for cabling the data compute nodes
+= Requirements for cabling data compute nodes for AI Data Engine
 :icons: font
 :imagesdir: ../media/
 

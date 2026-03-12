@@ -4,7 +4,7 @@ permalink: administer/upgrades-aide-summary.html
 keywords: update, firmware, system files, automatic updates, ai data engine, aide
 summary: "Learn about the different components of an AI Data Engine system that need to be kept up to date."
 ---
-= Keep your AI Data Engine system up to date
+= AI Data Engine system updates and compatibility
 :icons: font
 :imagesdir: ../media/
 
@@ -66,6 +66,10 @@ The following examples use hypothetical future versions to show permitted upgrad
 |9.18.1 U1
 |Direct
 
+|9.18.1 U0
+|9.18.1 U3
+|Direct (you can update from any Ux to any later Ux in 9.18.1)
+
 // Same-major update from any UI to any later UI in the same major release
 |9.18.1 U1
 |9.18.1 U3
@@ -90,6 +94,9 @@ The following examples use hypothetical future versions to show permitted upgrad
 == Revert limitations
 AIDE systems do not support revert operations for DCN firmware, AIDE software updates, or ONTAP on AFX storage systems. After you install an update or upgrade, you cannot revert to a previous version. Review <<Compatibility matrix,compatibility requirements>> before you update or upgrade.
 
+// documented as release note limitation
+// https://docs.netapp.com/us-en/ontap-afx/administer/revert-ontap.html
+
 //[cols="25,25,50", options="header"]
 //|===
 //|If your current AIDE release is… |And your target AIDE release is… |Your upgrade or update path is…
@@ -108,11 +115,6 @@ AIDE systems do not support revert operations for DCN firmware, AIDE software up
 //
 //Downgrading AIDE to an earlier major release is not supported.
 //|===
-
-
-// documented as release note limitation
-// https://docs.netapp.com/us-en/ontap-afx/administer/revert-ontap.html
-
 
 .Related information
 
