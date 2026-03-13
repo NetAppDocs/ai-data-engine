@@ -69,7 +69,7 @@ You can access it through ONTAP System Manager.
 Data Sync is an automated background service that ensures that the metadata catalog and data collections remain current and consistent with the underlying data sources, even as source data changes.
 
 .License and access
-Data Sync functionality is not included with the base ONTAP One license and requires a separate AIDE license.
+Data Sync functionality is included with the base ONTAP One license and is available upon AIDE installation.
 
 .Capabilities
 
