@@ -21,6 +21,7 @@ NOTE: You do not need to power off the AFX 1K storage system when cabling the da
 * You have an existing AFX 1K storage system installed. For information on installing the AFX 1K storage system, refer to link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[AFX 1K storage system installation documentation^].
 * You have the required network switches installed and configured. Contact your network administrator for information about connecting the system to your network switches.
 * You have reviewed the link:../install-setup/cable-overview.html[cabling requirements for the data compute nodes].
+* A minimum of three data compute nodes are required to deploy the AI Data Engine. 
 
 == Step 1: Connect the data compute nodes to the host network
 You can connect the data compute node ports to your host network. 
@@ -51,7 +52,7 @@ image::../media/drw_aide_network_cabling_b_ieops-2648.svg[Cable to Ethernet netw
 
 
 == Step 2: Cable the data compute node cluster connections
-For data compute nodes, the e4a/e5a ports are used for the cluster connections. 
+For data compute nodes, use 4x100GbE breakout cables to connect the e4a/e5a ports for the cluster connections. 
 
 .Steps
 . Connect port e4a from the following data compute nodes to a non-ISL port on cluster network switch A:
@@ -59,7 +60,7 @@ For data compute nodes, the e4a/e5a ports are used for the cluster connections.
 * Data Compute Node 1, port e4a
 * Data Compute Node 2, port e4a
 +
-*100GbE cables*
+*4x100GbE breakout cables*
 +
 image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
 +
@@ -70,7 +71,7 @@ image::../media/drw_aide_switched_cluster_cabling_a_ieops-2649.svg[Cable to Ethe
 * Data Compute Node 1, port e5a
 * Data Compute Node 2, port e5a
 +
-*100GbE cables*
+*4x100GbE breakout cables*
 +
 image::../media/oie_cable100_gbe_qsfp28.png[100 Gb Ethernet cable]
 +
