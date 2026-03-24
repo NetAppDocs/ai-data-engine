@@ -106,9 +106,10 @@ This task maps the data engineer and data scientist to the corresponding ONTAP r
 
 . Configure role mapping for the data scientist role.
 +
-''''
+[source,bash]
+----
 security login external-role-mapping create -external-role dataEngineer -provider entra -ontap-role data-engineer
-''''
+----
 
 == Related information
 
