@@ -94,11 +94,11 @@ Complete the OIDC setup by configuring external role mapping.
 
 == Configure external role mapping using the CLI
 
-External role mapping is an ONTAP feature enabling you to map the external IdP roles to the corresponding ONTAP roles. You need to configure this mapping to ensure that users authenticating through OIDC are granted the appropriate RBAC permissions in ONTAP.
+External role mapping is an ONTAP feature enabling you to map the external IdP roles to the corresponding ONTAP roles. You need to configure this mapping to ensure users authenticating through OIDC are granted the appropriate RBAC permissions in ONTAP.
 
 .About this task
 
-This task maps the data engineer and data scientist to the corresponding ONTAP roles. You need to update the command examples with the appropriate role names based on your environment. Note that you should have already mapped the storage administrator role to the ONTAP `admin` role during the basic OIDC configuration in System Manager.
+This task maps the data engineer and data scientist to the corresponding ONTAP roles. You need to update the command examples with the appropriate role names based on your environment. Note that you should have already mapped the storage administrator role to the ONTAP `admin` role during basic OIDC configuration in System Manager.
 
 .Steps
 
