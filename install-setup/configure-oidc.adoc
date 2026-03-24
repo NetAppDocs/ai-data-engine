@@ -17,6 +17,7 @@ You must configure OIDC to access the AI Data Engine Console. When configured, a
 
 Also note the following about OIDC configuration for AIDE access:
 
+* At a high level, OIDC configuration consists of two major steps. First you need to perform basic OIDC configuration using System Manager. You can then complete the setup by configuring external role mapping using the ONTAP CLI.
 * You cannot modify an existing OIDC configuration. If you need to make a change, first delete the configuration and create a new one with the desired settings.
 * If you disable or remove OIDC, System Manager will revert to local ONTAP user authentication.
 
@@ -87,11 +88,29 @@ After configuring your IdP, you can set up OIDC authentication in System Manager
 . Select *Enable now* and then *Save*. System Manager will refresh to apply the new authentication settings.
 . Log in with your IdP credentials; after successful authentication you'll be returned to System Manager.
 
-== Use the ONTAP CLI to complete the OIDC configuration
+.After you finish
 
-xxx
+Complete the OIDC setup by configuring external role mapping.
+
+== Configure external role mapping using the ONTAP CLI
+
+External role mapping is needed to map the roles defined in your IdP server to the corresponding ONTAP roles. This allows ONTAP to enforce role-based access control (RBAC) for users authenticating through OIDC.
+
+.About this task
+
+This task maps the data engineer and data scientist to the corresponding ONTAP roles. You should have already mapped the storage administrator role to the ONTAP `admin` role during the basic OIDC configuration in System Manager.
+
+.Steps
+
+. Using SSH, sign in to the ONTAP CLI using an account with administrative privileges.
+
+. Configure role mapping for the data scientist role.
++
+''''
+security login external-role-mapping create -external-role dataEngineer -provider entra -ontap-role data-engineer
+''''
 
 == Related information
 
+* https://docs.netapp.com/us-en/ontap/authentication/oauth2-external-roles.html[OAuth 2.0 external role mapping in ONTAP^]
 * https://openid.net/[OpenID Foundation^]
-* https://docs.netapp.com/us-en/ontap/authentication/overview-oauth2.html[ONTAP OAuth 2.0 implementation^]
