@@ -87,6 +87,10 @@ After configuring your IdP, you can set up OIDC authentication in System Manager
 . Select *Enable now* and then *Save*. System Manager will refresh to apply the new authentication settings.
 . Log in with your IdP credentials; after successful authentication you'll be returned to System Manager.
 
+== Use the ONTAP CLI to complete the OIDC configuration
+
+xxx
+
 == Related information
 
 * https://openid.net/[OpenID Foundation^]
