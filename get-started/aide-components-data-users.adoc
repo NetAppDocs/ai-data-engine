@@ -9,7 +9,7 @@ summary: "Learn how data engineers and data scientists interact with AIDE compon
 :imagesdir: ../media/
 
 [.lead]
-As a data engineer or data scientist, you use the AI Data Engine Console to explore workspaces you have been granted access to, create and manage data collections, perform semantic searches, and integrate retrieval endpoints into AI/ML workflows.
+As a data engineer or data scientist, you use AI Data Engine (AIDE) Console to explore workspaces you have been granted access to, create and manage data collections, perform semantic searches, and integrate retrieval endpoints into AI/ML workflows.
 
 Data engineers focus on transforming raw data into AI-ready datasets by building collections, configuring embedding pipelines, and controlling which users can access published collections. Data scientists focus on leveraging curated datasets for analysis, model training, and GenAI applications, without managing access control or infrastructure.
 
@@ -22,10 +22,10 @@ h|Access level
 h|Data engineer workflow
 h|Data scientist workflow
 
-|AI Data Engine Console
+|AIDE Console
 |Manage (create, edit, delete)
-|The AI Data Engine Console is your primary interface for day-to-day tasks, including data discovery, collection management, pipeline configuration, and publishing RAG or retrieval endpoints, for the workspaces you are authorized to access.
-|The AI Data Engine Console is your primary interface for data exploration, refining and versioning collections within workspaces you can access, and connecting curated datasets and retrieval endpoints to analysis, modeling, and GenAI workflows.
+|AIDE Console is your primary interface for day-to-day tasks, including data discovery, collection management, pipeline configuration, and publishing RAG or retrieval endpoints, for the workspaces you are authorized to access.
+|AIDE Console is your primary interface for data exploration, refining and versioning collections within workspaces you can access, and connecting curated datasets and retrieval endpoints to analysis, modeling, and GenAI workflows.
 
 |ONTAP REST API
 |Manage (create, edit, delete)

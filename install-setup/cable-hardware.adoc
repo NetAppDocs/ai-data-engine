@@ -22,7 +22,7 @@ NOTE: You do not need to power off the AFX 1K storage system when cabling the da
 * You have the required network switches installed and configured. Contact your network administrator for information about connecting the system to your network switches.
 * You have reviewed the link:../install-setup/cable-overview.html[cabling requirements for the data compute nodes].
 
-NOTE: A minimum of three data compute nodes are required to deploy the AI Data Engine. 
+NOTE: A minimum of three data compute nodes are required to deploy AI Data Engine. 
 
 == Step 1: Connect the data compute nodes to the host network
 You can connect the data compute node ports to your host network. 

@@ -9,16 +9,16 @@ summary: "Use AI Data Engine tools to view data collections, track indexing and 
 :imagesdir: ../media/
 
 [.lead]
-After data engineers or data scientists create and publish data collections from workspaces, you need visibility into their status, size, and impact on the AI Data Engine cluster.
+After data engineers or data scientists create and publish data collections from workspaces, you need visibility into their status, size, and impact on the AI Data Engine (AIDE) cluster.
 
 If you're a storage administrator, data engineer, or data scientist, you can view data collections across ONTAP System Manager and AIDE Console.
 
 .Before you begin
 
-* You need either _storage administrator_ privileges in ONTAP System Manager or _data engineer_ or _data scientist_ privileges in AI Data Engine Console (`\https://<cluster_management_ip>/console`) to view data collections.
+* You need either _storage administrator_ privileges in ONTAP System Manager or _data engineer_ or _data scientist_ privileges in AIDE Console (`\https://<cluster_management_ip>/console`) to view data collections.
 * At least one workspace exists with successfully extracted metadata.
-* Data engineers or data scientists have created and published at least one data collection from AI Data Engine Console.
-* The AI Data Engine software license is installed and inferencing features are enabled, so that vectorization and retrieval endpoints are active.
+* Data engineers or data scientists have created and published at least one data collection from AIDE Console.
+* The AIDE software license is installed and inferencing features are enabled, so that vectorization and retrieval endpoints are active.
 
 == View cluster-wide data collections 
 
