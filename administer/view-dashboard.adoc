@@ -4,7 +4,7 @@ permalink: administer/view-dashboard.html
 keywords: aide, aide system, dashboard, view dashboard, cluster status
 summary: "Access ONTAP System Manager as a first step before beginning your AIDE administrative tasks."
 ---
-= View the AIDE system and cluster status
+= View AIDE system and cluster status
 :icons: font
 :imagesdir: ../media/
 

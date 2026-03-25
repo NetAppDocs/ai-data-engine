@@ -11,7 +11,7 @@ summary: "Create and publish data collections from workspace metadata in AI Data
 [.lead]
 Data collections are the core RAG building blocks in AI Data Engine (AIDE). As a data engineer or data scientist, you define which files belong in a collection, configure embedding and indexing options, and publish the collection so that applications can query it through a retrieval endpoint. 
 
-You'll perform all data collection tasks in the AI Data Engine Console.
+You'll perform all data collection tasks in AI Data Engine Console.
 
 .Before you begin
 

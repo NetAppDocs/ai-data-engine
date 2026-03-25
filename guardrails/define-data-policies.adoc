@@ -18,7 +18,7 @@ Use these procedures to define those policies in AIDE Console so that ONTAP Syst
 * You need _storage administrator_ privileges in AI Data Engine Console (`\https://<cluster_management_ip>/console`) to create and manage global policies. 
 * You have an AIDE cluster with deployed and healthy data compute nodes.
 * link:../install-setup/configure-oidc.html[OpenID Connect (OIDC)] is configured, and your IdP role is mapped to an AIDE admin role that allows data policy management.
-* The AI Data Engine software license is installed so that guardrail and inferencing features are enabled.
+* The software license for AI Data Engine is installed so that guardrail and inferencing features are enabled.
 * At least one workspace exists, or you have coordinated with the administrator to understand which data sources (volumes) will be used in workspaces.
 
 == Understand policy types

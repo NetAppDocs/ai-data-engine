@@ -9,7 +9,7 @@ summary: "Manage the lifecycle of AI Data Engine workspaces, including viewing, 
 :imagesdir: ../media/
 
 [.lead]
-A workspace is a set of data sources (volumes) that the AI Data Engine (AIDE) uses to build and refresh a metadata catalog for a particular project or use case. As a storage administrator, you can use ONTAP System Manager to monitor workspace health, adjust configuration, control data sources, manage users, and delete workspaces when they are no longer needed.
+A workspace is a set of data sources (volumes) that AI Data Engine (AIDE) uses to build and refresh a metadata catalog for a particular project or use case. As a storage administrator, you can use ONTAP System Manager to monitor workspace health, adjust configuration, control data sources, manage users, and delete workspaces when they are no longer needed.
 
 .Before you begin
 
@@ -41,7 +41,7 @@ NOTE: If a workspace or data collection shows an error state, verify that all so
 * All data collections associated with this workspace.
 * State (such as `Published` or `Error`), size, and last updated time.
 +
-NOTE: System Manager is read-only for data collections. Data engineers can create and manage data collections in the AI Data Engine Console.
+NOTE: System Manager is read-only for data collections. Data engineers can create and manage data collections in AI Data Engine Console.
 
 . Select the *Users* tab to view:
 +
@@ -109,7 +109,7 @@ IMPORTANT: Do not delete a source volume from ONTAP that has been added to a wor
 
 . Review the confirmation dialog and select *Remove*.
 
-NOTE: Removing a data container from a workspace does not delete the underlying ONTAP volume or its SnapMirror relationship. It only affects metadata usage within the AI Data Engine.
+NOTE: Removing a data container from a workspace does not delete the underlying ONTAP volume or its SnapMirror relationship. It only affects metadata usage within AI Data Engine.
 
 // impacts for data engineers that need to be coordinated? 
 

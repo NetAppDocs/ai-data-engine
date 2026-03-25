@@ -84,7 +84,7 @@ This launches the Data Engine workspaces page where you can link:../workspaces/c
 
 . Select *Configure OpenID Connect*.
 +
-You'll need to link:../install-setup/configure-oidc.html[configure OpenID authentication] to enable access to the AIDE console.
+You'll need to link:../install-setup/configure-oidc.html[configure OpenID authentication] to enable access to AIDE Console.
 
 .After you finish
 
@@ -102,4 +102,4 @@ There is an AI Data Engine license you must install for full AIDE functionality,
 
 . link:../install-setup/configure-oidc.html[Configure OIDC authentication].
 +
-Make sure to configure OIDC for all deployments. You must configure OIDC to access the AI Data Engine Console.
+Make sure to configure OIDC for all deployments. You must configure OIDC to access AI Data Engine Console.

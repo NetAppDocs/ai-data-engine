@@ -10,7 +10,7 @@ searchtitle: "Learn about AI Data Engine"
 :imagesdir: ../media/
 
 [.lead]
-The NetApp AI Data Engine (AIDE) is an enterprise-grade platform designed to accelerate and simplify AI-driven data processing, management, and governance. AIDE can help transform large amounts of unstructured data into structured, AI-ready datasets. It is engineered to meet the demands of modern machine learning (ML) and generative AI (GenAI) workloads, supporting both traditional IT operations and new AI-centric roles.
+NetApp AI Data Engine (AIDE) is an enterprise-grade platform designed to accelerate and simplify AI-driven data processing, management, and governance. AIDE can help transform large amounts of unstructured data into structured, AI-ready datasets. It is engineered to meet the demands of modern machine learning (ML) and generative AI (GenAI) workloads, supporting both traditional IT operations and new AI-centric roles.
 
 == AIDE addresses AI challenges
 
@@ -47,7 +47,7 @@ NOTE: S3 buckets are not supported as data sources for workspaces or data collec
 
 . **Classification and governance**: Classifiers scan data for sensitive information (PII, financial data) or document types (legal, HR). Guardrail policies enforce redaction or access restrictions automatically.
 
-. **Data collection creation**: Data engineers and data scientists use the AI Data Engine Console to query the metadata catalog, filter results, and assemble curated data collections for specific AI tasks.
+. **Data collection creation**: Data engineers and data scientists use AI Data Engine Console to query the metadata catalog, filter results, and assemble curated data collections for specific AI tasks.
 
 . **Vectorization**: For collections requiring semantic search, AIDE generates embeddings using selected AI models. Vectors are stored in the vector database for high-performance retrieval.
 

@@ -21,7 +21,7 @@ AIDE integrates directly with NetApp ONTAP storage systems to create a global, s
 
 == Users and roles
 
-.Who uses the AI Data Engine?
+.Who uses AI Data Engine?
 
 Primary users of AIDE include:
 
@@ -37,7 +37,7 @@ AIDE requires AFX systems for deployment (including an AFX controller, disk shel
 AIDE runs on a NetApp data compute node (DCN). Three DCNs are required. The DCN hosts the AIDE software, which includes the Metadata Engine, Data Sync, Data Curator, and Data Guardrails.
 
 .Can I use my own DCN?
-No. The DCN is a NetApp-provided data compute hardware node and is the only deployment mechanism for the AI Data Engine.
+No. The DCN is a NetApp-provided data compute hardware node and is the only deployment mechanism for AI Data Engine.
 
 .What is the minimum number of DCNs required?
 Exactly three DCNs are required. 
@@ -50,8 +50,8 @@ No. AIDE requires AFX for deployment. AIDE uses Trident to consume the AFX volum
 
 == Management and Interfaces
 
-.Is the AIDE Console part of NetApp Console or a separate interface?
-The AIDE Console is a separate management interface that runs on DCNs. You use the AIDE Console to manage AIDE services, such as Data Guardrails and Data Curator. You can also use ONTAP System Manager to monitor the AIDE cluster.
+.Is AIDE Console part of NetApp Console or a separate interface?
+AIDE Console is a separate management interface that runs on DCNs. You use AIDE Console to manage AIDE services, such as Data Guardrails and Data Curator. You can also use ONTAP System Manager to monitor the AIDE cluster.
 
 == Features and Capabilities
 
@@ -93,8 +93,8 @@ AIDE can connect to multiple ONTAP clusters using SnapMirror and cluster peering
 .Where is the metadata stored?
 AIDE stores metadata on the connected AFX cluster using a persistent volume provided by AFX. The DCNs use local storage for internal operations.
 
-.Does the AIDE Metadata Engine classify data?
-No. The Metadata Engine catalogs filesystem metadata and provides APIs to query this cataloged metadata.
+.Does AIDE Metadata Engine classify data?
+No. AIDE Metadata Engine catalogs filesystem metadata and provides APIs to query this cataloged metadata.
 
 .What data sources are supported?
 AIDE supports ONTAP volumes (local or remote) as data sources. Remote ONTAP clusters must run ONTAP 9 and be connected via cluster peering and SnapMirror. 
