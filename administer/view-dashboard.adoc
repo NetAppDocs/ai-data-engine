@@ -9,7 +9,7 @@ summary: "Access ONTAP System Manager as a first step before beginning your AIDE
 :imagesdir: ../media/
 
 [.lead]
-As a storage administrator, you can use ONTAP System Manager to access the dashboard and display the cluster status. This is a good first step before beginning your AIDE administrative tasks or if you suspect an operational issue.
+As a storage administrator, you can use ONTAP System Manager to access the dashboard and display the cluster status. This is a good first step before beginning your AI Data Engine (AIDE) administrative tasks or if you suspect an operational issue.
 
 .Before you begin
 

@@ -9,7 +9,7 @@ summary: "Install the AFX storage system as the first step in deploying AI Data 
 :imagesdir: ../media/
 
 [.lead]
-Install the AFX storage system as the first step in deploying AI Data Engine. The AFX storage system provides the storage infrastructure foundation and is required before installing the data compute nodes.
+Install the AFX storage system as the first step in deploying AI Data Engine (AIDE). The AFX storage system provides the storage infrastructure foundation and is required before installing the data compute nodes.
 
 Follow the link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html[AFX 1K installation documentation^] to install the AFX storage system. 
 

@@ -9,7 +9,7 @@ summary: "AIDE is built on a scalable, fault-tolerant architecture that separate
 :imagesdir: ../media/
 
 [.lead]
-AIDE is built on a scalable, fault-tolerant architecture that separates storage and compute, enabling high performance and flexibility for AI workloads.
+AI Data Engine (AIDE) is built on a scalable, fault-tolerant architecture that separates storage and compute, enabling high performance and flexibility for AI workloads.
 
 == Physical components
 

@@ -9,7 +9,7 @@ summary: "Use AI Data Engine tools to view data collections, track indexing and 
 :imagesdir: ../media/
 
 [.lead]
-After data engineers or data scientists create and publish data collections from workspaces, you need visibility into their status, size, and impact on the AI Data Engine cluster.
+After data engineers or data scientists create and publish data collections from workspaces, you need visibility into their status, size, and impact on the AI Data Engine (AIDE) cluster.
 
 If you're a storage administrator, data engineer, or data scientist, you can view data collections across ONTAP System Manager and AIDE Console.
 

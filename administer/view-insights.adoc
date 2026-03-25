@@ -9,7 +9,7 @@ summary: "You can use the Insights feature of ONTAP System Manager to display su
 :imagesdir: ../media/
 
 [.lead]
-As a storage administrator, you can use the _Insights_ feature of ONTAP System Manager to display suggested configuration updates that align with NetApp best practices. These changes can optimize the security and performance of your AIDE cluster.
+As a storage administrator, you can use the _Insights_ feature of ONTAP System Manager to display suggested configuration updates that align with NetApp best practices. These changes can optimize the security and performance of your AI Data Engine (AIDE) cluster.
 
 .About this task
 
