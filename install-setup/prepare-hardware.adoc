@@ -9,7 +9,7 @@ summary: Prepare to install the data compute nodes for AI Data Engine in your ON
 :imagesdir: ../media/
 
 [.lead]
-Prepare to install your data compute nodes for AI Data Engine by getting the site ready, unpacking the boxes and comparing the contents of the boxes to the packing slip, and registering the system to access support benefits.
+Prepare to install your data compute nodes for AI Data Engine (AIDE) by getting the site ready, unpacking the boxes and comparing the contents of the boxes to the packing slip, and registering the system to access support benefits.
 
 == Step 1: Prepare the site
 To install your data compute nodes, ensure that the site and the cabinet or rack that you plan to use meet specifications for your configuration.

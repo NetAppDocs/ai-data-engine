@@ -33,13 +33,13 @@ AIDE introduces new user roles while still supporting traditional ONTAP system a
 |Description
 
 | Storage administrator (`admin`)
-|Manages AFX and AIDE cluster setup, networking, storage provisioning, and user access. Assigns RBAC roles to users that determine the level of access to AIDE interfaces and features. This admin role has full management access using ONTAP System Manager and AI Data Engine Console. 
+|Manages AFX and AIDE cluster setup, networking, storage provisioning, and user access. Assigns RBAC roles to users that determine the level of access to AIDE interfaces and features. This admin role has full management access using ONTAP System Manager and AIDE Console. 
 
 | Data engineer (`data-engineer`)
-|Builds and optimizes AI/ML pipelines, manages data collections, and integrates AI models. This role has access to the AI Data Engine Console for data engineering workflows.
+|Builds and optimizes AI/ML pipelines, manages data collections, and integrates AI models. This role has access to AIDE Console for data engineering workflows.
 
 | Data scientist (`data-scientist`)
-|Discovers, curates, and analyzes datasets, creates data collections, and leverages retrieval endpoints for GenAI applications. This role has access to the AI Data Engine Console for data science workflows.
+|Discovers, curates, and analyzes datasets, creates data collections, and leverages retrieval endpoints for GenAI applications. This role has access to AIDE Console for data science workflows.
 |===
 
 == AIDE system components

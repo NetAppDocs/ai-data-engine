@@ -9,7 +9,7 @@ summary: Review the equipment needed and the lifting precautions for your data c
 :imagesdir: ../media/
 
 [.lead]
-Review the equipment needed and the lifting precautions for your data compute nodes for AI Data Engine.
+Review the equipment needed and the lifting precautions for your data compute nodes for AI Data Engine (AIDE).
 
 == Prerequisites
 Before you install the data compute nodes for AIDE, ensure that you have:

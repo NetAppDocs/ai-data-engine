@@ -13,7 +13,7 @@ As a data engineer or data scientist, your first task in AI Data Engine (AIDE) i
 
 .Before you begin
 
-* You need _data engineer_ or _data scientist_ privileges in AI Data Engine Console and access to at least one workspace.
+* You need _data engineer_ or _data scientist_ privileges in AIDE Console and access to at least one workspace.
 * A storage administrator has:
 ** Created one or more workspaces in ONTAP System Manager.
 ** Assigned your user or group access to the relevant workspaces.

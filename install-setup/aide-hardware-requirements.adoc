@@ -9,11 +9,11 @@ summary: "Review the requirements for installing AI Data Engine, including the A
 :imagesdir: ../media/
 
 [.lead]
-Review the requirements for installing the AI Data Engine. AIDE requires an AFX storage system, a minimum of three data compute nodes, network switches, and cables.
+Review the requirements for installing AI Data Engine (AIDE). AIDE requires an AFX storage system, a minimum of three data compute nodes, network switches, and cables.
 
 == Hardware requirements
 
-The AI Data Engine requires an AFX storage system and a minimum of three data compute nodes. The AFX system provides the storage infrastructure, while the data compute nodes host the AIDE software components that enable data management, curation, and AI capabilities.
+AIDE requires an AFX storage system and a minimum of three data compute nodes. The AFX system provides the storage infrastructure, while the data compute nodes host the AIDE software components that enable data management, curation, and AI capabilities.
 
 * *AFX storage system*: Includes an AFX controller, disk shelf, and network switch. The AFX storage system is required for AIDE deployment.
 * *Data compute nodes*: A minimum of three data compute nodes are required. The data compute nodes are NetApp-provided hardware nodes that host the AIDE software, including the Metadata Engine, Data Sync, Data Curator, and Data Guardrails.
@@ -23,7 +23,7 @@ The AI Data Engine requires an AFX storage system and a minimum of three data co
 
 == Network switch requirements
 
-AI Data Engine requires network switches to enable host network connectivity and inter-node communication for the data compute nodes.
+AIDE requires network switches to enable host network connectivity and inter-node communication for the data compute nodes.
 
 ** Client switches for host network connectivity (Cisco Nexus 9332D-GX2B or Cisco Nexus 9364D-GX2A)
 ** Cluster switches for inter-node communication (Cisco Nexus 9332D-GX2B or Cisco Nexus 9364D-GX2A)
