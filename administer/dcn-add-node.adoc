@@ -4,7 +4,7 @@ permalink: administer/dcn-add-node.html
 keywords: aide, ai data engine, data compute node, dcn, add dcn, expand dcn cluster
 summary: ""
 ---
-= Add data compute nodes to your AIDE cluster
+= Add data compute nodes to your AI Data Engine cluster
 :icons: font
 :imagesdir: ../media/
 
