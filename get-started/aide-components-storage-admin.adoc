@@ -23,9 +23,9 @@ h|Storage administrator workflow
 |Manage (create, edit, delete)
 |You use ONTAP System Manager as your primary interface for cluster administration, workspace provisioning, guardrail policy management, and monitoring system health.
 
-|AI Data Engine Console
+|AIDE Console
 |Manage (create, edit, delete)
-|You use AI Data Engine Console to monitor workspaces, view collection status, and oversee system activity across the AIDE environment.
+|You use AIDE Console to monitor workspaces, view collection status, and oversee system activity across the AIDE environment.
 
 |ONTAP REST API
 |Manage (create, edit, delete)

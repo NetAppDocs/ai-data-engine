@@ -13,7 +13,7 @@ This FAQ covers common questions about NetApp AI Data Engine (AIDE), including i
 
 == AIDE basics
 
-.What is NetApp AI Data Engine (AIDE)?
+.What is NetApp AI Data Engine?
 NetApp AI Data Engine (AIDE) is a storage-integrated AI data service that spans the entire AI lifecycle from discovering and preparing raw data to providing retrieval endpoints to power generative AI (GenAI), Retrieval-Augmented Generation (RAG), agentic AI, and AI factories. AIDE automates sync and change detection, providing a unified, up-to-date view of selected data for data discovery and curation.
 
 .How does AIDE work?
@@ -37,7 +37,7 @@ AIDE requires AFX systems for deployment (including an AFX controller, disk shel
 AIDE runs on a NetApp data compute node (DCN). Three DCNs are required. The DCN hosts the AIDE software, which includes the Metadata Engine, Data Sync, Data Curator, and Data Guardrails.
 
 .Can I use my own DCN?
-No. The DCN is a NetApp-provided data compute hardware node and is the only deployment mechanism for AI Data Engine.
+No. The DCN is a NetApp-provided data compute hardware node and is the only deployment mechanism for AIDE.
 
 .What is the minimum number of DCNs required?
 Exactly three DCNs are required. 
@@ -72,7 +72,7 @@ There are four main features of AIDE:
 * Provides incremental data mobility and sync across the data to eliminate redundant copies of AI data.
 
 .Data Guardrails
-* Automatically identifies and protects sensitive data throughout the AI lifecycle. It's accessible through AI Data Engine Console.
+* Automatically identifies and protects sensitive data throughout the AI lifecycle. It's accessible through AIDE Console.
 * Continuously scans, classifies, and categorizes data.
 * Identifies sensitive data (such as PII) and risks.
 * Facilitates the creation of policies for automatic handling of sensitive data in line with company and regulatory standards.

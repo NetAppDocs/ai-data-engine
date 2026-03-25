@@ -87,7 +87,7 @@ This tab shows all DCN nodes in the cluster with:
 * On the *Data collections* tab, confirm:
 ** Which data collections exist for that workspace (data collections are read-only in System Manager)
 ** Their state, size, and last updated time
-* On the *Users* tab, check which AI Data Engine Console users have access.
+* On the *Users* tab, check which AIDE Console users have access.
 
 == Monitor metadata Storage VM and AIDE-managed protection
 

@@ -60,7 +60,7 @@ You can configure the storage VM (SVM) network protocols.
 
 . Select *Update data compute software*.
 +
-If a data compute software image is available for update, this option will be enabled. Select it to launch the data compute software update page. For more information, refer to link:../administer/update-aide-firmware-software.html[Update AI Data Engine software].
+If a data compute software image is available for update, this option will be enabled. Select it to launch the data compute software update page. For more information, refer to link:../administer/update-aide-firmware-software.html[Update AIDE software].
 
 . Select *Configure data engine networking*.
 +
@@ -98,8 +98,8 @@ After your AIDE cluster is set up and integrated with the AFX storage system, yo
 
 . link:../install-setup/install-license-task.html[Add required AIDE licenses].
 +
-There is an AI Data Engine license you must install for full AIDE functionality, including vectorization and guardrails capabilities.
+There is an AIDE license you must install for full AIDE functionality, including vectorization and guardrails capabilities.
 
 . link:../install-setup/configure-oidc.html[Configure OIDC authentication].
 +
-Make sure to configure OIDC for all deployments. You must configure OIDC to access AI Data Engine Console.
+Make sure to configure OIDC for all deployments. You must configure OIDC to access AIDE Console.

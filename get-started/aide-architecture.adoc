@@ -86,7 +86,7 @@ The Data Guardrails service provides continuous, automated governance and protec
 .License and access
 Data Guardrails functionality is not included with the base ONTAP One license and requires a separate AIDE license.
 
-You can access guardrail functionality through AI Data Engine Console. 
+You can access guardrail functionality through AIDE Console. 
 
 .Capabilities
 
@@ -104,7 +104,7 @@ The Data Curator service enables fast data discovery, search, vectorization, and
 .License and access
 Data Curator functionality is not included with the base ONTAP One license and requires a separate AIDE license.
 
-You can access Data Curator through AI Data Engine Console.
+You can access Data Curator through AIDE Console.
 
 .Capabilities
 

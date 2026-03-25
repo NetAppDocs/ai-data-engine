@@ -22,10 +22,10 @@ h|Access level
 h|Data engineer workflow
 h|Data scientist workflow
 
-|AI Data Engine Console
+|AIDE Console
 |Manage (create, edit, delete)
-|AI Data Engine Console is your primary interface for day-to-day tasks, including data discovery, collection management, pipeline configuration, and publishing RAG or retrieval endpoints, for the workspaces you are authorized to access.
-|AI Data Engine Console is your primary interface for data exploration, refining and versioning collections within workspaces you can access, and connecting curated datasets and retrieval endpoints to analysis, modeling, and GenAI workflows.
+|AIDE Console is your primary interface for day-to-day tasks, including data discovery, collection management, pipeline configuration, and publishing RAG or retrieval endpoints, for the workspaces you are authorized to access.
+|AIDE Console is your primary interface for data exploration, refining and versioning collections within workspaces you can access, and connecting curated datasets and retrieval endpoints to analysis, modeling, and GenAI workflows.
 
 |ONTAP REST API
 |Manage (create, edit, delete)

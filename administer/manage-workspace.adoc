@@ -41,7 +41,7 @@ NOTE: If a workspace or data collection shows an error state, verify that all so
 * All data collections associated with this workspace.
 * State (such as `Published` or `Error`), size, and last updated time.
 +
-NOTE: System Manager is read-only for data collections. Data engineers can create and manage data collections in AI Data Engine Console.
+NOTE: System Manager is read-only for data collections. Data engineers can create and manage data collections in AIDE Console.
 
 . Select the *Users* tab to view:
 +
@@ -109,7 +109,7 @@ IMPORTANT: Do not delete a source volume from ONTAP that has been added to a wor
 
 . Review the confirmation dialog and select *Remove*.
 
-NOTE: Removing a data container from a workspace does not delete the underlying ONTAP volume or its SnapMirror relationship. It only affects metadata usage within AI Data Engine.
+NOTE: Removing a data container from a workspace does not delete the underlying ONTAP volume or its SnapMirror relationship. It only affects metadata usage within AIDE.
 
 // impacts for data engineers that need to be coordinated? 
 

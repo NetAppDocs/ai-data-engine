@@ -13,7 +13,7 @@ summary: "As an ONTAP cluster administrator, you can use ONTAP System Manager to
 As an ONTAP cluster administrator, you can use ONTAP System Manager to configure OpenID Connect (OIDC) authentication for an AI Data Engine (AIDE) cluster. This provides a secure and centralized login through an external identity provider (IdP).
 
 [CAUTION]
-You must configure OIDC to access AI Data Engine Console. When configured, all authentication flows through OIDC. If OIDC is not configured, the console will be unavailable to administrators as well as the data engineers and data scientists. In this case, signing in to System Manager reverts to local authentication.
+You must configure OIDC to access AIDE Console. When configured, all authentication flows through OIDC. If OIDC is not configured, the console will be unavailable to administrators as well as the data engineers and data scientists. In this case, signing in to System Manager reverts to local authentication.
 
 Also note the following about OIDC configuration for AIDE access:
 

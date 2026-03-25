@@ -26,7 +26,7 @@ AIDE is designed to help organizations manage data for AI workloads and provides
 
 == High-level design characteristics
 
-The following design characteristics define how AI Data Engine is built to meet the needs of AI workloads:
+The following design characteristics define how AIDE is built to meet the needs of AI workloads:
 
 * *Microservices-based services*: Uses Kubernetes to orchestrate modular, resilient services for metadata cataloging, vector search, and infrastructure management.
 * *Enterprise-grade security*: Implements encryption, role-based access control (RBAC), and auditing across all data and metadata.
@@ -47,7 +47,7 @@ NOTE: S3 buckets are not supported as data sources for workspaces or data collec
 
 . **Classification and governance**: Classifiers scan data for sensitive information (PII, financial data) or document types (legal, HR). Guardrail policies enforce redaction or access restrictions automatically.
 
-. **Data collection creation**: Data engineers and data scientists use AI Data Engine Console to query the metadata catalog, filter results, and assemble curated data collections for specific AI tasks.
+. **Data collection creation**: Data engineers and data scientists use AIDE Console to query the metadata catalog, filter results, and assemble curated data collections for specific AI tasks.
 
 . **Vectorization**: For collections requiring semantic search, AIDE generates embeddings using selected AI models. Vectors are stored in the vector database for high-performance retrieval.
 

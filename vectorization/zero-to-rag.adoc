@@ -15,7 +15,7 @@ Go from a newly deployed AI Data Engine (AIDE) system to a working retrieval-aug
 .Before you begin
 
 * You've installed and added Data compute nodes (DCNs) to the ONTAP cluster.
-* You've installed and licensed AI Data Engine software for vectorization and guardrails.
+* You've installed and licensed AIDE software for vectorization and guardrails.
 * You've configured link:../install-setup/configure-oidc.html[OpenID Connect (OIDC)] and mapped roles for admin, data engineer, and data scientist roles.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] Define data scope and governance
@@ -44,6 +44,6 @@ As a data engineer or data scientist, you want to turn the chosen subset into a 
 
 .What's next?
 
-* link:../guardrails/define-data-policies.html[Define your data estate and guardrail policies in AI Data Engine]
-* link:explore-workspace-metadata.html[Explore workspace metadata in AI Data Engine Console]
-* link:create-data-collections.html[Create data collections in AI Data Engine Console]
+* link:../guardrails/define-data-policies.html[Define your data estate and guardrail policies in AIDE]
+* link:explore-workspace-metadata.html[Explore workspace metadata in AIDE Console]
+* link:create-data-collections.html[Create data collections in AIDE Console]

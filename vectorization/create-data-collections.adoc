@@ -11,14 +11,14 @@ summary: "Create and publish data collections from workspace metadata in AI Data
 [.lead]
 Data collections are the core RAG building blocks in AI Data Engine (AIDE). As a data engineer or data scientist, you define which files belong in a collection, configure embedding and indexing options, and publish the collection so that applications can query it through a retrieval endpoint. 
 
-You'll perform all data collection tasks in AI Data Engine Console.
+You'll perform all data collection tasks in AIDE Console.
 
 .Before you begin
 
-* You need _data engineer_ or _data scientist_ privileges in AI Data Engine Console (`\https://<cluster_management_ip>/console`).
+* You need _data engineer_ or _data scientist_ privileges in AIDE Console (`\https://<cluster_management_ip>/console`).
 * You have access to at least one workspace with metadata extracted and in `Ready` state.
 * You have explored the workspace metadata and identified queries or filters that define meaningful subsets of data.
-* The AI Data Engine software license is installed and inferencing features are enabled.
+* The AIDE software license is installed and inferencing features are enabled.
 
 == Create a data collection from workspace metadata
 
@@ -93,7 +93,7 @@ Deleting a collection is permanent. Ensure that no production application still 
 . Confirm the deletion.
 
 .Result
-The collection definition and its embeddings are removed from AI Data Engine. Applications attempting to query the former retrieval endpoint will fail after the collection is removed.
+The collection definition and its embeddings are removed from AIDE. Applications attempting to query the former retrieval endpoint will fail after the collection is removed.
 
 == What's next?
 
