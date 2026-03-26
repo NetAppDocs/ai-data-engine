@@ -17,6 +17,7 @@ You must configure OIDC to access AIDE Console. When configured, all authenticat
 
 Also note the following about OIDC configuration for AIDE access:
 
+* At a high level, OIDC configuration consists of two major steps. First you need to perform basic OIDC configuration using System Manager. You can then complete the setup by configuring external role mapping using the ONTAP CLI.
 * You cannot modify an existing OIDC configuration. If you need to make a change, first delete the configuration and create a new one with the desired settings.
 * If you disable or remove OIDC, System Manager will revert to local ONTAP user authentication.
 
@@ -55,6 +56,9 @@ See https://learn.microsoft.com/en-us/azure/active-directory-b2c/identity-provid
 
 After configuring your IdP, you can set up OIDC authentication in System Manager to enable secure access to AIDE Console.
 
+[TIP]
+You can provide the Metadata URI to automatically populate the OIDC configuration fields in System Manager. Review the documentation for your IdP to get the exact URI format.
+
 .Before you begin
 
 * You need to have administrator access to System Manager.
@@ -87,7 +91,37 @@ After configuring your IdP, you can set up OIDC authentication in System Manager
 . Select *Enable now* and then *Save*. System Manager will refresh to apply the new authentication settings.
 . Log in with your IdP credentials; after successful authentication you'll be returned to System Manager.
 
+.After you finish
+
+Complete the OIDC setup by configuring external role mapping.
+
+== Configure external role mapping using the CLI
+
+External role mapping is an ONTAP feature enabling you to map the external IdP roles to the corresponding ONTAP roles. You need to configure this mapping to ensure users authenticating through OIDC are granted the appropriate RBAC permissions in ONTAP.
+
+.About this task
+
+This task maps the data engineer and data scientist to the corresponding ONTAP roles. You need to update the command examples with the appropriate role names based on your environment. Note that you should have already mapped the storage administrator role to the ONTAP `admin` role during basic OIDC configuration in System Manager.
+
+.Steps
+
+. Using SSH, sign in to the ONTAP CLI using an account with administrative privileges.
+
+. Configure role mapping for the data engineer role; for example:
++
+[source,bash]
+----
+security login external-role-mapping create -external-role dataEngineer -provider entra -ontap-role data-engineer
+----
+
+. Configure role mapping for the data scientist role; for example:
++
+[source,bash]
+----
+security login external-role-mapping create -external-role dataScientist -provider entra -ontap-role data-scientist
+----
+
 == Related information
 
+* https://docs.netapp.com/us-en/ontap/authentication/oauth2-external-roles.html[OAuth 2.0 external role mapping in ONTAP^]
 * https://openid.net/[OpenID Foundation^]
-* https://docs.netapp.com/us-en/ontap/authentication/overview-oauth2.html[ONTAP OAuth 2.0 implementation^]
