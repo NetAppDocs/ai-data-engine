@@ -56,6 +56,9 @@ See https://learn.microsoft.com/en-us/azure/active-directory-b2c/identity-provid
 
 After configuring your IdP, you can set up OIDC authentication in System Manager to enable secure access to the AIDE Console.
 
+[TIP]
+You can provide the Metadata URI to automatically populate the OIDC configuration fields in System Manager. Review the documentation for your IdP to get the exact URI format.
+
 .Before you begin
 
 * You need to have administrator access to System Manager.
