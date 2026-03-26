@@ -15,15 +15,15 @@ AIDE does not support ONTAP automatic software updates functionality. You can si
 
 .About this task
 
-The combined AI Data Engine software package is significantly larger than a typical ONTAP update package (AIDE package is approximately 40GB). Plan for longer upload and installation times when updating AIDE software.
+The combined AIDE software package is significantly larger than a typical ONTAP update package (AIDE package is approximately 40GB). Plan for longer upload and installation times when updating AIDE software.
 
 .Before you begin
 
-* You need _storage administrator_ privileges to update DCN firmware and AI Data Engine software.
+* You need _storage administrator_ privileges to update DCN firmware and AIDE software.
 * You need your NetApp Support Site credentials for your active account.
-* link:upgrades-aide-summary.html#compatibility-matrix[Ensure compatibility between ONTAP, DCN firmware, and AI Data Engine software when planning updates].
+* link:upgrades-aide-summary.html#compatibility-matrix[Ensure compatibility between ONTAP, DCN firmware, and AIDE software when planning updates].
 
-IMPORTANT: Revert functionality is not supported for DCN firmware or AI Data Engine software updates. After an update is installed, you cannot revert to a previous version.
+IMPORTANT: Revert functionality is not supported for DCN firmware or AIDE software updates. After an update is installed, you cannot revert to a previous version.
 
 .Steps
 
@@ -38,7 +38,7 @@ NOTE: AIDE Console is not available or accessible when the DCN node update is in
 //CONTAP-609782
 
 .Result
-DCNs are updated with AI Data Engine software and the updated version is displayed for each node. 
+DCNs are updated with AIDE software and the updated version is displayed for each node. 
 
 .Related information
 

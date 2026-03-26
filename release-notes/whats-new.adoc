@@ -11,7 +11,7 @@ summary: "Learn about the new capabilities available in AI Data Engine (AIDE)."
 [.lead]
 AI Data Engine (AIDE) 9.18.1 is the initial release of NetApp's platform for AI data management. This release introduces a metadata engine and management workflows that enable organizations to catalog and organize unstructured data for AI workloads, providing the foundation for advanced governance and vectorization capabilities. Advanced governance (guardrails) and vectorization are available for customers who have the appropriate AI Data Engine licenses.
 
-== What's new in the AIDE 9.18.1 initial release
+== What's new in AIDE 9.18.1 initial release
 
 AIDE 9.18.1 introduces the following foundational capabilities:
 
@@ -63,19 +63,19 @@ The initial release includes the following workflows:
 
 .link:../vectorization/zero-to-rag.html[Advanced data curation and governance capabilities]
 
-The following capabilities are available for customers who have the appropriate AI Data Engine licenses:
+The following capabilities are available for customers who have the appropriate AIDE licenses:
 
-* *Vectorization and RAG*: Creation of data collections, embeddings, and retrieval endpoints in the AI Data Engine Console, using metadata from AIDE workspaces.
-* *Guardrail-based governance*: Definition of guardrail policies in the AI Data Engine Console and association of those policies with workspaces in ONTAP System Manager.
+* *Vectorization and RAG*: Creation of data collections, embeddings, and retrieval endpoints in AI Data Engine Console, using metadata from AIDE workspaces.
+* *Guardrail-based governance*: Definition of guardrail policies in AI Data Engine Console and association of those policies with workspaces in ONTAP System Manager.
 
 === Supported hardware and platforms
 
-AI Data Engine 9.18.1 runs on ONTAP AI data platform clusters that combine:
+AIDE 9.18.1 runs on ONTAP AI data platform clusters that combine:
 
 * AFX 1K storage nodes
 * NetApp data compute nodes
 
 .Related information
 
-* link:known-limitations.html[Known limitations of AI Data Engine]
-* link:../get-started/learn-about.html[Learn about AI Data Engine architecture and components]
+* link:known-limitations.html[Known limitations of AIDE]
+* link:../get-started/learn-about.html[Learn about AIDE architecture and components]
