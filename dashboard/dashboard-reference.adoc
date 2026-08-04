@@ -1,0 +1,130 @@
+---
+sidebar: sidebar
+permalink: dashboard/dashboard-reference.html
+keywords: dashboard reference, widgets, storage optimization, cold data, file types, duplicates, top volumes
+summary: Reference descriptions for each widget and metric on the AI Data Engine dashboard.
+---
+= Dashboard reference
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+This reference describes each widget on the AI Data Engine dashboard and the metrics it displays.
+
+== Storage Optimization
+
+[cols="1,2",options="header"]
+|===
+|Element |Description
+
+|Total reclaimable storage
+|The estimated total storage that can be reclaimed across all connected data sources, based on identified cold data, duplicate files, and stale files.
+
+|Breakdown by category
+|Reclaimable storage split by category: cold data, duplicates, and stale files.
+
+|Investigate link
+|Opens Investigation pre-filtered to files contributing to storage savings opportunities.
+
+|===
+
+== Top Volumes by Saving Opportunities
+
+[cols="1,2",options="header"]
+|===
+|Element |Description
+
+|Volume list
+|Up to five ONTAP volumes ranked by estimated reclaimable storage.
+
+|Reclaimable storage per volume
+|The estimated storage that can be reclaimed on each listed volume.
+
+|Investigate link
+|Opens Investigation pre-filtered to the selected volume.
+
+|===
+
+// RESEARCH NEEDED: Confirm whether the "Top Volumes" widget always shows exactly 5 volumes, is configurable, or varies by data available. The Demo Stories (OCIENG/634932071) references top 5 but the Overview Page UI spec (OCIENG/622868542) should be checked for the definitive answer.
+
+== Cold Data
+
+[cols="1,2",options="header"]
+|===
+|Element |Description
+
+|Donut chart
+|Proportion of total scanned storage that has not been accessed within each age tier, displayed as a donut chart.
+
+|Age tiers
+|Breakdown of cold data by last-access age: 30 days, 90 days, 180 days, and 365+ days.
+
+|Investigate link
+|Opens Investigation filtered to files in the selected age tier.
+
+|===
+
+// RESEARCH NEEDED: Confirm exact age tier thresholds. The values above (30/90/180/365 days) appear in the Demo Stories (OCIENG/634932071) but may differ from the V1 defaults. Check the Overview Page UI spec (OCIENG/622868542) or engineering for the definitive values.
+
+== File Type Distribution
+
+[cols="1,2",options="header"]
+|===
+|Element |Description
+
+|Bar chart
+|Storage consumption by file type, sorted by size in descending order.
+
+|File type labels
+|The file types identified in the metadata scan (for example, .vmdk, .log, .mov, .pdf).
+
+|Investigate link
+|Opens Investigation filtered to files of the selected type.
+
+|===
+
+== File Time Distribution
+
+[cols="1,2",options="header"]
+|===
+|Element |Description
+
+|Created Time distribution
+|Bar chart grouping files by creation date range.
+
+|Modified Time distribution
+|Bar chart grouping files by last-modified date range.
+
+|Accessed Time distribution
+|Bar chart grouping files by last-accessed date range.
+
+|Investigate link
+|Opens Investigation filtered to files in the selected time range.
+
+|===
+
+// RESEARCH NEEDED: Confirm whether Created, Modified, and Accessed time distributions are shown as three separate charts or as a single chart with a selector. The MDE spec (OCIENG/618537712) lists them as separate but the Overview Page UI spec (OCIENG/622868542) should be checked.
+
+== Duplicates
+
+[cols="1,2",options="header"]
+|===
+|Element |Description
+
+|Duplicate file count
+|The total number of files identified as duplicates across connected data sources.
+
+|Storage wasted by duplicates
+|Estimated storage consumed by the duplicate copies.
+
+|Investigate link
+|Opens Investigation filtered to files flagged as duplicates.
+
+|===
+
+// RESEARCH NEEDED: Confirm the duplicate detection method (content hash, name+size, or another approach) and whether this widget is visible by default or only after duplicate scanning is enabled. The MDE spec notes "Duplicate Files - off by Default."
+
+== Related information
+
+* link:understand-dashboard.html[Understand the dashboard]
+* link:../investigate/investigate-data.html[Investigate your data]

@@ -1,0 +1,64 @@
+---
+sidebar: sidebar
+permalink: deploy/deployment-overview.html
+keywords: deployment, aide lite, aide enterprise, kubernetes, vm, deployment modes, sizing
+summary: AI Data Engine supports two deployment modes — Lite for single-VM environments and Enterprise for Kubernetes-based deployments.
+---
+= Deployment overview
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+AI Data Engine supports two deployment modes: AIDE Lite for a single-VM deployment and AIDE Enterprise for a Kubernetes-based deployment. Choose the mode that matches your environment size and infrastructure.
+
+== AIDE Lite
+
+AIDE Lite deploys as a single virtual machine in your cloud or on-premises environment. It is the recommended starting point for most deployments.
+
+AIDE Lite is available in three sizes:
+
+[cols="1,1,1,1",options="header"]
+|===
+|Size |vCPU |RAM |Disk
+
+// RESEARCH NEEDED: Fill in exact VM sizing values for each Lite size from Deployment Customer Specs (DSENSE/636019699). Values were not available in search snippets.
+|Small
+|TBD
+|TBD
+|TBD
+
+|Medium
+|TBD
+|TBD
+|TBD
+
+|Large
+|TBD
+|TBD
+|TBD
+
+|===
+
+== AIDE Enterprise
+
+AIDE Enterprise deploys on a Kubernetes cluster. It is designed for larger environments that require scalability and high availability.
+
+AIDE Enterprise is available in Medium and Large configurations.
+
+NOTE: The AIDE Enterprise Small configuration is not available in this release.
+
+// RESEARCH NEEDED: Fill in K8s node sizing requirements (node count, CPU/memory per node) for Enterprise Medium and Large from Deployment Customer Specs (DSENSE/636019699).
+
+== Choosing a deployment mode
+
+// RESEARCH NEEDED: Confirm official guidance on when to choose Lite vs. Enterprise. Is there a specific file count, scan rate threshold, or organizational requirement that drives this decision?
+
+Consider these factors when choosing a deployment mode:
+
+* *AIDE Lite* — recommended if you are deploying for the first time or have a smaller ONTAP environment.
+* *AIDE Enterprise* — recommended if you require Kubernetes-native deployment, high availability, or plan to scan large data volumes at scale.
+
+== Related information
+
+* link:requirements.html[Requirements]
+* link:deploy-aide.html[Deploy AI Data Engine]

@@ -1,0 +1,38 @@
+---
+sidebar: sidebar
+permalink: release-notes/whats-new.html
+keywords: what's new, release notes, AI Data Engine, metadata intelligence service, storage optimization
+summary: Learn about new capabilities in AI Data Engine.
+---
+= What's new in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Learn about new capabilities introduced in AI Data Engine.
+
+// RESEARCH NEEDED (LOW): Populate this topic with confirmed GA features when engineering finalizes the release scope. Reference the IE AI Data Engine dashboard (IE/pages/657523568) and the MIS PRD for the authoritative feature list. Target GA date is August 31, 2026.
+
+== August 2026
+
+=== Metadata Intelligence Service
+
+This release introduces AI Data Engine with the Metadata Intelligence Service. AI Data Engine is a cloud-managed metadata intelligence service accessed through NetApp Console. It scans your ONTAP storage, builds a metadata catalog, and provides tools to optimize storage and govern data.
+
+New capabilities:
+
+link:../dashboard/understand-dashboard.html[Storage optimization dashboard]:: View storage insights for connected ONTAP clusters, including cold data by age tier, file type distribution, duplicate files, and top volumes by estimated savings. Drill into any metric using the Investigate link on each widget.
+
+link:../investigate/investigate-data.html[Investigation]:: Search and filter file system metadata across connected ONTAP clusters using flexible metadata filters. Build targeted data populations and take direct action on the results.
+
+link:../policies/create-policy.html[Policies]:: Save investigation filter criteria as named, reusable policies. Optionally associate an action with a policy to automate data lifecycle management.
+
+link:../policies/take-actions.html[Actions]:: Take action on files identified through investigation or policies. Supported actions include tagging, archiving, and deleting files.
+
+link:../administer/manage-users-roles.html[Role-based access control]:: Assign roles to users to control access to AI Data Engine features and actions. Available roles include Storage Ops and Read-Only.
+
+// RESEARCH NEEDED: Add any additional capabilities confirmed for the August 2026 GA. Update the roles entry when Platform Admin availability is confirmed. Remove or revise any item that does not ship.
+
+== Related information
+
+* link:known-limitations.html[Known limitations]

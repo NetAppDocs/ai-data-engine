@@ -1,0 +1,55 @@
+---
+sidebar: sidebar
+permalink: get-started/architecture.html
+keywords: architecture, components, metadata engine, console agent, policy engine, deployment, data flow
+summary: Learn about the components of AI Data Engine and how they work together to catalog metadata from your ONTAP systems.
+---
+= AI Data Engine architecture
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+AI Data Engine consists of a metadata catalog, a connectivity agent, and a policy engine. These components work together to extract metadata from your ONTAP clusters, catalog it, and execute policies against it.
+
+== Components
+
+// RESEARCH NEEDED: Confirm customer-facing component names. Engineering docs refer to "Metadata Engine," "Console Agent," and "Policy Engine" — verify whether these names appear in the UI or if there are preferred customer-facing names.
+
+=== Metadata Engine
+
+The Metadata Engine is the core catalog of AI Data Engine. It scans connected ONTAP clusters to extract file system metadata and stores that metadata in a searchable index. The catalog is updated continuously as files change on your storage systems.
+
+=== Console Agent
+
+The Console Agent runs alongside your ONTAP environment and maintains the connection between AI Data Engine and NetApp Console. It handles authentication, connectivity verification, and communication with the Metadata Engine.
+
+=== Policy Engine
+
+The Policy Engine evaluates saved policies against the metadata catalog. When a policy's criteria are matched, the Policy Engine triggers the configured action — such as tagging, archiving, or deleting files.
+
+== Deployment models
+
+AI Data Engine supports two deployment models:
+
+AIDE Lite:: A single-VM deployment suitable for smaller environments. Available in Small, Medium, and Large configurations. AIDE Lite is the recommended starting point for most deployments.
+
+AIDE Enterprise:: A Kubernetes-based deployment for larger environments requiring scalability and high availability. Available in Medium and Large configurations.
+
+// RESEARCH NEEDED: Confirm whether Elasticsearch is something customers need to be aware of as part of the architecture (it is the primary resource driver for Enterprise per the Deployment spec), or whether it is fully abstracted.
+
+== Data flow
+
+. AI Data Engine deploys in your cloud or on-premises environment.
+. You connect one or more ONTAP clusters as data sources.
+. The Metadata Engine scans the clusters via NFS and CIFS/SMB protocols to extract file metadata.
+. Metadata is indexed in the catalog.
+. The dashboard surfaces storage insights from the catalog.
+. Investigation lets you query the catalog directly with metadata filters.
+. Policies evaluate the catalog on an ongoing basis and trigger configured actions.
+
+// RESEARCH NEEDED: Confirm the scanning protocol details — is scanning done via NFS/CIFS or a different mechanism such as SnapDiff/CDC for incremental updates?
+
+== Related information
+
+* link:learn-about.html[Learn about AI Data Engine]
+* link:../deploy/deployment-overview.html[Deployment overview]

@@ -1,0 +1,54 @@
+---
+sidebar: sidebar
+permalink: deploy/deploy-aide.html
+keywords: deploy, install, wizard, NetApp Console, deployment wizard, onboarding
+summary: Deploy AI Data Engine from NetApp Console using a two-step deployment wizard.
+---
+= Deploy AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Deploy AI Data Engine from NetApp Console using a two-step wizard. The wizard guides you through selecting your installation type and running the install command on your target host.
+
+.Before you begin
+* Review link:requirements.html[requirements] and confirm your environment meets all prerequisites.
+* You must have Platform Admin permissions in NetApp Console.
+
+.Steps
+. In NetApp Console, navigate to *Governance* > *AI Data Engine*.
++
+// RESEARCH NEEDED: Confirm the exact navigation path. "Governance > AI Data Engine" is referenced in the Onboarding spec (OCIENG/626833135) but should be verified against the current Console UI.
++
+The AI Data Engine landing page appears.
+
+. Click *Deploy NetApp AI Data Engine*.
++
+The deployment wizard opens with the header *AI Data Engine deployment*.
+
+. In Step 1, select your installation location:
++
+* *Cloud* — deploy in a cloud environment
+* *On-premises* — deploy in an on-premises environment
++
+// RESEARCH NEEDED: Confirm exact Step 1 option labels and whether additional configuration (such as cloud provider selection or on-prem environment type) is required before proceeding. The Onboarding spec (OCIENG/626833135) indicates a choice between cloud and on-prem but does not detail sub-options. Verify with Figma flows.
+
+. Click *Next*.
+
+. In Step 2, copy the install command displayed in the wizard and run it in your target environment.
++
+// RESEARCH NEEDED: Document the exact install command format, any required parameters, and where the command is run (on the target VM, on a K8s cluster, etc.). The Onboarding spec confirms a command is provided but does not include the command itself. Extract from engineering or Figma.
++
+After the command starts, the wizard transitions automatically to the progress screen.
+
+. Monitor the progress screen while AI Data Engine completes the following steps:
+.. Deploying the AI Data Engine instance
+.. Verifying connectivity to NetApp Console
+.. Verifying internet connectivity
+
+. When the success screen appears, click *Continue*.
+
+.Result
+AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect an ONTAP cluster] to start scanning.
+
+If the installation fails, see link:troubleshoot-deploy.html[Troubleshoot deployment].

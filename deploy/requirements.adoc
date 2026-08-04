@@ -1,0 +1,105 @@
+---
+sidebar: sidebar
+permalink: deploy/requirements.html
+keywords: requirements, prerequisites, networking, ports, vm, kubernetes, ONTAP, sizing
+summary: Review infrastructure, networking, and ONTAP requirements before deploying AI Data Engine.
+---
+= Requirements
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Review these requirements before deploying AI Data Engine.
+
+== ONTAP requirements
+
+// RESEARCH NEEDED: Confirm the minimum ONTAP version required. Not confirmed in available source material — check with engineering or the MIS PRD.
+
+* NetApp ONTAP [version TBD] or later
+* NFS or CIFS/SMB protocols enabled on volumes you want to scan
+
+== Networking requirements
+
+The following network connections must be open:
+
+[cols="2,1,1,1,2",options="header"]
+|===
+|Connection |Port |Protocol |Direction |Purpose
+
+|Console Agent ↔ NetApp Console
+|443
+|TCP
+|Outbound
+|HTTPS — connectivity to NetApp Console
+
+|Console Agent ↔ ONTAP
+|443
+|TCP
+|Outbound
+|HTTPS — ONTAP cluster discovery
+
+|AI Data Engine ↔ ONTAP (NFS)
+|111, 2049
+|TCP/UDP
+|To storage
+|NFS data source access
+
+|AI Data Engine ↔ ONTAP (CIFS/SMB)
+|139, 445
+|TCP/UDP
+|To storage
+|CIFS/SMB data source access
+
+|AI Data Engine ↔ Active Directory
+|389, 636, 3268, 3269
+|TCP/UDP (389)
+|Outbound
+|LDAP/LDAPS — user authentication and CIFS scanning
+
+|===
+
+== AIDE Lite requirements
+
+=== VM sizing
+
+// RESEARCH NEEDED: Fill in exact vCPU, RAM, and disk values for each Lite size from Deployment Customer Specs (DSENSE/636019699).
+
+[cols="1,1,1,1",options="header"]
+|===
+|Size |vCPU |RAM |Disk
+
+|Small
+|TBD
+|TBD
+|TBD
+
+|Medium
+|TBD
+|TBD
+|TBD
+
+|Large
+|TBD
+|TBD
+|TBD
+
+|===
+
+=== Operating system
+
+// RESEARCH NEEDED: Confirm supported OS distribution and version for the Lite VM.
+
+* Supported OS: TBD
+
+== AIDE Enterprise requirements
+
+// RESEARCH NEEDED: Confirm Kubernetes version, node sizing, and StorageClass requirements for Enterprise Medium and Large from Deployment Customer Specs (DSENSE/636019699). Enterprise Small is not supported in this release.
+
+* Kubernetes [version TBD] or later
+* A configured StorageClass available on the cluster
+* Enterprise Small configuration is not available in this release
+
+== Related information
+
+* link:deployment-overview.html[Deployment overview]
+* link:deploy-aide.html[Deploy AI Data Engine]

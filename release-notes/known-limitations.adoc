@@ -1,0 +1,42 @@
+---
+sidebar: sidebar
+permalink: release-notes/known-limitations.html
+keywords: known limitations, limitations, restrictions, AI Data Engine
+summary: Known limitations identify functionality that is not supported in this release of AI Data Engine.
+---
+= Known limitations
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Known limitations identify functionality that is not supported in this release of AI Data Engine, or functionality that does not interoperate correctly. Review these limitations before deploying or using the product.
+
+// RESEARCH NEEDED (LOW): This topic has no dedicated source material. Gather known limitations from engineering, QA, or the release checklist. Contact the AIDE engineering team (CONTAP project, "Data Engine - MDE" component on ngage Jira) for a complete list.
+
+// RESEARCH NEEDED (LOW): Consider the following as candidates — confirm each with engineering before publishing:
+// - Supported ONTAP versions and version-specific limitations
+// - Maximum number of files scannable per cluster or across all clusters
+// - Maximum number of connected ONTAP clusters per AI Data Engine instance
+// - Duplicate detection is disabled by default; performance implications when enabled
+// - Archive and Delete actions: any file type or protocol restrictions
+// - Policy execution frequency or quota limits
+// - AIDE Enterprise Small configuration is not available in this release
+// - Light-to-Enterprise migration is not available in this release
+
+== Deployment
+
+// RESEARCH NEEDED (LOW): Add deployment-related limitations here. See link:../deploy/deployment-overview.html[Deployment overview] for current supported configurations.
+
+== Scanning and data sources
+
+// RESEARCH NEEDED (LOW): Add scan-related limitations here. See link:../data-sources/connect-data-source.html[Connect an ONTAP cluster] for current data source support.
+
+== Policies and actions
+
+// RESEARCH NEEDED (LOW): Add policy and action limitations here. See link:../policies/take-actions.html[Take actions on data] for supported actions.
+
+== Related information
+
+* link:whats-new.html[What's new]
+* link:../deploy/deployment-overview.html[Deployment overview]
+* link:../policies/take-actions.html[Take actions on data]

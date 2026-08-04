@@ -1,0 +1,11 @@
+section: deploy
+title: Deploy
+entries:
+  - title: Deployment overview
+    url: /deploy/deployment-overview.html
+  - title: Requirements
+    url: /deploy/requirements.html
+  - title: Deploy AI Data Engine
+    url: /deploy/deploy-aide.html
+  - title: Troubleshoot deployment
+    url: /deploy/troubleshoot-deploy.html

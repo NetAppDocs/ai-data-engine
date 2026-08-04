@@ -1,0 +1,106 @@
+---
+sidebar: sidebar
+permalink: policies/take-actions.html
+keywords: actions, tag, archive, delete, data lifecycle, storage optimization
+summary: Learn about the actions you can take on files in AI Data Engine, including tagging, archiving, and deleting.
+---
+= Take action with your data
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+AI Data Engine supports actions that let you manage files identified through investigation or policies: tagging, archiving, and deleting. Actions can be triggered manually from the Investigation view or automatically via a policy.
+
+.About this task
+The actions available to you depend on your assigned role:
+
+[cols="2,1,1,1",options="header"]
+|===
+|Action |Platform Admin |Storage Ops |Read-Only
+
+|Tag
+|TBD
+|Yes
+|-
+
+|Archive
+|TBD
+|Yes
+|-
+
+|Delete
+|TBD
+|Yes
+|-
+
+|===
+
+// RESEARCH NEEDED: Confirm Platform Admin permissions for all action types when the role is confirmed.
+// RESEARCH NEEDED (LOW): Confirm whether "Tier" is a distinct action in the UI or implemented through Archive.
+
+For a full description of roles, see link:../administer/manage-users-roles.html[Manage users and roles].
+
+== Tag
+
+// RESEARCH NEEDED (LOW): Confirm where business tags are defined and managed — is there a tag management page, or are tags entered ad hoc at action time? Confirm whether tags applied by AI Data Engine are visible in ONTAP or other NetApp products.
+
+Tagging applies a business tag to files. Tags are user-defined metadata labels for classifying data according to your organization's taxonomy. You can tag files manually from the Investigation view or automatically through a policy.
+
+.Steps
+. In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
+. Apply filters to identify the files you want to tag.
+. In the action bar, click *Tag*.
+. Select or enter the tag value.
+. Confirm the action.
+
+NOTE: To tag files automatically, link:create-policy.html[create a policy] with the *Tag* action selected.
+
+// RESEARCH NEEDED (LOW): Confirm the execution model for policy-based tag actions — applied immediately on policy creation, on a schedule, or continuously as new files match the criteria?
+
+== Archive
+
+// RESEARCH NEEDED (LOW): Confirm the archiving destination for this release — ONTAP FabricPool, object store, or another target. This determines how the action should be described to customers.
+
+Archiving moves files to a cold storage destination. You can archive files manually from the Investigation view or automatically through a policy.
+
+WARNING: Confirm your intended archive destination before taking this action.
+
+.Before you begin
+* You must have the Storage Ops role or higher.
+
+.Steps
+. In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
+. Apply filters to identify the files you want to archive.
+. In the action bar, click *Archive*.
+. Confirm the action.
+
+// RESEARCH NEEDED (LOW): Confirm the post-archive state — does the file remain visible in Investigation with a status change, or does it disappear from results?
+
+NOTE: To archive files automatically, link:create-policy.html[create a policy] with the *Archive* action selected.
+
+== Delete
+
+Deleting permanently removes files from storage. You can delete files manually from the Investigation view or automatically through a policy.
+
+WARNING: Deletion is permanent and cannot be undone.
+
+.Before you begin
+* You must have the Storage Ops role or higher.
+
+.Steps
+. In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
+. Apply filters to identify the files you want to delete.
+. In the action bar, click *Delete*.
+. Confirm the deletion in the dialog.
+
+.Result
+The selected files are permanently deleted from storage.
+
+NOTE: To delete files automatically, link:create-policy.html[create a policy] with the *Delete* action selected.
+
+== Related information
+
+* link:create-policy.html[Create a policy]
+* link:manage-policies.html[Manage policies]
+* link:../investigate/investigate-data.html[Investigate your data]
+* link:../administer/manage-users-roles.html[Manage users and roles]

@@ -1,0 +1,71 @@
+---
+sidebar: sidebar
+permalink: policies/create-policy.html
+keywords: create policy, save query, policy, filters, actions, automation
+summary: Create a policy by saving a set of investigation filters as a named, reusable rule that can optionally trigger automated actions on matching files.
+---
+= Create a policy
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+A policy is a named set of metadata filter criteria that you can reuse and optionally associate with an automated action. Create a policy from the Investigation view after you build a filter set that identifies the data you want to manage.
+
+== About policies
+
+Policies save the filter criteria you define in Investigation as a reusable rule. You can run the policy again at any time to re-examine the same data population, or configure it to automatically take an action — such as tagging, archiving, or deleting — when files meet the policy criteria.
+
+// RESEARCH NEEDED: Confirm the policy execution model for V1. Are policies triggered on a schedule, on demand only, or on a continuous/near-real-time basis as the metadata catalog is updated? This significantly affects how policy behavior should be described.
+
+== Create a policy from Investigation
+
+.Before you begin
+* You must have a role that permits creating policies. See link:../administer/manage-users-roles.html[Manage users and roles].
+
+.Steps
+. In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
+. Apply one or more filters that identify the files you want the policy to target.
++
+For example: *File Type* = .vmdk AND *Last Accessed Time* > 365 days.
++
+Review the results table to confirm the filter set captures the intended data population.
+
+. In the filter action bar, click *+ Create policy*.
++
+// RESEARCH NEEDED: Confirm the exact button label. The Investigation/Policies UI spec (OCIENG/622693040) notes the "Save query" action was renamed to "+ Create policy" — verify the final label in the current UI.
+
+. Enter a *Policy name*.
+
+. Optionally, enter a *Description*.
+
+. Optionally, select an *Action* to associate with the policy:
++
+* *Tag* — apply a business tag to matching files
+* *Archive* — archive matching files to cold storage
+* *Delete* — permanently delete matching files
++
+// RESEARCH NEEDED: Confirm the complete list of available actions at policy creation for V1, and whether action assignment is done at creation or as a separate step. Also confirm whether "Tier" is a distinct option separate from "Archive" in the V1 policy UI.
+
+. Click *Save*.
+
+.Result
+The policy is saved and appears on the link:manage-policies.html[Policies] page. If you associated an action, AI Data Engine applies that action to files that match the policy criteria.
+
+== Example: identify cold archive files
+
+The following example creates a policy to tag files that have not been accessed in over a year.
+
+. In Investigation, apply these filters:
++
+* *Last Accessed Time* > 365 days
+
+. Click *+ Create policy*.
+. Enter the policy name: *Cold Files — Unaccessed 1 Year*.
+. Select the action *Tag* and specify the tag value (for example, *cold-candidate*).
+. Click *Save*.
+
+== Related information
+
+* link:manage-policies.html[Manage policies]
+* link:take-actions.html[Take actions on data]
+* link:../investigate/investigate-data.html[Investigate your data]

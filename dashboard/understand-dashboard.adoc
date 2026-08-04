@@ -1,0 +1,73 @@
+---
+sidebar: sidebar
+permalink: dashboard/understand-dashboard.html
+keywords: dashboard, storage optimization, overview, insights, cold data, duplicates, file types
+summary: The AI Data Engine dashboard displays storage optimization insights derived from metadata scans of your connected ONTAP clusters.
+---
+= Understand the dashboard
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+The AI Data Engine dashboard is your starting point for understanding the state of your storage. It displays storage optimization insights from metadata scans of your connected ONTAP clusters — including cold data, file type distribution, duplicate files, and potential space savings.
+
+== Navigate to the dashboard
+
+In NetApp Console, navigate to *Governance* > *AI Data Engine*.
+
+// RESEARCH NEEDED: Confirm exact navigation path. The Onboarding spec (OCIENG/626833135) references "Governance > AI Data Engine" — verify this is current.
+
+The dashboard is the default landing page when you open AI Data Engine.
+
+== Dashboard layout
+
+The dashboard is organized into sections that each surface a different storage insight category. Each section includes an *Investigate* link that opens the Investigation view pre-filtered to the relevant data population.
+
+For a description of each widget and its metrics, see link:dashboard-reference.html[Dashboard reference].
+
+=== Storage Optimization
+
+The Storage Optimization section provides an aggregate view of potential space savings across your connected data sources. It shows total estimated reclaimable storage, broken down by category.
+
+Click *Investigate* from this section to open Investigation filtered to all files contributing to storage savings opportunities.
+
+=== Top Volumes by Saving Opportunities
+
+This section ranks your ONTAP volumes by estimated reclaimable storage. Use this to prioritize which volumes to investigate and act on first.
+
+Click *Investigate* next to a volume to open Investigation filtered to that specific volume.
+
+=== Cold Data
+
+The Cold Data section shows files that have not been accessed within configurable time thresholds. It includes a breakdown of cold data by access age tier.
+
+Click *Investigate* to open Investigation filtered to the selected age tier.
+
+=== File Type Distribution
+
+The File Type Distribution section shows how storage is consumed across different file types. Use this to identify which types of files are consuming the most space.
+
+Click *Investigate* next to a file type to open Investigation filtered to files of that type.
+
+=== File Time Distribution
+
+The File Time Distribution section shows files grouped by creation, modification, and access time ranges.
+
+Click *Investigate* to open Investigation filtered to files in the selected time range.
+
+=== Duplicates
+
+// RESEARCH NEEDED: Confirm whether the Duplicates widget is visible and enabled by default in V1, or whether it only appears when duplicate detection is explicitly enabled. The MDE spec (OCIENG/618537712) notes "Duplicate Files - off by Default."
+
+The Duplicates section shows files identified as duplicates that are consuming unnecessary storage.
+
+Click *Investigate* to open Investigation filtered to duplicate files.
+
+== From dashboard to investigation
+
+Every dashboard section has an *Investigate* link. Clicking it opens the link:../investigate/investigate-data.html[Investigation] view with the relevant filters pre-applied. This lets you examine the individual files behind any dashboard metric and take direct action on them.
+
+== Related information
+
+* link:dashboard-reference.html[Dashboard reference]
+* link:../investigate/investigate-data.html[Investigate your data]

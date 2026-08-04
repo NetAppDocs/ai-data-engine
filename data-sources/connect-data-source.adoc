@@ -1,0 +1,44 @@
+---
+sidebar: sidebar
+permalink: data-sources/connect-data-source.html
+keywords: connect, data source, ONTAP, cluster, scan, NFS, CIFS, metadata
+summary: Connect an ONTAP cluster to AI Data Engine to start scanning and cataloging file system metadata.
+---
+= Connect an ONTAP cluster
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Connect an ONTAP cluster to AI Data Engine to make it available for metadata scanning. After you connect a cluster, AI Data Engine scans the cluster's file system metadata and makes it available in the dashboard and investigation views.
+
+// RESEARCH NEEDED (LOW): This topic does not have a dedicated UI engineering spec. The steps below are a placeholder inferred from the Onboarding spec (OCIENG/626833135) and Deployment spec (DSENSE/636019699). Extract the actual UI flow from Figma documentation and verify each step with an engineer or the data source connection engineering spec.
+
+.Before you begin
+* AI Data Engine must be link:../deploy/deploy-aide.html[deployed and connected to NetApp Console].
+* NFS or CIFS/SMB must be enabled on the ONTAP cluster.
+* Required network ports must be open between AI Data Engine and the ONTAP cluster. See link:../deploy/requirements.html[Requirements].
+// RESEARCH NEEDED (LOW): Confirm whether ONTAP credentials are required at connection time and what minimum permission level is needed for the scanning user.
+
+.Steps
+// RESEARCH NEEDED (LOW): Replace the following placeholder steps with the verified UI flow for connecting a data source. Review the data source connection UI in Figma and the corresponding engineering spec.
+
+. In NetApp Console, navigate to *Governance* > *AI Data Engine*.
+. Click *Add data source* or the equivalent control.
+. Enter the ONTAP cluster management IP address or hostname.
+. Provide credentials with access to the file system.
+. Select the volumes or shares to include in the scan.
+. Click *Connect*.
+
+.Result
+AI Data Engine begins scanning the connected cluster. Initial scan time depends on the number of files. You can monitor scan progress from the dashboard.
+
+// RESEARCH NEEDED (LOW): Confirm how scan progress is displayed to the user — scan status indicator on the dashboard, a dedicated scan management page, or a notification?
+
+== Manage scan settings
+
+// RESEARCH NEEDED (LOW): Confirm what scan management controls are available at GA. The AIDE Roadmap (OCIENG/660916300) lists "data source scan management" as an M1 feature — verify whether scan scheduling, exclusion lists, and deep scan options are included.
+
+== Related information
+
+* link:../deploy/requirements.html[Requirements]
+* link:../dashboard/understand-dashboard.html[Understand the dashboard]
