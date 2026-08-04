@@ -2,87 +2,106 @@
 sidebar: sidebar
 permalink: investigate/investigate-data.html
 keywords: investigate, metadata, search, filter, files, results, action, policy
-summary: Use the Investigation view to search and filter file system metadata across your connected ONTAP clusters, and take action on the results.
+summary: Search and filter file-level metadata across your storage systems to find cold, stale, or oversized files — then act on what you find or save the criteria as a reusable policy.
 ---
 = Investigate your data
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-The Investigation view lets you search and filter file system metadata across your connected ONTAP clusters. You can apply filters to define a targeted data population, take direct action on the results, or save the filter criteria as a reusable policy.
+When you need to understand what is consuming storage or find files ready for archival or deletion, search and filter metadata across all connected systems. For example, a storage administrator investigating unexpected capacity growth can filter by last-access time and file size to surface terabytes of VM snapshots that have not been touched in years — then act on those files directly.
 
 == Navigate to Investigation
 
-In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
+From the AI Data Engine left navigation, click *Investigation*.
 
-You can also open Investigation from any dashboard widget by clicking its *Investigate* link. When you do this, Investigation opens with a filter pre-applied that matches the data shown in the widget.
+You can also open Investigation from the Overview page by clicking *Investigate* in the Top storage resources table. Investigation opens with a filter pre-applied for that resource.
+
+The Investigation view displays a summary count and total size of all unstructured items across connected systems (for example, "Unstructured items (400M) | 5.7 PiB").
 
 == Apply filters
 
-The filter panel is on the left side of the Investigation view. You can apply one or more filters simultaneously to narrow the result set.
-
 .Steps
-. In the filter panel, click the filter category you want to apply (for example, *File Type* or *Last Accessed Time*).
-. Select or enter the filter value.
-. Repeat for additional filters as needed.
-
-The results table updates as you apply each filter.
-
+. Click *Add filter*.
+. Select a filter criterion from the list. Available filters include:
++
+* *Last accessed* — how long since the file was last accessed (for example, 365+ days)
+* *Last modified* — last modification date
+* *Last created* — file creation date
+* *File size* — file size threshold (for example, >5 GiB)
++
 For a complete list of available filters, see link:use-filters.html[Work with filters].
+. Select a filter value.
+. Repeat to add additional filters.
+
+Applied filters appear as pills below the filter bar (for example, "Last accessed: 365+ days | File size: >5 GiB"). The results table and item count update each time you add a filter.
+
+To clear all filters, click *Clear filters*.
 
 == View investigation results
 
-The results table shows files that match your applied filters:
+The results table shows files that match your applied filters. When filters are active, the header shows the filtered count and size (for example, "Unstructured items (250k / 400M) | 8.3 TiB | Filters applied (2)").
 
 [cols="1,2",options="header"]
 |===
 |Column |Description
 
-|File name
-|The name of the file.
+|Name
+|The file name.
 
 |Path
-|The full path to the file on the ONTAP cluster.
+|The full path to the file on the source system.
+
+|System
+|The source storage system.
+
+|File type
+|The file format or extension (for example, VMDK, BAK).
 
 |Size
 |The file size.
 
-|File type
-|The file extension or type classification.
+|Created
+|The file creation date.
 
 |Last accessed
 |The date the file was last accessed.
 
+|Last modified
+|The date the file was last modified.
+
+|Tags
+|Any business tags applied to the file.
+
 |===
 
-// RESEARCH NEEDED: Confirm the complete column list for the results table and whether columns are configurable. The Investigation/Policies UI spec (OCIENG/622693040) should have the definitive column list — verify whether additional columns exist (owner, permissions, tags, policy matches).
+To download the filtered results, click *Download*.
 
 == Take action on results
 
-After filtering to a set of files, you can take the following actions from the action bar above the results table:
+Select one or more items using the checkboxes in the results table to activate the action toolbar. Available actions are:
 
-* *Tag* — apply a business tag to the matching files
-* *Archive* — archive the matching files to cold storage
-* *Delete* — permanently delete the matching files
-* *Save as Policy* — save the current filter criteria as a reusable policy
+* *Delete* — permanently delete the selected files
+* *Copy* — copy the selected files to a destination
+* *Archive* — move the selected files to a cold storage destination
+* *Tag* — apply a business tag to the selected files
 
-// RESEARCH NEEDED: Confirm whether Archive and Delete are available as direct actions in the Investigation view for applicable roles, or whether these actions can only be triggered through a policy. The RBAC spec (OCIENG/630079898) implies both are available as direct actions.
+For step-by-step instructions, see link:../policies/take-actions.html[Take action with your data].
 
 Available actions depend on your role. See link:../administer/manage-users-roles.html[Manage users and roles].
 
 == Save filters as a policy
 
-Save your current filter set as a policy to reuse it or automate an action on matching files.
+Save your current filter set as a policy to reuse it or automate actions on matching files.
 
 .Steps
 . Apply the filters that define the data population you want to manage.
-. Click *+ Create policy* in the filter action bar.
-+
-// RESEARCH NEEDED: Confirm the exact label. The Investigation/Policies UI spec (OCIENG/622693040) notes the "Save query" action is renamed to "+ Create policy" — verify the final label in the current UI.
+. Click *Create policy* in the filter toolbar.
 . Complete the policy form. See link:../policies/create-policy.html[Create a policy].
 
 == Related information
 
 * link:use-filters.html[Work with filters]
 * link:../policies/create-policy.html[Create a policy]
-* link:../dashboard/understand-dashboard.html[Understand the dashboard]
+* link:../policies/take-actions.html[Take action with your data]
+* link:../dashboard/understand-dashboard.html[Review the Overview page]

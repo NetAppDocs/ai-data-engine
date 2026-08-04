@@ -1,17 +1,19 @@
 ---
 sidebar: sidebar
 permalink: policies/take-actions.html
-keywords: actions, tag, archive, delete, data lifecycle, storage optimization
-summary: Learn about the actions you can take on files in AI Data Engine, including tagging, archiving, and deleting.
+keywords: actions, tag, archive, copy, delete, data lifecycle, storage optimization, breadcrumb
+summary: Act on files you have identified as cold, stale, or obsolete — archive them to reclaim space, copy critical data to a new destination, tag items for tracking, or permanently delete what you no longer need.
 ---
 = Take action with your data
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine supports actions that let you manage files identified through investigation or policies: tagging, archiving, and deleting. Actions can be triggered manually from the Investigation view or automatically via a policy.
+After identifying files that are consuming unnecessary storage, take direct action to reclaim capacity or enforce your organization's data lifecycle policies. For example, a storage operations engineer who filters to find terabytes of VM snapshots not accessed in over a year can archive them in bulk to a cold storage share, freeing that space for active workloads.
 
 .About this task
+To take action, select one or more items in the Investigation results table using the checkboxes. The action toolbar activates with four options: *Delete*, *Copy*, *Archive*, and *Tag*.
+
 The actions available to you depend on your assigned role:
 
 [cols="2,1,1,1",options="header"]
@@ -28,6 +30,11 @@ The actions available to you depend on your assigned role:
 |Yes
 |-
 
+|Copy
+|TBD
+|Yes
+|-
+
 |Delete
 |TBD
 |Yes
@@ -36,67 +43,67 @@ The actions available to you depend on your assigned role:
 |===
 
 // RESEARCH NEEDED: Confirm Platform Admin permissions for all action types when the role is confirmed.
-// RESEARCH NEEDED (LOW): Confirm whether "Tier" is a distinct action in the UI or implemented through Archive.
 
 For a full description of roles, see link:../administer/manage-users-roles.html[Manage users and roles].
 
-== Tag
-
-// RESEARCH NEEDED (LOW): Confirm where business tags are defined and managed — is there a tag management page, or are tags entered ad hoc at action time? Confirm whether tags applied by AI Data Engine are visible in ONTAP or other NetApp products.
-
-Tagging applies a business tag to files. Tags are user-defined metadata labels for classifying data according to your organization's taxonomy. You can tag files manually from the Investigation view or automatically through a policy.
-
-.Steps
-. In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
-. Apply filters to identify the files you want to tag.
-. In the action bar, click *Tag*.
-. Select or enter the tag value.
-. Confirm the action.
-
-NOTE: To tag files automatically, link:create-policy.html[create a policy] with the *Tag* action selected.
-
-// RESEARCH NEEDED (LOW): Confirm the execution model for policy-based tag actions — applied immediately on policy creation, on a schedule, or continuously as new files match the criteria?
-
 == Archive
 
-// RESEARCH NEEDED (LOW): Confirm the archiving destination for this release — ONTAP FabricPool, object store, or another target. This determines how the action should be described to customers.
-
-Archiving moves files to a cold storage destination. You can archive files manually from the Investigation view or automatically through a policy.
-
-WARNING: Confirm your intended archive destination before taking this action.
+Archiving moves files to a cold storage destination over NFS or CIFS. You can optionally leave a breadcrumb file at the original location.
 
 .Before you begin
 * You must have the Storage Ops role or higher.
 
 .Steps
-. In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
-. Apply filters to identify the files you want to archive.
-. In the action bar, click *Archive*.
-. Confirm the action.
+. In the Investigation view, select the files you want to archive.
+. Click *Archive*.
+. In the Archive dialog, select the destination volume protocol:
++
+* *NFS* — enter the NFS destination folder path.
+* *CIFS* — enter the CIFS destination folder path in the format `\\Hostname\share_name`. Provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
+. To create a breadcrumb file at the original location, enable *Leave breadcrumb*.
++
+A breadcrumb file helps users understand why a file was moved.
+. Click *Archive*.
 
-// RESEARCH NEEDED (LOW): Confirm the post-archive state — does the file remain visible in Investigation with a status change, or does it disappear from results?
+// RESEARCH NEEDED: Figma V1 policy creation only shows "Email update" as the action type, suggesting automated data operations via policy (archive, delete, tag) may be post-V1. Confirm with engineering before adding automated-action guidance to this topic.
 
-NOTE: To archive files automatically, link:create-policy.html[create a policy] with the *Archive* action selected.
+== Copy
+
+Copying creates a copy of the selected files at a destination. The original files are not affected.
+
+.Steps
+. In the Investigation view, select the files you want to copy.
+. Click *Copy*.
+. Enter the NFS destination folder path.
+. Click *Copy*.
 
 == Delete
 
-Deleting permanently removes files from storage. You can delete files manually from the Investigation view or automatically through a policy.
+Deleting permanently removes files from storage and cannot be undone.
 
-WARNING: Deletion is permanent and cannot be undone.
+WARNING: Deletion is permanent and cannot be undone. This action deletes source files even if they contain active data.
 
 .Before you begin
 * You must have the Storage Ops role or higher.
 
 .Steps
-. In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
-. Apply filters to identify the files you want to delete.
-. In the action bar, click *Delete*.
-. Confirm the deletion in the dialog.
+. In the Investigation view, select the files you want to delete.
+. Click *Delete*.
+. In the Delete dialog, type *permanently delete* in the confirmation field.
+. Click *Delete*.
 
 .Result
 The selected files are permanently deleted from storage.
 
-NOTE: To delete files automatically, link:create-policy.html[create a policy] with the *Delete* action selected.
+== Tag
+
+Tagging applies a business tag to files for classification and tracking.
+
+.Steps
+. In the Investigation view, select the files you want to tag.
+. Click *Tag*.
+. Enter or select the tags to apply (for example, "Archive candidate").
+. Confirm to apply the tags.
 
 == Related information
 

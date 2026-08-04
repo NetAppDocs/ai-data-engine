@@ -1,5 +1,5 @@
 section: data-sources
 title: Connect data sources
 entries:
-  - title: Connect an ONTAP cluster
+  - title: Configure and manage scanned systems
     url: /data-sources/connect-data-source.html

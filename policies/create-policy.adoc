@@ -2,14 +2,14 @@
 sidebar: sidebar
 permalink: policies/create-policy.html
 keywords: create policy, save query, policy, filters, actions, automation
-summary: Create a policy by saving a set of investigation filters as a named, reusable rule that can optionally trigger automated actions on matching files.
+summary: Save investigation filter criteria as a named policy so you can track the same data population over time and get notified when conditions change.
 ---
 = Create a policy
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-A policy is a named set of metadata filter criteria that you can reuse and optionally associate with an automated action. Create a policy from the Investigation view after you build a filter set that identifies the data you want to manage.
+Create a policy when you want to monitor a recurring data condition — such as files going cold or growing beyond a size threshold — without repeating the same investigation manually. For example, a data governance manager can save a "large stale files" policy to track that population across scan cycles and receive an email update when the impacted file count changes.
 
 == About policies
 
@@ -32,19 +32,15 @@ Review the results table to confirm the filter set captures the intended data po
 
 . In the filter action bar, click *+ Create policy*.
 +
-// RESEARCH NEEDED: Confirm the exact button label. The Investigation/Policies UI spec (OCIENG/622693040) notes the "Save query" action was renamed to "+ Create policy" — verify the final label in the current UI.
+// RESEARCH NEEDED: Confirm the exact button label.
 
 . Enter a *Policy name*.
 
-. Optionally, enter a *Description*.
+. Optionally, enter a *Description* (up to 500 characters).
 
-. Optionally, select an *Action* to associate with the policy:
-+
-* *Tag* — apply a business tag to matching files
-* *Archive* — archive matching files to cold storage
-* *Delete* — permanently delete matching files
-+
-// RESEARCH NEEDED: Confirm the complete list of available actions at policy creation for V1, and whether action assignment is done at creation or as a separate step. Also confirm whether "Tier" is a distinct option separate from "Archive" in the V1 policy UI.
+. The filter criteria are captured as a query expression (for example, `last_access_time <= 3 Years AND file_size >= 5GiB`).
+
+. Optionally, select an *Action* — choose the notification type (for example, *Email update*).
 
 . Click *Save*.
 

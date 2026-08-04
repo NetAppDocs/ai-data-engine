@@ -28,25 +28,26 @@ The deployment wizard opens with the header *AI Data Engine deployment*.
 
 . In Step 1, select your installation location:
 +
-* *Cloud* — deploy in a cloud environment
-* *On-premises* — deploy in an on-premises environment
-+
-// RESEARCH NEEDED: Confirm exact Step 1 option labels and whether additional configuration (such as cloud provider selection or on-prem environment type) is required before proceeding. The Onboarding spec (OCIENG/626833135) indicates a choice between cloud and on-prem but does not detail sub-options. Verify with Figma flows.
+* *Cloud environment* — deploy in AWS, Azure, or Google Cloud. The system prepares a virtual machine in your selected cloud environment.
+* *On premises* — install AI Data Engine on a local virtual machine in your on-premises environment.
 
 . Click *Next*.
 
-. In Step 2, copy the install command displayed in the wizard and run it in your target environment.
+. In Step 2, copy the install command displayed in the wizard and run it on your target host:
 +
-// RESEARCH NEEDED: Document the exact install command format, any required parameters, and where the command is run (on the target VM, on a K8s cluster, etc.). The Onboarding spec confirms a command is provided but does not include the command itself. Extract from engineering or Figma.
+[source,bash]
+----
+sudo ./install.sh -a account-XXXXX -c <token>
+----
 +
-After the command starts, the wizard transitions automatically to the progress screen.
+After the command runs, the wizard transitions automatically to the progress screen.
 
 . Monitor the progress screen while AI Data Engine completes the following steps:
-.. Deploying the AI Data Engine instance
-.. Verifying connectivity to NetApp Console
-.. Verifying internet connectivity
+.. Deploying the AI Data Engine
+.. Verifying connectivity to NetApp Console and the Internet
+.. Initializing the AI Data Engine
 
-. When the success screen appears, click *Continue*.
+. When the success screen appears and displays *"AI Data Engine deployed,"* click *Continue to configuration*.
 
 .Result
 AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect an ONTAP cluster] to start scanning.

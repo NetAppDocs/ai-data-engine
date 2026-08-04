@@ -1,71 +1,77 @@
 ---
 sidebar: sidebar
 permalink: dashboard/understand-dashboard.html
-keywords: dashboard, storage optimization, overview, insights, cold data, duplicates, file types
-summary: The AI Data Engine dashboard displays storage optimization insights derived from metadata scans of your connected ONTAP clusters.
+keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage growth, investigate
+summary: Get a quick read on how much storage is cold or stale, how fast storage is growing, and which systems offer the best reclaimation opportunities.
 ---
-= Understand the dashboard
+= Review the Overview page
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-The AI Data Engine dashboard is your starting point for understanding the state of your storage. It displays storage optimization insights from metadata scans of your connected ONTAP clusters — including cold data, file type distribution, duplicate files, and potential space savings.
+Use the Overview to quickly assess storage health across your entire environment before deciding where to focus your investigation. For example, a storage administrator responding to a capacity alert can see at a glance that a significant portion of scanned storage is cold data, then click into the highest-impact system to start investigating immediately.
 
-== Navigate to the dashboard
+== Navigate to Overview
 
-In NetApp Console, navigate to *Governance* > *AI Data Engine*.
+From the AI Data Engine left navigation, click *Overview*.
 
-// RESEARCH NEEDED: Confirm exact navigation path. The Onboarding spec (OCIENG/626833135) references "Governance > AI Data Engine" — verify this is current.
+== Summary panel
 
-The dashboard is the default landing page when you open AI Data Engine.
+The summary panel at the top of the page provides workspace-level metrics:
 
-== Dashboard layout
+[cols="1,2",options="header"]
+|===
+|Metric |Description
 
-The dashboard is organized into sections that each surface a different storage insight category. Each section includes an *Investigate* link that opens the Investigation view pre-filtered to the relevant data population.
+|Storage resources scanned
+|Total count of storage resources scanned across all connected systems.
 
-For a description of each widget and its metrics, see link:dashboard-reference.html[Dashboard reference].
+|Storage growth rate
+|Average daily storage growth across scanned resources (for example, 94 GiB/day).
 
-=== Storage Optimization
+|Reclaimable storage
+|Total storage identified as reclaimable — the combined total of cold and stale data.
 
-The Storage Optimization section provides an aggregate view of potential space savings across your connected data sources. It shows total estimated reclaimable storage, broken down by category.
+|Cold data
+|Data that has not been accessed in one or more years.
 
-Click *Investigate* from this section to open Investigation filtered to all files contributing to storage savings opportunities.
+|Stale data
+|Data that has not been modified in three or more years.
 
-=== Top Volumes by Saving Opportunities
+|===
 
-This section ranks your ONTAP volumes by estimated reclaimable storage. Use this to prioritize which volumes to investigate and act on first.
+== Active versus reclaimable storage chart
 
-Click *Investigate* next to a volume to open Investigation filtered to that specific volume.
+The *Active versus reclaimable storage* chart shows the proportion of active data compared to cold and stale data across your scanned resources. Use this chart to assess overall storage efficiency at a glance.
 
-=== Cold Data
+== Top storage resources by reclaimable storage
 
-The Cold Data section shows files that have not been accessed within configurable time thresholds. It includes a breakdown of cold data by access age tier.
+This table lists your scanned storage resources ranked by reclaimable storage:
 
-Click *Investigate* to open Investigation filtered to the selected age tier.
+[cols="1,2",options="header"]
+|===
+|Column |Description
 
-=== File Type Distribution
+|Storage resource
+|The name of the scanned storage resource.
 
-The File Type Distribution section shows how storage is consumed across different file types. Use this to identify which types of files are consuming the most space.
+|Type
+|The resource type, such as External file share, Cloud Volumes ONTAP, S3, or ONTAP.
 
-Click *Investigate* next to a file type to open Investigation filtered to files of that type.
+|Reclaimable size
+|The amount of storage identified as reclaimable on this resource.
 
-=== File Time Distribution
+|File count
+|The number of reclaimable files on this resource.
 
-The File Time Distribution section shows files grouped by creation, modification, and access time ranges.
+|===
 
-Click *Investigate* to open Investigation filtered to files in the selected time range.
+Click *Investigate* in any row to open the link:../investigate/investigate-data.html[Investigation] view filtered to that resource.
 
-=== Duplicates
+== Refresh and explore further
 
-// RESEARCH NEEDED: Confirm whether the Duplicates widget is visible and enabled by default in V1, or whether it only appears when duplicate detection is explicitly enabled. The MDE spec (OCIENG/618537712) notes "Duplicate Files - off by Default."
-
-The Duplicates section shows files identified as duplicates that are consuming unnecessary storage.
-
-Click *Investigate* to open Investigation filtered to duplicate files.
-
-== From dashboard to investigation
-
-Every dashboard section has an *Investigate* link. Clicking it opens the link:../investigate/investigate-data.html[Investigation] view with the relevant filters pre-applied. This lets you examine the individual files behind any dashboard metric and take direct action on them.
+* Click *Refresh* to update the page with the latest scan data. The last-updated timestamp displays below the page header.
+* Click *Explore cost optimization recommendations* to view additional recommendations based on your scan data.
 
 == Related information
 

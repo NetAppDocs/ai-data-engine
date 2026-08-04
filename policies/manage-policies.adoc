@@ -2,14 +2,18 @@
 sidebar: sidebar
 permalink: policies/manage-policies.html
 keywords: manage policies, view policies, edit policy, enable policy, disable policy, delete policy
-summary: View and manage your AI Data Engine policies, including enabling, disabling, editing, and deleting them.
+summary: Review your saved policies to see which files currently match each criteria set, and remove policies you no longer need.
 ---
 = Manage policies
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-View and manage policies from the Policies page. You can enable or disable policies, edit policy criteria, and delete policies you no longer need.
+Use the Policies page to stay on top of your data governance criteria. For example, a storage administrator who created several cold-data policies can check the impacted file count for each one to prioritize which data populations need attention first.
+
+== Navigate to Policies
+
+From the AI Data Engine left navigation, click *Policies*.
 
 .About this task
 The Policies page lists all policies you have created. Each entry shows:
@@ -18,47 +22,37 @@ The Policies page lists all policies you have created. Each entry shows:
 |===
 |Column |Description
 
-|Policy name
+|Name
 |The name assigned when the policy was created.
 
-|Query / criteria
-|A summary of the filter criteria the policy evaluates.
+|Created
+|Whether the policy is *Custom* (user-created) or *Predefined*.
 
-|Action
-|The action configured to run when files match the policy.
+|Actions
+|The action configured for the policy (for example, Email update).
 
-|Status
-|Whether the policy is enabled or disabled.
+|Description
+|The filter criteria expression for the policy.
+
+|Impacted files and objects
+|The count of files and objects currently matching the policy criteria (for example, 654k).
 
 |===
 
-// RESEARCH NEEDED (LOW): Confirm the complete column list and whether execution metrics (triggered, succeeded, failed counts) appear on this page. Verify against the Investigation/Policies UI spec (OCIENG/622693040).
-
-== Enable or disable a policy
-
-.About this task
-Disable a policy to stop it from running without deleting it. You can re-enable it at any time.
+== View a policy
 
 .Steps
-. In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Policies*.
-+
-// RESEARCH NEEDED (LOW): Document the exact UI steps to enable or disable a policy. The toggle mechanism is not described in available source material — verify against the Investigation/Policies UI spec (OCIENG/622693040) or Figma flows.
-
-== Edit a policy
-
-.Steps
-. In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Policies*.
-+
-// RESEARCH NEEDED (LOW): Document the steps to edit a policy's name, description, filter criteria, or action. Not described in available source material — verify against the Investigation/Policies UI spec (OCIENG/622693040) or Figma flows.
+. From the AI Data Engine left navigation, click *Policies*.
+. Click *View* next to the policy to see the full policy details and impacted items.
 
 == Delete a policy
 
 WARNING: Deletion is permanent and cannot be undone.
 
 .Steps
-. In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Policies*.
-+
-// RESEARCH NEEDED (LOW): Confirm whether a confirmation dialog is shown before deletion and document the steps. Verify against the Investigation/Policies UI spec (OCIENG/622693040) or Figma flows.
+. From the AI Data Engine left navigation, click *Policies*.
+. Open the action menu for the policy you want to delete and select *Delete policy*.
+. Confirm the deletion in the preview dialog.
 
 == Related information
 

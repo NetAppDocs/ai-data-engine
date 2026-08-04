@@ -1,44 +1,70 @@
 ---
 sidebar: sidebar
 permalink: data-sources/connect-data-source.html
-keywords: connect, data source, ONTAP, cluster, scan, NFS, CIFS, metadata
-summary: Connect an ONTAP cluster to AI Data Engine to start scanning and cataloging file system metadata.
+keywords: connect, data source, storage system, scanned systems, health monitor, configuration, scan, NFS, CIFS
+summary: Connect your storage systems to start metadata scanning, monitor scan progress, and resolve errors that affect data visibility.
 ---
-= Connect an ONTAP cluster
+= Configure and manage scanned systems
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Connect an ONTAP cluster to AI Data Engine to make it available for metadata scanning. After you connect a cluster, AI Data Engine scans the cluster's file system metadata and makes it available in the dashboard and investigation views.
+Add storage systems and monitor their scan health to ensure AI Data Engine has current, accurate metadata from across your environment. For example, a platform administrator onboarding a new environment adds each storage system here and checks the health monitor to confirm scans complete without errors before the team starts investigating data.
 
-// RESEARCH NEEDED (LOW): This topic does not have a dedicated UI engineering spec. The steps below are a placeholder inferred from the Onboarding spec (OCIENG/626833135) and Deployment spec (DSENSE/636019699). Extract the actual UI flow from Figma documentation and verify each step with an engineer or the data source connection engineering spec.
+== Navigate to Configuration
 
-.Before you begin
-* AI Data Engine must be link:../deploy/deploy-aide.html[deployed and connected to NetApp Console].
-* NFS or CIFS/SMB must be enabled on the ONTAP cluster.
-* Required network ports must be open between AI Data Engine and the ONTAP cluster. See link:../deploy/requirements.html[Requirements].
-// RESEARCH NEEDED (LOW): Confirm whether ONTAP credentials are required at connection time and what minimum permission level is needed for the scanning user.
+From the AI Data Engine left navigation, click *Configuration*.
+
+The Configuration page has three tabs: *Scanned systems*, *Health monitor*, and *Settings*.
+
+== Scanned systems tab
+
+The Scanned systems tab is the default view. The summary panel at the top shows:
+
+[cols="1,2",options="header"]
+|===
+|Metric |Description
+
+|Systems
+|Total number of connected storage systems.
+
+|Scanned storage resources
+|Resources scanned out of the total available (for example, 214 / 360).
+
+|Scans completed
+|Count of storage resources with successfully completed scans.
+
+|Scanning
+|Count of storage resources currently being scanned.
+
+|With errors
+|Count of systems with scan errors.
+
+|===
+
+Use the filter bar to narrow the system list by *System type*, *Has errors*, or *Scanning status*.
+
+The systems list displays each connected system with its name and type, scan status indicators (success and error counts), Console agent assignment, and any storage events or alerts.
+
+== Add a storage system
 
 .Steps
-// RESEARCH NEEDED (LOW): Replace the following placeholder steps with the verified UI flow for connecting a data source. Review the data source connection UI in Figma and the corresponding engineering spec.
+. On the Scanned systems tab, click *Add system*.
+. Follow the prompts to connect your storage system.
 
-. In NetApp Console, navigate to *Governance* > *AI Data Engine*.
-. Click *Add data source* or the equivalent control.
-. Enter the ONTAP cluster management IP address or hostname.
-. Provide credentials with access to the file system.
-. Select the volumes or shares to include in the scan.
-. Click *Connect*.
+// RESEARCH NEEDED: Document the full Add system wizard steps when confirmed from engineering or updated Figma flows.
 
-.Result
-AI Data Engine begins scanning the connected cluster. Initial scan time depends on the number of files. You can monitor scan progress from the dashboard.
+== View system details
 
-// RESEARCH NEEDED (LOW): Confirm how scan progress is displayed to the user — scan status indicator on the dashboard, a dedicated scan management page, or a notification?
+Click a system row to open the detail view. The detail view shows:
 
-== Manage scan settings
-
-// RESEARCH NEEDED (LOW): Confirm what scan management controls are available at GA. The AIDE Roadmap (OCIENG/660916300) lists "data source scan management" as an M1 feature — verify whether scan scheduling, exclusion lists, and deep scan options are included.
+* Status overview with scan progress
+* Data container scan breakdown (running, completed, paused, errors)
+* Options to *Pause* scanning or *Edit CIFS credentials*
+* Option to *Enable access to DP volumes*
+* Scan permission mode (for example, "Scan without write permissions")
 
 == Related information
 
-* link:../deploy/requirements.html[Requirements]
-* link:../dashboard/understand-dashboard.html[Understand the dashboard]
+* link:../deploy/deploy-aide.html[Deploy AI Data Engine]
+* link:../dashboard/understand-dashboard.html[Review the Overview page]

@@ -11,21 +11,19 @@ summary: Reference for the metadata filters available in the AI Data Engine Inve
 [.lead]
 The Investigation view provides metadata filters that you can use to narrow your results to a specific data population. Apply one or more filters simultaneously to define the files you want to examine or act on.
 
-// RESEARCH NEEDED: Confirm the complete and final filter list for MIS V1 GA. The list below is based on the MDE spec (OCIENG/618537712). Verify against the Investigation/Policies UI spec (OCIENG/622693040) to ensure all filters are included and none are missing.
-
 == Time filters
 
 [cols="1,2",options="header"]
 |===
 |Filter |Description
 
-|Created Time
-|Filter files by the date they were created. Enter a date range or relative time period (for example, "last 90 days").
+|Last created
+|Filter files by the date they were created.
 
-|Last Modified Time
+|Last modified
 |Filter files by the date they were last modified.
 
-|Last Accessed Time
+|Last accessed
 |Filter files by the date they were last accessed. Use this filter to identify cold or stale data.
 
 |===
@@ -77,8 +75,6 @@ The Investigation view provides metadata filters that you can use to narrow your
 |Filter files matched by a specific saved policy. Policy names appear in the filter list.
 
 |===
-
-// RESEARCH NEEDED: Confirm whether a "Has Duplicates" filter is available as a standalone filter in the Investigation view for V1. The Demo Stories (OCIENG/634932071) use "Has Duplicates = True" as a filter criterion. Verify this filter exists in the V1 UI.
 
 == Combining filters
 
