@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: policies/take-actions.html
 keywords: actions, tag, archive, copy, delete, data lifecycle, storage optimization, breadcrumb
-summary: Act on files you have identified as cold, stale, or obsolete — archive them to reclaim space, copy critical data to a new destination, tag items for tracking, or permanently delete what you no longer need.
+summary: Act on files you have identified as cold, stale, or obsolete by archiving them to reclaim space, copying critical data to a new destination, tagging items for tracking, or permanently deleting what you no longer need.
 ---
 = Take action with your data
 :icons: font
@@ -58,8 +58,8 @@ Archiving moves files to a cold storage destination over NFS or CIFS. You can op
 . Click *Archive*.
 . In the Archive dialog, select the destination volume protocol:
 +
-* *NFS* — enter the NFS destination folder path.
-* *CIFS* — enter the CIFS destination folder path in the format `\\Hostname\share_name`. Provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
+* *NFS*: enter the NFS destination folder path.
+* *CIFS*: enter the CIFS destination folder path in the format `\\Hostname\share_name`. Provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
 . To create a breadcrumb file at the original location, enable *Leave breadcrumb*.
 +
 A breadcrumb file helps users understand why a file was moved.

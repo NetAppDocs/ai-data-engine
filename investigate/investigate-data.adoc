@@ -2,14 +2,14 @@
 sidebar: sidebar
 permalink: investigate/investigate-data.html
 keywords: investigate, metadata, search, filter, files, results, action, policy
-summary: Search and filter file-level metadata across your storage systems to find cold, stale, or oversized files — then act on what you find or save the criteria as a reusable policy.
+summary: Search and filter file-level metadata across your storage systems to find cold, stale, or oversized files, then act on what you find or save the criteria as a reusable policy.
 ---
 = Investigate your data
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-When you need to understand what is consuming storage or find files ready for archival or deletion, search and filter metadata across all connected systems. For example, a storage administrator investigating unexpected capacity growth can filter by last-access time and file size to surface terabytes of VM snapshots that have not been touched in years — then act on those files directly.
+When you need to understand what is consuming storage or find files ready for archival or deletion, search and filter metadata across all connected systems. For example, a storage administrator investigating unexpected capacity growth can filter by last-access time and file size to surface terabytes of VM snapshots that have not been touched in years, then act on those files directly.
 
 == Navigate to Investigation
 
@@ -25,10 +25,10 @@ The Investigation view displays a summary count and total size of all unstructur
 . Click *Add filter*.
 . Select a filter criterion from the list. Available filters include:
 +
-* *Last accessed* — how long since the file was last accessed (for example, 365+ days)
-* *Last modified* — last modification date
-* *Last created* — file creation date
-* *File size* — file size threshold (for example, >5 GiB)
+* *Last accessed*: how long since the file was last accessed (for example, 365+ days)
+* *Last modified*: last modification date
+* *Last created*: file creation date
+* *File size*: file size threshold (for example, >5 GiB)
 +
 For a complete list of available filters, see link:use-filters.html[Work with filters].
 . Select a filter value.
@@ -81,10 +81,10 @@ To download the filtered results, click *Download*.
 
 Select one or more items using the checkboxes in the results table to activate the action toolbar. Available actions are:
 
-* *Delete* — permanently delete the selected files
-* *Copy* — copy the selected files to a destination
-* *Archive* — move the selected files to a cold storage destination
-* *Tag* — apply a business tag to the selected files
+* *Delete*: permanently delete the selected files
+* *Copy*: copy the selected files to a destination
+* *Archive*: move the selected files to a cold storage destination
+* *Tag*: apply a business tag to the selected files
 
 For step-by-step instructions, see link:../policies/take-actions.html[Take action with your data].
 

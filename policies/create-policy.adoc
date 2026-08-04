@@ -9,11 +9,11 @@ summary: Save investigation filter criteria as a named policy so you can track t
 :imagesdir: ../media/
 
 [.lead]
-Create a policy when you want to monitor a recurring data condition — such as files going cold or growing beyond a size threshold — without repeating the same investigation manually. For example, a data governance manager can save a "large stale files" policy to track that population across scan cycles and receive an email update when the impacted file count changes.
+Create a policy when you want to monitor a recurring data condition, such as files going cold or growing beyond a size threshold, without repeating the same investigation manually. For example, a data governance manager can save a "large stale files" policy to track that population across scan cycles and receive an email update when the impacted file count changes.
 
 == About policies
 
-Policies save the filter criteria you define in Investigation as a reusable rule. You can run the policy again at any time to re-examine the same data population, or configure it to automatically take an action — such as tagging, archiving, or deleting — when files meet the policy criteria.
+Policies save the filter criteria you define in Investigation as a reusable rule. You can run the policy again at any time to re-examine the same data population, or configure it to automatically take an action, such as tagging, archiving, or deleting, when files meet the policy criteria.
 
 // RESEARCH NEEDED: Confirm the policy execution model for V1. Are policies triggered on a schedule, on demand only, or on a continuous/near-real-time basis as the metadata catalog is updated? This significantly affects how policy behavior should be described.
 
@@ -40,7 +40,7 @@ Review the results table to confirm the filter set captures the intended data po
 
 . The filter criteria are captured as a query expression (for example, `last_access_time <= 3 Years AND file_size >= 5GiB`).
 
-. Optionally, select an *Action* — choose the notification type (for example, *Email update*).
+. Optionally, select an *Action* and choose the notification type (for example, *Email update*).
 
 . Click *Save*.
 

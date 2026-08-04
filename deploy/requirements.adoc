@@ -30,13 +30,13 @@ The following network connections must be open:
 |443
 |TCP
 |Outbound
-|HTTPS — connectivity to NetApp Console
+|HTTPS: connectivity to NetApp Console
 
 |Console Agent ↔ ONTAP
 |443
 |TCP
 |Outbound
-|HTTPS — ONTAP cluster discovery
+|HTTPS: ONTAP cluster discovery
 
 |AI Data Engine ↔ ONTAP (NFS)
 |111, 2049
@@ -54,7 +54,7 @@ The following network connections must be open:
 |389, 636, 3268, 3269
 |TCP/UDP (389)
 |Outbound
-|LDAP/LDAPS — user authentication and CIFS scanning
+|LDAP/LDAPS: user authentication and CIFS scanning
 
 |===
 

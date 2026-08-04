@@ -25,7 +25,7 @@ The Console Agent runs alongside your ONTAP environment and maintains the connec
 
 === Policy Engine
 
-The Policy Engine evaluates saved policies against the metadata catalog. When a policy's criteria are matched, the Policy Engine triggers the configured action — such as tagging, archiving, or deleting files.
+The Policy Engine evaluates saved policies against the metadata catalog. When a policy's criteria are matched, the Policy Engine triggers the configured action, such as tagging, archiving, or deleting files.
 
 == Deployment models
 

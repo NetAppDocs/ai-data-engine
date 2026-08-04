@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: deploy/deployment-overview.html
 keywords: deployment, aide lite, aide enterprise, kubernetes, vm, deployment modes, sizing
-summary: AI Data Engine supports two deployment modes — Lite for single-VM environments and Enterprise for Kubernetes-based deployments.
+summary: AI Data Engine supports Lite mode for single-VM deployments and Enterprise mode for Kubernetes-based deployments.
 ---
 = Deployment overview
 :icons: font
@@ -55,8 +55,8 @@ NOTE: The AIDE Enterprise Small configuration is not available in this release.
 
 Consider these factors when choosing a deployment mode:
 
-* *AIDE Lite* — recommended if you are deploying for the first time or have a smaller ONTAP environment.
-* *AIDE Enterprise* — recommended if you require Kubernetes-native deployment, high availability, or plan to scan large data volumes at scale.
+* *AIDE Lite*: recommended if you are deploying for the first time or have a smaller ONTAP environment.
+* *AIDE Enterprise*: recommended if you require Kubernetes-native deployment, high availability, or plan to scan large data volumes at scale.
 
 == Related information
 

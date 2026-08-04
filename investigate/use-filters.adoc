@@ -78,7 +78,7 @@ The Investigation view provides metadata filters that you can use to narrow your
 
 == Combining filters
 
-Filters are combined with AND logic — the results must match all applied filters simultaneously.
+Filters are combined with AND logic, meaning the results must match all applied filters simultaneously.
 
 // RESEARCH NEEDED: Confirm whether OR logic or filter grouping is supported for any filter types in V1.
 

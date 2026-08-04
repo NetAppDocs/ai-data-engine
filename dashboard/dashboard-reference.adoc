@@ -24,7 +24,7 @@ This reference describes each metric and section on the AI Data Engine Overview 
 |Average daily storage growth across scanned resources (for example, 94 GiB/day).
 
 |Reclaimable storage
-|Total storage identified as reclaimable — the combined total of cold and stale data.
+|Total storage identified as reclaimable: the combined total of cold and stale data.
 
 |Cold data
 |Storage consumed by data that has not been accessed in one or more years.

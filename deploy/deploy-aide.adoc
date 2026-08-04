@@ -28,8 +28,8 @@ The deployment wizard opens with the header *AI Data Engine deployment*.
 
 . In Step 1, select your installation location:
 +
-* *Cloud environment* — deploy in AWS, Azure, or Google Cloud. The system prepares a virtual machine in your selected cloud environment.
-* *On premises* — install AI Data Engine on a local virtual machine in your on-premises environment.
+* *Cloud environment*: deploy in AWS, Azure, or Google Cloud. The system prepares a virtual machine in your selected cloud environment.
+* *On premises*: install AI Data Engine on a local virtual machine in your on-premises environment.
 
 . Click *Next*.
 

@@ -58,12 +58,12 @@ Can view dashboards only. Read-Only users cannot investigate, create policies, o
 |Yes
 |-
 
-|Actions — Tag
+|Actions: Tag
 |TBD
 |Yes
 |-
 
-|Actions — Archive, Delete
+|Actions: Archive, Delete
 |TBD
 |Yes
 |-
