@@ -36,7 +36,7 @@ The wizard returns to the beginning of the install flow.
 
 If deployment succeeds but AI Data Engine cannot connect to NetApp Console:
 
-// RESEARCH NEEDED (LOW): Document specific connectivity troubleshooting steps. The following are inferred from the networking requirements — verify against actual product behavior.
+// RESEARCH NEEDED (LOW): Document specific connectivity troubleshooting steps. The following are inferred from the networking requirements; verify against actual product behavior.
 
 . Confirm that port 443 is open from the AI Data Engine host to NetApp Console endpoints.
 . Verify that DNS resolution for NetApp Console is working from the host.

@@ -11,7 +11,7 @@ summary: AI Data Engine uses role-based access control to manage what users can 
 [.lead]
 AI Data Engine uses role-based access control (RBAC) to define what each user can view and do. Assign roles to users based on their responsibilities within your organization.
 
-// RESEARCH NEEDED: Confirm where in the NetApp Console UI you manage AI Data Engine user roles — within AI Data Engine itself or through NetApp Console organization settings. Review any UI spec for AI Data Engine administration or settings pages.
+// RESEARCH NEEDED: Confirm where in the NetApp Console UI you manage AI Data Engine user roles: within AI Data Engine itself or through NetApp Console organization settings. Review any UI spec for AI Data Engine administration or settings pages.
 
 == Available roles
 

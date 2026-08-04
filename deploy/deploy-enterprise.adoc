@@ -13,6 +13,8 @@ Deploy AIDE Enterprise from NetApp Console using the deployment wizard. The wiza
 
 .Before you begin
 * Review link:requirements.html[requirements] and confirm your RKE2 cluster meets Enterprise node prerequisites.
+* An NFS server with an exported path must be available and reachable from the cluster for the AIDE config volume.
+* A Console Agent must be deployed and reachable from the cluster nodes. The Console Agent IP is required to run the install command.
 * kubectl must be available on the machine from which you run the install command, with cluster-admin access to the target cluster.
 * You must have Platform Admin permissions in NetApp Console.
 
@@ -45,10 +47,19 @@ The deployment wizard opens with the header *AI Data Engine deployment*.
 +
 [source,bash]
 ----
-sudo ./install-enterprise.sh -a account-XXXXX -c <token>
+sudo ./install-enterprise.sh \
+  --flavor <medium|large> \
+  --nfs-server <nfs-server-host> \
+  --nfs-data-share <nfs-export-path> \
+  --storage-class <storage-class-name> \
+  --account-id <account-id> \
+  --organization-id <organization-id> \
+  --agent-id <agent-id> \
+  --cm-host <console-agent-ip> \
+  --user-token <token>
 ----
 +
-// RESEARCH NEEDED: Confirm exact Enterprise install command format from engineering or UI.
+// RESEARCH NEEDED: Confirm this is the exact command format shown in the wizard UI.
 +
 After the command runs, the wizard transitions automatically to the progress screen.
 

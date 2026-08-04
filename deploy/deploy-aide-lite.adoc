@@ -13,6 +13,7 @@ Deploy AIDE Lite from NetApp Console using the deployment wizard. The wizard gui
 
 .Before you begin
 * Review link:requirements.html[requirements] and confirm your environment meets all prerequisites.
+* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[must be deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
 * You must have Platform Admin permissions in NetApp Console.
 
 .Steps
@@ -37,7 +38,7 @@ The deployment wizard opens with the header *AI Data Engine deployment*.
 * *Medium*: recommended for environments with up to approximately 1 billion files.
 * *Large*: recommended for environments with up to approximately 3 billion files.
 +
-// RESEARCH NEEDED: Confirm step numbering against current Figma — size selection may be numbered differently in the wizard.
+// RESEARCH NEEDED: Confirm step numbering against current Figma; size selection may be numbered differently in the wizard.
 
 . Click *Next*.
 
@@ -45,10 +46,16 @@ The deployment wizard opens with the header *AI Data Engine deployment*.
 +
 [source,bash]
 ----
-sudo ./install.sh -a account-XXXXX -c <token>
+sudo ./install-lite.sh \
+  --flavor <small|medium|large> \
+  --account-id <account-id> \
+  --organization-id <organization-id> \
+  --agent-id <agent-id> \
+  --cm-host <console-agent-ip> \
+  --user-token <token>
 ----
 +
-// RESEARCH NEEDED: Confirm command format — engineering docs reference `./install-lite.sh --flavor <small|medium|large> --user-token <token>`.
+// RESEARCH NEEDED: Confirm this is the exact command format shown in the wizard UI.
 +
 After the command runs, the wizard transitions automatically to the progress screen.
 

@@ -13,7 +13,7 @@ Review these requirements before deploying AI Data Engine.
 
 == ONTAP requirements
 
-// RESEARCH NEEDED: Confirm the minimum ONTAP version required. Not confirmed in available source material — check with engineering or the MIS PRD.
+// RESEARCH NEEDED: Confirm the minimum ONTAP version required. Not confirmed in available source material; check with engineering or the MIS PRD.
 
 * NetApp ONTAP [version TBD] or later
 * NFS or CIFS/SMB protocols enabled on volumes you want to scan
@@ -26,35 +26,67 @@ The following network connections must be open:
 |===
 |Connection |Port |Protocol |Direction |Purpose
 
-|Console Agent ↔ NetApp Console
+|Console Agent to NetApp Console
 |443
 |TCP
 |Outbound
 |HTTPS: connectivity to NetApp Console
 
-|Console Agent ↔ ONTAP
+|Console Agent to ONTAP
 |443
 |TCP
 |Outbound
 |HTTPS: ONTAP cluster discovery
 
-|AI Data Engine ↔ ONTAP (NFS)
+|Console Agent to AI Data Engine
+|80, 443, 8080, 9000
+|TCP
+|Bidirectional
+|Communication between Console Agent and AI Data Engine
+
+|AI Data Engine to ONTAP (NFS)
 |111, 2049
 |TCP/UDP
 |To storage
 |NFS data source access
 
-|AI Data Engine ↔ ONTAP (CIFS/SMB)
+|AI Data Engine to ONTAP (CIFS/SMB)
 |139, 445
 |TCP/UDP
 |To storage
 |CIFS/SMB data source access
 
-|AI Data Engine ↔ Active Directory
+|AI Data Engine to Active Directory
 |389, 636, 3268, 3269
 |TCP/UDP (389)
 |Outbound
 |LDAP/LDAPS: user authentication and CIFS scanning
+
+|===
+
+=== Outbound internet access
+
+For an online installation, the following endpoints must be reachable from the AI Data Engine host:
+
+[cols="2,2,1",options="header"]
+|===
+|Endpoint |Purpose |Scope
+
+|`api.console.netapp.com`
+|NetApp Console API
+|Both
+
+|`582244788873.dkr.ecr.us-east-1.amazonaws.com`
+|NetApp container registry (images and Helm charts)
+|Both
+
+|`get.k3s.io`
+|k3s download
+|Lite only
+
+|`get.helm.sh`
+|Helm download
+|Lite only
 
 |===
 
@@ -88,9 +120,17 @@ The following network connections must be open:
 
 === Operating system
 
-* Ubuntu or Red Hat Enterprise Linux (RHEL)
-+
-// RESEARCH NEEDED: Confirm exact supported distribution versions from AIDE Lite Installer System Prerequisites (DSENSE/660590800).
+[cols="1,2",options="header"]
+|===
+|OS |Supported versions
+
+|Ubuntu
+|22.04 LTS, 24.04 LTS (24.04 LTS recommended)
+
+|Red Hat Enterprise Linux (RHEL)
+|8.x, 9.x
+
+|===
 
 === Additional prerequisites
 
@@ -98,10 +138,9 @@ The following network connections must be open:
 
 == AIDE Enterprise requirements
 
-// RESEARCH NEEDED: Confirm RKE2 and Kubernetes version requirements from AIDE Enterprise Installer System Prerequisites (DSENSE/660622225).
-
-* RKE2 (Kubernetes version TBD or later)
+* RKE2 v1.36.x or later
 * A configured StorageClass available on the cluster
+* An NFS server with an exported path for the AIDE config volume
 * kubectl access with cluster-admin privileges on the machine from which you run the installer
 
 === Node sizing

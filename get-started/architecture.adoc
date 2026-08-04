@@ -13,7 +13,7 @@ AI Data Engine consists of a metadata catalog, a connectivity agent, and a polic
 
 == Components
 
-// RESEARCH NEEDED: Confirm customer-facing component names. Engineering docs refer to "Metadata Engine," "Console Agent," and "Policy Engine" — verify whether these names appear in the UI or if there are preferred customer-facing names.
+// RESEARCH NEEDED: Confirm customer-facing component names. Engineering docs refer to "Metadata Engine," "Console Agent," and "Policy Engine"; verify whether these names appear in the UI or if there are preferred customer-facing names.
 
 === Metadata Engine
 
@@ -47,7 +47,7 @@ AIDE Enterprise:: A Kubernetes-based deployment for larger environments requirin
 . Investigation lets you query the catalog directly with metadata filters.
 . Policies evaluate the catalog on an ongoing basis and trigger configured actions.
 
-// RESEARCH NEEDED: Confirm the scanning protocol details — is scanning done via NFS/CIFS or a different mechanism such as SnapDiff/CDC for incremental updates?
+// RESEARCH NEEDED: Confirm the scanning protocol details: is scanning done via NFS/CIFS or a different mechanism such as SnapDiff/CDC for incremental updates?
 
 == Related information
 

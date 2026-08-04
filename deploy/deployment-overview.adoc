@@ -71,7 +71,7 @@ AIDE Enterprise is available in Medium and Large configurations:
 
 Consider these factors when choosing a deployment mode:
 
-* *AIDE Lite*: recommended for evaluation, proof of concept, and small-to-mid-market production deployments. No Kubernetes expertise required — the installer provisions k3s automatically.
+* *AIDE Lite*: recommended for evaluation, proof of concept, and small-to-mid-market production deployments. No Kubernetes expertise is required; the installer provisions k3s automatically.
 * *AIDE Enterprise*: recommended for mid-market and enterprise production deployments that require high availability, scalability, or a customer-managed RKE2 cluster.
 
 == Related information
