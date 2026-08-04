@@ -47,4 +47,5 @@ If deployment succeeds but AI Data Engine cannot connect to NetApp Console:
 == Related information
 
 * link:requirements.html[Requirements]
-* link:deploy-aide.html[Deploy AI Data Engine]
+* link:deploy-aide-lite.html[Deploy AI Data Engine — Lite]
+* link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise]

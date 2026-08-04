@@ -1,0 +1,67 @@
+---
+sidebar: sidebar
+permalink: deploy/deploy-enterprise.html
+keywords: deploy, install, enterprise, wizard, NetApp Console, deployment wizard, kubernetes, RKE2
+summary: Deploy AIDE Enterprise from NetApp Console using the deployment wizard.
+---
+= Deploy AI Data Engine — Enterprise
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Deploy AIDE Enterprise from NetApp Console using the deployment wizard. The wizard guides you through selecting your installation location, choosing a configuration size, and running the install command against your RKE2 cluster.
+
+.Before you begin
+* Review link:requirements.html[requirements] and confirm your RKE2 cluster meets Enterprise node prerequisites.
+* kubectl must be available on the machine from which you run the install command, with cluster-admin access to the target cluster.
+* You must have Platform Admin permissions in NetApp Console.
+
+.Steps
+. In NetApp Console, navigate to *Governance* > *AI Data Engine*.
++
+The AI Data Engine landing page appears.
+
+. Click *Deploy NetApp AI Data Engine*.
++
+The deployment wizard opens with the header *AI Data Engine deployment*.
+
+. In Step 1, select your installation location:
++
+* *Cloud environment*: deploy in AWS, Azure, or Google Cloud.
+* *On premises*: install AI Data Engine on your on-premises RKE2 cluster.
+
+. Click *Next*.
+
+. In Step 2, select your configuration size:
++
+* *Medium*: recommended for environments with up to approximately 3 billion files.
+* *Large*: recommended for environments with up to approximately 6 billion files.
++
+// RESEARCH NEEDED: Confirm step numbering against current Figma.
+
+. Click *Next*.
+
+. In Step 3, copy the install command displayed in the wizard and run it from a host with kubectl access to your RKE2 cluster:
++
+[source,bash]
+----
+sudo ./install-enterprise.sh -a account-XXXXX -c <token>
+----
++
+// RESEARCH NEEDED: Confirm exact Enterprise install command format from engineering or UI.
++
+After the command runs, the wizard transitions automatically to the progress screen.
+
+. Monitor the progress screen while AI Data Engine completes the following steps:
+.. Deploying the AI Data Engine
+.. Verifying connectivity to NetApp Console and the Internet
+.. Initializing the AI Data Engine
+
+. When the success screen appears and displays *"AI Data Engine deployed,"* click *Continue to configuration*.
+
+.Result
+AI Data Engine Enterprise is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect an ONTAP cluster] to start scanning.
+
+If the installation fails, see link:troubleshoot-deploy.html[Troubleshoot deployment].
+
+To deploy AI Data Engine Lite instead, see link:deploy-aide-lite.html[Deploy AI Data Engine — Lite].

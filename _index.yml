@@ -18,8 +18,10 @@ indexpage:
           url: /deploy/deployment-overview.html
         - title: Requirements
           url: /deploy/requirements.html
-        - title: Deploy AI Data Engine
-          url: /deploy/deploy-aide.html
+        - title: Deploy AIDE Lite
+          url: /deploy/deploy-aide-lite.html
+        - title: Deploy AIDE Enterprise
+          url: /deploy/deploy-enterprise.html
         - title: Troubleshoot deployment
           url: /deploy/troubleshoot-deploy.html
     - title: Explore your data

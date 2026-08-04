@@ -1,15 +1,15 @@
 ---
 sidebar: sidebar
-permalink: deploy/deploy-aide.html
-keywords: deploy, install, wizard, NetApp Console, deployment wizard, onboarding
-summary: Deploy AI Data Engine from NetApp Console using a two-step deployment wizard.
+permalink: deploy/deploy-aide-lite.html
+keywords: deploy, install, lite, wizard, NetApp Console, deployment wizard, onboarding
+summary: Deploy AIDE Lite from NetApp Console using the deployment wizard.
 ---
-= Deploy AI Data Engine
+= Deploy AI Data Engine — Lite
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Deploy AI Data Engine from NetApp Console using a two-step wizard. The wizard guides you through selecting your installation type and running the install command on your target host.
+Deploy AIDE Lite from NetApp Console using the deployment wizard. The wizard guides you through selecting your installation location, choosing a configuration size, and running the install command on your target host.
 
 .Before you begin
 * Review link:requirements.html[requirements] and confirm your environment meets all prerequisites.
@@ -17,8 +17,6 @@ Deploy AI Data Engine from NetApp Console using a two-step wizard. The wizard gu
 
 .Steps
 . In NetApp Console, navigate to *Governance* > *AI Data Engine*.
-+
-// RESEARCH NEEDED: Confirm the exact navigation path. "Governance > AI Data Engine" is referenced in the Onboarding spec (OCIENG/626833135) but should be verified against the current Console UI.
 +
 The AI Data Engine landing page appears.
 
@@ -33,12 +31,24 @@ The deployment wizard opens with the header *AI Data Engine deployment*.
 
 . Click *Next*.
 
-. In Step 2, copy the install command displayed in the wizard and run it on your target host:
+. In Step 2, select your configuration size:
++
+* *Small*: recommended for environments with up to approximately 200 million files.
+* *Medium*: recommended for environments with up to approximately 1 billion files.
+* *Large*: recommended for environments with up to approximately 3 billion files.
++
+// RESEARCH NEEDED: Confirm step numbering against current Figma — size selection may be numbered differently in the wizard.
+
+. Click *Next*.
+
+. In Step 3, copy the install command displayed in the wizard and run it on your target host:
 +
 [source,bash]
 ----
 sudo ./install.sh -a account-XXXXX -c <token>
 ----
++
+// RESEARCH NEEDED: Confirm command format — engineering docs reference `./install-lite.sh --flavor <small|medium|large> --user-token <token>`.
 +
 After the command runs, the wizard transitions automatically to the progress screen.
 
@@ -53,3 +63,5 @@ After the command runs, the wizard transitions automatically to the progress scr
 AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect an ONTAP cluster] to start scanning.
 
 If the installation fails, see link:troubleshoot-deploy.html[Troubleshoot deployment].
+
+To deploy AI Data Engine Enterprise instead, see link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise].
