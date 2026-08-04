@@ -1,22 +1,20 @@
 ---
 sidebar: sidebar
 permalink: deploy/requirements.html
-keywords: requirements, prerequisites, networking, ports, vm, kubernetes, ONTAP, sizing
-summary: Review infrastructure, networking, and ONTAP requirements before deploying AI Data Engine.
+keywords: requirements, prerequisites, networking, ports, vm, kubernetes, sizing
+summary: Review infrastructure and networking requirements before deploying AI Data Engine.
 ---
-= Requirements
+= AI Data Engine requirements
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
 Review these requirements before deploying AI Data Engine.
 
-== ONTAP requirements
-
-// RESEARCH NEEDED: Confirm the minimum ONTAP version required. Not confirmed in available source material; check with engineering or the MIS PRD.
-
-* NetApp ONTAP [version TBD] or later
-* NFS or CIFS/SMB protocols enabled on volumes you want to scan
+// RESEARCH NEEDED: No minimum ONTAP version is confirmed for V2; ONTAP is a data source, not a deployment prerequisite.
+// == ONTAP requirements
+// * NetApp ONTAP [version TBD] or later
+// * NFS or CIFS/SMB protocols enabled on volumes you want to scan
 
 == Networking requirements
 

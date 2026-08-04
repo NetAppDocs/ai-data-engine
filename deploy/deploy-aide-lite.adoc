@@ -4,7 +4,7 @@ permalink: deploy/deploy-aide-lite.html
 keywords: deploy, install, lite, wizard, NetApp Console, deployment wizard, onboarding
 summary: Deploy AIDE Lite from NetApp Console using the deployment wizard.
 ---
-= Deploy AI Data Engine — Lite
+= Deploy AI Data Engine Lite
 :icons: font
 :imagesdir: ../media/
 
@@ -27,7 +27,8 @@ The deployment wizard opens with the header *AI Data Engine deployment*.
 
 . In Step 1, select your installation location:
 +
-* *Cloud environment*: deploy in AWS, Azure, or Google Cloud. The system prepares a virtual machine in your selected cloud environment.
+// RESEARCH NEEDED: Confirm whether the Cloud environment option (AWS, Azure, Google Cloud) exists in the V1 GA wizard.
+// * *Cloud environment*: deploy in AWS, Azure, or Google Cloud. The system prepares a virtual machine in your selected cloud environment.
 * *On premises*: install AI Data Engine on a local virtual machine in your on-premises environment.
 
 . Click *Next*.
@@ -67,7 +68,7 @@ After the command runs, the wizard transitions automatically to the progress scr
 . When the success screen appears and displays *"AI Data Engine deployed,"* click *Continue to configuration*.
 
 .Result
-AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect an ONTAP cluster] to start scanning.
+AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a storage system] to start scanning.
 
 If the installation fails, see link:troubleshoot-deploy.html[Troubleshoot deployment].
 

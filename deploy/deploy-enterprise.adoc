@@ -4,7 +4,7 @@ permalink: deploy/deploy-enterprise.html
 keywords: deploy, install, enterprise, wizard, NetApp Console, deployment wizard, kubernetes, RKE2
 summary: Deploy AIDE Enterprise from NetApp Console using the deployment wizard.
 ---
-= Deploy AI Data Engine — Enterprise
+= Deploy AI Data Engine Enterprise
 :icons: font
 :imagesdir: ../media/
 
@@ -29,7 +29,8 @@ The deployment wizard opens with the header *AI Data Engine deployment*.
 
 . In Step 1, select your installation location:
 +
-* *Cloud environment*: deploy in AWS, Azure, or Google Cloud.
+// RESEARCH NEEDED: Confirm whether the Cloud environment option (AWS, Azure, Google Cloud) exists in the V1 GA wizard.
+// * *Cloud environment*: deploy in AWS, Azure, or Google Cloud.
 * *On premises*: install AI Data Engine on your on-premises RKE2 cluster.
 
 . Click *Next*.
@@ -71,7 +72,7 @@ After the command runs, the wizard transitions automatically to the progress scr
 . When the success screen appears and displays *"AI Data Engine deployed,"* click *Continue to configuration*.
 
 .Result
-AI Data Engine Enterprise is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect an ONTAP cluster] to start scanning.
+AI Data Engine Enterprise is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a storage system] to start scanning.
 
 If the installation fails, see link:troubleshoot-deploy.html[Troubleshoot deployment].
 

@@ -9,11 +9,11 @@ summary: Learn about AI Data Engine and its Metadata Intelligence Service, which
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine is a metadata intelligence service that gives you visibility into the unstructured data stored on your NetApp systems. By scanning your ONTAP storage and cataloging file system metadata, AI Data Engine helps you identify storage optimization opportunities, investigate your data, and enforce governance policies, without moving or copying data.
+AI Data Engine is a metadata intelligence service that gives you visibility into the unstructured data stored on your NetApp systems. By scanning your storage systems and cataloging file system metadata, AI Data Engine helps you identify storage optimization opportunities, investigate your data, and enforce governance policies, without moving or copying data.
 
 == What AI Data Engine does
 
-AI Data Engine scans connected ONTAP clusters to extract file system metadata and builds a continuously updated catalog. From this catalog, you can:
+AI Data Engine scans connected storage systems to extract file system metadata and builds a continuously updated catalog. From this catalog, you can:
 
 * View storage optimization insights on a dashboard, including cold data, file type distribution, duplicate files, and potential space savings by volume
 * Investigate your data using flexible metadata filters to build targeted data populations
@@ -24,7 +24,7 @@ AI Data Engine scans connected ONTAP clusters to extract file system metadata an
 
 == The Metadata Intelligence Service
 
-The Metadata Intelligence Service (MIS) is the first capability set available in AI Data Engine. MIS is focused on storage optimization and data lifecycle management for unstructured file data stored on ONTAP.
+The Metadata Intelligence Service (MIS) is the first capability set available in AI Data Engine. MIS is focused on storage optimization and data lifecycle management for unstructured file data stored on your storage systems.
 
 // RESEARCH NEEDED: Confirm whether "Metadata Intelligence Service" or "MIS" appears in the customer-facing UI, or if it's used only internally. The content plan flags MIS as an internal name.
 
@@ -34,11 +34,11 @@ AI Data Engine is designed for the following users:
 
 * *Storage administrators* who need to identify and reclaim storage space, stale data, cold files, and duplicates, to reduce costs.
 * *Data stewards* who need to govern data quality and enforce lifecycle policies across the organization.
-* *IT operations teams* who need a central view of what unstructured data exists across their ONTAP environment.
+* *IT operations teams* who need a central view of what unstructured data exists across their storage environment.
 
 == Where AI Data Engine lives
 
-AI Data Engine is accessed through NetApp Console, under *Governance > AI Data Engine*. It deploys alongside your ONTAP environment and does not require you to move or copy data from your storage systems.
+AI Data Engine is accessed through NetApp Console, under *Governance > AI Data Engine*. It deploys as a standalone service on your on-premises infrastructure and does not require you to move or copy data from your storage systems.
 
 // RESEARCH NEEDED: Confirm the exact navigation path in NetApp Console. "Governance > AI Data Engine" is referenced in the Onboarding spec (OCIENG/626833135) but should be verified against the current UI.
 

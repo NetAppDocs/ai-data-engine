@@ -4,7 +4,7 @@ permalink: deploy/deployment-overview.html
 keywords: deployment, aide lite, aide enterprise, kubernetes, vm, deployment modes, sizing
 summary: AI Data Engine supports Lite mode for single-VM deployments and Enterprise mode for Kubernetes-based deployments.
 ---
-= Deployment overview
+= Learn about AI Data Engine deployment
 :icons: font
 :imagesdir: ../media/
 
@@ -13,7 +13,7 @@ AI Data Engine supports two deployment modes: AIDE Lite for a single-VM deployme
 
 == AIDE Lite
 
-AIDE Lite deploys as a single virtual machine in your cloud or on-premises environment. It is the recommended starting point for most deployments.
+AIDE Lite deploys as a single virtual machine in your on-premises environment. It is the recommended starting point for most deployments.
 
 AIDE Lite is available in three sizes:
 

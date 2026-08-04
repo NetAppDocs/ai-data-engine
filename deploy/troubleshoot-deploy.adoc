@@ -25,7 +25,7 @@ The wizard returns to the beginning of the install flow.
 . Before retrying, verify:
 +
 * Your environment meets all link:requirements.html[requirements].
-* All required network ports are open from the AI Data Engine host to NetApp Console and to your ONTAP cluster.
+* All required network ports are open from the AI Data Engine host to NetApp Console and to your data sources.
 * The target VM or Kubernetes cluster has sufficient resources.
 
 . If the issue persists after retrying, collect the installation log and contact NetApp support.
