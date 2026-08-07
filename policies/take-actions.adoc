@@ -18,7 +18,7 @@ The actions available to you depend on your assigned role:
 
 [cols="2,1,1,1",options="header"]
 |===
-|Action |Platform Admin |Storage Ops |Read-Only
+|Action |Organization admin |Storage Ops |Read-Only
 
 |Tag
 |TBD
@@ -42,7 +42,7 @@ The actions available to you depend on your assigned role:
 
 |===
 
-// RESEARCH NEEDED: Confirm Platform Admin permissions for all action types when the role is confirmed.
+// RESEARCH NEEDED: Confirm Organization admin permissions for all action types when the role is confirmed.
 
 For a full description of roles, see link:../administer/manage-users-roles.html[Manage users and roles].
 

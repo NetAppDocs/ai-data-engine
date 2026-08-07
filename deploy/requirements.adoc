@@ -88,6 +88,8 @@ For an online installation, the following endpoints must be reachable from the A
 
 |===
 
+Verify that DNS resolution for these endpoints is working from the AI Data Engine host before you begin deployment.
+
 == AIDE Lite requirements
 
 === VM sizing
