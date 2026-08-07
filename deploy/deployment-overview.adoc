@@ -13,7 +13,7 @@ AI Data Engine supports two deployment modes: AIDE Lite for a single-VM deployme
 
 == AIDE Lite
 
-AIDE Lite deploys as a single virtual machine in your on-premises environment. It is the recommended starting point for most deployments.
+AIDE Lite is a single-node deployment suitable for evaluation and small-to-mid-market workloads. It is the recommended starting point for most deployments.
 
 AIDE Lite is available in three sizes:
 
@@ -43,7 +43,7 @@ AIDE Lite is available in three sizes:
 
 == AIDE Enterprise
 
-AIDE Enterprise deploys on an RKE2 cluster that you provision and manage. It is designed for larger environments that require scalability and high availability.
+AIDE Enterprise deploys as a multi-node Kubernetes cluster on infrastructure you provision and manage. It is designed for environments that require high availability and enterprise-scale performance.
 
 AIDE Enterprise is available in Medium and Large configurations:
 
@@ -66,6 +66,10 @@ AIDE Enterprise is available in Medium and Large configurations:
 |6 billion
 
 |===
+
+== Deployment process
+
+NetApp Console does not provision the infrastructure for AI Data Engine. You prepare a Linux machine that meets the requirements, then run an installation command that bootstraps the Kubernetes runtime and deploys the AI Data Engine stack automatically. Deployment typically completes within 15 minutes.
 
 == Choosing a deployment mode
 

@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: get-started/learn-about.html
-keywords: ai data engine, aide, metadata intelligence service, MIS, overview, use cases, storage optimization, data governance
-summary: Learn about AI Data Engine and its Metadata Intelligence Service, which provides visibility into unstructured data stored on your NetApp systems.
+keywords: ai data engine, aide, overview, use cases, storage optimization, data governance
+summary: Learn about AI Data Engine, which provides visibility into unstructured data stored on your NetApp systems.
 ---
 = Learn about AI Data Engine
 :icons: font
@@ -20,13 +20,9 @@ AI Data Engine scans connected storage systems to extract file system metadata a
 * Create policies that save investigation criteria as reusable, automated rules
 * Take actions on data: tagging, archiving, deleting, or tiering files that match policy criteria
 
-// RESEARCH NEEDED: Confirm the scanning mechanism. Does the cloud-managed model use SnapDiff/CDC for incremental scans, or a different approach?
+== Storage optimization and data governance
 
-== The Metadata Intelligence Service
-
-The Metadata Intelligence Service (MIS) is the first capability set available in AI Data Engine. MIS is focused on storage optimization and data lifecycle management for unstructured file data stored on your storage systems.
-
-// RESEARCH NEEDED: Confirm whether "Metadata Intelligence Service" or "MIS" appears in the customer-facing UI, or if it's used only internally. The content plan flags MIS as an internal name.
+AI Data Engine is focused on storage optimization and data lifecycle management for unstructured file data stored on your storage systems.
 
 == Who uses AI Data Engine
 
@@ -38,7 +34,9 @@ AI Data Engine is designed for the following users:
 
 == Where AI Data Engine lives
 
-AI Data Engine is accessed through NetApp Console, under *Governance > AI Data Engine*. It deploys as a standalone service on your on-premises infrastructure and does not require you to move or copy data from your storage systems.
+AI Data Engine is accessed through NetApp Console, under *Governance > AI Data Engine*. You deploy it as a software instance on Linux infrastructure you manage, either a virtual machine in your cloud account or a machine in your on-premises environment. Two editions are available: *Lite* for single-node deployments and *Enterprise* for multi-node Kubernetes clusters.
+
+AI Data Engine scans your storage directly and does not transmit file content to NetApp. Your data never leaves your network.
 
 // RESEARCH NEEDED: Confirm the exact navigation path in NetApp Console. "Governance > AI Data Engine" is referenced in the Onboarding spec (OCIENG/626833135) but should be verified against the current UI.
 
