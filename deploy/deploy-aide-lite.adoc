@@ -48,4 +48,3 @@ The AI Data Engine landing page appears.
 .Result
 AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a storage system] to start scanning.
 
-To deploy AI Data Engine Enterprise instead, see link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise].

@@ -56,9 +56,9 @@ The following network connections must be open:
 
 |AI Data Engine to Active Directory
 |389, 636, 3268, 3269
-|TCP/UDP (389)
+|TCP/UDP
 |Outbound
-|LDAP/LDAPS: user authentication and CIFS scanning
+|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and CIFS/SMB scanning. Port 389 uses both TCP and UDP; all other ports use TCP only.
 
 |===
 
@@ -70,25 +70,53 @@ For an online installation, the following endpoints must be reachable from the A
 |===
 |Endpoint |Purpose |Scope
 
-|`api.console.netapp.com`
-|NetApp Console API
+|`https://api.console.netapp.com`
+|NetApp Console communication
 |Both
 
 |`582244788873.dkr.ecr.us-east-1.amazonaws.com`
 |NetApp container registry (images and Helm charts)
 |Both
 
-|`get.k3s.io`
-|k3s download
+|`https://netapp-cloud-account.auth0.com`
+|Centralized user authentication
+|Both
+
+|`https://auth0.com`
+|Authentication services
+|Both
+
+|`https://support.compliance.api.bluexp.netapp.com/`
+|Software images, manifests, and templates; logs and metrics streaming
+|Both
+
+|`https://dseasb33srnrn.cloudfront.net/`
+|CDN for software image distribution
+|Both
+
+|`http://packages.ubuntu.com/`
+|Ubuntu prerequisite packages
+|Lite only (Ubuntu)
+
+|`http://archive.ubuntu.com`
+|Ubuntu package archive
+|Lite only (Ubuntu)
+
+|`https://get.k3s.io`
+|k3s runtime download (installer-initiated)
 |Lite only
 
-|`get.helm.sh`
-|Helm download
+|`https://get.helm.sh`
+|Helm download (installer-initiated)
 |Lite only
 
 |===
 
 Verify that DNS resolution for these endpoints is working from the AI Data Engine host before you begin deployment.
+
+NOTE: These requirements apply to online installations only. For air-gapped
+deployments, see link:deploy-dark-site.html[Deploy AI Data Engine in a dark site].
+
 
 == AIDE Lite requirements
 
@@ -118,6 +146,8 @@ Verify that DNS resolution for these endpoints is working from the AI Data Engin
 
 |===
 
+NOTE: NVMe or SSD storage is recommended for all sizes. Minimum storage performance for Small is 8,000 IOPS and 1,000 MB/s throughput; requirements increase with deployment size.
+
 === Operating system
 
 [cols="1,2",options="header"]
@@ -135,25 +165,41 @@ Verify that DNS resolution for these endpoints is working from the AI Data Engin
 === Additional prerequisites
 
 * Root or sudo access on the target VM to run the installer
+* 1 GbE minimum network connection
+* bash 4.0 or later, curl, and tar available on the target host
 
 == AIDE Enterprise requirements
 
 * RKE2 v1.36.x or later
+* Helm 3.12 or later installed on the machine from which you run the installer
 * A configured StorageClass available on the cluster
 * An NFS server with an exported path for the AIDE config volume
 * kubectl access with cluster-admin privileges on the machine from which you run the installer
 
 === Node sizing
 
-[cols="1,1,1,1,1,1",options="header"]
+[cols="1,1,1,1,1,1,1,1,1",options="header"]
 |===
-|Size |Nodes |vCPU per node |RAM per node |Disk per node |Approximate files
+|Size |Nodes |vCPU per node |RAM per node |Disk per node |Storage IOPS per node |Storage throughput per node |Network per node |Approximate files
+
+|Small
+|3
+|16
+|64 GB
+|4 TB
+|8,000
+|1,000 MB/s
+|1 GbE
+|1 billion
 
 |Medium
 |6
 |48
 |192 GB
 |12 TB
+|12,000
+|1,500 MB/s
+|10 GbE
 |3 billion
 
 |Large
@@ -161,12 +207,17 @@ Verify that DNS resolution for these endpoints is working from the AI Data Engin
 |64
 |256 GB
 |24 TB
+|16,000
+|2,000 MB/s
+|10 GbE
 |6 billion
 
 |===
 
+NOTE: NVMe storage is required for all Enterprise node deployments.
+
 == Related information
 
-* link:deployment-overview.html[Deployment overview]
+* link:deployment-overview.html[AIDE deployment overview]
 * link:deploy-aide-lite.html[Deploy AI Data Engine — Lite]
 * link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise]
