@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: get-started/quick-start.html
 keywords: quick start, deploy, connect, investigate, policies
-summary: Get AI Data Engine up and running by deploying the service, connecting your ONTAP clusters, and starting your first investigation.
+summary: Get AI Data Engine up and running by deploying the service, connecting your storage systems, and starting your first investigation.
 ---
 = Quick start for AI Data Engine
 :icons: font
@@ -19,11 +19,11 @@ Review the link:../deploy/requirements.html[requirements] and decide whether to 
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Deploy AI Data Engine
 [role="quick-margin-para"]
-link:../deploy/deploy-aide.html[Run the deployment wizard] from NetApp Console. The wizard guides you through selecting your installation type and running the install command.
+link:../deploy/deploy-aide-lite.html[Run the deployment wizard] from NetApp Console. The wizard guides you through selecting your installation type and running the install command.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Connect an ONTAP cluster
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Connect a storage system
 [role="quick-margin-para"]
-link:../data-sources/connect-data-source.html[Connect your ONTAP cluster] to begin scanning. AI Data Engine catalogs file system metadata from the volumes you specify.
+link:../data-sources/connect-data-source.html[Connect a storage system] to begin scanning. AI Data Engine catalogs file system metadata from the volumes you specify.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Explore your data
 [role="quick-margin-para"]

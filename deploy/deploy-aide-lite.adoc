@@ -1,0 +1,50 @@
+---
+sidebar: sidebar
+permalink: deploy/deploy-aide-lite.html
+keywords: deploy, install, lite, wizard, NetApp Console, deployment wizard, onboarding
+summary: Deploy AIDE Lite from NetApp Console using the deployment wizard.
+---
+= Deploy AI Data Engine Lite
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Deploy AIDE Lite from NetApp Console using the deployment wizard. The wizard guides you through selecting your installation location, choosing a configuration size, and running the install command on your target host.
+
+.Before you begin
+* You must have _Organization admin_ or greater permissions in NetApp Console.
+* Review link:requirements.html[requirements] and confirm your environment meets all prerequisites.
+* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[must be deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
+
+.Steps
+. In NetApp Console, navigate to *Governance* > *AI Data Engine*.
++
+The AI Data Engine landing page appears.
+
+. Click *Deploy AI Data Engine*.
+. Read and accept terms and continue.
+. Select your configuration size:
++
+* *Small*: recommended for environments with up to approximately 200 million files.
+* *Medium*: recommended for environments with up to approximately 1 billion files.
+* *Large*: recommended for environments with up to approximately 3 billion files.
+
+. Copy the preconfigured install command displayed in the wizard and run it on your target host:
+// The install command shown here may require command-line customizations after the wizard behavior is confirmed.
+// [source,bash]
+// ----
+// sudo ./install-lite.sh \
+//   --flavor <small|medium|large> \
+//   --account-id <account-id> \
+//   --organization-id <organization-id> \
+//   --agent-id <agent-id> \
+//   --cm-host <console-agent-ip> \
+//   --user-token <token>
+// ----
+// RESEARCH NEEDED: Confirm this is the exact command format shown in the wizard UI.
+
+. Monitor the progress screen until the success screen appears and displays *"AI Data Engine deployed"*. Click *Continue to configuration*.
+
+.Result
+AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a storage system] to start scanning.
+

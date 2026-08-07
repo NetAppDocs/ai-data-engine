@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: release-notes/whats-new.html
-keywords: what's new, release notes, AI Data Engine, metadata intelligence service, storage optimization
+keywords: what's new, release notes, AI Data Engine, storage optimization
 summary: Learn about new capabilities in AI Data Engine.
 ---
 = What's new in AI Data Engine
@@ -11,13 +11,13 @@ summary: Learn about new capabilities in AI Data Engine.
 [.lead]
 Learn about new capabilities introduced in AI Data Engine.
 
-// RESEARCH NEEDED (LOW): Populate this topic with confirmed GA features when engineering finalizes the release scope. Reference the IE AI Data Engine dashboard (IE/pages/657523568) and the MIS PRD for the authoritative feature list. Target GA date is August 31, 2026.
+// RESEARCH NEEDED (LOW): Populate this topic with confirmed GA features when engineering finalizes the release scope. Reference the IE AI Data Engine dashboard (IE/pages/657523568) and the PRD for the authoritative feature list. Target GA date is August 31, 2026.
 
 == August 2026
 
-=== Metadata Intelligence Service
+=== Initial release
 
-This release introduces AI Data Engine with the Metadata Intelligence Service. AI Data Engine is a cloud-managed metadata intelligence service that scans your connected storage systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale.
+This release introduces AI Data Engine, a cloud-managed service that scans your connected storage systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale.
 
 New capabilities:
 
@@ -31,7 +31,7 @@ link:../policies/take-actions.html[Data lifecycle actions]:: Reclaim storage cap
 
 link:../administer/manage-users-roles.html[Role-based access control]:: Control who can investigate data and take actions by assigning roles to users in your organization. Available roles include Storage Ops and Read-Only.
 
-// RESEARCH NEEDED: Add any additional capabilities confirmed for the August 2026 GA. Update the roles entry when Platform Admin availability is confirmed. Remove or revise any item that does not ship.
+// RESEARCH NEEDED: Add any additional capabilities confirmed for the August 2026 GA. Update the roles entry when Organization admin availability is confirmed. Remove or revise any item that does not ship.
 
 == Related information
 

@@ -4,7 +4,7 @@ permalink: deploy/deployment-overview.html
 keywords: deployment, aide lite, aide enterprise, kubernetes, vm, deployment modes, sizing
 summary: AI Data Engine supports Lite mode for single-VM deployments and Enterprise mode for Kubernetes-based deployments.
 ---
-= Deployment overview
+= Learn about AI Data Engine deployment
 :icons: font
 :imagesdir: ../media/
 
@@ -13,52 +13,65 @@ AI Data Engine supports two deployment modes: AIDE Lite for a single-VM deployme
 
 == AIDE Lite
 
-AIDE Lite deploys as a single virtual machine in your cloud or on-premises environment. It is the recommended starting point for most deployments.
+AIDE Lite is a single-node deployment suitable for evaluation and small-to-mid-market workloads. It is the recommended starting point for most deployments.
 
-AIDE Lite is available in three sizes:
-
-[cols="1,1,1,1",options="header"]
-|===
-|Size |vCPU |RAM |Disk
-
-// RESEARCH NEEDED: Fill in exact VM sizing values for each Lite size from Deployment Customer Specs (DSENSE/636019699). Values were not available in search snippets.
-|Small
-|TBD
-|TBD
-|TBD
-
-|Medium
-|TBD
-|TBD
-|TBD
-
-|Large
-|TBD
-|TBD
-|TBD
-
-|===
+AIDE Lite is available in three sizes — Small, Medium, and Large — for environments up to approximately 200 million, 1 billion, and 3 billion files respectively. For full VM sizing and OS requirements, see link:requirements.html[Requirements].
 
 == AIDE Enterprise
 
-AIDE Enterprise deploys on a Kubernetes cluster. It is designed for larger environments that require scalability and high availability.
+AIDE Enterprise deploys as a multi-node Kubernetes cluster on infrastructure you provision and manage. It is designed for environments that require high availability and enterprise-scale performance.
 
-AIDE Enterprise is available in Medium and Large configurations.
+AIDE Enterprise is available in three sizes — Small, Medium, and Large — for environments up to approximately 1 billion, 3 billion, and 6 billion files respectively. For full node sizing and cluster requirements, see link:requirements.html[Requirements].
 
-NOTE: The AIDE Enterprise Small configuration is not available in this release.
+== Deployment process
 
-// RESEARCH NEEDED: Fill in K8s node sizing requirements (node count, CPU/memory per node) for Enterprise Medium and Large from Deployment Customer Specs (DSENSE/636019699).
+NetApp Console does not provision the infrastructure for AI Data Engine. You prepare a Linux machine that meets the requirements, then copy the pre-generated installation command from NetApp Console and run it on the target host. The command bootstraps the Kubernetes runtime and deploys the AI Data Engine stack automatically. Deployment typically completes within 15 minutes.
 
 == Choosing a deployment mode
 
-// RESEARCH NEEDED: Confirm official guidance on when to choose Lite vs. Enterprise. Is there a specific file count, scan rate threshold, or organizational requirement that drives this decision?
+[cols="1h,2,2",options="header"]
+|===
+| |AIDE Lite |AIDE Enterprise
 
-Consider these factors when choosing a deployment mode:
+|Best for
+|Evaluation, PoC, and small-to-mid-market production
+|Mid-market and enterprise production workloads
 
-* *AIDE Lite*: recommended if you are deploying for the first time or have a smaller ONTAP environment.
-* *AIDE Enterprise*: recommended if you require Kubernetes-native deployment, high availability, or plan to scan large data volumes at scale.
+|Deployment model
+|Single Linux VM
+|Multi-node Kubernetes cluster
+
+|High availability
+|No
+|Yes
+
+|Fault tolerance
+|No
+|Yes
+
+|Horizontal scaling
+|No
+|Yes
+
+|Rolling upgrades
+|No
+|Yes
+
+|Air-gapped install
+|Yes
+|Yes
+
+|Scan rate
+|Up to 50 million files/day
+|Up to 250 million files/day
+
+|===
+
+* *AIDE Lite*: No Kubernetes expertise is required. The installer provisions k3s automatically.
+* *AIDE Enterprise*: Requires a customer-provisioned and managed RKE2 cluster.
 
 == Related information
 
 * link:requirements.html[Requirements]
-* link:deploy-aide.html[Deploy AI Data Engine]
+* link:deploy-aide-lite.html[Deploy AI Data Engine — Lite]
+* link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise]

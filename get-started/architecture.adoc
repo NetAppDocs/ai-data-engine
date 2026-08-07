@@ -1,55 +1,59 @@
 ---
 sidebar: sidebar
 permalink: get-started/architecture.html
-keywords: architecture, components, metadata engine, console agent, policy engine, deployment, data flow
-summary: Learn about the components of AI Data Engine and how they work together to catalog metadata from your ONTAP systems.
+keywords: architecture, components, metadata engine, policy, deployment, data flow
+summary: Learn about the components of AI Data Engine and how they work together to catalog metadata from your storage systems.
 ---
 = AI Data Engine architecture
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine consists of a metadata catalog, a connectivity agent, and a policy engine. These components work together to extract metadata from your ONTAP clusters, catalog it, and execute policies against it.
+AI Data Engine consists of a Metadata Engine and a policy framework. These capabilities work together to extract metadata from your storage systems, catalog it in a searchable index, and let you define saved queries to identify and act on files that match specific criteria.
 
 == Components
 
-// RESEARCH NEEDED: Confirm customer-facing component names. Engineering docs refer to "Metadata Engine," "Console Agent," and "Policy Engine" — verify whether these names appear in the UI or if there are preferred customer-facing names.
+// RESEARCH NEEDED: Confirm with PM whether the architecture page should present named "components" or describe AIDE as a unified service with functional areas (Dashboard, Investigation, Policies, Configuration). The MDE PRD (July 22) frames customer interaction through those four functional areas rather than discrete named components.
 
 === Metadata Engine
 
-The Metadata Engine is the core catalog of AI Data Engine. It scans connected ONTAP clusters to extract file system metadata and stores that metadata in a searchable index. The catalog is updated continuously as files change on your storage systems.
+The Metadata Engine is the core capability of AI Data Engine. It scans connected storage systems to extract file system metadata and stores that metadata in a searchable catalog. The catalog is updated as files change on your storage systems.
 
-=== Console Agent
+=== Policies
 
-The Console Agent runs alongside your ONTAP environment and maintains the connection between AI Data Engine and NetApp Console. It handles authentication, connectivity verification, and communication with the Metadata Engine.
+Policies let you save a set of metadata search criteria. You can run a saved policy to identify files matching those criteria, then take action on the results, such as tagging, moving, or deleting files.
 
-=== Policy Engine
+// NOTE: Automated continuous policy evaluation and triggered actions are planned for a future release (V3 per MDE PRD, July 22). Do not describe policies as continuously running or automatically triggering actions in V1/V2.1 documentation.
 
-The Policy Engine evaluates saved policies against the metadata catalog. When a policy's criteria are matched, the Policy Engine triggers the configured action, such as tagging, archiving, or deleting files.
+=== NetApp Console Agent
+
+AI Data Engine requires a NetApp Console Agent deployed in your environment. The Console Agent is a general-purpose NetApp platform component that maintains connectivity between your on-premises environment and NetApp Console. It handles authentication and communication between your site and the AIDE service.
+
+NOTE: The Console Agent is not specific to AI Data Engine. If you already have a Console Agent deployed for other NetApp services, you can use the same agent. For Console Agent deployment instructions, refer to the link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html[NetApp Console Agent documentation].
 
 == Deployment models
 
 AI Data Engine supports two deployment models:
 
-AIDE Lite:: A single-VM deployment suitable for smaller environments. Available in Small, Medium, and Large configurations. AIDE Lite is the recommended starting point for most deployments.
+AIDE Lite:: A single-VM deployment suitable for smaller environments. Available in Small, Medium, and Large configurations based on the number of files to be cataloged. AIDE Lite is the recommended starting point for most deployments.
 
-AIDE Enterprise:: A Kubernetes-based deployment for larger environments requiring scalability and high availability. Available in Medium and Large configurations.
+AIDE Enterprise:: A Kubernetes-based multi-node cluster deployment for larger environments requiring high availability. Supports up to 1 billion files and up to 250 million files per day.
 
-// RESEARCH NEEDED: Confirm whether Elasticsearch is something customers need to be aware of as part of the architecture (it is the primary resource driver for Enterprise per the Deployment spec), or whether it is fully abstracted.
+link:../deploy/deployment-overview.html[Learn more about deployment options].
 
 == Data flow
 
-. AI Data Engine deploys in your cloud or on-premises environment.
-. You connect one or more ONTAP clusters as data sources.
-. The Metadata Engine scans the clusters via NFS and CIFS/SMB protocols to extract file metadata.
+. AI Data Engine deploys in your on-premises environment.
+. You connect one or more storage systems as data sources. Supported systems include NetApp ONTAP, StorageGRID, and any NAS or object storage system that exposes NFS, CIFS/SMB, or S3 protocols.
+. The Metadata Engine mounts shares using NFS and CIFS/SMB protocols and scans the file systems to extract file metadata.
 . Metadata is indexed in the catalog.
 . The dashboard surfaces storage insights from the catalog.
 . Investigation lets you query the catalog directly with metadata filters.
-. Policies evaluate the catalog on an ongoing basis and trigger configured actions.
+. You can save search criteria as policies and re-run them to identify and act on matching files.
 
-// RESEARCH NEEDED: Confirm the scanning protocol details — is scanning done via NFS/CIFS or a different mechanism such as SnapDiff/CDC for incremental updates?
+// RESEARCH NEEDED: Confirm the incremental update mechanism for V2. Baseline scanning via NFS/CIFS mounts is confirmed (K8S Deployment Plans, August 3; Deployment Guide, July 20). The mechanism for detecting changes between scans (rescan frequency, change detection method) is not explicitly described in post-pivot V2 sources reviewed to date.
 
 == Related information
 
 * link:learn-about.html[Learn about AI Data Engine]
-* link:../deploy/deployment-overview.html[Deployment overview]
+* link:../deploy/deployment-overview.html[Learn about AIDE deployment]

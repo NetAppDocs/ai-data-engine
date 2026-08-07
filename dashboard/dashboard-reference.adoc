@@ -59,7 +59,7 @@ A chart showing the proportion of active data compared to cold and stale data ac
 |Investigate
 |Opens the Investigation view filtered to the selected resource.
 
-|===
+|Duplicates
 |Opens Investigation filtered to files flagged as duplicates.
 
 |===

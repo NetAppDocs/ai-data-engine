@@ -1,11 +1,11 @@
 section: deploy
 title: Deploy
 entries:
-  - title: Deployment overview
+  - title: Learn about AIDE deployment
     url: /deploy/deployment-overview.html
-  - title: Requirements
+  - title: AIDE requirements
     url: /deploy/requirements.html
-  - title: Deploy AI Data Engine
-    url: /deploy/deploy-aide.html
-  - title: Troubleshoot deployment
-    url: /deploy/troubleshoot-deploy.html
+  - title: Deploy AIDE Lite
+    url: /deploy/deploy-aide-lite.html
+  - title: Deploy AIDE Enterprise
+    url: /deploy/deploy-enterprise.html

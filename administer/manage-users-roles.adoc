@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: administer/manage-users-roles.html
-keywords: RBAC, roles, users, permissions, platform admin, storage ops, read-only
+keywords: RBAC, roles, users, permissions, organization admin, storage ops, read-only
 summary: AI Data Engine uses role-based access control to manage what users can see and do. Learn about the available roles and their permissions.
 ---
 = Manage users and roles
@@ -11,7 +11,7 @@ summary: AI Data Engine uses role-based access control to manage what users can 
 [.lead]
 AI Data Engine uses role-based access control (RBAC) to define what each user can view and do. Assign roles to users based on their responsibilities within your organization.
 
-// RESEARCH NEEDED: Confirm where in the NetApp Console UI you manage AI Data Engine user roles — within AI Data Engine itself or through NetApp Console organization settings. Review any UI spec for AI Data Engine administration or settings pages.
+// RESEARCH NEEDED: Confirm where in the NetApp Console UI you manage AI Data Engine user roles: within AI Data Engine itself or through NetApp Console organization settings. Review any UI spec for AI Data Engine administration or settings pages.
 
 == Available roles
 
@@ -23,15 +23,15 @@ Designed for storage administrators who manage storage optimization. Storage Ops
 
 Can view dashboards only. Read-Only users cannot investigate, create policies, or take actions on data.
 
-=== Platform Admin
+=== Organization admin
 
-// RESEARCH NEEDED: Confirm whether Platform Admin is available as a distinct assignable role in this release. If confirmed, Platform Admin has full access to all AI Data Engine capabilities, including managing users, roles, and data resources.
+// RESEARCH NEEDED: Confirm whether Organization admin is available as a distinct assignable role in this release. If confirmed, Organization admin has full access to all AI Data Engine capabilities, including managing users, roles, and data resources.
 
 == Permissions by role
 
 [cols="2,1,1,1",options="header"]
 |===
-|Capability |Platform Admin |Storage Ops |Read-Only
+|Capability |Organization admin |Storage Ops |Read-Only
 
 |Manage users and roles
 |TBD
@@ -75,7 +75,7 @@ Can view dashboards only. Read-Only users cannot investigate, create policies, o
 
 |===
 
-// RESEARCH NEEDED: Fill in Platform Admin permissions when the role is confirmed. Storage Ops and Read-Only permissions are based on the RBAC spec (OCIENG/630079898).
+// RESEARCH NEEDED: Fill in Organization admin permissions when the role is confirmed. Storage Ops and Read-Only permissions are based on the RBAC spec (OCIENG/630079898).
 
 == Assign a role to a user
 

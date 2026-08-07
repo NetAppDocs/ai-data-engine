@@ -13,7 +13,7 @@ Known limitations identify functionality that is not supported in this release o
 
 // RESEARCH NEEDED (LOW): This topic has no dedicated source material. Gather known limitations from engineering, QA, or the release checklist. Contact the AIDE engineering team (CONTAP project, "Data Engine - MDE" component on ngage Jira) for a complete list.
 
-// RESEARCH NEEDED (LOW): Consider the following as candidates — confirm each with engineering before publishing:
+// RESEARCH NEEDED (LOW): Consider the following as candidates; confirm each with engineering before publishing:
 // - Supported ONTAP versions and version-specific limitations
 // - Maximum number of files scannable per cluster or across all clusters
 // - Maximum number of connected ONTAP clusters per AI Data Engine instance

@@ -9,7 +9,7 @@ summary: Connect your storage systems to start metadata scanning, monitor scan p
 :imagesdir: ../media/
 
 [.lead]
-Add storage systems and monitor their scan health to ensure AI Data Engine has current, accurate metadata from across your environment. For example, a platform administrator onboarding a new environment adds each storage system here and checks the health monitor to confirm scans complete without errors before the team starts investigating data.
+Add storage systems and monitor their scan health to ensure AI Data Engine has current, accurate metadata from across your environment. For example, an Organization admin onboarding a new environment adds each storage system here and checks the health monitor to confirm scans complete without errors before the team starts investigating data.
 
 == Navigate to Configuration
 
@@ -66,5 +66,5 @@ Click a system row to open the detail view. The detail view shows:
 
 == Related information
 
-* link:../deploy/deploy-aide.html[Deploy AI Data Engine]
+* link:../deploy/deploy-aide-lite.html[Deploy AI Data Engine — Lite]
 * link:../dashboard/understand-dashboard.html[Review the Overview page]
