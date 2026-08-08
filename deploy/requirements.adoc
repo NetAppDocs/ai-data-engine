@@ -216,8 +216,59 @@ NOTE: NVMe or SSD storage is recommended for all sizes. Minimum storage performa
 
 NOTE: NVMe storage is required for all Enterprise node deployments.
 
+== Dark site (Console Private Mode) requirements
+
+Dark site deployments do not require outbound internet access from the AI Data Engine host. All container images, Helm charts, and scripts are delivered through the Console Private Mode offline bundle.
+
+=== Networking
+
+The following connections must be open within the air-gapped environment. The outbound internet endpoints listed in the <<Outbound internet access>> table do not apply.
+
+[cols="2,1,1,1,2",options="header"]
+|===
+|Connection |Port |Protocol |Direction |Purpose
+
+|Console Agent to AI Data Engine
+|80, 443, 8080, 9000
+|TCP
+|Bidirectional
+|Communication between Console Agent and AI Data Engine
+
+|AI Data Engine to ONTAP (NFS)
+|111, 2049
+|TCP/UDP
+|To storage
+|NFS data source access
+
+|AI Data Engine to ONTAP (CIFS/SMB)
+|139, 445
+|TCP/UDP
+|To storage
+|CIFS/SMB data source access
+
+|AI Data Engine to Active Directory
+|389, 636, 3268, 3269
+|TCP/UDP
+|Outbound
+|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and CIFS/SMB scanning
+
+|AIDE Depot (in-cluster OCI registry)
+|31500
+|TCP
+|Intra-cluster
+|Kubelet on each node pulls container images from the in-cluster depot during and after installation
+
+|===
+
+// RESEARCH NEEDED: Confirm with Narasimha Reddy / Shailaja Kamila whether additional inter-node ports are required for the depot registry or catalog endpoint.
+
+=== Staging host
+
+An internet-connected staging host is required to download the offline bundle from the NetApp Support Site. The staging host does not need to be the AI Data Engine host or within the air-gapped network. Ensure the staging host has sufficient disk space for the bundle.
+
 == Related information
 
 * link:deployment-overview.html[AIDE deployment overview]
 * link:deploy-aide-lite.html[Deploy AI Data Engine — Lite]
 * link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise]
+* link:deploy-dark-site.html[Deploy AI Data Engine — Dark site / air-gapped]

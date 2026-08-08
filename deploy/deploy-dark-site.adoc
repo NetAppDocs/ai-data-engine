@@ -1,0 +1,120 @@
+---
+sidebar: sidebar
+permalink: deploy/deploy-dark-site.html
+keywords: deploy, install, dark site, air-gapped, private mode, offline, Console Private Mode, no internet
+summary: Deploy AI Data Engine in an air-gapped environment using the Console Private Mode offline bundle from the NetApp Support Site.
+---
+= Deploy AI Data Engine for dark sites
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Deploy AI Data Engine in a fully air-gapped environment using the Console Private Mode offline bundle from the NetApp Support Site. No outbound internet access is required from the AI Data Engine host after the bundle is transferred to your environment.
+
+Both AIDE Lite and AIDE Enterprise support dark site deployment. The bundle contains all container images, Helm charts, and installation scripts needed to complete the installation offline.
+
+.Before you begin
+
+Prerequisites differ between AIDE Lite and AIDE Enterprise:
+
+[cols="1h,2,2",options="header"]
+|===
+| |AIDE Lite |AIDE Enterprise
+
+|Infrastructure
+|Single Linux VM meeting link:requirements.html#aide-lite-requirements[Lite sizing requirements]. The installer bootstraps k3s automatically.
+|Customer-provisioned RKE2 v1.36.x or later cluster meeting link:requirements.html#aide-enterprise-requirements[Enterprise node requirements]. The cluster must be running before you begin.
+
+|Access
+|Root or sudo access on the target VM
+|`kubectl` with `cluster-admin` privileges; Helm 3.12 or later on the install host
+
+|Registry
+|No external registry required. The installer deploys an in-cluster depot that serves images from the bundle.
+|No external registry required. The depot Helm chart provides an in-cluster OCI registry seeded from the bundle.
+
+|===
+
+The following apply to all dark site deployments:
+
+* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[must be deployed^] in Console Private Mode and reachable from the AI Data Engine host or cluster nodes.
+* _Organization admin_ or greater permissions in NetApp Console.
+* An internet-connected staging host to download the bundle. This host does not need to be the AI Data Engine host.
+* Sufficient staging disk space for the offline bundle.
+* Review link:requirements.html[Requirements] and confirm your environment meets all sizing and networking prerequisites for dark site deployments.
+
+// RESEARCH NEEDED: Confirm with DJ whether any Console UI steps (token retrieval, instance registration) are required before or after the CLI installation. This is the highest-priority open question for this page.
+
+.Steps
+
+. On an internet-connected staging host, go to the https://mysupport.netapp.com[NetApp Support Site^] and download the Console Private Mode bundle for your release.
++
+The bundle file is named `aide-darksite-bundle-<release>.tar.gz`. It is published as part of the Console Private Mode quarterly drop, five days before the GA release date.
+
+. Verify the bundle integrity using the checksum file included in the download:
++
+[source,bash]
+----
+sha256sum -c aide-darksite-bundle-<release>.tar.gz.sha256
+----
+
+. Transfer the bundle to your air-gapped environment using USB media, SCP over a jump host, or your organization's preferred secure transfer method.
+
+. On the target host (Lite) or install host with `kubectl` access (Enterprise), extract the bundle:
++
+[source,bash]
+----
+tar -xzf aide-darksite-bundle-<release>.tar.gz
+cd aide-darksite-bundle-<release>
+----
++
+Confirm that the extracted bundle includes a `charts/` directory and a `content/` directory.
+
+. Install the depot chart. The depot is an in-cluster OCI registry that serves all required container images and Helm charts during and after installation:
++
+[source,bash]
+----
+helm install aide-darksite-depot charts/aide-darksite-depot-<v>.tgz \
+  --namespace aide --create-namespace
+----
+
+. Install the AIDE operator and point it to the in-cluster depot:
++
+[source,bash]
+----
+./install-operator.sh --chart-repo oci://aide-depot.aide.svc:5000/charts
+----
+// RESEARCH NEEDED: Confirm exact script name, default namespace, and whether --cm-host or additional flags are required for dark site mode.
+
+. Monitor the operator pod until it reports `Running`:
++
+[source,bash]
+----
+kubectl -n aide get pods -w
+----
+
+. Apply the `AIDEComponent` and `AIDEServices` custom resources to deploy the AIDE stack:
++
+[source,bash]
+----
+kubectl apply -f config/aide-components.yaml
+kubectl apply -f config/aide-services.yaml
+----
+// RESEARCH NEEDED: Confirm whether these CRs ship pre-populated in the bundle or require values substitution before applying.
+
+. Monitor deployment progress until all components report `Deployed=True`:
++
+[source,bash]
+----
+kubectl -n aide get aidecomponent,aideservices
+----
+
+.Result
+AI Data Engine is deployed in your air-gapped environment and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a storage system] to start scanning.
+
+== Related information
+
+* link:requirements.html[AIDE deployment requirements]
+* link:deployment-overview.html[AIDE deployment overview]
+* link:deploy-aide-lite.html[Deploy AIDE — Lite]
+* link:deploy-enterprise.html[Deploy AIDE — Enterprise]

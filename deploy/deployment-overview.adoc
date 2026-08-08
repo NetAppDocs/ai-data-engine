@@ -70,8 +70,15 @@ NetApp Console does not provision the infrastructure for AI Data Engine. You pre
 * *AIDE Lite*: No Kubernetes expertise is required. The installer provisions k3s automatically.
 * *AIDE Enterprise*: Requires a customer-provisioned and managed RKE2 cluster.
 
+== Dark site deployment
+
+Both AIDE Lite and AIDE Enterprise support dark site (air-gapped) deployment through the Console Private Mode offline bundle. In a dark site deployment, no outbound internet access is required from the AI Data Engine host. You download the bundle from the NetApp Support Site on an internet-connected staging host, then transfer it to your air-gapped environment.
+
+For steps, see link:deploy-dark-site.html[Deploy AI Data Engine — Dark sites].
+
 == Related information
 
 * link:requirements.html[Requirements]
 * link:deploy-aide-lite.html[Deploy AI Data Engine — Lite]
 * link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise]
+* link:deploy-dark-site.html[Deploy AI Data Engine — Dark sites]
