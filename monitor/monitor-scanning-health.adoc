@@ -68,5 +68,5 @@ If you migrate from a Lite to an Enterprise deployment, verify the following bef
 == Related information
 
 * link:../data-sources/connect-data-source.html[Configure and manage scanned systems]
-* link:../dashboard/understand-dashboard.html[Review the Overview page]
+* link:../investigate/understand-dashboard.html[Review the Overview page]
 * link:../investigate/investigate-data.html[Investigate your data]

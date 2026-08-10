@@ -17,7 +17,6 @@ sidebar:
   - section: data-sources
   - title: Use AIDE
     entries:
-    - section: dashboard
     - section: investigate
     - section: policies
     - section: administer

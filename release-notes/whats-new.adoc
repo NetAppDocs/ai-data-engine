@@ -21,7 +21,7 @@ This release introduces AI Data Engine, a cloud-managed service that scans your 
 
 New capabilities:
 
-link:../dashboard/understand-dashboard.html[Storage health overview]:: Quickly assess how much storage across your connected systems is cold, stale, or reclaimable and identify which systems offer the best opportunities to recover capacity.
+link:../investigate/understand-dashboard.html[Storage health overview]:: Quickly assess how much storage across your connected systems is cold, stale, or reclaimable and identify which systems offer the best opportunities to recover capacity.
 
 link:../investigate/investigate-data.html[Metadata investigation]:: Find files consuming unnecessary storage by filtering across all connected systems by access time, modification date, creation date, and file size. Act on results directly or save criteria as a policy.
 

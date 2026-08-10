@@ -135,4 +135,4 @@ Save your current filter set as a policy to reuse it or automate actions on matc
 * link:storage-optimization-workflows.html[Storage optimization workflows]
 * link:../policies/create-policy.html[Create a policy]
 * link:../policies/take-actions.html[Take action with your data]
-* link:../dashboard/understand-dashboard.html[Review the Overview page]
+* link:understand-dashboard.html[Review the Overview page]
