@@ -5,3 +5,5 @@ entries:
     url: /investigate/investigate-data.html
   - title: Work with filters
     url: /investigate/use-filters.html
+  - title: Storage optimization workflows
+    url: /investigate/storage-optimization-workflows.html

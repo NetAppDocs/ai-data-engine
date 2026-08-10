@@ -1,0 +1,72 @@
+---
+sidebar: sidebar
+permalink: monitor/monitor-scanning-health.html
+keywords: scan health, scanning, health monitor, coverage, dark site, migration, GA
+summary: Confirm that scanning is working and that your investigation findings reflect current data.
+---
+= Monitor scanning health in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Before you act on a dashboard or investigation finding, confirm that the underlying data is current. Use this topic to verify that scanning is working and that your findings reflect up-to-date data.
+
+== Verify scan status and coverage
+
+Confirm that all your storage systems are connected and being scanned. The steps differ depending on your deployment type.
+
+[role="tabbed-block"]
+====
+.Lite
+--
+On a single-node (Lite) deployment, confirm that all your storage systems are connected and being scanned.
+
+.Steps
+. From the AI Data Engine left navigation, click *Configuration*.
+. On the Scanned systems tab, confirm that every storage system you expect to see is listed and enabled for scanning.
+. Click a system row to review its scan progress and any errors. See link:../data-sources/connect-data-source.html[Configure and manage scanned systems] for the full detail view.
+--
+
+.Enterprise
+--
+On a multi-node (Enterprise) deployment, scan health is tracked per node in addition to per system.
+
+.Steps
+. From the AI Data Engine left navigation, click *Configuration*.
+. Review the total node count and the status of each node.
+. Identify which node, if any, is reporting errors or falling behind on scan coverage, and address that node before trusting findings that depend on it.
+
+// RESEARCH NEEDED: Confirm whether per-node health detail is exposed on a dedicated Health Monitor page or within the existing Configuration/Scanned systems view. This topic assumes GA-visible behavior only; do not document expanded M1 health monitoring capabilities.
+--
+====
+
+== Validate that investigation findings reflect current data
+
+If the dashboard shows a large amount of cold or stale data, confirm the number is current before you act on it.
+
+* Check the last-scanned time for each storage system contributing to the finding. A system that hasn't scanned recently may under- or over-report reclaimable storage.
+* Confirm scan coverage is complete for that system — a partial scan (paused, in progress, or with errors) means some data hasn't been evaluated yet.
+* If coverage looks incomplete, wait for the next scan cycle or resolve the underlying error before acting on the finding.
+
+== Dark site considerations
+
+Scanning health monitoring works the same way in air-gapped (dark site) deployments as in connected deployments, with these differences:
+
+* No telemetry is sent externally. Health monitoring is fully local to your deployment.
+* Software and content updates are installed manually as a quarterly bundle, rather than continuously, so scan behavior may lag behind the latest release until the next bundle is applied.
+
+== After a Lite-to-Enterprise migration
+
+// RESEARCH NEEDED: Lite-to-Enterprise migration support for this release is unconfirmed; verify with engineering before publishing this section.
+
+If you migrate from a Lite to an Enterprise deployment, verify the following before relying on your usual workflows:
+
+* All previously connected storage systems appear in Configuration and are enabled for scanning.
+* Existing policies are active and show expected matching file counts.
+* A full rescan completes successfully. Catalog data is not carried over during migration, so findings only reflect current data after this rescan.
+
+== Related information
+
+* link:../data-sources/connect-data-source.html[Configure and manage scanned systems]
+* link:../dashboard/understand-dashboard.html[Review the Overview page]
+* link:../investigate/investigate-data.html[Investigate your data]

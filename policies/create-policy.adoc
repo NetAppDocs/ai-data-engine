@@ -17,6 +17,16 @@ Policies save the filter criteria you define in Investigation as a reusable rule
 
 // RESEARCH NEEDED: Confirm the policy execution model for V1. Are policies triggered on a schedule, on demand only, or on a continuous/near-real-time basis as the metadata catalog is updated? This significantly affects how policy behavior should be described.
 
+== Choose a policy action
+
+A policy is a saved filter set with an optional action attached:
+
+* *No action (monitor only)*: Track the matching population over time without acting. Use this when you want visibility before you automate a response.
+* *Email notification*: Notify a user by email when the matching file count changes.
+* *Tag, Archive, or Delete*: AI Data Engine automatically applies the action to files that match the policy criteria.
+
+// RESEARCH NEEDED: The Confluence content plan for this release states V1 policy actions are restricted to No action, Delete, and Email notification only, with automated Tag/Archive execution deferred to a later release. This conflicts with the Tag/Archive/Delete/Email action set currently reflected here. Confirm the correct V1 action set with engineering before publishing.
+
 == Create a policy from Investigation
 
 .Before you begin

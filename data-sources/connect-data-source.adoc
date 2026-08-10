@@ -47,3 +47,4 @@ Click a system row to open the detail view. The detail view shows:
 
 * link:../deploy/deploy-aide-lite.html[Deploy AI Data Engine — Lite]
 * link:../dashboard/understand-dashboard.html[Review the Overview page]
+* link:../monitor/monitor-scanning-health.html[Monitor scanning health]
