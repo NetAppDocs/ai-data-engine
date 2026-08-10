@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: data-sources/connect-data-source.html
-keywords: connect, data source, storage system, scanned systems, health monitor, configuration, scan, NFS, CIFS
+keywords: connect, data source, storage system, scanned systems, health monitor, configuration, scan, NFS, CIFS, console agent, discovery
 summary: Connect your storage systems to start metadata scanning, monitor scan progress, and resolve errors that affect data visibility.
 ---
 = Configure and manage scanned systems
@@ -9,50 +9,29 @@ summary: Connect your storage systems to start metadata scanning, monitor scan p
 :imagesdir: ../media/
 
 [.lead]
-Add storage systems and monitor their scan health to ensure AI Data Engine has current, accurate metadata from across your environment. For example, an Organization admin onboarding a new environment adds each storage system here and checks the health monitor to confirm scans complete without errors before the team starts investigating data.
+Add storage systems to AI Data Engine and review their scan status to ensure accurate, current metadata across your environment. For example, a storage administrator connecting a new storage system adds it here, then checks scan status to confirm volumes are being indexed before the team starts investigating data.
 
-== Navigate to Configuration
+.Before you begin
 
-From the AI Data Engine left navigation, click *Configuration*.
-
-The Configuration page has three tabs: *Scanned systems*, *Health monitor*, and *Settings*.
-
-== Scanned systems tab
-
-The Scanned systems tab is the default view. The summary panel at the top shows:
-
-[cols="1,2",options="header"]
-|===
-|Metric |Description
-
-|Systems
-|Total number of connected storage systems.
-
-|Scanned storage resources
-|Resources scanned out of the total available (for example, 214 / 360).
-
-|Scans completed
-|Count of storage resources with successfully completed scans.
-
-|Scanning
-|Count of storage resources currently being scanned.
-
-|With errors
-|Count of systems with scan errors.
-
-|===
-
-Use the filter bar to narrow the system list by *System type*, *Has errors*, or *Scanning status*.
-
-The systems list displays each connected system with its name and type, scan status indicators (success and error counts), Console agent assignment, and any storage events or alerts.
+* For the storage system to be accessible to AIDE, it must first be discovered in NetApp Console using a Console Agent. For on-premises ONTAP clusters, see link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery does not enable data services such as AI Data Engine.
 
 == Add a storage system
 
 .Steps
+. From the AI Data Engine UI, click *Configuration*.
 . On the Scanned systems tab, click *Add system*.
 . Follow the prompts to connect your storage system.
 
 // RESEARCH NEEDED: Document the full Add system wizard steps when confirmed from engineering or updated Figma flows.
+
+== Activate scanning on a storage system
+
+After a storage system is added, scanning is not enabled automatically. You activate scans per system.
+
+.Steps
+. From the AI Data Engine UI, click *Configuration*.
+. On the Scanned systems tab, locate the storage system you want to enable for scanning.
+. Click *Activate scans*.
 
 == View system details
 

@@ -15,6 +15,8 @@ Use the Overview to quickly assess storage health across your entire environment
 
 From the AI Data Engine left navigation, click *Overview*.
 
+The *System* and *System type* filters at the top of the page control dashboard scope. These filters reflect storage systems that have been registered through the Console Agent and enabled for scanning. If a storage system does not appear in the filter list, see link:../data-sources/connect-data-source.html[Configure and manage scanned systems].
+
 == Summary panel
 
 The summary panel at the top of the page provides workspace-level metrics:
@@ -77,3 +79,4 @@ Click *Investigate* in any row to open the link:../investigate/investigate-data.
 
 * link:dashboard-reference.html[Dashboard reference]
 * link:../investigate/investigate-data.html[Investigate your data]
+* link:../data-sources/connect-data-source.html[Configure and manage scanned systems]
