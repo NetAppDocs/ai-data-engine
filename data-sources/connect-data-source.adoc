@@ -4,7 +4,7 @@ permalink: data-sources/connect-data-source.html
 keywords: connect, data source, storage system, scanned systems, health monitor, configuration, scan, NFS, CIFS, console agent, discovery
 summary: Connect your storage systems to start metadata scanning, monitor scan progress, and resolve errors that affect data visibility.
 ---
-= Configure and manage scanned systems
+= Configure and manage scanned systems in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 

@@ -4,7 +4,7 @@ permalink: dashboard/understand-dashboard.html
 keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage growth, investigate
 summary: Get a quick read on how much storage is cold or stale, how fast storage is growing, and which systems offer the best reclaimation opportunities.
 ---
-= Review the Overview page
+= Learn about the AI Data Engine dashboard
 :icons: font
 :imagesdir: ../media/
 

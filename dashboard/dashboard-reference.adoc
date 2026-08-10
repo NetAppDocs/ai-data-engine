@@ -4,7 +4,7 @@ permalink: dashboard/dashboard-reference.html
 keywords: dashboard reference, overview, summary panel, reclaimable storage, cold data, stale data, storage growth
 summary: Reference descriptions for each metric and section on the AI Data Engine Overview page.
 ---
-= Dashboard reference
+= AI Data Engine dashboard metrics
 :icons: font
 :imagesdir: ../media/
 

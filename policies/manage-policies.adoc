@@ -4,7 +4,7 @@ permalink: policies/manage-policies.html
 keywords: manage policies, view policies, edit policy, enable policy, disable policy, delete policy
 summary: Review your saved policies to see which files currently match each criteria set, and remove policies you no longer need.
 ---
-= Manage policies
+= Manage policies in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 

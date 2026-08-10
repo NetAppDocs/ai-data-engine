@@ -4,7 +4,7 @@ permalink: policies/create-policy.html
 keywords: create policy, save query, policy, filters, actions, automation
 summary: Save investigation filter criteria as a named policy so you can track the same data population over time and get notified when conditions change.
 ---
-= Create a policy
+= Create a policy in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 

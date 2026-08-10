@@ -4,7 +4,7 @@ permalink: policies/take-actions.html
 keywords: actions, tag, archive, copy, delete, data lifecycle, storage optimization, breadcrumb
 summary: Act on files you have identified as cold, stale, or obsolete by archiving them to reclaim space, copying critical data to a new destination, tagging items for tracking, or permanently deleting what you no longer need.
 ---
-= Take action with your data
+= Take action on your data in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
