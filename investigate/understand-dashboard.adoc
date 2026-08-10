@@ -13,7 +13,7 @@ Before you investigate individual files, use the Overview page to see how much o
 
 For example, a storage administrator responding to a capacity alert can see that a significant portion of scanned storage is cold data, then drill into the highest-impact system to start investigating immediately.
 
-From the AI Data Engine UI, select *Overview*. The *System* and *System type* filters at the top of the page control dashboard scope, reflecting storage systems that have been registered through the Console Agent and enabled for scanning. If a storage system does not appear in the filter list, see link:../data-sources/connect-data-source.html[Configure and manage scanned systems].
+From the AI Data Engine UI, select *Overview*. The *System* and *System type* filters control dashboard scope, reflecting storage systems that have been registered through the Console Agent and enabled for scanning. If a storage system does not appear in the filter list, see link:../data-sources/connect-data-source.html[Configure and manage scanned systems].
 
 == What the dashboard tells you
 
@@ -21,7 +21,7 @@ The Overview page shows how much storage exists across your environment, how muc
 
 == Summary panel
 
-The summary panel at the top of the page provides workspace-level metrics:
+The summary panel provides workspace-level metrics:
 
 * Total count of storage resources scanned across all connected systems.
 * Average daily storage growth across scanned resources (for example, 94 GiB/day).
@@ -38,8 +38,8 @@ The *Active versus reclaimable storage* chart shows the proportion of active dat
 Use the summary panel and chart to prioritize storage optimization opportunities:
 
 * Start with the resource that has the largest reclaimable size, not the largest total size. A small system that is mostly cold data is often a better first target than a large system that is mostly active.
-* Look for clusters of waste rather than isolated files. Tens of terabytes of stale data on one resource justifies an investigation; a single stale file does not.
-* Compare storage growth rate against reclaimable storage. A system with high growth and low reclaimable storage indicates active demand, not waste, and is a lower cleanup priority.
+* Look for large concentrations of cold or stale data rather than isolated files. Tens of terabytes of stale data on one resource justifies an investigation; a single stale file does not.
+* Compare storage growth rate against reclaimable storage. A system with high growth and low reclaimable storage indicates active demand rather than reclaimable storage, and is a lower optimization priority.
 
 == Drill down from a dashboard finding into investigation
 
@@ -49,7 +49,7 @@ This table lists your scanned storage resources ranked by reclaimable storage. C
 
 == Refresh and explore further
 
-* Click *Refresh* to update the page with the latest scan data. The last-updated timestamp displays below the page header.
+* Click *Refresh* to update the page with the latest scan data. The last-updated timestamp appears on the page.
 * Click *Explore cost optimization recommendations* to view additional recommendations based on your scan data.
 
 // RESEARCH NEEDED: Confirm whether the Explore cost optimization recommendations link is available in the V1 UI. If not, remove this bullet from the published topic.

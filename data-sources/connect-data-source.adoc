@@ -45,5 +45,5 @@ Click a system row to open the detail view. The detail view shows:
 
 == Related information
 
-* link:../investigate/understand-dashboard.html[Review the Overview page]
+* link:../investigate/understand-dashboard.html[Understand the dashboard]
 * link:../monitor/monitor-scanning-health.html[Monitor scanning health]

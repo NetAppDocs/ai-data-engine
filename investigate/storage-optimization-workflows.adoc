@@ -2,25 +2,25 @@
 sidebar: sidebar
 permalink: investigate/storage-optimization-workflows.html
 keywords: storage optimization, cold data, stale data, retention, workflow, dashboard, investigate, policy
-summary: End-to-end flows for taking a dashboard finding through investigation, action, and ongoing policy monitoring.
+summary: Use end-to-end flows for taking a dashboard finding through investigation, action, and ongoing policy monitoring.
 ---
-= Storage optimization workflows in AI Data Engine
+= Use storage optimization workflows with AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-These workflows walk through complete scenarios, from noticing a problem on the dashboard to resolving it and keeping it monitored going forward. Each one follows the same path: dashboard, investigate, act, then save as a policy.
+These workflows walk through complete example scenarios, from noticing a problem on the dashboard to resolving it and keeping it monitored going forward. Each one follows the same path: dashboard, investigate, act, then save as a policy.
 
 == Identify and reclaim cold data
 
 .Scenario
-You notice on the Overview page that a storage resource has a large amount of reclaimable storage, most of it flagged as cold. Cold data has not been accessed in one or more years, and this threshold is not configurable in this release.
+You notice on the Overview page that a storage resource has a large amount of reclaimable storage, most of it flagged as cold. Cold files have not been accessed in one or more years.
 
 .Steps
-. From link:understand-dashboard.html[the dashboard], identify the resource with the highest reclaimable size and click *Investigate*.
-. In link:investigate-data.html[Investigation], confirm the population using the *Last accessed* filter set to *365+ days*.
+. From link:understand-dashboard.html[the dashboard], identify the resource with the highest reclaimable size and select *Investigate*.
+. In link:investigate-data.html[Investigation], confirm the resources using the *Last accessed* filter set to *365+ days*.
 . Review the results to decide link:../policies/take-actions.html[whether to tag, archive, or delete] the matching files.
-. If this population is worth monitoring on an ongoing basis, link:../policies/create-policy.html[save the filter set as a policy] so you are notified as new files go cold.
+. If these resources are worth monitoring on an ongoing basis, link:../policies/create-policy.html[save the filter set as a policy] so you are notified as new files go cold.
 
 == Identify and manage stale data
 
@@ -31,7 +31,7 @@ Files that are still occasionally accessed but haven't been modified in years ca
 . From link:understand-dashboard.html[the dashboard], identify a resource with significant stale data.
 . In link:investigate-data.html[Investigation], apply the *Last modified* filter set to your stale threshold (default *3+ years*).
 . Review the results to decide link:../policies/take-actions.html[whether to tag, archive, or delete] the matching files.
-. link:../policies/create-policy.html[Save the filter set as a policy] to track this population across future scans.
+. link:../policies/create-policy.html[Save the filter set as a policy] to track these resources across future scans.
 
 == Manage data retention compliance
 
@@ -41,11 +41,11 @@ Your organization requires that files older than a certain age are reviewed for 
 .Steps
 . In link:investigate-data.html[Investigation], apply the *Last created* filter set to your retention threshold (default *7+ years*).
 . Review the results with the relevant stakeholders before acting. Retention-flagged files are often monitored rather than automatically deleted.
-. link:../policies/create-policy.html[Create a policy] with a monitor-only or email notification action so you are alerted as new files meet the retention threshold, rather than acting on this population once.
+. link:../policies/create-policy.html[Create a policy] with a monitor-only or email notification action so you are alerted as new files meet the retention threshold, rather than acting on these resources once.
 
 == Related information
 
-* link:understand-dashboard.html[Review the Overview page]
+* link:understand-dashboard.html[Understand the dashboard]
 * link:investigate-data.html[Investigate your data]
 * link:../policies/take-actions.html[Take action with your data]
 * link:../policies/create-policy.html[Create a policy]

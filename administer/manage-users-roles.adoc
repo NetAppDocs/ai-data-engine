@@ -27,7 +27,7 @@ Can view dashboards only. Read-Only users cannot investigate, create policies, o
 
 === Organization admin
 
-// RESEARCH NEEDED: Confirm whether Organization admin is available as a distinct assignable role in this release. If confirmed, Organization admin has full access to all AI Data Engine capabilities, including managing users, roles, and data resources.
+// RESEARCH NEEDED: Confirm whether Organization admin is available as a distinct assignable role in this release. If confirmed, Organization admin has full access to all AI Data Engine capabilities, including managing users, roles, and data grouping.
 
 == Permissions by role
 

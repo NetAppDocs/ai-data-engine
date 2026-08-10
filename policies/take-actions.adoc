@@ -21,17 +21,17 @@ The actions available to you depend on your assigned role:
 |Action |Organization admin |Storage Ops |Read-Only
 
 |Tag
-|TBD
+|Yes
 |Yes
 |-
 
 |Archive
-|TBD
+|Yes
 |Yes
 |-
 
 |Delete
-|TBD
+|Yes
 |Yes
 |-
 
@@ -67,7 +67,7 @@ If you're not sure, tag or archive instead of deleting. Tagging and archiving ke
 Archiving moves files to a cold storage destination over NFS or CIFS. You can optionally leave a breadcrumb file at the original location.
 
 .Before you begin
-* You must have the Storage Ops role or higher.
+* You must have the `Storage Ops` role or higher.
 
 .Steps
 . In the Investigation view, select the files you want to archive.
@@ -87,10 +87,10 @@ A breadcrumb file helps users understand why a file was moved.
 
 Deleting permanently removes files from storage and cannot be undone.
 
-WARNING: Deletion is permanent and cannot be undone. This action deletes source files even if they contain active data.
+CAUTION: Deletion is permanent and cannot be undone. This action deletes source files even if they contain active data.
 
 .Before you begin
-* You must have the Storage Ops role or higher.
+* You must have the `Storage Ops` role or higher.
 
 .Steps
 . In the Investigation view, select the files you want to delete.
@@ -110,6 +110,8 @@ Tagging applies a business tag to files for classification and tracking.
 . Click *Tag*.
 . Enter or select the tags to apply (for example, "Archive candidate").
 . Confirm to apply the tags.
+
+// RESEARCH NEEDED: Confirm whether the policy action actually has tagging capability in V1 as stated in steps.
 
 == Related information
 

@@ -22,7 +22,7 @@ Confirm that all your storage systems are connected and being scanned. The steps
 On a single-node (Lite) deployment, confirm that all your storage systems are connected and being scanned.
 
 .Steps
-. From the AI Data Engine left navigation, click *Configuration*.
+. From the AI Data Engine UI, click *Configuration*.
 . On the Scanned systems tab, confirm that every storage system you expect to see is listed and enabled for scanning.
 . Click a system row to review its scan progress and any errors. See link:../data-sources/connect-data-source.html[Configure and manage scanned systems] for the full detail view.
 --
@@ -32,7 +32,7 @@ On a single-node (Lite) deployment, confirm that all your storage systems are co
 On a multi-node (Enterprise) deployment, scan health is tracked per node in addition to per system.
 
 .Steps
-. From the AI Data Engine left navigation, click *Configuration*.
+. From the AI Data Engine UI, click *Configuration*.
 . Review the total node count and the status of each node.
 . Identify which node, if any, is reporting errors or falling behind on scan coverage, and address that node before trusting findings that depend on it.
 
@@ -45,7 +45,7 @@ On a multi-node (Enterprise) deployment, scan health is tracked per node in addi
 If the dashboard shows a large amount of cold or stale data, confirm the number is current before you act on it.
 
 * Check the last-scanned time for each storage system contributing to the finding. A system that hasn't scanned recently may under- or over-report reclaimable storage.
-* Confirm scan coverage is complete for that system — a partial scan (paused, in progress, or with errors) means some data hasn't been evaluated yet.
+* Confirm scan coverage is complete for that system. A partial scan (paused, in progress, or with errors) means some data hasn't been evaluated yet.
 * If coverage looks incomplete, wait for the next scan cycle or resolve the underlying error before acting on the finding.
 
 == Dark site considerations
@@ -68,5 +68,5 @@ If you migrate from a Lite to an Enterprise deployment, verify the following bef
 == Related information
 
 * link:../data-sources/connect-data-source.html[Configure and manage scanned systems]
-* link:../investigate/understand-dashboard.html[Review the Overview page]
+* link:../investigate/understand-dashboard.html[Understand the dashboard]
 * link:../investigate/investigate-data.html[Investigate your data]

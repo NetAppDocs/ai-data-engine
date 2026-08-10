@@ -23,7 +23,7 @@ New capabilities:
 
 link:../investigate/understand-dashboard.html[Storage health overview]:: Quickly assess how much storage across your connected systems is cold, stale, or reclaimable and identify which systems offer the best opportunities to recover capacity.
 
-link:../investigate/investigate-data.html[Metadata investigation]:: Find files consuming unnecessary storage by filtering across all connected systems by access time, modification date, creation date, and file size. Act on results directly or save criteria as a policy.
+link:../investigate/investigate-data.html[Metadata investigation]:: Find files that qualify for reclamation by filtering across all connected systems by access time, modification date, creation date, and file size. Act on results directly or save criteria as a policy.
 
 link:../policies/create-policy.html[Data governance policies]:: Save filter criteria as named policies to track recurring data conditions over time, such as cold or oversized files, and receive notifications when the impacted file count changes.
 
