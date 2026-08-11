@@ -4,7 +4,7 @@ permalink: release-notes/known-limitations.html
 keywords: known limitations, limitations, restrictions, AI Data Engine
 summary: Known limitations identify functionality that is not supported in this release of AI Data Engine.
 ---
-= Known limitations
+= Known limitations in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 

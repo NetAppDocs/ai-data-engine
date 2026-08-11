@@ -27,11 +27,7 @@ indexpage:
         - title: Connect a data source
           url: /data-sources/connect-data-source.html
         - title: Understand the dashboard
-          url: /dashboard/understand-dashboard.html
-        - title: Dashboard reference
-          url: /dashboard/dashboard-reference.html
-    - title: Investigate and filter
-      links:
+          url: /investigate/understand-dashboard.html
         - title: Investigate your data
           url: /investigate/investigate-data.html
         - title: Use filters
