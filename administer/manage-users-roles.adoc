@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: administer/manage-users-roles.html
-keywords: RBAC, roles, users, permissions, organization admin, storage ops, read-only
+keywords: RBAC, roles, users, permissions, AI data engine administrator, AI data engine viewer
 summary: AI Data Engine uses role-based access control to manage what users can see and do. Learn about the available roles and their permissions.
 ---
 = Manage users and roles in AI Data Engine
@@ -9,79 +9,83 @@ summary: AI Data Engine uses role-based access control to manage what users can 
 :imagesdir: ../media/
 
 [.lead]
-Before your team starts using AI Data Engine, make sure each person has the right level of access. AI Data Engine uses role-based access control (RBAC) to define what each user can view and do, so users who only need to view the dashboard can't delete data, and users responsible for cleanup have the access they need.
+Before your team starts using AI Data Engine, make sure each user has the right level of access. AI Data Engine uses role-based access control (RBAC) to define what each user can view and do within the product.
 
-// RESEARCH NEEDED: Confirm where in the NetApp Console UI you manage AI Data Engine user roles: within AI Data Engine itself or through NetApp Console organization settings. Review any UI spec for AI Data Engine administration or settings pages.
-
-// RESEARCH NEEDED: The Confluence content plan for this release describes a two-role GA model named "Admin" and "Viewer," and lists "Storage Ops" as a postponed M1 roadmap role name. This conflicts with the Storage Ops / Read-Only naming used throughout this topic. Confirm the correct GA role names with engineering before publishing.
+Roles are assigned through NetApp Console organization settings. AI Data Engine supports two roles at general availability.
 
 == Available roles
 
-=== Storage Ops
+=== AI Data Engine administrator
 
-Designed for storage administrators who manage storage optimization. Storage Ops users can execute storage actions (archive, delete), create and manage policies and filters, view all dashboards, and manage scan tasks.
+The AI Data Engine administrator role provides full access to all AI Data Engine capabilities. NetApp recommends assigning this role to no more than two or three users per deployment.
 
-=== Read-Only
+=== AI Data Engine viewer
 
-Can view dashboards only. Read-Only users cannot investigate, create policies, or take actions on data.
-
-=== Organization admin
-
-// RESEARCH NEEDED: Confirm whether Organization admin is available as a distinct assignable role in this release. If confirmed, Organization admin has full access to all AI Data Engine capabilities, including managing users, roles, and data grouping.
+The AI Data Engine viewer role provides read-only access to AI Data Engine. Viewers can view information and export reports, but cannot modify settings or execute actions.
 
 == Permissions by role
 
-[cols="2,1,1,1",options="header"]
+[cols="3,1,1",options="header"]
 |===
-|Capability |Organization admin |Storage Ops |Read-Only
+|Capability |AI Data Engine administrator |AI Data Engine viewer
 
 |Manage users and roles
-|TBD
-|-
+|Yes
 |-
 
 |Manage data resources
-|TBD
+|Yes
 |-
+
+|System configuration
+|Yes
 |-
 
 |View dashboards
-|TBD
 |Yes
 |Yes
 
 |Search metadata (Investigation)
-|TBD
 |Yes
-|-
+|Yes
+
+|Export reports
+|Yes
+|Yes
 
 |Create and manage policies
-|TBD
 |Yes
 |-
 
 |Actions: Tag
-|TBD
 |Yes
-|-
+|Yes
 
 |Actions: Archive, Delete
-|TBD
 |Yes
 |-
 
 |Manage business tags
-|TBD
 |Yes
-|-
+|Yes
 
 |===
 
-// RESEARCH NEEDED: Fill in Organization admin permissions when the role is confirmed. Storage Ops and Read-Only permissions are based on the RBAC spec (OCIENG/630079898).
-
 == Assign a role to a user
 
-// RESEARCH NEEDED (LOW): Document the steps to assign an AI Data Engine role to a user, including the navigation path and any prerequisites.
+Roles are assigned in NetApp Console, not within AI Data Engine itself.
+
+.Steps
+
+. From NetApp Console, go to *Members*.
+. Do one of the following:
+* To add a new user, select *Add user* and enter the user's email address.
+* To update an existing user, select the user from the list.
+. Select the organization, folder, or project, and then choose the *Data Service* category.
+. Assign the *AI data engine administrator* or *AI data engine viewer* role.
+. Save your changes.
+
+The user receives an email invitation and can access AI Data Engine after accepting it.
 
 == Related information
 

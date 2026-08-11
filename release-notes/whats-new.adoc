@@ -29,7 +29,7 @@ link:../policies/create-policy.html[Data governance policies]:: Save filter crit
 
 link:../policies/take-actions.html[Data lifecycle actions]:: Reclaim storage capacity by archiving cold files to NFS or CIFS destinations, copying data to a new location, tagging items for tracking, or permanently deleting obsolete files.
 
-link:../administer/manage-users-roles.html[Role-based access control]:: Control who can investigate data and take actions by assigning roles to users in your organization. Available roles include Storage Ops and Read-Only.
+link:../administer/manage-users-roles.html[Role-based access control]:: Control who can investigate data and take actions by assigning roles to users in your organization. Available roles include AI Data Engine administrator and AI Data Engine viewer.
 
 // RESEARCH NEEDED: Add any additional capabilities confirmed for the August 2026 GA. Update the roles entry when Organization admin availability is confirmed. Remove or revise any item that does not ship.
 

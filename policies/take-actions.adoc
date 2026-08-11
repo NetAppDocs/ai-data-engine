@@ -9,29 +9,26 @@ summary: Act on files you have identified as cold, stale, or obsolete by archivi
 :imagesdir: ../media/
 
 [.lead]
-After identifying files that are consuming unnecessary storage, take direct action to reclaim capacity or enforce your organization's data lifecycle policies. For example, a storage operations engineer who filters to find terabytes of VM snapshots not accessed in over a year can archive them in bulk to a cold storage share, freeing that space for active workloads.
+After identifying files that are consuming unnecessary storage, take direct action to reclaim capacity or enforce your organization's data lifecycle policies. For example, a storage administrator who filters to find terabytes of VM snapshots not accessed in over a year can archive them in bulk to a cold storage share, freeing that space for active workloads.
 
 .About this task
 To take action, select one or more items in the Investigation results table using the checkboxes. The action toolbar activates with three options: *Delete*, *Archive*, and *Tag*.
 
 The actions available to you depend on your assigned role:
 
-[cols="2,1,1,1",options="header"]
+[cols="2,1,1",options="header"]
 |===
-|Action |Organization admin |Storage Ops |Read-Only
+|Action |AI Data Engine administrator |AI Data Engine viewer
 
 |Tag
 |Yes
 |Yes
-|-
 
 |Archive
-|Yes
 |Yes
 |-
 
 |Delete
-|Yes
 |Yes
 |-
 
@@ -67,7 +64,7 @@ If you're not sure, tag or archive instead of deleting. Tagging and archiving ke
 Archiving moves files to a cold storage destination over NFS or CIFS. You can optionally leave a breadcrumb file at the original location.
 
 .Before you begin
-* You must have the `Storage Ops` role or higher.
+* You must have the `AI Data Engine administrator` role.
 
 .Steps
 . In the Investigation view, select the files you want to archive.
@@ -90,7 +87,7 @@ Deleting permanently removes files from storage and cannot be undone.
 CAUTION: Deletion is permanent and cannot be undone. This action deletes source files even if they contain active data.
 
 .Before you begin
-* You must have the `Storage Ops` role or higher.
+* You must have the `AI Data Engine administrator` role.
 
 .Steps
 . In the Investigation view, select the files you want to delete.
