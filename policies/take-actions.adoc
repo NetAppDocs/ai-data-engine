@@ -64,7 +64,7 @@ If you're not sure, tag or archive instead of deleting. Tagging and archiving ke
 Archiving moves files to a cold storage destination over NFS or CIFS. You can optionally leave a breadcrumb file at the original location.
 
 .Before you begin
-* You must have the `AI Data Engine administrator` role.
+* You must have the _AI Data Engine administrator_ role.
 
 .Steps
 . In the Investigation view, select the files you want to archive.
@@ -87,7 +87,7 @@ Deleting permanently removes files from storage and cannot be undone.
 CAUTION: Deletion is permanent and cannot be undone. This action deletes source files even if they contain active data.
 
 .Before you begin
-* You must have the `AI Data Engine administrator` role.
+* You must have the _AI Data Engine administrator_ role.
 
 .Steps
 . In the Investigation view, select the files you want to delete.

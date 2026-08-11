@@ -30,7 +30,7 @@ A policy is a saved filter set with an optional action attached:
 == Create a policy from Investigation
 
 .Before you begin
-* You must have a role that permits creating policies. See link:../administer/manage-users-roles.html[Manage users and roles].
+* You must have the _AI Data Engine administrator_ role.
 
 .Steps
 . In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
