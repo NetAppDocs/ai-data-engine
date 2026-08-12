@@ -44,10 +44,10 @@ The following apply to all dark site deployments:
 
 * You need _Organization admin_ or greater permissions in NetApp Console.
 // OPEN ISSUE: Replace with the correct Console Connector installation link when available.
-* You must deploy a NetApp Console Connector on your local network, reachable from the AI Data Engine host or cluster nodes. The installer communicates with the Connector at `http://<connector-ip>`.
+* You must deploy a NetApp Console Connector on your local network, reachable from the AI Data Engine host or cluster nodes. The installer communicates with the Connector at `\http://<connector-ip>`.
 * An internet-connected staging host to download the bundle. See link:requirements.html#dark-site-staging-host[Staging host] for details.
 * Review link:requirements.html[Requirements] and confirm your environment meets all sizing and networking prerequisites for dark site deployments.
-* Collect the following values. The installer requires these values to register the deployment with your Console Connector.
+* Collect the following values. The installer requires these values to register the deployment with your NetApp Console Connector.
 +
 --
 * Account ID
@@ -74,25 +74,26 @@ The following apply to all dark site deployments:
 
 . On the target host (Lite) or install host with `kubectl` access (Enterprise), extract the bundle:
 +
+.. Untar the bundle:
++
 [source,bash]
 ----
 tar -xzf <VERSION>_aide_darksite_bundle.tar.gz
 cd aide-darksite-<VERSION>
 ----
+
+.. Change to the extracted directory:
 +
-Confirm that the extracted bundle includes the following directories: `installer/`, `charts/`, `images/`, `k3s/` (Lite only), `tools/`, and `scripts/`.
+[source,bash]
+----
+cd aide-darksite-<VERSION>
+----
++
+.. Confirm that the extracted bundle includes the following directories: `installer/`, `charts/`, `images/`, `k3s/` (Lite only), `tools/`, and `scripts/`.
 +
 TIP: Run `./scripts/verify-bundle.sh` to check every artifact against the checksums in `manifest.json`. The installer also runs this check automatically as a preflight step.
 
 . (Enterprise only) Push the container images from the `images/` directory to your private container registry. Follow your organization's image scanning and approval process. All images must be available in the registry before you run the installer.
-
-. Collect the following values from the AIDE onboarding page in NetApp Console. The installer requires these values to register the deployment with your Console Connector.
-+
---
-* Account ID
-* Organization ID
-* Agent ID
---
 
 . Run the installer for your edition.
 +
@@ -162,7 +163,7 @@ NetApp delivers upgrades as new bundle media. The system upgrades itself automat
 
 . Transfer the new bundle to your air-gapped environment and extract it on the target host or install host.
 
-. *Enterprise only:* Push the new container images from the bundle to your private registry. The new operator image must be available in the registry before you continue.
+. (Enterprise only) Push the new container images from the bundle to your private registry. The new operator image must be available in the registry before you continue.
 
 . Run the upgrade script from the new bundle:
 +

@@ -72,7 +72,7 @@ For an online installation, the following endpoints must be reachable from the A
 |===
 |Endpoint |Purpose |Scope
 
-|`https://api.console.netapp.com`
+|`\https://api.console.netapp.com`
 |NetApp Console communication
 |Both
 
@@ -83,35 +83,35 @@ For an online installation, the following endpoints must be reachable from the A
 // generic form "AWS S3 and ECR (NetApp-managed)". Confirm the correct
 // public-facing hostname with engineering before publishing.
 
-|`https://netapp-cloud-account.auth0.com`
+|`\https://netapp-cloud-account.auth0.com`
 |Centralized user authentication
 |Both
 
-|`https://auth0.com`
+|`\https://auth0.com`
 |Authentication services
 |Both
 
-|`https://support.compliance.api.bluexp.netapp.com/`
+|`\https://support.compliance.api.bluexp.netapp.com/`
 |Software images, manifests, and templates; logs and metrics streaming
 |Both
 
-|`https://dseasb33srnrn.cloudfront.net/`
+|`\https://dseasb33srnrn.cloudfront.net/`
 |CDN for software image distribution
 |Both
 
-|`http://packages.ubuntu.com/`
+|`\http://packages.ubuntu.com/`
 |Ubuntu prerequisite packages
 |Lite only (Ubuntu)
 
-|`http://archive.ubuntu.com`
+|`\http://archive.ubuntu.com`
 |Ubuntu package archive
 |Lite only (Ubuntu)
 
-|`https://get.k3s.io`
+|`\https://get.k3s.io`
 |k3s runtime download (installer-initiated)
 |Lite only
 
-|`https://get.helm.sh`
+|`\https://get.helm.sh`
 |Helm download (installer-initiated)
 |Lite only
 
@@ -119,7 +119,7 @@ For an online installation, the following endpoints must be reachable from the A
 
 Verify that DNS resolution for these endpoints is working from the AI Data Engine host before you begin deployment.
 
-NOTE: These requirements apply to online installations only. For air-gapped deployments, see link:deploy-dark-site.html[Deploy AI Data Engine in a dark site].
+NOTE: These requirements apply to online installations only. For air-gapped deployments, see <<Dark site requirements,dark site requirements>>.
 
 
 == AIDE Lite requirements
@@ -250,7 +250,7 @@ The following connections must be open within the air-gapped environment. The ou
 |80
 |TCP
 |Outbound
-|HTTP: communication with the on-prem Console Connector on the local network. The installer and operator communicate with the Connector at `http://<connector-ip>`.
+|HTTP: communication with the on-prem Console Connector on the local network. The installer and operator communicate with the Connector at `\http://<connector-ip>`.
 
 |Console Agent to AI Data Engine
 |80, 443, 8080, 9000
