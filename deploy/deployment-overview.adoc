@@ -71,8 +71,17 @@ NetApp Console does not provision the infrastructure for AI Data Engine. You pre
 * *AIDE Enterprise*: Requires a customer-provisioned and managed RKE2 cluster.
 
 == Dark site deployment
+Both AIDE Lite and AIDE Enterprise support dark site (air-gapped) deployment
+through the Console Private Mode offline bundle. In a dark site deployment,
+no outbound internet access is required from the AI Data Engine host.
 
-Both AIDE Lite and AIDE Enterprise support dark site (air-gapped) deployment through the Console Private Mode offline bundle. In a dark site deployment, no outbound internet access is required from the AI Data Engine host. You download the bundle from the NetApp Support Site on an internet-connected staging host, then transfer it to your air-gapped environment.
+You obtain the offline bundle from NetApp and transfer it to your air-gapped
+environment using an internet-connected staging host.
+// CHANGED: Replaced "You download the bundle from the NetApp Support Site"
+// with "You obtain the offline bundle from NetApp." The NSS download path
+// is not yet confirmed — bundle distribution channel (NSS, token-gated
+// download, or physical media) is open question #1 in the Aug 11 spec.
+// Update this sentence once Deepak Jha confirms the distribution method.
 
 For steps, see link:deploy-dark-site.html[Deploy AI Data Engine — Dark sites].
 

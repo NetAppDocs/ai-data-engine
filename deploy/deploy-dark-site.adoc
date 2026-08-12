@@ -1,17 +1,18 @@
 ---
 sidebar: sidebar
 permalink: deploy/deploy-dark-site.html
-keywords: deploy, install, dark site, air-gapped, private mode, offline, Console Private Mode, no internet
-summary: Deploy AI Data Engine in an air-gapped environment using the Console Private Mode offline bundle from the NetApp Support Site.
+keywords: deploy, install, dark site, air-gapped, offline, no internet, air gap
+summary: Deploy AI Data Engine in an air-gapped environment using the offline bundle provided by NetApp. No outbound internet access is required after the bundle is transferred to your environment.
 ---
+
 = Deploy AI Data Engine for dark sites
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Deploy AI Data Engine in a fully air-gapped environment using the Console Private Mode offline bundle from the NetApp Support Site. No outbound internet access is required from the AI Data Engine host after the bundle is transferred to your environment.
+Deploy AI Data Engine in a fully air-gapped environment using the NetApp-provided offline bundle. No outbound internet access is required from the AI Data Engine host after the bundle is transferred to your environment.
 
-Both AIDE Lite and AIDE Enterprise support dark site deployment. The bundle contains all container images, Helm charts, and installation scripts needed to complete the installation offline.
+Both AIDE Lite and AIDE Enterprise support dark site deployment. The bundle contains all container images, Helm charts, catalog, and installation scripts needed to complete the installation offline.
 
 .Before you begin
 
@@ -22,69 +23,131 @@ Prerequisites differ between AIDE Lite and AIDE Enterprise:
 | |AIDE Lite |AIDE Enterprise
 
 |Infrastructure
-|Single Linux VM meeting link:requirements.html#aide-lite-requirements[Lite sizing requirements]. The installer bootstraps k3s automatically.
-|Customer-provisioned RKE2 v1.36.x or later cluster meeting link:requirements.html#aide-enterprise-requirements[Enterprise node requirements]. The cluster must be running before you begin.
+|Single Linux VM meeting link:requirements.html#aide-lite-requirements[Lite sizing requirements]. The installer bootstraps k3s automatically from the bundle.
+|Customer-provisioned Kubernetes cluster meeting link:requirements.html#aide-enterprise-requirements[Enterprise node requirements]. The cluster must be running before you begin.
 
 |Access
 |Root or sudo access on the target VM
-|`kubectl` with `cluster-admin` privileges; Helm 3.12 or later on the install host
+|`kubectl` with `cluster-admin` privileges and Helm 3.12 or later on the install host
 
-|Registry
-|No external registry required. The installer deploys an in-cluster depot that serves images from the bundle.
-|No external registry required. The depot Helm chart provides an in-cluster OCI registry seeded from the bundle.
+|Container images
+|No action required. The installer preloads all container images from the bundle directly into the local container runtime.
+|You must push all container images from the bundle to your private container registry before running the installer. Images pass through your organization's security scanning and approval process.
+
+|NFS shares
+|Not required.
+|Two NFS shares are required and must be on different paths (they may share a server):
+
+* *Charts share* (read-only): holds Helm charts and the version catalog from the bundle. Mount uid 1001 / gid 4321.
+* *Data share* (writable): holds AIDE configuration data. Mount uid 4321.
 
 |===
 
 The following apply to all dark site deployments:
 
-* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[must be deployed^] in Console Private Mode and reachable from the AI Data Engine host or cluster nodes.
+* A NetApp Console Connector must be deployed on your local network and reachable from the AI Data Engine host or cluster nodes. The installer communicates with the Connector at `http://<connector-ip>`.
+// Mode docs link — replace with the correct Connector install link when available.
 * _Organization admin_ or greater permissions in NetApp Console.
 * An internet-connected staging host to download the bundle. This host does not need to be the AI Data Engine host.
 * Sufficient staging disk space for the offline bundle.
 * Review link:requirements.html[Requirements] and confirm your environment meets all sizing and networking prerequisites for dark site deployments.
 
-// RESEARCH NEEDED: Confirm with DJ whether any Console UI steps (token retrieval, instance registration) are required before or after the CLI installation. This is the highest-priority open question for this page.
+// NOTE FOR WRITER: The bundle distribution channel (how customers obtain the
+// bundle — NSS download, token-gated link, or physical media) is an open
+// product/GTM decision. Do not document a specific download path until
+// confirmed with Deepak Jha (spec open item #1).
 
 .Steps
 
-. On an internet-connected staging host, go to the https://mysupport.netapp.com[NetApp Support Site^] and download the Console Private Mode bundle for your release.
+. Obtain the AI Data Engine dark site bundle for your release from NetApp.
 +
-The bundle file is named `aide-darksite-bundle-<release>.tar.gz`. It is published as part of the Console Private Mode quarterly drop, five days before the GA release date.
+The bundle file is named `<VERSION>_aide_darksite_bundle.tar.gz`.
 
-. Verify the bundle integrity using the checksum file included in the download:
+. Verify the bundle integrity using the verification script included in the bundle:
+
+.. Unpack the bundle:
 +
 [source,bash]
 ----
-sha256sum -c aide-darksite-bundle-<release>.tar.gz.sha256
+tar -xzf <VERSION>_aide_darksite_bundle.tar.gz
 ----
+
+.. Change directory:
++
+[source,bash]
+----
+cd aide-darksite-<VERSION>
+----
+
+.. Run the verification script:
+[source,bash]
++
+----
+./scripts/verify-bundle.sh
+----
++
+The script checks every artifact against the checksums in `manifest.json` and fails with a clear message if anything is missing or corrupted. The installer also runs this check automatically before touching your system.
 
 . Transfer the bundle to your air-gapped environment using USB media, SCP over a jump host, or your organization's preferred secure transfer method.
 
-. On the target host (Lite) or install host with `kubectl` access (Enterprise), extract the bundle:
-+
-[source,bash]
-----
-tar -xzf aide-darksite-bundle-<release>.tar.gz
-cd aide-darksite-bundle-<release>
-----
-+
-Confirm that the extracted bundle includes a `charts/` directory and a `content/` directory.
+. On the target host (Lite) or install host with `kubectl` access (Enterprise), extract the bundle if you have not already done so:
 
-. Install the depot chart. The depot is an in-cluster OCI registry that serves all required container images and Helm charts during and after installation:
+.. Unpack the bundle:
 +
 [source,bash]
 ----
-helm install aide-darksite-depot charts/aide-darksite-depot-<v>.tgz \
-  --namespace aide --create-namespace
+tar -xzf <VERSION>_aide_darksite_bundle.tar.gz
 ----
 
-. Install the AIDE operator and point it to the in-cluster depot:
+.. Change directory:
 +
 [source,bash]
 ----
-./install-operator.sh --chart-repo oci://aide-depot.aide.svc:5000/charts
+cd aide-darksite-<VERSION>
 ----
-// RESEARCH NEEDED: Confirm exact script name, default namespace, and whether --cm-host or additional flags are required for dark site mode.
++
+Confirm that the extracted bundle includes the following directories: `installer/`, `charts/`, `images/`, `k3s/` (Lite only), `tools/`, and `scripts/`.
+
+. Run the installer for your edition:
++
+* *AIDE Lite*:
++
+Single server, fully self-contained
++
+[source,bash]
+----
+sudo ./installer/install-lite.sh \
+  --darksite \
+  --flavor small \
+  --env production \
+  --cm-host <connector-ip> \
+  --account-id <account-id> \
+  --organization-id <organization-id>
+----
++
+* *AIDE Enterprise*
++
+Against your cluster, registry, and NFS shares:*
++
+[source,bash]
+----
+sudo ./installer/install-enterprise.sh \
+  --darksite \
+  --flavor large \
+  --env production \
+  --cm-host <connector-ip> \
+  --account-id <account-id> \
+  --organization-id <organization-id> \
+  --image-registry <registry-host>:<port>/<prefix> \
+  --registry-username <username> \
+  --registry-password <password> \
+  --kubeconfig /etc/kubernetes/admin.conf \
+  --nfs-server <nfs-server-host> \
+  --nfs-data-share /exports/aide/config \
+  --charts-nfs-share /exports/aide/charts
+----
++
+The installer verifies the bundle, stages content, installs the AIDE operator from the local bundle, and applies all required custom resources automatically. No internet access is attempted at any point.
 
 . Monitor the operator pod until it reports `Running`:
 +
@@ -93,24 +156,52 @@ helm install aide-darksite-depot charts/aide-darksite-depot-<v>.tgz \
 kubectl -n aide get pods -w
 ----
 
-. Apply the `AIDEComponent` and `AIDEServices` custom resources to deploy the AIDE stack:
+. Confirm that all components are deployed:
 +
 [source,bash]
 ----
-kubectl apply -f config/aide-components.yaml
-kubectl apply -f config/aide-services.yaml
+kubectl get aidecomponents,aideservices -n aide
 ----
-// RESEARCH NEEDED: Confirm whether these CRs ship pre-populated in the bundle or require values substitution before applying.
-
-. Monitor deployment progress until all components report `Deployed=True`:
 +
-[source,bash]
-----
-kubectl -n aide get aidecomponent,aideservices
-----
+All rows should show `Deployed=True`. If a component shows an error, the status message names the exact missing file or blocked source.
 
 .Result
-AI Data Engine is deployed in your air-gapped environment and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a storage system] to start scanning.
+AI Data Engine is deployed in your air-gapped environment and connected to NetApp Console through your on-prem Console Connector. You can now link:../data-sources/connect-data-source.html[connect a storage system] to start scanning.
+
+== Upgrade a dark site deployment
+
+Upgrades are delivered as new bundle media. The system upgrades itself automatically after you stage the new content and no reinstallation is required.
+
+Stage content in the following order. The catalog file must be replaced _last_ because it is the trigger the operator polls.
+
+.Steps
+. Stage new container images:
+** *Lite:* Load the new images from the bundle onto the server.
+** *Enterprise:* Push the new images to your private registry.
++
+NOTE: The new operator image must be staged before you replace the catalog file. The upgraded operator pod cannot start until its image is available.
+
+. Copy new Helm charts from the bundle onto the charts mount or NFS share. Keep the previous version files as they are retained for rollback.
+
+. Replace the catalog file atomically. Use the helper script included in the bundle:
++
+[source,bash]
+----
+./scripts/drop-upgrade-content.sh
+----
++
+The script performs all three steps in the correct order. You can also run the steps manually, but you must follow the same sequence.
++
+Within approximately 30 minutes, the AIDE operator detects the new catalog, upgrades all components in the correct rollout order, and upgrades itself. Running the upgrade script again with the same version has no effect.
+
+. Verify that the upgrade completed:
++
+[source,bash]
+----
+kubectl get aidecomponents,aideservices -n aide
+----
++
+All rows should show `Deployed=True` at the new version.
 
 == Related information
 
