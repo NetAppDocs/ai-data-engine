@@ -30,6 +30,8 @@ The AI Data Engine landing page appears.
 . Select your configuration size:
 +
 * *Small*: recommended for environments with up to approximately 1 billion files.
+* *Medium*: recommended for environments with up to approximately 3 billion files.
+* *Large*: recommended for environments with up to approximately 6 billion files.
 
 . Click *Next*.
 

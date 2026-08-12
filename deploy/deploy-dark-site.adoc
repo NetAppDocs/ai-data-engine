@@ -47,13 +47,6 @@ The following apply to all dark site deployments:
 * You must deploy a NetApp Console Connector on your local network, reachable from the AI Data Engine host or cluster nodes. The installer communicates with the Connector at `\http://<connector-ip>`.
 * An internet-connected staging host to download the bundle. See link:aide-requirements.html#dark-site-staging-host[Staging host] for details.
 * Review link:aide-requirements.html[AIDE requirements] and confirm your environment meets all sizing and networking prerequisites for dark site deployments.
-* Collect the following values. The installer requires these values to register the deployment with your NetApp Console Connector.
-+
---
-* Account ID
-* Organization ID
-* Agent ID
---
 
 // OPEN ISSUE: Bundle distribution channel (NSS, token-gated download, or
 // physical media) is undecided per AIDE Darksite design spec open item #1.
@@ -79,7 +72,6 @@ The following apply to all dark site deployments:
 [source,bash]
 ----
 tar -xzf <VERSION>_aide_darksite_bundle.tar.gz
-cd aide-darksite-<VERSION>
 ----
 
 .. Change to the extracted directory:
