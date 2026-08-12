@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: deploy/deploy-dark-site.html
 keywords: deploy, install, dark site, air-gapped, offline, no internet, air gap
-summary: Deploy AI Data Engine in an air-gapped environment using the offline bundle provided by NetApp. No outbound internet access is required after the bundle is transferred to your environment.
+summary: Deploy AI Data Engine in an air-gapped environment using the offline bundle NetApp provides. Your AI Data Engine host doesn't need outbound internet access after you transfer the bundle to your environment.
 ---
 
 = Deploy AI Data Engine for dark sites
@@ -36,15 +36,15 @@ Prerequisites differ between AIDE Lite and AIDE Enterprise:
 
 |NFS shares
 |Not required.
-|Two NFS shares are required, on different paths. See link:requirements.html#dark-site-nfs-requirements[NFS share requirements] for share purpose, access mode, and mount details.
+|You need two NFS shares, on different paths. See link:requirements.html#dark-site-nfs-requirements[NFS share requirements] for share purpose, access mode, and mount details.
 
 |===
 
 The following apply to all dark site deployments:
 
-* A NetApp Console Connector must be deployed on your local network and reachable from the AI Data Engine host or cluster nodes. The installer communicates with the Connector at `http://<connector-ip>`.
+* You need _Organization admin_ or greater permissions in NetApp Console.
+* You must deploy a NetApp Console Connector on your local network, reachable from the AI Data Engine host or cluster nodes. The installer communicates with the Connector at `http://<connector-ip>`.
 // Mode docs link — replace with the correct Connector install link when available.
-* _Organization admin_ or greater permissions in NetApp Console.
 * An internet-connected staging host to download the bundle. See link:requirements.html#dark-site-staging-host[Staging host] for details.
 * Review link:requirements.html[Requirements] and confirm your environment meets all sizing and networking prerequisites for dark site deployments.
 
@@ -59,7 +59,7 @@ The following apply to all dark site deployments:
 
 . Obtain the AI Data Engine dark site bundle for your release from NetApp.
 +
-The bundle file is named `<VERSION>_aide_darksite_bundle.tar.gz`.
+The bundle filename follows this format: `<VERSION>_aide_darksite_bundle.tar.gz`.
 
 . Verify the bundle integrity using the verification script included in the bundle:
 
@@ -156,7 +156,7 @@ The installer verifies the bundle, stages content, installs the AIDE operator fr
 kubectl -n aide get pods -w
 ----
 
-. Confirm that all components are deployed:
+. Confirm that every component finished deploying:
 +
 [source,bash]
 ----
@@ -170,18 +170,18 @@ AI Data Engine is deployed in your air-gapped environment and connected to NetAp
 
 == Upgrade a dark site deployment
 
-Upgrades are delivered as new bundle media. The system upgrades itself automatically after you stage the new content and no reinstallation is required.
+NetApp delivers upgrades as new bundle media. The system upgrades itself automatically after you stage the new content, and you don't need to reinstall.
 
-Stage content in the following order. The catalog file must be replaced _last_ because it is the trigger the operator polls.
+Stage content in the following order. You must replace the catalog file _last_ because it is the trigger the operator polls.
 
 .Steps
 . Stage new container images:
 ** *Lite:* Load the new images from the bundle onto the server.
 ** *Enterprise:* Push the new images to your private registry.
 +
-NOTE: The new operator image must be staged before you replace the catalog file. The upgraded operator pod cannot start until its image is available.
+NOTE: You must stage the new operator image before you replace the catalog file. The upgraded operator pod cannot start until its image is available.
 
-. Copy new Helm charts from the bundle onto the charts mount or NFS share. Keep the previous version files as they are retained for rollback.
+. Copy new Helm charts from the bundle onto the charts mount or NFS share. Keep the previous version files for rollback.
 
 . Replace the catalog file atomically. Use the helper script included in the bundle:
 +
