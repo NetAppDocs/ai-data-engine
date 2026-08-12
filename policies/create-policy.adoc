@@ -2,25 +2,35 @@
 sidebar: sidebar
 permalink: policies/create-policy.html
 keywords: create policy, save query, policy, filters, actions, automation
-summary: Save investigation filter criteria as a named policy so you can track the same data population over time and get notified when conditions change.
+summary: Save investigation filter criteria as a named policy so you can track the same data grouping over time and get notified when conditions change.
 ---
-= Create a policy
+= Create a policy in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Create a policy when you want to monitor a recurring data condition, such as files going cold or growing beyond a size threshold, without repeating the same investigation manually. For example, a data governance manager can save a "large stale files" policy to track that population across scan cycles and receive an email update when the impacted file count changes.
+Create a policy when you want to monitor a recurring data condition, such as files going cold or growing beyond a size threshold, without repeating the same investigation manually. For example, a data governance manager can save a "large stale files" policy to track that grouping across scan cycles and receive an email update when the impacted file count changes.
 
 == About policies
 
-Policies save the filter criteria you define in Investigation as a reusable rule. You can run the policy again at any time to re-examine the same data population, or configure it to automatically take an action, such as tagging, archiving, or deleting, when files meet the policy criteria.
+Policies save the filter criteria you define in Investigation as a reusable rule. You can run the policy again at any time to re-examine the same data grouping, or configure it to automatically take an action, such as tagging, archiving, or deleting, when files meet the policy criteria.
 
 // RESEARCH NEEDED: Confirm the policy execution model for V1. Are policies triggered on a schedule, on demand only, or on a continuous/near-real-time basis as the metadata catalog is updated? This significantly affects how policy behavior should be described.
+
+== Choose a policy action
+
+A policy is a saved filter set with an optional action attached:
+
+* *No action (monitor only)*: Track the matching grouping over time without acting. Use this when you want visibility before you automate a response.
+* *Email notification*: Notify a user by email when the matching file count changes.
+* *Tag, Archive, or Delete*: AI Data Engine automatically applies the action to files that match the policy criteria.
+
+// RESEARCH NEEDED: The Confluence content plan for this release states V1 policy actions are restricted to No action, Delete, and Email notification only, with automated Tag/Archive execution deferred to a later release. This conflicts with the Tag/Archive/Delete/Email action set currently reflected here. Confirm the correct V1 action set with engineering before publishing.
 
 == Create a policy from Investigation
 
 .Before you begin
-* You must have a role that permits creating policies. See link:../administer/manage-users-roles.html[Manage users and roles].
+* You must have the _AI Data Engine administrator_ role.
 
 .Steps
 . In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
@@ -28,9 +38,9 @@ Policies save the filter criteria you define in Investigation as a reusable rule
 +
 For example: *File Type* = .vmdk AND *Last Accessed Time* > 365 days.
 +
-Review the results table to confirm the filter set captures the intended data population.
+Review the results table to confirm the filter set captures the intended data grouping.
 
-. In the filter action bar, click *+ Create policy*.
+. In the filter action bar, click *Create policy*.
 +
 // RESEARCH NEEDED: Confirm the exact button label.
 
@@ -40,9 +50,9 @@ Review the results table to confirm the filter set captures the intended data po
 
 . The filter criteria are captured as a query expression (for example, `last_access_time <= 3 Years AND file_size >= 5GiB`).
 
-. Optionally, select an *Action* and choose the notification type (for example, *Email update*).
+. Optionally, select an *Action* and choose the notification type (for example, *Send email notification*).
 
-. Click *Save*.
+. Click *Create*.
 
 .Result
 The policy is saved and appears on the link:manage-policies.html[Policies] page. If you associated an action, AI Data Engine applies that action to files that match the policy criteria.
@@ -55,10 +65,12 @@ The following example creates a policy to tag files that have not been accessed 
 +
 * *Last Accessed Time* > 365 days
 
-. Click *+ Create policy*.
+. Click *Create policy*.
 . Enter the policy name: *Cold Files — Unaccessed 1 Year*.
 . Select the action *Tag* and specify the tag value (for example, *cold-candidate*).
-. Click *Save*.
+. Click *Create*.
+
+// RESEARCH NEEDED: Confirm whether the policy action actually has tagging capability in V1.
 
 == Related information
 

@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar
 permalink: investigate/investigate-data.html
-keywords: investigate, metadata, search, filter, files, results, action, policy
-summary: Search and filter file-level metadata across your storage systems to find cold, stale, or oversized files, then act on what you find or save the criteria as a reusable policy.
+keywords: investigate, metadata, search, filter, cold data, stale data, retention, files, results, action, policy
+summary: Find cold, stale, and retention-risk files across your storage systems, then act on what you find or save the criteria as a reusable policy.
 ---
-= Investigate your data
+= Investigate your data in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
@@ -13,28 +13,51 @@ When you need to understand what is consuming storage or find files ready for ar
 
 == Navigate to Investigation
 
-From the AI Data Engine left navigation, click *Investigation*.
+From the AI Data Engine UI, click *Investigation*.
 
 You can also open Investigation from the Overview page by clicking *Investigate* in the Top storage resources table. Investigation opens with a filter pre-applied for that resource.
 
 The Investigation view displays a summary count and total size of all unstructured items across connected systems (for example, "Unstructured items (400M) | 5.7 PiB").
 
-== Apply filters
+// RESEARCH NEEDED: This topic covers unstructured file investigation only. Confirm whether separate Directories and Tables (structured data) views/tabs exist in the V1 UI before adding dedicated topics for them.
+
+== Find cold, stale, and at-risk files
+
+Use date-based filters to identify reclaimable storage. The following table describes each filter, its default threshold, and what matching files represent.
+
+[cols="1,1,2",options="header"]
+|===
+|Filter |Default threshold |What it identifies
+
+|Last accessed
+|365+ days
+|Cold files that have not been accessed in a year or more. Strong candidates for archival or deletion.
+
+|Last modified
+|3+ years
+|Stale files that have not been modified recently, even if still occasionally accessed.
+
+|Last created
+|7+ years
+|Files that may be subject to your organization's retention review requirements.
+
+|===
 
 .Steps
 . Click *Add filter*.
-. Select a filter criterion from the list. Available filters include:
-+
-* *Last accessed*: how long since the file was last accessed (for example, 365+ days)
-* *Last modified*: last modification date
-* *Last created*: file creation date
-* *File size*: file size threshold (for example, >5 GiB)
-+
-For a complete list of available filters, see link:use-filters.html[Work with filters].
-. Select a filter value.
+. Select a filter from the table above.
+. Set the value to the appropriate threshold.
+
+=== Refine results with additional filters
+
+Combine any of the filters above with file size, path, system, tag, or policy filters to narrow the results further. For the complete list of available filters, see link:use-filters.html[Work with filters].
+
+.Steps
+. Click *Add filter*.
+. Select a filter criterion and value.
 . Repeat to add additional filters.
 
-Applied filters appear as pills below the filter bar (for example, "Last accessed: 365+ days | File size: >5 GiB"). The results table and item count update each time you add a filter.
+Applied filters appear as tags below the filter bar (for example, "Last accessed: 365+ days | File size: >5 GiB"). The results table and item count update each time you add a filter.
 
 To clear all filters, click *Clear filters*.
 
@@ -42,47 +65,13 @@ To clear all filters, click *Clear filters*.
 
 The results table shows files that match your applied filters. When filters are active, the header shows the filtered count and size (for example, "Unstructured items (250k / 400M) | 8.3 TiB | Filters applied (2)").
 
-[cols="1,2",options="header"]
-|===
-|Column |Description
-
-|Name
-|The file name.
-
-|Path
-|The full path to the file on the source system.
-
-|System
-|The source storage system.
-
-|File type
-|The file format or extension (for example, VMDK, BAK).
-
-|Size
-|The file size.
-
-|Created
-|The file creation date.
-
-|Last accessed
-|The date the file was last accessed.
-
-|Last modified
-|The date the file was last modified.
-
-|Tags
-|Any business tags applied to the file.
-
-|===
-
-To download the filtered results, click *Download*.
+To download the filtered results, click image:./media/download-icon.png[Download].
 
 == Take action on results
 
 Select one or more items using the checkboxes in the results table to activate the action toolbar. Available actions are:
 
 * *Delete*: permanently delete the selected files
-* *Copy*: copy the selected files to a destination
 * *Archive*: move the selected files to a cold storage destination
 * *Tag*: apply a business tag to the selected files
 
@@ -95,13 +84,14 @@ Available actions depend on your role. See link:../administer/manage-users-roles
 Save your current filter set as a policy to reuse it or automate actions on matching files.
 
 .Steps
-. Apply the filters that define the data population you want to manage.
+. Apply the filters that define the data you want to manage.
 . Click *Create policy* in the filter toolbar.
 . Complete the policy form. See link:../policies/create-policy.html[Create a policy].
 
 == Related information
 
 * link:use-filters.html[Work with filters]
+* link:storage-optimization-workflows.html[Storage optimization workflows]
 * link:../policies/create-policy.html[Create a policy]
 * link:../policies/take-actions.html[Take action with your data]
-* link:../dashboard/understand-dashboard.html[Review the Overview page]
+* link:understand-dashboard.html[Understand the dashboard]

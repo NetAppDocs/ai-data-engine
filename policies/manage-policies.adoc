@@ -4,16 +4,16 @@ permalink: policies/manage-policies.html
 keywords: manage policies, view policies, edit policy, enable policy, disable policy, delete policy
 summary: Review your saved policies to see which files currently match each criteria set, and remove policies you no longer need.
 ---
-= Manage policies
+= Manage policies in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Use the Policies page to stay on top of your data governance criteria. For example, a storage administrator who created several cold-data policies can check the impacted file count for each one to prioritize which data populations need attention first.
+Use the Policies page to stay on top of your data governance criteria. For example, a storage administrator who created several cold-data policies can check the impacted file count for each one to prioritize which data groupings need attention first.
 
 == Navigate to Policies
 
-From the AI Data Engine left navigation, click *Policies*.
+From the AI Data Engine UI, select *Policies*.
 
 .About this task
 The Policies page lists all policies you have created. Each entry shows:
@@ -42,15 +42,15 @@ The Policies page lists all policies you have created. Each entry shows:
 == View a policy
 
 .Steps
-. From the AI Data Engine left navigation, click *Policies*.
-. Click *View* next to the policy to see the full policy details and impacted items.
+. From the AI Data Engine UI, click *Policies*.
+. Open the action menu and select *Investigate results* next to the policy to see the full policy details and impacted items.
 
 == Delete a policy
 
-WARNING: Deletion is permanent and cannot be undone.
+CAUTION: Deletion is permanent and cannot be undone.
 
 .Steps
-. From the AI Data Engine left navigation, click *Policies*.
+. From the AI Data Engine UI, click *Policies*.
 . Open the action menu for the policy you want to delete and select *Delete policy*.
 . Confirm the deletion in the preview dialog.
 

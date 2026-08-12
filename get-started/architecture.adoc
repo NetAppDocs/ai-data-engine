@@ -44,7 +44,7 @@ link:../deploy/deployment-overview.html[Learn more about deployment options].
 == Data flow
 
 . AI Data Engine deploys in your on-premises environment.
-. You connect one or more storage systems as data sources. Supported systems include NetApp ONTAP, StorageGRID, and any NAS or object storage system that exposes NFS, CIFS/SMB, or S3 protocols.
+. AIDE discovers the storage systems managed by the Console Agent. Supported systems include NetApp ONTAP, StorageGRID, and any NAS or object storage system that exposes NFS, CIFS/SMB, or S3 protocols. You select which systems and volumes to scan in *Configuration > Systems*.
 . The Metadata Engine mounts shares using NFS and CIFS/SMB protocols and scans the file systems to extract file metadata.
 . Metadata is indexed in the catalog.
 . The dashboard surfaces storage insights from the catalog.

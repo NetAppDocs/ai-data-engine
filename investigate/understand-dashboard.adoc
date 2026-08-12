@@ -1,0 +1,60 @@
+---
+sidebar: sidebar
+permalink: investigate/understand-dashboard.html
+keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage growth, investigate
+summary: Get a quick read on how much storage is cold or stale, how fast storage is growing, and which systems offer the best reclamation opportunities.
+---
+= Learn about the AI Data Engine dashboard
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Before you investigate individual files, use the Overview page to see how much of your storage could be better optimized and where. This page is your entry point into AI Data Engine. You'll understand where to look for storage improvements and narrow your investigation.
+
+For example, a storage administrator responding to a capacity alert can see that a significant portion of scanned storage is cold data, then drill into the highest-impact system to start investigating immediately.
+
+From the AI Data Engine UI, select *Overview*. The *System* and *System type* filters control dashboard scope, reflecting storage systems that have been registered through the Console Agent and enabled for scanning. If a storage system does not appear in the filter list, see link:../data-sources/connect-data-source.html[Configure and manage scanned systems].
+
+== What the dashboard tells you
+
+The Overview page shows how much storage exists across your environment, how much of it is cold or stale, and where it is concentrated. The summary panel and chart give you the numbers; the resource table tells you where to focus.
+
+== Summary panel
+
+The summary panel provides workspace-level metrics:
+
+* Total count of storage resources scanned across all connected systems.
+* Average daily storage growth across scanned resources (for example, 94 GiB/day).
+* Total storage identified as reclaimable: the combined total of cold and stale data.
+* Data that has not been accessed in one or more years.
+* Data that has not been modified in three or more years.
+
+== Active versus reclaimable storage chart
+
+The *Active versus reclaimable storage* chart shows the proportion of active data compared to cold and stale data across all scanned resources. Use this to assess overall storage efficiency.
+
+== Identify storage optimization opportunities
+
+Use the summary panel and chart to prioritize storage optimization opportunities:
+
+* Start with the resource that has the largest reclaimable size, not the largest total size. A small system that is mostly cold data is often a better first target than a large system that is mostly active.
+* Look for large concentrations of cold or stale data rather than isolated files. Tens of terabytes of stale data on one resource justifies an investigation; a single stale file does not.
+* Compare storage growth rate against reclaimable storage. A system with high growth and low reclaimable storage indicates active demand rather than reclaimable storage, and is a lower optimization priority.
+
+== Drill down from a dashboard finding into investigation
+
+After you identify a resource worth investigating, use the *Top data resources by reclaimable storage* table to move from the overview to the details.
+
+This table lists your scanned storage resources ranked by reclaimable storage. Click *Investigate* in any row to open the link:investigate-data.html[Investigation] view filtered to that resource.
+
+== Refresh and explore further
+
+* Click *Refresh* to update the page with the latest scan data. The last-updated timestamp appears on the page.
+* Click *Explore cost optimization recommendations* to view additional recommendations based on your scan data.
+
+// RESEARCH NEEDED: Confirm whether the Explore cost optimization recommendations link is available in the V1 UI. If not, remove this bullet from the published topic.
+
+== Related information
+
+* link:investigate-data.html[Investigate your data]
+* link:../data-sources/connect-data-source.html[Configure and manage scanned systems]

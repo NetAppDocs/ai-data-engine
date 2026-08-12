@@ -11,8 +11,6 @@ summary: Get AI Data Engine up and running by deploying the service, connecting 
 [.lead]
 Get AI Data Engine up and running in a few steps.
 
-// RESEARCH NEEDED (LOW): Verify the complete end-to-end flow, specifically whether connecting a data source and triggering a first scan are part of the deployment wizard or separate post-deployment steps.
-
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] Review requirements and choose your deployment model
 [role="quick-margin-para"]
 Review the link:../deploy/requirements.html[requirements] and decide whether to deploy link:../deploy/deployment-overview.html[AIDE Lite or AIDE Enterprise] based on your environment size and infrastructure.
@@ -27,7 +25,7 @@ link:../data-sources/connect-data-source.html[Connect a storage system] to begin
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Explore your data
 [role="quick-margin-para"]
-Open the link:../dashboard/understand-dashboard.html[dashboard] to see storage optimization insights, or go to link:../investigate/investigate-data.html[Investigation] to search and filter your metadata directly.
+Open the link:../investigate/understand-dashboard.html[dashboard] to see storage optimization insights, or go to link:../investigate/investigate-data.html[Investigation] to search and filter your metadata directly.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five] Create a policy
 [role="quick-margin-para"]

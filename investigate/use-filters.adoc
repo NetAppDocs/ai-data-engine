@@ -4,12 +4,12 @@ permalink: investigate/use-filters.html
 keywords: filters, metadata filters, file type, last accessed, last modified, tags, policy, investigation
 summary: Reference for the metadata filters available in the AI Data Engine Investigation view.
 ---
-= Work with filters
+= Metadata filters in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-The Investigation view provides metadata filters that you can use to narrow your results to a specific data population. Apply one or more filters simultaneously to define the files you want to examine or act on.
+The Investigation view provides metadata filters that you can use to narrow your results to a specific data grouping. Apply one or more filters simultaneously to define the files you want to examine or act on. For guidance on combining filters to answer common questions (finding cold, stale, or retention-risk files), see link:investigate-data.html[Investigate your data].
 
 == Time filters
 
