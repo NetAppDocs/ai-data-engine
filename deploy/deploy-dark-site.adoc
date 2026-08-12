@@ -36,10 +36,7 @@ Prerequisites differ between AIDE Lite and AIDE Enterprise:
 
 |NFS shares
 |Not required.
-|Two NFS shares are required and must be on different paths (they may share a server):
-
-* *Charts share* (read-only): holds Helm charts and the version catalog from the bundle. Mount uid 1001 / gid 4321.
-* *Data share* (writable): holds AIDE configuration data. Mount uid 4321.
+|Two NFS shares are required, on different paths. See link:requirements.html#dark-site-nfs-requirements[NFS share requirements] for share purpose, access mode, and mount details.
 
 |===
 
@@ -48,14 +45,15 @@ The following apply to all dark site deployments:
 * A NetApp Console Connector must be deployed on your local network and reachable from the AI Data Engine host or cluster nodes. The installer communicates with the Connector at `http://<connector-ip>`.
 // Mode docs link — replace with the correct Connector install link when available.
 * _Organization admin_ or greater permissions in NetApp Console.
-* An internet-connected staging host to download the bundle. This host does not need to be the AI Data Engine host.
-* Sufficient staging disk space for the offline bundle.
+* An internet-connected staging host to download the bundle. See link:requirements.html#dark-site-staging-host[Staging host] for details.
 * Review link:requirements.html[Requirements] and confirm your environment meets all sizing and networking prerequisites for dark site deployments.
 
 // NOTE FOR WRITER: The bundle distribution channel (how customers obtain the
 // bundle — NSS download, token-gated link, or physical media) is an open
-// product/GTM decision. Do not document a specific download path until
-// confirmed with Deepak Jha (spec open item #1).
+// product/GTM decision per the AIDE Darksite design spec (open item #1).
+// Keep consistent with the matching open-item flag in requirements.adoc
+// ("Dark site requirements" section) — do not document a specific download
+// path until confirmed with engineering.
 
 .Steps
 
@@ -122,7 +120,8 @@ sudo ./installer/install-lite.sh \
   --env production \
   --cm-host <connector-ip> \
   --account-id <account-id> \
-  --organization-id <organization-id>
+  --organization-id <organization-id> \
+  --agent-id <agent-id>
 ----
 +
 * *AIDE Enterprise*
@@ -138,6 +137,7 @@ sudo ./installer/install-enterprise.sh \
   --cm-host <connector-ip> \
   --account-id <account-id> \
   --organization-id <organization-id> \
+  --agent-id <agent-id> \
   --image-registry <registry-host>:<port>/<prefix> \
   --registry-username <username> \
   --registry-password <password> \

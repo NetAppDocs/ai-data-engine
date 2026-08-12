@@ -119,8 +119,7 @@ For an online installation, the following endpoints must be reachable from the A
 
 Verify that DNS resolution for these endpoints is working from the AI Data Engine host before you begin deployment.
 
-NOTE: These requirements apply to online installations only. For air-gapped
-deployments, see link:deploy-dark-site.html[Deploy AI Data Engine in a dark site].
+NOTE: These requirements apply to online installations only. For air-gapped deployments, see link:deploy-dark-site.html[Deploy AI Data Engine in a dark site].
 
 
 == AIDE Lite requirements
@@ -231,12 +230,13 @@ NOTE: NVMe storage is required for all Enterprise node deployments.
 
 == Dark site requirements
 
-Dark site deployments do not require outbound internet access from the AI Data Engine host. All container images, Helm charts, and installation scripts are delivered through the NetApp Console Private Mode offline bundle, which is published to the NetApp Support Site as part of the Console Private Mode quarterly release.
-// CHANGED: Replaced "Console Private Mode offline bundle" section title with
-// "Dark site requirements" for consistency with the deploy-dark-site.html page
-// title. Retained "Console Private Mode" in the body — this is the confirmed
-// delivery mechanism per the Aug 10 content plan (bundle on NSS Aug 26,
-// rides the quarterly drop; not NCL, which is a separate product).
+Dark site deployments do not require outbound internet access from the AI Data Engine host. NetApp provides all container images, Helm charts, and installation scripts as a single offline bundle that you transfer into your air-gapped environment.
+// NOTE FOR WRITER: Bundle distribution channel is NOT confirmed by engineering.
+// The AIDE Darksite design spec lists this as an open decision (NSS download,
+// token-gated link, or physical media — NSS currently has no bundle/Helm
+// distribution model). Do not name "Console Private Mode" or "NSS" specifically
+// until confirmed with engineering. Not NCL — that is a separate, later-roadmap
+// product.
 
 === Networking
 
@@ -284,6 +284,7 @@ The following connections must be open within the air-gapped environment. The ou
 
 |===
 
+[#dark-site-nfs-requirements]
 === NFS share requirements (Enterprise dark site only)
 
 Two NFS shares are required for AIDE Enterprise dark site deployments. They may reside on the same NFS server but must use different export paths.
@@ -303,6 +304,7 @@ Two NFS shares are required for AIDE Enterprise dark site deployments. They may 
 |===
 
 
+[#dark-site-staging-host]
 === Staging host
 
 An internet-connected staging host is required to download the offline bundle from the NetApp Support Site. The staging host does not need to be the AI Data Engine host or within the air-gapped network. Ensure the staging host has sufficient disk space for the bundle.
