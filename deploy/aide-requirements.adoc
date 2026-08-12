@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar
-permalink: deploy/requirements.html
+permalink: deploy/aide-requirements.html
 keywords: requirements, prerequisites, networking, ports, vm, kubernetes, sizing
 summary: Review infrastructure and networking requirements before deploying AI Data Engine.
 ---

@@ -4,7 +4,7 @@ entries:
   - title: Learn about AIDE deployment
     url: /deploy/deployment-overview.html
   - title: AIDE requirements
-    url: /deploy/requirements.html
+    url: /deploy/aide-requirements.html
   - title: Deploy AIDE Lite
     url: /deploy/deploy-aide-lite.html
   - title: Deploy AIDE Enterprise

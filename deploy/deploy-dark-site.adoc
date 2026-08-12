@@ -23,8 +23,8 @@ Prerequisites differ between AIDE Lite and AIDE Enterprise:
 | |AIDE Lite |AIDE Enterprise
 
 |Infrastructure
-|Single Linux VM meeting link:requirements.html#aide-lite-requirements[Lite sizing requirements]. The installer bootstraps k3s automatically from the bundle.
-|Customer-provisioned Kubernetes cluster meeting link:requirements.html#aide-enterprise-requirements[Enterprise node requirements]. The cluster must be running before you begin.
+|Single Linux VM meeting link:aide-requirements.html#aide-lite-requirements[Lite sizing requirements]. The installer bootstraps k3s automatically from the bundle.
+|Customer-provisioned Kubernetes cluster meeting link:aide-requirements.html#aide-enterprise-requirements[Enterprise node requirements]. The cluster must be running before you begin.
 
 |Access
 |Root or sudo access on the target VM
@@ -36,7 +36,7 @@ Prerequisites differ between AIDE Lite and AIDE Enterprise:
 
 |NFS shares
 |Not required.
-|You need two NFS shares on different paths. See link:requirements.html#dark-site-nfs-requirements[NFS share requirements] for share purpose, access mode, and mount details.
+|You need two NFS shares on different paths. See link:aide-requirements.html#dark-site-nfs-requirements[NFS share requirements] for share purpose, access mode, and mount details.
 
 |===
 
@@ -45,8 +45,8 @@ The following apply to all dark site deployments:
 * You need _Organization admin_ or greater permissions in NetApp Console.
 // OPEN ISSUE: Replace with the correct Console Connector installation link when available.
 * You must deploy a NetApp Console Connector on your local network, reachable from the AI Data Engine host or cluster nodes. The installer communicates with the Connector at `\http://<connector-ip>`.
-* An internet-connected staging host to download the bundle. See link:requirements.html#dark-site-staging-host[Staging host] for details.
-* Review link:requirements.html[Requirements] and confirm your environment meets all sizing and networking prerequisites for dark site deployments.
+* An internet-connected staging host to download the bundle. See link:aide-requirements.html#dark-site-staging-host[Staging host] for details.
+* Review link:aide-requirements.html[AIDE requirements] and confirm your environment meets all sizing and networking prerequisites for dark site deployments.
 * Collect the following values. The installer requires these values to register the deployment with your NetApp Console Connector.
 +
 --
@@ -189,5 +189,5 @@ All rows should show `Deployed=True` at the new version.
 
 == Related information
 
-* link:requirements.html[AIDE deployment requirements]
+* link:aide-requirements.html[AIDE deployment requirements]
 * link:deployment-overview.html[AIDE deployment overview]

@@ -15,13 +15,13 @@ AI Data Engine supports two deployment modes: AIDE Lite for a single-VM deployme
 
 AIDE Lite is a single-node deployment suitable for evaluation and small-to-mid-market workloads. It is the recommended starting point for most deployments.
 
-AIDE Lite is available in three sizes — Small, Medium, and Large — for environments up to approximately 200 million, 1 billion, and 3 billion files respectively. For full VM sizing and OS requirements, see link:requirements.html[Requirements].
+AIDE Lite is available in three sizes — Small, Medium, and Large — for environments up to approximately 200 million, 1 billion, and 3 billion files respectively. For full VM sizing and OS requirements, see link:aide-requirements.html[AIDE requirements].
 
 == AIDE Enterprise
 
 AIDE Enterprise deploys as a multi-node Kubernetes cluster on infrastructure you provision and manage. It is designed for environments that require high availability and enterprise-scale performance.
 
-AIDE Enterprise is available in three sizes — Small, Medium, and Large — for environments up to approximately 1 billion, 3 billion, and 6 billion files respectively. For full node sizing and cluster requirements, see link:requirements.html[Requirements].
+AIDE Enterprise is available in three sizes — Small, Medium, and Large — for environments up to approximately 1 billion, 3 billion, and 6 billion files respectively. For full node sizing and cluster requirements, see link:aide-requirements.html[AIDE requirements].
 
 == Deployment process
 
@@ -78,14 +78,14 @@ You obtain the offline bundle from NetApp and transfer it to your air-gapped env
 // NOTE FOR WRITER: Bundle distribution channel is an open decision (NSS
 // download, token-gated link, or physical media) per the AIDE Darksite design
 // spec (open item #1) — keep consistent with the matching flag in
-// requirements.adoc. Do not name "Console Private Mode" or a specific delivery
+// aide-requirements.adoc. Do not name "Console Private Mode" or a specific delivery
 // path until confirmed with engineering.
 
 For steps, see link:deploy-dark-site.html[Deploy AI Data Engine — Dark sites].
 
 == Related information
 
-* link:requirements.html[Requirements]
+* link:aide-requirements.html[AIDE requirements]
 * link:deploy-aide-lite.html[Deploy AI Data Engine — Lite]
 * link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise]
 * link:deploy-dark-site.html[Deploy AI Data Engine — Dark sites]
