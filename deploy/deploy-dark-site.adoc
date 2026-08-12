@@ -36,87 +36,73 @@ Prerequisites differ between AIDE Lite and AIDE Enterprise:
 
 |NFS shares
 |Not required.
-|You need two NFS shares, on different paths. See link:requirements.html#dark-site-nfs-requirements[NFS share requirements] for share purpose, access mode, and mount details.
+|You need two NFS shares on different paths. See link:requirements.html#dark-site-nfs-requirements[NFS share requirements] for share purpose, access mode, and mount details.
 
 |===
 
 The following apply to all dark site deployments:
 
 * You need _Organization admin_ or greater permissions in NetApp Console.
+// OPEN ISSUE: Replace with the correct Console Connector installation link when available.
 * You must deploy a NetApp Console Connector on your local network, reachable from the AI Data Engine host or cluster nodes. The installer communicates with the Connector at `http://<connector-ip>`.
-// Mode docs link — replace with the correct Connector install link when available.
 * An internet-connected staging host to download the bundle. See link:requirements.html#dark-site-staging-host[Staging host] for details.
 * Review link:requirements.html[Requirements] and confirm your environment meets all sizing and networking prerequisites for dark site deployments.
+* Collect the following values. The installer requires these values to register the deployment with your Console Connector.
++
+--
+* Account ID
+* Organization ID
+* Agent ID
+--
 
-// NOTE FOR WRITER: The bundle distribution channel (how customers obtain the
-// bundle — NSS download, token-gated link, or physical media) is an open
-// product/GTM decision per the AIDE Darksite design spec (open item #1).
-// Keep consistent with the matching open-item flag in requirements.adoc
-// ("Dark site requirements" section) — do not document a specific download
-// path until confirmed with engineering.
+// OPEN ISSUE: Bundle distribution channel (NSS, token-gated download, or
+// physical media) is undecided per AIDE Darksite design spec open item #1.
+// Do not document a specific download path until confirmed with engineering.
+
+// OPEN ISSUE: The connected installer requires --user-token (Console bearer
+// token). The darksite spec deliberately omits it from the example commands
+// and uses plain sudo (no -E), which suggests Console Private Mode
+// authentication may work differently. Confirm with Narasimha Reddy whether
+// --user-token is needed in dark site mode and, if so, how the token is
+// generated inside the air gap (auth0 is unreachable).
 
 .Steps
 
-. Obtain the AI Data Engine dark site bundle for your release from NetApp.
-+
-The bundle filename follows this format: `<VERSION>_aide_darksite_bundle.tar.gz`.
-
-. Verify the bundle integrity using the verification script included in the bundle:
-
-.. Unpack the bundle:
-+
-[source,bash]
-----
-tar -xzf <VERSION>_aide_darksite_bundle.tar.gz
-----
-
-.. Change directory:
-+
-[source,bash]
-----
-cd aide-darksite-<VERSION>
-----
-
-.. Run the verification script:
-[source,bash]
-+
-----
-./scripts/verify-bundle.sh
-----
-+
-The script checks every artifact against the checksums in `manifest.json` and fails with a clear message if anything is missing or corrupted. The installer also runs this check automatically before touching your system.
+. Obtain the AI Data Engine dark site bundle for your release from NetApp. The bundle filename follows this format: `<VERSION>_aide_darksite_bundle.tar.gz`.
 
 . Transfer the bundle to your air-gapped environment using USB media, SCP over a jump host, or your organization's preferred secure transfer method.
 
-. On the target host (Lite) or install host with `kubectl` access (Enterprise), extract the bundle if you have not already done so:
-
-.. Unpack the bundle:
+. On the target host (Lite) or install host with `kubectl` access (Enterprise), extract the bundle:
 +
 [source,bash]
 ----
 tar -xzf <VERSION>_aide_darksite_bundle.tar.gz
-----
-
-.. Change directory:
-+
-[source,bash]
-----
 cd aide-darksite-<VERSION>
 ----
 +
 Confirm that the extracted bundle includes the following directories: `installer/`, `charts/`, `images/`, `k3s/` (Lite only), `tools/`, and `scripts/`.
++
+TIP: Run `./scripts/verify-bundle.sh` to check every artifact against the checksums in `manifest.json`. The installer also runs this check automatically as a preflight step.
 
-. Run the installer for your edition:
+. (Enterprise only) Push the container images from the `images/` directory to your private container registry. Follow your organization's image scanning and approval process. All images must be available in the registry before you run the installer.
+
+. Collect the following values from the AIDE onboarding page in NetApp Console. The installer requires these values to register the deployment with your Console Connector.
 +
-* *AIDE Lite*:
+--
+* Account ID
+* Organization ID
+* Agent ID
+--
+
+. Run the installer for your edition.
 +
-Single server, fully self-contained
+* *AIDE Lite*
 +
 [source,bash]
 ----
 sudo ./installer/install-lite.sh \
   --darksite \
-  --flavor small \
+  --flavor <small|medium|large> \
   --env production \
   --cm-host <connector-ip> \
   --account-id <account-id> \
@@ -126,13 +112,11 @@ sudo ./installer/install-lite.sh \
 +
 * *AIDE Enterprise*
 +
-Against your cluster, registry, and NFS shares:*
-+
 [source,bash]
 ----
 sudo ./installer/install-enterprise.sh \
   --darksite \
-  --flavor large \
+  --flavor <small|medium|large> \
   --env production \
   --cm-host <connector-ip> \
   --account-id <account-id> \
@@ -141,11 +125,13 @@ sudo ./installer/install-enterprise.sh \
   --image-registry <registry-host>:<port>/<prefix> \
   --registry-username <username> \
   --registry-password <password> \
-  --kubeconfig /etc/kubernetes/admin.conf \
+  --kubeconfig <path-to-kubeconfig> \
   --nfs-server <nfs-server-host> \
   --nfs-data-share /exports/aide/config \
   --charts-nfs-share /exports/aide/charts
 ----
++
+TIP: The Enterprise installer uses StorageClass `aide-sc` by default. Pass `--storage-class <name>` if your cluster uses a different StorageClass name.
 +
 The installer verifies the bundle, stages content, installs the AIDE operator from the local bundle, and applies all required custom resources automatically. No internet access is attempted at any point.
 
@@ -172,27 +158,24 @@ AI Data Engine is deployed in your air-gapped environment and connected to NetAp
 
 NetApp delivers upgrades as new bundle media. The system upgrades itself automatically after you stage the new content, and you don't need to reinstall.
 
-Stage content in the following order. You must replace the catalog file _last_ because it is the trigger the operator polls.
-
 .Steps
-. Stage new container images:
-** *Lite:* Load the new images from the bundle onto the server.
-** *Enterprise:* Push the new images to your private registry.
-+
-NOTE: You must stage the new operator image before you replace the catalog file. The upgraded operator pod cannot start until its image is available.
 
-. Copy new Helm charts from the bundle onto the charts mount or NFS share. Keep the previous version files for rollback.
+. Transfer the new bundle to your air-gapped environment and extract it on the target host or install host.
 
-. Replace the catalog file atomically. Use the helper script included in the bundle:
+. *Enterprise only:* Push the new container images from the bundle to your private registry. The new operator image must be available in the registry before you continue.
+
+. Run the upgrade script from the new bundle:
 +
 [source,bash]
 ----
 ./scripts/drop-upgrade-content.sh
 ----
 +
-The script performs all three steps in the correct order. You can also run the steps manually, but you must follow the same sequence.
+The script stages images (Lite only), copies new Helm charts to the charts mount or NFS share, and replaces the catalog file. Content is staged in a fixed order: images first, then charts, then the catalog file last. The catalog file is replaced last because it is the trigger the operator polls.
 +
-Within approximately 30 minutes, the AIDE operator detects the new catalog, upgrades all components in the correct rollout order, and upgrades itself. Running the upgrade script again with the same version has no effect.
+You can also run these steps manually if your environment requires it. Stage new images first, then copy new charts (keep previous versions for rollback), then replace the catalog file last.
++
+Within approximately 30 minutes, the AIDE operator detects the new catalog, upgrades all components in the correct rollout order, and upgrades itself. Running the upgrade with the same version again has no effect.
 
 . Verify that the upgrade completed:
 +
@@ -207,5 +190,3 @@ All rows should show `Deployed=True` at the new version.
 
 * link:requirements.html[AIDE deployment requirements]
 * link:deployment-overview.html[AIDE deployment overview]
-* link:deploy-aide-lite.html[Deploy AIDE — Lite]
-* link:deploy-enterprise.html[Deploy AIDE — Enterprise]
