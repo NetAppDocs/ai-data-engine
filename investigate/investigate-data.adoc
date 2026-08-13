@@ -65,7 +65,7 @@ To clear all filters, click *Clear filters*.
 
 The results table shows files that match your applied filters. When filters are active, the header shows the filtered count and size (for example, "Unstructured items (250k / 400M) | 8.3 TiB | Filters applied (2)").
 
-To download the filtered results, click image:./media/download-icon.png[Download].
+To download the filtered results, click image:icon_download_file.png[Download].
 
 == Take action on results
 

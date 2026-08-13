@@ -16,8 +16,8 @@ indexpage:
       links:
         - title: Deployment overview
           url: /deploy/deployment-overview.html
-        - title: Requirements
-          url: /deploy/requirements.html
+        - title: AIDE requirements
+          url: /deploy/aide-requirements.html
         - title: Deploy AIDE Lite
           url: /deploy/deploy-aide-lite.html
         - title: Deploy AIDE Enterprise

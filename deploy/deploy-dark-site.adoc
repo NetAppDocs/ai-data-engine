@@ -1,0 +1,185 @@
+---
+sidebar: sidebar
+permalink: deploy/deploy-dark-site.html
+keywords: deploy, install, dark site, air-gapped, offline, no internet, air gap
+summary: Deploy AI Data Engine in an air-gapped environment using the offline bundle NetApp provides. Your AI Data Engine host doesn't need outbound internet access after you transfer the bundle to your environment.
+---
+
+= Deploy AI Data Engine for dark sites
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Deploy AI Data Engine in a fully air-gapped environment using the NetApp-provided offline bundle. No outbound internet access is required from the AI Data Engine host after the bundle is transferred to your environment.
+
+Both AIDE Lite and AIDE Enterprise support dark site deployment. The bundle contains all container images, Helm charts, catalog, and installation scripts needed to complete the installation offline.
+
+.Before you begin
+
+Prerequisites differ between AIDE Lite and AIDE Enterprise:
+
+[cols="1h,2,2",options="header"]
+|===
+| |AIDE Lite |AIDE Enterprise
+
+|Infrastructure
+|Single Linux VM meeting link:aide-requirements.html#aide-lite-requirements[Lite sizing requirements]. The installer bootstraps k3s automatically from the bundle.
+|Customer-provisioned Kubernetes cluster meeting link:aide-requirements.html#aide-enterprise-requirements[Enterprise node requirements]. The cluster must be running before you begin.
+
+|Access
+|Root or sudo access on the target VM
+|`kubectl` with `cluster-admin` privileges and Helm 3.12 or later on the install host
+
+|Container images
+|No action required. The installer preloads all container images from the bundle directly into the local container runtime.
+|You must push all container images from the bundle to your private container registry before running the installer. Images pass through your organization's security scanning and approval process.
+
+|NFS shares
+|Not required.
+|You need two NFS shares on different paths. See link:aide-requirements.html#dark-site-nfs-requirements[NFS share requirements] for share purpose, access mode, and mount details.
+
+|===
+
+The following apply to all dark site deployments:
+
+* You need _Organization admin_ or greater permissions in NetApp Console.
+// OPEN ISSUE: Replace with the correct Console Connector installation link when available.
+* You must deploy a NetApp Console Connector on your local network, reachable from the AI Data Engine host or cluster nodes. The installer communicates with the Connector at `\http://<connector-ip>`.
+* An internet-connected staging host to download the bundle. See link:aide-requirements.html#dark-site-staging-host[Staging host] for details.
+* Review link:aide-requirements.html[AIDE requirements] and confirm your environment meets all sizing and networking prerequisites for dark site deployments.
+
+// OPEN ISSUE: Bundle distribution channel (NSS, token-gated download, or
+// physical media) is undecided per AIDE Darksite design spec open item #1.
+// Do not document a specific download path until confirmed with engineering.
+
+// OPEN ISSUE: The connected installer requires --user-token (Console bearer
+// token). The darksite spec deliberately omits it from the example commands
+// and uses plain sudo (no -E), which suggests Console Private Mode
+// authentication may work differently. Confirm with Narasimha Reddy whether
+// --user-token is needed in dark site mode and, if so, how the token is
+// generated inside the air gap (auth0 is unreachable).
+
+.Steps
+
+. Obtain the AI Data Engine dark site bundle for your release from NetApp. The bundle filename follows this format: `<VERSION>_aide_darksite_bundle.tar.gz`.
+
+. Transfer the bundle to your air-gapped environment using USB media, SCP over a jump host, or your organization's preferred secure transfer method.
+
+. On the target host (Lite) or install host with `kubectl` access (Enterprise), extract the bundle:
++
+.. Untar the bundle:
++
+[source,bash]
+----
+tar -xzf <VERSION>_aide_darksite_bundle.tar.gz
+----
+
+.. Change to the extracted directory:
++
+[source,bash]
+----
+cd aide-darksite-<VERSION>
+----
++
+.. Confirm that the extracted bundle includes the following directories: `installer/`, `charts/`, `images/`, `k3s/` (Lite only), `tools/`, and `scripts/`.
++
+TIP: Run `./scripts/verify-bundle.sh` to check every artifact against the checksums in `manifest.json`. The installer also runs this check automatically as a preflight step.
+
+. (Enterprise only) Push the container images from the `images/` directory to your private container registry. Follow your organization's image scanning and approval process. All images must be available in the registry before you run the installer.
+
+. Run the installer for your edition.
++
+* *AIDE Lite*
++
+[source,bash]
+----
+sudo ./installer/install-lite.sh \
+  --darksite \
+  --flavor <small|medium|large> \
+  --env production \
+  --cm-host <connector-ip> \
+  --account-id <account-id> \
+  --organization-id <organization-id> \
+  --agent-id <agent-id>
+----
++
+* *AIDE Enterprise*
++
+[source,bash]
+----
+sudo ./installer/install-enterprise.sh \
+  --darksite \
+  --flavor <small|medium|large> \
+  --env production \
+  --cm-host <connector-ip> \
+  --account-id <account-id> \
+  --organization-id <organization-id> \
+  --agent-id <agent-id> \
+  --image-registry <registry-host>:<port>/<prefix> \
+  --registry-username <username> \
+  --registry-password <password> \
+  --kubeconfig <path-to-kubeconfig> \
+  --nfs-server <nfs-server-host> \
+  --nfs-data-share /exports/aide/config \
+  --charts-nfs-share /exports/aide/charts
+----
++
+TIP: The Enterprise installer uses StorageClass `aide-sc` by default. Pass `--storage-class <name>` if your cluster uses a different StorageClass name.
++
+The installer verifies the bundle, stages content, installs the AIDE operator from the local bundle, and applies all required custom resources automatically. No internet access is attempted at any point.
+
+. Monitor the operator pod until it reports `Running`:
++
+[source,bash]
+----
+kubectl -n aide get pods -w
+----
+
+. Confirm that every component finished deploying:
++
+[source,bash]
+----
+kubectl get aidecomponents,aideservices -n aide
+----
++
+All rows should show `Deployed=True`. If a component shows an error, the status message names the exact missing file or blocked source.
+
+.Result
+AI Data Engine is deployed in your air-gapped environment and connected to NetApp Console through your on-prem Console Connector. You can now link:../data-sources/connect-data-source.html[connect a storage system] to start scanning.
+
+== Upgrade a dark site deployment
+
+NetApp delivers upgrades as new bundle media. The system upgrades itself automatically after you stage the new content, and you don't need to reinstall.
+
+.Steps
+
+. Transfer the new bundle to your air-gapped environment and extract it on the target host or install host.
+
+. (Enterprise only) Push the new container images from the bundle to your private registry. The new operator image must be available in the registry before you continue.
+
+. Run the upgrade script from the new bundle:
++
+[source,bash]
+----
+./scripts/drop-upgrade-content.sh
+----
++
+The script stages images (Lite only), copies new Helm charts to the charts mount or NFS share, and replaces the catalog file. Content is staged in a fixed order: images first, then charts, then the catalog file last. The catalog file is replaced last because it is the trigger the operator polls.
++
+You can also run these steps manually if your environment requires it. Stage new images first, then copy new charts (keep previous versions for rollback), then replace the catalog file last.
++
+Within approximately 30 minutes, the AIDE operator detects the new catalog, upgrades all components in the correct rollout order, and upgrades itself. Running the upgrade with the same version again has no effect.
+
+. Verify that the upgrade completed:
++
+[source,bash]
+----
+kubectl get aidecomponents,aideservices -n aide
+----
++
+All rows should show `Deployed=True` at the new version.
+
+== Related information
+
+* link:aide-requirements.html[AIDE deployment requirements]
+* link:deployment-overview.html[AIDE deployment overview]

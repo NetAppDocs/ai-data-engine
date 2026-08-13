@@ -13,7 +13,7 @@ Deploy AIDE Lite from NetApp Console using the deployment wizard. The wizard gui
 
 .Before you begin
 * You must have _Organization admin_ or greater permissions in NetApp Console.
-* Review link:requirements.html[requirements] and confirm your environment meets all prerequisites.
+* Review link:aide-requirements.html[AIDE requirements] and confirm your environment meets all prerequisites.
 * A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[must be deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
 
 .Steps
