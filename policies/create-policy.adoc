@@ -13,7 +13,7 @@ Create a policy when you want to monitor a recurring data condition, such as fil
 
 == About policies
 
-Policies save the filter criteria you define in Investigation as a reusable rule. You can run the policy again at any time to re-examine the same data grouping, or configure it to automatically take an action, such as tagging, archiving, or deleting, when files meet the policy criteria.
+Policies save the filter criteria you define in Investigation as a reusable rule. You can run the policy again at any time to re-examine the same data grouping, or attach an action, such as tagging, archiving, or deleting, to apply to files that meet the policy criteria.
 
 // RESEARCH NEEDED: Confirm the policy execution model for V1. Are policies triggered on a schedule, on demand only, or on a continuous/near-real-time basis as the metadata catalog is updated? This significantly affects how policy behavior should be described.
 
