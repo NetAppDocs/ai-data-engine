@@ -13,16 +13,19 @@ Add storage systems to AI Data Engine and review their scan status to ensure acc
 
 .Before you begin
 
-* For the storage system to be accessible to AIDE, it must first be discovered in NetApp Console using a Console Agent. For on-premises ONTAP clusters, see link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery does not enable data services such as AI Data Engine.
+* Storage systems must first be discovered in NetApp Console using a Console Agent before they can be added to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, see link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery does not enable data services such as AI Data Engine.
 
 == Add a storage system
 
 .Steps
 . From the AI Data Engine UI, click *Configuration*.
-. On the Scanned systems tab, click *Add system*.
-. Follow the prompts to connect your storage system.
-
-// RESEARCH NEEDED: Document the full Add system wizard steps when confirmed from engineering or updated Figma flows.
+. On the Scanned systems tab, click *Add system* and select a system type:
++
+*File shares group*: Directly add NFS or CIFS (SMB) file shares from the cloud or on-premises. Enter a name for the group of shares and click *Continue*.
++
+*Database*: Add a database server so you can then select which schemas to activate. Select a database type, enter the host details and credentials, and click *Save*.
++
+*StorageGRID*: Scan data from NetApp StorageGRID using the S3 protocol. Enter a system name, endpoint URL, and S3 access credentials, then click *Save*.
 
 == Activate scanning on a storage system
 
@@ -38,7 +41,8 @@ After a storage system is added, scanning is not enabled automatically. You acti
 Click a system row to open the detail view. The detail view shows:
 
 * Status overview with scan progress
-* Data container scan breakdown (running, completed, paused, errors)
+* Data resources scan breakdown (running, completed, paused, errors)
+// VERIFY: Engineering spec labels this "Deactivate scans" (kebab menu). Confirm UI shows "Pause" vs. "Deactivate scans" — they have different semantic implications.
 * Options to *Pause* scanning or *Edit CIFS credentials*
 * Option to *Enable access to DP volumes*
 * Scan permission mode (for example, "Scan without write permissions")
