@@ -34,7 +34,7 @@ The AI Data Engine landing page appears.
 // [source,bash]
 // ----
 // sudo ./install-lite.sh \
-//   --flavor <small|medium|large> \
+//   --profile <small|medium|large> \
 //   --account-id <account-id> \
 //   --organization-id <organization-id> \
 //   --agent-id <agent-id> \

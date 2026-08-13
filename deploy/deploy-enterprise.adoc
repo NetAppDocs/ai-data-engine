@@ -41,6 +41,7 @@ The AI Data Engine landing page appears.
 // ----
 // sudo ./install-enterprise.sh \
 //   --flavor <small> \
+//   --registry <registry-host> \
 //   --nfs-server <nfs-server-host> \
 //   --nfs-data-share <nfs-export-path> \
 //   --storage-class <storage-class-name> \
