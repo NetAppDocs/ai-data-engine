@@ -52,12 +52,10 @@ The following apply to all dark site deployments:
 // physical media) is undecided per AIDE Darksite design spec open item #1.
 // Do not document a specific download path until confirmed with engineering.
 
-// OPEN ISSUE: The connected installer requires --user-token (Console bearer
-// token). The darksite spec deliberately omits it from the example commands
-// and uses plain sudo (no -E), which suggests Console Private Mode
-// authentication may work differently. Confirm with Narasimha Reddy whether
-// --user-token is needed in dark site mode and, if so, how the token is
-// generated inside the air gap (auth0 is unreachable).
+// RESOLVED: Dark site install commands omit --agent-id and --user-token.
+// The installer communicates with the local Console Connector rather than
+// registering a SaaS agent, so neither parameter applies. See Darksite
+// Design Specification (Installer + Operator), Section 1.3.
 
 .Steps
 
@@ -99,8 +97,7 @@ sudo ./installer/install-lite.sh \
   --env production \
   --cm-host <connector-ip> \
   --account-id <account-id> \
-  --organization-id <organization-id> \
-  --agent-id <agent-id>
+  --organization-id <organization-id>
 ----
 +
 * *AIDE Enterprise*
@@ -114,7 +111,6 @@ sudo ./installer/install-enterprise.sh \
   --cm-host <connector-ip> \
   --account-id <account-id> \
   --organization-id <organization-id> \
-  --agent-id <agent-id> \
   --image-registry <registry-host>:<port>/<prefix> \
   --registry-username <username> \
   --registry-password <password> \

@@ -62,8 +62,8 @@ NetApp Console does not provision the infrastructure for AI Data Engine. You pre
 |Yes
 
 |Scan rate
-|Up to 50 million files/day
-|Up to 250 million files/day
+|50 million to 1 billion files/day, varies by size
+|250 million to 2 billion files/day, varies by size
 
 |===
 
