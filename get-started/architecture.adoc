@@ -13,7 +13,7 @@ AI Data Engine consists of a Metadata Engine and a policy framework. These capab
 
 == Components
 
-// RESEARCH NEEDED: Confirm with PM whether the architecture page should present named "components" or describe AIDE as a unified service with functional areas (Dashboard, Investigation, Policies, Configuration). The MDE PRD (July 22) frames customer interaction through those four functional areas rather than discrete named components.
+You primarily interact with AI Data Engine through four functional areas: the dashboard, investigation, policies, and configuration. These functional areas are powered by the following underlying components.
 
 === Metadata Engine
 
@@ -44,14 +44,14 @@ link:../deploy/deployment-overview.html[Learn more about deployment options].
 == Data flow
 
 . AI Data Engine deploys in your on-premises environment.
-. AIDE discovers the storage systems managed by the Console Agent. Supported systems include NetApp ONTAP, StorageGRID, and any NAS or object storage system that exposes NFS, CIFS/SMB, or S3 protocols. You select which systems and volumes to scan in *Configuration > Systems*.
+. You add the storage systems you want AIDE to catalog in *Configuration > Systems*. Supported systems include NetApp ONTAP, StorageGRID, and any NAS or object storage system that exposes NFS, CIFS/SMB, or S3 protocols.
 . The Metadata Engine mounts shares using NFS and CIFS/SMB protocols and scans the file systems to extract file metadata.
 . Metadata is indexed in the catalog.
 . The dashboard surfaces storage insights from the catalog.
 . Investigation lets you query the catalog directly with metadata filters.
 . You can save search criteria as policies and re-run them to identify and act on matching files.
 
-// RESEARCH NEEDED: Confirm the incremental update mechanism for V2. Baseline scanning via NFS/CIFS mounts is confirmed (K8S Deployment Plans, August 3; Deployment Guide, July 20). The mechanism for detecting changes between scans (rescan frequency, change detection method) is not explicitly described in post-pivot V2 sources reviewed to date.
+NOTE: After the Metadata Engine finishes scanning all configured volumes, it immediately starts a new scanning round, rescanning the file systems to detect additions, changes, and deletions.
 
 == Related information
 
