@@ -13,7 +13,7 @@ Before you investigate individual files, use the Overview page to see how much o
 
 For example, a storage administrator responding to a capacity alert can see that a significant portion of scanned storage is cold data, then drill into the highest-impact system to start investigating immediately.
 
-From the AI Data Engine UI, select *Overview*. The *System* and *System type* filters control dashboard scope, reflecting storage systems that have been registered through the Console Agent and enabled for scanning. If a storage system does not appear in the filter list, see link:../data-sources/connect-data-source.html[Configure and manage scanned systems].
+From the AI Data Engine UI, select *Overview*. The *System* and *System type* filters control dashboard scope, reflecting storage systems that have been registered through the Console Agent and enabled for scanning. If a storage system does not appear in the filter list, see link:../data-sources/connect-data-source.html[Connect a data source].
 
 == What the dashboard tells you
 
@@ -57,4 +57,4 @@ This table lists your scanned storage resources ranked by reclaimable storage. C
 == Related information
 
 * link:investigate-data.html[Investigate your data]
-* link:../data-sources/connect-data-source.html[Configure and manage scanned systems]
+* link:../data-sources/connect-data-source.html[Connect a data source]

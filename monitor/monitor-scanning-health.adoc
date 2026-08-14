@@ -24,7 +24,7 @@ On a single-node (Lite) deployment, confirm that all your storage systems are co
 .Steps
 . From the AI Data Engine UI, click *Configuration*.
 . On the Scanned systems tab, confirm that every storage system you expect to see is listed and enabled for scanning.
-. Click a system row to review its scan progress and any errors. See link:../data-sources/connect-data-source.html[Configure and manage scanned systems] for the full detail view.
+. Click a system row to review its scan progress and any errors. See link:../data-sources/manage-data-sources.html[Manage data sources] for the full detail view.
 --
 
 .Enterprise
@@ -67,6 +67,6 @@ Scanning health monitoring works the same way in air-gapped (dark site) deployme
 
 == Related information
 
-* link:../data-sources/connect-data-source.html[Configure and manage scanned systems]
+* link:../data-sources/connect-data-source.html[Connect a data source]
 * link:../investigate/understand-dashboard.html[Understand the dashboard]
 * link:../investigate/investigate-data.html[Investigate your data]

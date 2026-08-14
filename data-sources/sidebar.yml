@@ -1,5 +1,7 @@
 section: data-sources
 title: Connect data sources
 entries:
-  - title: Configure and manage scanned systems
+  - title: Connect a data source
     url: /data-sources/connect-data-source.html
+  - title: Manage data sources
+    url: /data-sources/manage-data-sources.html

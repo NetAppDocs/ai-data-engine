@@ -56,4 +56,4 @@ The AI Data Engine landing page appears.
 . Monitor the progress screen until the success screen appears and displays *"AI Data Engine deployed"*. Click *Continue to configuration*.
 
 .Result
-AI Data Engine Enterprise is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a storage system] to start scanning.
+AI Data Engine Enterprise is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
