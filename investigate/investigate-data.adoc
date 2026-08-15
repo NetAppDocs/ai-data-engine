@@ -15,33 +15,13 @@ When you need to understand what is consuming storage or find files ready for ar
 
 From the AI Data Engine UI, click *Investigation*.
 
-You can also open Investigation from the Overview page by clicking *Investigate* in the Top storage resources table. Investigation opens with a filter pre-applied for that resource.
+You can also open Investigation from the Overview page by clicking *Investigate* in the _Top consumers by reclaimable storage_ table. Investigation opens with a filter pre-applied for that resource.
 
 The Investigation view displays a summary count and total size of all unstructured items across connected systems (for example, "Unstructured items (400M) | 5.7 PiB").
 
-// RESEARCH NEEDED: This topic covers unstructured file investigation only. Confirm whether separate Directories and Tables (structured data) views/tabs exist in the V1 UI before adding dedicated topics for them.
-
 == Find cold, stale, and at-risk files
 
-Use date-based filters to identify reclaimable storage. The following table describes each filter, its default threshold, and what matching files represent.
-
-[cols="1,1,2",options="header"]
-|===
-|Filter |Default threshold |What it identifies
-
-|Last accessed
-|365+ days
-|Cold files that have not been accessed in a year or more. Strong candidates for archival or deletion.
-
-|Last modified
-|3+ years
-|Stale files that have not been modified recently, even if still occasionally accessed.
-
-|Last created
-|7+ years
-|Files that may be subject to your organization's retention review requirements.
-
-|===
+Use date-based filters to identify reclaimable storage.
 
 .Steps
 . Click *Add filter*.
@@ -73,7 +53,8 @@ Select one or more items using the checkboxes in the results table to activate t
 
 * *Delete*: permanently delete the selected files
 * *Archive*: move the selected files to a cold storage destination
-* *Tag*: apply a business tag to the selected files
+* *Copy*: copy the selected files to another location
+* *Tag*: apply a custom tag to the selected files
 
 For step-by-step instructions, see link:../policies/take-actions.html[Take action with your data].
 

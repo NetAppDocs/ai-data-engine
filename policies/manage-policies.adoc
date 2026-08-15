@@ -25,11 +25,11 @@ The Policies page lists all policies you have created. Each entry shows:
 |Name
 |The name assigned when the policy was created.
 
-|Created
-|Whether the policy is *Custom* (user-created) or *Predefined*.
+|Created by
+|The name of the user who created the policy.
 
 |Actions
-|The action configured for the policy (for example, Email update).
+|The action configured for the policy (for example, *Send email notification*).
 
 |Description
 |The filter criteria expression for the policy.
@@ -44,6 +44,14 @@ The Policies page lists all policies you have created. Each entry shows:
 .Steps
 . From the AI Data Engine UI, click *Policies*.
 . Open the action menu and select *Investigate results* next to the policy to see the full policy details and impacted items.
+
+== Edit a policy
+
+.Steps
+. From the AI Data Engine UI, click *Policies*.
+. Open the action menu for the policy you want to edit and select *Edit policy*.
+. Update the policy name, description, or action as needed.
+. Click *Save*.
 
 == Delete a policy
 

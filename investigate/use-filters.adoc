@@ -26,6 +26,9 @@ The Investigation view provides metadata filters that you can use to narrow your
 |Last accessed
 |Filter files by the date they were last accessed. Use this filter to identify cold or stale data.
 
+|Discovered time
+|Filter files by when AI Data Engine first detected them during scanning.
+
 |===
 
 == File attribute filters
@@ -42,6 +45,18 @@ The Investigation view provides metadata filters that you can use to narrow your
 
 |File / Directory Path
 |Filter by the full or partial path of the file or its containing directory.
+
+|File / Directory Owner
+|Filter by the user or group that owns the file or directory.
+
+|File Hash
+|Filter by a file's hash value to find specific files or confirm duplicate content.
+
+|Duplicates
+|Filter to show only files that have duplicate copies detected in the catalog.
+
+|Directory Type
+|Filter by directory type. Applies to the Directories tab.
 
 |===
 
@@ -73,6 +88,20 @@ The Investigation view provides metadata filters that you can use to narrow your
 
 |Policy
 |Filter files matched by a specific saved policy. Policy names appear in the filter list.
+
+|===
+
+== Access filters
+
+[cols="1,2",options="header"]
+|===
+|Filter |Description
+
+|Number of users with access
+|Filter files by how many users or groups have access. Use this to identify broadly accessible data.
+
+|Users / Group permission
+|Filter files by a specific user or group that has access permissions.
 
 |===
 

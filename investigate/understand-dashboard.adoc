@@ -13,7 +13,7 @@ Before you investigate individual files, use the Overview page to see how much o
 
 For example, a storage administrator responding to a capacity alert can see that a significant portion of scanned storage is cold data, then drill into the highest-impact system to start investigating immediately.
 
-From the AI Data Engine UI, select *Overview*. The *System* and *System type* filters control dashboard scope, reflecting storage systems that have been registered through the Console Agent and enabled for scanning. If a storage system does not appear in the filter list, see link:../data-sources/connect-data-source.html[Connect a data source].
+From NetApp Console, select *Governance* > *AI Data Engine UI* and the Overview page opens by default. The *System* and *System type* filters control dashboard scope, reflecting storage systems that have been registered through the NetApp Console Agent and enabled for scanning. If a storage system does not appear in the filter list, see link:../data-sources/connect-data-source.html[Connect a data source].
 
 == What the dashboard tells you
 
@@ -21,17 +21,19 @@ The Overview page shows how much storage exists across your environment, how muc
 
 == Summary panel
 
-The summary panel provides workspace-level metrics:
+The summary panel shows these metrics for your scanned environment:
 
-* Total count of storage resources scanned across all connected systems.
-* Average daily storage growth across scanned resources (for example, 94 GiB/day).
-* Total storage identified as reclaimable: the combined total of cold and stale data.
-* Data that has not been accessed in one or more years.
-* Data that has not been modified in three or more years.
+* *Data resources*: The count of volumes, shares, and buckets currently scanned.
+* *Total files scanned*: The total number of files indexed across all scanned data resources.
+* *Cold data*: Storage not accessed within the cold data threshold (default: 3 years).
+* *Stale data*: Storage not accessed or modified within the stale data threshold (default: 1 year).
+* *Exposed directories*: Directories with overly permissive access settings detected during scanning.
+
+Cold and stale thresholds reflect your configured settings and can be changed in *Configuration* > *Settings*.
 
 == Active versus reclaimable storage chart
 
-The *Active versus reclaimable storage* chart shows the proportion of active data compared to cold and stale data across all scanned resources. Use this to assess overall storage efficiency.
+The *Active versus reclaimable storage* chart shows the proportion of active data compared to cold and stale data across all scanned resources. The combined size of cold and stale data is your total reclaimable storage. Use this chart to assess overall storage efficiency.
 
 == Identify storage optimization opportunities
 
@@ -39,18 +41,16 @@ Use the summary panel and chart to prioritize storage optimization opportunities
 
 * Start with the resource that has the largest reclaimable size, not the largest total size. A small system that is mostly cold data is often a better first target than a large system that is mostly active.
 * Look for large concentrations of cold or stale data rather than isolated files. Tens of terabytes of stale data on one resource justifies an investigation; a single stale file does not.
-* Compare storage growth rate against reclaimable storage. A system with high growth and low reclaimable storage indicates active demand rather than reclaimable storage, and is a lower optimization priority.
 
 == Drill down from a dashboard finding into investigation
 
 After you identify a resource worth investigating, use the *Top data resources by reclaimable storage* table to move from the overview to the details.
 
-This table lists your scanned storage resources ranked by reclaimable storage. Click *Investigate* in any row to open the link:investigate-data.html[Investigation] view filtered to that resource.
+This table lists your scanned storage resources ranked by reclaimable storage. Click any row to open the link:investigate-data.html[Investigation] view filtered to that resource.
 
 == Refresh and explore further
 
 * Click *Refresh* to update the page with the latest scan data. The last-updated timestamp appears on the page.
-* Click *Explore cost optimization recommendations* to view additional recommendations based on your scan data.
 
 // RESEARCH NEEDED: Confirm whether the Explore cost optimization recommendations link is available in the V1 UI. If not, remove this bullet from the published topic.
 
