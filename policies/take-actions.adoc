@@ -38,8 +38,6 @@ The actions available to you depend on your assigned role:
 
 |===
 
-// RESEARCH NEEDED: Confirm Organization admin permissions for all action types when the role is confirmed.
-
 For a full description of roles, see link:../administer/manage-users-roles.html[Manage users and roles].
 
 == Decide what to do
@@ -64,7 +62,7 @@ Choose an action based on how certain you are about the data:
 
 |===
 
-If you're not sure, tag, archive, or copy instead of deleting. Tagging, archiving, and copying keep the data recoverable; deletion does not.
+When data may still have value or requires further review, prefer tagging, archiving, or copying over deleting. Only delete when you are certain the data is safe to remove permanently.
 
 == Archive
 
@@ -85,8 +83,6 @@ Archiving moves files to a cold storage destination over NFS or CIFS. You can op
 A breadcrumb file helps users understand why a file was moved.
 . Click *Archive*.
 
-// Automated Archive, Tag, and Copy via policy are V3 features; only Delete and email notification are V2 policy actions.
-
 == Copy
 
 Copying duplicates files to a destination volume without removing them from the original location.
@@ -102,7 +98,6 @@ Copying duplicates files to a destination volume without removing them from the 
 * *NFS*: enter the NFS destination folder path.
 * *CIFS*: enter the CIFS destination folder path in the format `\\Hostname\share_name`. Provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
 . Click *Copy*.
-// RESEARCH: Confirm whether the Copy dialog offers a breadcrumb option as Archive does.
 
 == Delete
 

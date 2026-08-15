@@ -33,7 +33,6 @@ On a multi-node (Enterprise) deployment, scan health is tracked per node in addi
 
 .Steps
 . From the AI Data Engine UI, click *Configuration*.
-. Click the *Health monitor* tab.
 . Review the total node count and the status of each node.
 . Identify which node, if any, is reporting errors or falling behind on scan coverage, and address that node before trusting findings that depend on it.
 --

@@ -13,20 +13,20 @@ Create a policy when you want to monitor a recurring data condition, such as fil
 
 == About policies
 
-Policies save the filter criteria you define in Investigation as a reusable rule. AI Data Engine evaluates each policy against the metadata catalog after every scan cycle. You can open a policy at any time to view the current matching result set, or attach an action — such as a deletion or email notification — that runs automatically when the policy criteria are met.
+Policies save the filter criteria you define in Investigation as a reusable rule. AI Data Engine evaluates each policy against the metadata catalog after every scan cycle. You can open a policy at any time to view the current matching result set. If you attach a Delete action, AI Data Engine removes matching files after each scan cycle. If you attach an email notification, AI Data Engine sends an update when the impacted file count changes.
 
 == Choose a policy action
 
 A policy is a saved filter set with an optional action attached:
 
-* *Monitor only (no action)*: Track the matching grouping over time without acting. Use this when you want visibility before you automate a response.
+* *Monitor only (no action)*: Track the matching grouping over time without acting. Use this when you want visibility without committing to an automated response.
 * *Send email notification*: Notify a user by email when the matching file count changes.
 * *Delete permanently*: AI Data Engine automatically applies the action to files that match the policy criteria.
 
 == Create a policy from Investigation
 
 .Before you begin
-* You must have the _AI Data Engine administrator_ role.
+* To attach a Delete or email notification action, you must have the _AI Data Engine administrator_ role. The _AI Data Engine viewer_ role can create monitor-only policies.
 
 .Steps
 . In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
@@ -44,7 +44,11 @@ Review the results table to confirm the filter set captures the intended data gr
 
 . The filter criteria are captured as a query expression (for example, `last_access_time <= 3 Years AND file_size >= 5GiB`).
 
-. Optionally, select an *Action* and choose the notification type (for example, *Send email notification*).
+. To attach an action, select one of the following under *Action*:
++
+* *Monitor only (no action)* (default): The policy saves as a monitor-only condition.
+* *Send email notification*: Enter the recipient email address in the field that appears.
+* *Delete permanently*: No additional input is required.
 
 . Click *Create*.
 
