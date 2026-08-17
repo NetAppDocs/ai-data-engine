@@ -55,8 +55,6 @@ Scanning health monitoring works the same way in air-gapped (dark site) deployme
 
 // == After a Lite-to-Enterprise migration
 //
-// RESEARCH NEEDED: Lite-to-Enterprise migration support for this release is unconfirmed; verify with engineering before publishing this section.
-//
 //If you migrate from a Lite to an Enterprise deployment, verify the following before relying on your usual workflows:
 //
 //* All previously connected storage systems appear in Configuration and are enabled for scanning.

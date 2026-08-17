@@ -25,7 +25,7 @@ Deploy AIDE Enterprise from NetApp Console using the deployment wizard. The wiza
 +
 The AI Data Engine landing page appears.
 
-. Click *Deploy AI Data Engine*.
+. Select *Deploy AI Data Engine*.
 . Read and accept terms and continue.
 . Select your configuration size:
 +
@@ -33,9 +33,9 @@ The AI Data Engine landing page appears.
 * *Medium*: recommended for environments with up to approximately 3 billion files.
 * *Large*: recommended for environments with up to approximately 6 billion files.
 
-. Click *Next*.
+. Select *Next*.
 
-. Copy the preconfigured install command displayed in the wizard and run it from a host with kubectl access to your RKE2 cluster:
+. Copy the preconfigured install command displayed in the wizard and run it from a host with kubectl access to your RKE2 cluster.
 // The install command shown here may require command-line customizations after the wizard behavior is confirmed.
 // [source,bash]
 // ----
@@ -53,7 +53,7 @@ The AI Data Engine landing page appears.
 // ----
 // RESEARCH NEEDED: Confirm this is the exact command format shown in the wizard UI.
 
-. Monitor the progress screen until the success screen appears and displays *"AI Data Engine deployed"*. Click *Continue to configuration*.
+. Monitor the progress screen until the success screen appears and displays *"AI Data Engine deployed"*. Select *Continue to configuration*.
 
 .Result
 AI Data Engine Enterprise is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.

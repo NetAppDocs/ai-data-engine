@@ -16,24 +16,15 @@ Known limitations identify functionality that is not supported in this release o
 Lite to Enterprise migration is not available in this release::
 You cannot migrate an existing AIDE Lite deployment to AIDE Enterprise in this release. A supported migration path is planned for a future release.
 
-// RESEARCH NEEDED (LOW): Confirm with engineering whether Enterprise Small is available in this release. If so, remove the following entry or move it to v2.1 release notes.
-
 == Scanning and data sources
 
 No content classification or inspection::
 AI Data Engine catalogs link:../get-started/architecture.html[file and directory metadata] only. It does not inspect file contents, perform data classification, detect personally identifiable information (PII), or apply content-based labels. Filtering and policy conditions are based on metadata attributes such as file size, access time, modification date, creation date, file type, and tags.
 
-// RESEARCH NEEDED (LOW): Confirm with engineering whether ONTAP S3 buckets and StorageGRID are supported data sources for MIS V1 (cloud deployment). The K8S spec includes object_store_dirlist_worker in scope and the content plan mentions heterogeneous storage support, but the earlier AIDE 9.18.1 limitations page explicitly excluded these. Clarify before publishing.
-
 == Policies and actions
-
-Available actions are Tag, Archive, and Delete::
-When you take action on files from Investigation results, the available actions are Tag, Archive, and Delete. The Copy action is not available in this release. Archive moves files to a user-specified NFS or CIFS destination.
 
 Policy-triggered actions are limited::
 When you create a policy, the available automated actions are limited to permanent deletion and email notification. Automated archive and tag actions from policies are not available in this release. You can create a policy with no action to monitor a data condition over time.
-
-// RESEARCH NEEDED (LOW): Confirm whether policy notification frequency (daily, weekly, monthly) is the complete list and whether there is a maximum policy count.
 
 == Related information
 

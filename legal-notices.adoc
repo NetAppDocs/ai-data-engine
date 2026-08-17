@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: # no keywords
 summary: # no summary
 ---
-= Legal notices for AI Data Engine
+= Legal notices
 :icons: font
 :imagesdir: ./media/
 

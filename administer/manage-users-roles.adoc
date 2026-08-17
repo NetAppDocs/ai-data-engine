@@ -9,9 +9,9 @@ summary: AI Data Engine uses role-based access control to manage what users can 
 :imagesdir: ../media/
 
 [.lead]
-Before your team starts using AI Data Engine, make sure each user has the right level of access. AI Data Engine uses role-based access control (RBAC) to define what each user can view and do within the product.
+AI Data Engine uses role-based access control (RBAC) to define what each user can view and do within the product. Before your team starts using AI Data Engine, assign each user the role that matches their required level of access.
 
-Roles are assigned through NetApp Console organization settings. AI Data Engine supports two roles at general availability.
+You assign roles through NetApp Console organization settings. AI Data Engine supports two roles at general availability.
 
 == Available roles
 
@@ -21,7 +21,7 @@ The AI Data Engine administrator role provides full access to all AI Data Engine
 
 === AI Data Engine viewer
 
-The AI Data Engine viewer role provides limited access to AI Data Engine. Viewers can view information, export reports, tag files, and create monitor-only policies, but cannot modify settings or execute file actions such as archive, copy, or delete.
+The AI Data Engine viewer role provides limited access to AI Data Engine. Viewers can view information, export reports, tag files, and create monitor-only policies, but cannot modify settings or perform file actions such as archive, copy, or delete.
 
 == Permissions by role
 
@@ -77,7 +77,7 @@ The AI Data Engine viewer role provides limited access to AI Data Engine. Viewer
 
 == Assign a role to a user
 
-Roles are assigned in NetApp Console, not within AI Data Engine itself.
+You assign roles in NetApp Console, not within AI Data Engine itself.
 
 .Steps
 

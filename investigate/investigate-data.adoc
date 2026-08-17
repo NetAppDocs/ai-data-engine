@@ -13,7 +13,7 @@ When you need to understand what is consuming storage or find files ready for ar
 
 == Navigate to Investigation
 
-From the AI Data Engine UI, click *Investigation*.
+From the AI Data Engine UI, select *Investigation*.
 
 You can also open Investigation from the Overview page by clicking *Investigate* in the _Top consumers by reclaimable storage_ table. Investigation opens with a filter pre-applied for that resource.
 
@@ -24,7 +24,7 @@ The Investigation view displays a summary count and total size of all unstructur
 Use date-based filters to identify reclaimable storage.
 
 .Steps
-. Click *Add filter*.
+. Select *Add filter*.
 . Select a filter from the table above.
 . Set the value to the appropriate threshold.
 
@@ -33,19 +33,19 @@ Use date-based filters to identify reclaimable storage.
 Combine any of the filters above with file size, path, system, tag, or policy filters to narrow the results further. For the complete list of available filters, see link:use-filters.html[Work with filters].
 
 .Steps
-. Click *Add filter*.
+. Select *Add filter*.
 . Select a filter criterion and value.
 . Repeat to add additional filters.
 
 Applied filters appear as tags below the filter bar (for example, "Last accessed: 365+ days | File size: >5 GiB"). The results table and item count update each time you add a filter.
 
-To clear all filters, click *Clear filters*.
+To clear all filters, select *Clear filters*.
 
 == View investigation results
 
 The results table shows files that match your applied filters. When filters are active, the header shows the filtered count and size (for example, "Unstructured items (250k / 400M) | 8.3 TiB | Filters applied (2)").
 
-To download the filtered results, click image:icon_download_file.png[Download].
+To download the filtered results, select image:icon_download_file.png[Download].
 
 == Take action on results
 
@@ -66,13 +66,13 @@ Save your current filter set as a policy to reuse it or automate actions on matc
 
 .Steps
 . Apply the filters that define the data you want to manage.
-. Click *Create policy* in the filter toolbar.
+. Select *Create policy* in the filter toolbar.
 . Complete the policy form. See link:../policies/create-policy.html[Create a policy].
 
 == Related information
 
 * link:use-filters.html[Work with filters]
-* link:storage-optimization-workflows.html[Storage optimization workflows]
+* link:storage-optimization-workflows.html[Explore storage optimization workflows]
 * link:../policies/create-policy.html[Create a policy]
 * link:../policies/take-actions.html[Take action with your data]
 * link:understand-dashboard.html[Understand the dashboard]
