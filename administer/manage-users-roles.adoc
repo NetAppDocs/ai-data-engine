@@ -21,7 +21,7 @@ The AI Data Engine administrator role provides full access to all AI Data Engine
 
 === AI Data Engine viewer
 
-The AI Data Engine viewer role provides read-only access to AI Data Engine. Viewers can view information and export reports, but cannot modify settings or execute actions.
+The AI Data Engine viewer role provides limited access to AI Data Engine. Viewers can view information, export reports, tag files, and create monitor-only policies, but cannot modify settings or execute file actions such as archive, copy, or delete.
 
 == Permissions by role
 
@@ -53,7 +53,11 @@ The AI Data Engine viewer role provides read-only access to AI Data Engine. View
 |Yes
 |Yes
 
-|Create and manage policies
+|Create monitor-only policies
+|Yes
+|Yes
+
+|Create policies with actions
 |Yes
 |-
 
@@ -61,7 +65,7 @@ The AI Data Engine viewer role provides read-only access to AI Data Engine. View
 |Yes
 |Yes
 
-|Actions: Archive, Delete
+|Actions: Archive, Copy, Delete
 |Yes
 |-
 

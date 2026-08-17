@@ -19,9 +19,9 @@ Review the link:../deploy/aide-requirements.html[AIDE requirements] and decide w
 [role="quick-margin-para"]
 link:../deploy/deployment-overview.html[Run the deployment steps] from NetApp Console. The setup page guides you through selecting your installation location and configuration size and running the install command.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Connect a storage system
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Connect a data source
 [role="quick-margin-para"]
-link:../data-sources/connect-data-source.html[Connect a storage system] to begin scanning. AI Data Engine catalogs file system metadata from the storage systems you specify.
+link:../data-sources/connect-data-source.html[Connect a data source] to begin scanning. AI Data Engine catalogs file system metadata from the storage systems you specify.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Explore your data
 [role="quick-margin-para"]

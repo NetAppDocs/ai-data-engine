@@ -31,12 +31,12 @@ Prerequisites differ between AIDE Lite and AIDE Enterprise:
 |`kubectl` with `cluster-admin` privileges and Helm 3.12 or later on the install host
 
 |Container images
-|No action required. The installer preloads all container images from the bundle directly into the local container runtime.
-|You must push all container images from the bundle to your private container registry before running the installer. Images pass through your organization's security scanning and approval process.
+|No action needed. The installer preloads all container images from the bundle directly into the local container runtime.
+|You must push all container images from the bundle to your private container registry and software packages to your file share before running the installer. Images pass through your organization's security scanning and approval process. One command installs the whole system. 
 
 |NFS shares
 |Not required.
-|You need two NFS shares on different paths. See link:aide-requirements.html#dark-site-nfs-requirements[NFS share requirements] for share purpose, access mode, and mount details.
+|You need two NFS shares on different paths: one for AIDE configuration data, one for software packages. See link:aide-requirements.html#dark-site-nfs-requirements[NFS share requirements] for share purpose, access mode, and mount details.
 
 |===
 
@@ -120,7 +120,7 @@ sudo ./installer/install-enterprise.sh \
   --charts-nfs-share /exports/aide/charts
 ----
 +
-TIP: The Enterprise installer uses StorageClass `aide-sc` by default. Pass `--storage-class <name>` if your cluster uses a different StorageClass name.
+TIP: The Enterprise installer uses StorageClass `aide-sc` by default. Pass `--storage-class <name>` if your cluster uses a different StorageClass.
 +
 The installer verifies the bundle, stages content, installs the AIDE operator from the local bundle, and applies all required custom resources automatically. No internet access is attempted at any point.
 
@@ -140,8 +140,15 @@ kubectl get aidecomponents,aideservices -n aide
 +
 All rows should show `Deployed=True`. If a component shows an error, the status message names the exact missing file or blocked source.
 
+. Confirm that this install is in darksite mode:
++
+[source,bash]
+----
+kubectl -n aide get cm aide-operator-config -o jsonpath='{.data.DARKSITE_MODE}'
+----
+
 .Result
-AI Data Engine is deployed in your air-gapped environment and connected to NetApp Console through your on-prem Console Connector. You can now link:../data-sources/connect-data-source.html[connect a storage system] to start scanning.
+AI Data Engine is deployed in your air-gapped environment and connected to NetApp Console through your on-prem Console Connector. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
 
 == Upgrade a dark site deployment
 

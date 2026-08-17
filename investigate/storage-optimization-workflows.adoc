@@ -14,22 +14,22 @@ These workflows walk through complete example scenarios, from noticing a problem
 == Identify and reclaim cold data
 
 .Scenario
-You notice on the Overview page that a storage resource has a large amount of reclaimable storage, most of it flagged as cold. Cold files have not been accessed in one or more years.
+You notice on the Overview page that a storage resource has a large amount of reclaimable storage, most of it flagged as cold. Cold files have not been accessed within the configured cold data threshold, which defaults to 3 years and is configurable in *Configuration* > *Settings*.
 
 .Steps
 . From link:understand-dashboard.html[the dashboard], identify the resource with the highest reclaimable size and select *Investigate*.
-. In link:investigate-data.html[Investigation], confirm the resources using the *Last accessed* filter set to *365+ days*.
+. In link:investigate-data.html[Investigation], confirm the resources using the *Last accessed* filter set to match your configured cold data threshold (default: *3+ years*).
 . Review the results to decide link:../policies/take-actions.html[whether to tag, archive, or delete] the matching files.
 . If these resources are worth monitoring on an ongoing basis, link:../policies/create-policy.html[save the filter set as a policy] so you are notified as new files go cold.
 
 == Identify and manage stale data
 
 .Scenario
-Files that are still occasionally accessed but haven't been modified in years can consume capacity without appearing as cold. The default stale threshold is three or more years since last modification, and this threshold is configurable.
+Files that are still occasionally accessed but haven't been modified in years can consume capacity without appearing as cold. The default stale threshold is 1 year since last access or modification, and this threshold is configurable in *Configuration* > *Settings*.
 
 .Steps
 . From link:understand-dashboard.html[the dashboard], identify a resource with significant stale data.
-. In link:investigate-data.html[Investigation], apply the *Last modified* filter set to your stale threshold (default *3+ years*).
+. In link:investigate-data.html[Investigation], apply the *Last modified* filter set to your stale threshold (default *1+ year*).
 . Review the results to decide link:../policies/take-actions.html[whether to tag, archive, or delete] the matching files.
 . link:../policies/create-policy.html[Save the filter set as a policy] to track these resources across future scans.
 
@@ -42,6 +42,28 @@ Your organization requires that files older than a certain age are reviewed for 
 . In link:investigate-data.html[Investigation], apply the *Last created* filter set to your retention threshold (default *7+ years*).
 . Review the results with the relevant stakeholders before acting. Retention-flagged files are often monitored rather than automatically deleted.
 . link:../policies/create-policy.html[Create a policy] with a monitor-only or email notification action so you are alerted as new files meet the retention threshold, rather than acting on these resources once.
+
+== Find and eliminate duplicate files
+
+.Scenario
+Multiple identical copies of the same files exist across volumes or shares, a common issue in environments with backup jobs, data migrations, or shared project folders.
+
+.Steps
+. In link:investigate-data.html[Investigation], click *Add filter* and select *Duplicates*.
+. Review the results. Files listed have one or more identical copies elsewhere in the catalog.
+. Select files to act on and choose link:../policies/take-actions.html[an action]. Archive or delete confirmed duplicates that have an original copy elsewhere.
+. link:../policies/create-policy.html[Save the filter as a policy] to track duplicate accumulation over time and receive notifications when the count increases.
+
+== Target cleanup by data owner
+
+.Scenario
+Reclaimable storage is distributed across many owners and you need to know who holds the most before deciding where to act.
+
+.Steps
+. From link:understand-dashboard.html[the dashboard], locate the *Top data owners by reclaimable storage* table.
+. Click an owner row to open link:investigate-data.html[Investigation] filtered to that owner's files.
+. Review the results and decide link:../policies/take-actions.html[whether to tag, archive, or delete] files.
+. link:../policies/create-policy.html[Save the filter set as a policy] to monitor how that owner's reclaimable storage changes over time.
 
 == Related information
 
