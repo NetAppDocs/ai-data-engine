@@ -9,7 +9,7 @@ summary: Review infrastructure and networking requirements before deploying AI D
 :imagesdir: ../media/
 
 [.lead]
-Review these requirements before deploying AI Data Engine.
+Before you deploy AI Data Engine, review the networking, VM sizing, operating system, and dark site requirements for your environment.
 
 // NOTE FOR WRITER: No minimum ONTAP version is required for V2. ONTAP is a
 // data source, not a deployment prerequisite. The ONTAP requirements section
@@ -242,7 +242,7 @@ The following connections must be open within the air-gapped environment. The ou
 |80
 |TCP
 |Outbound
-|HTTP: communication with the on-prem Console Connector on the local network. The installer and operator communicate with the Connector at `\http://<connector-ip>`.
+|HTTP: communication with the on-premises Console Connector on the local network. The installer and operator communicate with the Connector at `\http://<connector-ip>`.
 
 |Console Agent to AI Data Engine
 |80, 443, 8080, 9000
@@ -279,7 +279,7 @@ The following connections must be open within the air-gapped environment. The ou
 [#dark-site-nfs-requirements]
 === NFS share requirements (Enterprise dark site only)
 
-Two NFS shares are required for AIDE Enterprise dark site deployments. They may reside on the same NFS server but must use different export paths.
+Two NFS shares are required for AIDE Enterprise dark site deployments. They can reside on the same NFS server but must use different export paths.
 
 [cols="1,1,2",options="header"]
 |===
@@ -299,7 +299,7 @@ Two NFS shares are required for AIDE Enterprise dark site deployments. They may 
 [#dark-site-staging-host]
 === Staging host
 
-An internet-connected staging host is required to download the offline bundle from the NetApp Support Site. The staging host does not need to be the AI Data Engine host or within the air-gapped network. Ensure the staging host has sufficient disk space for the bundle.
+You need an internet-connected staging host to download the offline bundle from the NetApp Support Site. The staging host does not need to be the AI Data Engine host or within the air-gapped network. Ensure the staging host has sufficient disk space for the bundle.
 
 == Related information
 

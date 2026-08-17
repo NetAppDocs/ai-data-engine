@@ -10,7 +10,7 @@ summary: Deploy AI Data Engine in an air-gapped environment using the offline bu
 :imagesdir: ../media/
 
 [.lead]
-Deploy AI Data Engine in a fully air-gapped environment using the NetApp-provided offline bundle. No outbound internet access is required from the AI Data Engine host after the bundle is transferred to your environment.
+Deploy AI Data Engine in a fully air-gapped environment using the NetApp-provided offline bundle. After you transfer the bundle to your environment, the AI Data Engine host does not require outbound internet access.
 
 Both AIDE Lite and AIDE Enterprise support dark site deployment. The bundle contains all container images, Helm charts, catalog, and installation scripts needed to complete the installation offline.
 
@@ -142,7 +142,7 @@ kubectl -n aide get cm aide-operator-config -o jsonpath='{.data.DARKSITE_MODE}'
 ----
 
 .Result
-AI Data Engine is deployed in your air-gapped environment and connected to NetApp Console through your on-prem Console Connector. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
+AI Data Engine is deployed in your air-gapped environment and connected to NetApp Console through your on-premises Console Connector. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
 
 == Upgrade a dark site deployment
 

@@ -19,7 +19,7 @@ AIDE Lite is available in three sizes — Small, Medium, and Large — for envir
 
 == AIDE Enterprise
 
-AIDE Enterprise deploys as a multi-node Kubernetes cluster on infrastructure you provision and manage. It is designed for environments that require high availability and enterprise-scale performance.
+AIDE Enterprise deploys as a multi-node Kubernetes cluster on infrastructure you provision and manage. It targets environments that require high availability and enterprise-scale performance.
 
 AIDE Enterprise is available in three sizes — Small, Medium, and Large — for environments up to approximately 1 billion, 3 billion, and 6 billion files respectively. For full node sizing and cluster requirements, see link:aide-requirements.html[AIDE requirements].
 
@@ -72,7 +72,7 @@ NetApp Console does not provision the infrastructure for AI Data Engine. You pre
 
 == Dark site deployment
 
-Both AIDE Lite and AIDE Enterprise support dark site (air-gapped) deployment. In a dark site deployment, no outbound internet access is required from the AI Data Engine host.
+Both AIDE Lite and AIDE Enterprise support dark site (air-gapped) deployment. In a dark site deployment, the AI Data Engine host does not require outbound internet access.
 
 You obtain the offline bundle from NetApp and transfer it to your air-gapped environment using an internet-connected staging host.
 // NOTE FOR WRITER: Bundle distribution channel is an open decision (NSS

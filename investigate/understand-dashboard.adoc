@@ -9,11 +9,11 @@ summary: Get a quick read on how much storage is cold or stale, how fast storage
 :imagesdir: ../media/
 
 [.lead]
-Before you investigate individual files, use the Overview page to see how much of your storage could be better optimized and where. This page is your entry point into AI Data Engine. You'll understand where to look for storage improvements and narrow your investigation.
+The AI Data Engine dashboard gives you a high-level view of storage health across your environment, showing how much storage is cold or stale and where reclamation opportunities are greatest. Use it to identify which systems to investigate before drilling into individual files.
 
 For example, a storage administrator responding to a capacity alert can see that a significant portion of scanned storage is cold data, then drill into the highest-impact system to start investigating immediately.
 
-From NetApp Console, select *Governance* > *AI Data Engine UI* and the Overview page opens by default. The *System* and *System type* filters control dashboard scope, reflecting storage systems that have been registered through the NetApp Console Agent and enabled for scanning. If a storage system does not appear in the filter list, see link:../data-sources/connect-data-source.html[Connect a data source].
+From NetApp Console, select *Governance* > *AI Data Engine UI*. The Overview page opens by default. The *System* and *System type* filters control dashboard scope, reflecting storage systems that have been registered through the NetApp Console Agent and enabled for scanning. If a storage system does not appear in the filter list, see link:../data-sources/connect-data-source.html[Connect a data source].
 
 == What the dashboard tells you
 
@@ -25,8 +25,8 @@ The summary panel shows these metrics for your scanned environment:
 
 * *Data resources*: The count of volumes, shares, and buckets currently scanned.
 * *Total files scanned*: The total number of files indexed across all scanned data resources.
-* *Cold data*: Storage not accessed within the cold data threshold (default: 3 years).
-* *Stale data*: Storage not accessed or modified within the stale data threshold (default: 1 year).
+* *Cold data*: Storage not accessed within the cold data threshold (default: three years).
+* *Stale data*: Storage not accessed or modified within the stale data threshold (default: one year).
 * *Exposed directories*: Directories with overly permissive access settings detected during scanning.
 
 Cold and stale thresholds reflect your configured settings and can be changed in *Configuration* > *Settings*.
@@ -46,17 +46,17 @@ Use the summary panel and chart to prioritize storage optimization opportunities
 
 After you identify a resource worth investigating, use the *Top data resources by reclaimable storage* table to move from the overview to the details.
 
-This table lists your scanned storage resources ranked by reclaimable storage. Click any row to open the link:investigate-data.html[Investigation] view filtered to that resource.
+This table lists your scanned storage resources ranked by reclaimable storage. Select any row to open the link:investigate-data.html[Investigation] view filtered to that resource.
 
 == Identify data owners with the most reclaimable storage
 
 The *Top data owners by reclaimable storage* table shows which data owners hold the largest amount of reclaimable storage across your environment.
 
-Click any row to open the link:investigate-data.html[Investigation] view filtered to that owner's files. From there, you can review, act on, or save results as a policy.
+Select any row to open the link:investigate-data.html[Investigation] view filtered to that owner's files. From there, you can review, act on, or save results as a policy.
 
 == Refresh and explore further
 
-* Click *Refresh* to update the page with the latest scan data. The last-updated timestamp appears on the page.
+* Select *Refresh* to update the page with the latest scan data. The last-updated timestamp appears on the page.
 
 == Related information
 
