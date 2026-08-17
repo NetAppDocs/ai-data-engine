@@ -11,13 +11,9 @@ summary: Learn about new capabilities in AI Data Engine.
 [.lead]
 Learn about new capabilities introduced in AI Data Engine.
 
-// RESEARCH NEEDED (LOW): Populate this topic with confirmed GA features when engineering finalizes the release scope. Reference the IE AI Data Engine dashboard (IE/pages/657523568) and the PRD for the authoritative feature list. Target GA date is August 31, 2026.
+== v1.1.0
 
-== August 2026
-
-=== v1.1.0
-
-This release introduces AI Data Engine, a cloud-managed service that scans your connected storage systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale.
+AIDE 1.1.0 is the first generally available release of AI Data Engine, a cloud-managed service that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale. AI Data Engine is available as link:../deploy/deployment-overview.html[AIDE Lite or AIDE Enterprise], depending on your environment size and infrastructure.
 
 New capabilities:
 
@@ -31,7 +27,12 @@ link:../policies/take-actions.html[Data lifecycle actions]:: Reclaim storage cap
 
 link:../administer/manage-users-roles.html[Role-based access control]:: Control who can investigate data and take actions by assigning roles to users in your organization. Available roles include AI Data Engine administrator and AI Data Engine viewer.
 
-// RESEARCH NEEDED: Add any additional capabilities confirmed for the August 2026 GA. Update the roles entry when Organization admin availability is confirmed. Remove or revise any item that does not ship.
+link:../investigate/use-filters.html[Duplicate file detection]:: Find files that have duplicate copies across your connected systems. Filter by the Duplicates attribute or by file hash to review and act on duplicate groups directly.
+
+link:../investigate/understand-dashboard.html[Data owner visibility]:: Identify which data owners hold the most reclaimable storage from the dashboard, then filter by owner or group in the investigation view to act on results.
+
+link:../deploy/deploy-dark-site.html[Dark site deployment]:: Deploy AI Data Engine in an air-gapped environment using the NetApp-provided offline bundle. Both AIDE Lite and AIDE Enterprise support dark site deployment. No outbound internet access is required from the AI Data Engine host.
+
 
 == Related information
 
