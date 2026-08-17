@@ -43,6 +43,28 @@ Your organization requires that files older than a certain age are reviewed for 
 . Review the results with the relevant stakeholders before acting. Retention-flagged files are often monitored rather than automatically deleted.
 . link:../policies/create-policy.html[Create a policy] with a monitor-only or email notification action so you are alerted as new files meet the retention threshold, rather than acting on these resources once.
 
+== Find and eliminate duplicate files
+
+.Scenario
+Multiple identical copies of the same files exist across volumes or shares, a common issue in environments with backup jobs, data migrations, or shared project folders.
+
+.Steps
+. In link:investigate-data.html[Investigation], click *Add filter* and select *Duplicates*.
+. Review the results. Files listed have one or more identical copies elsewhere in the catalog.
+. Select files to act on and choose link:../policies/take-actions.html[an action]. Archive or delete confirmed duplicates that have an original copy elsewhere.
+. link:../policies/create-policy.html[Save the filter as a policy] to track duplicate accumulation over time and receive notifications when the count increases.
+
+== Target cleanup by data owner
+
+.Scenario
+Reclaimable storage is distributed across many owners and you need to know who holds the most before deciding where to act.
+
+.Steps
+. From link:understand-dashboard.html[the dashboard], locate the *Top data owners by reclaimable storage* table.
+. Click an owner row to open link:investigate-data.html[Investigation] filtered to that owner's files.
+. Review the results and decide link:../policies/take-actions.html[whether to tag, archive, or delete] files.
+. link:../policies/create-policy.html[Save the filter set as a policy] to monitor how that owner's reclaimable storage changes over time.
+
 == Related information
 
 * link:understand-dashboard.html[Understand the dashboard]

@@ -48,6 +48,12 @@ After you identify a resource worth investigating, use the *Top data resources b
 
 This table lists your scanned storage resources ranked by reclaimable storage. Click any row to open the link:investigate-data.html[Investigation] view filtered to that resource.
 
+== Identify data owners with the most reclaimable storage
+
+The *Top data owners by reclaimable storage* table shows which data owners hold the largest amount of reclaimable storage across your environment.
+
+Click any row to open the link:investigate-data.html[Investigation] view filtered to that owner's files. From there, you can review, act on, or save results as a policy.
+
 == Refresh and explore further
 
 * Click *Refresh* to update the page with the latest scan data. The last-updated timestamp appears on the page.
