@@ -35,7 +35,7 @@ The AI Data Engine landing page appears.
 
 . Click *Next*.
 
-. Copy the preconfigured install command displayed in the wizard and run it from a host with kubectl access to your RKE2 cluster:
+. Copy the preconfigured install command displayed in the wizard and run it from a host with kubectl access to your RKE2 cluster.
 // The install command shown here may require command-line customizations after the wizard behavior is confirmed.
 // [source,bash]
 // ----

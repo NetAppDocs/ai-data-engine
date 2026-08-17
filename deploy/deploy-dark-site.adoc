@@ -43,19 +43,13 @@ Prerequisites differ between AIDE Lite and AIDE Enterprise:
 The following apply to all dark site deployments:
 
 * You need _Organization admin_ or greater permissions in NetApp Console.
-// OPEN ISSUE: Replace with the correct Console Connector installation link when available.
-* You must deploy a NetApp Console Connector on your local network, reachable from the AI Data Engine host or cluster nodes. The installer communicates with the Connector at `\http://<connector-ip>`.
+* You must https://docs.netapp.com/us-en/console-setup-admin/task-install-private-mode.html[deploy a NetApp Console Connector on your local network^], reachable from the AI Data Engine host or cluster nodes. The installer communicates with the Connector at `\http://<connector-ip>`.
 * An internet-connected staging host to download the bundle. See link:aide-requirements.html#dark-site-staging-host[Staging host] for details.
 * Review link:aide-requirements.html[AIDE requirements] and confirm your environment meets all sizing and networking prerequisites for dark site deployments.
 
-// OPEN ISSUE: Bundle distribution channel (NSS, token-gated download, or
+// RESEARCH: Bundle distribution channel (NSS, token-gated download, or
 // physical media) is undecided per AIDE Darksite design spec open item #1.
 // Do not document a specific download path until confirmed with engineering.
-
-// RESOLVED: Dark site install commands omit --agent-id and --user-token.
-// The installer communicates with the local Console Connector rather than
-// registering a SaaS agent, so neither parameter applies. See Darksite
-// Design Specification (Installer + Operator), Section 1.3.
 
 .Steps
 

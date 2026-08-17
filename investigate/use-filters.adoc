@@ -109,8 +109,6 @@ The Investigation view provides metadata filters that you can use to narrow your
 
 Filters are combined with AND logic, meaning the results must match all applied filters simultaneously.
 
-// RESEARCH NEEDED: Confirm whether OR logic or filter grouping is supported for any filter types in V1.
-
 == Related information
 
 * link:investigate-data.html[Investigate your data]

@@ -58,8 +58,6 @@ Click any row to open the link:investigate-data.html[Investigation] view filtere
 
 * Click *Refresh* to update the page with the latest scan data. The last-updated timestamp appears on the page.
 
-// RESEARCH NEEDED: Confirm whether the Explore cost optimization recommendations link is available in the V1 UI. If not, remove this bullet from the published topic.
-
 == Related information
 
 * link:investigate-data.html[Investigate your data]
