@@ -32,8 +32,6 @@ link:../investigate/use-filters.html[Duplicate file detection]:: Find files that
 
 link:../investigate/understand-dashboard.html[Data owner visibility]:: Identify which data owners hold the most reclaimable storage from the dashboard, then filter by owner or group in the investigation view to act on results.
 
-link:../deploy/deploy-dark-site.html[Dark site deployment]:: Deploy AI Data Engine in an air-gapped environment using the NetApp-provided offline bundle. Both AIDE Lite and AIDE Enterprise support dark site deployment. No outbound internet access is required from the AI Data Engine host.
-
 
 == Related information
 
