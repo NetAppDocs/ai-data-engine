@@ -9,5 +9,3 @@ entries:
     url: /deploy/deploy-aide-lite.html
   - title: Deploy AIDE Enterprise
     url: /deploy/deploy-enterprise.html
-  - title: Deploy AIDE for dark sites
-    url: /deploy/deploy-dark-site.html

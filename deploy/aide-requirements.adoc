@@ -9,7 +9,7 @@ summary: Review infrastructure and networking requirements before deploying AI D
 :imagesdir: ../media/
 
 [.lead]
-Before you deploy AI Data Engine, review the networking, VM sizing, operating system, and dark site requirements for your environment.
+Before you deploy AI Data Engine, review the networking, VM sizing, and operating system requirements for your environment.
 
 // NOTE FOR WRITER: No minimum ONTAP version is required for V2. ONTAP is a
 // data source, not a deployment prerequisite. The ONTAP requirements section
@@ -119,9 +119,6 @@ For an online installation, the following endpoints must be reachable from the A
 
 Verify that DNS resolution for these endpoints is working from the AI Data Engine host before you begin deployment.
 
-NOTE: These requirements apply to online installations only. For air-gapped deployments, see <<Dark site requirements,dark site requirements>>.
-
-
 == AIDE Lite requirements
 
 === VM sizing
@@ -220,90 +217,8 @@ NOTE: NVMe or SSD storage is recommended for all sizes. Minimum storage performa
 
 NOTE: NVMe storage is required for all Enterprise node deployments.
 
-== Dark site requirements
-
-Dark site deployments do not require outbound internet access from the AI Data Engine host. NetApp provides all container images, Helm charts, and installation scripts as a single offline bundle that you transfer into your air-gapped environment.
-// NOTE FOR WRITER: Bundle distribution channel is NOT confirmed by engineering.
-// The AIDE Darksite design spec lists this as an open decision (NSS download,
-// token-gated link, or physical media — NSS currently has no bundle/Helm
-// distribution model). Do not name "Console Private Mode" or "NSS" specifically
-// until confirmed with engineering. Not NCL — that is a separate, later-roadmap
-// product.
-
-=== Networking
-
-The following connections must be open within the air-gapped environment. The outbound internet endpoints listed in the <<Outbound internet access>> table do not apply.
-
-[cols="2,1,1,1,2",options="header"]
-|===
-|Connection |Port |Protocol |Direction |Purpose
-
-|AI Data Engine host or cluster to Console Connector
-|80
-|TCP
-|Outbound
-|HTTP: communication with the on-premises Console Connector on the local network. The installer and operator communicate with the Connector at `\http://<connector-ip>`.
-
-|Console Agent to AI Data Engine
-|80, 443, 8080, 9000
-|TCP
-|Bidirectional
-|Communication between Console Agent and AI Data Engine
-
-|AI Data Engine to ONTAP (NFS)
-|111, 2049
-|TCP/UDP
-|To storage
-|NFS data source access
-
-|AI Data Engine to ONTAP (CIFS/SMB)
-|139, 445
-|TCP/UDP
-|To storage
-|CIFS/SMB data source access
-
-|AI Data Engine to Active Directory
-|389, 636, 3268, 3269
-|TCP/UDP
-|Outbound
-|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and CIFS/SMB scanning
-
-|Cluster nodes to NFS server (Enterprise only)
-|111, 2049
-|TCP/UDP
-|To NFS server
-|Access to the charts NFS share (read-only) and the AIDE data NFS share (writable). Both shares must be reachable from all cluster nodes.
-
-|===
-
-[#dark-site-nfs-requirements]
-=== NFS share requirements (Enterprise dark site only)
-
-Two NFS shares are required for AIDE Enterprise dark site deployments. They can reside on the same NFS server but must use different export paths.
-
-[cols="1,1,2",options="header"]
-|===
-|Share |Access |Purpose
-
-|Charts and catalog share
-|Read-only (uid 1001 / gid 4321)
-|Holds Helm charts and the version catalog file from the offline bundle. The AIDE operator reads charts and the catalog from this share throughout the deployment lifecycle.
-
-|AIDE data share
-|Read/write (uid 4321)
-|Holds AIDE configuration and operational data. Must be writable by the AIDE services.
-
-|===
-
-
-[#dark-site-staging-host]
-=== Staging host
-
-You need an internet-connected staging host to download the offline bundle from the NetApp Support Site. The staging host does not need to be the AI Data Engine host or within the air-gapped network. Ensure the staging host has sufficient disk space for the bundle.
-
 == Related information
 
 * link:deployment-overview.html[AIDE deployment overview]
 * link:deploy-aide-lite.html[Deploy AI Data Engine — Lite]
 * link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise]
-* link:deploy-dark-site.html[Deploy AI Data Engine — Dark site / air-gapped]

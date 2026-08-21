@@ -18,7 +18,7 @@ AI Data Engine scans connected storage systems to extract file system metadata a
 * View storage optimization insights on a dashboard, including which data owners hold the most reclaimable storage, cold and stale data volumes, and duplicate files
 * Investigate your data using flexible metadata filters to build targeted data grouping
 * Create policies that save investigation criteria as reusable rules
-* Take actions on data: tagging, archiving, or deleting files that match policy criteria
+* Take actions on data: tagging, archiving, copying, or deleting files that match policy criteria
 
 == Storage optimization and data governance
 
@@ -36,7 +36,7 @@ AI Data Engine is designed for the following users:
 
 You access AI Data Engine through NetApp Console, under *Governance > AI Data Engine*. You deploy it as a software instance on Linux infrastructure you manage, either a virtual machine in your cloud account or a machine in your on-premises environment. Two editions are available: *Lite* for single-node deployments and *Enterprise* for multi-node Kubernetes clusters.
 
-AI Data Engine scans NetApp systems (NFS, CIFS, and StorageGRID) as well as non-NetApp systems that support the NFS, CIFS, and S3 protocols.
+AI Data Engine scans NetApp storage systems including ONTAP and StorageGRID, non-NetApp NAS and object storage systems that support NFS, CIFS, and S3 protocols, and database systems.
 
 link:../deploy/deployment-overview.html[Learn more about deployment options].
 

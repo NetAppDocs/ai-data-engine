@@ -21,7 +21,7 @@ The Metadata Engine is the core capability of AI Data Engine. It scans connected
 
 === Policies
 
-Policies let you save a set of metadata search criteria. You can run a saved policy to identify files matching those criteria, then take action on the results, such as tagging, moving, or deleting files.
+Policies let you save a set of metadata search criteria. You can run a saved policy to identify files matching those criteria, then take action on the results, such as tagging, archiving, copying, or deleting files.
 
 // NOTE: Automated continuous policy evaluation and triggered actions are planned for a future release (V3 per MDE PRD, July 22). Do not describe policies as continuously running or automatically triggering actions in V1/V2.1 documentation.
 
@@ -37,14 +37,15 @@ AI Data Engine supports two deployment models:
 
 AIDE Lite:: A single-VM deployment suitable for smaller environments. Available in Small, Medium, and Large configurations based on the number of files to be cataloged. AIDE Lite is the recommended starting point for most deployments.
 
-AIDE Enterprise:: A Kubernetes-based multi-node cluster deployment for larger environments requiring high availability. Supports up to 1 billion files and up to 250 million files per day.
+AIDE Enterprise:: A Kubernetes-based multi-node cluster deployment for larger environments requiring high availability. 
+AIDE Enterprise scales from a three-node configuration supporting up to approximately one billion files and 250 million files per day to a nine-node configuration supporting up to approximately six billion files and two billion files per day. See link:../deploy/aide-requirements.html[AIDE requirements] for node sizing details.
 
 link:../deploy/deployment-overview.html[Learn more about deployment options].
 
 == Data flow
 
 . AI Data Engine deploys in your on-premises environment.
-. You add the storage systems you want AIDE to catalog in *Configuration > Systems*. Supported systems include NetApp ONTAP, StorageGRID, and any NAS or object storage system that exposes NFS, CIFS/SMB, or S3 protocols.
+. You add the storage systems you want AIDE to catalog in *Configuration > Systems*. Supported systems include NetApp ONTAP, StorageGRID, database systems, and any NAS or object storage system that exposes NFS, CIFS/SMB, or S3 protocols.
 . The Metadata Engine mounts shares using NFS and CIFS/SMB protocols and scans the file systems to extract file metadata.
 . Metadata is indexed in the catalog.
 . The dashboard surfaces storage insights from the catalog.
