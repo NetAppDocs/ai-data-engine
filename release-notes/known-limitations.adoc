@@ -16,11 +16,6 @@ Known limitations identify functionality that is not supported in this release o
 Lite to Enterprise migration is not available in this release::
 You cannot migrate an existing AIDE Lite deployment to AIDE Enterprise in this release. A supported migration path is planned for a future release.
 
-== Scanning and data sources
-
-No content classification or inspection::
-AI Data Engine catalogs link:../get-started/architecture.html[file and directory metadata] only. It does not inspect file contents, perform data classification, detect personally identifiable information (PII), or apply content-based labels. Filtering and policy conditions are based on metadata attributes such as file size, access time, modification date, creation date, file type, and tags.
-
 == Policies and actions
 
 Policy-triggered actions are limited::

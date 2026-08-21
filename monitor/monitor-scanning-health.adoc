@@ -9,34 +9,16 @@ summary: Confirm that scanning is working and that your investigation findings r
 :imagesdir: ../media/
 
 [.lead]
-Before you act on a dashboard or investigation finding, confirm that the underlying data is current. Use this topic to verify that scanning is working and that your findings reflect up-to-date data.
+Before you act on a dashboard or investigation finding, confirm that the underlying data is current. Use this documentation to verify that scanning is working and that your findings reflect up-to-date data.
 
 == Verify scan status and coverage
 
-Confirm that all your storage systems are connected and being scanned. The steps differ depending on your deployment type.
-
-[role="tabbed-block"]
-====
-.Lite
---
-On a single-node (Lite) deployment, confirm that all your storage systems are connected and being scanned.
+Confirm that all your storage systems are connected and being scanned.
 
 .Steps
 . From the AI Data Engine UI, click *Configuration*.
-. On the Scanned systems tab, confirm that every storage system you expect to see is listed and enabled for scanning.
-. Click a system row to review its scan progress and any errors. See link:../data-sources/manage-data-sources.html[Manage data sources] for the full detail view.
---
-
-.Enterprise
---
-On a multi-node (Enterprise) deployment, scan health is tracked per node in addition to per system.
-
-.Steps
-. From the AI Data Engine UI, click *Configuration*.
-. Review the total node count and the status of each node.
-. Identify which node, if any, is reporting errors or falling behind on scan coverage, and address that node before trusting findings that depend on it.
---
-====
+. On the *Scanned systems* tab, confirm that every storage system you expect to see is listed and enabled for scanning.
+. Select *View details* from a system row to review scan progress and any errors. See link:../data-sources/manage-data-sources.html[Manage data sources] for details.
 
 == Validate that investigation findings reflect current data
 

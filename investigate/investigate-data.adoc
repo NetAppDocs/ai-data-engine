@@ -17,7 +17,22 @@ From the AI Data Engine UI, select *Investigation*.
 
 You can also open Investigation from the Overview page by clicking *Investigate* in the _Top consumers by reclaimable storage_ table. Investigation opens with a filter pre-applied for that resource.
 
-The Investigation view displays a summary count and total size of all unstructured items across connected systems (for example, "Unstructured items (400M) | 5.7 PiB").
+Investigation is organized into three sections:
+
+* *Unstructured*: file-based data across NFS and CIFS volumes.
+* *Structured*: database tables and schemas.
+* *Directories*: directory-level views across connected systems.
+
+Select a section tab to switch between views. The summary count and total size at the top of the page update to reflect the active section (for example, "Unstructured (400M) | 5.7 PiB").
+
+=== Change how results are grouped
+
+Use the *View by* control to change how items are organized in the active view:
+
+* *Unstructured*: group by file, owner, or system.
+* *Directories*: group by directory or owner.
+
+NOTE: Structured view has no grouping options available.
 
 == Find cold, stale, and at-risk files
 
@@ -43,18 +58,21 @@ To clear all filters, select *Clear filters*.
 
 == View investigation results
 
-The results table shows files that match your applied filters. When filters are active, the header shows the filtered count and size (for example, "Unstructured items (250k / 400M) | 8.3 TiB | Filters applied (2)").
+The results table shows items that match your applied filters in the active section. When filters are active, the header shows the filtered count and size for that section (for example, "Unstructured (250k / 400M) | 8.3 TiB | Filters applied (2)").
+
+To view additional metadata for an item, select its row. A detail panel opens with additional metadata for the selected item.
 
 To download the filtered results, select image:icon_download_file.png[Download].
 
+// Research: confirm whether Structured section supports these actions
 == Take action on results
 
 Select one or more items using the checkboxes in the results table to activate the action toolbar. Available actions are:
 
-* *Delete*: permanently delete the selected files
-* *Archive*: move the selected files to a cold storage destination
-* *Copy*: copy the selected files to another location
-* *Tag*: apply a custom tag to the selected files
+* *Delete*: permanently delete the selected items
+* *Archive*: move the selected items to a cold storage destination
+* *Copy*: copy the selected items to another location
+* *Tag*: apply a custom tag to the selected items
 
 For step-by-step instructions, see link:../policies/take-actions.html[Take action with your data].
 
