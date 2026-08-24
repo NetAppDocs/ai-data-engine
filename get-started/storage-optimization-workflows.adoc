@@ -14,22 +14,22 @@ These AI Data Engine workflows take you from identifying a storage problem on th
 == Identify and reclaim cold data
 
 .Scenario
-You notice on the Overview page that a storage resource has a large amount of reclaimable storage, most of it flagged as cold. Cold files have not been accessed within the configured cold data threshold, which defaults to three years and is configurable in *Configuration* > *Settings*.
+You notice on the Overview page that a storage resource has a large amount of reclaimable storage, most of it flagged as cold. Cold files have not been accessed within the configured cold data threshold, which defaults to one year and is configurable in *Configuration* > *Settings*.
 
 .Steps
 . From link:../investigate/understand-dashboard.html[the dashboard], identify the resource with the highest reclaimable size and select *Investigate*.
-. In link:../investigate/investigate-data.html[Investigation], confirm the resources using the *Last accessed* filter set to match your configured cold data threshold (default: *3+ years*).
+. In link:../investigate/investigate-data.html[Investigation], confirm the resources using the *Last accessed* filter set to match your configured cold data threshold (default: *1+ year*).
 . Review the results to decide link:../policies/take-actions.html[whether to tag, archive, or delete] the matching files.
 . If these resources are worth monitoring on an ongoing basis, link:../policies/create-policy.html[save the filter set as a policy] so you are notified as new files go cold.
 
 == Identify and manage stale data
 
 .Scenario
-Files that are still occasionally accessed but haven't been modified in years can consume capacity without appearing as cold. The default stale threshold is one year since last access or modification, and this threshold is configurable in *Configuration* > *Settings*.
+Files that are still occasionally accessed but haven't been modified in years can consume capacity without appearing as cold. The default stale threshold is three years since last access or modification, and this threshold is configurable in *Configuration* > *Settings*.
 
 .Steps
 . From link:../investigate/understand-dashboard.html[the dashboard], identify a resource with significant stale data.
-. In link:../investigate/investigate-data.html[Investigation], apply the *Last modified* filter set to your stale threshold (default *1+ year*).
+. In link:../investigate/investigate-data.html[Investigation], apply the *Last modified* filter set to your stale threshold (default *3+ years*).
 . Review the results to decide link:../policies/take-actions.html[whether to tag, archive, or delete] the matching files.
 . link:../policies/create-policy.html[Save the filter set as a policy] to track these resources across future scans.
 

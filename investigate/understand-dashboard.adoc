@@ -25,11 +25,11 @@ The summary panel shows these metrics for your scanned environment:
 
 * *Data resources*: The count of volumes, shares, and buckets currently scanned.
 * *Total files scanned*: The total number of files indexed across all scanned data resources.
-* *Cold data*: Storage not accessed within the cold data threshold (default: three years).
-* *Stale data*: Storage not accessed or modified within the stale data threshold (default: one year).
+* *Cold data*: Storage not accessed within the cold data threshold (default: one year).
+* *Stale data*: Storage not accessed or modified within the stale data threshold (default: three years).
 * *Exposed directories*: Directories with overly permissive access settings detected during scanning.
 
-Cold and stale thresholds reflect your configured settings and can be changed in *Configuration* > *Settings*.
+Cold and stale thresholds reflect your configured settings and can be changed in *Configuration* > *Settings*. See link:../administer/configure-settings.html[Configure cold and stale data thresholds].
 
 == Active versus reclaimable storage chart
 
@@ -62,3 +62,4 @@ Select any row to open the link:investigate-data.html[Investigation] view filter
 
 * link:investigate-data.html[Investigate your data]
 * link:../data-sources/connect-data-source.html[Connect a data source]
+* link:../administer/configure-settings.html[Configure cold and stale data thresholds]
