@@ -44,3 +44,4 @@ link:../deploy/deployment-overview.html[Learn more about deployment options].
 
 * link:architecture.html[AI Data Engine architecture]
 * link:quick-start.html[Quick start]
+* link:storage-optimization-workflows.html[Explore storage optimization workflows]
