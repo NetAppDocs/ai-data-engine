@@ -16,9 +16,9 @@ Before you act on a dashboard or investigation finding, confirm that the underly
 Confirm that all your storage systems are connected and being scanned.
 
 .Steps
-. From the AI Data Engine UI, click *Configuration*.
+. From the AI Data Engine UI, select *Configuration*.
 . On the *Scanned systems* tab, confirm that every storage system you expect to see is listed and enabled for scanning.
-. Select *View details* from a system row to review scan progress and any errors. See link:../data-sources/manage-data-sources.html[Manage data sources] for details.
+. Select *View details* from a system row to review scan progress and any errors. Refer to link:../data-sources/manage-data-sources.html[Manage data sources] for details.
 
 == Validate that investigation findings reflect current data
 

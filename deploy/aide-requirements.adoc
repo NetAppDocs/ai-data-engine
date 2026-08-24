@@ -50,17 +50,17 @@ The following network connections must be open:
 |To storage
 |NFS data source access
 
-|AI Data Engine to ONTAP (CIFS/SMB)
+|AI Data Engine to ONTAP (SMB/CIFS)
 |139, 445
 |TCP/UDP
 |To storage
-|CIFS/SMB data source access
+|SMB/CIFS data source access
 
 |AI Data Engine to Active Directory
 |389, 636, 3268, 3269
 |TCP/UDP
 |Outbound
-|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and CIFS/SMB scanning. Port 389 uses both TCP and UDP; all other ports use TCP only.
+|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and SMB/CIFS scanning. Port 389 uses both TCP and UDP; all other ports use TCP only.
 
 |===
 

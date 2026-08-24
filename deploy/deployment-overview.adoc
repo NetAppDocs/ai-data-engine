@@ -15,13 +15,13 @@ AI Data Engine supports two deployment modes: AIDE Lite for a single-VM deployme
 
 AIDE Lite is a single-node deployment suitable for evaluation and small-to-mid-market workloads. It is the recommended starting point for most deployments.
 
-AIDE Lite is available in three sizes — Small, Medium, and Large — for environments up to approximately 200 million, 1 billion, and 3 billion files respectively. For full VM sizing and OS requirements, see link:aide-requirements.html[AIDE requirements].
+AIDE Lite is available in three sizes — Small, Medium, and Large — for environments up to approximately 200 million, 1 billion, and 3 billion files respectively. For full VM sizing and OS requirements, refer to link:aide-requirements.html[AIDE requirements].
 
 == AIDE Enterprise
 
 AIDE Enterprise deploys as a multi-node Kubernetes cluster on infrastructure you provision and manage. It targets environments that require high availability and enterprise-scale performance.
 
-AIDE Enterprise is available in three sizes — Small, Medium, and Large — for environments up to approximately 1 billion, 3 billion, and 6 billion files respectively. For full node sizing and cluster requirements, see link:aide-requirements.html[AIDE requirements].
+AIDE Enterprise is available in three sizes — Small, Medium, and Large — for environments up to approximately 1 billion, 3 billion, and 6 billion files respectively. For full node sizing and cluster requirements, refer to link:aide-requirements.html[AIDE requirements].
 
 == Deployment process
 
@@ -34,7 +34,7 @@ NetApp Console does not provision the infrastructure for AI Data Engine. You pre
 | |AIDE Lite |AIDE Enterprise
 
 |Best for
-|Evaluation, PoC, and small-to-mid-market production
+|Evaluation and small-to-mid-market production
 |Mid-market and enterprise production workloads
 
 |Deployment model

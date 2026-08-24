@@ -13,7 +13,7 @@ The AI Data Engine dashboard gives you a high-level view of storage health acros
 
 For example, a storage administrator responding to a capacity alert can see that a significant portion of scanned storage is cold data, then drill into the highest-impact system to start investigating immediately.
 
-From NetApp Console, select *Governance* > *AI Data Engine UI*. The Overview page opens by default. The *System* and *System type* filters control dashboard scope, reflecting storage systems that have been registered through the NetApp Console Agent and enabled for scanning. If a storage system does not appear in the filter list, see link:../data-sources/connect-data-source.html[Connect a data source].
+From NetApp Console, select *Governance* > *AI Data Engine UI*. The Overview page opens by default. The *System* and *System type* filters control dashboard scope, reflecting storage systems that have been registered through the NetApp Console Agent and enabled for scanning. If a storage system does not appear in the filter list, refer to link:../data-sources/connect-data-source.html[Connect a data source].
 
 == What the dashboard tells you
 
@@ -29,7 +29,7 @@ The summary panel shows these metrics for your scanned environment:
 * *Stale data*: Storage not accessed or modified within the stale data threshold (default: three years).
 * *Exposed directories*: Directories with overly permissive access settings detected during scanning.
 
-Cold and stale thresholds reflect your configured settings and can be changed in *Configuration* > *Settings*. See link:../administer/configure-settings.html[Configure cold and stale data thresholds].
+Cold and stale thresholds reflect your configured settings and can be changed in *Configuration* > *Settings*. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
 
 == Active versus reclaimable storage chart
 

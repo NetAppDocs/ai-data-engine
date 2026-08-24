@@ -42,7 +42,7 @@ The Policies page lists all policies you have created. Each entry shows:
 == View a policy
 
 .Steps
-. From the AI Data Engine UI, click *Policies*.
+. From the AI Data Engine UI, select *Policies*.
 . Open the action menu and select *Investigate results* next to the policy to see the full policy details and impacted items.
 
 == Edit a policy
@@ -51,10 +51,10 @@ The Policies page lists all policies you have created. Each entry shows:
 * You must have the _AI Data Engine administrator_ role.
 
 .Steps
-. From the AI Data Engine UI, click *Policies*.
+. From the AI Data Engine UI, select *Policies*.
 . Open the action menu for the policy you want to edit and select *Edit policy*.
 . Update the policy name, description, or action as needed.
-. Click *Save*.
+. Select *Save*.
 
 == Delete a policy
 
@@ -64,7 +64,7 @@ The Policies page lists all policies you have created. Each entry shows:
 CAUTION: Deletion is permanent and cannot be undone.
 
 .Steps
-. From the AI Data Engine UI, click *Policies*.
+. From the AI Data Engine UI, select *Policies*.
 . Open the action menu for the policy you want to delete and select *Delete policy*.
 . Confirm the deletion in the preview dialog.
 

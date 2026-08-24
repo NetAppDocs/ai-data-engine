@@ -38,7 +38,7 @@ The actions available to you depend on your assigned role:
 
 |===
 
-For a full description of roles, see link:../administer/manage-users-roles.html[Manage users and roles].
+For a full description of roles, refer to link:../administer/manage-users-roles.html[Manage users and roles].
 
 == Decide what to do
 
@@ -66,14 +66,14 @@ When data may still have value or requires further review, prefer tagging, archi
 
 == Archive
 
-Archiving moves files to a cold storage destination over NFS or CIFS. You can optionally leave a breadcrumb file at the original location.
+Archiving moves files to a cold storage destination over NFS or SMB/CIFS. You can optionally leave a breadcrumb file at the original location.
 
 .Before you begin
 * You must have the _AI Data Engine administrator_ role.
 
 .Steps
 . In the Investigation view, select the files you want to archive.
-. Click *Archive*.
+. Select *Archive*.
 . In the Archive dialog, select the destination volume protocol:
 +
 * *NFS*: enter the NFS destination folder path.
@@ -81,7 +81,7 @@ Archiving moves files to a cold storage destination over NFS or CIFS. You can op
 . To create a breadcrumb file at the original location, enable *Leave breadcrumb*.
 +
 A breadcrumb file helps users understand why a file was moved.
-. Click *Archive*.
+. Select *Archive*.
 
 == Copy
 
@@ -92,12 +92,12 @@ Copying duplicates files to a destination volume without removing them from the 
 
 .Steps
 . In the Investigation view, select the files you want to copy.
-. Click *Copy*.
+. Select *Copy*.
 . In the Copy dialog, select the destination volume protocol:
 +
 * *NFS*: enter the NFS destination folder path.
 * *CIFS*: enter the CIFS destination folder path in the format `\\Hostname\share_name`. Provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
-. Click *Copy*.
+. Select *Copy*.
 
 == Delete
 
@@ -110,9 +110,9 @@ CAUTION: Deletion is permanent and cannot be undone. This action deletes source 
 
 .Steps
 . In the Investigation view, select the files you want to delete.
-. Click *Delete*.
+. Select *Delete*.
 . In the Delete dialog, type *permanently delete* in the confirmation field.
-. Click *Delete*.
+. Select *Delete*.
 
 .Result
 The selected files are permanently deleted from storage.
@@ -123,7 +123,7 @@ Tagging applies a business tag to files for classification and tracking.
 
 .Steps
 . In the Investigation view, select the files you want to tag.
-. Click *Tag*.
+. Select *Tag*.
 . Enter or select the tags to apply (for example, "Archive candidate").
 . Confirm to apply the tags.
 

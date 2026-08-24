@@ -13,8 +13,8 @@ AI Data Engine scans your storage systems to collect and analyze metadata. To ad
 
 .Before you begin
 
-* Discover storage systems in NetApp Console using a Console Agent before adding them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, see link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery does not enable data services such as AI Data Engine.
-* Verify that the network connections required for AI Data Engine to reach your data sources are open. See link:../deploy/aide-requirements.html[AI Data Engine requirements].
+* Discover storage systems in NetApp Console using a Console Agent before adding them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery does not enable data services such as AI Data Engine.
+* Verify that the network connections required for AI Data Engine to reach your data sources are open. Refer to link:../deploy/aide-requirements.html[AI Data Engine requirements].
 
 == Add a data source
 
@@ -28,7 +28,7 @@ AI Data Engine scans your storage systems to collect and analyze metadata. To ad
 |Source type |Description
 
 |*File shares group*
-|Add NFS or CIFS (SMB) file shares from the cloud or on-premises as a named group.
+|Add NFS or SMB/CIFS file shares from the cloud or on-premises as a named group.
 
 |*Database*
 |Add a database server to scan selected schemas.
@@ -79,7 +79,7 @@ After you configure a data source, scanning does not start automatically. You mu
 
 .Result
 
-The system status updates in the Scanned systems tab to show that scanning is running. To monitor scan progress and verify that data resources are being indexed, see link:manage-data-sources.html[Manage data sources] and link:monitor-scanning-health.html[Monitor scanning health].
+The system status updates in the Scanned systems tab to show that scanning is running. To monitor scan progress and verify that data resources are being indexed, refer to link:manage-data-sources.html[Manage data sources] and link:monitor-scanning-health.html[Monitor scanning health].
 
 == Related information
 
