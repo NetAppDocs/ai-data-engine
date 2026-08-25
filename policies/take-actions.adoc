@@ -52,7 +52,7 @@ Choose an action based on how certain you are about the data:
 |You need more time, or need to coordinate with another team, before committing to archive or delete. Tagging tracks the files without changing where they live.
 
 |Archive
-|The data may still have value, but it doesn't belong in primary storage. Archiving moves it to a lower-cost destination while keeping it recoverable.
+|The data might still have value, but it doesn't belong in primary storage. Archiving moves it to a lower-cost destination while keeping it recoverable.
 
 |Copy
 |The data should exist in a second location, for example for backup or migration purposes. Copying preserves the original in place.
@@ -62,7 +62,7 @@ Choose an action based on how certain you are about the data:
 
 |===
 
-When data may still have value or requires further review, prefer tagging, archiving, or copying over deleting. Only delete when you are certain the data is safe to remove permanently.
+When data might still have value or requires further review, prefer tagging, archiving, or copying over deleting. Only delete when you are certain the data is safe to remove permanently.
 
 == Archive
 

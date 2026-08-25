@@ -14,7 +14,7 @@ Known limitations identify functionality that is not supported in this release o
 == Deployment
 
 Lite to Enterprise migration is not available in this release::
-You cannot migrate an existing AIDE Lite deployment to AIDE Enterprise in this release. A supported migration path is planned for a future release.
+You cannot migrate an existing AIDE Lite deployment to AIDE Enterprise in this release.
 
 == Policies and actions
 

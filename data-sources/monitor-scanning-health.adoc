@@ -9,7 +9,7 @@ summary: Confirm that scanning is working and that your investigation findings r
 :imagesdir: ../media/
 
 [.lead]
-Before you act on a dashboard or investigation finding, confirm that the underlying data is current. Use this documentation to verify that scanning is working and that your findings reflect up-to-date data.
+Before you act on a dashboard or investigation finding, confirm that the underlying data is current. Verify that scanning is working and that your findings reflect up-to-date data.
 
 == Verify scan status and coverage
 
@@ -24,9 +24,9 @@ Confirm that all your storage systems are connected and being scanned.
 
 If the dashboard shows a large amount of cold or stale data, confirm the number is current before you act on it.
 
-* Check the last-scanned time for each storage system contributing to the finding. A system that hasn't scanned recently may under- or over-report reclaimable storage.
+* Check the last-scanned time for each storage system contributing to the finding. A system that hasn't scanned recently might under- or over-report reclaimable storage.
 * Confirm scan coverage is complete for that system. A partial scan (paused, in progress, or with errors) means some data hasn't been evaluated yet.
-* If coverage looks incomplete, wait for the next scan cycle or resolve the underlying error before acting on the finding.
+* Wait for the next scan cycle or resolve the underlying error if coverage looks incomplete.
 
 // == After a Lite-to-Enterprise migration
 //

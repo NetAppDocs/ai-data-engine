@@ -54,10 +54,6 @@ The *Top data owners by reclaimable storage* table shows which data owners hold 
 
 Select any row to open the link:investigate-data.html[Investigation] view filtered to that owner's files. From there, you can review, act on, or save results as a policy.
 
-== Refresh and explore further
-
-* Select *Refresh* to update the page with the latest scan data. The last-updated timestamp appears on the page.
-
 == Related information
 
 * link:investigate-data.html[Investigate your data]

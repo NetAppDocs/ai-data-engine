@@ -43,7 +43,7 @@ The Policies page lists all policies you have created. Each entry shows:
 
 .Steps
 . From the AI Data Engine UI, select *Policies*.
-. Open the action menu and select *Investigate results* next to the policy to see the full policy details and impacted items.
+. Open the action menu next to the policy and select *Investigate results* to see the full policy details and impacted items.
 
 == Edit a policy
 

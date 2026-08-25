@@ -42,7 +42,7 @@ Review the results table to confirm the filter set captures the intended data gr
 
 . Optionally, enter a *Description* (up to 500 characters).
 
-. The filter criteria are captured as a query expression (for example, `last_access_time <= 3 Years AND file_size >= 5GiB`).
+. Review the filter criteria expression (for example, `last_access_time <= 3 Years AND file_size >= 5GiB`) to confirm it reflects your selections.
 
 . To attach an action, select one of the following under *Action*:
 +

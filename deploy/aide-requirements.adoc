@@ -147,7 +147,7 @@ Verify that DNS resolution for these endpoints is working from the AI Data Engin
 
 |===
 
-NOTE: NVMe or SSD storage is recommended for all sizes. Minimum storage performance for Small is 8,000 IOPS and 1,000 MB/s throughput; requirements increase with deployment size.
+NOTE: NVMe SSD or other solid-state storage is recommended for all deployment sizes. Minimum storage performance for Small is 8,000 IOPS and 1,000 MB/s throughput; requirements increase with deployment size.
 
 === Operating system
 
@@ -176,6 +176,8 @@ NOTE: NVMe or SSD storage is recommended for all sizes. Minimum storage performa
 * A configured StorageClass available on the cluster
 * An NFS server with at least one exported path for the AIDE configuration data volume
 * kubectl access with cluster-admin privileges on the machine from which you run the installer
+
+NOTE: NVMe or high-performance SSD storage is recommended for all Enterprise node deployments.
 
 === Node sizing
 
@@ -215,7 +217,6 @@ NOTE: NVMe or SSD storage is recommended for all sizes. Minimum storage performa
 
 |===
 
-NOTE: NVMe storage is required for all Enterprise node deployments.
 
 == Related information
 
