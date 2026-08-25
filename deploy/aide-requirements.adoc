@@ -50,17 +50,17 @@ The following network connections must be open:
 |To storage
 |NFS data source access
 
-|AI Data Engine to ONTAP (CIFS/SMB)
+|AI Data Engine to ONTAP (SMB/CIFS)
 |139, 445
 |TCP/UDP
 |To storage
-|CIFS/SMB data source access
+|SMB/CIFS data source access
 
 |AI Data Engine to Active Directory
 |389, 636, 3268, 3269
 |TCP/UDP
 |Outbound
-|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and CIFS/SMB scanning. Port 389 uses both TCP and UDP; all other ports use TCP only.
+|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and SMB/CIFS scanning. Port 389 uses both TCP and UDP; all other ports use TCP only.
 
 |===
 
@@ -147,7 +147,7 @@ Verify that DNS resolution for these endpoints is working from the AI Data Engin
 
 |===
 
-NOTE: NVMe or SSD storage is recommended for all sizes. Minimum storage performance for Small is 8,000 IOPS and 1,000 MB/s throughput; requirements increase with deployment size.
+NOTE: NVMe SSD or other solid-state storage is recommended for all deployment sizes. Minimum storage performance for Small is 8,000 IOPS and 1,000 MB/s throughput; requirements increase with deployment size.
 
 === Operating system
 
@@ -176,6 +176,8 @@ NOTE: NVMe or SSD storage is recommended for all sizes. Minimum storage performa
 * A configured StorageClass available on the cluster
 * An NFS server with at least one exported path for the AIDE configuration data volume
 * kubectl access with cluster-admin privileges on the machine from which you run the installer
+
+NOTE: NVMe or high-performance SSD storage is recommended for all Enterprise node deployments.
 
 === Node sizing
 
@@ -215,7 +217,6 @@ NOTE: NVMe or SSD storage is recommended for all sizes. Minimum storage performa
 
 |===
 
-NOTE: NVMe storage is required for all Enterprise node deployments.
 
 == Related information
 

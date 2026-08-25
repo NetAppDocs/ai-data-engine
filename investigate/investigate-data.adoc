@@ -15,11 +15,11 @@ When you need to understand what is consuming storage or find files ready for ar
 
 From the AI Data Engine UI, select *Investigation*.
 
-You can also open Investigation from the Overview page by clicking *Investigate* in the _Top consumers by reclaimable storage_ table. Investigation opens with a filter pre-applied for that resource.
+You can also open Investigation from the Overview page by selecting *Investigate* in the _Top consumers by reclaimable storage_ table. Investigation opens with a filter pre-applied for that resource.
 
 Investigation is organized into three sections:
 
-* *Unstructured*: file-based data across NFS and CIFS volumes.
+* *Unstructured*: file-based data across NFS and SMB/CIFS volumes.
 * *Structured*: database tables and schemas.
 * *Directories*: directory-level views across connected systems.
 
@@ -45,7 +45,7 @@ Use date-based filters to identify reclaimable storage.
 
 === Refine results with additional filters
 
-Combine any of the filters above with file size, path, system, tag, or policy filters to narrow the results further. For the complete list of available filters, see link:use-filters.html[Work with filters].
+Combine any of the filters above with file size, path, system, tag, or policy filters to narrow the results further. For the complete list of available filters, refer to link:use-filters.html[Work with filters].
 
 .Steps
 . Select *Add filter*.
@@ -74,23 +74,23 @@ Select one or more items using the checkboxes in the results table to activate t
 * *Copy*: copy the selected items to another location
 * *Tag*: apply a custom tag to the selected items
 
-For step-by-step instructions, see link:../policies/take-actions.html[Take action with your data].
+For step-by-step instructions, refer to link:../policies/take-actions.html[Take action with your data].
 
-Available actions depend on your role. See link:../administer/manage-users-roles.html[Manage users and roles].
+Available actions depend on your role. Refer to link:../administer/manage-users-roles.html[Manage users and roles].
 
 == Save filters as a policy
 
-Save your current filter set as a policy to reuse it or automate actions on matching files.
+Save your current filter set as a policy to reuse it or apply an automated action on matching files after each scan cycle.
 
 .Steps
 . Apply the filters that define the data you want to manage.
 . Select *Create policy* in the filter toolbar.
-. Complete the policy form. See link:../policies/create-policy.html[Create a policy].
+. Complete the policy form. Refer to link:../policies/create-policy.html[Create a policy].
 
 == Related information
 
 * link:use-filters.html[Work with filters]
-* link:storage-optimization-workflows.html[Explore storage optimization workflows]
+* link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
 * link:../policies/create-policy.html[Create a policy]
 * link:../policies/take-actions.html[Take action with your data]
 * link:understand-dashboard.html[Understand the dashboard]

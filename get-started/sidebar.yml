@@ -7,3 +7,5 @@ entries:
     url: /get-started/architecture.html
   - title: Quick start
     url: /get-started/quick-start.html
+  - title: Explore storage optimization workflows
+    url: /get-started/storage-optimization-workflows.html

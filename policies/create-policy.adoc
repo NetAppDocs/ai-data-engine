@@ -36,13 +36,13 @@ For example: *File Type* = .vmdk AND *Last Accessed Time* > 365 days.
 +
 Review the results table to confirm the filter set captures the intended data grouping.
 
-. In the filter action bar, click *Create policy*.
+. In the filter action bar, select *Create policy*.
 
 . Enter a *Policy name*.
 
 . Optionally, enter a *Description* (up to 500 characters).
 
-. The filter criteria are captured as a query expression (for example, `last_access_time <= 3 Years AND file_size >= 5GiB`).
+. Review the filter criteria expression (for example, `last_access_time <= 3 Years AND file_size >= 5GiB`) to confirm it reflects your selections.
 
 . To attach an action, select one of the following under *Action*:
 +
@@ -50,7 +50,7 @@ Review the results table to confirm the filter set captures the intended data gr
 * *Send email notification*: Enter the recipient email address in the field that appears.
 * *Delete permanently*: No additional input is required.
 
-. Click *Create*.
+. Select *Create*.
 
 .Result
 The policy is saved and appears on the link:manage-policies.html[Policies] page. If you associated an action, AI Data Engine applies that action to files that match the policy criteria.
@@ -63,10 +63,10 @@ The following example creates a policy to send an email notification when files 
 +
 * *Last Accessed Time* > 365 days
 
-. Click *Create policy*.
+. Select *Create policy*.
 . Enter the policy name: *Cold Files — Unaccessed 1 Year*.
 . Select the action *Send email notification* and enter the recipient email address.
-. Click *Create*.
+. Select *Create*.
 
 == Related information
 

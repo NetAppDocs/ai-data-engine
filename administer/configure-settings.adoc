@@ -1,0 +1,52 @@
+---
+sidebar: sidebar
+permalink: administer/configure-settings.html
+keywords: cold threshold, stale threshold, configuration, settings, data classification, cold data, stale data
+summary: Configure the time thresholds that AI Data Engine uses to classify data as cold or stale across your environment.
+---
+= Configure cold and stale data thresholds in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+AI Data Engine classifies files as cold or stale based on time thresholds you define. These thresholds affect how the dashboard reports reclaimable storage, which files appear when you apply cold or stale filters in Investigation, and which files policies target. Set thresholds that match your organization's storage optimization and data retention practices.
+
+== What is cold and stale data?
+
+Cold data:: Files that have not been accessed within the configured cold data threshold. Cold data is the primary metric for identifying reclaimable storage capacity.
+
+Stale data:: Files that have not been accessed or modified within the configured stale data threshold. Stale data captures files that see occasional access but no recent modification.
+
+Changes to either threshold take effect after the next scan cycle completes.
+
+== Configure the cold data threshold
+
+.Before you begin
+* You must have the _AI Data Engine administrator_ role.
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. Select *Settings*.
+. Select *Edit* for *Cold data definition*.
+. Set the file property to *Last Accessed* or *Last Modified*.
+. Set the time threshold. The default is one year.
+. Select *Save*.
+
+== Configure the stale data threshold
+
+.Before you begin
+* You must have the _AI Data Engine administrator_ role.
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. Select *Settings*.
+. Select *Edit* for *Stale data definition*.
+. Set the file property to *Last Accessed* or *Last Modified*.
+. Set the time threshold. The default is three years.
+. Select *Save*.
+
+== Related information
+
+* link:../investigate/understand-dashboard.html[Learn about the AI Data Engine dashboard]
+* link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
+* link:manage-users-roles.html[Manage users and roles]

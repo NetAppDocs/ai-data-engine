@@ -65,11 +65,11 @@ Requeue data resources that are in a failed or error state. Resolve the root cau
 
 == Edit CIFS credentials
 
-Update the credentials that AI Data Engine uses to authenticate to CIFS/SMB shares.
+Update the credentials that AI Data Engine uses to authenticate to SMB/CIFS shares.
 
 .Steps
 . From the AI Data Engine UI, select *Configuration*.
-. On the *Scanned systems* tab, locate the CIFS system.
+. On the *Scanned systems* tab, locate the SMB/CIFS system.
 . Select the system row to open the detail view.
 . Select *Edit CIFS credentials*.
 . Enter the updated username and password, then select *Save*.
@@ -108,5 +108,5 @@ Deactivating a system stops all scanning and removes it from active scan coverag
 == Related information
 
 * link:connect-data-source.html[Connect a data source]
-* link:../monitor/monitor-scanning-health.html[Monitor scanning health]
+* link:monitor-scanning-health.html[Monitor scanning health]
 * link:../investigate/understand-dashboard.html[Understand the dashboard]

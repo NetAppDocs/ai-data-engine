@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar
-permalink: monitor/monitor-scanning-health.html
+permalink: data-sources/monitor-scanning-health.html
 keywords: scan health, scanning, health monitor, coverage, migration, GA
 summary: Confirm that scanning is working and that your investigation findings reflect current data.
 ---
@@ -9,24 +9,24 @@ summary: Confirm that scanning is working and that your investigation findings r
 :imagesdir: ../media/
 
 [.lead]
-Before you act on a dashboard or investigation finding, confirm that the underlying data is current. Use this documentation to verify that scanning is working and that your findings reflect up-to-date data.
+Before you act on a dashboard or investigation finding, confirm that the underlying data is current. Verify that scanning is working and that your findings reflect up-to-date data.
 
 == Verify scan status and coverage
 
 Confirm that all your storage systems are connected and being scanned.
 
 .Steps
-. From the AI Data Engine UI, click *Configuration*.
+. From the AI Data Engine UI, select *Configuration*.
 . On the *Scanned systems* tab, confirm that every storage system you expect to see is listed and enabled for scanning.
-. Select *View details* from a system row to review scan progress and any errors. See link:../data-sources/manage-data-sources.html[Manage data sources] for details.
+. Select *View details* from a system row to review scan progress and any errors. Refer to link:../data-sources/manage-data-sources.html[Manage data sources] for details.
 
 == Validate that investigation findings reflect current data
 
 If the dashboard shows a large amount of cold or stale data, confirm the number is current before you act on it.
 
-* Check the last-scanned time for each storage system contributing to the finding. A system that hasn't scanned recently may under- or over-report reclaimable storage.
+* Check the last-scanned time for each storage system contributing to the finding. A system that hasn't scanned recently might under- or over-report reclaimable storage.
 * Confirm scan coverage is complete for that system. A partial scan (paused, in progress, or with errors) means some data hasn't been evaluated yet.
-* If coverage looks incomplete, wait for the next scan cycle or resolve the underlying error before acting on the finding.
+* Wait for the next scan cycle or resolve the underlying error if coverage looks incomplete.
 
 // == After a Lite-to-Enterprise migration
 //
