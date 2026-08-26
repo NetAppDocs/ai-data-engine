@@ -1,0 +1,64 @@
+---
+sidebar: sidebar
+permalink: investigate/investigate-unstructured.html
+keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS
+summary: Find cold, stale, and large files across NFS and SMB/CIFS volumes using metadata filters, then act on the results or save your filter criteria as a reusable policy.
+---
+= Investigate unstructured data in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+When file-based storage is growing unexpectedly, filter by last-access time, file size, and owner to find which files are consuming capacity without being used. For example, a storage administrator can surface terabytes of VM snapshots that have not been touched in over a year, then archive or delete them to reclaim space.
+
+.Before you begin
+* At least one data source must be connected and scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
+
+== Find cold or stale files by last-access time
+
+Use date-based filters to identify files that have not been accessed within your organization's cold or stale data thresholds. Thresholds are configurable in *Configuration* > *Settings*. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
+
+.Steps
+. From the AI Data Engine UI, select *Investigation*.
++
+The Unstructured tab is selected by default.
+. Select *Add filter*, then select *Last accessed*.
+. Select a time range that matches your cold data threshold, for example *1+ year*.
+. To focus on the largest consumers, select *Add filter* again, then select *File size*, and set a minimum value, for example *>1 GiB*.
++
+Applied filters appear as tags below the filter bar. The results table and item count update as you add each filter.
+
+For a complete list of available filters, refer to link:use-filters.html[Work with filters].
+
+== Group results by owner
+
+Grouping by owner helps you understand who holds the most reclaimable capacity before deciding where to act.
+
+.Steps
+. With filters applied, select the *View by* dropdown.
+. Select *Owner*.
++
+The results reorganize to show total file count and size per owner. Select any owner row to expand and see their individual files.
+
+== Review file details
+
+Select any file row to open the detail panel and confirm the file is a suitable reclamation candidate before taking action.
+
+The detail panel shows the file's system, storage repository, file owner, and any applied tags or policies. Verify the system and owner before archiving or deleting.
+
+== Act on results or save as a policy
+
+After identifying the files you want to address, select one or more items using the checkboxes in the results table.
+
+* To take an immediate action, refer to link:take-actions.html[Take action with your data].
+* To save the filter criteria for ongoing monitoring, select *Create policy* in the filter toolbar. Refer to link:../policies/create-policy.html[Create a policy].
+
+To download the filtered results, select image:icon_download_file.png[Download].
+
+== Related information
+
+* link:use-filters.html[Work with filters]
+* link:take-actions.html[Take action with your data]
+* link:../policies/create-policy.html[Create a policy]
+* link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
+* link:understand-dashboard.html[Understand the dashboard]

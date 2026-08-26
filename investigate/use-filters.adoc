@@ -112,4 +112,7 @@ Filters are combined with AND logic, meaning the results must match all applied 
 == Related information
 
 * link:investigate-data.html[Investigate your data]
+* link:investigate-unstructured.html[Investigate unstructured data]
+* link:investigate-structured.html[Investigate structured data]
+* link:investigate-directories.html[Investigate directories]
 * link:../policies/create-policy.html[Create a policy]

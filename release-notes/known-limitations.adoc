@@ -25,4 +25,4 @@ When you create a policy, the available automated actions are limited to permane
 
 * link:whats-new.html[What's new]
 * link:../deploy/deployment-overview.html[Deployment overview]
-* link:../policies/take-actions.html[Take actions on data]
+* link:../investigate/take-actions.html[Take action on your data]

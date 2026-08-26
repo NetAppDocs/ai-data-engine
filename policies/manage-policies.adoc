@@ -71,4 +71,4 @@ CAUTION: Deletion is permanent and cannot be undone.
 == Related information
 
 * link:create-policy.html[Create a policy]
-* link:take-actions.html[Take actions on data]
+* link:../investigate/take-actions.html[Take action on your data]

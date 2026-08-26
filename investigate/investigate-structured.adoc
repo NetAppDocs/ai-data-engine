@@ -1,0 +1,61 @@
+---
+sidebar: sidebar
+permalink: investigate/investigate-structured.html
+keywords: investigate, structured, database, tables, schema, oversized, unused, DB server, table size, discovered time
+summary: Find oversized or unused database tables across your connected database servers, then save your findings as a reusable governance policy.
+---
+= Investigate structured data in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+When database storage is growing unexpectedly, filter by table metadata to find which tables are oversized or have shown no activity since they were first discovered. For example, a storage administrator can identify large tables that have not changed since an early scan, then coordinate with the database owner to evaluate whether they are still needed.
+
+.Before you begin
+* At least one database data source must be connected and scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
+
+== Review the database table listing
+
+.Steps
+. From the AI Data Engine UI, select *Investigation*.
+. Select the *Structured* tab.
++
+The table displays database table name, schema, DB server, discovered time, table dimensions (columns × rows), and table size.
+
+== Identify oversized or unused tables
+
+Use filters to narrow the listing to tables most likely to offer reclamation opportunities.
+
+.Steps
+. Select *Add filter*, then select *Discovered time*.
+. Set the range to surface tables that have been present across multiple scan cycles, for example tables first discovered more than a year ago.
+. To narrow further, select *Add filter* again and filter by DB server or schema to focus on a specific system.
++
+Applied filters appear as tags below the filter bar. The results update as you add each filter.
+
+For a complete list of available filters, refer to link:use-filters.html[Work with filters].
+
+== Review table details
+
+Select a table row to open the detail panel and assess whether the table is a reclamation candidate.
+
+The detail panel shows the DB server, schema, table dimensions, table size, and discovered time. Use this information to determine whether the table has grown since discovery or remains unchanged.
+
+NOTE: Before acting on database tables, coordinate with the database owner to confirm the table is no longer needed.
+
+== Save findings as a policy
+
+After applying filters that identify tables of interest, save the criteria for ongoing monitoring.
+
+.Steps
+. Select *Create policy* in the filter toolbar.
+. Complete the policy form. Refer to link:../policies/create-policy.html[Create a policy].
+
+To download the filtered results, select image:icon_download_file.png[Download].
+
+== Related information
+
+* link:use-filters.html[Work with filters]
+* link:../policies/create-policy.html[Create a policy]
+* link:../data-sources/connect-data-source.html[Connect a data source]
+* link:understand-dashboard.html[Understand the dashboard]

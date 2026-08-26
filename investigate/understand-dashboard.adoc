@@ -46,16 +46,19 @@ Use the summary panel and chart to prioritize storage optimization opportunities
 
 After you identify a resource worth investigating, use the *Top data resources by reclaimable storage* table to move from the overview to the details.
 
-This table lists your scanned storage resources ranked by reclaimable storage. Select any row to open the link:investigate-data.html[Investigation] view filtered to that resource.
+This table lists your scanned storage resources ranked by reclaimable storage. Select any row to open the Investigation view filtered to that resource. From there, use the link:investigate-unstructured.html[Unstructured] tab to identify cold or stale files, or the link:investigate-directories.html[Directories] tab to audit permission exposure.
 
 == Identify data owners with the most reclaimable storage
 
 The *Top data owners by reclaimable storage* table shows which data owners hold the largest amount of reclaimable storage across your environment.
 
-Select any row to open the link:investigate-data.html[Investigation] view filtered to that owner's files. From there, you can review, act on, or save results as a policy.
+Select any row to open the link:investigate-unstructured.html[Investigation] view filtered to that owner's files. From there, you can review, act on, or save results as a policy.
 
 == Related information
 
 * link:investigate-data.html[Investigate your data]
+* link:investigate-unstructured.html[Investigate unstructured data]
+* link:investigate-structured.html[Investigate structured data]
+* link:investigate-directories.html[Investigate directories]
 * link:../data-sources/connect-data-source.html[Connect a data source]
 * link:../administer/configure-settings.html[Configure cold and stale data thresholds]

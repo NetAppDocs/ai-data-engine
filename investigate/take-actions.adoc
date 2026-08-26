@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar
-permalink: policies/take-actions.html
+permalink: investigate/take-actions.html
 keywords: actions, tag, archive, delete, data lifecycle, storage optimization, breadcrumb
 summary: Act on files you have identified as cold, stale, or obsolete by archiving them to reclaim space, tagging items for tracking, or permanently deleting what you no longer need.
 ---
@@ -129,7 +129,8 @@ Tagging applies a business tag to files for classification and tracking.
 
 == Related information
 
-* link:create-policy.html[Create a policy]
-* link:manage-policies.html[Manage policies]
-* link:../investigate/investigate-data.html[Investigate your data]
+* link:investigate-data.html[Investigate your data]
+* link:investigate-unstructured.html[Investigate unstructured data]
+* link:use-filters.html[Work with filters]
+* link:../policies/create-policy.html[Create a policy]
 * link:../administer/manage-users-roles.html[Manage users and roles]

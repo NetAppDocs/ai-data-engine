@@ -23,7 +23,7 @@ link:../investigate/investigate-data.html[Metadata investigation]:: Find files t
 
 link:../policies/create-policy.html[Data governance policies]:: Save filter criteria as named policies to track recurring data conditions over time, such as cold or oversized files, and receive notifications when the impacted file count changes.
 
-link:../policies/take-actions.html[Data lifecycle actions]:: 
+link:../investigate/take-actions.html[Data lifecycle actions]:: 
 Reclaim storage capacity and manage your data by copying and archiving files to NFS or SMB/CIFS destinations, tagging items for tracking, or permanently deleting obsolete files.
 
 link:../administer/manage-users-roles.html[Role-based access control]:: Control who can investigate data and take actions by assigning roles to users in your organization. Available roles include AI Data Engine administrator and AI Data Engine viewer.

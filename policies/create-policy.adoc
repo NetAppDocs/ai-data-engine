@@ -71,5 +71,5 @@ The following example creates a policy to send an email notification when files 
 == Related information
 
 * link:manage-policies.html[Manage policies]
-* link:take-actions.html[Take actions on data]
+* link:../investigate/take-actions.html[Take action on your data]
 * link:../investigate/investigate-data.html[Investigate your data]
