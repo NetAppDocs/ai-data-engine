@@ -60,17 +60,15 @@ Multiple identical copies of the same files exist across volumes or shares, a co
 Reclaimable storage is distributed across many owners and you need to know who holds the most before deciding where to act.
 
 .Steps
-. From link:../investigate/understand-dashboard.html[the dashboard], locate the *Top data owners by reclaimable storage* table.
+. From link:../investigate/understand-dashboard.html[the dashboard], locate the _Top data owners by reclaimable storage_ table.
 . Select an owner row to open link:../investigate/investigate-unstructured.html[Investigation] filtered to that owner's files.
 . Review the results and decide link:../investigate/take-actions.html[whether to tag, archive, or delete] files.
 . link:../policies/create-policy.html[Save the filter set as a policy] to monitor how that owner's reclaimable storage changes over time.
 
 == Related information
 
-* link:../investigate/understand-dashboard.html[Understand the dashboard]
+* link:../investigate/understand-dashboard.html[Assess storage utilization from the dashboard]
 * link:../investigate/investigate-data.html[Investigate your data]
 * link:../investigate/investigate-unstructured.html[Investigate unstructured data]
-* link:../investigate/investigate-structured.html[Investigate structured data]
-* link:../investigate/investigate-directories.html[Investigate directories]
 * link:../investigate/take-actions.html[Take action with your data]
 * link:../policies/create-policy.html[Create a policy]

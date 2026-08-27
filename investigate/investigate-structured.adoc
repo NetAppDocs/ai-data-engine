@@ -51,11 +51,11 @@ After applying filters that identify tables of interest, save the criteria for o
 . Select *Create policy* in the filter toolbar.
 . Complete the policy form. Refer to link:../policies/create-policy.html[Create a policy].
 
-To download the filtered results, select image:icon_download_file.png[Download].
+To download the filtered results from the Structured tab, select image:icon_download_file.png[Download].
 
 == Related information
 
 * link:use-filters.html[Work with filters]
 * link:../policies/create-policy.html[Create a policy]
 * link:../data-sources/connect-data-source.html[Connect a data source]
-* link:understand-dashboard.html[Understand the dashboard]
+* link:understand-dashboard.html[Assess storage utilization from the dashboard]

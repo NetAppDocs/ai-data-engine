@@ -23,7 +23,7 @@ Use permission filters to identify directories that are open beyond the intended
 . Select the *Directories* tab.
 +
 The table displays directory name (full path), data container, directory owner, directory type, and system.
-. Select *Add filter*, then select *Users / Group permission*.
+. Select *Add filter*, then select *Open permissions*.
 . Set the filter to *Open to organization* to surface directories accessible org-wide.
 +
 The results table updates to show directories matching the permission criteria, including the last accessed date and permission status.
@@ -46,11 +46,11 @@ After filtering to identify broadly accessible directories, save the criteria as
 . With your permission filters applied, select *Create policy* in the filter toolbar.
 . Complete the policy form. Refer to link:../policies/create-policy.html[Create a policy].
 
-To download the filtered results, select image:icon_download_file.png[Download].
+To download the filtered results from the Directories tab, select image:icon_download_file.png[Download].
 
 == Related information
 
 * link:use-filters.html[Work with filters]
 * link:../policies/create-policy.html[Create a policy]
 * link:../administer/manage-users-roles.html[Manage users and roles]
-* link:understand-dashboard.html[Understand the dashboard]
+* link:understand-dashboard.html[Assess storage utilization from the dashboard]

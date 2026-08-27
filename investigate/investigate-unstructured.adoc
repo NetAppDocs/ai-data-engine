@@ -53,7 +53,7 @@ After identifying the files you want to address, select one or more items using 
 * To take an immediate action, refer to link:take-actions.html[Take action with your data].
 * To save the filter criteria for ongoing monitoring, select *Create policy* in the filter toolbar. Refer to link:../policies/create-policy.html[Create a policy].
 
-To download the filtered results, select image:icon_download_file.png[Download].
+To download the filtered results from the Unstructured tab, select image:icon_download_file.png[Download].
 
 == Related information
 
@@ -61,4 +61,4 @@ To download the filtered results, select image:icon_download_file.png[Download].
 * link:take-actions.html[Take action with your data]
 * link:../policies/create-policy.html[Create a policy]
 * link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
-* link:understand-dashboard.html[Understand the dashboard]
+* link:understand-dashboard.html[Assess storage utilization from the dashboard]

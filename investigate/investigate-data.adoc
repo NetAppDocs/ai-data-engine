@@ -43,7 +43,4 @@ The summary count and total size at the top of the page update to reflect the ac
 * link:investigate-structured.html[Investigate structured data]
 * link:investigate-directories.html[Investigate directories]
 * link:use-filters.html[Work with filters]
-* link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
 * link:take-actions.html[Take action with your data]
-* link:../policies/create-policy.html[Create a policy]
-* link:understand-dashboard.html[Understand the dashboard]

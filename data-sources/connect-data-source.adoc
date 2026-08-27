@@ -85,5 +85,5 @@ The system status updates in the Scanned systems tab to show that scanning is ru
 
 * link:manage-data-sources.html[Manage data sources]
 * link:../deploy/aide-requirements.html[AI Data Engine requirements]
-* link:../investigate/understand-dashboard.html[Understand the dashboard]
+* link:../investigate/understand-dashboard.html[Assess storage utilization from the dashboard]
 * link:monitor-scanning-health.html[Monitor scanning health]

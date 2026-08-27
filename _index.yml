@@ -26,7 +26,7 @@ indexpage:
       links:
         - title: Connect a data source
           url: /data-sources/connect-data-source.html
-        - title: Understand the dashboard
+        - title: 
           url: /investigate/understand-dashboard.html
         - title: Investigate your data
           url: /investigate/investigate-data.html
