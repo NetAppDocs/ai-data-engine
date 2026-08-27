@@ -87,7 +87,7 @@ The AI Data Engine Investigation view provides metadata filters to narrow your r
 |Filter files that have a specific business tag applied.
 
 |Policy
-|Filter files matched by a specific saved policy. Policy names appear in the filter list.
+|Filter files that match a specific saved policy. Policy names appear in the filter list.
 
 |===
 
@@ -112,4 +112,7 @@ Filters are combined with AND logic, meaning the results must match all applied 
 == Related information
 
 * link:investigate-data.html[Investigate your data]
+* link:investigate-unstructured.html[Investigate unstructured data]
+* link:investigate-structured.html[Investigate structured data]
+* link:investigate-directories.html[Investigate directories]
 * link:../policies/create-policy.html[Create a policy]

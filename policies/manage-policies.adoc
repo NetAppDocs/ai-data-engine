@@ -9,41 +9,17 @@ summary: Review your saved policies to see which files currently match each crit
 :imagesdir: ../media/
 
 [.lead]
-Use the Policies page to review your saved policies, check the current file count for each criteria set, and remove policies you no longer need. For example, a storage administrator with several cold-data policies can compare the impacted file count across policies to decide which data groupings need attention first.
+When you want to review which of your saved policies match data, compare impacted file counts to prioritize actions, or remove policies you no longer need, use the Policies page. For example, a storage administrator with several cold-data policies can compare impacted file counts to decide which data groupings need attention first.
 
-== Navigate to Policies
+Each policy listing shows the count of files and objects currently matching its criteria. Use this count to identify which policies are actively capturing data worth reviewing.
 
-From the AI Data Engine UI, select *Policies*.
+== Check which files match a policy
 
-.About this task
-The Policies page lists all policies you have created. Each entry shows:
-
-[cols="1,2",options="header"]
-|===
-|Column |Description
-
-|Name
-|The name assigned when the policy was created.
-
-|Created by
-|The name of the user who created the policy.
-
-|Actions
-|The action configured for the policy (for example, *Send email notification*).
-
-|Description
-|The filter criteria expression for the policy.
-
-|Impacted files and objects
-|The count of files and objects currently matching the policy criteria (for example, 654k).
-
-|===
-
-== View a policy
+Before you edit or delete a policy, review the files it currently matches to confirm the criteria are still capturing the right data.
 
 .Steps
 . From the AI Data Engine UI, select *Policies*.
-. Open the action menu next to the policy and select *Investigate results* to see the full policy details and impacted items.
+. Open the action menu next to the policy and select *Investigate results*.
 
 == Edit a policy
 
@@ -71,4 +47,4 @@ CAUTION: Deletion is permanent and cannot be undone.
 == Related information
 
 * link:create-policy.html[Create a policy]
-* link:take-actions.html[Take actions on data]
+* link:../investigate/take-actions.html[Take action on your data]

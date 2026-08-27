@@ -18,8 +18,8 @@ You notice on the Overview page that a storage resource has a large amount of re
 
 .Steps
 . From link:../investigate/understand-dashboard.html[the dashboard], identify the resource with the highest reclaimable size and select *Investigate*.
-. In link:../investigate/investigate-data.html[Investigation], confirm the resources using the *Last accessed* filter set to match your configured cold data threshold (default: *1+ year*).
-. Review the results to decide link:../policies/take-actions.html[whether to tag, archive, or delete] the matching files.
+. In link:../investigate/investigate-unstructured.html[Investigation], confirm the resources using the *Last accessed* filter set to match your configured cold data threshold (default: *1+ year*).
+. Review the results to decide link:../investigate/take-actions.html[whether to tag, archive, or delete] the matching files.
 . If these resources are worth monitoring on an ongoing basis, link:../policies/create-policy.html[save the filter set as a policy] so you are notified as new files go cold.
 
 == Identify and manage stale data
@@ -29,8 +29,8 @@ Files that are still occasionally accessed but haven't been modified in years ca
 
 .Steps
 . From link:../investigate/understand-dashboard.html[the dashboard], identify a resource with significant stale data.
-. In link:../investigate/investigate-data.html[Investigation], apply the *Last modified* filter set to your stale threshold (default *3+ years*).
-. Review the results to decide link:../policies/take-actions.html[whether to tag, archive, or delete] the matching files.
+. In link:../investigate/investigate-unstructured.html[Investigation], apply the *Last modified* filter set to your stale threshold (default *3+ years*).
+. Review the results to decide link:../investigate/take-actions.html[whether to tag, archive, or delete] the matching files.
 . link:../policies/create-policy.html[Save the filter set as a policy] to track these resources across future scans.
 
 == Manage data retention compliance
@@ -39,7 +39,7 @@ Files that are still occasionally accessed but haven't been modified in years ca
 Your organization requires that files older than a certain age are reviewed for retention. The default retention threshold is seven or more years since file creation, and this threshold is configurable.
 
 .Steps
-. In link:../investigate/investigate-data.html[Investigation], apply the *Last created* filter set to your retention threshold (default *7+ years*).
+. In link:../investigate/investigate-unstructured.html[Investigation], apply the *Last created* filter set to your retention threshold (default *7+ years*).
 . Review the results with the relevant stakeholders before acting. Retention-flagged files are often monitored rather than automatically deleted.
 . link:../policies/create-policy.html[Create a policy] with a monitor-only or email notification action so you are alerted as new files meet the retention threshold, rather than acting on these resources once.
 
@@ -49,9 +49,9 @@ Your organization requires that files older than a certain age are reviewed for 
 Multiple identical copies of the same files exist across volumes or shares, a common issue in environments with backup jobs, data migrations, or shared project folders.
 
 .Steps
-. In link:../investigate/investigate-data.html[Investigation], select *Add filter* and then select *Duplicates*.
+. In link:../investigate/investigate-unstructured.html[Investigation], select *Add filter* and then select *Duplicates*.
 . Review the results. Files listed have one or more identical copies elsewhere in the catalog.
-. Select files to act on and choose link:../policies/take-actions.html[an action]. Archive or delete confirmed duplicates that have an original copy elsewhere.
+. Select files to act on and choose link:../investigate/take-actions.html[an action]. Archive or delete confirmed duplicates that have an original copy elsewhere.
 . link:../policies/create-policy.html[Save the filter as a policy] to track duplicate accumulation over time and receive notifications when the count increases.
 
 == Target cleanup by data owner
@@ -60,14 +60,15 @@ Multiple identical copies of the same files exist across volumes or shares, a co
 Reclaimable storage is distributed across many owners and you need to know who holds the most before deciding where to act.
 
 .Steps
-. From link:../investigate/understand-dashboard.html[the dashboard], locate the *Top data owners by reclaimable storage* table.
-. Select an owner row to open link:../investigate/investigate-data.html[Investigation] filtered to that owner's files.
-. Review the results and decide link:../policies/take-actions.html[whether to tag, archive, or delete] files.
+. From link:../investigate/understand-dashboard.html[the dashboard], locate the _Top data owners by reclaimable storage_ table.
+. Select an owner row to open link:../investigate/investigate-unstructured.html[Investigation] filtered to that owner's files.
+. Review the results and decide link:../investigate/take-actions.html[whether to tag, archive, or delete] files.
 . link:../policies/create-policy.html[Save the filter set as a policy] to monitor how that owner's reclaimable storage changes over time.
 
 == Related information
 
-* link:../investigate/understand-dashboard.html[Understand the dashboard]
+* link:../investigate/understand-dashboard.html[Assess storage utilization from the dashboard]
 * link:../investigate/investigate-data.html[Investigate your data]
-* link:../policies/take-actions.html[Take action with your data]
+* link:../investigate/investigate-unstructured.html[Investigate unstructured data]
+* link:../investigate/take-actions.html[Take action with your data]
 * link:../policies/create-policy.html[Create a policy]

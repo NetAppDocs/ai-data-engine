@@ -1,96 +1,46 @@
 ---
 sidebar: sidebar
 permalink: investigate/investigate-data.html
-keywords: investigate, metadata, search, filter, cold data, stale data, retention, files, results, action, policy
-summary: Find cold, stale, and retention-risk files across your storage systems, then act on what you find or save the criteria as a reusable policy.
+keywords: investigate, metadata, unstructured, structured, directories, cold data, stale data, permissions, reclaimable storage
+summary: Use the Investigation view to explore file-based storage, database tables, and directory structures across your connected systems. Choose the tab that matches what you are trying to find.
 ---
 = Investigate your data in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-When you need to understand what is consuming storage or find files ready for archival or deletion, search and filter metadata across all connected systems. For example, a storage administrator investigating unexpected capacity growth can filter by last-access time and file size to surface terabytes of VM snapshots that have not been touched in years, then act on those files directly.
+When you need to understand what is consuming storage, identify which database tables are growing unchecked, or find directories with overly permissive access, use metadata filters to investigate your data across all connected systems.
 
-== Navigate to Investigation
+== Choose a starting point
 
-From the AI Data Engine UI, select *Investigation*.
+Select *Investigation* in the left navigation to open the view. You can also open the Investigation view from the Overview page by selecting *Investigate* in the _Top data resources by reclaimable storage_ table, which applies a filter for that resource automatically.
 
-You can also open Investigation from the Overview page by selecting *Investigate* in the _Top consumers by reclaimable storage_ table. Investigation opens with a filter pre-applied for that resource.
+*Investigation* is organized into three tabs. Select the tab that matches the data type you are investigating.
 
-Investigation is organized into three sections:
+[cols="1,2,1",options="header"]
+|===
+|Tab |Use when you want to |More information
 
-* *Unstructured*: file-based data across NFS and SMB/CIFS volumes.
-* *Structured*: database tables and schemas.
-* *Directories*: directory-level views across connected systems.
+|*Unstructured*
+|Find cold, stale, or duplicate file-based data across NFS and SMB/CIFS volumes
+|link:investigate-unstructured.html[Investigate unstructured data]
 
-Select a section tab to switch between views. The summary count and total size at the top of the page update to reflect the active section (for example, "Unstructured (400M) | 5.7 PiB").
+|*Structured*
+|Identify oversized or unused database tables consuming storage
+|link:investigate-structured.html[Investigate structured data]
 
-=== Change how results are grouped
+|*Directories*
+|Audit directory-level permissions and find broadly accessible paths
+|link:investigate-directories.html[Investigate directories]
 
-Use the *View by* control to change how items are organized in the active view:
+|===
 
-* *Unstructured*: group by file, owner, or system.
-* *Directories*: group by directory or owner.
-
-NOTE: Structured view has no grouping options available.
-
-== Find cold, stale, and at-risk files
-
-Use date-based filters to identify reclaimable storage.
-
-.Steps
-. Select *Add filter*.
-. Select a filter from the table above.
-. Set the value to the appropriate threshold.
-
-=== Refine results with additional filters
-
-Combine any of the filters above with file size, path, system, tag, or policy filters to narrow the results further. For the complete list of available filters, refer to link:use-filters.html[Work with filters].
-
-.Steps
-. Select *Add filter*.
-. Select a filter criterion and value.
-. Repeat to add additional filters.
-
-Applied filters appear as tags below the filter bar (for example, "Last accessed: 365+ days | File size: >5 GiB"). The results table and item count update each time you add a filter.
-
-To clear all filters, select *Clear filters*.
-
-== View investigation results
-
-The results table shows items that match your applied filters in the active section. When filters are active, the header shows the filtered count and size for that section (for example, "Unstructured (250k / 400M) | 8.3 TiB | Filters applied (2)").
-
-To view additional metadata for an item, select its row. A detail panel opens with additional metadata for the selected item.
-
-To download the filtered results, select image:icon_download_file.png[Download].
-
-// Research: confirm whether Structured section supports these actions
-== Take action on results
-
-Select one or more items using the checkboxes in the results table to activate the action toolbar. Available actions are:
-
-* *Delete*: permanently delete the selected items
-* *Archive*: move the selected items to a cold storage destination
-* *Copy*: copy the selected items to another location
-* *Tag*: apply a custom tag to the selected items
-
-For step-by-step instructions, refer to link:../policies/take-actions.html[Take action with your data].
-
-Available actions depend on your role. Refer to link:../administer/manage-users-roles.html[Manage users and roles].
-
-== Save filters as a policy
-
-Save your current filter set as a policy to reuse it or apply an automated action on matching files after each scan cycle.
-
-.Steps
-. Apply the filters that define the data you want to manage.
-. Select *Create policy* in the filter toolbar.
-. Complete the policy form. Refer to link:../policies/create-policy.html[Create a policy].
+The summary count and total size at the top of the page update to reflect the active tab (for example, "Unstructured (400M) | 5.7 PiB").
 
 == Related information
 
+* link:investigate-unstructured.html[Investigate unstructured data]
+* link:investigate-structured.html[Investigate structured data]
+* link:investigate-directories.html[Investigate directories]
 * link:use-filters.html[Work with filters]
-* link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
-* link:../policies/create-policy.html[Create a policy]
-* link:../policies/take-actions.html[Take action with your data]
-* link:understand-dashboard.html[Understand the dashboard]
+* link:take-actions.html[Take action with your data]

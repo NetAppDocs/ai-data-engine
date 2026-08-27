@@ -21,7 +21,7 @@ A policy is a saved filter set with an optional action attached:
 
 * *Monitor only (no action)*: Track the matching grouping over time without acting. Use this when you want visibility without committing to an automated response.
 * *Send email notification*: Notify a user by email when the matching file count changes.
-* *Delete permanently*: AI Data Engine automatically applies the action to files that match the policy criteria.
+* *Delete permanently*: Delete matching files automatically after each scan cycle.
 
 == Create a policy from Investigation
 
@@ -47,7 +47,7 @@ Review the results table to confirm the filter set captures the intended data gr
 . To attach an action, select one of the following under *Action*:
 +
 * *Monitor only (no action)* (default): The policy saves as a monitor-only condition.
-* *Send email notification*: Enter the recipient email address in the field that appears.
+* *Send email notification*: Sends an email notification to the recipient you specify.
 * *Delete permanently*: No additional input is required.
 
 . Select *Create*.
@@ -71,5 +71,5 @@ The following example creates a policy to send an email notification when files 
 == Related information
 
 * link:manage-policies.html[Manage policies]
-* link:take-actions.html[Take actions on data]
+* link:../investigate/take-actions.html[Take action on your data]
 * link:../investigate/investigate-data.html[Investigate your data]

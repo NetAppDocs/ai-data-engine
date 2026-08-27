@@ -93,5 +93,5 @@ The user receives an email invitation and can access AI Data Engine after accept
 
 == Related information
 
-* link:../policies/take-actions.html[Take actions on data]
+* link:../investigate/take-actions.html[Take action on your data]
 * link:../policies/create-policy.html[Create a policy]
