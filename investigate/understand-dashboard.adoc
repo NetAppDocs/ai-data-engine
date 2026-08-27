@@ -42,7 +42,7 @@ When you have identified a resource or owner worth investigating, use the tables
 
 The *Top data resources by reclaimable storage* table lists your scanned storage resources ranked by reclaimable storage. Select any row to open the Investigation view filtered to that resource. From there, use the link:investigate-unstructured.html[Unstructured] tab to identify cold or stale files, or the link:investigate-directories.html[Directories] tab to audit permission exposure.
 
-The *Top data owners by reclaimable storage* table shows which data owners hold the largest amount of reclaimable storage. Select any row to open the link:investigate-unstructured.html[Investigation] view filtered to that owner's files. From there, you can review, act on, or save results as a policy.
+The *Top data owners by reclaimable storage* table shows which data owners hold the largest amount of reclaimable storage. Select any row to open the link:investigate-unstructured.html[Investigation] view filtered to that owner's files. From there, you can review results, act on them, or save them as a policy.
 
 == Related information
 

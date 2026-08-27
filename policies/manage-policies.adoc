@@ -9,13 +9,13 @@ summary: Review your saved policies to see which files currently match each crit
 :imagesdir: ../media/
 
 [.lead]
-When you want to review which of your saved policies are matching data, compare impacted file counts to prioritize, or remove policies you no longer need, use the Policies page to manage them. For example, a storage administrator with several cold-data policies can compare the impacted file count across policies to decide which data groupings need attention first.
+When you want to review which of your saved policies match data, compare impacted file counts to prioritize actions, or remove policies you no longer need, use the Policies page. For example, a storage administrator with several cold-data policies can compare impacted file counts to decide which data groupings need attention first.
 
 Each policy listing shows the count of files and objects currently matching its criteria. Use this count to identify which policies are actively capturing data worth reviewing.
 
 == Check which files match a policy
 
-Before committing to edit or delete a policy, review the files it currently matches to confirm the criteria are still capturing the right data.
+Before you edit or delete a policy, review the files it currently matches to confirm the criteria are still capturing the right data.
 
 .Steps
 . From the AI Data Engine UI, select *Policies*.
