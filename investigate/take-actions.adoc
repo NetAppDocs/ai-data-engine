@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: investigate/take-actions.html
 keywords: actions, tag, archive, delete, data lifecycle, storage optimization, breadcrumb
-summary: Act on files you have identified as cold, stale, or obsolete by archiving them to reclaim space, tagging items for tracking, or permanently deleting what you no longer need.
+summary: Act on files you have identified as cold, stale, or obsolete by archiving them, tagging items for tracking, or permanently deleting what you no longer need.
 ---
 = Take action on your data in AI Data Engine
 :icons: font

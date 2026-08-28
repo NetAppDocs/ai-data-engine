@@ -17,6 +17,8 @@ Cold data:: Files that have not been accessed within the configured cold data th
 
 Stale data:: Files that have not been accessed or modified within the configured stale data threshold. Stale data captures files that see occasional access but no recent modification, and your organization can monitor or manage according to your policies.
 
+NOTE: The default threshold values are product defaults provided as a starting point. They do not represent legal, compliance, or industry-standard retention periods. Set thresholds that reflect your organization's specific policies and requirements.
+
 Changes to either threshold take effect after the next scan cycle completes.
 
 == Configure the cold data threshold

@@ -42,7 +42,7 @@ The results reorganize to show total file count and size per owner. Select any o
 
 == Review file details
 
-Select any file row to open the detail panel and confirm the file is a suitable reclamation candidate before taking action.
+Select any file row to open the detail panel and confirm the file matches your intended scope before taking action.
 
 The detail panel shows the file's system, storage repository, file owner, and any applied tags or policies. Verify the system and owner before archiving or deleting.
 

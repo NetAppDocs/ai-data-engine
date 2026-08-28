@@ -11,7 +11,7 @@ summary: Use end-to-end flows for taking a dashboard finding through investigati
 [.lead]
 These AI Data Engine workflows take you from identifying a storage problem on the dashboard through investigation and action to an ongoing monitoring policy. Each workflow follows the same path: dashboard, investigate, act, and save as a policy.
 
-== Identify and reclaim cold data
+== Identify and act on cold data
 
 .Scenario
 You notice on the Overview page that a storage resource has a large amount of data flagged as cold. Cold files have not been accessed within the configured cold data threshold, which defaults to one year and is configurable in *Configuration* > *Settings*.
@@ -22,10 +22,12 @@ You notice on the Overview page that a storage resource has a large amount of da
 . Review the results to decide link:../investigate/take-actions.html[whether to tag, archive, or delete] the matching files.
 . If these resources are worth monitoring on an ongoing basis, link:../policies/create-policy.html[save the filter set as a policy] so you are notified as new files go cold.
 
-== Identify and manage stale data
+== Identify and act on stale data
 
 .Scenario
-Files that are still occasionally accessed but haven't been modified in years are classified as stale when they fall outside your organization's stale threshold (default: three years since last access or modification). This threshold is configurable in *Configuration* > *Settings*.
+Files that are still occasionally accessed but haven't been modified in years are classified as stale when they fall outside your organization's stale threshold (default: three years since last access or modification). 
+
+NOTE: This threshold is configurable in *Configuration* > *Settings*.
 
 .Steps
 . From link:../investigate/understand-dashboard.html[the dashboard], identify a resource with significant stale data.
@@ -36,7 +38,9 @@ Files that are still occasionally accessed but haven't been modified in years ar
 == Manage data retention compliance
 
 .Scenario
-Your organization requires that files older than a certain age are reviewed for retention. The default retention threshold is seven or more years since file creation, and this threshold is configurable.
+Your organization requires that files older than a certain age are reviewed for retention. The AIDE product configurable threshold default for retention is seven or more years since file creation, and this matches your organization's specific compliance and retention policies.
+
+NOTE: This threshold is configurable in *Configuration* > *Settings*.
 
 .Steps
 . In link:../investigate/investigate-unstructured.html[Investigation], apply the *Last created* filter set to your retention threshold (default *7+ years*).

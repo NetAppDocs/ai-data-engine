@@ -13,6 +13,7 @@ AI Data Engine scans your storage systems to collect and analyze metadata. To ad
 
 .Before you begin
 
+* Ensure you are authorized to connect to and scan the storage systems you plan to add.
 * Discover storage systems in NetApp Console using a Console Agent before adding them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery does not enable data services such as AI Data Engine.
 * Verify that the network connections required for AI Data Engine to reach your data sources are open. Refer to link:../deploy/aide-requirements.html[AI Data Engine requirements].
 

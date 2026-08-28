@@ -23,7 +23,7 @@ The summary panel shows the scale of the problem across your scanned environment
 * *Data resources*: The count of volumes, shares, and buckets currently scanned.
 * *Total files scanned*: The total number of files indexed across all scanned data resources.
 
-Cold and stale thresholds reflect your configured settings and can be changed in *Configuration* > *Settings*. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
+Cold and stale thresholds reflect your configured settings and can be changed in *Configuration* > *Settings*. The default values are product defaults and do not represent legal, compliance, or industry-standard retention periods. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
 
 The _Active versus reclaimable storage_ chart shows the proportion of active data compared to cold and stale data across all scanned resources. A high proportion of cold and stale data could indicate a significant storage optimization opportunity.
 
