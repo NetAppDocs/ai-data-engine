@@ -2,14 +2,14 @@
 sidebar: sidebar
 permalink: investigate/take-actions.html
 keywords: actions, tag, archive, delete, data lifecycle, storage optimization, breadcrumb
-summary: Act on files you have identified as cold, stale, or obsolete by archiving them to reclaim space, tagging items for tracking, or permanently deleting what you no longer need.
+summary: Act on files you have identified as cold, stale, or obsolete by archiving them, tagging items for tracking, or permanently deleting what you no longer need.
 ---
 = Take action on your data in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-After identifying files that are consuming unnecessary storage, take direct action to reclaim capacity or enforce your organization's data lifecycle policies. For example, a storage administrator who filters to find terabytes of VM snapshots not accessed in over a year can archive them in bulk to a cold storage share, freeing that space for active workloads.
+After identifying files using your defined filters, you can take direct action to enforce your organization's data lifecycle policies. For example, a storage administrator who filters to find terabytes of VM snapshots not accessed in over a year can archive them in bulk to a cold storage share, or delete them, depending on retention requirements and business policies.
 
 .About this task
 To take action, select one or more items in the Investigation results table using the checkboxes. The action toolbar activates with four options: *Delete*, *Archive*, *Copy*, and *Tag*.

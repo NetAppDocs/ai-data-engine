@@ -2,14 +2,14 @@
 sidebar: sidebar
 permalink: investigate/investigate-unstructured.html
 keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS
-summary: Find cold, stale, and large files across NFS and SMB/CIFS volumes using metadata filters, then act on the results or save your filter criteria as a reusable policy.
+summary: Find and classify files as cold, stale, or large across NFS and SMB/CIFS volumes using metadata filters, then review results, take action as appropriate, or save your filter criteria as a reusable policy.
 ---
 = Investigate unstructured data in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-When file-based storage is growing unexpectedly, filter by last-access time, file size, and owner to find which files are consuming capacity without being used. For example, a storage administrator can surface terabytes of VM snapshots that have not been touched in over a year, then archive or delete them to reclaim space.
+When file-based storage is growing unexpectedly, filter by last-access time, file size, and owner to find which files are consuming capacity. For example, a storage administrator can identify terabytes of VM snapshots that have not been accessed in over a year and evaluate whether to archive, delete, or retain them.
 
 .Before you begin
 * At least one data source must be connected and scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
@@ -32,7 +32,7 @@ For a complete list of available filters, refer to link:use-filters.html[Work wi
 
 == Group results by owner
 
-Grouping by owner helps you understand who holds the most reclaimable capacity before deciding where to act.
+Grouping by owner helps you understand who holds the most potentially reclaimable data before deciding where to act.
 
 .Steps
 . With filters applied, select the *View by* dropdown.
@@ -42,7 +42,7 @@ The results reorganize to show total file count and size per owner. Select any o
 
 == Review file details
 
-Select any file row to open the detail panel and confirm the file is a suitable reclamation candidate before taking action.
+Select any file row to open the detail panel and confirm the file matches your intended scope before taking action.
 
 The detail panel shows the file's system, storage repository, file owner, and any applied tags or policies. Verify the system and owner before archiving or deleting.
 

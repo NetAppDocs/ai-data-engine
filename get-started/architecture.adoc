@@ -17,7 +17,7 @@ You primarily interact with AI Data Engine through four functional areas: the da
 
 === Metadata Engine
 
-The Metadata Engine is the core capability of AI Data Engine. It scans connected storage systems to extract file system metadata and stores that metadata in a searchable catalog. The Metadata Engine updates the catalog as files change on your storage systems.
+The Metadata Engine is the core capability of AI Data Engine. It scans connected storage systems to extract file system metadata and stores that metadata in a searchable catalog. The Metadata Engine updates the catalog at each scan cycle, detecting additions, changes, and deletions across your storage systems.
 
 
 === NetApp Console Agent

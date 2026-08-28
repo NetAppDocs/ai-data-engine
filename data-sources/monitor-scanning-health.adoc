@@ -22,9 +22,9 @@ Confirm that all your storage systems are connected and being scanned.
 
 == Validate that investigation findings reflect current data
 
-If the dashboard shows a large amount of cold or stale data, confirm the number is current before you act on it.
+If the dashboard shows a large amount of cold or stale data, confirm the numbers are current before making decisions based on them.
 
-* Check the last-scanned time for each storage system contributing to the finding. A system that hasn't scanned recently might under- or over-report reclaimable storage.
+* Check the last-scanned time for each storage system contributing to the finding. A system that hasn't scanned recently might under- or over-report cold and stale data.
 * Confirm scan coverage is complete for that system. A partial scan (paused, in progress, or with errors) means some data hasn't been evaluated yet.
 * Wait for the next scan cycle or resolve the underlying error if coverage looks incomplete.
 
