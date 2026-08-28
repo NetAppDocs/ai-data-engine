@@ -30,7 +30,7 @@ link:../administer/manage-users-roles.html[Role-based access control]:: Control 
 
 link:../investigate/use-filters.html[Duplicate file detection]:: Find files that have duplicate copies across your connected systems. Filter by the Duplicates attribute or by file hash to review and act on duplicate groups directly.
 
-link:../investigate/understand-dashboard.html[Data owner visibility]:: Identify which data owners hold the most reclaimable storage from the dashboard, then filter by owner or group in the investigation view to act on results.
+link:../investigate/understand-dashboard.html[Data owner visibility]:: Identify which data owners hold data meeting your cold and stale thresholds from the dashboard, then filter by owner or group in the investigation view to review and manage results according to your policies.
 
 
 == Related information

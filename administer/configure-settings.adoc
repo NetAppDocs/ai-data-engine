@@ -9,13 +9,13 @@ summary: Configure the time thresholds that AI Data Engine uses to classify data
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine classifies files as cold or stale based on time thresholds you define. These thresholds affect how the dashboard reports reclaimable storage, which files appear when you apply cold or stale filters in Investigation, and which files policies target. Set thresholds that match your organization's storage optimization and data retention practices.
+AI Data Engine classifies files as cold or stale based on time thresholds you define. These thresholds affect which data appears in dashboard summaries, which files appear when you apply cold or stale filters in Investigation, and which files policies target. Set thresholds that match your organization's data classification and retention practices, and to identify data you consider important to monitor.
 
 == What is cold and stale data?
 
-Cold data:: Files that have not been accessed within the configured cold data threshold. Cold data is the primary metric for identifying reclaimable storage capacity.
+Cold data:: Files that have not been accessed within the configured cold data threshold. Cold data is a key metric your organization can use to identify storage that could be optimized according to your retention and business policies.
 
-Stale data:: Files that have not been accessed or modified within the configured stale data threshold. Stale data captures files that see occasional access but no recent modification.
+Stale data:: Files that have not been accessed or modified within the configured stale data threshold. Stale data captures files that see occasional access but no recent modification, and your organization can monitor or manage according to your policies.
 
 Changes to either threshold take effect after the next scan cycle completes.
 

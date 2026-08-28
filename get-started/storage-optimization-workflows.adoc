@@ -14,10 +14,10 @@ These AI Data Engine workflows take you from identifying a storage problem on th
 == Identify and reclaim cold data
 
 .Scenario
-You notice on the Overview page that a storage resource has a large amount of reclaimable storage, most of it flagged as cold. Cold files have not been accessed within the configured cold data threshold, which defaults to one year and is configurable in *Configuration* > *Settings*.
+You notice on the Overview page that a storage resource has a large amount of data flagged as cold. Cold files have not been accessed within the configured cold data threshold, which defaults to one year and is configurable in *Configuration* > *Settings*.
 
 .Steps
-. From link:../investigate/understand-dashboard.html[the dashboard], identify the resource with the highest reclaimable size and select *Investigate*.
+. From link:../investigate/understand-dashboard.html[the dashboard], identify the resource with the highest concentration of cold data and select *Investigate*.
 . In link:../investigate/investigate-unstructured.html[Investigation], confirm the resources using the *Last accessed* filter set to match your configured cold data threshold (default: *1+ year*).
 . Review the results to decide link:../investigate/take-actions.html[whether to tag, archive, or delete] the matching files.
 . If these resources are worth monitoring on an ongoing basis, link:../policies/create-policy.html[save the filter set as a policy] so you are notified as new files go cold.
@@ -25,7 +25,7 @@ You notice on the Overview page that a storage resource has a large amount of re
 == Identify and manage stale data
 
 .Scenario
-Files that are still occasionally accessed but haven't been modified in years can consume capacity without appearing as cold. The default stale threshold is three years since last access or modification, and this threshold is configurable in *Configuration* > *Settings*.
+Files that are still occasionally accessed but haven't been modified in years are classified as stale when they fall outside your organization's stale threshold (default: three years since last access or modification). This threshold is configurable in *Configuration* > *Settings*.
 
 .Steps
 . From link:../investigate/understand-dashboard.html[the dashboard], identify a resource with significant stale data.
@@ -57,13 +57,13 @@ Multiple identical copies of the same files exist across volumes or shares, a co
 == Target cleanup by data owner
 
 .Scenario
-Reclaimable storage is distributed across many owners and you need to know who holds the most before deciding where to act.
+Data meeting your organization's cold and stale thresholds is distributed across many owners. Identifying which data owners hold which files in these categories can help you prioritize.
 
 .Steps
 . From link:../investigate/understand-dashboard.html[the dashboard], locate the _Top data owners by reclaimable storage_ table.
 . Select an owner row to open link:../investigate/investigate-unstructured.html[Investigation] filtered to that owner's files.
 . Review the results and decide link:../investigate/take-actions.html[whether to tag, archive, or delete] files.
-. link:../policies/create-policy.html[Save the filter set as a policy] to monitor how that owner's reclaimable storage changes over time.
+. link:../policies/create-policy.html[Save the filter set as a policy] to monitor how that owner's potentially reclaimable data changes over time.
 
 == Related information
 
