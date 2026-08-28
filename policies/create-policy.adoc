@@ -9,7 +9,7 @@ summary: Save investigation filter criteria as a named policy so you can track t
 :imagesdir: ../media/
 
 [.lead]
-Create a policy when you want to monitor a recurring data condition without repeating the same investigation manually, such as files meeting your cold or stale threshold or growing beyond a size threshold. For example, a data governance manager can save a "large stale files" policy to track that grouping across scan cycles and receive an email update when the impacted file count changes.
+Create a policy when you want to monitor a recurring data condition without repeating the same investigation manually. For example, a data governance manager can save a "large stale files" policy to track that grouping across scan cycles and receive an email update when the impacted file count changes.
 
 == About policies
 

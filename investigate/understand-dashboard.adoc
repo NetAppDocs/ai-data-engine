@@ -25,7 +25,7 @@ The summary panel shows the scale of the problem across your scanned environment
 
 Cold and stale thresholds reflect your configured settings and can be changed in *Configuration* > *Settings*. The default values are product defaults and do not represent legal, compliance, or industry-standard retention periods. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
 
-The _Active versus reclaimable storage_ chart shows the proportion of active data compared to cold and stale data across all scanned resources. A high proportion of cold and stale data could indicate a significant storage optimization opportunity.
+The _Active versus reclaimable storage_ chart shows the proportion of active data compared to cold and stale data across all scanned resources. A high proportion of cold, stale, or duplicated data could indicate a significant storage optimization opportunity.
 
 The *System* and *System type* filters control dashboard scope. If a storage system does not appear in the filter list, refer to link:../data-sources/connect-data-source.html[Connect a data source].
 

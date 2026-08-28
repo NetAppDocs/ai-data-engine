@@ -9,7 +9,7 @@ summary: Find and classify files as cold, stale, or large across NFS and SMB/CIF
 :imagesdir: ../media/
 
 [.lead]
-When file-based storage is growing unexpectedly, filter by last-access time, file size, and owner to find which files meet your cold and stale thresholds. For example, a storage administrator can identify terabytes of VM snapshots that have not been accessed in over a year and evaluate whether to archive, delete, or retain them.
+When file-based storage is growing unexpectedly, filter by last-access time, file size, and owner to find which files are consuming capacity. For example, a storage administrator can identify terabytes of VM snapshots that have not been accessed in over a year and evaluate whether to archive, delete, or retain them.
 
 .Before you begin
 * At least one data source must be connected and scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
