@@ -1,15 +1,15 @@
 ---
 sidebar: sidebar
 permalink: administer/manage-users-roles.html
-keywords: RBAC, roles, users, permissions, AI data engine administrator, AI data engine viewer
-summary: AI Data Engine uses role-based access control to manage what users can see and do. Learn about the available roles and their permissions.
+keywords: roles, users, permissions, AI data engine administrator, AI data engine viewer
+summary: Control access by assigning each user an administrator or viewer role. Learn about the two roles and their permissions.
 ---
 = Manage users and roles in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine uses role-based access control (RBAC) to define what each user can view and do within the product. Before your team starts using AI Data Engine, assign each user the role that matches their required level of access.
+Control what each user can view and do in AI Data Engine by assigning them an administrator or viewer role. Before your team starts using AI Data Engine, assign each user the role that matches their required level of access.
 
 You assign roles through NetApp Console organization settings. AI Data Engine supports two roles.
 
