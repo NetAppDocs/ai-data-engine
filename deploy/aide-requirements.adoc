@@ -121,9 +121,10 @@ Verify that DNS resolution for these endpoints is working from the AI Data Engin
 
 == AIDE Lite requirements
 
+[[lite-vm-sizes]]
 === VM sizing
 
-These sizes are recommended baseline configurations optimized for a 3 to 4 day initial scan window, not hard capacity limits. See <<flexible-sizing-lite,Flexible sizing guidelines>> for what drives these numbers and how to scale beyond them.
+These sizes are recommended baseline configurations optimized for a 3 to 4 day initial scan window, not hard limits. Refer to <<flexible-sizing-lite,Flexible sizing guidelines>> for what drives these numbers and how to scale beyond them.
 
 [cols="1,1,1,1,1",options="header"]
 |===
@@ -154,7 +155,7 @@ NOTE: NVMe SSD or other solid-state storage is recommended for all deployment si
 [[flexible-sizing-lite]]
 === Flexible sizing guidelines
 
-The Small, Medium, and Large configurations above are recommended baselines, not hard limits enforced by the software. They are designed to achieve optimal initial catalog completion, typically 3 to 4 days for a full scan.
+<<lite-vm-sizes,Small, Medium, and Large configurations>> are recommended baselines, not hard limits enforced by the software. They are designed to achieve optimal initial catalog completion, typically 3 to 4 days for a full scan.
 
 What drives the sizing recommendations::
 +
@@ -171,7 +172,7 @@ Provisioning below the recommended size does not prevent installation or cause s
 * *Reduced ongoing ingest throughput*: New file events and incremental scan updates process more slowly under sustained load.
 * *Storage capacity risk*: If storage is undersized relative to the total object count, the metadata index can approach capacity thresholds. You can typically resolve this by expanding storage capacity, without a full redeployment.
 
-Scaling when you need more capacity::
+Scale when you need more capacity::
 +
 AIDE Lite runs on a single VM, so scaling is vertical:
 +
@@ -210,9 +211,10 @@ NOTE: AIDE Lite does not support high availability or horizontal scale-out. If y
 
 NOTE: NVMe or high-performance SSD storage is recommended for all Enterprise node deployments.
 
+[[enterprise-vm-sizes]]
 === Node sizing
 
-These sizes are recommended baseline cluster configurations optimized for a ~3 day initial scan window, not hard capacity limits. AIDE Enterprise supports environments beyond 6 billion files through horizontal scale-out; see <<flexible-sizing-enterprise,Flexible sizing guidelines>> for details.
+These sizes are recommended baseline cluster configurations optimized for a ~3 day initial scan window, not hard capacity limits. AIDE Enterprise supports environments beyond 6 billion files through horizontal scale-out. Refer to <<flexible-sizing-enterprise,Flexible sizing guidelines>> for details.
 
 [cols="1,1,1,1,1,1,1,1,1",options="header"]
 |===
@@ -253,7 +255,7 @@ These sizes are recommended baseline cluster configurations optimized for a ~3 d
 [[flexible-sizing-enterprise]]
 === Flexible sizing guidelines
 
-The Small, Medium, and Large configurations above are recommended baseline cluster configurations, not hard capacity ceilings enforced by the software. They are designed to achieve optimal initial catalog completion, approximately 3 days for a full scan. AIDE Enterprise is explicitly designed to support environments exceeding 3 billion files through horizontal scale-out across cluster nodes.
+<<enterprise-vm-sizes,Small, Medium, and Large configurations>> are recommended baseline cluster configurations, not hard capacity ceilings enforced by the software. They are designed to achieve optimal initial catalog completion, approximately 3 days for a full scan. AIDE Enterprise is explicitly designed to support environments exceeding 3 billion files through horizontal scale-out across cluster nodes.
 
 What drives the sizing recommendations::
 +
@@ -271,12 +273,12 @@ Provisioning below the recommended size does not prevent installation or cause h
 * *Increased processing latency under peak load*: Insufficient memory across the cluster can cause elevated processing latency during high-volume ingestion periods. Ongoing operations are not interrupted, but sustained throughput is reduced.
 * *Storage capacity risk*: If total cluster storage is insufficient for the target object count, the metadata index can approach capacity thresholds. You can resolve this by expanding storage on existing nodes (non-disruptive) or by adding a dedicated storage node to the cluster.
 
-Scaling when you need more capacity::
+Scale when you need more capacity::
 +
 AIDE Enterprise supports horizontal scale-out without redeployment:
 +
 * Add worker nodes to increase the CPU and memory available for scan processing and event ingestion.
-* Add dedicated storage nodes to increase total catalog capacity: this is the primary way to scale environments beyond the largest predefined deployment size.
+* Add dedicated storage nodes to increase total catalog capacity. This is the primary way to scale environments beyond the largest predefined deployment size.
 * Scale beyond 6 billion files by adding more nodes to the cluster. Contact your NetApp representative for node sizing guidance at custom scales.
 +
 NOTE: Adding nodes to an existing Enterprise cluster is non-disruptive to ongoing scan operations, but coordinate the change during a low-activity window.
