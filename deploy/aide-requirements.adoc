@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: deploy/aide-requirements.html
-keywords: requirements, prerequisites, networking, ports, vm, kubernetes, sizing
+keywords: requirements, prerequisites, networking, ports, vm, kubernetes, sizing, flexible sizing, scaling, capacity planning
 summary: Review infrastructure and networking requirements before deploying AI Data Engine.
 ---
 = AI Data Engine requirements
@@ -123,6 +123,8 @@ Verify that DNS resolution for these endpoints is working from the AI Data Engin
 
 === VM sizing
 
+These sizes are recommended baseline configurations optimized for a 3 to 4 day initial scan window, not hard capacity limits. See <<flexible-sizing-lite,Flexible sizing guidelines>> for what drives these numbers and how to scale beyond them.
+
 [cols="1,1,1,1,1",options="header"]
 |===
 |Size |vCPU |RAM |Disk |Approximate files
@@ -148,6 +150,35 @@ Verify that DNS resolution for these endpoints is working from the AI Data Engin
 |===
 
 NOTE: NVMe SSD or other solid-state storage is recommended for all deployment sizes. Minimum storage performance for Small is 8,000 IOPS and 1,000 MB/s throughput; requirements increase with deployment size.
+
+[[flexible-sizing-lite]]
+=== Flexible sizing guidelines
+
+The Small, Medium, and Large configurations above are recommended baselines, not hard limits enforced by the software. They are designed to achieve optimal initial catalog completion, typically 3 to 4 days for a full scan.
+
+What drives the sizing recommendations::
++
+* *Total file and directory count*: The total number of objects to catalog is the dominant driver of compute and storage requirements. Higher object counts require proportionally more memory, CPU, and storage.
+* *Directory structure*: Resource use varies with directory nesting depth and how files are distributed across shares and volumes. Deeply nested or highly fragmented structures can require more resources than the same file count in a flatter hierarchy.
+* *Required scan throughput*: Initial catalog completion speed is tied directly to CPU and memory allocation. Provisioning below the recommended size reduces throughput and extends the initial scan window.
+* *Storage performance*: High-performance storage is strongly recommended. Metadata indexing and event processing require sustained IOPS and throughput proportional to the deployment size.
+
+What happens if you undersize::
++
+Provisioning below the recommended size does not prevent installation or cause service failures. The system remains operational and scanning continues, but you can expect the following:
++
+* *Extended initial catalog duration*: Reduced compute lowers the number of objects scanned per day, extending the time to complete the initial full catalog. For example, a deployment targeting 3 billion objects but provisioned at a smaller size can take significantly longer than the 3 to 4 day target to complete the initial scan.
+* *Reduced ongoing ingest throughput*: New file events and incremental scan updates process more slowly under sustained load.
+* *Storage capacity risk*: If storage is undersized relative to the total object count, the metadata index can approach capacity thresholds. You can typically resolve this by expanding storage capacity, without a full redeployment.
+
+Scaling when you need more capacity::
++
+AIDE Lite runs on a single VM, so scaling is vertical:
++
+* Increase vCPU, memory, or storage on the host VM.
+* No cluster reconfiguration or reinstallation is required.
++
+NOTE: AIDE Lite does not support high availability or horizontal scale-out. If your environment consistently exceeds 3 billion files, or you require high availability and fault tolerance, deploy link:deploy-enterprise.html[AIDE Enterprise] instead.
 
 === Operating system
 
@@ -180,6 +211,8 @@ NOTE: NVMe SSD or other solid-state storage is recommended for all deployment si
 NOTE: NVMe or high-performance SSD storage is recommended for all Enterprise node deployments.
 
 === Node sizing
+
+These sizes are recommended baseline cluster configurations optimized for a ~3 day initial scan window, not hard capacity limits. AIDE Enterprise supports environments beyond 6 billion files through horizontal scale-out; see <<flexible-sizing-enterprise,Flexible sizing guidelines>> for details.
 
 [cols="1,1,1,1,1,1,1,1,1",options="header"]
 |===
@@ -217,6 +250,36 @@ NOTE: NVMe or high-performance SSD storage is recommended for all Enterprise nod
 
 |===
 
+[[flexible-sizing-enterprise]]
+=== Flexible sizing guidelines
+
+The Small, Medium, and Large configurations above are recommended baseline cluster configurations, not hard capacity ceilings enforced by the software. They are designed to achieve optimal initial catalog completion, approximately 3 days for a full scan. AIDE Enterprise is explicitly designed to support environments exceeding 3 billion files through horizontal scale-out across cluster nodes.
+
+What drives the sizing recommendations::
++
+* *Total file and directory count*: Total object count is the dominant driver of storage and compute requirements. Larger environments require additional cluster nodes to distribute processing load and maintain performance.
+* *High availability replication*: Enterprise deployments enable data replication across nodes by default for fault tolerance. Replication increases total storage and memory requirements compared to an equivalent single-node deployment.
+* *Node count and workload distribution*: Processing throughput and total catalog capacity scale with the number of nodes in the cluster. Additional nodes distribute both the indexing workload and storage capacity across the cluster.
+* *Required scan throughput*: Cluster-wide CPU and memory allocation governs the daily scan rate and how quickly the initial catalog completes.
+* *Per-node storage performance*: High-performance storage is strongly recommended on each node, and total cluster capacity scales proportionally with node count.
+
+What happens if you undersize::
++
+Provisioning below the recommended size does not prevent installation or cause hard failures. Practical impacts include:
++
+* *Extended initial catalog duration*: A cluster with fewer nodes or reduced per-node resources processes objects at lower throughput, extending the initial catalog window proportionally.
+* *Increased processing latency under peak load*: Insufficient memory across the cluster can cause elevated processing latency during high-volume ingestion periods. Ongoing operations are not interrupted, but sustained throughput is reduced.
+* *Storage capacity risk*: If total cluster storage is insufficient for the target object count, the metadata index can approach capacity thresholds. You can resolve this by expanding storage on existing nodes (non-disruptive) or by adding a dedicated storage node to the cluster.
+
+Scaling when you need more capacity::
++
+AIDE Enterprise supports horizontal scale-out without redeployment:
++
+* Add worker nodes to increase the CPU and memory available for scan processing and event ingestion.
+* Add dedicated storage nodes to increase total catalog capacity: this is the primary way to scale environments beyond the largest predefined deployment size.
+* Scale beyond 6 billion files by adding more nodes to the cluster. Contact your NetApp representative for node sizing guidance at custom scales.
++
+NOTE: Adding nodes to an existing Enterprise cluster is non-disruptive to ongoing scan operations, but coordinate the change during a low-activity window.
 
 == Related information
 

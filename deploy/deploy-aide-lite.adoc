@@ -28,6 +28,8 @@ The AI Data Engine landing page appears.
 * *Small*: recommended for environments with up to approximately 200 million files.
 * *Medium*: recommended for environments with up to approximately 1 billion files.
 * *Large*: recommended for environments with up to approximately 3 billion files.
++
+These sizes are recommended baselines, not hard limits. See link:aide-requirements.html#flexible-sizing-lite[flexible sizing guidelines] if your environment falls outside these ranges.
 
 . Copy the preconfigured install command displayed in the wizard and run it on your target host.
 // The install command shown here may require command-line customizations after the wizard behavior is confirmed.
