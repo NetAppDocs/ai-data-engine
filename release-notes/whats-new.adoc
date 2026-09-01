@@ -13,24 +13,24 @@ Learn about new capabilities introduced in AI Data Engine.
 
 == AI Data Engine 1.0.0
 
-AIDE 1.0.0 is the first generally available release of AI Data Engine, a cloud-managed service that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale. AI Data Engine is available as link:../deploy/deployment-overview.html[AIDE Lite or AIDE Enterprise], depending on your environment size and infrastructure.
+AIDE 1.0.0 is the first generally available release of AI Data Engine, a metadata intelligence service managed through NetApp Console that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale. AI Data Engine is available as link:../deploy/deployment-overview.html[AIDE Lite or AIDE Enterprise], depending on your environment size and infrastructure.
 
 New capabilities:
 
-link:../investigate/understand-dashboard.html[Storage health overview]:: Quickly assess how much storage across your connected systems is cold or stale based on your configured thresholds, and identify which systems and data owners hold the highest concentrations of cold, stale, or duplicate data.
+link:../investigate/understand-dashboard.html[Recover storage capacity]:: Identify cold, stale, and duplicate data across your connected systems based on your configured thresholds, and see which systems and data owners hold the highest concentrations of this data.
 
-link:../investigate/investigate-data.html[Metadata investigation]:: Filter across all connected systems by access time, modification date, creation date, file size, duplicate status, and other criteria to identify files that meet your organization's data management criteria. Act on results directly or save criteria as a policy.
+link:../investigate/investigate-data.html[Reduce cost and risk]:: Filter across all connected systems by access time, modification date, creation date, file size, duplicate status, and other criteria to find files that meet your organization's data management goals. Act on results directly or save criteria as a policy.
 
-link:../policies/create-policy.html[Data governance policies]:: Save filter criteria as named policies to track recurring data conditions over time, such as cold or oversized files, and receive notifications when the impacted file count changes.
+link:../policies/create-policy.html[Govern data continuously]:: Save filter criteria as named policies to track recurring data conditions over time, such as cold or oversized files, and receive notifications when the impacted file count changes.
 
-link:../investigate/take-actions.html[Data lifecycle actions]:: 
+link:../investigate/take-actions.html[Reduce storage costs]:: 
 Enforce your organization's data lifecycle policies by copying and archiving files to NFS or SMB/CIFS destinations, tagging items for tracking, or permanently deleting files according to your retention requirements.
 
-link:../administer/manage-users-roles.html[Role-based access control]:: Control who can investigate data and take actions by assigning roles to users in your organization. Available roles include AI Data Engine administrator and AI Data Engine viewer.
+link:../administer/manage-users-roles.html[Assign admin and viewer roles]:: Control who can investigate data and take actions by assigning the AI Data Engine administrator or viewer role to users in your organization.
 
-link:../investigate/use-filters.html[Duplicate file detection]:: Find files that have duplicate copies across your connected systems. Filter by the Duplicates attribute or by file hash to review and act on duplicate groups directly.
+link:../investigate/use-filters.html[Eliminate duplicate data]:: Find files that have duplicate copies across your connected systems. Filter by the Duplicates attribute or by file hash to review and act on duplicate groups directly.
 
-link:../investigate/understand-dashboard.html[Data owner visibility]:: Identify which data owners hold the highest concentrations of cold, stale, or duplicate data from the dashboard, then filter by owner or group in the investigation view to review and manage results according to your policies.
+link:../investigate/understand-dashboard.html[Hold data owners accountable]:: Identify which data owners hold the highest concentrations of cold, stale, or duplicate data from the dashboard, then filter by owner or group in the investigation view to review and manage results according to your policies.
 
 
 == Related information
