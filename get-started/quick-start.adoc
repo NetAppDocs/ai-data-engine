@@ -11,9 +11,9 @@ summary: Get AI Data Engine up and running by deploying the service, connecting 
 [.lead]
 Get AI Data Engine up and running by deploying the service, connecting your storage systems, and starting your first investigation.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] Review requirements and choose your deployment model
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] Review requirements and deploy AI Data Engine
 [role="quick-margin-para"]
-Review the link:../deploy/aide-requirements.html[AIDE requirements] and decide whether to deploy link:../deploy/deployment-overview.html[AIDE Lite or AIDE Enterprise] based on your environment size and infrastructure.
+Review the link:../deploy/aide-requirements.html[AIDE requirements], then deploy link:../deploy/deployment-overview.html[AIDE Lite]. If your environment requires Kubernetes-based high availability at large scale, deploy AIDE Enterprise instead.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Deploy AI Data Engine
 [role="quick-margin-para"]
