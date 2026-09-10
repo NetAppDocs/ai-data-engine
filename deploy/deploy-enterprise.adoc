@@ -18,6 +18,9 @@ Deploy AIDE Enterprise from NetApp Console using the deployment wizard. The wiza
 * An NFS server with an exported path must be available and reachable from the cluster for the AIDE config volume.
 * A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[must be deployed^] and reachable from the cluster nodes. The Console Agent IP is required to run the install command.
 * kubectl must be available on the machine from which you run the install command, with cluster-admin access to the target cluster.
+* The target Kubernetes namespace (default `aide`) must already exist on the cluster before you run the install command.
+* If your environment uses an outbound proxy, have the proxy details ready. See link:aide-requirements.html[AIDE requirements].
+// RESEARCH NEEDED: Confirm this proxy prompt appears in the actual Console-wizard install command flow before publishing.
 
 
 .Steps
@@ -53,6 +56,7 @@ The AI Data Engine landing page appears.
 // ----
 // RESEARCH NEEDED: Confirm this is the exact command format shown in the wizard UI.
 
+. When prompted, confirm the host IP address and user ID to continue the installation.
 . Monitor the progress screen until the success screen appears and displays *"AI Data Engine deployed"*. Select *Continue to configuration*.
 
 .Result

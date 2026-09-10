@@ -83,6 +83,11 @@ For an online installation, the following endpoints must be reachable from the A
 // generic form "AWS S3 and ECR (NetApp-managed)". Confirm the correct
 // public-facing hostname with engineering before publishing.
 
+|AWS S3 (NetApp-managed, version catalog)
+|Component and chart version catalog used to resolve update versions
+|Both
+// RESEARCH NEEDED: Confirm the exact public hostname/bucket for the production and staging version-catalog endpoints before publishing.
+
 |`\https://netapp-cloud-account.auth0.com`
 |Centralized user authentication
 |Both
@@ -168,14 +173,22 @@ NOTE: NVMe SSD or other solid-state storage is recommended for all deployment si
 * Root or sudo access on the target VM to run the installer
 * 1 GbE minimum network connection
 * bash 4.0 or later, curl, and tar available on the target host
+* If your environment requires an outbound proxy to reach the endpoints above, have the proxy host, port, scheme, and credentials (if required) ready; the installer prompts for this during setup.
+// RESEARCH NEEDED: Confirm the proxy prompt/flags are part of the
+// Console-wizard-generated install command customers use, not just an
+// advanced/CI-only path, before publishing.
 
 == AIDE Enterprise requirements
 
 * RKE2 v1.34 or later (v1.36.x recommended)
 * Helm 3.12 or later installed on the machine from which you run the installer
-* A configured StorageClass available on the cluster
-* An NFS server with at least one exported path for the AIDE configuration data volume
+// RESEARCH NEEDED: installer help shows it bootstraps its own helm/kubectl/jq via --tools-dir -- confirm pre-installed Helm is still required before publishing.
+* A configured StorageClass (default name `aide-sc`) available on the cluster, used for AIDE's stateful backing services
+* An NFS server with at least one exported path, used for the AIDE configuration data volume and shared index snapshots
 * kubectl access with cluster-admin privileges on the machine from which you run the installer
+* The target Kubernetes namespace (default `aide`) must already exist on the cluster; the installer does not create it
+* If your environment requires an outbound proxy, have the proxy host, port, scheme, and credentials (if required) ready; the installer prompts for this during setup.
+// RESEARCH NEEDED: Confirm the proxy prompt/flags are part of the Console-wizard-generated install command customers use, not just an advanced/CI-only path, before publishing.
 
 NOTE: NVMe or high-performance SSD storage is recommended for all Enterprise node deployments.
 
