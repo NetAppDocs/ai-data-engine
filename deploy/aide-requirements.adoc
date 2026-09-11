@@ -131,7 +131,7 @@ Verify that DNS resolution for these endpoints is working from the AI Data Engin
 [cols="1,1,1,1,1",options="header"]
 |===
 |Size |vCPU |RAM |Disk |Approximate files
-
+//verify values as info in UI for medium differs 1 billion files 16 vcpu 128 ram
 |Small
 |16
 |64 GB
