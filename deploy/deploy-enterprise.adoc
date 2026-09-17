@@ -39,6 +39,7 @@ The AI Data Engine landing page appears.
 * *Large*: recommended for environments with up to approximately 6 billion files.
 
 . For small or large configurations, adjust the install command to reflect the chosen size: `--flavor <small|medium|large>`
+. If you use a proxy, include the `-proxy-host <host>` option in the initial command to trigger interactive proxy configuration prompts in the terminal.
 . Run the install command with any configuration size adjustments from your target host with kubectl access to your RKE2 cluster.
 +
 NOTE: Installation takes about 30 minutes to complete. Timeouts and retries might occur and are normal behavior.
@@ -57,7 +58,6 @@ NOTE: Installation takes about 30 minutes to complete. Timeouts and retries migh
 //   --cm-host <console-agent-ip> \
 //   --user-token <token>
 // ----
-// RESEARCH NEEDED: Confirm this is the exact command format shown in the wizard UI.
 
 . When prompted, confirm the host IP address and user ID to continue the installation.
 . Monitor the progress screen until the success screen appears and displays "AI Data Engine deployed".
