@@ -11,11 +11,6 @@ summary: Review infrastructure and networking requirements before deploying AI D
 [.lead]
 Before you deploy AI Data Engine, review the networking, VM sizing, and operating system requirements for your environment.
 
-// NOTE FOR WRITER: No minimum ONTAP version is required for V2. ONTAP is a data source, not a deployment prerequisite. The ONTAP requirements section remains commented out until a minimum version is confirmed.
-// == ONTAP requirements
-// * NetApp ONTAP [version TBD] or later
-// * NFS or CIFS/SMB protocols enabled on volumes you want to scan
-
 == Networking requirements
 
 The following network connections must be open:
@@ -80,17 +75,13 @@ For an online installation, the following endpoints must be reachable from the A
 |NetApp Console communication
 |Both
 
-|NetApp container registry (AWS ECR, NetApp-managed)
-|Container images and Helm charts
+|`\https://582244788873.dkr.ecr.us-east-1.amazonaws.com`
+|NetApp container registry (AIDE container images and Helm charts)
 |Both
-// The V2 Deployment Guide for Customers uses the
-// generic form "AWS S3 and ECR (NetApp-managed)". Confirm the correct
-// public-facing hostname with engineering before publishing.
 
-|AWS S3 (NetApp-managed, version catalog)
-|Wrapper script, Helm charts, and component version catalog
+|`\https://s3.amazonaws.com`
+|AWS S3 (installer wrapper script, Helm charts, and component version catalog)
 |Both
-// RESEARCH NEEDED: Confirm the exact public hostname/bucket for the production S3 distribution endpoint before publishing.
 
 |`\https://netapp-cloud-account.auth0.com`
 |Centralized user authentication
