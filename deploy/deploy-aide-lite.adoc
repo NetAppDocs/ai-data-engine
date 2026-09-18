@@ -16,7 +16,7 @@ Deploy AIDE Lite from NetApp Console using the deployment wizard. The wizard gui
 * Sudo (or root) permissions are required on the target host to run the install command.
 * Review link:aide-requirements.html[AIDE requirements] and confirm your environment meets all prerequisites.
 * A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[must be deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
-* If your environment uses an outbound proxy, have the proxy details ready. See link:aide-requirements.html[AIDE requirements].
+//* If your environment uses an outbound proxy, have the proxy details ready. See link:aide-requirements.html[AIDE requirements].
 // RESEARCH NEEDED: Confirm this proxy prompt appears in the actual
 // Console-wizard install command flow before publishing.
 
@@ -35,7 +35,7 @@ The AI Data Engine landing page appears.
 * *Large*: recommended for environments with up to approximately 3 billion files.
 
 . For small or large configurations, adjust the install command to reflect the chosen size: `--flavor <small|medium|large>`
-. If you use a proxy, include the `-proxy-host <host>` option in the initial command to trigger interactive proxy configuration prompts in the terminal.
+//. If you use a proxy, include the `--proxy-host <host>` option in the initial command to trigger interactive proxy configuration prompts in the terminal.
 . Run the install command with any configuration size adjustments on your target host.
 +
 NOTE: Installation takes about 45 minutes to complete. Timeouts and retries might occur and are normal behavior.
