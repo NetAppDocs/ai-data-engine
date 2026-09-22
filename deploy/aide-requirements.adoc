@@ -180,8 +180,7 @@ NOTE: NVMe SSD or other solid-state storage is recommended for all deployment si
 * The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. Pre-installing these tools on the target VM is not required.
 * Ports 6443 (TCP), 10250 (TCP), and 8472 (UDP) must be free on the host before the installer starts. If a host firewall (`firewalld` on RHEL or `ufw` on Ubuntu) is active, allow these ports and the k3s pod CIDR (`10.44.0.0/16`) and service CIDR (`10.45.0.0/16`) before running the installer. Refer to your OS firewall documentation for the required commands.
 * On RHEL systems running SELinux in Enforcing mode, the installer automatically configures the required SELinux policy packages. No manual SELinux configuration is needed.
-//* If your environment requires an outbound proxy to reach the endpoints listed above, have the proxy host, port, scheme, and credentials (if required) ready; the installer prompts for this during setup.
-// RESEARCH NEEDED: Confirm the proxy prompt/flags are part of the Console-wizard-generated install command customers use, not just an advanced/CI-only path, before publishing.
+* If your environment requires an outbound proxy to reach the endpoints listed above, see link:configure-proxy.html[Configure a proxy].
 
 == AIDE Enterprise requirements
 
@@ -192,8 +191,7 @@ NOTE: NVMe SSD or other solid-state storage is recommended for all deployment si
 * An NFS server with at least one exported path, used for the AIDE configuration data volume and shared index snapshots
 * kubectl access with cluster-admin privileges on the machine from which you run the installer
 * A target Kubernetes namespace (default `aide`) already exists on the cluster; the installer does not create it
-//* If your environment requires an outbound proxy, have the proxy host, port, scheme, and credentials (if required) ready; the installer prompts for this during setup.
-// RESEARCH NEEDED: Confirm the proxy prompt/flags are part of the Console-wizard-generated install command customers use, not just an advanced/CI-only path, before publishing.
+* If your environment requires an outbound proxy, see link:configure-proxy.html[Configure a proxy].
 
 NOTE: NVMe or high-performance SSD storage is recommended for all Enterprise node deployments.
 
@@ -240,3 +238,4 @@ NOTE: NVMe or high-performance SSD storage is recommended for all Enterprise nod
 * link:deployment-overview.html[AIDE deployment overview]
 * link:deploy-aide-lite.html[Deploy AI Data Engine — Lite]
 * link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise]
+* link:configure-proxy.html[Configure a proxy]

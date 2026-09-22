@@ -9,3 +9,5 @@ entries:
     url: /deploy/deploy-aide-lite.html
   - title: Deploy AIDE Enterprise
     url: /deploy/deploy-enterprise.html
+  - title: Configure a proxy
+    url: /deploy/configure-proxy.html

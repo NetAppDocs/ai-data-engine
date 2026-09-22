@@ -1,0 +1,60 @@
+---
+sidebar: sidebar
+permalink: deploy/configure-proxy.html
+keywords: proxy, outbound proxy, firewall, install, proxy host, proxy port, proxy bypass
+summary: Configure an outbound proxy for AI Data Engine online installations.
+---
+= Configure a proxy for AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+If your AI Data Engine host cannot reach the internet directly, configure an outbound proxy so the installer can reach the endpoints listed in link:aide-requirements.html[AIDE requirements]. The same proxy options work for both `install-lite.sh` and `install-enterprise.sh`.
+
+== Supported proxy options
+
+[cols="2,3",options="header"]
+|===
+|Option |Description
+
+|`--proxy-host <host[:port]>`
+|Proxy hostname or IP address. Enables proxy configuration. You can include the port inline (`host:port`) instead of using `--proxy-port`.
+
+|`--proxy-port <port>`
+|Proxy port. Ignored if the port is already included in `--proxy-host`.
+
+|`--proxy-scheme <http\|https>`
+|How the installer connects to the proxy. Defaults to `http` if not specified.
+
+|`--proxy-user <user>`
+|Username for proxy basic authentication. Only required if your proxy enforces authentication.
+
+|`--proxy-password-file <path>`
+|Path to a file containing the proxy password. The file must be readable only by its owner (mode `0600`). The installer does not accept a password as a plain command-line argument.
+
+|`--proxy-bypass <hosts>`
+|Comma-separated list of hosts or CIDRs to reach directly instead of through the proxy.
+
+|`--no-proxy`
+|Explicitly skip proxy configuration.
+
+|===
+
+If you omit `--proxy-host`, the installer prompts you interactively to configure a proxy, and you can choose to enter these same values at that time.
+
+NOTE: AI Data Engine supports standard forward proxies that tunnel connections with HTTP `CONNECT`. Proxies that perform TLS inspection or interception are not supported in this release.
+
+== Example
+
+[source,bash]
+----
+sudo ./install-lite.sh --proxy-host proxy.customer.example --proxy-port 8080 --proxy-scheme http --proxy-user <proxy-user> --proxy-password-file root/aide-proxy.pass --proxy-bypass connector.customer.example
+----
+
+The same options apply if you run `install-enterprise.sh` instead.
+
+== Related information
+
+* link:aide-requirements.html[AIDE requirements]
+* link:deploy-aide-lite.html[Deploy AI Data Engine — Lite]
+* link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise]
