@@ -124,7 +124,7 @@ Verify that DNS resolution for these endpoints is working from the AI Data Engin
 [[lite-vm-sizes]]
 === VM sizing
 
-These sizes are recommended baseline configurations optimized for a 3 to 4 day initial scan window, not hard limits. Refer to <<flexible-sizing-lite,Flexible sizing guidelines>> for what drives these numbers and how to scale beyond them.
+These sizes are recommended baseline configurations optimized for a three to four day initial scan window, not hard limits. Refer to <<flexible-sizing-lite,Flexible sizing guidelines>> for what drives these numbers and how to scale beyond them.
 
 [cols="1,1,1,1,1,1,1,1",options="header"]
 |===
@@ -164,7 +164,7 @@ NOTE: NVMe SSD or other solid-state storage is recommended for all deployment si
 [[flexible-sizing-lite]]
 === Flexible sizing guidelines
 
-<<lite-vm-sizes,Small, Medium, and Large configurations>> are recommended baselines for a 3 to 4 day initial scan window, not hard limits enforced by the software.
+<<lite-vm-sizes,Small, Medium, and Large configurations>> are recommended baselines for a three to four day initial scan window, not hard limits enforced by the software.
 
 What drives the sizing recommendations::
 +
@@ -177,7 +177,7 @@ What happens if you undersize::
 +
 Provisioning below the recommended size does not prevent installation or cause service failures. The system remains operational and scanning continues, but you can expect the following:
 +
-* *Extended initial catalog duration*: Reduced compute lowers objects scanned per day. For example, a deployment targeting 3 billion objects but provisioned at a smaller size can take significantly longer than the 3 to 4 day target.
+* *Extended initial catalog duration*: Reduced compute lowers objects scanned per day. For example, a deployment targeting 3 billion objects but provisioned at a smaller size can take significantly longer than the three to four day target.
 * *Reduced ongoing ingest throughput*: New file events and incremental scan updates process more slowly under sustained load.
 * *Storage capacity risk*: Undersized storage relative to total object count can push the metadata index toward capacity thresholds. You can typically resolve this by expanding storage capacity, without a full redeployment.
 
@@ -206,33 +206,31 @@ NOTE: AIDE Lite does not support high availability or horizontal scale-out. If y
 
 === Additional prerequisites
 
-* Root or sudo access on the target VM to run the installer.
-* 1 GbE minimum network connection (10 GbE required for Large deployments).
-* bash 4.0 or later, curl, and tar available on the target host.
+* You have root or sudo access on the target VM to run the installer.
+* A 1 GbE minimum network connection (10 GbE for Large deployments).
+* The target host must have bash 4.0 or later, curl, and tar available.
 * The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. Pre-installing these tools on the target VM is not required.
 * Ports 6443 (TCP), 10250 (TCP), and 8472 (UDP) must be free on the host before the installer starts. If a host firewall (`firewalld` on RHEL or `ufw` on Ubuntu) is active, allow these ports and the k3s pod CIDR (`10.44.0.0/16`) and service CIDR (`10.45.0.0/16`) before running the installer. Refer to your OS firewall documentation for the required commands.
 * On RHEL systems running SELinux in Enforcing mode, the installer automatically configures the required SELinux policy packages. No manual SELinux configuration is needed.
-//* If your environment requires an outbound proxy to reach the endpoints listed above, have the proxy host, port, scheme, and credentials (if required) ready; the installer prompts for this during setup.
-// RESEARCH NEEDED: Confirm the proxy prompt/flags are part of the Console-wizard-generated install command customers use, not just an advanced/CI-only path, before publishing.
 
 == AIDE Enterprise requirements
 
-* RKE2 v1.34 or later (v1.36.x recommended)
+* You have kubectl access with cluster-admin privileges on the machine from which you run the installer.
+* You have Sudo (or root) permissions on the machine from which you run the install command.
+* RKE2 v1.34 or later (v1.36.x recommended) is installed on the target cluster.
 * The installer host automatically downloads and bootstraps `helm`, `kubectl`, and `jq` via `--tools-dir`. Pre-installing these tools on the management machine is not required.
-* Sudo (or root) permissions are required on the machine from which you run the install command.
-* A configured StorageClass (default name `aide-sc`) available on the cluster, used for AIDE's stateful backing services
-* An NFS server with at least one exported path, used for the AIDE configuration data volume and shared index snapshots
-* kubectl access with cluster-admin privileges on the machine from which you run the installer
+
+* A configured StorageClass (default name `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
+* An NFS server with at least one exported path is available, used for the AIDE configuration data volume and shared index snapshots.
+
 * A target Kubernetes namespace (default `aide`) already exists on the cluster; the installer does not create it
-//* If your environment requires an outbound proxy, have the proxy host, port, scheme, and credentials (if required) ready; the installer prompts for this during setup.
-// RESEARCH NEEDED: Confirm the proxy prompt/flags are part of the Console-wizard-generated install command customers use, not just an advanced/CI-only path, before publishing.
 
 NOTE: NVMe or high-performance SSD storage is recommended for all Enterprise node deployments.
 
 [[enterprise-vm-sizes]]
 === Node sizing
 
-These sizes are recommended baseline cluster configurations optimized for a ~3 day initial scan window, not hard capacity limits. AIDE Enterprise supports environments beyond 6 billion files through horizontal scale-out. Refer to <<flexible-sizing-enterprise,Flexible sizing guidelines>> for details.
+These sizes are recommended baseline cluster configurations optimized for an approximately three-day initial scan window, not hard capacity limits. AIDE Enterprise supports environments beyond 6 billion files through horizontal scale-out. Refer to <<flexible-sizing-enterprise,Flexible sizing guidelines>> for details.
 
 [cols="1,1,1,1,1,1,1,1,1",options="header"]
 |===

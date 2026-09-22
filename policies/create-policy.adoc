@@ -21,7 +21,7 @@ A policy is a saved filter set with an optional action attached:
 
 * *Monitor only (no action)*: Track the matching grouping over time without acting. Use this when you want visibility without committing to an automated response.
 * *Send email notification*: Notify a user by email when the matching file count changes.
-* *Delete permanently*: Permanently and automatically removes all matching files after each scan cycle without further confirmation. This action is irreversible. Ensure your filter criteria are precise and that you are authorized to delete the identified files before attaching this action.
+* *Delete permanently*: Permanently and automatically remove all matching files after each scan cycle without further confirmation. This action is irreversible. Verify that your filter criteria are precise and that you are authorized to delete the identified files before attaching this action.
 
 == Create a policy from Investigation
 
