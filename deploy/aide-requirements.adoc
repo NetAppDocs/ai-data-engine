@@ -11,13 +11,6 @@ summary: Review infrastructure and networking requirements before deploying AI D
 [.lead]
 Before you deploy AI Data Engine, review the networking, VM sizing, and operating system requirements for your environment.
 
-// NOTE FOR WRITER: No minimum ONTAP version is required for V2. ONTAP is a
-// data source, not a deployment prerequisite. The ONTAP requirements section
-// remains commented out until a minimum version is confirmed.
-// == ONTAP requirements
-// * NetApp ONTAP [version TBD] or later
-// * NFS or CIFS/SMB protocols enabled on volumes you want to scan
-
 == Networking requirements
 
 The following network connections must be open:
@@ -62,6 +55,12 @@ The following network connections must be open:
 |Outbound
 |LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and SMB/CIFS scanning. Port 389 uses both TCP and UDP; all other ports use TCP only.
 
+|AI Data Engine to NetApp Services / Container Registry
+|443
+|TCP
+|Outbound
+|HTTPS: artifact downloads and container image pulls (AWS S3 and ECR)
+
 |===
 
 === Outbound internet access
@@ -76,12 +75,13 @@ For an online installation, the following endpoints must be reachable from the A
 |NetApp Console communication
 |Both
 
-|NetApp container registry (AWS ECR, NetApp-managed)
-|Container images and Helm charts
+|`\https://582244788873.dkr.ecr.us-east-1.amazonaws.com`
+|NetApp container registry (AIDE container images and Helm charts)
 |Both
-// The V2 Deployment Guide for Customers uses the
-// generic form "AWS S3 and ECR (NetApp-managed)". Confirm the correct
-// public-facing hostname with engineering before publishing.
+
+|`\https://s3.amazonaws.com`
+|AWS S3 (installer wrapper script, Helm charts, and component version catalog)
+|Both
 
 |`\https://netapp-cloud-account.auth0.com`
 |Centralized user authentication
@@ -126,31 +126,40 @@ Verify that DNS resolution for these endpoints is working from the AI Data Engin
 
 These sizes are recommended baseline configurations optimized for a 3 to 4 day initial scan window, not hard limits. Refer to <<flexible-sizing-lite,Flexible sizing guidelines>> for what drives these numbers and how to scale beyond them.
 
-[cols="1,1,1,1,1",options="header"]
+[cols="1,1,1,1,1,1,1,1",options="header"]
 |===
-|Size |vCPU |RAM |Disk |Approximate files
+|Size |vCPU |RAM |Disk |Storage IOPS |Storage throughput |Network |Approximate files
 
 |Small
 |16
 |64 GB
 |500 GB
+|8,000
+|1,000 MB/s
+|1 GbE
 |200 million
 
 |Medium
 |32
 |128 GB
 |2 TB
+|12,000
+|1,500 MB/s
+|1 GbE
 |1 billion
 
 |Large
 |96
 |192 GB
 |6 TB
+|16,000
+|2,000 MB/s
+|10 GbE
 |3 billion
 
 |===
 
-NOTE: NVMe SSD or other solid-state storage is recommended for all deployment sizes. Minimum storage performance for Small is 8,000 IOPS and 1,000 MB/s throughput; requirements increase with deployment size.
+NOTE: NVMe SSD or other solid-state storage is recommended for all deployment sizes. The disk values in this table reflect AIDE data volume storage only. If the OS, k3s runtime, and AIDE data all share a single disk, add approximately 65 GB to the disk value for your chosen size. For example, a Small deployment on a single disk requires approximately 565 GB total.
 
 [[flexible-sizing-lite]]
 === Flexible sizing guidelines
@@ -197,17 +206,26 @@ NOTE: AIDE Lite does not support high availability or horizontal scale-out. If y
 
 === Additional prerequisites
 
-* Root or sudo access on the target VM to run the installer
-* 1 GbE minimum network connection
-* bash 4.0 or later, curl, and tar available on the target host
+* Root or sudo access on the target VM to run the installer.
+* 1 GbE minimum network connection (10 GbE required for Large deployments).
+* bash 4.0 or later, curl, and tar available on the target host.
+* The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. Pre-installing these tools on the target VM is not required.
+* Ports 6443 (TCP), 10250 (TCP), and 8472 (UDP) must be free on the host before the installer starts. If a host firewall (`firewalld` on RHEL or `ufw` on Ubuntu) is active, allow these ports and the k3s pod CIDR (`10.44.0.0/16`) and service CIDR (`10.45.0.0/16`) before running the installer. Refer to your OS firewall documentation for the required commands.
+* On RHEL systems running SELinux in Enforcing mode, the installer automatically configures the required SELinux policy packages. No manual SELinux configuration is needed.
+//* If your environment requires an outbound proxy to reach the endpoints listed above, have the proxy host, port, scheme, and credentials (if required) ready; the installer prompts for this during setup.
+// RESEARCH NEEDED: Confirm the proxy prompt/flags are part of the Console-wizard-generated install command customers use, not just an advanced/CI-only path, before publishing.
 
 == AIDE Enterprise requirements
 
 * RKE2 v1.34 or later (v1.36.x recommended)
-* Helm 3.12 or later installed on the machine from which you run the installer
-* A configured StorageClass available on the cluster
-* An NFS server with at least one exported path for the AIDE configuration data volume
+* The installer host automatically downloads and bootstraps `helm`, `kubectl`, and `jq` via `--tools-dir`. Pre-installing these tools on the management machine is not required.
+* Sudo (or root) permissions are required on the machine from which you run the install command.
+* A configured StorageClass (default name `aide-sc`) available on the cluster, used for AIDE's stateful backing services
+* An NFS server with at least one exported path, used for the AIDE configuration data volume and shared index snapshots
 * kubectl access with cluster-admin privileges on the machine from which you run the installer
+* A target Kubernetes namespace (default `aide`) already exists on the cluster; the installer does not create it
+//* If your environment requires an outbound proxy, have the proxy host, port, scheme, and credentials (if required) ready; the installer prompts for this during setup.
+// RESEARCH NEEDED: Confirm the proxy prompt/flags are part of the Console-wizard-generated install command customers use, not just an advanced/CI-only path, before publishing.
 
 NOTE: NVMe or high-performance SSD storage is recommended for all Enterprise node deployments.
 
@@ -222,8 +240,8 @@ These sizes are recommended baseline cluster configurations optimized for a ~3 d
 
 |Small
 |3
-|16
-|64 GB
+|32
+|128 GB
 |~1.3 TB
 |8,000
 |1,000 MB/s

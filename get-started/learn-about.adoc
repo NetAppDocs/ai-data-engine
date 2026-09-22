@@ -29,12 +29,11 @@ AI Data Engine focuses on storage optimization and data lifecycle management for
 AI Data Engine is designed for the following users:
 
 * *Storage administrators* who need to identify and monitor which data owners hold files meeting their organization's cold and stale threshold, identify duplicate files, and evaluate storage optimization opportunities.
-//* *Data stewards* who need to govern data quality and enforce lifecycle policies across the organization.
 * *IT operations teams* who need a central view of what structured and unstructured data exists across their storage environment.
 
 == Where AI Data Engine lives
 
-You access AI Data Engine through NetApp Console, under *Governance > AI Data Engine*. You deploy it as a software instance on Linux infrastructure you manage, either a virtual machine in your cloud account or a machine in your on-premises environment. Two editions are available: *Lite* for single-node deployments and *Enterprise* for multi-node Kubernetes clusters.
+You access AI Data Engine through NetApp Console, under *Governance > AI Data Engine*. You deploy it as AIDE Lite, a single-VM installation, on Linux infrastructure you manage either as a virtual machine in your cloud account or a machine in your on-premises environment. If your environment requires Kubernetes-based high availability at large scale, you can deploy AIDE Enterprise instead.
 
 AI Data Engine scans data on NetApp ONTAP and StorageGRID systems, as well as on non-NetApp systems that support the NFS, SMB/CIFS, or S3 protocols.
 

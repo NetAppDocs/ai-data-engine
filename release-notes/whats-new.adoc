@@ -13,7 +13,7 @@ Learn about new capabilities introduced in AI Data Engine.
 
 == AI Data Engine 1.0.0
 
-AIDE 1.0.0 is the first generally available release of AI Data Engine, a metadata intelligence service managed through NetApp Console that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale. AI Data Engine is available as link:../deploy/deployment-overview.html[AIDE Lite or AIDE Enterprise], depending on your environment size and infrastructure.
+AIDE 1.0.0 is the first generally available release of AI Data Engine, a metadata intelligence service managed through NetApp Console that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale. You deploy AI Data Engine as link:../deploy/deployment-overview.html[AIDE Lite], or as AIDE Enterprise if your environment requires Kubernetes-based high availability at large scale.
 
 New capabilities:
 

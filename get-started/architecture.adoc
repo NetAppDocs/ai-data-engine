@@ -30,10 +30,11 @@ NOTE: The Console Agent is not specific to AI Data Engine. If you already have a
 
 AI Data Engine supports two deployment models:
 
-AIDE Lite:: A single-VM deployment suitable for smaller environments. Available in Small, Medium, and Large configurations based on the number of files to be cataloged. AIDE Lite is the recommended starting point for most deployments.
+AIDE Lite:: A single-VM deployment suitable for smaller environments. Available in Small, Medium, and Large configurations based on the number of files to be cataloged.
 
-AIDE Enterprise:: A Kubernetes-based multi-node cluster deployment for larger environments requiring high availability. 
-AIDE Enterprise scales from a three-node configuration supporting up to approximately one billion files and 250 million files per day to a nine-node configuration supporting up to approximately six billion files and two billion files per day. Refer to link:../deploy/aide-requirements.html[AIDE requirements] for node sizing details. Additional nodes can extend capacity beyond six billion files; see link:../deploy/aide-requirements.html#flexible-sizing-enterprise[flexible sizing guidelines] for scale-out details.
+AIDE Enterprise:: A Kubernetes-based multi-node cluster deployment for larger environments requiring high availability.
+
+AIDE Enterprise scales from a three-node configuration supporting up to approximately one billion files and 250 million files per day to a nine-node configuration supporting up to approximately six billion files and two billion files per day. Refer to link:../deploy/aide-requirements.html[AIDE requirements] for node sizing details. Additional nodes can extend capacity beyond six billion files. See link:../deploy/aide-requirements.html#flexible-sizing-enterprise[flexible sizing guidelines] for scale-out details.
 
 link:../deploy/deployment-overview.html[Learn more about deployment options].
 
