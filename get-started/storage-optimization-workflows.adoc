@@ -74,5 +74,5 @@ Data meeting your organization's cold and stale thresholds is distributed across
 * link:../investigate/understand-dashboard.html[Assess storage utilization from the dashboard]
 * link:../investigate/investigate-data.html[Investigate your data]
 * link:../investigate/investigate-unstructured.html[Investigate unstructured data]
-* link:../investigate/take-actions.html[Take action with your data]
+* link:../investigate/take-actions.html[Take action on your data]
 * link:../policies/create-policy.html[Create a policy]

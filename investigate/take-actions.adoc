@@ -64,7 +64,7 @@ Choose an action based on how certain you are about the data:
 
 When data might still have value or require further review, choose tagging, archiving, or copying over deleting. Only delete when you are certain the data is safe to remove permanently.
 
-== Archive
+== Archive files
 
 Archiving moves files to a cold storage destination over NFS or SMB/CIFS. You can optionally leave a breadcrumb file at the original location.
 
@@ -83,7 +83,7 @@ Archiving moves files to a cold storage destination over NFS or SMB/CIFS. You ca
 A breadcrumb file helps users understand why a file was moved.
 . Select *Archive*.
 
-== Copy
+== Copy files
 
 Copying duplicates files to a destination volume without removing them from the original location.
 
@@ -99,7 +99,7 @@ Copying duplicates files to a destination volume without removing them from the 
 * *CIFS*: enter the CIFS destination folder path in the format `\\Hostname\share_name`. Provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
 . Select *Copy*.
 
-== Delete
+== Delete files
 
 Deleting permanently removes files from storage and cannot be undone.
 
@@ -117,7 +117,7 @@ CAUTION: Deletion is permanent and cannot be undone. This action deletes source 
 .Result
 The selected files are permanently deleted from storage.
 
-== Tag
+== Tag files
 
 Tagging applies a business tag to files for classification and tracking.
 
