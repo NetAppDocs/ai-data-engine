@@ -9,7 +9,7 @@ summary: Learn about the components of AI Data Engine and how they work together
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine consists of a Metadata Engine and a policy framework. These capabilities work together to extract metadata from your storage systems, catalog it in a searchable index, and let you define saved queries to identify and act on files that match specific criteria.
+AI Data Engine (AIDE) consists of a Metadata Engine and a policy framework. These capabilities work together to extract metadata from your storage systems, catalog it in a searchable index, and let you define saved queries to identify and act on files that match specific criteria.
 
 == Components
 
@@ -18,7 +18,6 @@ You primarily interact with AI Data Engine through four functional areas: the da
 === Metadata Engine
 
 The Metadata Engine is the core capability of AI Data Engine. It scans connected storage systems to extract file system metadata and stores that metadata in a searchable catalog. The Metadata Engine updates the catalog at each scan cycle, detecting additions, changes, and deletions across your storage systems.
-
 
 === NetApp Console Agent
 

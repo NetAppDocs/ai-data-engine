@@ -13,7 +13,7 @@ When you need to understand what is consuming storage, identify which database t
 
 == Choose a starting point
 
-Select *Investigation* in the left navigation to open the view. You can also open the Investigation view from the Overview page by selecting *Investigate* in the _Top data resources by reclaimable storage_ table, which applies a filter for that resource automatically.
+Select *Investigation* in the left navigation to open the view. You can also open the Investigation view from the dashboard by selecting *Investigate* in the _Top data resources by reclaimable storage_ table, which applies a filter for that resource automatically.
 
 *Investigation* is organized into three tabs. Select the tab that matches the data type you are investigating.
 

@@ -80,7 +80,7 @@ After you configure a data source, scanning does not start automatically. You mu
 
 .Result
 
-The system status updates in the Scanned systems tab to show that scanning is running. To monitor scan progress and verify that data resources are being indexed, refer to link:manage-data-sources.html[Manage data sources] and link:monitor-scanning-health.html[Monitor scanning health].
+The system status updates in the Scanned systems tab to show that scanning is running. To monitor scan progress and verify that AI Data Engine is indexing data resources, refer to link:manage-data-sources.html[Manage data sources] and link:monitor-scanning-health.html[Monitor scanning health].
 
 == Related information
 
