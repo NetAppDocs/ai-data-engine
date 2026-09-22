@@ -1,57 +1,119 @@
 ---
 sidebar: sidebar
 permalink: deploy/configure-proxy.html
-keywords: proxy, outbound proxy, firewall, install, proxy host, proxy port, proxy bypass
-summary: Configure an outbound proxy for AI Data Engine online installations.
+keywords: proxy, outbound proxy, forward proxy, firewall, install, proxy host, proxy port, proxy bypass
+summary: Configure a forward proxy so AI Data Engine can reach the internet during installation.
 ---
 = Configure a proxy for AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-If your AI Data Engine host cannot reach the internet directly, configure an outbound proxy so the installer can reach the endpoints listed in link:aide-requirements.html[AIDE requirements]. The same proxy options work for both `install-lite.sh` and `install-enterprise.sh`.
+If your AI Data Engine host or cluster cannot reach the internet directly, configure a forward proxy so the installer can download components, pull container images, and communicate with NetApp Console. Traffic to local infrastructure — the Console Agent, the Kubernetes API, ONTAP, and NFS/SMB storage — always bypasses the proxy and connects directly. The same proxy options work for both `install-lite.sh` and `install-enterprise.sh`.
 
-== Supported proxy options
+== Supported proxy configurations
 
-[cols="2,3",options="header"]
+[cols="2,3,2",options="header"]
 |===
-|Option |Description
+|Configuration |Description |Authentication
+
+|No proxy
+|Direct connection to the internet; no proxy is used.
+|None
+
+|Unauthenticated forward proxy
+|Forward proxy that does not require credentials.
+|None
+
+|Authenticated forward proxy
+|Forward proxy that requires credentials.
+|HTTP Basic authentication (username and password)
+
+|===
+
+IMPORTANT: AI Data Engine supports standard forward proxies that tunnel connections with HTTP `CONNECT`, including HTTPS destinations. Proxies that decrypt and re-sign HTTPS traffic with a custom certificate authority (TLS-inspecting proxies) are not supported.
+
+== Before you begin
+
+* Confirm your proxy allows outbound access to the endpoints required by AI Data Engine. See link:aide-requirements.html[AIDE requirements].
+//RESEARCH NEEDED: A separate proxy allowlist was circulated for this feature (api.bluexp.netapp.com, *.api.bluexp.netapp.com, cloudinsights*.netapp.com, cloudsecure.netapp.com, get.helm.sh, dl.k8s.io, github.com/jqlang, *.dkr.ecr.<region>.amazonaws.com, s3.us-west-2.amazonaws.com, get.k3s.io).
+//It uses different domains/region and BlueXP branding than the verified "Outbound internet access" table above (api.console.netapp.com, us-east-1 ECR, s3.amazonaws.com, cloudfront, auth0). Reconcile with engineering before publishing; do not merge silently.
+* If you're deploying AIDE Enterprise, confirm that your Kubernetes worker nodes are already able to reach the proxy. AI Data Engine does not configure worker nodes for you.
+* AIDE Lite automatically configures the host to route image pulls through the proxy; no additional configuration is needed.
+* To supply the proxy password without being prompted for it (for example, in an automated deployment), create a password file and restrict its permissions before running the installer:
++
+[source,bash]
+----
+echo -n "<proxy-password>" > /root/aide-proxy.pass
+chmod 0600 /root/aide-proxy.pass
+----
+
+== Proxy configuration parameters
+
+[cols="2,1,3",options="header"]
+|===
+|Parameter |Default |Description
 
 |`--proxy-host <host[:port]>`
-|Proxy hostname or IP address. Enables proxy configuration. You can include the port inline (`host:port`) instead of using `--proxy-port`.
+|None
+|Hostname or IP address of the forward proxy. Enables proxy configuration. Accepts an inline port (`host:port`) instead of using `--proxy-port`.
 
 |`--proxy-port <port>`
-|Proxy port. Ignored if the port is already included in `--proxy-host`.
+|`80` for HTTP, `443` for HTTPS
+|Port the proxy listens on. Ignored if the port is already included in `--proxy-host`.
 
 |`--proxy-scheme <http\|https>`
-|How the installer connects to the proxy. Defaults to `http` if not specified.
+|`http`
+|Protocol used to connect to the proxy server itself.
 
 |`--proxy-user <user>`
-|Username for proxy basic authentication. Only required if your proxy enforces authentication.
+|None
+|Username for basic authentication. Requires a password, supplied with `--proxy-password-file` or entered interactively.
 
 |`--proxy-password-file <path>`
-|Path to a file containing the proxy password. The file must be readable only by its owner (mode `0600`). The installer does not accept a password as a plain command-line argument.
+|None
+|Path to a local file, with permissions set to `0600`, containing the proxy password.
 
 |`--proxy-bypass <hosts>`
-|Comma-separated list of hosts or CIDRs to reach directly instead of through the proxy.
+|None
+|Comma-separated hostnames, IP addresses, or CIDR blocks that bypass the proxy in addition to local infrastructure traffic.
 
 |`--no-proxy`
-|Explicitly skip proxy configuration.
+|—
+|Explicitly disables proxy configuration and skips proxy prompts.
 
 |===
 
-If you omit `--proxy-host`, the installer prompts you interactively to configure a proxy, and you can choose to enter these same values at that time.
+NOTE: `--proxy-password` is not supported as a command-line argument, to avoid exposing credentials in process tables, shell history, or logs. Use `--proxy-password-file` or the interactive prompt instead.
 
-NOTE: AI Data Engine supports standard forward proxies that tunnel connections with HTTP `CONNECT`. Proxies that perform TLS inspection or interception are not supported in this release.
+== Configure the proxy
 
-== Example
+Choose one of the following methods to configure the proxy when you run the install command copied from NetApp Console.
+
+=== Configure the proxy using command-line flags
+
+Replace `--no-proxy` in the copied install command with your proxy parameters:
 
 [source,bash]
 ----
-sudo ./install-lite.sh --proxy-host proxy.customer.example --proxy-port 8080 --proxy-scheme http --proxy-user <proxy-user> --proxy-password-file root/aide-proxy.pass --proxy-bypass connector.customer.example
+sudo ./install-lite.sh \
+  --proxy-host proxy.customer.example \
+  --proxy-port 8080 \
+  --proxy-scheme http \
+  --proxy-user aide-proxy-user \
+  --proxy-password-file /root/aide-proxy.pass \
+  --proxy-bypass connector.customer.example,10.0.0.0/8
 ----
 
-The same options apply if you run `install-enterprise.sh` instead.
+If your proxy doesn't require authentication, omit `--proxy-user` and `--proxy-password-file`. If you omit `--proxy-password-file`, the installer prompts you to enter the password interactively.
+
+NOTE: Use `install-enterprise.sh` in place of `install-lite.sh` for AIDE Enterprise deployments; the same proxy flags apply to both installers.
+
+=== Configure the proxy using interactive guided setup
+
+. Remove `--no-proxy` from the copied install command and run it without any proxy flags.
+. When prompted `Do you want to configure a proxy? [y/N]`, enter `y`.
+. Follow the interactive prompts to enter the proxy host, port, scheme, username, and password.
 
 == Related information
 
