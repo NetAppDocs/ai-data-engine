@@ -164,7 +164,7 @@ NOTE: NVMe SSD or other solid-state storage is recommended for all deployment si
 [[flexible-sizing-lite]]
 === Flexible sizing guidelines
 
-<<lite-vm-sizes,Small, Medium, and Large configurations>> are recommended baselines, not hard limits enforced by the software. They are designed to achieve optimal initial catalog completion, typically 3 to 4 days for a full scan.
+<<lite-vm-sizes,Small, Medium, and Large configurations>> are recommended baselines for a 3 to 4 day initial scan window, not hard limits enforced by the software.
 
 What drives the sizing recommendations::
 +
@@ -177,9 +177,9 @@ What happens if you undersize::
 +
 Provisioning below the recommended size does not prevent installation or cause service failures. The system remains operational and scanning continues, but you can expect the following:
 +
-* *Extended initial catalog duration*: Reduced compute lowers the number of objects scanned per day, extending the time to complete the initial full catalog. For example, a deployment targeting 3 billion objects but provisioned at a smaller size can take significantly longer than the 3 to 4 day target to complete the initial scan.
+* *Extended initial catalog duration*: Reduced compute lowers objects scanned per day. For example, a deployment targeting 3 billion objects but provisioned at a smaller size can take significantly longer than the 3 to 4 day target.
 * *Reduced ongoing ingest throughput*: New file events and incremental scan updates process more slowly under sustained load.
-* *Storage capacity risk*: If storage is undersized relative to the total object count, the metadata index can approach capacity thresholds. You can typically resolve this by expanding storage capacity, without a full redeployment.
+* *Storage capacity risk*: Undersized storage relative to total object count can push the metadata index toward capacity thresholds. You can typically resolve this by expanding storage capacity, without a full redeployment.
 
 Scale when you need more capacity::
 +
@@ -273,7 +273,7 @@ These sizes are recommended baseline cluster configurations optimized for a ~3 d
 [[flexible-sizing-enterprise]]
 === Flexible sizing guidelines
 
-<<enterprise-vm-sizes,Small, Medium, and Large configurations>> are recommended baseline cluster configurations, not hard capacity ceilings enforced by the software. They are designed to achieve optimal initial catalog completion, approximately 3 days for a full scan. AIDE Enterprise is explicitly designed to support environments exceeding 3 billion files through horizontal scale-out across cluster nodes.
+<<enterprise-vm-sizes,Small, Medium, and Large configurations>> are recommended baseline cluster configurations for an approximate three day initial scan window, not hard capacity ceilings enforced by the software. AIDE Enterprise supports environments exceeding 3 billion files through horizontal scale-out across cluster nodes.
 
 What drives the sizing recommendations::
 +
@@ -287,9 +287,9 @@ What happens if you undersize::
 +
 Provisioning below the recommended size does not prevent installation or cause hard failures. Practical impacts include:
 +
-* *Extended initial catalog duration*: A cluster with fewer nodes or reduced per-node resources processes objects at lower throughput, extending the initial catalog window proportionally.
+* *Extended initial catalog duration*: Fewer nodes or reduced per-node resources lower throughput, extending the initial catalog window proportionally.
 * *Increased processing latency under peak load*: Insufficient memory across the cluster can cause elevated processing latency during high-volume ingestion periods. Ongoing operations are not interrupted, but sustained throughput is reduced.
-* *Storage capacity risk*: If total cluster storage is insufficient for the target object count, the metadata index can approach capacity thresholds. You can resolve this by expanding storage on existing nodes (non-disruptive) or by adding a dedicated storage node to the cluster.
+* *Storage capacity risk*: Insufficient cluster storage for the target object count can push the metadata index toward capacity thresholds. You can resolve this by expanding storage on existing nodes (non-disruptive) or adding a dedicated storage node.
 
 Scale when you need more capacity::
 +
