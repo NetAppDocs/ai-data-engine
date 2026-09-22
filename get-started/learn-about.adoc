@@ -15,7 +15,7 @@ AI Data Engine is a metadata intelligence service that gives you visibility into
 
 AI Data Engine scans connected storage systems to extract file system metadata and builds a catalog that is updated after each scan cycle. From this catalog, you can:
 
-* View storage optimization insights on a dashboard, including which data owners hold potentially reclaimable storage, including files meeting your organization's cold and stale thresholds, and duplicate files
+* View storage optimization insights on a dashboard, including which data owners hold potentially reclaimable storage such as files meeting your organization's cold and stale thresholds and duplicate files
 * Investigate your data using flexible metadata filters to build targeted data grouping
 * Create policies that save investigation criteria as reusable rules
 * Take actions on data: tagging, archiving, copying, or deleting files that match policy criteria
@@ -28,7 +28,7 @@ AI Data Engine focuses on storage optimization and data lifecycle management for
 
 AI Data Engine is designed for the following users:
 
-* *Storage administrators* who need to identify and monitor which data owners hold files meeting their organization's cold and stale threshold, identify duplicate files, and evaluate storage optimization opportunities.
+* *Storage administrators* who need to identify and monitor which data owners hold files meeting their organization's cold and stale thresholds, identify duplicate files, and evaluate storage optimization opportunities.
 * *IT operations teams* who need a central view of what structured and unstructured data exists across their storage environment.
 
 == Where AI Data Engine lives

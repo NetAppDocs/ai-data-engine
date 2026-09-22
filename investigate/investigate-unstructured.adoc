@@ -50,7 +50,7 @@ The detail panel shows the file's system, storage repository, file owner, and an
 
 After identifying the files you want to address, select one or more items using the checkboxes in the results table.
 
-* To take an immediate action, refer to link:take-actions.html[Take action with your data].
+* To take an immediate action, refer to link:take-actions.html[Take action on your data].
 * To save the filter criteria for ongoing monitoring, select *Create policy* in the filter toolbar. Refer to link:../policies/create-policy.html[Create a policy].
 
 To download the filtered results from the Unstructured tab, select image:icon_download_file.png[Download].
@@ -58,7 +58,7 @@ To download the filtered results from the Unstructured tab, select image:icon_do
 == Related information
 
 * link:use-filters.html[Work with filters]
-* link:take-actions.html[Take action with your data]
+* link:take-actions.html[Take action on your data]
 * link:../policies/create-policy.html[Create a policy]
 * link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
 * link:understand-dashboard.html[Assess storage utilization from the dashboard]

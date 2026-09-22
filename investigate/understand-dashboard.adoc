@@ -11,7 +11,7 @@ summary: Assess storage health across your environment, identify where potential
 [.lead]
 Before you can decide what to investigate, you need to understand the state of your storage. How much storage meets your organization's cold and stale classification thresholds, and which systems or owners hold the most data in these categories? For example, a storage administrator responding to a capacity alert can see that a large portion of scanned storage is cold data, then drill into the highest-impact system to start investigating immediately.
 
-From NetApp Console, select *Governance* > *AI Data Engine UI*. The Overview page opens by default.
+From NetApp Console, select *Governance* > *AI Data Engine UI*. The dashboard opens by default.
 
 == Understand how much storage is affected
 
@@ -38,7 +38,7 @@ Use the summary panel and chart to identify and prioritize storage optimization 
 
 == Move from the dashboard to investigation
 
-When you have identified a resource or owner worth investigating, use the tables at the bottom of the Overview page to transition directly into the details.
+When you have identified a resource or owner worth investigating, use the tables at the bottom of the dashboard to transition directly into the details.
 
 The _Top data resources by reclaimable storage_ table lists your scanned storage resources ranked by the proportion of data that is duplicated or meets your organization's cold and stale thresholds. Select any row to open the Investigation view filtered to that resource. From there, use the link:investigate-unstructured.html[Unstructured] tab to identify cold or stale files, or the link:investigate-directories.html[Directories] tab to audit permission exposure.
 

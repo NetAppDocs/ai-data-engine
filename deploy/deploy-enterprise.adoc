@@ -14,7 +14,7 @@ Deploy AIDE Enterprise from NetApp Console using the deployment wizard. The wiza
 .Before you begin
 
 * You must have _Organization admin_ or greater permissions in NetApp Console.
-* Review link:aide-requirements.html[AIDE requirements] and confirm your RKE2 cluster meets Enterprise node prerequisites.
+* Your RKE2 cluster must meet the Enterprise node prerequisites described in link:aide-requirements.html[AIDE requirements].
 * Sudo (or root) permissions are required on the machine from which you run the install command.
 * An NFS server with an exported path must be available and reachable from the cluster for the AIDE config volume.
 * A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[must be deployed^] and reachable from the cluster nodes. The Console Agent IP is required to run the install command.
@@ -44,7 +44,7 @@ These sizes are recommended baselines, not hard limits. AIDE Enterprise supports
 //. If you use a proxy, include the `--proxy-host <host>` option in the initial command to trigger interactive proxy configuration prompts in the terminal.
 . Run the install command with any configuration size adjustments from your target host with kubectl access to your RKE2 cluster.
 +
-NOTE: Installation takes about 30 minutes to complete. Timeouts and retries might occur and are normal behavior.
+NOTE: Installation takes about 30 minutes to complete. Timeouts and retries might occur, and this is normal.
 // The install command shown here may require command-line customizations after the wizard behavior is confirmed.
 // [source,bash]
 // ----

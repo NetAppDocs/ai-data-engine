@@ -9,11 +9,11 @@ summary: Learn about new capabilities in AI Data Engine.
 :imagesdir: ../media/
 
 [.lead]
-Learn about new capabilities introduced in AI Data Engine.
+Learn about new capabilities in AI Data Engine.
 
 == AI Data Engine 1.0.0
 
-AIDE 1.0.0 is the first generally available release of AI Data Engine, a metadata intelligence service managed through NetApp Console that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale. You deploy AI Data Engine as link:../deploy/deployment-overview.html[AIDE Lite], or as AIDE Enterprise if your environment requires Kubernetes-based high availability at large scale.
+AIDE 1.0.0 is the first generally available release of AI Data Engine. AI Data Engine is a metadata intelligence service, managed through NetApp Console, that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale. You can deploy AI Data Engine as link:../deploy/deployment-overview.html[AIDE Lite], or as AIDE Enterprise if your environment requires Kubernetes-based high availability at large scale.
 
 New capabilities:
 
@@ -23,8 +23,7 @@ link:../investigate/investigate-data.html[Reduce cost and risk]:: Filter across 
 
 link:../policies/create-policy.html[Govern data continuously]:: Save filter criteria as named policies to track recurring data conditions over time, such as cold or oversized files, and receive notifications when the impacted file count changes.
 
-link:../investigate/take-actions.html[Reduce storage costs]:: 
-Enforce your organization's data lifecycle policies by copying and archiving files to NFS or SMB/CIFS destinations, tagging items for tracking, or permanently deleting files according to your retention requirements.
+link:../investigate/take-actions.html[Reduce storage costs]:: Enforce your organization's data lifecycle policies by copying and archiving files to NFS or SMB/CIFS destinations, tagging items for tracking, or permanently deleting files according to your retention requirements.
 
 link:../administer/manage-users-roles.html[Assign admin and viewer roles]:: Control who can investigate data and take actions by assigning the AI Data Engine administrator or viewer role to users in your organization.
 

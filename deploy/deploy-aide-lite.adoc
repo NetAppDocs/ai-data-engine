@@ -40,7 +40,7 @@ These sizes are recommended baselines, not hard limits. See link:aide-requiremen
 //. If you use a proxy, include the `--proxy-host <host>` option in the initial command to trigger interactive proxy configuration prompts in the terminal.
 . Run the install command with any configuration size adjustments on your target host.
 +
-NOTE: Installation takes about 45 minutes to complete. Timeouts and retries might occur and are normal behavior.
+NOTE: Installation takes about 45 minutes to complete. Timeouts and retries might occur, and this is normal.
 // The install command shown here may require command-line customizations after the wizard behavior is confirmed.
 // [source,bash]
 // ----

@@ -13,7 +13,7 @@ Deploy AI Data Engine as AIDE Lite, a single-VM installation. If your environmen
 
 == AIDE Lite
 
-AIDE Lite installs on a single Linux VM. No Kubernetes expertise is required as the installer provisions k3s automatically.
+AIDE Lite installs on a single Linux VM. You don't need Kubernetes expertise because the installer provisions k3s automatically.
 
 AIDE Lite is available in three sizes — Small, Medium, and Large — for environments up to approximately 200 million, 1 billion, and 3 billion files respectively. For full VM sizing and OS requirements, refer to link:aide-requirements.html[AIDE requirements]. These sizes are recommended baselines, not hard limits; see link:aide-requirements.html#flexible-sizing-lite[flexible sizing guidelines] for what drives sizing and how to scale further.
 
@@ -25,9 +25,9 @@ AIDE Enterprise is available in three sizes — Small, Medium, and Large — for
 
 == Deployment process
 
-NetApp Console does not provision the infrastructure for AI Data Engine. You prepare a Linux machine or cluster that meets the requirements, then copy the pre-generated installation command from NetApp Console and run it on the target host. The command bootstraps the runtime and deploys the AI Data Engine stack automatically. During installation, you're prompted to confirm the target host IP address and user ID before the install proceeds.
+NetApp Console does not provision the infrastructure for AI Data Engine. You prepare a Linux machine or cluster that meets the requirements, then copy the pre-generated installation command from NetApp Console and run it on the target host. The command bootstraps the runtime and deploys the AI Data Engine stack automatically. During installation, the installer prompts you to confirm the target host IP address and user ID before the install proceeds.
 
-AIDE Lite installations typically complete within 45 minutes. AIDE Enterprise installations typically complete within 30 minutes. The installer includes built-in timeouts and retries to handle transient issues while components come up.
+AIDE Lite installations typically complete within 45 minutes. AIDE Enterprise installations typically complete within 30 minutes. The installer includes built-in timeouts and retries to handle transient issues while components start.
 
 == Deployment mode reference
 

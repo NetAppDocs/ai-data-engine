@@ -14,7 +14,7 @@ These AI Data Engine workflows take you from identifying a storage problem on th
 == Identify and act on cold data
 
 .Scenario
-You notice on the Overview page that a storage resource has a large amount of data flagged as cold. Cold files have not been accessed within the configured cold data threshold, which defaults to one year and is configurable in *Configuration* > *Settings*.
+You notice on the dashboard that a storage resource has a large amount of data flagged as cold. Cold files have not been accessed within the configured cold data threshold, which defaults to one year and is configurable in *Configuration* > *Settings*.
 
 .Steps
 . From link:../investigate/understand-dashboard.html[the dashboard], identify the resource with the highest concentration of cold data and select *Investigate*.
@@ -33,12 +33,12 @@ NOTE: This threshold is configurable in *Configuration* > *Settings*.
 . From link:../investigate/understand-dashboard.html[the dashboard], identify a resource with significant stale data.
 . In link:../investigate/investigate-unstructured.html[Investigation], apply the *Last modified* filter set to your stale threshold (default *3+ years*).
 . Review the results to decide link:../investigate/take-actions.html[whether to tag, archive, or delete] the matching files.
-. link:../policies/create-policy.html[Save the filter set as a policy] to track these resources across future scans.
+. link:../policies/create-policy.html[Save the filter set as a policy] to track these resources across subsequent scans.
 
 == Manage data retention compliance
 
 .Scenario
-Your organization requires that files older than a certain age are reviewed for retention. The AIDE product configurable threshold default for retention is seven or more years since file creation, and this matches your organization's specific compliance and retention policies.
+Your organization requires that files older than a certain age are reviewed for retention. The default retention threshold in AI Data Engine is seven or more years since file creation. You can adjust this threshold to match your organization's compliance and retention policies.
 
 NOTE: This threshold is configurable in *Configuration* > *Settings*.
 
@@ -61,7 +61,7 @@ Multiple identical copies of the same files exist across volumes or shares, a co
 == Target cleanup by data owner
 
 .Scenario
-Data meeting your organization's cold and stale thresholds is distributed across many owners. Identifying which data owners hold which files in these categories can help you prioritize.
+Data meeting your organization's cold and stale thresholds is distributed across many owners. Identifying which data owners hold the most files in these categories can help you prioritize cleanup.
 
 .Steps
 . From link:../investigate/understand-dashboard.html[the dashboard], locate the _Top data owners by reclaimable storage_ table.
@@ -74,5 +74,5 @@ Data meeting your organization's cold and stale thresholds is distributed across
 * link:../investigate/understand-dashboard.html[Assess storage utilization from the dashboard]
 * link:../investigate/investigate-data.html[Investigate your data]
 * link:../investigate/investigate-unstructured.html[Investigate unstructured data]
-* link:../investigate/take-actions.html[Take action with your data]
+* link:../investigate/take-actions.html[Take action on your data]
 * link:../policies/create-policy.html[Create a policy]
