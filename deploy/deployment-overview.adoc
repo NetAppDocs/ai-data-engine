@@ -15,13 +15,13 @@ Deploy AI Data Engine as AIDE Lite, a single-VM installation. If your environmen
 
 AIDE Lite installs on a single Linux VM. No Kubernetes expertise is required as the installer provisions k3s automatically.
 
-AIDE Lite is available in three sizes — Small, Medium, and Large — for environments up to approximately 200 million, 1 billion, and 3 billion files respectively. For full VM sizing and OS requirements, refer to link:aide-requirements.html[AIDE requirements].
+AIDE Lite is available in three sizes — Small, Medium, and Large — for environments up to approximately 200 million, 1 billion, and 3 billion files respectively. For full VM sizing and OS requirements, refer to link:aide-requirements.html[AIDE requirements]. These sizes are recommended baselines, not hard limits; see link:aide-requirements.html#flexible-sizing-lite[flexible sizing guidelines] for what drives sizing and how to scale further.
 
 == AIDE Enterprise
 
 Deploy AIDE Enterprise if your environment requires high availability, fault tolerance, rolling upgrades, or horizontal scaling beyond AIDE Lite's largest size. AIDE Enterprise deploys as a multi-node Kubernetes cluster on a customer-provisioned and managed RKE2 cluster.
 
-AIDE Enterprise is available in three sizes — Small, Medium, and Large — for environments up to approximately 1 billion, 3 billion, and 6 billion files respectively. For full node sizing and cluster requirements, refer to link:aide-requirements.html[AIDE requirements].
+AIDE Enterprise is available in three sizes — Small, Medium, and Large — for environments up to approximately 1 billion, 3 billion, and 6 billion files respectively. For full node sizing and cluster requirements, refer to link:aide-requirements.html[AIDE requirements]. These sizes are recommended baselines, not hard limits: environments exceeding 6 billion files are supported through horizontal scale-out. See link:aide-requirements.html#flexible-sizing-enterprise[flexible sizing guidelines] for details.
 
 == Deployment process
 

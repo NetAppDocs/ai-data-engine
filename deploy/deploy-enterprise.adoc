@@ -37,6 +37,8 @@ The AI Data Engine landing page appears.
 * *Small*: recommended for environments with up to approximately 1 billion files.
 * *Medium (Default)*: recommended for environments with up to approximately 3 billion files.
 * *Large*: recommended for environments with up to approximately 6 billion files.
++
+These sizes are recommended baselines, not hard limits. AIDE Enterprise supports environments beyond 6 billion files through horizontal scale-out; see link:aide-requirements.html#flexible-sizing-enterprise[flexible sizing guidelines] for details.
 
 . For small or large configurations, adjust the install command to reflect the chosen size: `--flavor <small|medium|large>`
 //. If you use a proxy, include the `--proxy-host <host>` option in the initial command to trigger interactive proxy configuration prompts in the terminal.
