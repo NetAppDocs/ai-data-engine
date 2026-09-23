@@ -13,16 +13,14 @@ Deploy AIDE Enterprise from NetApp Console using the deployment wizard. The wiza
 
 .Before you begin
 
-* You must have _Organization admin_ or greater permissions in NetApp Console.
-* Your RKE2 cluster must meet the Enterprise node prerequisites described in link:aide-requirements.html[AIDE requirements].
+* You have _Organization admin_ or greater permissions in NetApp Console.
+* Your RKE2 cluster meets the Enterprise node prerequisites described in link:aide-requirements.html[AIDE requirements].
 * Sudo (or root) permissions are required on the machine from which you run the install command.
-* An NFS server with an exported path must be available and reachable from the cluster for the AIDE config volume.
-* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[must be deployed^] and reachable from the cluster nodes. The Console Agent IP is required to run the install command.
-* kubectl must be available on the machine from which you run the install command, with cluster-admin access to the target cluster.
-* The target Kubernetes namespace (default `aide`) must already exist on the cluster before you run the install command.
-//* If your environment uses an outbound proxy, have the proxy details ready. See link:aide-requirements.html[AIDE requirements].
-// RESEARCH NEEDED: Confirm this proxy prompt appears in the actual Console-wizard install command flow before publishing.
-
+* An NFS server with an exported path is available and reachable from the cluster for the AIDE config volume.
+* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the cluster nodes. The Console Agent IP is required to run the install command.
+* kubectl is available on the machine from which you run the install command, with cluster-admin access to the target cluster.
+* The target Kubernetes namespace (default `aide`) already exists on the cluster before you run the install command.
+* A configured StorageClass (default name: `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
 
 .Steps
 . In NetApp Console, navigate to *Governance* > *AI Data Engine*.
@@ -41,7 +39,7 @@ The AI Data Engine landing page appears.
 These sizes are recommended baselines, not hard limits. AIDE Enterprise supports environments beyond 6 billion files through horizontal scale-out; see link:aide-requirements.html#flexible-sizing-enterprise[flexible sizing guidelines] for details.
 
 . For small or large configurations, adjust the install command to reflect the chosen size: `--flavor <small|medium|large>`
-//. If you use a proxy, include the `--proxy-host <host>` option in the initial command to trigger interactive proxy configuration prompts in the terminal.
+
 . Run the install command with any configuration size adjustments from your target host with kubectl access to your RKE2 cluster.
 +
 NOTE: Installation takes about 30 minutes to complete. Timeouts and retries might occur, and this is normal.

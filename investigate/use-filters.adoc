@@ -67,10 +67,10 @@ The AI Data Engine Investigation view provides metadata filters to narrow your r
 |Filter |Description
 
 |Data Container
-|Filter to a specific ONTAP volume or share.
+|Filter to a specific volume or share.
 
 |System
-|Filter to a specific ONTAP cluster.
+|Filter to a specific cluster.
 
 |System Type
 |Filter by the type of storage system.

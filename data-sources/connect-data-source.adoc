@@ -55,17 +55,6 @@ AI Data Engine scans your storage systems to collect and analyze metadata. To ad
 |System name, S3 endpoint URL, and S3 access key and secret key.
 
 |===
-//. Select the scan scope:
-//+
-//* *File shares group*: Select the share paths to include.
-//* *Database*: Select the schemas to activate.
-//* *StorageGRID*: Select the S3 buckets to include.
-//
-//. Configure scan settings.
-// RESEARCH: Confirm the exact scan settings options in the V2 UI (scan frequency, path exclusions, depth limits).
-//
-//. Enable or disable content intelligence for this data source.
-// RESEARCH: Confirm the exact UI label for the content intelligence toggle and what enabling it does.
 
 . Review your selections and select *Confirm* to add the data source.
 

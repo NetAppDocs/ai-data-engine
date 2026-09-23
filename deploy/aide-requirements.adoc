@@ -141,7 +141,7 @@ For an online installation, the following endpoints must be reachable from the A
 |Lite only
 |===
 
-AI Data Engine also relies on NetApp Console for centralized authentication and console services. Refer to link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html[network access requirementsfor NetApp Console] for the endpoints required for Console and Console agent connectivity.
+AI Data Engine also relies on NetApp Console for centralized authentication and console services. Refer to link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html[network access requirements for NetApp Console^] for the endpoints required for Console and Console agent connectivity.
 
 Verify that DNS resolution for these endpoints is working from the AI Data Engine host before you begin deployment.
 
