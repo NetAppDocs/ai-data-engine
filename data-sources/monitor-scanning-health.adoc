@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: data-sources/monitor-scanning-health.html
-keywords: scan health, scanning, health monitor, coverage, migration, GA
+keywords: scan health, scanning, health monitor, coverage, migration
 summary: Confirm that scanning is working and that your investigation findings reflect current data.
 ---
 = Monitor scanning health in AI Data Engine

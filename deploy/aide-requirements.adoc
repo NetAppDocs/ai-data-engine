@@ -64,23 +64,12 @@ The following network connections must be open:
 |===
 
 === Outbound internet access
-
 For an online installation, the following endpoints must be reachable from the AI Data Engine host:
-
 [cols="2,2,1",options="header"]
 |===
 |Endpoint |Purpose |Scope
-
 |`\https://api.console.netapp.com`
 |NetApp Console communication
-|Both
-
-|`\https://582244788873.dkr.ecr.us-east-1.amazonaws.com`
-|NetApp container registry (AIDE container images and Helm charts)
-|Both
-
-|`\https://s3.amazonaws.com`
-|AWS S3 (installer wrapper script, Helm charts, and component version catalog)
 |Both
 
 |`\https://netapp-cloud-account.auth0.com`
@@ -91,20 +80,56 @@ For an online installation, the following endpoints must be reachable from the A
 |Authentication services
 |Both
 
-|`\https://support.compliance.api.bluexp.netapp.com/`
+|`\https://582244788873.dkr.ecr.us-west-2.amazonaws.com`
+|NetApp container registry (AIDE container images)
+|Both
+
+|`\https://582244788873.dkr-ecr.us-west-2.on.aws`
+|NetApp container registry (dualstack/virtual private cloud (VPC) endpoint access)
+|Both
+
+|`\https://api.ecr.us-west-2.amazonaws.com`
+|AWS ECR API (authentication and image manifest retrieval)
+|Both
+
+|`\https://prod-us-west-2-starport-layer-bucket.s3.us-west-2.amazonaws.com`
+|AWS S3 (ECR container image layer storage)
+|Both
+
+|`\https://prod-us-west-2-starport-layer-bucket.s3.amazonaws.com`
+|AWS S3 (ECR container image layer storage)
+|Both
+
+|`\https://s3.us-west-2.amazonaws.com`
+|AWS S3 (installer wrapper script, Helm charts, and component version catalog)
+|Both
+
+|`\https://s3.amazonaws.com`
+|AWS S3 (installer wrapper script, Helm charts, and component version catalog)
+|Both
+
+|`\https://sts.us-west-2.amazonaws.com`
+|AWS STS (temporary credential exchange for registry and S3 access)
+|Both
+
+|`\https://support.compliance.api.bluexp.netapp.com`
 |Software images, manifests, and templates; logs and metrics streaming
 |Both
 
-|`\https://dseasb33srnrn.cloudfront.net/`
-|CDN for software image distribution
+|`\https://dseasb33srnrn.cloudfront.net`
+|CloudFront CDN for software distribution
 |Both
 
-|`\http://packages.ubuntu.com/`
+|`\http://packages.ubuntu.com`
 |Ubuntu prerequisite packages
 |Lite only (Ubuntu)
 
 |`\http://archive.ubuntu.com`
 |Ubuntu package archive
+|Lite only (Ubuntu)
+
+|`\http://security.ubuntu.com`
+|Ubuntu security package archive
 |Lite only (Ubuntu)
 
 |`\https://get.k3s.io`
@@ -114,8 +139,9 @@ For an online installation, the following endpoints must be reachable from the A
 |`\https://get.helm.sh`
 |Helm download (installer-initiated)
 |Lite only
-
 |===
+
+AI Data Engine also relies on NetApp Console for centralized authentication and console services. Refer to link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html[network access requirementsfor NetApp Console] for the endpoints required for Console and Console agent connectivity.
 
 Verify that DNS resolution for these endpoints is working from the AI Data Engine host before you begin deployment.
 
