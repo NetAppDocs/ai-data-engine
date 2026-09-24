@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: policies/manage-policies.html
 keywords: manage policies, edit policy, enable policy, disable policy, delete policy
-summary: Review your saved policies to see which files currently match each criteria set, and remove policies you no longer need.
+summary: Review your saved policies to see which files currently match each set of criteria, and remove policies you no longer need.
 ---
 = Manage policies in AI Data Engine
 :icons: font
@@ -37,7 +37,7 @@ Before you edit or delete a policy, review the files it currently matches to con
 .Before you begin
 * You must have the _AI Data Engine administrator_ role.
 
-CAUTION: Deletion is permanent and cannot be undone.
+CAUTION: Deletion is permanent and can't be undone.
 
 .Steps
 . From the AI Data Engine UI, select *Policies*.

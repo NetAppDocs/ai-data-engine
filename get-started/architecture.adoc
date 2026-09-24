@@ -23,7 +23,7 @@ The Metadata Engine is the core capability of AI Data Engine. It scans connected
 
 AI Data Engine requires a NetApp Console Agent deployed in your environment. The Console Agent is a general-purpose NetApp platform component that maintains connectivity between your on-premises environment and NetApp Console. It handles authentication and communication between your site and the AIDE service.
 
-NOTE: The Console Agent is not specific to AI Data Engine. If you already have a Console Agent deployed for other NetApp services, you can use the same agent. For Console Agent deployment instructions, refer to the link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html[NetApp Console Agent documentation].
+NOTE: The Console Agent isn't specific to AI Data Engine. If you already have a Console Agent deployed for other NetApp services, you can use the same agent. For Console Agent deployment instructions, refer to the link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html[NetApp Console Agent documentation].
 
 == Deployment models
 

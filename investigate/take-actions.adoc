@@ -101,9 +101,9 @@ Copying duplicates files to a destination volume without removing them from the 
 
 == Delete files
 
-Deleting permanently removes files from storage and cannot be undone.
+Deleting permanently removes files from storage and can't be undone.
 
-CAUTION: Deletion is permanent and cannot be undone. This action deletes source files even if they contain active data.
+CAUTION: Deletion is permanent and can't be undone. This action deletes source files even if they contain active data.
 
 .Before you begin
 * You must have the _AI Data Engine administrator_ role.

@@ -34,7 +34,7 @@ If the dashboard shows a large amount of cold or stale data, confirm the numbers
 //
 //* All previously connected storage systems appear in Configuration and are enabled for scanning.
 //* Existing policies are active and show expected matching file counts.
-//* A full rescan completes successfully. Catalog data is not carried over during migration, so findings only reflect current data after this rescan.
+//* A full rescan completes successfully. Catalog data isn't carried over during migration, so findings only reflect current data after this rescan.
 
 == Related information
 

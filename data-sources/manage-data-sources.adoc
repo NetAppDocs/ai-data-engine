@@ -76,7 +76,7 @@ Update the credentials that AI Data Engine uses to authenticate to SMB/CIFS shar
 
 == Enable or disable access to DP volumes
 
-Data protection (DP) volumes are NetApp SnapMirror destination volumes. By default, AI Data Engine does not scan DP volumes. You can enable or disable DP volume access per system.
+Data protection (DP) volumes are NetApp SnapMirror destination volumes. By default, AI Data Engine doesn't scan DP volumes. You can enable or disable DP volume access per system.
 
 .Steps
 . From the AI Data Engine UI, select *Configuration*.
