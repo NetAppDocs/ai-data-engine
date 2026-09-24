@@ -14,7 +14,7 @@ AI Data Engine scans your storage systems to collect and analyze metadata. To ad
 .Before you begin
 
 * You must have _AI Data Engine administrator_ privileges to connect and configure data sources in AI Data Engine.
-* Discover storage systems in NetApp Console using a Console Agent before adding them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery does not enable data services such as AI Data Engine.
+* Discover storage systems in NetApp Console using a Console Agent before adding them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery doesn't enable data services such as AI Data Engine.
 * Verify that the network connections required for AI Data Engine to reach your data sources are open. Refer to link:../deploy/aide-requirements.html[AI Data Engine requirements].
 
 == Add a data source
@@ -55,23 +55,12 @@ AI Data Engine scans your storage systems to collect and analyze metadata. To ad
 |System name, S3 endpoint URL, and S3 access key and secret key.
 
 |===
-//. Select the scan scope:
-//+
-//* *File shares group*: Select the share paths to include.
-//* *Database*: Select the schemas to activate.
-//* *StorageGRID*: Select the S3 buckets to include.
-//
-//. Configure scan settings.
-// RESEARCH: Confirm the exact scan settings options in the V2 UI (scan frequency, path exclusions, depth limits).
-//
-//. Enable or disable content intelligence for this data source.
-// RESEARCH: Confirm the exact UI label for the content intelligence toggle and what enabling it does.
 
 . Review your selections and select *Confirm* to add the data source.
 
 == Activate scanning
 
-After you configure a data source, scanning does not start automatically. You must activate scanning for each system.
+After you configure a data source, scanning doesn't start automatically. You must activate scanning for each system.
 
 .Steps
 . From the AI Data Engine UI, select *Configuration*.

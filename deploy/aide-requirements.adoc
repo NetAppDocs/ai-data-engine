@@ -64,23 +64,12 @@ The following network connections must be open:
 |===
 
 === Outbound internet access
-
 For an online installation, the following endpoints must be reachable from the AI Data Engine host:
-
 [cols="2,2,1",options="header"]
 |===
 |Endpoint |Purpose |Scope
-
 |`\https://api.console.netapp.com`
 |NetApp Console communication
-|Both
-
-|`\https://582244788873.dkr.ecr.us-east-1.amazonaws.com`
-|NetApp container registry (AIDE container images and Helm charts)
-|Both
-
-|`\https://s3.amazonaws.com`
-|AWS S3 (installer wrapper script, Helm charts, and component version catalog)
 |Both
 
 |`\https://netapp-cloud-account.auth0.com`
@@ -91,20 +80,56 @@ For an online installation, the following endpoints must be reachable from the A
 |Authentication services
 |Both
 
-|`\https://support.compliance.api.bluexp.netapp.com/`
+|`\https://582244788873.dkr.ecr.us-west-2.amazonaws.com`
+|NetApp container registry (AIDE container images)
+|Both
+
+|`\https://582244788873.dkr-ecr.us-west-2.on.aws`
+|NetApp container registry (dualstack/virtual private cloud (VPC) endpoint access)
+|Both
+
+|`\https://api.ecr.us-west-2.amazonaws.com`
+|AWS ECR API (authentication and image manifest retrieval)
+|Both
+
+|`\https://prod-us-west-2-starport-layer-bucket.s3.us-west-2.amazonaws.com`
+|AWS S3 (ECR container image layer storage)
+|Both
+
+|`\https://prod-us-west-2-starport-layer-bucket.s3.amazonaws.com`
+|AWS S3 (ECR container image layer storage)
+|Both
+
+|`\https://s3.us-west-2.amazonaws.com`
+|AWS S3 (installer wrapper script, Helm charts, and component version catalog)
+|Both
+
+|`\https://s3.amazonaws.com`
+|AWS S3 (installer wrapper script, Helm charts, and component version catalog)
+|Both
+
+|`\https://sts.us-west-2.amazonaws.com`
+|AWS STS (temporary credential exchange for registry and S3 access)
+|Both
+
+|`\https://support.compliance.api.bluexp.netapp.com`
 |Software images, manifests, and templates; logs and metrics streaming
 |Both
 
-|`\https://dseasb33srnrn.cloudfront.net/`
-|CDN for software image distribution
+|`\https://dseasb33srnrn.cloudfront.net`
+|CloudFront CDN for software distribution
 |Both
 
-|`\http://packages.ubuntu.com/`
+|`\http://packages.ubuntu.com`
 |Ubuntu prerequisite packages
 |Lite only (Ubuntu)
 
 |`\http://archive.ubuntu.com`
 |Ubuntu package archive
+|Lite only (Ubuntu)
+
+|`\http://security.ubuntu.com`
+|Ubuntu security package archive
 |Lite only (Ubuntu)
 
 |`\https://get.k3s.io`
@@ -114,8 +139,9 @@ For an online installation, the following endpoints must be reachable from the A
 |`\https://get.helm.sh`
 |Helm download (installer-initiated)
 |Lite only
-
 |===
+
+AI Data Engine also relies on NetApp Console for centralized authentication and console services. Refer to link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html[network access requirements for NetApp Console^] for the endpoints required for Console and Console agent connectivity.
 
 Verify that DNS resolution for these endpoints is working from the AI Data Engine host before you begin deployment.
 
@@ -175,7 +201,7 @@ What drives the sizing recommendations::
 
 What happens if you undersize::
 +
-Provisioning below the recommended size does not prevent installation or cause service failures. The system remains operational and scanning continues, but you can expect the following:
+Provisioning below the recommended size doesn't prevent installation or cause service failures. The system remains operational and scanning continues, but you can expect the following:
 +
 * *Extended initial catalog duration*: Reduced compute lowers objects scanned per day. For example, a deployment targeting 3 billion objects but provisioned at a smaller size can take significantly longer than the three to four day target.
 * *Reduced ongoing ingest throughput*: New file events and incremental scan updates process more slowly under sustained load.
@@ -188,7 +214,7 @@ AIDE Lite runs on a single VM, so scaling is vertical:
 * Increase vCPU, memory, or storage on the host VM.
 * No cluster reconfiguration or reinstallation is required.
 +
-NOTE: AIDE Lite does not support high availability or horizontal scale-out. If your environment consistently exceeds 3 billion files, or you require high availability and fault tolerance, deploy link:deploy-enterprise.html[AIDE Enterprise] instead.
+NOTE: AIDE Lite doesn't support high availability or horizontal scale-out. If your environment consistently exceeds 3 billion files, or you require high availability and fault tolerance, deploy link:deploy-enterprise.html[AIDE Enterprise] instead.
 
 === Operating system
 
@@ -209,7 +235,7 @@ NOTE: AIDE Lite does not support high availability or horizontal scale-out. If y
 * You have root or sudo access on the target VM to run the installer.
 * A 1 GbE minimum network connection (10 GbE for Large deployments).
 * The target host must have bash 4.0 or later, curl, and tar available.
-* The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. Pre-installing these tools on the target VM is not required.
+* The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. Pre-installing these tools on the target VM isn't required.
 * Ports 6443 (TCP), 10250 (TCP), and 8472 (UDP) must be free on the host before the installer starts. If a host firewall (`firewalld` on RHEL or `ufw` on Ubuntu) is active, allow these ports and the k3s pod CIDR (`10.44.0.0/16`) and service CIDR (`10.45.0.0/16`) before running the installer. Refer to your OS firewall documentation for the required commands.
 * On RHEL systems running SELinux in Enforcing mode, the installer automatically configures the required SELinux policy packages. No manual SELinux configuration is needed.
 
@@ -218,12 +244,10 @@ NOTE: AIDE Lite does not support high availability or horizontal scale-out. If y
 * You have kubectl access with cluster-admin privileges on the machine from which you run the installer.
 * You have Sudo (or root) permissions on the machine from which you run the install command.
 * RKE2 v1.34 or later (v1.36.x recommended) is installed on the target cluster.
-* The installer host automatically downloads and bootstraps `helm`, `kubectl`, and `jq` via `--tools-dir`. Pre-installing these tools on the management machine is not required.
-
+* The installer host automatically downloads and bootstraps `helm`, `kubectl`, and `jq` via `--tools-dir`. Pre-installing these tools on the management machine isn't required.
 * A configured StorageClass (default name `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
 * An NFS server with at least one exported path is available, used for the AIDE configuration data volume and shared index snapshots.
-
-* A target Kubernetes namespace (default `aide`) already exists on the cluster; the installer does not create it
+* A target Kubernetes namespace (default `aide`) already exists on the cluster; the installer doesn't create it.
 
 NOTE: NVMe or high-performance SSD storage is recommended for all Enterprise node deployments.
 
@@ -283,7 +307,7 @@ What drives the sizing recommendations::
 
 What happens if you undersize::
 +
-Provisioning below the recommended size does not prevent installation or cause hard failures. Practical impacts include:
+Provisioning below the recommended size doesn't prevent installation or cause hard failures. Practical impacts include:
 +
 * *Extended initial catalog duration*: Fewer nodes or reduced per-node resources lower throughput, extending the initial catalog window proportionally.
 * *Increased processing latency under peak load*: Insufficient memory across the cluster can cause elevated processing latency during high-volume ingestion periods. Ongoing operations are not interrupted, but sustained throughput is reduced.

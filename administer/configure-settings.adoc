@@ -13,11 +13,11 @@ AI Data Engine classifies files as cold or stale based on time thresholds you de
 
 == What is cold and stale data?
 
-Cold data:: Files that have not been accessed within the configured cold data threshold. Cold data is a key metric your organization can use to identify storage that could be optimized according to your retention and business policies.
+Cold data:: Files that haven't been accessed within the configured cold data threshold. Cold data is a key metric your organization can use to identify storage that could be optimized according to your retention and business policies.
 
-Stale data:: Files that have not been accessed or modified within the configured stale data threshold. Stale data includes files that are occasionally accessed but not recently modified, which your organization can monitor or manage according to your policies.
+Stale data:: Files that haven't been accessed or modified within the configured stale data threshold. Stale data includes files that are occasionally accessed but not recently modified, which your organization can monitor or manage according to your policies.
 
-NOTE: The default threshold values are product defaults provided as a starting point. They do not represent legal, compliance, or industry-standard retention periods. Set thresholds that reflect your organization's specific policies and requirements.
+NOTE: The default threshold values are product defaults provided as a starting point. They don't represent legal, compliance, or industry-standard retention periods. Set thresholds that reflect your organization's specific policies and requirements.
 
 Changes to either threshold take effect after the next scan cycle completes.
 

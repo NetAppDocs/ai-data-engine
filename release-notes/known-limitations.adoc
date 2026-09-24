@@ -9,7 +9,7 @@ summary: Known limitations identify functionality that is not supported in this 
 :imagesdir: ../media/
 
 [.lead]
-Known limitations identify functionality that is not supported in this release of AI Data Engine, or functionality that does not interoperate correctly. Review these limitations before deploying or using the product.
+Known limitations identify functionality that isn't supported in this release of AI Data Engine, or functionality that doesn't interoperate correctly. Review these limitations before deploying or using the product.
 
 == Deployment
 
@@ -23,8 +23,8 @@ When you create a policy, the available automated actions are limited to permane
 
 == Tags
 
-Tags cannot be deleted or renamed::
-Tag management is not available in this release. After you create a tag, it remains available in the system. You can apply a tag to items and remove it from items, but you cannot delete the tag definition itself or correct a tag name that contains a typo. 
+Tags can't be deleted or renamed::
+Tag management isn't available in this release. After you create a tag, it remains available in the system. You can apply a tag to items and remove it from items, but you can't delete the tag definition itself or correct a tag name that contains a typo. 
 
 == Related information
 

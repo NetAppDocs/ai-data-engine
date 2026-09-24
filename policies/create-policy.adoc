@@ -59,7 +59,7 @@ The policy is saved and appears on the link:manage-policies.html[Policies] page.
 
 == Example: identify cold archive files
 
-The following example creates a policy to send an email notification when files that have not been accessed in over a year are detected.
+The following example creates a policy to send an email notification when files that haven't been accessed in over a year are detected.
 
 . In Investigation, apply these filters:
 +

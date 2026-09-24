@@ -14,7 +14,7 @@ These AI Data Engine workflows take you from identifying a storage problem on th
 == Identify and act on cold data
 
 .Scenario
-You notice on the dashboard that a storage resource has a large amount of data flagged as cold. Cold files have not been accessed within the configured cold data threshold, which defaults to one year and is configurable in *Configuration* > *Settings*.
+You notice on the dashboard that a storage resource has a large amount of data flagged as cold. Cold files haven't been accessed within the configured cold data threshold, which defaults to one year and is configurable in *Configuration* > *Settings*.
 
 .Steps
 . From link:../investigate/understand-dashboard.html[the dashboard], identify the resource with the highest concentration of cold data and select *Investigate*.

@@ -9,14 +9,14 @@ summary: Find and classify files as cold, stale, or large across NFS and SMB/CIF
 :imagesdir: ../media/
 
 [.lead]
-When file-based storage is growing unexpectedly, filter by last-access time, file size, and owner to find which files are consuming capacity. For example, a storage administrator can identify terabytes of VM snapshots that have not been accessed in over a year and evaluate whether to archive, delete, or retain them.
+When file-based storage is growing unexpectedly, filter by last-access time, file size, and owner to find which files are consuming capacity. For example, a storage administrator can identify terabytes of VM snapshots that haven't been accessed in over a year and evaluate whether to archive, delete, or retain them.
 
 .Before you begin
 * At least one data source must be connected and scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
 
 == Find cold or stale files by last-access time
 
-Use date-based filters to identify files that have not been accessed within your organization's cold or stale data thresholds. Thresholds are configurable in *Configuration* > *Settings*. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
+Use date-based filters to identify files that haven't been accessed within your organization's cold or stale data thresholds. Thresholds are configurable in *Configuration* > *Settings*. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
 
 .Steps
 . From the AI Data Engine UI, select *Investigation*.
