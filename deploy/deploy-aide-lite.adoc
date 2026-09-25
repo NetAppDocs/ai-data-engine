@@ -38,17 +38,6 @@ These sizes are recommended baselines, not hard limits. See link:aide-requiremen
 . Run the install command with any configuration size adjustments on your target host.
 +
 NOTE: Installation takes about 45 minutes to complete. Timeouts and retries might occur, and this is normal.
-// The install command shown here may require command-line customizations after the wizard behavior is confirmed.
-// [source,bash]
-// ----
-// sudo ./install-lite.sh \
-//   --flavor <small|medium|large> \
-//   --account-id <account-id> \
-//   --organization-id <organization-id> \
-//   --agent-id <agent-id> \
-//   --cm-host <console-agent-ip> \
-//   --user-token <token>
-// ----
 
 . When prompted, confirm the host IP address and user ID to continue the installation.
 . Monitor the progress screen until the success screen appears and displays "AI Data Engine deployed".
