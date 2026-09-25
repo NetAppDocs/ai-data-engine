@@ -1,0 +1,112 @@
+---
+sidebar: sidebar
+permalink: data-sources/manage-data-sources.html
+keywords: manage, data source, storage system, scanned systems, pause scanning, resume scanning, scan all, retry scans, CIFS credentials, DP volumes, deactivate, scan status, scan errors, scanning toggle
+summary: Monitor scan status and manage your connected data sources, including pausing scans, editing credentials, enabling DP volume access, and deactivating systems.
+---
+= Manage data sources in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+After connecting data sources, you can monitor their scan status and manage them from the *Scanned systems* tab. Use these procedures to pause or resume scanning, update credentials, adjust data access settings, and deactivate systems you no longer need to scan.
+
+== View scan status and details
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. On the *Scanned systems* tab, locate the system you want to review.
+. Select the system row to open the detail view.
++
+The detail view shows:
++
+* A status overview with current scan progress
+* A breakdown of data resource scan states: running, completed, paused, and errors
+* Scan permission mode (for example, "Scan without write permissions")
++
+If scan errors appear, expand the error details to see which volumes or shares are affected and the reason for the failure.
+
+== Pause scanning
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. On the *Scanned systems* tab, locate the system you want to pause.
+. Select the system row to open the detail view.
+. Select *Pause*.
+
+== Resume scanning
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. On the *Scanned systems* tab, locate the paused system.
+. Select the system row to open the detail view.
+. Select *Resume*.
+
+== Scan all data resources
+
+Trigger an immediate scan of all data resources on a system. Use this to refresh metadata after a significant data change.
+// RESEARCH: Confirm whether "Scan all volumes" and "Activate scans" share the same underlying action; confirm the exact kebab menu label in the V2 UI.
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. On the *Scanned systems* tab, locate the system you want to scan.
+. Select the actions menu next to the system.
+. Select *Scan all volumes* (there is an equivalent option in the actions menu for shares and buckets).
+
+== Retry failed scans
+
+Requeue data resources that are in a failed or error state. Resolve the root cause first, such as a credential issue, network error, or permission problem, before retrying.
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. On the *Scanned systems* tab, locate the system with failed scans.
+. Select the actions menu next to the system.
+. Select *Retry all scans*.
+
+== Edit CIFS credentials
+
+Update the credentials that AI Data Engine uses to authenticate to SMB/CIFS shares.
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. On the *Scanned systems* tab, locate the SMB/CIFS system.
+. Select the system row to open the detail view.
+. Select *Edit CIFS credentials*.
+. Enter the updated username and password, then select *Save*.
+
+== Enable or disable access to DP volumes
+
+Data protection (DP) volumes are NetApp SnapMirror destination volumes. By default, AI Data Engine doesn't scan DP volumes. You can enable or disable DP volume access per system.
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. On the *Scanned systems* tab, locate the system.
+. Select the system row to open the detail view.
+. Select *Enable access to DP volumes* or *Disable access to DP volumes*.
+
+== Enable or disable scanning of specific shares, buckets, or volumes
+
+After you connect and scan a data source, you can enable or disable scanning for individual volumes or shares without reconfiguring the entire system. Use this to refine scan scope after initial setup. For example, you might want to exclude volumes that contain data you don't need to analyze, or to add volumes that weren't selected or available during initial scanning.
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. On the *Scanned systems* tab, locate the system you want to update.
+. Select *View details* in the system row.
+. In the data resources list, locate the volume, bucket, or share you want to change.
+. Use the *Scanning* toggle to enable or disable scanning for that resource.
+
+== Deactivate AI Data Engine for a system
+
+Deactivating a system stops all scanning and removes it from active scan coverage. The system configuration is preserved, and you can reactivate the system at any time by selecting *Activate scans* on the system row.
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. On the *Scanned systems* tab, locate the system you want to deactivate.
+. Select the actions menu next to the system.
+. Select *Deactivate AI Data Engine*.
+
+== Related information
+
+* link:connect-data-source.html[Connect a data source]
+* link:monitor-scanning-health.html[Monitor scanning health]
+* link:../investigate/understand-dashboard.html[Assess storage utilization from the dashboard]

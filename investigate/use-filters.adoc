@@ -1,0 +1,118 @@
+---
+sidebar: sidebar
+permalink: investigate/use-filters.html
+keywords: filters, metadata filters, file type, last accessed, last modified, tags, policy, investigation
+summary: Reference for the metadata filters available in the AI Data Engine Investigation view.
+---
+= Metadata filters in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+The AI Data Engine Investigation view provides metadata filters to narrow your results to a specific data grouping. Apply one or more filters simultaneously to define the files you want to examine or act on.
+
+== Time filters
+
+[cols="1,2",options="header"]
+|===
+|Filter |Description
+
+|Last created
+|Filter files by the date they were created.
+
+|Last modified
+|Filter files by the date they were last modified.
+
+|Last accessed
+|Filter files by the date they were last accessed. Use this filter to identify cold or stale data.
+
+|Discovered time
+|Filter files by when AI Data Engine first detected them during scanning.
+
+|===
+
+== File attribute filters
+
+[cols="1,2",options="header"]
+|===
+|Filter |Description
+
+|File Type
+|Filter by file extension or type classification. Select one or more file types from the list.
+
+|File Size
+|Filter by file size. Enter a minimum value, a maximum value, or a range.
+
+|File / Directory Path
+|Filter by the full or partial path of the file or its containing directory.
+
+|File / Directory Owner
+|Filter by the user or group that owns the file or directory.
+
+|File Hash
+|Filter by a file's hash value to find specific files or confirm duplicate content.
+
+|Duplicates
+|Filter to show only files that have duplicate copies detected in the catalog.
+
+|Directory Type
+|Filter by directory type. Applies to the Directories tab.
+
+|===
+
+== Source filters
+
+[cols="1,2",options="header"]
+|===
+|Filter |Description
+
+|Data Container
+|Filter to a specific volume or share.
+
+|System
+|Filter to a specific cluster.
+
+|System Type
+|Filter by the type of storage system.
+
+|===
+
+== Governance filters
+
+[cols="1,2",options="header"]
+|===
+|Filter |Description
+
+|Tags
+|Filter files that have a specific business tag applied.
+
+|Policy
+|Filter files that match a specific saved policy. Policy names appear in the filter list.
+
+|===
+
+== Access filters
+
+[cols="1,2",options="header"]
+|===
+|Filter |Description
+
+|Number of users with access
+|Filter files by how many users or groups have access. Use this to identify broadly accessible data.
+
+|Users / Group permission
+|Filter files by a specific user or group that has access permissions.
+
+|===
+
+== Combining filters
+
+Filters are combined with AND logic, meaning the results must match all applied filters simultaneously.
+
+== Related information
+
+* link:investigate-data.html[Investigate your data]
+* link:investigate-unstructured.html[Investigate unstructured data]
+* link:investigate-structured.html[Investigate structured data]
+* link:investigate-directories.html[Investigate directories]
+* link:../policies/create-policy.html[Create a policy]

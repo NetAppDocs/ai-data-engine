@@ -1,0 +1,56 @@
+---
+sidebar: sidebar
+permalink: investigate/investigate-directories.html
+keywords: investigate, directories, permissions, org-wide access, open access, directory owner, overly permissive, exposed directories
+summary: Audit directory-level permissions across your storage systems to find broadly accessible paths, review who has access, and save findings as a reusable policy.
+---
+= Investigate directories in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+When you need to identify which directories are exposed to more users than intended, filter by permissions to find folders that are open to the entire organization. For example, a security administrator who sees exposed directories flagged on the dashboard can find all directories with org-wide access, review who holds read and write permissions, and create a policy to monitor for new exposures after each scan.
+
+.Before you begin
+* At least one data source must be connected and scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
+
+== Find broadly accessible directories
+
+Use permission filters to identify directories that are open beyond the intended audience.
+
+.Steps
+. From the AI Data Engine UI, select *Investigation*.
+. Select the *Directories* tab.
++
+The table displays directory name (full path), data container, directory owner, directory type, and system.
+. Select *Add filter*, then select *Open permissions*.
+. Set the filter to *Open to organization* to surface directories accessible org-wide.
++
+The results table updates to show directories matching the permission criteria, including the last accessed date and permission status.
+
+For a complete list of available filters, refer to link:use-filters.html[Work with filters].
+
+== Review directory permissions
+
+Select a directory row to open the detail panel and review who has access.
+
+The detail panel shows the directory type, system, directory owner, and a permissions summary (for example, "Open to organization"). Select *View permissions* to see a breakdown of read and write access for each user or group with access to the directory.
+
+Use this information to confirm whether the access level is intentional before creating a policy or escalating to the directory owner.
+
+== Save findings as a policy
+
+After filtering to identify broadly accessible directories, save the criteria as a policy to monitor for new exposures after each scan cycle.
+
+.Steps
+. With your permission filters applied, select *Create policy* in the filter toolbar.
+. Complete the policy form. Refer to link:../policies/create-policy.html[Create a policy].
+
+To download the filtered results from the Directories tab, select image:icon_download_file.png[Download].
+
+== Related information
+
+* link:use-filters.html[Work with filters]
+* link:../policies/create-policy.html[Create a policy]
+* link:../administer/manage-users-roles.html[Manage users and roles]
+* link:understand-dashboard.html[Assess storage utilization from the dashboard]

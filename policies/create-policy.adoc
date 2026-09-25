@@ -1,0 +1,77 @@
+---
+sidebar: sidebar
+permalink: policies/create-policy.html
+keywords: create policy, save query, policy, filters, actions, automation
+summary: Save investigation filter criteria as a named policy so you can track the same data grouping over time and get notified when conditions change.
+---
+= Create a policy in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Create a policy when you want to monitor a recurring data condition without repeating the same investigation manually. For example, a data governance manager can save a "large stale files" policy to track that grouping across scan cycles and receive an email update when the impacted file count changes.
+
+== About policies
+
+Policies save the filter criteria you define in Investigation as a reusable rule. AI Data Engine evaluates each policy against the metadata catalog after every scan cycle. You can open a policy at any time to view the current matching result set. If you attach a Delete action, AI Data Engine removes matching files after each scan cycle. If you attach an email notification, AI Data Engine sends an update when the impacted file count changes.
+
+== Choose a policy action
+
+A policy is a saved filter set with an optional action attached:
+
+* *Monitor only (no action)*: Track the matching grouping over time without acting. Use this when you want visibility without committing to an automated response.
+* *Send email notification*: Notify a user by email when the matching file count changes.
+* *Delete permanently*: Permanently and automatically remove all matching files after each scan cycle without further confirmation. This action is irreversible. Verify that your filter criteria are precise and that you are authorized to delete the identified files before attaching this action.
+
+== Create a policy from Investigation
+
+.Before you begin
+* To attach a Delete or email notification action, you must have the _AI Data Engine administrator_ role. The _AI Data Engine viewer_ role can create monitor-only policies.
+
+.Steps
+. In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
+. Apply one or more filters that identify the files you want the policy to target.
++
+For example: *File Type* = .vmdk AND *Last Accessed Time* > 365 days.
++
+Review the results table to confirm the filter set captures the intended data grouping.
+
+. In the filter action bar, select *Create policy*.
+
+. Enter a *Policy name*.
+
+. Optionally, enter a *Description* (up to 500 characters).
+
+. Review the filter criteria expression (for example, `last_access_time <= 3 Years AND file_size >= 5GiB`) to confirm it reflects your selections.
+
+. To attach an action, select one of the following under *Action*:
++
+* *Monitor only (no action)* (default): The policy saves as a monitor-only condition.
+* *Send email notification*: Sends an email notification to the recipient you specify.
+* *Delete permanently*: No additional input is required.
++
+CAUTION: The Delete permanently action automatically and irreversibly deletes all files matching this policy after every scan cycle. Verify your filter criteria and confirm you are authorized to delete these files before saving.
+
+. Select *Create*.
+
+.Result
+The policy is saved and appears on the link:manage-policies.html[Policies] page. If you associated an action, AI Data Engine applies that action to files that match the policy criteria.
+
+== Example: identify cold archive files
+
+The following example creates a policy to send an email notification when files that haven't been accessed in over a year are detected.
+
+. In Investigation, apply these filters:
++
+* *Last Accessed Time* > 365 days
+
+. Select *Create policy*.
+. Enter the policy name: *Cold Files — Unaccessed 1 Year*.
+. Select the action *Send email notification* and enter the recipient email address.
+. Select *Create*.
+
+== Related information
+
+* link:manage-policies.html[Manage policies]
+* link:../investigate/take-actions.html[Take action on your data]
+* link:../investigate/investigate-data.html[Investigate your data]

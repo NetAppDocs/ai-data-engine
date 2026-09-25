@@ -1,0 +1,66 @@
+---
+sidebar: sidebar
+permalink: deploy/deploy-enterprise.html
+keywords: deploy, install, enterprise, wizard, NetApp Console, deployment wizard, kubernetes, RKE2
+summary: Deploy AIDE Enterprise from NetApp Console using the deployment wizard.
+---
+= Deploy AI Data Engine Enterprise
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Deploy AIDE Enterprise from NetApp Console using the deployment wizard. The wizard guides you through selecting your installation location, choosing a configuration size, and running the install command against your RKE2 cluster.
+
+.Before you begin
+
+* You have _Organization admin_ or greater permissions in NetApp Console.
+* Your RKE2 cluster meets the Enterprise node prerequisites described in link:aide-requirements.html[AIDE requirements].
+* Sudo (or root) permissions are required on the machine from which you run the install command.
+* An NFS server with an exported path is available and reachable from the cluster for the AIDE config volume.
+* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the cluster nodes. The Console Agent IP is required to run the install command.
+* kubectl is available on the machine from which you run the install command, with cluster-admin access to the target cluster.
+* The target Kubernetes namespace (default `aide`) already exists on the cluster before you run the install command.
+* A configured StorageClass (default name: `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
+
+.Steps
+. In NetApp Console, navigate to *Governance* > *AI Data Engine*.
++
+The AI Data Engine landing page appears.
+
+. Select *Deploy AI Data Engine*.
+. Select the *Enterprise* deployment option and select *Next*.
+. Copy the preconfigured install command displayed in the wizard to an editor.
+. Select your configuration size:
++
+* *Small*: recommended for environments with up to approximately 1 billion files.
+* *Medium (Default)*: recommended for environments with up to approximately 3 billion files.
+* *Large*: recommended for environments with up to approximately 6 billion files.
++
+These sizes are recommended baselines, not hard limits. AIDE Enterprise supports environments beyond 6 billion files through horizontal scale-out; see link:aide-requirements.html#flexible-sizing-enterprise[flexible sizing guidelines] for details.
+
+. For small or large configurations, adjust the install command to reflect the chosen size: `--flavor <small|medium|large>`
+
+. Run the install command with any configuration size adjustments from your target host with kubectl access to your RKE2 cluster.
++
+NOTE: Installation takes about 30 minutes to complete. Timeouts and retries might occur, and this is normal.
+// The install command shown here may require command-line customizations after the wizard behavior is confirmed.
+// [source,bash]
+// ----
+// sudo ./install-enterprise.sh \
+//   --flavor <small|medium|large> \
+//   --registry <registry-host> \
+//   --nfs-server <nfs-server-host> \
+//   --nfs-data-share <nfs-export-path> \
+//   --storage-class <storage-class-name> \
+//   --account-id <account-id> \
+//   --organization-id <organization-id> \
+//   --agent-id <agent-id> \
+//   --cm-host <console-agent-ip> \
+//   --user-token <token>
+// ----
+
+. When prompted, confirm the host IP address and user ID to continue the installation.
+. Monitor the progress screen until the success screen appears and displays "AI Data Engine deployed".
+
+.Result
+AI Data Engine Enterprise is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.

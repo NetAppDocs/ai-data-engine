@@ -1,0 +1,136 @@
+---
+sidebar: sidebar
+permalink: investigate/take-actions.html
+keywords: actions, tag, archive, delete, data lifecycle, storage optimization, breadcrumb
+summary: Act on files you have identified as cold, stale, or obsolete by archiving them, tagging items for tracking, or permanently deleting what you no longer need.
+---
+= Take action on your data in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+After identifying files using your defined filters, you can take direct action to enforce your organization's data lifecycle policies. For example, a storage administrator who filters to find terabytes of VM snapshots not accessed in over a year can archive them in bulk to a cold storage share, or delete them, depending on retention requirements and business policies.
+
+.About this task
+To take action, select one or more items in the Investigation results table using the checkboxes. The action toolbar activates with four options: *Delete*, *Archive*, *Copy*, and *Tag*.
+
+The actions available to you depend on your assigned role:
+
+[cols="2,1,1",options="header"]
+|===
+|Action |AI Data Engine administrator |AI Data Engine viewer
+
+|Tag
+|Yes
+|Yes
+
+|Archive
+|Yes
+|-
+
+|Copy
+|Yes
+|-
+
+|Delete
+|Yes
+|-
+
+|===
+
+For a full description of roles, refer to link:../administer/manage-users-roles.html[Manage users and roles].
+
+== Decide what to do
+
+Choose an action based on how certain you are about the data:
+
+[cols="1,2",options="header"]
+|===
+|Action |When to use it
+
+|Tag
+|You need more time, or need to coordinate with another team, before committing to archive or delete. Tagging tracks the files without changing their location.
+
+|Archive
+|The data might still have value, but it doesn't belong in primary storage. Archiving moves it to a lower-cost destination while keeping it recoverable.
+
+|Copy
+|The data should exist in a second location, for example for backup or migration purposes. Copying preserves the original in place.
+
+|Delete
+|The data is no longer needed and has no retention requirements. Deletion is permanent, so use it only when you are sure.
+
+|===
+
+When data might still have value or require further review, choose tagging, archiving, or copying over deleting. Only delete when you are certain the data is safe to remove permanently.
+
+== Archive files
+
+Archiving moves files to a cold storage destination over NFS or SMB/CIFS. You can optionally leave a breadcrumb file at the original location.
+
+.Before you begin
+* You must have the _AI Data Engine administrator_ role.
+
+.Steps
+. In the Investigation view, select the files you want to archive.
+. Select *Archive*.
+. In the Archive dialog, select the destination volume protocol:
++
+* *NFS*: enter the NFS destination folder path.
+* *CIFS*: enter the CIFS destination folder path in the format `\\Hostname\share_name`. Provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
+. To create a breadcrumb file at the original location, enable *Leave breadcrumb*.
++
+A breadcrumb file helps users understand why a file was moved.
+. Select *Archive*.
+
+== Copy files
+
+Copying duplicates files to a destination volume without removing them from the original location.
+
+.Before you begin
+* You must have the _AI Data Engine administrator_ role.
+
+.Steps
+. In the Investigation view, select the files you want to copy.
+. Select *Copy*.
+. In the Copy dialog, select the destination volume protocol:
++
+* *NFS*: enter the NFS destination folder path.
+* *CIFS*: enter the CIFS destination folder path in the format `\\Hostname\share_name`. Provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
+. Select *Copy*.
+
+== Delete files
+
+Deleting permanently removes files from storage and can't be undone.
+
+CAUTION: Deletion is permanent and can't be undone. This action deletes source files even if they contain active data.
+
+.Before you begin
+* You must have the _AI Data Engine administrator_ role.
+
+.Steps
+. In the Investigation view, select the files you want to delete.
+. Select *Delete*.
+. In the Delete dialog, type *permanently delete* in the confirmation field.
+. Select *Delete*.
+
+.Result
+The selected files are permanently deleted from storage.
+
+== Tag files
+
+Tagging applies a business tag to files for classification and tracking.
+
+.Steps
+. In the Investigation view, select the files you want to tag.
+. Select *Tag*.
+. Enter or select the tags to apply (for example, "Archive candidate").
+. Confirm to apply the tags.
+
+== Related information
+
+* link:investigate-data.html[Investigate your data]
+* link:investigate-unstructured.html[Investigate unstructured data]
+* link:use-filters.html[Work with filters]
+* link:../policies/create-policy.html[Create a policy]
+* link:../administer/manage-users-roles.html[Manage users and roles]

@@ -1,0 +1,50 @@
+---
+sidebar: sidebar
+permalink: policies/manage-policies.html
+keywords: manage policies, edit policy, enable policy, disable policy, delete policy
+summary: Review your saved policies to see which files currently match each set of criteria, and remove policies you no longer need.
+---
+= Manage policies in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+When you want to review which of your saved policies match data, compare impacted file counts to prioritize actions, or remove policies you no longer need, use the Policies page. For example, a storage administrator with several cold-data policies can compare impacted file counts to decide which data groupings need attention first.
+
+Each policy listing shows the count of files and objects currently matching its criteria. Use this count to identify which policies are actively capturing data worth reviewing.
+
+== Check which files match a policy
+
+Before you edit or delete a policy, review the files it currently matches to confirm the criteria are still capturing the right data.
+
+.Steps
+. From the AI Data Engine UI, select *Policies*.
+. Open the action menu next to the policy and select *Investigate results*.
+
+== Edit a policy
+
+.Before you begin
+* You must have the _AI Data Engine administrator_ role.
+
+.Steps
+. From the AI Data Engine UI, select *Policies*.
+. Open the action menu for the policy you want to edit and select *Edit policy*.
+. Update the policy name, description, or action as needed.
+. Select *Save*.
+
+== Delete a policy
+
+.Before you begin
+* You must have the _AI Data Engine administrator_ role.
+
+CAUTION: Deletion is permanent and can't be undone.
+
+.Steps
+. From the AI Data Engine UI, select *Policies*.
+. Open the action menu for the policy you want to delete and select *Delete policy*.
+. Confirm the deletion in the preview dialog.
+
+== Related information
+
+* link:create-policy.html[Create a policy]
+* link:../investigate/take-actions.html[Take action on your data]

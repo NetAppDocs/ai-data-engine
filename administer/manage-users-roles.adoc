@@ -1,0 +1,97 @@
+---
+sidebar: sidebar
+permalink: administer/manage-users-roles.html
+keywords: roles, users, permissions, AI data engine administrator, AI data engine viewer
+summary: Control access by assigning each user an administrator or viewer role. Learn about the two roles and their permissions.
+---
+= Manage users and roles in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Control what each user can view and do in AI Data Engine by assigning them an administrator or viewer role. Before your team starts using AI Data Engine, assign each user the role that matches their required level of access.
+
+You assign roles through NetApp Console organization settings. AI Data Engine supports two roles.
+
+== Available roles
+
+=== AI Data Engine administrator
+
+The AI Data Engine administrator role provides full access to all AI Data Engine capabilities. NetApp recommends assigning this role to no more than two or three users per deployment.
+
+=== AI Data Engine viewer
+
+The AI Data Engine viewer role provides limited access to AI Data Engine. Viewers can view information, export reports, tag files, and create monitor-only policies, but can't modify settings or perform file actions such as archive, copy, or delete.
+
+== Permissions by role
+
+[cols="3,1,1",options="header"]
+|===
+|Capability |AI Data Engine administrator |AI Data Engine viewer
+
+|Manage users and roles
+|Yes
+|-
+
+|Manage data resources
+|Yes
+|-
+
+|System configuration
+|Yes
+|-
+
+|View dashboards
+|Yes
+|Yes
+
+|Search metadata (Investigation)
+|Yes
+|Yes
+
+|Export reports
+|Yes
+|Yes
+
+|Create monitor-only policies
+|Yes
+|Yes
+
+|Create policies with actions
+|Yes
+|-
+
+|Actions: Tag
+|Yes
+|Yes
+
+|Actions: Archive, Copy, Delete
+|Yes
+|-
+
+|Manage business tags
+|Yes
+|Yes
+
+|===
+
+== Assign a role to a user
+
+You assign roles in NetApp Console, not within AI Data Engine itself.
+
+.Steps
+
+. From NetApp Console, go to *Members*.
+. Do one of the following:
+* To add a new user, select *Add user* and enter the user's email address.
+* To update an existing user, select the user from the list.
+. Select the organization, folder, or project, and then choose the *Data Service* category.
+. Assign the *AI data engine administrator* or *AI data engine viewer* role.
+. Save your changes.
+
+The user receives an email invitation and can access AI Data Engine after accepting it.
+
+== Related information
+
+* link:../investigate/take-actions.html[Take action on your data]
+* link:../policies/create-policy.html[Create a policy]

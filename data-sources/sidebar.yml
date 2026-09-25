@@ -1,0 +1,9 @@
+section: data-sources
+title: Connect data sources
+entries:
+  - title: Connect a data source
+    url: /data-sources/connect-data-source.html
+  - title: Manage data sources
+    url: /data-sources/manage-data-sources.html
+  - title: Monitor scanning health
+    url: /data-sources/monitor-scanning-health.html

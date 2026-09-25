@@ -1,14 +1,56 @@
 indexpage:
-  title: # Unquoted string 
-  lead: # Quoted string
-  summary: # Quoted string 
-  keywords: # Unquoted comma-delimited list of keywords 
-  tiles: 
-    # Tile definition 
-    - title: # Quoted or unquoted string
-      links: 
-        # Link definition
-        - title: # Quoted or unquoted string
-          url: # Path to target
-        # Next link on this tile (title/url pair)
-    # Next tile on this page (title/links)
+  title: AI Data Engine documentation
+  lead: "AI Data Engine gives you visibility into the unstructured data stored on your NetApp systems. Use it to identify storage optimization opportunities, investigate your data, and enforce lifecycle policies."
+  summary: "AI Data Engine documentation covers how to deploy, connect data sources, and use AI Data Engine for storage optimization, metadata investigation, and data governance."
+  keywords: ai data engine, aide, storage optimization, investigation, policies, data governance, NetApp Console
+  tiles:
+    - title: Get started
+      links:
+        - title: Learn about AI Data Engine
+          url: /get-started/learn-about.html
+        - title: AI Data Engine architecture
+          url: /get-started/architecture.html
+        - title: Quick start
+          url: /get-started/quick-start.html
+        - title: Explore storage optimization workflows
+          url: /get-started/storage-optimization-workflows.html
+    - title: Deploy
+      links:
+        - title: Deployment overview
+          url: /deploy/deployment-overview.html
+        - title: AIDE requirements
+          url: /deploy/aide-requirements.html
+        - title: Deploy AIDE Lite
+          url: /deploy/deploy-aide-lite.html
+        - title: Deploy AIDE Enterprise
+          url: /deploy/deploy-enterprise.html
+    - title: Explore your data
+      links:
+        - title: Connect a data source
+          url: /data-sources/connect-data-source.html
+        - title: Manage data sources
+          url: /data-sources/manage-data-sources.html
+        - title: Assess storage utilization from the dashboard
+          url: /investigate/understand-dashboard.html
+        - title: Investigate your data
+          url: /investigate/investigate-data.html
+        - title: Use filters
+          url: /investigate/use-filters.html
+        - title: Take actions on data
+          url: /investigate/take-actions.html
+    - title: Policies and actions
+      links:
+        - title: Create a policy
+          url: /policies/create-policy.html
+        - title: Manage policies
+          url: /policies/manage-policies.html
+    - title: Administer
+      links:
+        - title: Manage users and roles
+          url: /administer/manage-users-roles.html
+        - title: Configure data thresholds
+          url: /administer/configure-settings.html
+        - title: What's new
+          url: /release-notes/whats-new.html
+        - title: Known limitations
+          url: /release-notes/known-limitations.html

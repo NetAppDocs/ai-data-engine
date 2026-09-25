@@ -1,0 +1,79 @@
+---
+sidebar: sidebar
+permalink: data-sources/connect-data-source.html
+keywords: connect, data source, storage system, scanned systems, configuration, scan, NFS, CIFS, StorageGRID, database, file shares, console agent, scope, content intelligence, activate
+summary: Connect storage systems to AI Data Engine by completing the data source onboarding wizard, then activate scanning to begin metadata collection.
+---
+= Connect a data source to AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+AI Data Engine scans your storage systems to collect and analyze metadata. To add a data source, complete the onboarding wizard. The wizard collects connection details, scan scope, and settings for your source type. After you add the system, activate scanning to begin metadata collection.
+
+.Before you begin
+
+* You must have _AI Data Engine administrator_ privileges to connect and configure data sources in AI Data Engine.
+* Discover storage systems in NetApp Console using a Console Agent before adding them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery doesn't enable data services such as AI Data Engine.
+* Verify that the network connections required for AI Data Engine to reach your data sources are open. Refer to link:../deploy/aide-requirements.html[AI Data Engine requirements].
+
+== Add a data source
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. On the *Scanned systems* tab, select *Add system*.
+. Select a source type:
++
+[cols="1,2",options="header"]
+|===
+|Source type |Description
+
+|*File shares group*
+|Add NFS or SMB/CIFS file shares from the cloud or on-premises as a named group.
+
+|*Database*
+|Add a database server to scan selected schemas.
+
+|*StorageGRID*
+|Scan data from NetApp StorageGRID using the S3 protocol.
+
+|===
+
+. Enter the connection details for your source type:
++
+[cols="1,3",options="header"]
+|===
+|Source type |Required details
+
+|*File shares group*
+|A name for the share group, then the share host and path details.
+
+|*Database*
+|Database type, host, port, and authentication credentials.
+
+|*StorageGRID*
+|System name, S3 endpoint URL, and S3 access key and secret key.
+
+|===
+
+. Review your selections and select *Confirm* to add the data source.
+
+== Activate scanning
+
+After you configure a data source, scanning doesn't start automatically. You must activate scanning for each system.
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. On the *Scanned systems* tab, locate the system you want to scan.
+. Select *Activate scans*.
+
+.Result
+
+The system status updates in the Scanned systems tab to show that scanning is running. To monitor scan progress and verify that AI Data Engine is indexing data resources, refer to link:manage-data-sources.html[Manage data sources] and link:monitor-scanning-health.html[Monitor scanning health].
+
+== Related information
+
+* link:manage-data-sources.html[Manage data sources]
+* link:../deploy/aide-requirements.html[AI Data Engine requirements]
+* link:../investigate/understand-dashboard.html[Assess storage utilization from the dashboard]
+* link:monitor-scanning-health.html[Monitor scanning health]
