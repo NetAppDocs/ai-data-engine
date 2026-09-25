@@ -1,6 +1,6 @@
 indexpage:
   title: AI Data Engine documentation
-  lead: "AI Data Engine gives you visibility into the unstructured data stored on your NetApp systems. Use it to identify storage optimization opportunities, investigate your data, and enforce lifecycle policies."
+  lead: "AI Data Engine is a metadata intelligence service, managed through NetApp Console, that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale."
   summary: "AI Data Engine documentation covers how to deploy, connect data sources, and use AI Data Engine for storage optimization, metadata investigation, and data governance."
   keywords: ai data engine, aide, storage optimization, investigation, policies, data governance, NetApp Console
   tiles:

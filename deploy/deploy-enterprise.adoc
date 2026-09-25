@@ -43,21 +43,6 @@ These sizes are recommended baselines, not hard limits. AIDE Enterprise supports
 . Run the install command with any configuration size adjustments from your target host with kubectl access to your RKE2 cluster.
 +
 NOTE: Installation takes about 30 minutes to complete. Timeouts and retries might occur, and this is normal.
-// The install command shown here may require command-line customizations after the wizard behavior is confirmed.
-// [source,bash]
-// ----
-// sudo ./install-enterprise.sh \
-//   --flavor <small|medium|large> \
-//   --registry <registry-host> \
-//   --nfs-server <nfs-server-host> \
-//   --nfs-data-share <nfs-export-path> \
-//   --storage-class <storage-class-name> \
-//   --account-id <account-id> \
-//   --organization-id <organization-id> \
-//   --agent-id <agent-id> \
-//   --cm-host <console-agent-ip> \
-//   --user-token <token>
-// ----
 
 . When prompted, confirm the host IP address and user ID to continue the installation.
 . Monitor the progress screen until the success screen appears and displays "AI Data Engine deployed".
