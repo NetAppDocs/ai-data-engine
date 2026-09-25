@@ -28,14 +28,6 @@ If the dashboard shows a large amount of cold or stale data, confirm the numbers
 * Confirm scan coverage is complete for that system. A partial scan (paused, in progress, or with errors) means some data hasn't been evaluated yet.
 * Wait for the next scan cycle or resolve the underlying error if coverage looks incomplete.
 
-// == After a Lite-to-Enterprise migration
-//
-//If you migrate from a Lite to an Enterprise deployment, verify the following before relying on your usual workflows:
-//
-//* All previously connected storage systems appear in Configuration and are enabled for scanning.
-//* Existing policies are active and show expected matching file counts.
-//* A full rescan completes successfully. Catalog data isn't carried over during migration, so findings only reflect current data after this rescan.
-
 == Related information
 
 * link:../data-sources/connect-data-source.html[Connect a data source]
