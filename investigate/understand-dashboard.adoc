@@ -1,0 +1,52 @@
+---
+sidebar: sidebar
+permalink: investigate/understand-dashboard.html
+keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage health, capacity risk, data owners, investigate
+summary: Assess storage health across your environment, identify where potentially reclaimable storage is concentrated, and decide which systems or data owners to investigate first.
+---
+= Assess storage health with the AI Data Engine dashboard
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Before you can decide what to investigate, you need to understand the state of your storage. How much storage meets your organization's cold and stale classification thresholds, and which systems or owners hold the most data in these categories? For example, a storage administrator responding to a capacity alert can see that a large portion of scanned storage is cold data, then drill into the highest-impact system to start investigating immediately.
+
+From NetApp Console, select *Governance* > *AI Data Engine UI*. The dashboard opens by default.
+
+== Understand how much storage is affected
+
+The summary panel shows the scale of the problem across your scanned environment:
+
+* *Cold data*: Storage not accessed within the cold data threshold (default: one year). Your organization can evaluate this data according to your retention and governance policies.
+* *Stale data*: Storage not accessed or modified within the stale data threshold (default: three years). Stale data could warrant review according to your organization's data lifecycle policies before deciding on actions such as archival or deletion.
+* *Exposed directories*: Directories with overly permissive access settings. These represent a governance risk independent of storage consumption.
+* *Data resources*: The count of volumes, shares, and buckets currently scanned.
+* *Total files scanned*: The total number of files indexed across all scanned data resources.
+
+Cold and stale thresholds reflect your configured settings and can be changed in *Configuration* > *Settings*. The default values are product defaults and don't represent legal, compliance, or industry-standard retention periods. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
+
+The _Active versus reclaimable storage_ chart shows the proportion of active data compared to cold and stale data across all scanned resources. A high proportion of cold, stale, or duplicated data could indicate a significant storage optimization opportunity.
+
+The *System* and *System type* filters control dashboard scope. If a storage system doesn't appear in the filter list, refer to link:../data-sources/connect-data-source.html[Connect a data source].
+
+== Identify storage optimization opportunities
+
+Use the summary panel and chart to identify and prioritize storage optimization opportunities:
+
+* Focus on resources that have the largest potentially reclaimable size, rather than those with the highest total size. A small system that is mostly cold or stale data might be a better first resource to evaluate than a large system that is mostly active.
+* Look for large concentrations of cold or stale data rather than isolated files. Tens of terabytes of data meeting your stale threshold on one resource warrants evaluation; isolated files might not require action.
+
+== Move from the dashboard to investigation
+
+When you have identified a resource or owner worth investigating, use the tables at the bottom of the dashboard to transition directly into the details.
+
+The _Top data resources by reclaimable storage_ table lists your scanned storage resources ranked by the proportion of data that is duplicated or meets your organization's cold and stale thresholds. Select any row to open the Investigation view filtered to that resource. From there, use the link:investigate-unstructured.html[Unstructured] tab to identify cold or stale files, or the link:investigate-directories.html[Directories] tab to audit permission exposure.
+
+The _Top data owners by reclaimable storage_ table shows which data owners own data that is potentially reclaimable. Select any row to open the link:investigate-unstructured.html[Investigation] view filtered to that owner's files. From there, you can review results, act on them, or save them as a policy.
+
+== Related information
+
+* link:investigate-data.html[Investigate your data]
+* link:investigate-unstructured.html[Investigate unstructured data]
+* link:../data-sources/connect-data-source.html[Connect a data source]
+* link:../administer/configure-settings.html[Configure cold and stale data thresholds]

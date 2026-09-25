@@ -1,0 +1,7 @@
+section: policies
+title: Manage policies and actions
+entries:
+  - title: Create a policy
+    url: /policies/create-policy.html
+  - title: Manage policies
+    url: /policies/manage-policies.html

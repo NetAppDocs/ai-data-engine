@@ -1,0 +1,46 @@
+---
+sidebar: sidebar
+permalink: investigate/investigate-data.html
+keywords: investigate, metadata, unstructured, structured, directories, cold data, stale data, permissions, reclaimable storage
+summary: Use the Investigation view to explore file-based storage, database tables, and directory structures across your connected systems. Choose the tab that matches what you are trying to find.
+---
+= Investigate your data in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+When you need to understand what is consuming storage, identify which database tables are growing unchecked, or find directories with overly permissive access, use metadata filters to investigate your data across all connected systems.
+
+== Choose a starting point
+
+Select *Investigation* in the left navigation to open the view. You can also open the Investigation view from the dashboard by selecting *Investigate* in the _Top data resources by reclaimable storage_ table, which applies a filter for that resource automatically.
+
+*Investigation* is organized into three tabs. Select the tab that matches the data type you are investigating.
+
+[cols="1,2,1",options="header"]
+|===
+|Tab |Use when you want to |More information
+
+|*Unstructured*
+|Find cold, stale, or duplicate file-based data across NFS and SMB/CIFS volumes
+|link:investigate-unstructured.html[Investigate unstructured data]
+
+|*Structured*
+|Identify oversized or unused database tables consuming storage
+|link:investigate-structured.html[Investigate structured data]
+
+|*Directories*
+|Audit directory-level permissions and find broadly accessible paths
+|link:investigate-directories.html[Investigate directories]
+
+|===
+
+The summary count and total size at the top of the page update to reflect the active tab (for example, "Unstructured (400M) | 5.7 PiB").
+
+== Related information
+
+* link:investigate-unstructured.html[Investigate unstructured data]
+* link:investigate-structured.html[Investigate structured data]
+* link:investigate-directories.html[Investigate directories]
+* link:use-filters.html[Work with filters]
+* link:take-actions.html[Take action on your data]

@@ -1,0 +1,37 @@
+---
+sidebar: sidebar
+permalink: release-notes/whats-new.html
+keywords: what's new, release notes, AI Data Engine, storage optimization
+summary: Learn about new capabilities in AI Data Engine.
+---
+= What's new in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Learn about new capabilities in AI Data Engine.
+
+== AI Data Engine 1.1.0
+
+AI Data Engine is a metadata intelligence service, managed through NetApp Console, that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale. You can deploy AI Data Engine as link:../deploy/deployment-overview.html[AIDE Lite], or as AIDE Enterprise if your environment requires Kubernetes-based high availability at large scale.
+
+New capabilities:
+
+link:../investigate/understand-dashboard.html[Recover storage capacity]:: Identify cold, stale, and duplicate data across your connected systems based on your configured thresholds, and see which systems and data owners hold the highest concentrations of this data.
+
+link:../investigate/investigate-data.html[Reduce cost and risk]:: Filter across all connected systems by access time, modification date, creation date, file size, duplicate status, and other criteria to find files that meet your organization's data management goals. Act on results directly or save criteria as a policy.
+
+link:../policies/create-policy.html[Govern data continuously]:: Save filter criteria as named policies to track recurring data conditions over time, such as cold or oversized files, and receive notifications when the impacted file count changes.
+
+link:../investigate/take-actions.html[Reduce storage costs]:: Enforce your organization's data lifecycle policies by copying and archiving files to NFS or SMB/CIFS destinations, tagging items for tracking, or permanently deleting files according to your retention requirements.
+
+link:../administer/manage-users-roles.html[Assign admin and viewer roles]:: Control who can investigate data and take actions by assigning the AI Data Engine administrator or viewer role to users in your organization.
+
+link:../investigate/use-filters.html[Eliminate duplicate data]:: Find files that have duplicate copies across your connected systems. Filter by the Duplicates attribute or by file hash to review and act on duplicate groups directly.
+
+link:../investigate/understand-dashboard.html[Hold data owners accountable]:: Identify which data owners hold the highest concentrations of cold, stale, or duplicate data from the dashboard, then filter by owner or group in the investigation view to review and manage results according to your policies.
+
+
+== Related information
+
+* link:known-limitations.html[Known limitations]

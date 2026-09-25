@@ -1,0 +1,46 @@
+---
+sidebar: sidebar
+permalink: get-started/learn-about.html
+keywords: ai data engine, aide, overview, use cases, storage optimization, data governance
+summary: Learn about AI Data Engine, which provides visibility into structured and unstructured data stored on your storage systems.
+---
+= Learn about AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+AI Data Engine is a metadata intelligence service that gives you visibility into structured and unstructured data stored on your storage systems. By scanning your storage systems and cataloging file system metadata, AI Data Engine helps you identify storage optimization opportunities, investigate your data, and enforce governance policies by analyzing metadata in place, without moving or copying data.
+
+== What AI Data Engine does
+
+AI Data Engine scans connected storage systems to extract file system metadata and builds a catalog that is updated after each scan cycle. From this catalog, you can:
+
+* View storage optimization insights on a dashboard, including which data owners hold potentially reclaimable storage such as files meeting your organization's cold and stale thresholds and duplicate files
+* Investigate your data using flexible metadata filters to build targeted data grouping
+* Create policies that save investigation criteria as reusable rules
+* Take actions on data: tagging, archiving, copying, or deleting files that match policy criteria
+
+== Storage optimization and data governance
+
+AI Data Engine focuses on storage optimization and data lifecycle management for structured and unstructured data stored on your storage systems.
+
+== Who uses AI Data Engine
+
+AI Data Engine is designed for the following users:
+
+* *Storage administrators* who need to identify and monitor which data owners hold files meeting their organization's cold and stale thresholds, identify duplicate files, and evaluate storage optimization opportunities.
+* *IT operations teams* who need a central view of what structured and unstructured data exists across their storage environment.
+
+== Where AI Data Engine lives
+
+You access AI Data Engine through NetApp Console, under *Governance > AI Data Engine*. You deploy it as AIDE Lite, a single-VM installation, on Linux infrastructure you manage either as a virtual machine in your cloud account or a machine in your on-premises environment. If your environment requires Kubernetes-based high availability at large scale, you can deploy AIDE Enterprise instead.
+
+AI Data Engine scans data on NetApp ONTAP and StorageGRID systems, as well as on non-NetApp systems that support the NFS, SMB/CIFS, or S3 protocols.
+
+link:../deploy/deployment-overview.html[Learn more about deployment options].
+
+== Related information
+
+* link:architecture.html[AI Data Engine architecture]
+* link:quick-start.html[Quick start]
+* link:storage-optimization-workflows.html[Explore storage optimization workflows]

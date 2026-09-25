@@ -1,0 +1,55 @@
+---
+sidebar: sidebar
+permalink: get-started/architecture.html
+keywords: architecture, components, metadata engine, policy, deployment, data flow
+summary: Learn about the components of AI Data Engine and how they work together to catalog metadata from your storage systems.
+---
+= AI Data Engine architecture
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+AI Data Engine (AIDE) consists of a Metadata Engine and a policy framework. These capabilities work together to extract metadata from your storage systems, catalog it in a searchable index, and let you define saved queries to identify and act on files that match specific criteria.
+
+== Components
+
+You primarily interact with AI Data Engine through four functional areas: the dashboard, investigation, policies, and configuration. These functional areas are powered by the following underlying components.
+
+=== Metadata Engine
+
+The Metadata Engine is the core capability of AI Data Engine. It scans connected storage systems to extract file system metadata and stores that metadata in a searchable catalog. The Metadata Engine updates the catalog at each scan cycle, detecting additions, changes, and deletions across your storage systems.
+
+=== NetApp Console Agent
+
+AI Data Engine requires a NetApp Console Agent deployed in your environment. The Console Agent is a general-purpose NetApp platform component that maintains connectivity between your on-premises environment and NetApp Console. It handles authentication and communication between your site and the AIDE service.
+
+NOTE: The Console Agent isn't specific to AI Data Engine. If you already have a Console Agent deployed for other NetApp services, you can use the same agent. For Console Agent deployment instructions, refer to the link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html[NetApp Console Agent documentation].
+
+== Deployment models
+
+AI Data Engine supports two deployment models:
+
+AIDE Lite:: A single-VM deployment suitable for smaller environments. Available in Small, Medium, and Large configurations based on the number of files to be cataloged.
+
+AIDE Enterprise:: A Kubernetes-based multi-node cluster deployment for larger environments requiring high availability.
+
+AIDE Enterprise scales from a three-node configuration supporting up to approximately one billion files and 250 million files per day to a nine-node configuration supporting up to approximately six billion files and two billion files per day. Refer to link:../deploy/aide-requirements.html[AIDE requirements] for node sizing details. Additional nodes can extend capacity beyond six billion files. See link:../deploy/aide-requirements.html#flexible-sizing-enterprise[flexible sizing guidelines] for scale-out details.
+
+link:../deploy/deployment-overview.html[Learn more about deployment options].
+
+== Data flow
+
+. AI Data Engine deploys in your on-premises environment.
+. You add the storage systems you want AIDE to catalog in *Configuration > Systems*. Supported systems include NetApp ONTAP, StorageGRID, database systems, and any NAS or object storage system that exposes NFS, SMB/CIFS, or S3 protocols.
+. The Metadata Engine mounts shares using NFS and SMB/CIFS protocols and scans the file systems to extract file metadata.
+. Metadata is indexed in the catalog.
+. The dashboard surfaces storage insights from the catalog.
+. Investigation lets you query the catalog directly with metadata filters.
+. You can save search criteria as policies and re-run them to identify and act on matching files.
+
+NOTE: After the Metadata Engine finishes scanning all configured volumes, it immediately starts a new scanning round, rescanning the file systems to detect additions, changes, and deletions.
+
+== Related information
+
+* link:learn-about.html[Learn about AI Data Engine]
+* link:../deploy/deployment-overview.html[Learn about AIDE deployment]

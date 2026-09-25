@@ -1,0 +1,330 @@
+---
+sidebar: sidebar
+permalink: deploy/aide-requirements.html
+keywords: requirements, prerequisites, networking, ports, vm, kubernetes, sizing, flexible sizing, scaling, capacity planning
+summary: Review infrastructure and networking requirements before deploying AI Data Engine.
+---
+= AI Data Engine requirements
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Before you deploy AI Data Engine, review the networking, VM sizing, and operating system requirements for your environment.
+
+== Networking requirements
+
+The following network connections must be open:
+
+[cols="2,1,1,1,2",options="header"]
+|===
+|Connection |Port |Protocol |Direction |Purpose
+
+|Console Agent to NetApp Console
+|443
+|TCP
+|Outbound
+|HTTPS: connectivity to NetApp Console
+
+|Console Agent to ONTAP
+|443
+|TCP
+|Outbound
+|HTTPS: ONTAP cluster discovery
+
+|Console Agent to AI Data Engine
+|80, 443, 8080, 9000
+|TCP
+|Bidirectional
+|Communication between Console Agent and AI Data Engine
+
+|AI Data Engine to ONTAP (NFS)
+|111, 2049
+|TCP/UDP
+|To storage
+|NFS data source access
+
+|AI Data Engine to ONTAP (SMB/CIFS)
+|139, 445
+|TCP/UDP
+|To storage
+|SMB/CIFS data source access
+
+|AI Data Engine to Active Directory
+|389, 636, 3268, 3269
+|TCP/UDP
+|Outbound
+|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and SMB/CIFS scanning. Port 389 uses both TCP and UDP; all other ports use TCP only.
+
+|AI Data Engine to NetApp Services / Container Registry
+|443
+|TCP
+|Outbound
+|HTTPS: artifact downloads and container image pulls (AWS S3 and ECR)
+
+|===
+
+=== Outbound internet access
+For an online installation, the following endpoints must be reachable from the AI Data Engine host:
+[cols="2,2,1",options="header"]
+|===
+|Endpoint |Purpose |Scope
+|`\https://api.console.netapp.com`
+|NetApp Console communication
+|Both
+
+|`\https://netapp-cloud-account.auth0.com`
+|Centralized user authentication
+|Both
+
+|`\https://auth0.com`
+|Authentication services
+|Both
+
+|`\https://582244788873.dkr.ecr.us-west-2.amazonaws.com`
+|NetApp container registry (AIDE container images)
+|Both
+
+|`\https://582244788873.dkr-ecr.us-west-2.on.aws`
+|NetApp container registry (dualstack/virtual private cloud (VPC) endpoint access)
+|Both
+
+|`\https://api.ecr.us-west-2.amazonaws.com`
+|AWS ECR API (authentication and image manifest retrieval)
+|Both
+
+|`\https://prod-us-west-2-starport-layer-bucket.s3.us-west-2.amazonaws.com`
+|AWS S3 (ECR container image layer storage)
+|Both
+
+|`\https://prod-us-west-2-starport-layer-bucket.s3.amazonaws.com`
+|AWS S3 (ECR container image layer storage)
+|Both
+
+|`\https://s3.us-west-2.amazonaws.com`
+|AWS S3 (installer wrapper script, Helm charts, and component version catalog)
+|Both
+
+|`\https://s3.amazonaws.com`
+|AWS S3 (installer wrapper script, Helm charts, and component version catalog)
+|Both
+
+|`\https://sts.us-west-2.amazonaws.com`
+|AWS STS (temporary credential exchange for registry and S3 access)
+|Both
+
+|`\https://support.compliance.api.bluexp.netapp.com`
+|Software images, manifests, and templates; logs and metrics streaming
+|Both
+
+|`\https://dseasb33srnrn.cloudfront.net`
+|CloudFront CDN for software distribution
+|Both
+
+|`\http://packages.ubuntu.com`
+|Ubuntu prerequisite packages
+|Lite only (Ubuntu)
+
+|`\http://archive.ubuntu.com`
+|Ubuntu package archive
+|Lite only (Ubuntu)
+
+|`\http://security.ubuntu.com`
+|Ubuntu security package archive
+|Lite only (Ubuntu)
+
+|`\https://get.k3s.io`
+|k3s runtime download (installer-initiated)
+|Lite only
+
+|`\https://get.helm.sh`
+|Helm download (installer-initiated)
+|Lite only
+|===
+
+AI Data Engine also relies on NetApp Console for centralized authentication and console services. Refer to link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html[network access requirements for NetApp Console^] for the endpoints required for Console and Console agent connectivity.
+
+Verify that DNS resolution for these endpoints is working from the AI Data Engine host before you begin deployment.
+
+== AIDE Lite requirements
+
+[[lite-vm-sizes]]
+=== VM sizing
+
+These sizes are recommended baseline configurations optimized for a three to four day initial scan window, not hard limits. Refer to <<flexible-sizing-lite,Flexible sizing guidelines>> for what drives these numbers and how to scale beyond them.
+
+[cols="1,1,1,1,1,1,1,1",options="header"]
+|===
+|Size |vCPU |RAM |Disk |Storage IOPS |Storage throughput |Network |Approximate files
+
+|Small
+|16
+|64 GB
+|500 GB
+|8,000
+|1,000 MB/s
+|1 GbE
+|200 million
+
+|Medium
+|32
+|128 GB
+|2 TB
+|12,000
+|1,500 MB/s
+|1 GbE
+|1 billion
+
+|Large
+|96
+|192 GB
+|6 TB
+|16,000
+|2,000 MB/s
+|10 GbE
+|3 billion
+
+|===
+
+NOTE: NVMe SSD or other solid-state storage is recommended for all deployment sizes. The disk values in this table reflect AIDE data volume storage only. If the OS, k3s runtime, and AIDE data all share a single disk, add approximately 65 GB to the disk value for your chosen size. For example, a Small deployment on a single disk requires approximately 565 GB total.
+
+[[flexible-sizing-lite]]
+=== Flexible sizing guidelines
+
+<<lite-vm-sizes,Small, Medium, and Large configurations>> are recommended baselines for a three to four day initial scan window, not hard limits enforced by the software.
+
+What drives the sizing recommendations::
++
+* *Total file and directory count*: The total number of objects to catalog is the dominant driver of compute and storage requirements. Higher object counts require proportionally more memory, CPU, and storage.
+* *Directory structure*: Resource use varies with directory nesting depth and how files are distributed across shares and volumes. Deeply nested or highly fragmented structures can require more resources than the same file count in a flatter hierarchy.
+* *Required scan throughput*: Initial catalog completion speed is tied directly to CPU and memory allocation. Provisioning below the recommended size reduces throughput and extends the initial scan window.
+* *Storage performance*: High-performance storage is strongly recommended. Metadata indexing and event processing require sustained IOPS and throughput proportional to the deployment size.
+
+What happens if you undersize::
++
+Provisioning below the recommended size doesn't prevent installation or cause service failures. The system remains operational and scanning continues, but you can expect the following:
++
+* *Extended initial catalog duration*: Reduced compute lowers objects scanned per day. For example, a deployment targeting 3 billion objects but provisioned at a smaller size can take significantly longer than the three to four day target.
+* *Reduced ongoing ingest throughput*: New file events and incremental scan updates process more slowly under sustained load.
+* *Storage capacity risk*: Undersized storage relative to total object count can push the metadata index toward capacity thresholds. You can typically resolve this by expanding storage capacity, without a full redeployment.
+
+Scale when you need more capacity::
++
+AIDE Lite runs on a single VM, so scaling is vertical:
++
+* Increase vCPU, memory, or storage on the host VM.
+* No cluster reconfiguration or reinstallation is required.
++
+NOTE: AIDE Lite doesn't support high availability or horizontal scale-out. If your environment consistently exceeds 3 billion files, or you require high availability and fault tolerance, deploy link:deploy-enterprise.html[AIDE Enterprise] instead.
+
+=== Operating system
+
+[cols="1,2",options="header"]
+|===
+|OS |Supported versions
+
+|Ubuntu
+|22.04 LTS, 24.04 LTS (24.04 LTS recommended)
+
+|Red Hat Enterprise Linux (RHEL)
+|8.x, 9.x
+
+|===
+
+=== Additional prerequisites
+
+* You have root or sudo access on the target VM to run the installer.
+* A 1 GbE minimum network connection (10 GbE for Large deployments).
+* The target host must have bash 4.0 or later, curl, and tar available.
+* The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. Pre-installing these tools on the target VM isn't required.
+* Ports 6443 (TCP), 10250 (TCP), and 8472 (UDP) must be free on the host before the installer starts. If a host firewall (`firewalld` on RHEL or `ufw` on Ubuntu) is active, allow these ports and the k3s pod CIDR (`10.44.0.0/16`) and service CIDR (`10.45.0.0/16`) before running the installer. Refer to your OS firewall documentation for the required commands.
+* On RHEL systems running SELinux in Enforcing mode, the installer automatically configures the required SELinux policy packages. No manual SELinux configuration is needed.
+
+== AIDE Enterprise requirements
+
+* You have kubectl access with cluster-admin privileges on the machine from which you run the installer.
+* You have Sudo (or root) permissions on the machine from which you run the install command.
+* RKE2 v1.34 or later (v1.36.x recommended) is installed on the target cluster.
+* The installer host automatically downloads and bootstraps `helm`, `kubectl`, and `jq` via `--tools-dir`. Pre-installing these tools on the management machine isn't required.
+* A configured StorageClass (default name `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
+* An NFS server with at least one exported path is available, used for the AIDE configuration data volume and shared index snapshots.
+* A target Kubernetes namespace (default `aide`) already exists on the cluster; the installer doesn't create it.
+
+NOTE: NVMe or high-performance SSD storage is recommended for all Enterprise node deployments.
+
+[[enterprise-vm-sizes]]
+=== Node sizing
+
+These sizes are recommended baseline cluster configurations optimized for an approximately three-day initial scan window, not hard capacity limits. AIDE Enterprise supports environments beyond 6 billion files through horizontal scale-out. Refer to <<flexible-sizing-enterprise,Flexible sizing guidelines>> for details.
+
+[cols="1,1,1,1,1,1,1,1,1",options="header"]
+|===
+|Size |Nodes |vCPU per node |RAM per node |Disk per node |Storage IOPS per node |Storage throughput per node |Network per node |Approximate files
+
+|Small
+|3
+|32
+|128 GB
+|~1.3 TB
+|8,000
+|1,000 MB/s
+|1 GbE
+|1 billion
+
+|Medium
+|6
+|48
+|192 GB
+|~2 TB
+|12,000
+|1,500 MB/s
+|10 GbE
+|3 billion
+
+|Large
+|9
+|64
+|256 GB
+|~2.7 TB
+|16,000
+|2,000 MB/s
+|10 GbE
+|6 billion
+
+|===
+
+[[flexible-sizing-enterprise]]
+=== Flexible sizing guidelines
+
+<<enterprise-vm-sizes,Small, Medium, and Large configurations>> are recommended baseline cluster configurations for an approximate three day initial scan window, not hard capacity ceilings enforced by the software. AIDE Enterprise supports environments exceeding 3 billion files through horizontal scale-out across cluster nodes.
+
+What drives the sizing recommendations::
++
+* *Total file and directory count*: Total object count is the dominant driver of storage and compute requirements. Larger environments require additional cluster nodes to distribute processing load and maintain performance.
+* *High availability replication*: Enterprise deployments enable data replication across nodes by default for fault tolerance. Replication increases total storage and memory requirements compared to an equivalent single-node deployment.
+* *Node count and workload distribution*: Processing throughput and total catalog capacity scale with the number of nodes in the cluster. Additional nodes distribute both the indexing workload and storage capacity across the cluster.
+* *Required scan throughput*: Cluster-wide CPU and memory allocation governs the daily scan rate and how quickly the initial catalog completes.
+* *Per-node storage performance*: High-performance storage is strongly recommended on each node, and total cluster capacity scales proportionally with node count.
+
+What happens if you undersize::
++
+Provisioning below the recommended size doesn't prevent installation or cause hard failures. Practical impacts include:
++
+* *Extended initial catalog duration*: Fewer nodes or reduced per-node resources lower throughput, extending the initial catalog window proportionally.
+* *Increased processing latency under peak load*: Insufficient memory across the cluster can cause elevated processing latency during high-volume ingestion periods. Ongoing operations are not interrupted, but sustained throughput is reduced.
+* *Storage capacity risk*: Insufficient cluster storage for the target object count can push the metadata index toward capacity thresholds. You can resolve this by expanding storage on existing nodes (non-disruptive) or adding a dedicated storage node.
+
+Scale when you need more capacity::
++
+AIDE Enterprise supports horizontal scale-out without redeployment:
++
+* Add worker nodes to increase the CPU and memory available for scan processing and event ingestion.
+* Add dedicated storage nodes to increase total catalog capacity. This is the primary way to scale environments beyond the largest predefined deployment size.
+* Scale beyond 6 billion files by adding more nodes to the cluster. Contact your NetApp representative for node sizing guidance at custom scales.
++
+NOTE: Adding nodes to an existing Enterprise cluster is non-disruptive to ongoing scan operations, but coordinate the change during a low-activity window.
+
+== Related information
+
+* link:deployment-overview.html[AIDE deployment overview]
+* link:deploy-aide-lite.html[Deploy AI Data Engine — Lite]
+* link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise]

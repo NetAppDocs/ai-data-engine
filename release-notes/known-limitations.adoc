@@ -1,0 +1,33 @@
+---
+sidebar: sidebar
+permalink: release-notes/known-limitations.html
+keywords: known limitations, limitations, restrictions, AI Data Engine
+summary: Known limitations identify functionality that is not supported in this release of AI Data Engine.
+---
+= Known limitations in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Known limitations identify functionality that isn't supported in this release of AI Data Engine, or functionality that doesn't interoperate correctly. Review these limitations before deploying or using the product.
+
+== Deployment
+
+Lite and Enterprise deployments are independent::
+AIDE Lite and AIDE Enterprise are separate deployment modes. There is no supported migration path to move an existing deployment from one mode to the other.
+
+== Policies and actions
+
+Policy-triggered actions are limited::
+When you create a policy, the available automated actions are limited to permanent deletion and email notification. Automated archive and tag actions from policies are not available in this release. You can create a policy with no action to monitor a data condition over time.
+
+== Tags
+
+Tags can't be deleted or renamed::
+Tag management isn't available in this release. After you create a tag, it remains available in the system. You can apply a tag to items and remove it from items, but you can't delete the tag definition itself or correct a tag name that contains a typo. 
+
+== Related information
+
+* link:whats-new.html[What's new]
+* link:../deploy/deployment-overview.html[Deployment overview]
+* link:../investigate/take-actions.html[Take action on your data]

@@ -1,0 +1,7 @@
+section: administer
+title: Administer
+entries:
+  - title: Manage users and roles
+    url: /administer/manage-users-roles.html
+  - title: Configure data thresholds
+    url: /administer/configure-settings.html
