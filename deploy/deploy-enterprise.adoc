@@ -13,6 +13,7 @@ Deploy AIDE Enterprise from NetApp Console using the deployment wizard. The wiza
 
 .Before you begin
 
+* Your organization has access to the AI Data Engine private preview in NetApp Console. Contact your NetApp representative to request access so that you can deploy AI Data Engine.
 * You have _Organization admin_ or greater permissions in NetApp Console.
 * Your RKE2 cluster meets the Enterprise node prerequisites described in link:aide-requirements.html[AIDE requirements].
 * Sudo (or root) permissions are required on the machine from which you run the install command.
@@ -23,7 +24,7 @@ Deploy AIDE Enterprise from NetApp Console using the deployment wizard. The wiza
 * A configured StorageClass (default name: `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
 
 .Steps
-. In NetApp Console, navigate to *Governance* > *AI Data Engine*.
+. In NetApp Console, navigate to *AI data hub* > *AI Data Engine*.
 +
 The AI Data Engine landing page appears.
 

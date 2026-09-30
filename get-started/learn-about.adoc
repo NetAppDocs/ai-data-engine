@@ -33,7 +33,7 @@ AI Data Engine is designed for the following users:
 
 == Where AI Data Engine lives
 
-You access AI Data Engine through NetApp Console, under *Governance > AI Data Engine*. You deploy it as AIDE Lite, a single-VM installation, on Linux infrastructure you manage either as a virtual machine in your cloud account or a machine in your on-premises environment. If your environment requires Kubernetes-based high availability at large scale, you can deploy AIDE Enterprise instead.
+You access AI Data Engine through NetApp Console, under *AI data hub > AI Data Engine*. AI Data Engine is available in private preview. Contact your NetApp representative to request access. You deploy AI Data Engine as AIDE Lite, a single-VM installation, on Linux infrastructure you manage either as a virtual machine in your cloud account or a machine in your on-premises environment. If your environment requires Kubernetes-based high availability at large scale, you can deploy AIDE Enterprise instead.
 
 AI Data Engine scans data on NetApp ONTAP and StorageGRID systems, as well as on non-NetApp systems that support the NFS, SMB/CIFS, or S3 protocols.
 
