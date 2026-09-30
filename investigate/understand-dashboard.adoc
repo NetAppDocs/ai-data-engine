@@ -11,7 +11,7 @@ summary: Assess storage health across your environment, identify where potential
 [.lead]
 Before you can decide what to investigate, you need to understand the state of your storage. How much storage meets your organization's cold and stale classification thresholds, and which systems or owners hold the most data in these categories? For example, a storage administrator responding to a capacity alert can see that a large portion of scanned storage is cold data, then drill into the highest-impact system to start investigating immediately.
 
-From NetApp Console, select *Governance* > *AI Data Engine UI*. The dashboard opens by default.
+From NetApp Console, select *AI data hub* > *AI Data Engine UI*. The dashboard opens by default.
 
 == Understand how much storage is affected
 

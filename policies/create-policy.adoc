@@ -29,7 +29,7 @@ A policy is a saved filter set with an optional action attached:
 * To attach a Delete or email notification action, you must have the _AI Data Engine administrator_ role. The _AI Data Engine viewer_ role can create monitor-only policies.
 
 .Steps
-. In NetApp Console, navigate to *Governance* > *AI Data Engine* > *Investigation*.
+. In NetApp Console, navigate to *AI data hub* > *AI Data Engine* > *Investigation*.
 . Apply one or more filters that identify the files you want the policy to target.
 +
 For example: *File Type* = .vmdk AND *Last Accessed Time* > 365 days.
