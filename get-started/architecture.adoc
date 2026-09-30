@@ -25,15 +25,15 @@ AI Data Engine requires a NetApp Console Agent deployed in your environment. The
 
 NOTE: The Console Agent isn't specific to AI Data Engine. If you already have a Console Agent deployed for other NetApp services, you can use the same agent. For Console Agent deployment instructions, refer to the link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html[NetApp Console Agent documentation].
 
-== Deployment models
+== Deployment types
 
-AI Data Engine supports two deployment models:
+AI Data Engine supports two deployment types:
 
-AIDE Lite:: A single-VM deployment suitable for smaller environments. Available in Small, Medium, and Large configurations based on the number of files to be cataloged.
+AIDE single-node deployment:: A deployment on a single VM suitable for smaller environments. Available in Small, Medium, and Large configurations based on the number of files to be cataloged.
 
-AIDE Enterprise:: A Kubernetes-based multi-node cluster deployment for larger environments requiring high availability.
+AIDE multi-node deployment:: A Kubernetes-based cluster deployment for larger environments requiring high availability.
 
-AIDE Enterprise scales from a three-node configuration supporting up to approximately one billion files and 250 million files per day to a nine-node configuration supporting up to approximately six billion files and two billion files per day. Refer to link:../deploy/aide-requirements.html[AIDE requirements] for node sizing details. Additional nodes can extend capacity beyond six billion files. See link:../deploy/aide-requirements.html#flexible-sizing-enterprise[flexible sizing guidelines] for scale-out details.
+An AIDE multi-node deployment scales from a three-node configuration supporting up to approximately one billion files and 250 million files per day to a nine-node configuration supporting up to approximately six billion files and two billion files per day. Refer to link:../deploy/aide-requirements.html[AIDE requirements] for node sizing details. Additional nodes can extend capacity beyond six billion files. See link:../deploy/aide-requirements.html#flexible-sizing-multi-node[flexible sizing guidelines] for scale-out details.
 
 link:../deploy/deployment-overview.html[Learn more about deployment options].
 

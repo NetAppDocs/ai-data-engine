@@ -1,0 +1,4 @@
+---
+permalink: deploy/deploy-aide-lite.html
+redirect: deploy/deploy-aide-single-node.html
+---

@@ -1,15 +1,15 @@
 ---
 sidebar: sidebar
-permalink: deploy/deploy-aide-lite.html
-keywords: deploy, install, lite, wizard, NetApp Console, deployment wizard, onboarding
-summary: Deploy AIDE Lite from NetApp Console using the deployment wizard.
+permalink: deploy/deploy-aide-single-node.html
+keywords: deploy, install, single-node, single node, wizard, NetApp Console, deployment wizard, onboarding
+summary: Deploy AIDE as a single-node deployment from NetApp Console using the deployment wizard.
 ---
-= Deploy AI Data Engine Lite
+= Deploy AI Data Engine as a single-node deployment
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Deploy AIDE Lite from NetApp Console using the deployment wizard. The wizard guides you through selecting your installation location, choosing a configuration size, and running the install command on your target host.
+Deploy AIDE as a single-node deployment from NetApp Console using the deployment wizard. The wizard guides you through selecting your installation location, choosing a configuration size, and running the install command on your target host.
 
 .Before you begin
 * Your organization has access to the AI Data Engine private preview in NetApp Console. Contact your NetApp representative to request access so that you can deploy AI Data Engine.
@@ -24,7 +24,7 @@ Deploy AIDE Lite from NetApp Console using the deployment wizard. The wizard gui
 The AI Data Engine landing page appears.
 
 . Select *Deploy AI Data Engine*.
-. Select the *Lite* deployment option and select *Next*.
+. Select the *Single-node* deployment option and select *Next*.
 . Copy the preconfigured install command displayed in the wizard to an editor.
 . Select your configuration size:
 +
@@ -32,7 +32,7 @@ The AI Data Engine landing page appears.
 * *Medium (Default)*: recommended for environments with up to approximately 1 billion files.
 * *Large*: recommended for environments with up to approximately 3 billion files.
 +
-These sizes are recommended baselines, not hard limits. See link:aide-requirements.html#flexible-sizing-lite[flexible sizing guidelines] if your environment falls outside these ranges.
+These sizes are recommended baselines, not hard limits. See link:aide-requirements.html#flexible-sizing-single-node[flexible sizing guidelines] if your environment falls outside these ranges.
 
 . For small or large configurations, adjust the install command to reflect the chosen size: `--flavor <small|medium|large>`
 

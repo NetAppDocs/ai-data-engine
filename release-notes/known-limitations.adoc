@@ -13,8 +13,8 @@ Known limitations identify functionality that isn't supported in this release of
 
 == Deployment
 
-Lite and Enterprise deployments are independent::
-AIDE Lite and AIDE Enterprise are separate deployment modes. There is no supported migration path to move an existing deployment from one mode to the other.
+Single-node and multi-node deployments are independent::
+An AIDE single-node deployment and an AIDE multi-node deployment are separate deployment types. There is no supported migration path to move an existing deployment from one type to the other.
 
 == Policies and actions
 

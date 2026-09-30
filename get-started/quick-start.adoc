@@ -13,11 +13,11 @@ Get AI Data Engine up and running by deploying the service, connecting your stor
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] Review requirements
 [role="quick-margin-para"]
-Review the link:../deploy/aide-requirements.html[AIDE requirements] and link:../deploy/deployment-overview.html[learn about deployment modes] to determine whether to install AIDE Lite or AIDE Enterprise. AI Data Engine is available in private preview in NetApp Console. Contact your NetApp representative to request access so that you can deploy AI Data Engine.
+Review the link:../deploy/aide-requirements.html[AIDE requirements] and link:../deploy/deployment-overview.html[learn about deployment types] to determine whether to install an AIDE single-node or multi-node deployment. AI Data Engine is available in private preview in NetApp Console. Contact your NetApp representative to request access so that you can deploy AI Data Engine.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Deploy AI Data Engine
 [role="quick-margin-para"]
-Deploy link:../deploy/deploy-aide-lite.html[AIDE Lite] or link:../deploy/deploy-enterprise.html[AIDE Enterprise] from NetApp Console. The setup page guides you through selecting your installation location and configuration size and running the install command.
+Deploy an link:../deploy/deploy-aide-single-node.html[AIDE single-node deployment] or an link:../deploy/deploy-aide-multi-node.html[AIDE multi-node deployment] from NetApp Console. The setup page guides you through selecting your installation location and configuration size and running the install command.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Connect a data source
 [role="quick-margin-para"]
