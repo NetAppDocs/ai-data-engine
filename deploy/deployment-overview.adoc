@@ -25,7 +25,7 @@ An AIDE multi-node deployment is available in three sizes — Small, Medium, and
 
 == Deployment process
 
-NOTE: AI Data Engine is available in private preview in NetApp Console. Contact your NetApp representative to request access so that you can deploy AI Data Engine.
+You can deploy AI Data Engine directly from NetApp Console. Go to *AI data hub > AI Data Engine* and deploy AI Data Engine. Use the wizard and choose a deployment type and run the installation command in an environment that meets the link:aide-requirements.html[AIDE requirements].
 
 NetApp Console doesn't provision the infrastructure for AI Data Engine. You prepare a Linux machine or cluster that meets the requirements, then copy the pre-generated installation command from NetApp Console and run it on the target host. The command bootstraps the runtime and deploys the AI Data Engine stack automatically. During installation, the installer prompts you to confirm the target host IP address and user ID before the install proceeds.
 

@@ -13,7 +13,6 @@ Deploy AIDE as a multi-node deployment from NetApp Console using the deployment 
 
 .Before you begin
 
-* Your organization has access to the AI Data Engine private preview in NetApp Console. Contact your NetApp representative to request access so that you can deploy AI Data Engine.
 * You have _Organization admin_ or greater permissions in NetApp Console.
 * Your RKE2 cluster meets the multi-node prerequisites described in link:aide-requirements.html[AIDE requirements].
 * Sudo (or root) permissions are required on the machine from which you run the install command.
