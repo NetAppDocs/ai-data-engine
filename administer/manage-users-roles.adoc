@@ -75,6 +75,14 @@ The AI Data Engine viewer role provides limited access to AI Data Engine. Viewer
 
 |===
 
+== Roles and Governed AI Access
+
+NetApp Console roles control who can configure Governed AI Access in AI Data Engine. They don't control which collections an AI client user can search. Microsoft Entra ID scopes that you grant to each collection control that access. For details, refer to link:../mcp/configure-mcp-access.html[Configure Entra ID and MCP access].
+
+// RESEARCH Which NetApp Console role is required to manage MCP connections (connect Entra ID) and collections? Is it the AI Data Engine administrator role only? Can the viewer role see MCP settings?
+// RESEARCH Do the NetApp Console role names need to be listed here for MCP (for example a separate role), or does the existing administrator role cover it?
+// RESEARCH Confirm that the permissions table lists only the capabilities that are available in this release.
+
 == Assign a role to a user
 
 You assign roles in NetApp Console, not within AI Data Engine itself.
@@ -95,3 +103,4 @@ The user receives an email invitation and can access AI Data Engine after accept
 
 * link:../investigate/take-actions.html[Take action on your data]
 * link:../policies/create-policy.html[Create a policy]
+* link:../mcp/manage-data-collections.html[Manage data collections]

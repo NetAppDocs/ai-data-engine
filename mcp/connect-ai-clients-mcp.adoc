@@ -1,0 +1,191 @@
+---
+sidebar: sidebar
+permalink: mcp/connect-ai-clients-mcp.html
+keywords: mcp, governed ai access, claude desktop, cursor, vs code, github copilot, ai client, mcp server, prompts, tag management
+summary: Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot to the AI Data Engine MCP server, and use sample prompts to search file metadata and manage tags in a collection.
+---
+= Connect AI clients
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot to the AI Data Engine MCP server. After you connect, you can search file metadata and manage tags in the collections that you have access to.
+
+// RESEARCH Confirm the help link target and anchor for this page against the staging build.
+
+// RESEARCH Confirm whether the connect-claude-desktop.html and connect-cursor.html URLs were ever published. If they were, add redirect files.
+
+== Supported AI clients
+
+AI Data Engine supports the following AI clients in this release:
+
+* Claude Desktop
+* Cursor
+* Visual Studio Code with GitHub Copilot
+
+Other MCP clients aren't supported.
+
+AI clients that connect from a cloud provider's service into your network aren't supported. For example, custom connectors that are built into an AI client and called from the provider's cloud can't reach the MCP server in your network. Use the configuration steps on this page instead.
+
+// RESEARCH Confirm the final supported client list with the product team.
+
+== Before you begin
+
+* An administrator has completed the steps in link:configure-mcp-access.html[Configure Entra ID and MCP access], including these:
+** Registering an Entra ID application for your AI client.
+** Assigning you the `AIDE Power Users` app role.
+** Granting your scope access to at least one collection.
+// RESEARCH Confirm which session type and app role users need in this release. If that changes, rewrite this prerequisite and the scope in the client configuration.
+* You have the MCP client configuration from your administrator. The administrator copies it from NetApp Console under *AI data hub* > *AI Data Engine* > *Client Setup*. It includes the following:
+** The MCP server URL, in the format `https://<mcp-server-host>/mcp/tools`.
+** The Microsoft Entra ID tenant ID.
+** The client application ID for your AI client.
+** The scope for the AI Data Engine application, in the format `api://<application-id-uri>/power_users`.
+** The ID of the collection that you want to work with.
+// RESEARCH Confirm the final Console tab name, and whether the console generates one snippet for each client or one generic JSON that the user adapts.
+* Your computer can reach the MCP server. The MCP server runs in your network, so connect from your corporate network or through VPN. Your computer must also be able to reach Microsoft Entra ID sign-in (`login.microsoftonline.com`).
+// RESEARCH Confirm the networking requirements for AI client access (ports and ingress), and move the administrator requirements to aide-requirements.adoc.
+* You have a supported version of the AI client.
+// RESEARCH What are the minimum supported versions of Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot?
+
+== Connect Claude Desktop
+
+Claude Desktop connects to the AI Data Engine MCP server through `mcp-remote`, a small helper that runs on your computer.
+
+.Before you begin
+
+Install Node.js on your computer. The `mcp-remote` helper runs with Node.js.
+
+// RESEARCH Confirm the minimum Node.js version and NetApp's support position for the mcp-remote helper.
+
+.Steps
+
+. In Claude Desktop, open the configuration file `claude_desktop_config.json`.
+// RESEARCH Confirm the file path and menu against Anthropic documentation (for example Settings > Developer > Edit Config). Consider linking to vendor documentation instead of repeating the path.
+. Add the AI Data Engine MCP server under `mcpServers`. Replace the placeholders with values from your administrator:
++
+[source,json]
+----
+{
+  "mcpServers": {
+    "netapp-ai-data-engine": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@<tested version>",
+        "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>",
+        "--static-oauth-client-info",
+        "{\"client_id\": \"<client-application-id>\"}",
+        "--static-oauth-client-metadata",
+        "{\"scope\": \"api://<application-id-uri>/power_users\"}",
+        "--disable-resource-parameter"
+      ]
+    }
+  }
+}
+----
++
+NOTE: Keep the `--disable-resource-parameter` argument. Without it, Microsoft Entra ID rejects the sign-in request.
+// RESEARCH Pin a tested mcp-remote version in the command. Confirm that mcp-remote accepts a collection_id query string, whether to add offline_access to the scope, and the redirect URI that the client app registration needs for Claude Desktop.
+. Save the file and restart Claude Desktop.
+. When the browser opens, sign in with your Microsoft Entra ID account and accept the consent prompt if it appears.
+. In Claude Desktop, confirm that the AI Data Engine server is connected and that its tools are listed.
+
+== Connect Cursor
+
+Cursor connects to the AI Data Engine MCP server directly.
+
+.Steps
+
+. In Cursor, open the MCP configuration file `mcp.json`.
+// RESEARCH Confirm whether to document the user-level file (~/.cursor/mcp.json) or the project-level file (.cursor/mcp.json), against Cursor documentation.
+. Add the AI Data Engine MCP server. Replace the placeholders with values from your administrator:
++
+[source,json]
+----
+{
+  "mcpServers": {
+    "netapp-ai-data-engine": {
+      "url": "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>",
+      "auth": {
+        "CLIENT_ID": "<client-application-id>",
+        "scopes": ["api://<application-id-uri>/power_users"]
+      }
+    }
+  }
+}
+----
+// RESEARCH Confirm the scope that the Cursor configuration requests and the redirect URI that the Cursor client app registration needs.
+. Save the file.
+. When the browser opens, sign in with your Microsoft Entra ID account and accept the consent prompt if it appears.
+. In Cursor settings, confirm that the AI Data Engine server is connected and that its tools are listed.
+
+== Connect Visual Studio Code with GitHub Copilot
+
+// RESEARCH Confirm a tested VS Code configuration and sign-in steps before publishing this section, or remove it from this release.
+
+.Steps
+
+. In your workspace, create or open `.vscode/mcp.json`.
+. Add the AI Data Engine MCP server:
++
+[source,json]
+----
+{
+  "servers": {
+    "netappAiDataEngine": {
+      "type": "http",
+      "url": "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>"
+    }
+  }
+}
+----
+// RESEARCH How does VS Code get an Entra ID token for this server (client ID, scope, and redirect URI)? Does a GitHub Copilot plan or organization policy need to allow MCP servers? Confirm the workflow (the MCP: Add Server command, user-level mcp.json, or workspace .vscode/mcp.json).
+. Start the server and sign in with your Microsoft Entra ID account when prompted.
+. In GitHub Copilot Chat, switch to agent mode and confirm that the AI Data Engine tools are available.
+
+== What you can do
+
+After you connect, your AI client can do the following:
+
+* List the collections that are available to you.
+* Search files by name prefix, file type, or owner. Results include each file's name, path, type, size, last-modified time, and owner.
+* List tags and how many files have each tag.
+* Add a tag to a file or remove a tag from a file. An AI client works on one file at a time.
+
+Your AI client can't retrieve file contents, add, delete, or modify files, change data sources, or create collections.
+
+Tags apply across AI Data Engine, not only to one collection. If you add a tag that doesn't exist, AI Data Engine creates it. Tag names aren't case-sensitive.
+
+// RESEARCH Does a connection cover only the collection in the connection URL, or all collections that the user's scopes can access? Update this section and the prompts to match.
+// RESEARCH Do applied tags appear in later searches? Confirm before describing searching by tag.
+
+== Sample prompts
+
+Replace the placeholders with values from your environment.
+
+// RESEARCH Validate every prompt against a GA build and the demo collection.
+
+=== Search metadata
+
+* "List the data collections that I can search."
+* "In the <collection name> collection, find all PDF files."
+* "In the <collection name> collection, find files whose names start with `<prefix>`."
+* "In the <collection name> collection, list files owned by <owner>."
+* "How many <file type> files are in the <collection name> collection?"
+* "Show the path, size, and last-modified date of files named `<prefix>` in the <collection name> collection."
+
+TIP: Search filters on file name prefix, file type, and owner. If you ask for files by size, date, or folder, the AI client must page through many results, and the answer might be incomplete.
+
+=== Manage tags
+
+* "List the tags in use and how many files have each tag."
+* "Apply the tag <tag name> to the files from my last search."
+* "Remove the tag <tag name> from <file name> in the <collection name> collection."
+
+== Related information
+
+* link:learn-about-mcp.html[Learn about Governed AI Access]
+* link:manage-data-collections.html[Manage data collections]
+* link:configure-mcp-access.html[Configure Entra ID and MCP access]
+* link:../release-notes/known-limitations.html[Known limitations]
