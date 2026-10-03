@@ -28,8 +28,6 @@ The Unstructured tab is selected by default.
 +
 Applied filters appear as tags below the filter bar. The results table and item count update as you add each filter.
 
-For a complete list of available filters, refer to link:use-filters.html[Work with filters].
-
 == Group results by owner
 
 Grouping by owner helps you understand who holds the most potentially reclaimable data before deciding where to act.
@@ -57,7 +55,6 @@ To download the filtered results from the Unstructured tab, select image:icon_do
 
 == Related information
 
-* link:use-filters.html[Work with filters]
 * link:take-actions.html[Take action on your data]
 * link:../policies/create-policy.html[Create a policy]
 * link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]

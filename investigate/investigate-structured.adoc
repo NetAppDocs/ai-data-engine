@@ -33,8 +33,6 @@ Use filters to narrow the listing to tables most likely to offer reclamation opp
 +
 Applied filters appear as tags below the filter bar. The results update as you add each filter.
 
-For a complete list of available filters, refer to link:use-filters.html[Work with filters].
-
 == Review table details
 
 Select a table row to open the detail panel and assess whether the table is a reclamation candidate.
@@ -55,7 +53,6 @@ To download the filtered results from the Structured tab, select image:icon_down
 
 == Related information
 
-* link:use-filters.html[Work with filters]
 * link:../policies/create-policy.html[Create a policy]
 * link:../data-sources/connect-data-source.html[Connect a data source]
 * link:understand-dashboard.html[Assess storage utilization from the dashboard]

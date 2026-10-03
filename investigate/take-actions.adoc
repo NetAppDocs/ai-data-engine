@@ -131,6 +131,5 @@ Tagging applies a business tag to files for classification and tracking.
 
 * link:investigate-data.html[Investigate your data]
 * link:investigate-unstructured.html[Investigate unstructured data]
-* link:use-filters.html[Work with filters]
 * link:../policies/create-policy.html[Create a policy]
 * link:../administer/manage-users-roles.html[Manage users and roles]
