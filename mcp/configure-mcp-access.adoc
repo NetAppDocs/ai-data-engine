@@ -2,14 +2,14 @@
 sidebar: sidebar
 permalink: mcp/configure-mcp-access.html
 keywords: mcp, governed ai access, microsoft entra id, entra, scopes, app roles, authentication, token, collection access
-summary: Register AI Data Engine in Microsoft Entra ID, define the supported scopes and app role, connect Entra ID in NetApp Console, and grant scopes access to collections so that users can work with them through MCP.
+summary: Register AI Data Engine in Microsoft Entra ID, define the supported scopes and app role, set up Entra ID as an identity provider in AI Data Engine, and grant scopes access to collections so that users can work with them through MCP.
 ---
 = Configure Entra ID and MCP access
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Register AI Data Engine in Microsoft Entra ID, connect Entra ID to AI Data Engine in NetApp Console, and grant Entra ID scopes access to selected collections. Governed AI Access uses Entra ID to authenticate users, and the scopes that you grant determine which collections a user can work with through the Model Context Protocol (MCP).
+Register AI Data Engine in Microsoft Entra ID, set up Entra ID as an identity provider in AI Data Engine, and grant Entra ID scopes access to selected collections. Governed AI Access uses Entra ID to authenticate users, and the scopes that you grant determine which collections a user can work with through the Model Context Protocol (MCP).
 
 // RESEARCH Help ID help-mcp-access: confirm the anchor against the staging build, and confirm who owns help ID updates.
 
@@ -29,8 +29,8 @@ You complete these tasks:
 . Register an application for AI Data Engine in Microsoft Entra ID and expose its API.
 . Define the supported scopes and the power-user app role.
 . Register an Entra ID application for each AI client.
-. Connect Microsoft Entra ID to AI Data Engine in NetApp Console.
-. Grant scopes access to collections.
+. Set up Microsoft Entra ID as an identity provider in AI Data Engine.
+. Select the identity provider and grant scopes access to collections.
 
 An Entra ID administrator completes the Entra ID tasks manually in the Microsoft Entra admin center. NetApp Console doesn't create or change Entra ID app registrations.
 
@@ -41,8 +41,8 @@ An Entra ID administrator completes the Entra ID tasks manually in the Microsoft
 * You have a Microsoft Entra ID tenant and permission to register applications and grant consent in that tenant.
 // RESEARCH Which Entra ID role is required to register the application and to grant admin consent? Owner is an assignment on an existing app registration, not an Entra ID directory role. Confirm whether Application Administrator, Cloud Application Administrator, or a higher-privileged role is needed for tenant-wide admin consent.
 * You have the AI Data Engine administrator role in NetApp Console.
-// RESEARCH Which NetApp Console role is required to connect an identity provider?
-* AI Data Engine is deployed and has at least one data collection. Refer to link:manage-data-collections.html[Manage data collections].
+// RESEARCH Which NetApp Console role is required to set up an identity provider?
+* AI Data Engine is deployed and has at least one data collection. Refer to link:manage-data-collections.html#create-a-data-collection[Create a data collection].
 
 == Register the AI Data Engine application
 
@@ -126,31 +126,54 @@ Entra ID requires each AI client to have its own app registration, separate from
 
 // RESEARCH Is a separate Entra ID app registration per AI client required for GA, and does each supported client need one? Confirm the redirect URI for each client and which clients need a client secret. Keep this section consistent with the Connect AI clients page, which must then list the client ID and redirect URI settings.
 
-== Connect Microsoft Entra ID to AI Data Engine
+[#set-up-an-identity-provider]
+== Set up an identity provider
+
+Connect Microsoft Entra ID as an identity provider (IdP) to authenticate and authorize access to the data resources in your data collections.
+
+.Before you begin
+
+* You have administrator access to AI Data Engine.
+* You have the tenant ID and the application (client) ID of the AI Data Engine application that you registered in Microsoft Entra ID.
 
 .Steps
 
 . In NetApp Console, go to *AI data hub* > *AI Data Engine*.
-. Go to *Settings* > *MCP Connections*.
-// RESEARCH Confirm the final GA navigation path and label for the MCP connection settings.
-. Select *Microsoft Entra ID* and enter the following values:
-* *Tenant ID*: the Directory (tenant) ID of your Entra ID tenant.
-* *Client ID*: the Application (client) ID of the AI Data Engine application.
+. Select *Identity providers*.
+. Select *Add identity provider*.
++
+The *Add identity provider* panel opens.
+. From *Select identity provider*, select *Microsoft EntraID*.
+. In *Entra Tenant ID*, enter the Directory (tenant) ID of your Entra ID tenant.
+. In *Application (Client) ID*, enter the Application (client) ID of the AI Data Engine application.
 +
 IMPORTANT: Enter the Application (client) ID, which is a GUID. Don't enter the Application ID URI (`api://...`). Tokens identify the AI Data Engine application by its GUID, so a URI causes sign-in failures.
-. Save your changes.
++
+Use the identifiers from your Microsoft Entra ID configuration. If an *Invalid identity* message appears, verify the values and correct them before you try again.
+. Select *Add identity provider*.
 
-// RESEARCH Confirm the field labels, the validation messages, and whether changes apply immediately or after a restart or scheduled check.
+When setup completes, AI Data Engine displays the confirmation message *Identity provider successfully created.*
 
-== Grant scopes access to collections
+Adding an identity provider doesn't automatically associate it with a data collection. Select the identity provider when you configure the collection so that AI applications can access its resources with authentication and authorization. Refer to <<grant-scopes-access-to-collections,Select the identity provider and grant scopes access to collections>>.
+
+// RESEARCH Confirm that the exact label of the identity provider option is *Microsoft EntraID* (as in the UI) and not *Microsoft Entra ID*.
+// RESEARCH Can you add more than one identity provider, and can you edit or delete an identity provider after you add it?
+// RESEARCH Does *Invalid identity* appear only when the tenant ID or client ID format is wrong, or does AI Data Engine also validate the values against Entra ID? Confirm the validation behavior and whether changes apply immediately.
+
+[#grant-scopes-access-to-collections]
+== Select the identity provider and grant scopes access to collections
 
 .Steps
 
 . In NetApp Console, open the collection that you want to make available through MCP.
+. Select the identity provider that you set up.
+// RESEARCH Where in the configure for MCP step do you select the identity provider? Is the identity provider selection required before AI clients can use the collection?
 . Select the scopes that can access the collection.
 . Save your changes.
 
-// RESEARCH Confirm how scopes are listed in NetApp Console, and whether customers must match scope names exactly between Entra ID and the console.
+You must select a scope for the collection. When the MCP configuration is complete and you have selected scopes, MCP is enabled for the collection.
+
+// RESEARCH Confirm how scopes are listed in NetApp Console, and whether customers must match scope names exactly between Entra ID and the console. More information about the configure for MCP step is to come.
 
 Users whose tokens carry a granted scope can discover and search the collection. Users without a matching scope can't discover, search, or work with the collection.
 

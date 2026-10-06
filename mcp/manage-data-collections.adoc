@@ -1,25 +1,25 @@
 ---
 sidebar: sidebar
 permalink: mcp/manage-data-collections.html
-keywords: mcp, governed ai access, data collections, collection, ai access, scope, enable collection
-summary: Enable data collections for AI access so that connected AI clients can search them. Each collection that you enable defines the searchable scope for MCP.
+keywords: mcp, governed ai access, data collections, collection, ai access, scope, create collection, enable collection
+summary: Create data collections and enable them for AI access so that connected AI clients can search them. Each collection that you enable defines the searchable scope for MCP.
 ---
 = Manage data collections
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Enable data collections for AI access so that connected AI clients can search them. Each collection that you enable defines the scope that AI clients can search through the Model Context Protocol (MCP).
+Create data collections and enable them for AI access so that connected AI clients can search them. Each collection that you enable defines the scope that AI clients can search through the Model Context Protocol (MCP).
 
 // RESEARCH Help ID help-mcp-collections: confirm the anchor against the staging build, and confirm who owns help ID updates.
 
 == How collections define MCP scope
 
-A data collection is a group of files from volumes that you select in AI Data Engine. When you enable a collection for AI access, AI clients can search the metadata for the files in that collection. AI clients can't search files outside the collections that you enable.
+A data collection is a group of files from volumes that you select in AI Data Engine. When you enable a collection for AI access, AI clients can search the metadata for the files in that collection. AI clients can't search files outside the collections that you enable. To create a collection, refer to <<create-a-data-collection,Create a data collection>>.
 
-// RESEARCH Where are collections created and edited? Does this page also cover creating a collection, or does it only cover enabling existing ones?
+// RESEARCH Where are existing collections edited (for example, to add or remove data resources)? Does this page need an edit section?
 
-You grant access to a collection by assigning it one or more Microsoft Entra ID scopes. In this release, access is granted at the collection level only. Any authenticated user with a matching scope can search every file in the collection.
+You grant access to a collection by assigning it one or more Microsoft Entra ID scopes. Access is granted at the collection level only. Any authenticated user with a matching scope can search every file in the collection.
 
 CAUTION: Before you grant a scope access to a collection, confirm that everyone who has that scope is allowed to search the metadata for every file in the collection.
 
@@ -27,21 +27,46 @@ CAUTION: Before you grant a scope access to a collection, confirm that everyone 
 
 * You have the AI Data Engine administrator role.
 // RESEARCH Which NetApp Console role is required to manage MCP collections? Can the viewer role see which collections are enabled?
-* You have connected Microsoft Entra ID to AI Data Engine. Refer to link:configure-mcp-access.html[Configure Entra ID and MCP access].
-* You have created at least one data collection.
+* You have set up Microsoft Entra ID as an identity provider in AI Data Engine. Refer to link:configure-mcp-access.html#set-up-an-identity-provider[Set up an identity provider].
+* You have created at least one data collection. Refer to <<create-a-data-collection,Create a data collection>>.
 
+[#create-a-data-collection]
+== Create a data collection
+
+Create a data collection to define the data resources that AI agents can search and retrieve through the MCP server.
+
+.Steps
+
+. In NetApp Console, go to *AI data hub* > *AI Data Engine*.
+. Select *Configuration*, then select *MCP collections*.
+. Select *Create collection*.
+. In *Name*, enter a unique name for the collection.
+. Optional: In *Description*, enter a description to help your team understand the collection's purpose. The description can contain up to 512 characters.
+. Use the *Systems* and *Protocols* filters to narrow the list of data resources.
+. Select the checkbox next to each data resource that you want to include in the collection.
++
+The *Selected rows* summary displays the number of selected resources, their scanned capacity, and their scanned file count. To clear the selection and start again, select *Reset*.
+. Select *Create MCP collection*.
+
+A confirmation message appears, and the new collection is added to the *Collections* list with a status of *Ready to configure*. Creating the collection doesn't complete its MCP connection configuration.
+
+// RESEARCH Which statuses can a collection have besides *Ready to configure*? What are the UI labels and steps for the configure for MCP step? More information is to come.
+
+After you create a collection, configure it for MCP. When the configuration is complete and you have selected scopes, MCP is enabled for the collection. Refer to link:configure-mcp-access.html#grant-scopes-access-to-collections[Select the identity provider and grant scopes access to collections].
+
+[#enable-a-collection-for-ai-access]
 == Enable a collection for AI access
 
 .Steps
 
 . In NetApp Console, go to *AI data hub* > *AI Data Engine*.
-// RESEARCH What is the navigation path to the collections view?
+// RESEARCH Reconcile these steps with the configure for MCP step. MCP is enabled after the configuration is complete and scopes are selected, so is a separate enable step still needed, or do these steps apply only after a collection is disabled?
 . Select the collection that you want to enable.
 . Enable AI access for the collection.
 // RESEARCH What is the exact UI label and control (toggle, checkbox, button) for enabling a collection for AI access?
 . Save your changes.
 
-After you enable a collection, grant one or more Entra ID scopes access to it so that users can search it. Refer to link:configure-mcp-access.html[Configure Entra ID and MCP access].
+After you enable a collection, select the identity provider and grant one or more Entra ID scopes access to it so that users can search it. Refer to link:configure-mcp-access.html#grant-scopes-access-to-collections[Select the identity provider and grant scopes access to collections].
 
 == Disable AI access for a collection
 

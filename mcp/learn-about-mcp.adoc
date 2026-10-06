@@ -31,9 +31,9 @@ AI Data Engine records each access event for operations and audit purposes.
 
 You configure Governed AI Access in NetApp Console. An administrator completes the following tasks:
 
-. Connect Microsoft Entra ID to AI Data Engine.
+. Set up Microsoft Entra ID as an identity provider in AI Data Engine.
 . Create data collections from selected volumes. Each collection that you enable for AI access defines the scope that an AI client can search.
-. Grant Entra ID scopes access to each collection.
+. Select the identity provider and grant Entra ID scopes access to each collection.
 
 After the configuration is complete, users connect a supported AI client to the AI Data Engine MCP server and sign in with their Entra ID identity. The client can then search only the collections that the user's Entra ID scopes are allowed to access.
 
