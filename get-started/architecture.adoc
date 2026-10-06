@@ -33,7 +33,7 @@ The Governed Access Gateway is the Model Context Protocol (MCP) server for AI Da
 // RESEARCH Confirm how AI clients reach the gateway, and whether any proxy or runtime communication notes belong here.
 // RESEARCH Is Governed Access Gateway the final customer-facing name for this component?
 
-link:../mcp/learn-about-mcp.html[Learn more about Governed AI Access].
+link:../mcp/learn-about-mcp.html[Learn more about governed AI access].
 
 == Deployment types
 
@@ -64,4 +64,4 @@ NOTE: After the Metadata Engine finishes scanning all configured volumes, it imm
 
 * link:learn-about.html[Learn about AI Data Engine]
 * link:../deploy/deployment-overview.html[Learn about AIDE deployment]
-* link:../mcp/learn-about-mcp.html[Learn about Governed AI Access]
+* link:../mcp/learn-about-mcp.html[Learn about governed AI access]

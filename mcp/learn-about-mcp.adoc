@@ -2,16 +2,16 @@
 sidebar: sidebar
 permalink: mcp/learn-about-mcp.html
 keywords: governed ai access, mcp, model context protocol, ai clients, collections, entra id, claude desktop, cursor, vs code, github copilot
-summary: Governed AI Access lets supported AI clients search the metadata in selected AI Data Engine collections through the Model Context Protocol (MCP), using access that you control in NetApp Console.
+summary: Governed AI access lets supported AI clients search the metadata in selected AI Data Engine collections through the Model Context Protocol (MCP), using access that you control in NetApp Console.
 ---
-= Learn about Governed AI Access
+= Learn about governed AI access
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Governed AI Access lets supported AI clients search the metadata in AI Data Engine collections that you select, using the Model Context Protocol (MCP). You decide which collections an AI client can search and who can use them, so AI assistants work from your cataloged metadata within the boundaries you set.
+Governed AI access lets supported AI clients search the metadata in AI Data Engine collections that you select, using the Model Context Protocol (MCP). You decide which collections an AI client can search and who can use them, so AI assistants work from your cataloged metadata within the boundaries you set.
 
-== What Governed AI Access does
+== What governed AI access does
 
 The Model Context Protocol (MCP) is an open standard that lets AI clients connect to external data sources and tools. AI Data Engine provides an MCP server, called the Governed Access Gateway, so that an AI client you approve can query the AI Data Engine metadata catalog instead of reaching directly into your storage systems.
 
@@ -27,9 +27,9 @@ AI Data Engine records each access event for operations and audit purposes.
 // RESEARCH Confirm that access events are recorded and where an administrator can view them.
 // RESEARCH Is the MCP server called the Governed Access Gateway in customer-facing content, and is that name final?
 
-== How Governed AI Access works
+== How governed AI access works
 
-You configure Governed AI Access in NetApp Console. An administrator completes the following tasks:
+You configure governed AI access in NetApp Console. An administrator completes the following tasks:
 
 . Set up Microsoft Entra ID as an identity provider in AI Data Engine.
 . Create data collections from selected volumes. Each collection that you enable for AI access defines the scope that an AI client can search.
@@ -51,7 +51,7 @@ The following AI clients are supported:
 
 == What isn't available through MCP
 
-In this release, Governed AI Access is limited to metadata search and tag management within collections. Through MCP, an AI client can't:
+In this release, governed AI access is limited to metadata search and tag management within collections. Through MCP, an AI client can't:
 
 * Retrieve the contents of files.
 * Add, delete, or modify files.
@@ -62,6 +62,7 @@ For the complete list of restrictions, refer to link:../release-notes/known-limi
 == Related information
 
 * link:manage-data-collections.html[Manage data collections]
+* link:quick-start-mcp.html[Quick start for governed AI access with AI Data Engine]
 * link:configure-mcp-access.html[Configure Entra ID and MCP access]
 * link:connect-ai-clients-mcp.html[Connect AI clients]
 * link:../get-started/learn-about.html[Learn about AI Data Engine]

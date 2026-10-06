@@ -25,13 +25,13 @@ AI Data Engine scans connected storage systems to extract file system metadata a
 
 AI Data Engine focuses on storage optimization and data lifecycle management for structured and unstructured data stored on your storage systems.
 
-== Governed AI Access
+== Governed AI access
 
-Governed AI Access lets supported AI clients search the metadata in the collections that you enable for AI access. Supported clients are Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot. You control which collections a user can search by granting Microsoft Entra ID scopes access to each collection. AI clients can search metadata and manage tags. They can't retrieve file contents.
+Governed AI access lets supported AI clients search the metadata in the collections that you enable for AI access. Supported clients are Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot. You control which collections a user can search by granting Microsoft Entra ID scopes access to each collection. AI clients can search metadata and manage tags. They can't retrieve file contents.
 
 // RESEARCH Confirm which release features this page should list, and add them from their own content updates.
 
-link:../mcp/learn-about-mcp.html[Learn more about Governed AI Access].
+link:../mcp/learn-about-mcp.html[Learn more about governed AI access].
 
 == Who uses AI Data Engine
 
@@ -52,5 +52,5 @@ link:../deploy/deployment-overview.html[Learn more about deployment options].
 
 * link:architecture.html[AI Data Engine architecture]
 * link:quick-start.html[Quick start]
-* link:../mcp/learn-about-mcp.html[Learn about Governed AI Access]
+* link:../mcp/learn-about-mcp.html[Learn about governed AI access]
 * link:storage-optimization-workflows.html[Explore storage optimization workflows]

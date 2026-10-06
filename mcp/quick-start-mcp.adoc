@@ -1,0 +1,48 @@
+---
+sidebar: sidebar
+permalink: mcp/quick-start-mcp.html
+keywords: quick start, mcp, governed ai access, identity provider, data collection, ai client, entra id
+summary: Set up governed AI access with AI Data Engine by configuring access, creating and configuring a data collection, and connecting and validating an AI client.
+---
+= Quick start for governed AI access with AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Set up governed AI access with AI Data Engine by configuring access, creating and configuring a data collection, and connecting an AI client that can search the collection through the Model Context Protocol (MCP).
+
+This quick start assumes that you have already link:../data-sources/connect-data-source.html[connected a data source] and that AI Data Engine has scanned and indexed it.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] Configure access
+[role="quick-margin-para"]
+link:configure-mcp-access.html#set-up-an-identity-provider[Set up Microsoft Entra ID as an identity provider] in AI Data Engine. Skip this step if an identity provider is already configured. Then define the scopes and the power-user app role, and register an Entra ID application for each AI client. Refer to link:configure-mcp-access.html[Configure Entra ID and MCP access].
+// RESEARCH Figma lists "Configure authentication for an MCP client" in the connect phase. Is registering the client application an administrator task that is completed before you create a collection, as documented in configure-mcp-access.adoc, or does it happen later?
+// RESEARCH Which Figma topic covers "Configure user access and permissions for MCP"? Confirm whether it differs from the scopes and app role tasks in configure-mcp-access.adoc.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Create a data collection
+[role="quick-margin-para"]
+link:manage-data-collections.html#create-a-data-collection[Create a data collection] to define the data resources that AI agents can search through the MCP server. The new collection has a status of *Ready to configure*.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Configure the collection for MCP
+[role="quick-margin-para"]
+Configure the collection for MCP by link:configure-mcp-access.html#grant-scopes-access-to-collections[selecting the identity provider and the scopes] that can access it. When the configuration is complete and you have selected scopes, MCP is enabled for the collection.
+// RESEARCH More information about the configure for MCP step is to come. Update the step name and link when the topic exists.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Locate the connection details
+[role="quick-margin-para"]
+Copy the MCP client configuration from *Client Setup* in NetApp Console. It includes the MCP server URL, the Entra ID tenant ID, the client application ID, the scope, and the collection ID. Refer to the prerequisites in link:connect-ai-clients-mcp.html[Connect AI clients].
+// RESEARCH Figma calls this "Locate the MCP connection details". Confirm that Client Setup is still the location, and whether the details are available from the collection.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five] Connect an AI client
+[role="quick-margin-para"]
+Connect a supported AI client, such as Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot, to the collection. Refer to link:connect-ai-clients-mcp.html[Connect AI clients].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png[Six] Verify the connection
+[role="quick-margin-para"]
+Confirm that the AI Data Engine tools are listed in your AI client, and then try a sample prompt, such as asking for the collections that you can search. Refer to the sample prompts in link:connect-ai-clients-mcp.html[Connect AI clients].
+// RESEARCH Add a link to troubleshooting topics for MCP connection, authentication, and access issues when they exist.
+
+.What's next
+To update a collection or change which scopes can access it, refer to link:manage-data-collections.html[Manage data collections]. For current restrictions, refer to link:../release-notes/known-limitations.html[Known limitations].
+
+// RESEARCH Add links for updating an MCP collection, reviewing and updating access permissions, and disconnecting an MCP client or removing a collection when those topics exist.

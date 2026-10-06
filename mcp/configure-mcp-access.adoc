@@ -9,7 +9,7 @@ summary: Register AI Data Engine in Microsoft Entra ID, define the supported sco
 :imagesdir: ../media/
 
 [.lead]
-Register AI Data Engine in Microsoft Entra ID, set up Entra ID as an identity provider in AI Data Engine, and grant Entra ID scopes access to selected collections. Governed AI Access uses Entra ID to authenticate users, and the scopes that you grant determine which collections a user can work with through the Model Context Protocol (MCP).
+Register AI Data Engine in Microsoft Entra ID, set up Entra ID as an identity provider in AI Data Engine, and grant Entra ID scopes access to selected collections. Governed AI access uses Entra ID to authenticate users, and the scopes that you grant determine which collections a user can work with through the Model Context Protocol (MCP).
 
 // RESEARCH Help ID help-mcp-access: confirm the anchor against the staging build, and confirm who owns help ID updates.
 
@@ -17,7 +17,7 @@ Register AI Data Engine in Microsoft Entra ID, set up Entra ID as an identity pr
 
 AI Data Engine doesn't issue tokens. It validates the Entra ID access tokens that AI clients present. When a user connects an AI client, the user signs in with Microsoft Entra ID, and Entra ID issues an access token for the AI Data Engine application. AI Data Engine checks the token and lets the client work only with the collections whose granted scopes match.
 
-Microsoft Entra ID is the only identity provider that Governed AI Access supports in this release.
+Microsoft Entra ID is the only identity provider that governed AI access supports in this release.
 
 In this release, you grant access at the collection level. Any user with a scope that you granted to a collection can search every file in that collection. Include in a collection only files that everyone with the granted scope is meant to see.
 
@@ -196,7 +196,7 @@ If AI Data Engine can't verify a user's identity or scope, it returns no data fr
 
 == Related information
 
-* link:learn-about-mcp.html[Learn about Governed AI Access]
+* link:learn-about-mcp.html[Learn about governed AI access]
 * link:manage-data-collections.html[Manage data collections]
 * link:connect-ai-clients-mcp.html[Connect AI clients]
 * link:../release-notes/known-limitations.html[Known limitations]

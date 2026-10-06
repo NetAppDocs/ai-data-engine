@@ -185,7 +185,7 @@ TIP: Search filters on file name prefix, file type, and owner. If you ask for fi
 
 == Related information
 
-* link:learn-about-mcp.html[Learn about Governed AI Access]
+* link:learn-about-mcp.html[Learn about governed AI access]
 * link:manage-data-collections.html[Manage data collections]
 * link:configure-mcp-access.html[Configure Entra ID and MCP access]
 * link:../release-notes/known-limitations.html[Known limitations]

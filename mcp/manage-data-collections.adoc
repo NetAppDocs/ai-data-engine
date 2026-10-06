@@ -85,7 +85,7 @@ Disable AI access for a collection when AI clients no longer need to search it.
 
 == Related information
 
-* link:learn-about-mcp.html[Learn about Governed AI Access]
+* link:learn-about-mcp.html[Learn about governed AI access]
 * link:configure-mcp-access.html[Configure Entra ID and MCP access]
 * link:connect-ai-clients-mcp.html[Connect AI clients]
 * link:../release-notes/known-limitations.html[Known limitations]
