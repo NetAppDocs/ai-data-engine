@@ -9,16 +9,16 @@ summary: Governed AI access lets supported AI clients search the metadata in sel
 :imagesdir: ../media/
 
 [.lead]
-Governed AI access lets supported AI clients search the metadata in AI Data Engine collections that you select, using the Model Context Protocol (MCP). You decide which collections an AI client can search and who can use them, so AI assistants work from your cataloged metadata within the boundaries you set.
+Governed AI access lets supported AI clients search the metadata in AI Data Engine collections that you select using the Model Context Protocol (MCP). You decide which collections an AI client can search and who can use them. AI assistants work from your cataloged metadata within the boundaries you set.
 
 == What governed AI access does
 
-The Model Context Protocol (MCP) is an open standard that lets AI clients connect to external data sources and tools. AI Data Engine provides an MCP server, called the Governed Access Gateway, so that an AI client you approve can query the AI Data Engine metadata catalog instead of reaching directly into your storage systems.
+The Model Context Protocol (MCP) is an open standard that lets AI clients connect to external data sources and tools. AI Data Engine provides an MCP server, called the Governed Access Gateway, so that AI clients can query the AI Data Engine metadata catalog instead of reaching directly into your storage systems.
 
 Through MCP, a connected AI client can:
 
 * Search the metadata for the files in the collections that you have enabled for AI access.
-* Perform tag-management operations on those files. Tag operations require a power-user session, which needs both the `power_users` scope and the `AIDEPowerUsers` app role.
+* Perform tag-management operations on those files. Tag operations are available only to users that you designate as power users in Microsoft Entra ID. Refer to link:configure-mcp-access.html#define-scopes-and-the-power-user-app-role[Define scopes and the power-user app role].
 
 AI Data Engine records each access event for operations and audit purposes.
 
@@ -27,18 +27,19 @@ AI Data Engine records each access event for operations and audit purposes.
 
 == How governed AI access works
 
-You configure governed AI access in NetApp Console. An administrator completes the following tasks:
+You configure governed AI access in Microsoft Entra ID and NetApp Console. An administrator completes the following tasks:
 
 . Prepare Microsoft Entra ID by registering an application for AI Data Engine, defining the scopes and the power-user app role, and assigning the app role.
 . Set up Microsoft Entra ID as an identity provider in AI Data Engine.
-. Create data collections from selected volumes. Each collection that you enable for AI access defines the scope that an AI client can search.
-. Select the identity provider and grant Entra ID scopes access to each collection.
+. Create data collections from selected volumes.
+. Select the identity provider and grant Entra ID scopes access to each collection. The scopes you grant define what an AI client can search.
+. Connect AI clients by using the client configuration from NetApp Console.
 
-After the configuration is complete, users connect a supported AI client to the AI Data Engine MCP server and sign in with their Entra ID identity. The client can then search only the collections that the user's Entra ID scopes are allowed to access.
+After the configuration is complete, users sign in to a supported AI client with their Entra ID identity. The client can then search only the collections that the user's Entra ID scopes are allowed to access.
 
-In this release, access is granted at the collection level only. You can't grant access to individual files or directories.
+Access is granted at the collection level only. You can't grant access to individual files or directories.
 
-// RESEARCH Confirm that all customer-facing material states that file content retrieval isn't available in this release.
+// RESEARCH Confirm that all customer-facing material states that file content retrieval isn't available.
 
 == Supported AI clients
 
@@ -50,7 +51,7 @@ The following AI clients are supported:
 
 == What isn't available through MCP
 
-In this release, governed AI access is limited to metadata search and tag management within collections. Through MCP, an AI client can't:
+Governed AI access is limited to metadata search and tag management within collections. Through MCP, an AI client can't:
 
 * Retrieve the contents of files.
 * Add, delete, or modify files.
@@ -64,7 +65,4 @@ For the complete list of restrictions, refer to link:../release-notes/known-limi
 * link:quick-start-mcp.html[Quick start for governed AI access with AI Data Engine]
 * link:configure-mcp-access.html[Configure Entra ID and MCP access]
 * link:connect-ai-clients-mcp.html[Connect AI clients]
-* link:../get-started/learn-about.html[Learn about AI Data Engine]
-* link:../get-started/architecture.html[AI Data Engine architecture]
-* link:../administer/manage-users-roles.html[Manage users and roles]
 * link:../release-notes/known-limitations.html[Known limitations]

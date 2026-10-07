@@ -38,7 +38,7 @@ MCP tag operations are limited::
 AI clients can list tags and how many files have each tag, and they can add or remove a tag on one file at a time. Tags apply across AI Data Engine, not only to one collection. AI clients can't list the files that have a tag, or delete or rename a tag.
 
 MCP doesn't retrieve file contents::
-AI clients can't retrieve the contents of files through MCP in this release.
+AI clients can't retrieve the contents of files through MCP.
 
 MCP doesn't support file changes or data source changes::
 AI clients can't add, delete, or modify files, and they can't change data sources.

@@ -27,7 +27,7 @@ NOTE: The Console Agent isn't specific to AI Data Engine. If you already have a 
 
 === Governed Access Gateway
 
-The Governed Access Gateway is the Model Context Protocol (MCP) server for AI Data Engine. It lets supported AI clients connect to the metadata catalog. The gateway authenticates each user through Microsoft Entra ID and limits the client to the collections that the user's Entra ID scopes can access. In this release, the gateway supports metadata search and tag management. The gateway runs in your network. AI clients connect to it directly from your corporate network or through VPN. The Console Agent doesn't relay MCP traffic.
+The Governed Access Gateway is the Model Context Protocol (MCP) server for AI Data Engine. It lets supported AI clients connect to the metadata catalog. The gateway authenticates each user through Microsoft Entra ID and limits the client to the collections that the user's Entra ID scopes can access. The gateway supports metadata search and tag management. The gateway runs in your network. AI clients connect to it directly from your corporate network or through VPN. The Console Agent doesn't relay MCP traffic.
 
 // RESEARCH Where does the Governed Access Gateway run (on the AIDE single-node VM, in the multi-node cluster, or elsewhere)? Is it deployed with AI Data Engine or enabled separately?
 // RESEARCH Confirm how AI clients reach the gateway, and whether any proxy or runtime communication notes belong here.

@@ -17,7 +17,7 @@ Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot to the
 
 == Supported AI clients
 
-AI Data Engine supports the following AI clients in this release:
+AI Data Engine supports the following AI clients:
 
 * Claude Desktop
 * Cursor
@@ -125,7 +125,7 @@ Cursor connects to the AI Data Engine MCP server directly.
 
 == Connect Visual Studio Code with GitHub Copilot
 
-// RESEARCH Confirm a tested VS Code configuration and sign-in steps before publishing this section, or remove it from this release.
+// RESEARCH Confirm a tested VS Code configuration and sign-in steps before publishing this section, or remove it.
 
 .Steps
 
