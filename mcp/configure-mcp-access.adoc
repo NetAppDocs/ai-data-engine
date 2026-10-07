@@ -27,10 +27,10 @@ In this release, you grant access at the collection level. Any user with a scope
 You complete these tasks:
 
 . Register an application for AI Data Engine in Microsoft Entra ID and expose its API.
-. Define the supported scopes and the power-user app role.
-. Register an Entra ID application for each AI client.
+. Define the supported scopes and the power-user app role, and assign the app role to the users who tag files.
 . Set up Microsoft Entra ID as an identity provider in AI Data Engine.
 . Select the identity provider and grant scopes access to collections.
+. Register an Entra ID application for each AI client that needs one.
 
 An Entra ID administrator completes the Entra ID tasks manually in the Microsoft Entra admin center. NetApp Console doesn't create or change Entra ID app registrations.
 
@@ -42,8 +42,10 @@ An Entra ID administrator completes the Entra ID tasks manually in the Microsoft
 // RESEARCH Which Entra ID role is required to register the application and to grant admin consent? Owner is an assignment on an existing app registration, not an Entra ID directory role. Confirm whether Application Administrator, Cloud Application Administrator, or a higher-privileged role is needed for tenant-wide admin consent.
 * You have the AI Data Engine administrator role in NetApp Console.
 // RESEARCH Which NetApp Console role is required to set up an identity provider?
+// RESEARCH ROVO REVIEW Rovo says tenant-wide setup needs Entra ID Owner or Application Administrator rights. Owner is not a directory role, so confirm the role that registers the app and grants consent.
 * AI Data Engine is deployed and has at least one data collection. Refer to link:manage-data-collections.html#create-a-data-collection[Create a data collection].
 
+[#register-the-ai-data-engine-application]
 == Register the AI Data Engine application
 
 Complete this task once per tenant. If an AI Data Engine app registration already exists in your tenant, use it.
@@ -60,6 +62,7 @@ NOTE: You can use a custom Application ID URI. If Entra ID rejects it with the e
 
 // RESEARCH Have these steps tested in a clean tenant. Confirm that the default Application ID URI is the supported format and whether a custom value is allowed.
 
+[#define-scopes-and-the-power-user-app-role]
 == Define scopes and the power-user app role
 
 AI Data Engine recognizes the following scopes. Scope names must match exactly, including the plural form.
@@ -76,8 +79,6 @@ AI Data Engine recognizes the following scopes. Scope names must match exactly, 
 |===
 
 // RESEARCH Confirm the final wording for what the enterprise_users scope allows in this release.
-// RESEARCH Confirm whether the power_users scope and the AIDEPowerUsers app role are in this release. If they are not, remove this scope, the app role, and the related sections.
-// RESEARCH Confirm which session types this release supports, and update the scopes, the required role assignment, and the token requirements to match.
 
 .Steps
 
@@ -98,6 +99,8 @@ AI Data Engine recognizes the following scopes. Scope names must match exactly, 
 
 To assign the app role to groups instead of individual users, your tenant needs Microsoft Entra ID P1 or P2.
 
+IMPORTANT: Assigning the app role, not only defining it, is required for tagging. Tag operations work only in a power-user session. If no user holds the role, no one can tag files through MCP.
+
 .How power-user sessions work
 
 A user gets a power-user session only when both of these are true:
@@ -109,22 +112,6 @@ If a client requests `power_users` for a user who doesn't hold the role, AI Data
 
 // RESEARCH Confirm what happens when a client requests the power_users scope for a user who doesn't hold the app role, and describe it in the paragraph above.
 // RESEARCH Are scopes defined as delegated scopes, app roles, or both? Confirm the exact display names and consent descriptions for each scope.
-
-== Register an application for each AI client
-
-Entra ID requires each AI client to have its own app registration, separate from the AI Data Engine application.
-
-.Steps
-
-. In the Microsoft Entra admin center, register a new application for the AI client.
-. Under *Authentication*, add the redirect URI that the AI client requires. Refer to link:connect-ai-clients-mcp.html[Connect AI clients] for each client's values.
-. Under *API permissions*, select *Add a permission* > *APIs my organization uses*, and then select the AI Data Engine application.
-. Add the `enterprise_users` delegated permission. Add `power_users` only if this client connection is for power-user sessions.
-. Add the Microsoft Graph delegated permission `offline_access` so that the client can refresh tokens without asking the user to sign in again.
-. If your tenant requires admin consent, select *Grant admin consent*.
-. Record the client application's *Application (client) ID*. You use it when you configure the AI client.
-
-// RESEARCH Is a separate Entra ID app registration per AI client required for GA, and does each supported client need one? Confirm the redirect URI for each client and which clients need a client secret. Keep this section consistent with the Connect AI clients page, which must then list the client ID and redirect URI settings.
 
 [#set-up-an-identity-provider]
 == Set up an identity provider
@@ -158,6 +145,7 @@ Adding an identity provider doesn't automatically associate it with a data colle
 
 // RESEARCH Confirm that the exact label of the identity provider option is *Microsoft EntraID* (as in the UI) and not *Microsoft Entra ID*.
 // RESEARCH Can you add more than one identity provider, and can you edit or delete an identity provider after you add it?
+// RESEARCH ROVO REVIEW Rovo says you also import the scopes from Entra ID in this task. The steps above enter only the tenant ID and client ID. Confirm whether a scope import step exists in the UI.
 // RESEARCH Does *Invalid identity* appear only when the tenant ID or client ID format is wrong, or does AI Data Engine also validate the values against Entra ID? Confirm the validation behavior and whether changes apply immediately.
 
 [#grant-scopes-access-to-collections]
@@ -178,6 +166,24 @@ You must select a scope for the collection. When the MCP configuration is comple
 Users whose tokens carry a granted scope can discover and search the collection. Users without a matching scope can't discover, search, or work with the collection.
 
 // RESEARCH Confirm that this behavior is enforced in the GA build.
+
+[#register-an-application-for-each-ai-client]
+== Register an application for each AI client
+
+If an AI client needs its own Entra ID app registration, register it separately from the AI Data Engine application. Complete this task when you connect the client, after you grant scopes access to a collection.
+
+.Steps
+
+. In the Microsoft Entra admin center, register a new application for the AI client.
+. Under *Authentication*, add the redirect URI that the AI client requires. Refer to link:connect-ai-clients-mcp.html[Connect AI clients] for each client's values.
+. Under *API permissions*, select *Add a permission* > *APIs my organization uses*, and then select the AI Data Engine application.
+. Add the `enterprise_users` delegated permission. Add `power_users` if this client connection is for power-user sessions.
+. Add the Microsoft Graph delegated permission `offline_access` so that the client can refresh tokens without asking the user to sign in again.
+. If your tenant requires admin consent, select *Grant admin consent*.
+. Record the client application's *Application (client) ID*. You use it when you configure the AI client.
+
+// RESEARCH Is a separate Entra ID app registration per AI client required for GA, and does each supported client need one? Confirm the redirect URI for each client and which clients need a client secret. Keep this section consistent with the Connect AI clients page, which must then list the client ID and redirect URI settings.
+// RESEARCH ROVO REVIEW Rovo says the redirect URI includes the client's server key, and that Cursor might use OAuth discovery (RFC 9728) and need no client app. Confirm which of Claude Desktop, Cursor, and Visual Studio Code need their own registration.
 
 == Token expectations
 

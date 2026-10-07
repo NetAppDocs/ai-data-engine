@@ -32,10 +32,9 @@ AI clients that connect from a cloud provider's service into your network aren't
 == Before you begin
 
 * An administrator has completed the steps in link:configure-mcp-access.html[Configure Entra ID and MCP access], including these:
-** Registering an Entra ID application for your AI client.
-** Assigning you the `AIDE Power Users` app role.
+** Assigning you the `AIDE Power Users` app role, which you need to tag files.
 ** Granting your scope access to at least one collection.
-// RESEARCH Confirm which session type and app role users need in this release. If that changes, rewrite this prerequisite and the scope in the client configuration.
+** Registering an Entra ID application for your AI client, if your AI client needs one.
 * You have the MCP client configuration from your administrator. The administrator copies it from NetApp Console under *AI data hub* > *AI Data Engine* > *Client Setup*. It includes the following:
 ** The MCP server URL, in the format `https://<mcp-server-host>/mcp/tools`.
 ** The Microsoft Entra ID tenant ID.
@@ -43,8 +42,12 @@ AI clients that connect from a cloud provider's service into your network aren't
 ** The scope for the AI Data Engine application, in the format `api://<application-id-uri>/power_users`.
 ** The ID of the collection that you want to work with.
 // RESEARCH Confirm the final Console tab name, and whether the console generates one snippet for each client or one generic JSON that the user adapts.
+// RESEARCH ROVO REVIEW Rovo says the location is Settings > MCP Connections, not Client Setup. Confirm the path.
+// RESEARCH ROVO REVIEW Rovo says Console generates the server URL, the Entra authorization and token endpoints, and the scope, and that you add the client application ID and secret from your own client registration. Confirm the field list.
+// RESEARCH ROVO REVIEW Rovo says the collection ID is not needed because pinning a session to one collection is behind the collection_binding feature flag, which is off by default, and clients find collections with get_collection. Confirm before removing collection_id from the configuration snippets.
 * Your computer can reach the MCP server. The MCP server runs in your network, so connect from your corporate network or through VPN. Your computer must also be able to reach Microsoft Entra ID sign-in (`login.microsoftonline.com`).
 // RESEARCH Confirm the networking requirements for AI client access (ports and ingress), and move the administrator requirements to aide-requirements.adoc.
+// RESEARCH ROVO REVIEW Rovo cites inbound TCP 8443/443 from client subnets to the MCP endpoint. Confirm the ports. See the matching note in aide-requirements.adoc.
 * You have a supported version of the AI client.
 // RESEARCH What are the minimum supported versions of Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot?
 
@@ -154,6 +157,8 @@ After you connect, your AI client can do the following:
 * Add a tag to a file or remove a tag from a file. An AI client works on one file at a time.
 
 Your AI client can't retrieve file contents, add, delete, or modify files, change data sources, or create collections.
+
+// RESEARCH ROVO REVIEW Rovo lists the tools in a power-user session as get_collection, search, tag_document, and list_tags, with retrieve_document hidden. Confirm the tool names and whether to show them to customers.
 
 Tags apply across AI Data Engine, not only to one collection. If you add a tag that doesn't exist, AI Data Engine creates it. Tag names aren't case-sensitive.
 

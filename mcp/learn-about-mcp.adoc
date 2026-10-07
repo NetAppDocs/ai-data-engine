@@ -18,9 +18,7 @@ The Model Context Protocol (MCP) is an open standard that lets AI clients connec
 Through MCP, a connected AI client can:
 
 * Search the metadata for the files in the collections that you have enabled for AI access.
-* Perform tag-management operations on those files.
-
-// RESEARCH Do tag operations require a power-user session (the power_users scope plus the AIDEPowerUsers app role)? If so, say so here and on the Connect AI clients page.
+* Perform tag-management operations on those files. Tag operations require a power-user session, which needs both the `power_users` scope and the `AIDEPowerUsers` app role.
 
 AI Data Engine records each access event for operations and audit purposes.
 
@@ -31,6 +29,7 @@ AI Data Engine records each access event for operations and audit purposes.
 
 You configure governed AI access in NetApp Console. An administrator completes the following tasks:
 
+. Prepare Microsoft Entra ID by registering an application for AI Data Engine, defining the scopes and the power-user app role, and assigning the app role.
 . Set up Microsoft Entra ID as an identity provider in AI Data Engine.
 . Create data collections from selected volumes. Each collection that you enable for AI access defines the scope that an AI client can search.
 . Select the identity provider and grant Entra ID scopes access to each collection.

@@ -16,6 +16,7 @@ Before you deploy AI Data Engine, review the networking, VM sizing, and operatin
 The following network connections must be open:
 
 // RESEARCH Add the networking requirements for AI client access to the MCP server (ports, direction, and ingress). Confirm the values.
+// RESEARCH ROVO REVIEW Rovo cites inbound TCP 8443/443 from client subnets to the MCP endpoint, from the October 23 GA content plan. Confirm the ports before adding a table row.
 
 [cols="2,1,1,1,2",options="header"]
 |===
