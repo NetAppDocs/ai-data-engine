@@ -51,9 +51,53 @@ The *Selected rows* summary displays the number of selected resources, their sca
 
 A confirmation message appears, and the new collection is added to the *Collections* list with a status of *Ready to configure*. Creating the collection doesn't complete its MCP connection configuration.
 
-// RESEARCH Which statuses can a collection have besides *Ready to configure*? What are the UI labels and steps for the configure for MCP step? More information is to come.
+// RESEARCH Which statuses can a collection have besides *Ready to configure*, and what status appears after you configure it for MCP?
 
-After you create a collection, configure it for MCP. When the configuration is complete and you have selected scopes, MCP is enabled for the collection. Refer to link:configure-mcp-access.html#grant-scopes-access-to-collections[Select the identity provider and grant scopes access to collections].
+After you create a collection, <<configure-a-collection-for-mcp,configure it for MCP>>.
+
+[#configure-a-collection-for-mcp]
+== Configure a collection for MCP
+
+Select the identity providers and user scopes for an MCP collection, and then obtain the connection details for your AI client.
+
+.Before you begin
+
+* You have created an MCP collection. Refer to <<create-a-data-collection,Create a data collection>>.
+* The identity providers that you want to use are connected to AI Data Engine. Refer to link:configure-mcp-access.html#set-up-an-identity-provider[Set up an identity provider].
+
+.Steps
+
+. In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
+. Locate the collection that you want to configure, open its *Actions* menu, and select *Configure for MCP*.
+. In the *Select identity providers* step, select one or more identity providers to authenticate and authorize access to the collection.
++
+NOTE: If the identity provider that you need isn't listed, add it under *Identity providers* before you continue. If administrator access is required, ask your administrator to connect the identity provider.
+. For each selected identity provider, use *User scopes to include* to specify the scopes:
+.. To include all user scopes, leave *All user scopes* selected.
+.. To include specific scopes, open the dropdown, select the scopes, and select *Add scopes*.
++
+In this release, `power_users` is the only scope in the dropdown, and selecting it gives the same result as *All user scopes*.
+. Select *Generate MCP code snippet*.
+. In the *Generate MCP code snippet* step, copy the connection details that your AI client requires:
+* To use the endpoint directly, select the copy icon next to *MCP server URL*.
+* To use a client-specific configuration snippet, select the *Claude* or *Cursor* tab under *Code snippets*, and then select the copy icon.
++
+NOTE: If the *MCP hostname not setup* warning appears, select *MCP settings* to configure the hostname. Securing the MCP server with HTTPS requires an SSL/TLS certificate.
+. Optional: To change the identity providers or user scopes, select *Go back*, and then generate the snippet again.
+. Select *Close*.
+
+.Result
+
+You have the MCP server URL or a client-specific configuration snippet for the selected identity providers and user scopes. Use these details to connect your AI client and validate access to the collection. If your AI client needs its own Entra ID application, register it and add its client application ID and client secret to the snippet. Refer to link:configure-mcp-access.html#register-an-application-for-each-ai-client[Register an application for each AI client].
+
+NOTE: Generating connection details doesn't connect or validate your AI client. Complete those tasks in the AI client.
+
+Users whose tokens carry a granted scope can discover and search the collection. Users without a matching scope can't discover, search, or work with the collection.
+
+// RESEARCH The Figma flow shows a *ChatGPT* tab and no Visual Studio Code tab. Connect AI clients lists Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot, and says that cloud-originated connections aren't supported. Confirm the final client list, and whether the *Claude* tab is for Claude Desktop.
+// RESEARCH Confirm where the scopes in the dropdown come from (for example, imported from Entra ID), and whether customers must match scope names exactly between Entra ID and the console.
+// RESEARCH Document the MCP hostname task under *MCP settings* and the SSL/TLS certificate requirement. No topic covers them yet, and they might need to be a prerequisite.
+// RESEARCH Is selecting an identity provider and scope required before AI clients can use the collection? Confirm what happens if you close the task without generating a snippet.
 
 [#enable-a-collection-for-ai-access]
 == Enable a collection for AI access
@@ -67,7 +111,7 @@ After you create a collection, configure it for MCP. When the configuration is c
 // RESEARCH What is the exact UI label and control (toggle, checkbox, button) for enabling a collection for AI access?
 . Save your changes.
 
-After you enable a collection, select the identity provider and grant one or more Entra ID scopes access to it so that users can search it. Refer to link:configure-mcp-access.html#grant-scopes-access-to-collections[Select the identity provider and grant scopes access to collections].
+After you enable a collection, select the identity providers and user scopes for it so that users can search it. Refer to <<configure-a-collection-for-mcp,Configure a collection for MCP>>.
 
 == Disable AI access for a collection
 

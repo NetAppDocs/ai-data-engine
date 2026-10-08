@@ -33,9 +33,9 @@ AI clients that connect from a cloud provider's service into your network aren't
 
 * An administrator has completed the steps in link:configure-mcp-access.html[Configure Entra ID and MCP access], including these:
 ** Assigning you the `AIDE Power Users` app role, which you need to tag files.
-** Granting your scope access to at least one collection.
+** Configuring a collection for MCP with a scope that includes you. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
 ** Registering an Entra ID application for your AI client, if your AI client needs one.
-* You have the MCP client configuration from your administrator. The administrator copies it from NetApp Console under *AI data hub* > *AI Data Engine* > *Client Setup*. It includes the following:
+* You have the MCP client configuration from your administrator. The administrator generates it in NetApp Console by configuring the collection for MCP, copies the MCP server URL or the client-specific snippet from the *Generate MCP code snippet* step, adds the client application ID and client secret, and shares it with you. It includes the following:
 ** The MCP server URL, in the format `https://<mcp-server-host>/mcp/tools`.
 ** The Microsoft Entra ID tenant ID.
 ** The client application ID for your AI client.
@@ -44,16 +44,18 @@ AI clients that connect from a cloud provider's service into your network aren't
 *** `api://<application-id-uri>/power_users`
 *** `offline_access`, so that the client can refresh tokens without asking you to sign in again.
 ** The ID of the collection that you want to work with.
-// RESEARCH Confirm whether the console generates one snippet for each client or one generic JSON that the user adapts.
+// RESEARCH The generated configuration is pending validation. Confirm the snippet formats (the console shows client-specific snippets and a standalone MCP server URL). The Figma flow shows a *ChatGPT* tab and no Visual Studio Code tab, which conflicts with the supported client list on this page. Confirm what each tab generates.
 // RESEARCH Confirm the field list that Console generates, and which values you add from your own client registration.
 // RESEARCH Confirm that the collection ID is part of the connection details before you keep collection_id in the configuration snippets.
 * Your computer can reach the MCP server. The MCP server runs in your network, so connect from your corporate network or through VPN. Your computer must also be able to reach Microsoft Entra ID sign-in (`login.microsoftonline.com`).
-// RESEARCH Confirm the networking requirements for AI client access (ports and ingress), and move the administrator requirements to aide-requirements.adoc.
+// RESEARCH Confirm the networking requirements for AI client access (ports and ingress), and move the administrator requirements to aide-requirements.adoc. The MCP hostname warning in Console says securing the MCP server with HTTPS requires an SSL/TLS certificate, so confirm whether the URL format here should be HTTPS only.
 // RESEARCH ROVO REVIEW Rovo cites inbound TCP 8443/443 from client subnets to the MCP endpoint. Confirm the ports. See the matching note in aide-requirements.adoc.
 * You have a supported version of the AI client.
 // RESEARCH What are the minimum supported versions of Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot?
 
 == Connect Claude Desktop
+
+NOTE: Generating connection details in NetApp Console doesn't connect or validate your AI client. Complete those tasks in the AI client.
 
 Claude Desktop connects to the AI Data Engine MCP server through `mcp-remote`, a small helper that runs on your computer.
 
@@ -197,6 +199,19 @@ TIP: Search filters on file name prefix, file type, and owner. If you ask for fi
 * "List the tags in use and how many files have each tag."
 * "Apply the tag <tag name> to the files from my last search."
 * "Remove the tag <tag name> from <file name> in the <collection name> collection."
+
+== Troubleshoot connection problems
+
+[cols="1,2",options="header"]
+|===
+|Problem |Resolution
+
+|The browser sign-in fails with a redirect URI error.
+|Ask your administrator to add the redirect URI that your AI client uses to the *Authentication* settings of your AI client's Entra ID application.
+
+|The AI client receives `401 Unauthorized`.
+|Sign in again to get a new token. If the error continues, ask your administrator to confirm that the AI client requests the `power_users` scope and that the token audience is the Application (client) ID of the AI Data Engine application.
+|===
 
 == Related information
 

@@ -20,7 +20,7 @@ The Model Context Protocol (MCP) is an open standard that lets AI clients connec
 Through MCP, a connected AI client can:
 
 * Search the metadata for the files in the collections that you have enabled for AI access.
-* List tags and add tags to or remove tags from those files. Tag operations are available only to users that you designate as power users in Microsoft Entra ID. Refer to link:configure-mcp-access.html#define-scopes-and-the-power-user-app-role[Define scopes and the power-user app role].
+* List tags and add tags to or remove tags from those files. Tag operations are available only to users that you designate as power users in Microsoft Entra ID. Refer to link:configure-mcp-access.html#define-scopes-and-the-power-user-app-role[Define the scope and the power-user app role].
 
 The Governed Access Gateway logs each MCP tool call, including the user and the tool that was called, so that you can audit AI access to your data.
 
@@ -58,11 +58,11 @@ For sample prompts, refer to link:connect-ai-clients-mcp.html#sample-prompts[Con
 
 You configure governed AI access in Microsoft Entra ID and NetApp Console. An administrator completes the following tasks:
 
-. Prepare Microsoft Entra ID by registering an application for AI Data Engine, defining the scopes and the power-user app role, and assigning the app role.
+. Prepare Microsoft Entra ID by registering an application for AI Data Engine, defining the `power_users` scope and the power-user app role, and assigning the app role.
 . Set up Microsoft Entra ID as an identity provider in AI Data Engine.
 . Create data collections from selected volumes.
-. Select the identity provider and grant Entra ID scopes access to each collection. The scopes you grant define what an AI client can search.
-. Connect AI clients by using the client configuration from NetApp Console.
+. Configure each collection for MCP by selecting identity providers and user scopes. The scopes you include define what an AI client can search.
+. Connect AI clients by using the MCP server URL or client-specific snippet that you generate in NetApp Console.
 
 After the configuration is complete, users sign in to a supported AI client with their Entra ID identity. The client can then search only the collections that the user's Entra ID scopes are allowed to access.
 

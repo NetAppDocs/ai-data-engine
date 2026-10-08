@@ -2,14 +2,14 @@
 sidebar: sidebar
 permalink: mcp/quick-start-mcp.html
 keywords: quick start, mcp, governed ai access, identity provider, data collection, ai client, entra id
-summary: Set up governed AI access with AI Data Engine by preparing Microsoft Entra ID, connecting it to AI Data Engine, granting scopes access to a data collection, and connecting and validating an AI client.
+summary: Set up governed AI access with AI Data Engine by preparing Microsoft Entra ID, connecting it to AI Data Engine, configuring a data collection for MCP, and connecting and validating an AI client.
 ---
 = Quick start for governed AI access with AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Set up governed AI access with AI Data Engine by preparing Microsoft Entra ID, granting scopes access to a data collection, and connecting an AI client that can search the collection and tag files through the Model Context Protocol (MCP).
+Set up governed AI access with AI Data Engine by preparing Microsoft Entra ID, configuring a data collection for MCP, and connecting an AI client that can search the collection and tag files through the Model Context Protocol (MCP).
 
 This quick start assumes that you have already link:../data-sources/connect-data-source.html[connected a data source] and that AI Data Engine has scanned and indexed it. You also need permission to register applications and grant consent in Microsoft Entra ID, and your AI clients must be able to reach the AI Data Engine MCP server over the network.
 
@@ -31,14 +31,13 @@ In NetApp Console, link:configure-mcp-access.html#set-up-an-identity-provider[se
 link:manage-data-collections.html#create-a-data-collection[Create a data collection] to define the data resources that AI clients can search through the MCP server. The new collection has a status of *Ready to configure*.
 // RESEARCH ROVO REVIEW Rovo says a default collection exists, so you do not need to create one before you connect a client. If so, retitle this step "Create or select a data collection" and confirm whether default collections also need the next step.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Grant scopes access to the collection
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Configure the collection for MCP
 [role="quick-margin-para"]
-Configure the collection for MCP by link:configure-mcp-access.html#grant-scopes-access-to-collections[selecting the identity provider and the scopes] that can access it. When the configuration is complete and you have selected scopes, MCP is enabled for the collection.
-// RESEARCH More information about the configure for MCP step is to come. Update the step name and link when the topic exists.
+link:manage-data-collections.html#configure-a-collection-for-mcp[Configure the collection for MCP] by selecting the identity providers and user scopes that can access it. Then generate the MCP code snippet, and copy the MCP server URL or a client-specific configuration snippet.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five] Connect an AI client
 [role="quick-margin-para"]
-Copy the MCP client configuration from *Client Setup* in NetApp Console. It includes the MCP server URL, the Entra ID tenant ID, the client application ID, the scopes, and the collection ID. If your AI client needs its own Entra ID application, register it, create a client secret, and add the application ID and the secret to the configuration. Then add the configuration to a supported AI client, such as Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot. The configuration must request the `power_users` and `offline_access` scopes. Refer to link:connect-ai-clients-mcp.html[Connect AI clients].
+Use the MCP server URL or the client-specific configuration snippet that you copied in the previous step. It includes the MCP server URL, the Entra ID tenant ID, the client application ID, the scopes, and the collection ID. If your AI client needs its own Entra ID application, register it, create a client secret, and add the application ID and the secret to the configuration. Then add the configuration to a supported AI client, such as Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot. The configuration must request the `power_users` and `offline_access` scopes. Refer to link:connect-ai-clients-mcp.html[Connect AI clients].
 // RESEARCH Figma lists "Configure authentication for an MCP client" in the connect phase. Confirm which clients need their own Entra ID application.
 // RESEARCH Confirm the field list that Console generates, and which values you add from your own client registration.
 // RESEARCH Confirm that the collection ID is part of the connection details before you keep it here and in the snippets in connect-ai-clients-mcp.adoc.
