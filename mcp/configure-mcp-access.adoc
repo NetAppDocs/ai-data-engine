@@ -19,7 +19,7 @@ AI Data Engine doesn't issue tokens. It validates the Entra ID access tokens tha
 
 Microsoft Entra ID is the only identity provider that governed AI access supports.
 
-You grant access at the collection level. Any user with a scope that you granted to a collection can search every file in that collection. AI Data Engine doesn't check file-level permissions. Include in a collection only files that everyone with the granted scope is meant to see.
+You grant access at the collection level. In a power-user session, search isn't filtered by file-level permissions, so the session can search every file in a collection that you granted the scope to. Include in a collection only files that everyone with the granted scope is meant to see.
 
 You'll complete these tasks:
 
@@ -104,7 +104,9 @@ A user gets a power-user session only when both of these are true:
 * The user holds the `AIDEPowerUsers` app role.
 * The AI client requests the `power_users` scope.
 
-If a client requests `power_users` for a user who doesn't hold the role, AI Data Engine starts a standard session without returning an error. A standard session can search the collection but can't tag files.
+If a client requests `power_users` for a user who doesn't hold the role, AI Data Engine doesn't start a power-user session, and the user can't tag files.
+
+// RESEARCH ROM What does a user who requests power_users but doesn't hold the AIDEPowerUsers app role get in this release: an error, no results, or a different kind of session? In this release, Console lets you grant only power_users to a collection, so confirm whether that user can still search the collection and what the results include. Update this section when you have the answer.
 
 // RESEARCH Confirm the exact display names and consent descriptions for each scope.
 
@@ -140,6 +142,7 @@ Adding an identity provider doesn't automatically associate it with a data colle
 
 // RESEARCH Confirm that the exact label of the identity provider option is *Microsoft EntraID* (as in the UI) and not *Microsoft Entra ID*.
 // RESEARCH Can you add more than one identity provider, and can you edit or delete an identity provider after you add it?
+// RESEARCH ROM Does a customer need to map Entra ID identities to Active Directory identities for MCP in this release? The content plan lists Active Directory and Kerberos support for this release. Confirm whether that is the identity mapping that the MCP server relies on, and whether a configuration task belongs on this page.
 // RESEARCH ROVO REVIEW Rovo says you also import the scopes from Entra ID in this task. The steps above enter only the tenant ID and client ID. Confirm whether a scope import step exists in the UI.
 // RESEARCH Does *Invalid identity* appear only when the tenant ID or client ID format is wrong, or does AI Data Engine also validate the values against Entra ID? Confirm the validation behavior and whether changes apply immediately.
 
@@ -190,7 +193,7 @@ AI clients must send an Entra ID access token in the `Authorization: Bearer` hea
 
 If a token is missing, expired, or invalid, AI Data Engine returns `401 Unauthorized`.
 
-If AI Data Engine can't verify a user's identity or scope, it returns no data from the collection. It never falls back to unfiltered results.
+If AI Data Engine can't verify a user's identity or scope, it returns no data from the collection.
 
 // RESEARCH Confirm the 401 behavior against the GA build.
 // RESEARCH Confirm whether any Entra ID optional claims are required for access, and add them to the prerequisites if they are.

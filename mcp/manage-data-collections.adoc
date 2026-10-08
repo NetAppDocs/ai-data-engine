@@ -19,7 +19,7 @@ A data collection is a group of files from volumes that you select in AI Data En
 
 // RESEARCH Where are existing collections edited (for example, to add or remove data resources)? Does this page need an edit section?
 
-You grant access to a collection by assigning it one or more Microsoft Entra ID scopes. Access is granted at the collection level only. Any authenticated user with a matching scope can search every file in the collection.
+You grant access to a collection by assigning it one or more Microsoft Entra ID scopes. Access is granted at the collection level only. In a power-user session, search isn't filtered by file-level permissions, so the session can search every file in the collection.
 
 CAUTION: Before you grant a scope access to a collection, confirm that everyone who has that scope is allowed to search the metadata for every file in the collection.
 
