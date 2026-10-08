@@ -18,7 +18,7 @@ Learn about new capabilities in AI Data Engine.
 
 New capabilities:
 
-link:../mcp/learn-about-mcp.html[Give AI clients governed access to your metadata]:: Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot to AI Data Engine through the Model Context Protocol (MCP). Enable the collections that AI clients can search, and use Microsoft Entra ID scopes to control who can search each collection. AI clients can search metadata and manage tags.
+link:../mcp/learn-about-mcp.html[Give AI clients governed access to your metadata]:: Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot to AI Data Engine through the Model Context Protocol (MCP). Enable the collections that AI clients can search, and use Microsoft Entra ID scopes to control who can search each collection. AI clients can search metadata and tag files.
 
 == AI Data Engine 1.1.0
 

@@ -11,6 +11,8 @@ summary: Governed AI access lets supported AI clients search the metadata in sel
 [.lead]
 Governed AI access lets supported AI clients search the metadata in AI Data Engine collections that you select using the Model Context Protocol (MCP). You decide which collections an AI client can search and who can use them. AI assistants work from your cataloged metadata within the boundaries you set.
 
+// IE NOTE: There is a UI link to this page. Do not change the page title or the permalink without updating the link in the UI.
+
 == What governed AI access does
 
 The Model Context Protocol (MCP) is an open standard that lets AI clients connect to external data sources and tools. AI Data Engine provides an MCP server, called the Governed Access Gateway, so that AI clients can query the AI Data Engine metadata catalog instead of reaching directly into your storage systems.
@@ -18,9 +20,9 @@ The Model Context Protocol (MCP) is an open standard that lets AI clients connec
 Through MCP, a connected AI client can:
 
 * Search the metadata for the files in the collections that you have enabled for AI access.
-* Perform tag-management operations on those files. Tag operations are available only to users that you designate as power users in Microsoft Entra ID. Refer to link:configure-mcp-access.html#define-scopes-and-the-power-user-app-role[Define scopes and the power-user app role].
+* List tags and add tags to or remove tags from those files. Tag operations are available only to users that you designate as power users in Microsoft Entra ID. Refer to link:configure-mcp-access.html#define-scopes-and-the-power-user-app-role[Define scopes and the power-user app role].
 
-AI Data Engine records each access event for operations and audit purposes.
+The Governed Access Gateway logs each MCP tool call, including the user and the tool that was called, so that you can audit AI access to your data.
 
 // RESEARCH Confirm that access events are recorded and where an administrator can view them.
 // RESEARCH Is the MCP server called the Governed Access Gateway in customer-facing content, and is that name final?
@@ -39,8 +41,6 @@ After the configuration is complete, users sign in to a supported AI client with
 
 Access is granted at the collection level only. You can't grant access to individual files or directories.
 
-// RESEARCH Confirm that all customer-facing material states that file content retrieval isn't available.
-
 == Supported AI clients
 
 The following AI clients are supported:
@@ -51,7 +51,7 @@ The following AI clients are supported:
 
 == What isn't available through MCP
 
-Governed AI access is limited to metadata search and tag management within collections. Through MCP, an AI client can't:
+Governed AI access is limited to metadata search and tag operations within collections. Through MCP, an AI client can't:
 
 * Retrieve the contents of files.
 * Add, delete, or modify files.
