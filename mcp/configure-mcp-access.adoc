@@ -13,6 +13,14 @@ Register AI Data Engine in Microsoft Entra ID, set up Entra ID as an identity pr
 
 // RESEARCH UI Help ID help-mcp-access: confirm the anchor against the staging build, and confirm who owns help ID updates.
 
+== Before you begin
+
+* You have a Microsoft Entra ID tenant and a role that lets you register applications and grant consent in that tenant, such as Application Administrator or Cloud Application Administrator.
+// RESEARCH Confirm whether Application Administrator or Cloud Application Administrator is the role to name, and whether a higher-privileged role is needed for tenant-wide admin consent. Owner is an assignment on an existing app registration, not an Entra ID directory role.
+* You have the AI Data Engine administrator role in NetApp Console.
+// RESEARCH Which NetApp Console role is required to set up an identity provider?
+* AI Data Engine is deployed and has at least one data collection. Refer to link:manage-data-collections.html#create-a-data-collection[Create a data collection].
+
 == How MCP access works
 
 AI Data Engine doesn't issue tokens. It validates the Entra ID access tokens that AI clients present. When a user connects an AI client, the user signs in with Microsoft Entra ID, and Entra ID issues an access token for the AI Data Engine application. AI Data Engine checks the token and lets the client work only with the collections whose granted scopes match.
@@ -30,14 +38,6 @@ You'll complete these tasks:
 . Register an Entra ID application for each AI client that needs one.
 
 An Entra ID administrator completes the Entra ID tasks manually in the Microsoft Entra admin center. NetApp Console doesn't create or change Entra ID app registrations.
-
-== Before you begin
-
-* You have a Microsoft Entra ID tenant and a role that lets you register applications and grant consent in that tenant, such as Application Administrator or Cloud Application Administrator.
-// RESEARCH Confirm whether Application Administrator or Cloud Application Administrator is the role to name, and whether a higher-privileged role is needed for tenant-wide admin consent. Owner is an assignment on an existing app registration, not an Entra ID directory role.
-* You have the AI Data Engine administrator role in NetApp Console.
-// RESEARCH Which NetApp Console role is required to set up an identity provider?
-* AI Data Engine is deployed and has at least one data collection. Refer to link:manage-data-collections.html#create-a-data-collection[Create a data collection].
 
 [#register-the-ai-data-engine-application]
 == Register the AI Data Engine application

@@ -4,14 +4,14 @@ permalink: mcp/learn-about-mcp.html
 keywords: governed ai access, mcp, model context protocol, ai clients, collections, entra id, claude desktop, cursor, vs code, github copilot
 summary: Governed AI access lets supported AI clients search the metadata in selected AI Data Engine collections through the Model Context Protocol (MCP), using access that you control in NetApp Console.
 ---
-= Learn about governed AI access
+= Learn about governed AI access with AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Governed AI access lets supported AI clients search the metadata in AI Data Engine collections that you select using the Model Context Protocol (MCP). You decide which collections an AI client can search and who can use them. AI assistants work from your cataloged metadata within the boundaries you set. It gives you a way to do the metadata searching and file tagging that you do in the Investigation view by asking an AI client in plain language.
+Governed AI access lets supported AI clients search the metadata in AI Data Engine collections that you select using the Model Context Protocol (MCP). You decide which collections an AI client can search and who can use them. AI assistants work from your cataloged metadata within the boundaries you set.
 
-// IE NOTE: There is a UI link to this page. Do not change the page title or the permalink without updating the link in the UI.
+// IE LINK DEPENDENCY: There is a UI link to this page. Do not change the page title or the permalink without updating the link in the UI.
 
 == What governed AI access does
 
@@ -44,7 +44,7 @@ Governed AI access gives you an AI-based alternative to the investigation work t
 |Ask the AI client for the path, type, size, last-modified time, and owner of the files in the results.
 
 |Tag files
-|Select files in the Investigation results and use the link:../investigate/take-actions.html#tag-files[*Tag* action].
+|Select files in the Investigation results and use the link:../investigate/take-actions.html#tag-files[Tag action].
 |Ask the AI client to add a tag to a file or remove a tag from a file.
 |===
 
@@ -93,5 +93,4 @@ For the complete list of restrictions, refer to link:../release-notes/known-limi
 * link:quick-start-mcp.html[Quick start for governed AI access with AI Data Engine]
 * link:configure-mcp-access.html[Configure Entra ID and MCP access]
 * link:connect-ai-clients-mcp.html[Connect AI clients]
-* link:../investigate/investigate-data.html[Investigate your data in AI Data Engine]
 * link:../release-notes/known-limitations.html[Known limitations]

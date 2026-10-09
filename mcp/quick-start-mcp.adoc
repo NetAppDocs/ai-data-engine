@@ -15,39 +15,39 @@ This quick start assumes that you have already link:../data-sources/connect-data
 
 // RESEARCH Which NetApp Console role is required to manage MCP settings and collections?
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] Prepare Microsoft Entra ID
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] link:configure-mcp-access.html[Prepare Microsoft Entra ID]
 [role="quick-margin-para"]
-In the Microsoft Entra admin center, link:configure-mcp-access.html#register-the-ai-data-engine-application[register an application for AI Data Engine], and then link:configure-mcp-access.html#define-scopes-and-the-power-user-app-role[add the `power_users` scope]. Create the `AIDEPowerUsers` app role and assign it to the users or groups who tag files in collections, such as storage administrators. Tagging requires both the app role and the `power_users` scope. Record the tenant ID and the application (client) ID. Refer to link:configure-mcp-access.html[Configure Entra ID and MCP access].
+In the Microsoft Entra admin center, link:configure-mcp-access.html#register-the-ai-data-engine-application[register an application for AI Data Engine], and then link:configure-mcp-access.html#define-scopes-and-the-power-user-app-role[add the power_users scope]. Create the `AIDEPowerUsers` app role and assign it to the users or groups who tag files in collections, such as storage administrators. Tagging requires both the app role and the `power_users` scope. Record the tenant ID and the application (client) ID.
 // RESEARCH Which Figma topic covers "Configure user access and permissions for MCP"? Confirm whether it differs from the scopes and app role tasks in configure-mcp-access.adoc, and whether it covers the app role assignment.
 // RESEARCH ROVO REVIEW Confirm whether Entra ID preparation is a prerequisite or a documented task in the Figma flow.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Connect Entra ID to AI Data Engine
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] link:configure-mcp-access.html#set-up-an-identity-provider[Connect Entra ID to AI Data Engine]
 [role="quick-margin-para"]
-In NetApp Console, link:configure-mcp-access.html#set-up-an-identity-provider[set up Microsoft Entra ID as an identity provider] by entering the tenant ID and the application (client) ID.
+In NetApp Console, set up Microsoft Entra ID as an identity provider by entering the tenant ID and the application (client) ID.
 // RESEARCH ROVO REVIEW Rovo says Console imports the scopes after you enter the IDs, and that a separate MCP connection might be created under Settings > MCP Connections. The current identity provider steps show neither. Confirm against Figma and the build.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Create a data collection
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] link:manage-data-collections.html#create-a-data-collection[Create a data collection]
 [role="quick-margin-para"]
-link:manage-data-collections.html#create-a-data-collection[Create a data collection] to define the data resources that AI clients can search through the MCP server. The new collection has a status of *Ready to configure*.
+Create a data collection to define the data resources that AI clients can search through the MCP server. The new collection has a status of `Ready to configure`.
 // RESEARCH ROVO REVIEW Rovo says a default collection exists, so you do not need to create one before you connect a client. If so, retitle this step "Create or select a data collection" and confirm whether default collections also need the next step.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Configure the collection for MCP
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] link:manage-data-collections.html#configure-a-collection-for-mcp[Configure the collection for MCP]
 [role="quick-margin-para"]
-link:manage-data-collections.html#configure-a-collection-for-mcp[Configure the collection for MCP] by selecting the identity providers and user scopes that can access it. Then generate the MCP code snippet, and copy the MCP server URL or a client-specific configuration snippet.
+Configure the collection for MCP by selecting the identity providers and user scopes that can access it. Then generate the MCP code snippet, and copy the MCP server URL or a client-specific configuration snippet.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five] Connect an AI client
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five] link:connect-ai-clients-mcp.html[Connect an AI client]
 [role="quick-margin-para"]
-Use the MCP server URL or the client-specific configuration snippet that you copied in the previous step. It includes the MCP server URL, the Entra ID tenant ID, the client application ID, the scopes, and the collection ID. If your AI client needs its own Entra ID application, register it, create a client secret, and add the application ID and the secret to the configuration. Then add the configuration to a supported AI client, such as Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot. The configuration must request the `power_users` and `offline_access` scopes. Refer to link:connect-ai-clients-mcp.html[Connect AI clients].
+Use the MCP server URL or the client-specific configuration snippet that you copied in the previous step. It includes the MCP server URL, the Entra ID tenant ID, the client application ID, the scopes, and the collection ID. If your AI client needs its own Entra ID application, register it, create a client secret, and add the application ID and the secret to the configuration. Then add the configuration to a supported AI client, such as Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot. The configuration must request the `power_users` and `offline_access` scopes.
 // RESEARCH Figma lists "Configure authentication for an MCP client" in the connect phase. Confirm which clients need their own Entra ID application.
 // RESEARCH Confirm the field list that Console generates, and which values you add from your own client registration.
 // RESEARCH Confirm that the collection ID is part of the connection details before you keep it here and in the snippets in connect-ai-clients-mcp.adoc.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png[Six] Sign in and verify the connection
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png[Six] link:connect-ai-clients-mcp.html[Sign in and verify the connection]
 [role="quick-margin-para"]
-Sign in with Microsoft Entra ID when the AI client prompts you, and accept the consent prompt if it appears. Confirm that the AI Data Engine tools are listed in your AI client, and then try sample prompts, such as asking for the collections that you can search or listing the tags in a collection. Refer to the sample prompts in link:connect-ai-clients-mcp.html[Connect AI clients].
+Sign in with Microsoft Entra ID when the AI client prompts you, and accept the consent prompt if it appears. Confirm that the AI Data Engine tools are listed in your AI client, and then link:connect-ai-clients-mcp.html#sample-prompts[try sample prompts], such as asking for the collections that you can search or listing the tags in a collection.
 // RESEARCH Add a link to troubleshooting topics for MCP connection, authentication, and access issues when they exist.
 
 .What's next
-To update a collection, an identity provider, the scopes that can access a collection, or the MCP server settings, refer to link:maintain-mcp-setup.html[Maintain your MCP setup]. For current restrictions, refer to link:../release-notes/known-limitations.html[Known limitations].
+link:maintain-mcp-setup.html[Update a collection, an identity provider, the scopes that can access a collection, or the MCP server settings]. Review the link:../release-notes/known-limitations.html[known limitations].
 
 // RESEARCH Add links for disconnecting an MCP client or removing a collection when those topics exist.

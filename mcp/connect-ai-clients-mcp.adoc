@@ -15,20 +15,6 @@ Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot to the
 
 // RESEARCH Confirm whether the connect-claude-desktop.html and connect-cursor.html URLs were ever published. If they were, add redirect files.
 
-== Supported AI clients
-
-AI Data Engine supports the following AI clients:
-
-* Claude Desktop
-* Cursor
-* Visual Studio Code with GitHub Copilot
-
-Other MCP clients aren't supported.
-
-AI clients that connect from a cloud provider's service into your network aren't supported. For example, custom connectors that are built into an AI client and called from the provider's cloud can't reach the MCP server in your network. Use the configuration steps on this page instead.
-
-// RESEARCH Confirm the final supported client list with the product team.
-
 == Before you begin
 
 * An administrator has completed the steps in link:configure-mcp-access.html[Configure Entra ID and MCP access], including these:
@@ -52,6 +38,20 @@ AI clients that connect from a cloud provider's service into your network aren't
 // RESEARCH ROVO REVIEW Rovo cites inbound TCP 8443/443 from client subnets to the MCP endpoint. Confirm the ports. See the matching note in aide-requirements.adoc.
 * You have a supported version of the AI client.
 // RESEARCH What are the minimum supported versions of Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot?
+
+== Supported AI clients
+
+AI Data Engine supports the following AI clients:
+
+* Claude Desktop
+* Cursor
+* Visual Studio Code with GitHub Copilot
+
+Other MCP clients aren't supported.
+
+AI clients that connect from a cloud provider's service into your network aren't supported. For example, custom connectors that are built into an AI client and called from the provider's cloud can't reach the MCP server in your network. Use the configuration steps on this page instead.
+
+// RESEARCH Confirm the final supported client list with the product team.
 
 == Connect Claude Desktop
 

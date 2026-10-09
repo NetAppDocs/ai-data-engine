@@ -13,6 +13,14 @@ Create data collections and enable them for AI access so that connected AI clien
 
 // RESEARCH Help ID help-mcp-collections: confirm the anchor against the staging build, and confirm who owns help ID updates.
 
+== Before you begin
+
+* You have the AI Data Engine administrator role.
+// RESEARCH Which NetApp Console role is required to manage MCP collections? Can the viewer role see which collections are enabled?
+* You have set up Microsoft Entra ID as an identity provider in AI Data Engine. Refer to link:configure-mcp-access.html#set-up-an-identity-provider[Set up an identity provider].
+* You have created at least one data collection. Refer to <<create-a-data-collection,Create a data collection>>.
+// RESEARCH ROVO REVIEW Rovo says you do not need to create a collection before you connect a client because default collections exist, and the User Guide says so. Confirm whether default collections exist in M0, whether they have a Ready to configure status, and whether this prerequisite and the Create a data collection section need to change.
+
 == How collections define MCP scope
 
 A data collection is a group of files from volumes that you select in AI Data Engine. When you enable a collection for AI access, AI clients can search the metadata for the files in that collection. AI clients can't search files outside the collections that you enable. To create a collection, refer to <<create-a-data-collection,Create a data collection>>.
@@ -22,14 +30,6 @@ To change a collection, an identity provider, or the MCP server settings later, 
 You grant access to a collection by assigning it one or more Microsoft Entra ID scopes. Access is granted at the collection level only. In a power-user session, search isn't filtered by file-level permissions, so the session can search every file in the collection.
 
 CAUTION: Before you grant a scope access to a collection, confirm that everyone who has that scope is allowed to search the metadata for every file in the collection.
-
-== Before you begin
-
-* You have the AI Data Engine administrator role.
-// RESEARCH Which NetApp Console role is required to manage MCP collections? Can the viewer role see which collections are enabled?
-* You have set up Microsoft Entra ID as an identity provider in AI Data Engine. Refer to link:configure-mcp-access.html#set-up-an-identity-provider[Set up an identity provider].
-* You have created at least one data collection. Refer to <<create-a-data-collection,Create a data collection>>.
-// RESEARCH ROVO REVIEW Rovo says you do not need to create a collection before you connect a client because default collections exist, and the User Guide says so. Confirm whether default collections exist in M0, whether they have a Ready to configure status, and whether this prerequisite and the Create a data collection section need to change.
 
 [#create-a-data-collection]
 == Create a data collection
