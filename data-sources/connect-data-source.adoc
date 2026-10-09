@@ -16,6 +16,7 @@ AI Data Engine scans your storage systems to collect and analyze metadata. To ad
 * You must have _AI Data Engine administrator_ privileges to connect and configure data sources in AI Data Engine.
 * Discover storage systems in NetApp Console using a Console Agent before adding them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery doesn't enable data services such as AI Data Engine.
 * Verify that the network connections required for AI Data Engine to reach your data sources are open. Refer to link:../deploy/aide-requirements.html[AI Data Engine requirements].
+* To scan SMB/CIFS shares with Kerberos authentication, complete link:../administer/configure-kerberos-smb.html[Configure Kerberos authentication for SMB/CIFS shares] first.
 
 == Add a data source
 
@@ -46,7 +47,8 @@ AI Data Engine scans your storage systems to collect and analyze metadata. To ad
 |Source type |Required details
 
 |*File shares group*
-|A name for the share group, then the share host and path details.
+|A name for the share group, then the share host and path details. For SMB/CIFS shares that use Kerberos authentication, enter the share path as an FQDN and leave the credentials empty. Refer to link:../administer/configure-kerberos-smb.html[Configure Kerberos authentication for SMB/CIFS shares].
+// RESEARCH Confirm the UI label of the Kerberos authentication option.
 
 |*Database*
 |Database type, host, port, and authentication credentials.
@@ -75,5 +77,6 @@ The system status updates in the Scanned systems tab to show that scanning is ru
 
 * link:manage-data-sources.html[Manage data sources]
 * link:../deploy/aide-requirements.html[AI Data Engine requirements]
+* link:../administer/configure-kerberos-smb.html[Configure Kerberos authentication for SMB/CIFS shares]
 * link:../investigate/understand-dashboard.html[Assess storage utilization from the dashboard]
 * link:monitor-scanning-health.html[Monitor scanning health]

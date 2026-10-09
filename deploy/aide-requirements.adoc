@@ -53,7 +53,19 @@ The following network connections must be open:
 |389, 636, 3268, 3269
 |TCP/UDP
 |Outbound
-|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and SMB/CIFS scanning. Port 389 uses both TCP and UDP; all other ports use TCP only.
+|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication, SMB/CIFS scanning, and mapping NFS user and group IDs to Active Directory names. Port 389 uses both TCP and UDP; all other ports use TCP only.
+
+|AI Data Engine to Kerberos KDC (Active Directory domain controller)
+|88
+|TCP/UDP
+|Outbound
+|Kerberos authentication for SMB/CIFS data sources. Required only if you use Kerberos. Refer to <<kerberos-ad-requirements,Kerberos and Active Directory requirements>>.
+
+|AI Data Engine to DNS server
+|53
+|TCP/UDP
+|Outbound
+|Name resolution for file servers and the KDC when you use Kerberos
 
 |AI Data Engine to NetApp Services / Container Registry
 |443
@@ -62,7 +74,9 @@ The following network connections must be open:
 |HTTPS: artifact downloads and container image pulls (AWS S3 and ECR)
 
 |===
+// RESEARCH Confirm whether ports 88 and 53 use TCP, UDP, or both for AIDE traffic.
 
+[[outbound-internet-access]]
 === Outbound internet access
 For an online installation, the following endpoints must be reachable from the AI Data Engine host:
 [cols="2,2,1",options="header"]
@@ -323,8 +337,50 @@ AIDE multi-node deployments support horizontal scale-out without redeployment:
 +
 NOTE: Adding nodes to an existing multi-node cluster is non-disruptive to ongoing scan operations, but coordinate the change during a low-activity window.
 
+[[kerberos-ad-requirements]]
+== Kerberos and Active Directory requirements
+
+Review these requirements before you scan SMB/CIFS shares with Kerberos authentication or map NFS user and group IDs to Active Directory names. AIDE is a Kerberos client: it authenticates to your existing Kerberos key distribution center (KDC) and doesn't act as a Kerberos server.
+
+=== Time synchronization
+
+Kerberos authentication fails when the clocks on the AIDE nodes and the KDC differ by more than the allowed clock skew. Active Directory allows a maximum difference of five minutes by default.
+// RESEARCH Confirm the clock skew tolerance that applies to AIDE and whether to state it.
+
+* Network Time Protocol (NTP) is active on all AIDE nodes.
+* The AIDE nodes use a time source that is synchronized with your domain controllers.
+
+=== DNS
+
+* Every AIDE node can resolve the file server and the KDC by fully qualified domain name (FQDN).
+* If you configure the nodes to use your Active Directory DNS server, that server must also resolve external names. Otherwise, AIDE can't reach the endpoints listed in <<outbound-internet-access,Outbound internet access>>.
+* For a multi-node deployment, configure your Active Directory DNS server as the only name server on every node. A mixed list of name servers can cause intermittent name resolution failures.
+// RESEARCH Confirm the multi-node single-nameserver requirement and the reason to state to customers.
+
+=== Host packages
+
+[cols="1,3",options="header"]
+|===
+|Deployment |Required packages
+
+|Single node
+|Kerberos client tools: `krb5-user` on Ubuntu or `krb5-workstation` on RHEL. The installer adds `cifs-utils` automatically.
+
+|Multi-node
+|`cifs-utils` on every node, and Kerberos client tools on the host where you create and test the keytab.
+
+|===
+
+Kerberos scanning of an SMB/CIFS share fails if `cifs-utils` is missing on a node. This package isn't required if you don't use Kerberos.
+
+=== Active Directory attributes for NFS
+
+To show NFS file owners and groups as Active Directory names, the `uidNumber` and `gidNumber` attributes must be populated and replicated to the Global Catalog. Refer to link:../administer/configure-ad-nfs.html[Map NFS users and groups to Active Directory].
+
 == Related information
 
+* link:../administer/configure-kerberos-smb.html[Configure Kerberos authentication for SMB/CIFS shares]
+* link:../administer/configure-ad-nfs.html[Map NFS users and groups to Active Directory]
 * link:deployment-overview.html[AIDE deployment overview]
 * link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment]
 * link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment]

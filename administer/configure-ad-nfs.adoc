@@ -1,0 +1,82 @@
+---
+sidebar: sidebar
+permalink: administer/configure-ad-nfs.html
+keywords: active directory, nfs, uidNumber, gidNumber, global catalog, identity mapping, file owner, ldap, general settings
+summary: Map NFS user IDs and group IDs to Active Directory names so that AI Data Engine can show file owners and groups for NFS data.
+---
+= Map NFS users and groups to Active Directory in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+NFS files identify their owners and groups by numeric user IDs (UIDs) and group IDs (GIDs). To show owner and group names for NFS data, AI Data Engine looks up those IDs in Active Directory. Complete the Active Directory prerequisites, and then enable Active Directory for NFS in AI Data Engine settings.
+
+This mapping doesn't authenticate AI Data Engine to NFS storage. It converts the IDs that AI Data Engine finds during scanning to Active Directory user and group names.
+
+.Before you begin
+
+* You have _AI Data Engine administrator_ privileges.
+* You have link:../deploy/aide-requirements.html#kerberos-ad-requirements[opened the required ports] from AI Data Engine to your Active Directory domain controllers, including the Global Catalog ports (3268 and 3269).
+* You have an Active Directory account that AI Data Engine can use to query user and group attributes.
+// RESEARCH Confirm the permissions the Active Directory account needs and whether it must be a dedicated account.
+* You have access to Active Directory with the _Schema Admins_ role if the attributes aren't yet replicated to the Global Catalog.
+
+== Prepare Active Directory
+
+AI Data Engine reads the following Active Directory attributes:
+
+[cols="1,2,1",options="header"]
+|===
+|Attribute |Purpose |Required
+
+|`uidNumber`
+|The numeric UID of a user. It must match the UID that the user has on your NFS storage.
+|Yes
+
+|`gidNumber`
+|The numeric GID of a group. It must match the GID that the group has on your NFS storage.
+|Yes
+
+|`mail`
+|The email address of the file owner. If this attribute isn't set, the owner's email address appears as *Not Available*.
+|No
+
+|===
+
+You can use different attribute names for the UID and GID. If you do, enter the names when you configure AI Data Engine. The default names are `uidNumber` and `gidNumber`.
+
+.Steps
+. Verify that every user and group you want to resolve has a `uidNumber` or `gidNumber` value. Each value must be unique across the domain.
+. Replicate the `uidNumber` and `gidNumber` attributes to the Global Catalog. This is a one-time change for the entire forest. You must be a member of the _Schema Admins_ group.
++
+.. On a domain controller, open the Active Directory Schema snap-in.
+.. Open the properties of the `uidNumber` attribute.
+.. Select *Replicate this attribute to the Global Catalog*.
+.. Repeat for the `gidNumber` attribute.
+
+CAUTION: If these attributes aren't replicated to the Global Catalog, AI Data Engine can't resolve IDs to names. Owners and groups remain unresolved.
+
+== Enable Active Directory for NFS
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. Select *Settings*.
+// RESEARCH Confirm the navigation path to General Settings and the exact setting name for Active Directory for NFS in the GA UI.
+. Enable *Active Directory for NFS*.
+. Enter the connection details for your Active Directory domain.
+// RESEARCH Does GA support more than one Active Directory domain or forest? If so, document how to add each one. If not, state that one Active Directory is supported.
+. If your Active Directory uses custom attribute names, enter the names for the UID and GID attributes.
+. Select *Save*.
+
+.Result
+
+AI Data Engine uses Active Directory to resolve the owners and groups of NFS files that it scans.
+
+If an ID doesn't resolve, AI Data Engine retries the lookup after 24 hours. If you correct the attributes in Active Directory after a scan, owner and group names can take up to 24 hours to appear.
+// RESEARCH Can an administrator force an earlier retry from the UI? State how if so.
+
+== Related information
+
+* link:../deploy/aide-requirements.html[AI Data Engine requirements]
+* link:configure-kerberos-smb.html[Configure Kerberos authentication for SMB/CIFS shares]
+* link:configure-settings.html[Configure cold and stale data thresholds]

@@ -1,0 +1,148 @@
+---
+sidebar: sidebar
+permalink: administer/configure-kerberos-smb.html
+keywords: kerberos, smb, cifs, keytab, krb5.conf, kdc, realm, fqdn, authentication, active directory, scan service account
+summary: Configure Kerberos authentication so that AI Data Engine can scan SMB/CIFS shares by using a scan service account and a keytab.
+---
+= Configure Kerberos authentication for SMB/CIFS shares in AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Configure Kerberos authentication so that AI Data Engine can scan SMB/CIFS shares without storing a password in the data source. AI Data Engine acts as a Kerberos client. It uses a keytab for a scan service account to get Kerberos tickets from your existing Active Directory domain controller.
+
+Kerberos authentication applies to SMB/CIFS data sources. To map NFS user and group IDs to Active Directory names, refer to link:configure-ad-nfs.html[Map NFS users and groups to Active Directory].
+
+.Before you begin
+
+* You have _AI Data Engine administrator_ privileges.
+* You have reviewed the link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements], including ports, time synchronization, DNS, and host packages.
+* You have a scan service account in Active Directory with read access to the SMB/CIFS shares you want to scan.
+* You have the following information:
++
+[cols="2,3,2",options="header"]
+|===
+|Item |Description |Example
+
+|KDC address
+|IP address and FQDN of the domain controller that acts as the Kerberos key distribution center (KDC)
+|`dc01.corp.example.com`
+
+|Domain
+|Active Directory domain, in lowercase
+|`corp.example.com`
+
+|Realm
+|Kerberos realm, which is the domain in uppercase
+|`CORP.EXAMPLE.COM`
+
+|Scan user
+|Service account with read access to the share
+|`svc-scan`
+
+|Share FQDN
+|Fully qualified path to the share. Don't use an IP address.
+|`filer.corp.example.com`
+
+|===
+
+== Configure Kerberos on a single-node deployment
+
+.Steps
+. Create `/etc/krb5.conf` on the AIDE host. Replace the example realm, domain, and KDC with your values.
++
+[source,ini]
+----
+[libdefaults]
+  default_realm = CORP.EXAMPLE.COM
+  dns_lookup_realm = false
+  dns_lookup_kdc = false
+
+[realms]
+  CORP.EXAMPLE.COM = {
+    kdc = dc01.corp.example.com
+  }
+
+[domain_realm]
+  .corp.example.com = CORP.EXAMPLE.COM
+  corp.example.com = CORP.EXAMPLE.COM
+----
+// RESEARCH Confirm the krb5.conf settings AIDE requires and whether the sample must include an admin_server entry.
+. Create a keytab for the scan service account by using your standard Kerberos tools, such as `ktpass` on a domain controller.
+// RESEARCH Confirm the required keytab file name and location on the AIDE host, and the required encryption types.
+. Test the keytab. A ticket in the output confirms the keytab and the KDC connection work.
++
+[source,cli]
+----
+kinit -kt <keytab_file> svc-scan@CORP.EXAMPLE.COM
+klist
+----
+. Verify that the AIDE host resolves the file server and the KDC by FQDN.
++
+[source,cli]
+----
+getent hosts filer.corp.example.com
+getent hosts dc01.corp.example.com
+----
+. Start the first Kerberos ticket refresh so that AI Data Engine gets a ticket for the scan service account.
+// RESEARCH Provide the customer-facing way to start the first ticket refresh and how often tickets renew.
+
+== Configure Kerberos on a multi-node deployment
+
+.Steps
+. On every node, install `cifs-utils` and confirm that NTP is active.
+. Create the `krb5.conf` file that is shown in the single-node procedure on the shared NFS export that you specified for the AIDE configuration volume.
+// RESEARCH Confirm the exact location of krb5.conf and the keytab on the shared configuration export, and whether changes apply immediately or require a restart of AIDE components.
+. Create and test the keytab for the scan service account as described in the single-node procedure.
+. Verify from every node that the file server and the KDC resolve by FQDN.
+. Start the first Kerberos ticket refresh.
+// RESEARCH Same question as the single-node ticket refresh step.
+
+== Add an SMB/CIFS data source that uses Kerberos
+
+.Steps
+. From the AI Data Engine UI, select *Configuration*.
+. On the *Scanned systems* tab, select *Add system*.
+. Select *File shares group*.
+. Enter a name for the group, and then enter the share path as an FQDN, for example `filer.corp.example.com`.
+. For the authentication method, select *Kerberos*. Leave the user name and password fields empty.
+// RESEARCH Confirm the exact UI labels and field names for the Kerberos authentication option in the GA UI.
+. Review your selections and select *Confirm*.
+. Select *Activate scans* for the new system.
+
+For more information about connecting data sources, refer to link:../data-sources/connect-data-source.html[Connect a data source to AI Data Engine].
+
+== Troubleshoot Kerberos authentication
+
+[cols="2,3,3",options="header"]
+|===
+|Symptom |Possible cause |Resolution
+
+|The error *IP not allowed with Kerberos* appears when you add a share.
+|The share path uses an IP address.
+|Enter the share path as an FQDN.
+
+|Authentication fails and no ticket is issued.
+|The AIDE node can't reach the KDC on port 88, or the clock on the node differs from the KDC by more than the allowed skew.
+|Open port 88 to the KDC. Confirm that NTP is active on every node.
+
+|The file server or KDC name doesn't resolve.
+|The node doesn't use a DNS server that can resolve your Active Directory names.
+|Verify the DNS settings on every node. Refer to the link:../deploy/aide-requirements.html#kerberos-ad-requirements[DNS requirements].
+
+|Kerberos scanning works from one node but fails from others in a multi-node deployment.
+|`cifs-utils` isn't installed on every node.
+|Install `cifs-utils` on every node.
+
+|DNS settings revert after a node restarts.
+|The network manager on the node overwrites `/etc/resolv.conf`.
+|Set the DNS server in the network manager configuration instead of editing `/etc/resolv.conf` directly.
+
+|===
+
+== Related information
+
+* link:../deploy/aide-requirements.html[AI Data Engine requirements]
+* link:../data-sources/connect-data-source.html[Connect a data source to AI Data Engine]
+* link:../data-sources/manage-data-sources.html[Manage data sources]
+* link:configure-ad-nfs.html[Map NFS users and groups to Active Directory]
