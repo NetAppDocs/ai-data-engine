@@ -48,6 +48,6 @@ Sign in with Microsoft Entra ID when the AI client prompts you, and accept the c
 // RESEARCH Add a link to troubleshooting topics for MCP connection, authentication, and access issues when they exist.
 
 .What's next
-To update a collection or change which scopes can access it, refer to link:manage-data-collections.html[Manage data collections]. For current restrictions, refer to link:../release-notes/known-limitations.html[Known limitations].
+To update a collection, an identity provider, the scopes that can access a collection, or the MCP server settings, refer to link:maintain-mcp-setup.html[Maintain your MCP setup]. For current restrictions, refer to link:../release-notes/known-limitations.html[Known limitations].
 
-// RESEARCH Add links for updating an MCP collection, reviewing and updating access permissions, and disconnecting an MCP client or removing a collection when those topics exist.
+// RESEARCH Add links for disconnecting an MCP client or removing a collection when those topics exist.

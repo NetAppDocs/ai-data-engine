@@ -89,6 +89,7 @@ For the complete list of restrictions, refer to link:../release-notes/known-limi
 == Related information
 
 * link:manage-data-collections.html[Manage data collections]
+* link:maintain-mcp-setup.html[Maintain your MCP setup]
 * link:quick-start-mcp.html[Quick start for governed AI access with AI Data Engine]
 * link:configure-mcp-access.html[Configure Entra ID and MCP access]
 * link:connect-ai-clients-mcp.html[Connect AI clients]

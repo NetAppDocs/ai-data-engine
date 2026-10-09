@@ -17,7 +17,7 @@ Create data collections and enable them for AI access so that connected AI clien
 
 A data collection is a group of files from volumes that you select in AI Data Engine. When you enable a collection for AI access, AI clients can search the metadata for the files in that collection. AI clients can't search files outside the collections that you enable. To create a collection, refer to <<create-a-data-collection,Create a data collection>>.
 
-// RESEARCH Where are existing collections edited (for example, to add or remove data resources)? Does this page need an edit section?
+To change a collection, an identity provider, or the MCP server settings later, refer to link:maintain-mcp-setup.html[Maintain your MCP setup].
 
 You grant access to a collection by assigning it one or more Microsoft Entra ID scopes. Access is granted at the collection level only. In a power-user session, search isn't filtered by file-level permissions, so the session can search every file in the collection.
 
@@ -76,7 +76,7 @@ NOTE: If the identity provider that you need isn't listed, add it under *Identit
 .. To include all user scopes, leave *All user scopes* selected.
 .. To include specific scopes, open the dropdown, select the scopes, and select *Add scopes*.
 +
-In this release, `power_users` is the only scope in the dropdown, and selecting it gives the same result as *All user scopes*.
+`power_users` is the only scope in the dropdown, and selecting it gives the same result as *All user scopes*.
 . Select *Generate MCP code snippet*.
 . In the *Generate MCP code snippet* step, copy the connection details that your AI client requires:
 * To use the endpoint directly, select the copy icon next to *MCP server URL*.
@@ -96,7 +96,7 @@ Users whose tokens carry a granted scope can discover and search the collection.
 
 // RESEARCH The Figma flow shows a *ChatGPT* tab and no Visual Studio Code tab. Connect AI clients lists Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot, and says that cloud-originated connections aren't supported. Confirm the final client list, and whether the *Claude* tab is for Claude Desktop.
 // RESEARCH Confirm where the scopes in the dropdown come from (for example, imported from Entra ID), and whether customers must match scope names exactly between Entra ID and the console.
-// RESEARCH Document the MCP hostname task under *MCP settings* and the SSL/TLS certificate requirement. No topic covers them yet, and they might need to be a prerequisite.
+// RESEARCH Document first-time MCP host name setup and the SSL/TLS certificate requirement. Maintain your MCP setup covers only reviewing and changing the host name, and the host name might need to be a prerequisite.
 // RESEARCH Is selecting an identity provider and scope required before AI clients can use the collection? Confirm what happens if you close the task without generating a snippet.
 
 [#enable-a-collection-for-ai-access]
@@ -131,6 +131,7 @@ Disable AI access for a collection when AI clients no longer need to search it.
 == Related information
 
 * link:learn-about-mcp.html[Learn about governed AI access]
+* link:maintain-mcp-setup.html[Maintain your MCP setup]
 * link:configure-mcp-access.html[Configure Entra ID and MCP access]
 * link:connect-ai-clients-mcp.html[Connect AI clients]
 * link:../release-notes/known-limitations.html[Known limitations]

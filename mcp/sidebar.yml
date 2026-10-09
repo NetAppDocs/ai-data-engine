@@ -11,3 +11,5 @@ entries:
     url: /mcp/manage-data-collections.html
   - title: Connect AI clients
     url: /mcp/connect-ai-clients-mcp.html
+  - title: Maintain your MCP setup
+    url: /mcp/maintain-mcp-setup.html

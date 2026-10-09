@@ -108,7 +108,7 @@ Connect Microsoft Entra ID as an identity provider (IdP) to authenticate and aut
 .Steps
 
 . In NetApp Console, go to *AI data hub* > *AI Data Engine*.
-. Select *Identity providers*.
+. Select *Configuration* > *Identity providers*.
 . Select *Add identity provider*.
 +
 The *Add identity provider* panel opens.
@@ -129,7 +129,7 @@ Changes to identity provider and collection settings might not take effect immed
 Adding an identity provider doesn't automatically associate it with a data collection. Select the identity provider when you configure the collection so that AI applications can access its resources with authentication and authorization. Refer to <<configure-collections-for-mcp,Configure collections for MCP>>.
 
 // RESEARCH Confirm that the exact label of the identity provider option is *Microsoft EntraID* (as in the UI) and not *Microsoft Entra ID*.
-// RESEARCH Can you edit or delete an identity provider after you add it?
+// RESEARCH Can you delete an identity provider after you add it? To edit one, refer to link:maintain-mcp-setup.html#update-an-identity-provider[Update an identity provider].
 // RESEARCH ROM Does a customer need to map Entra ID identities to Active Directory identities for MCP in this release? The content plan lists Active Directory and Kerberos support for this release. Confirm whether that is the identity mapping that the MCP server relies on, and whether a configuration task belongs on this page.
 // RESEARCH ROVO REVIEW Rovo says you also import the scopes from Entra ID in this task. The steps above enter only the tenant ID and client ID. Confirm whether a scope import step exists in the UI.
 // RESEARCH Does *Invalid identity* appear only when the tenant ID or client ID format is wrong, or does AI Data Engine also validate the values against Entra ID? Confirm the validation behavior.
@@ -181,4 +181,5 @@ If AI Data Engine can't verify a user's identity or scope, it returns no data fr
 * link:learn-about-mcp.html[Learn about governed AI access]
 * link:manage-data-collections.html[Manage data collections]
 * link:connect-ai-clients-mcp.html[Connect AI clients]
+* link:maintain-mcp-setup.html[Maintain your MCP setup]
 * link:../release-notes/known-limitations.html[Known limitations]
