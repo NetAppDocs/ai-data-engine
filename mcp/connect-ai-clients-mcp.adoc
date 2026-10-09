@@ -34,7 +34,7 @@ Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot to the
 // RESEARCH Confirm the field list that Console generates, and which values you add from your own client registration.
 // RESEARCH Confirm that the collection ID is part of the connection details before you keep collection_id in the configuration snippets.
 * Your computer can reach the MCP server. The MCP server runs in your network, so connect from your corporate network or through VPN. Your computer must also be able to reach Microsoft Entra ID sign-in (`login.microsoftonline.com`).
-// RESEARCH Confirm the networking requirements for AI client access (ports and ingress), and move the administrator requirements to aide-requirements.adoc. The MCP hostname warning in Console says securing the MCP server with HTTPS requires an SSL/TLS certificate, so confirm whether the URL format here should be HTTPS only.
+// RESEARCH Confirm the networking requirements for AI client access (ports and ingress), and move the administrator requirements to aide-requirements.adoc.
 // RESEARCH ROVO REVIEW Rovo cites inbound TCP 8443/443 from client subnets to the MCP endpoint. Confirm the ports. See the matching note in aide-requirements.adoc.
 * You have a supported version of the AI client.
 // RESEARCH What are the minimum supported versions of Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot?

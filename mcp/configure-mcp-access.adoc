@@ -17,9 +17,10 @@ Register AI Data Engine in Microsoft Entra ID, set up Entra ID as an identity pr
 
 * You have a Microsoft Entra ID tenant and a role that lets you register applications and grant consent in that tenant, such as Application Administrator or Cloud Application Administrator.
 // RESEARCH Confirm whether Application Administrator or Cloud Application Administrator is the role to name, and whether a higher-privileged role is needed for tenant-wide admin consent. Owner is an assignment on an existing app registration, not an Entra ID directory role.
-* You have the AI Data Engine administrator role in NetApp Console.
+* You must have the _AI Data Engine administrator_ role.
 // RESEARCH Which NetApp Console role is required to set up an identity provider?
 * AI Data Engine is deployed and has at least one data collection. Refer to link:manage-data-collections.html#create-a-data-collection[Create a data collection].
+* The MCP server has a host name that AI clients can reach over HTTPS.
 
 == How MCP access works
 
@@ -27,7 +28,7 @@ AI Data Engine doesn't issue tokens. It validates the Entra ID access tokens tha
 
 Microsoft Entra ID is the only identity provider that governed AI access supports.
 
-You grant access at the collection level. In a power-user session, search isn't filtered by file-level permissions, so the session can search every file in a collection that you granted the scope to. Include in a collection only files that everyone with the granted scope is meant to see.
+You grant access at the collection level. In a power-user session, search isn't filtered by file-level permissions, so the session can search every file in a collection that you granted the scope to. Include in a collection only files that everyone with the granted scope is meant to see. Grant a scope access to the *All Systems and Volumes* collection (the AI Data Engine default) only if everyone with that scope is meant to see all scanned data.
 
 You'll complete these tasks:
 
@@ -102,7 +103,7 @@ Connect Microsoft Entra ID as an identity provider (IdP) to authenticate and aut
 
 .Before you begin
 
-* You have administrator access to AI Data Engine.
+* You must have the _AI Data Engine administrator_ role.
 * You have the tenant ID and the application (client) ID of the AI Data Engine application that you registered in Microsoft Entra ID.
 
 .Steps

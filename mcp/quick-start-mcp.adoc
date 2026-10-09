@@ -11,7 +11,7 @@ summary: Set up governed AI access with AI Data Engine by preparing Microsoft En
 [.lead]
 Set up governed AI access with AI Data Engine by preparing Microsoft Entra ID, configuring a data collection for MCP, and connecting an AI client that can search the collection and tag files through the Model Context Protocol (MCP).
 
-This quick start assumes that you have already link:../data-sources/connect-data-source.html[connected a data source] and that AI Data Engine has scanned and indexed it. You also need permission to register applications and grant consent in Microsoft Entra ID, and your AI clients must be able to reach the AI Data Engine MCP server over the network.
+This quick start assumes that you have already link:../data-sources/connect-data-source.html[connected a data source] and that AI Data Engine has scanned and indexed it. You also need permission to register applications and grant consent in Microsoft Entra ID, and the MCP server must have a host name that your AI clients can reach over HTTPS.
 
 // RESEARCH Which NetApp Console role is required to manage MCP settings and collections?
 
@@ -29,7 +29,6 @@ In NetApp Console, set up Microsoft Entra ID as an identity provider by entering
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] link:manage-data-collections.html#create-a-data-collection[Create a data collection]
 [role="quick-margin-para"]
 Create a data collection to define the data resources that AI clients can search through the MCP server. The new collection has a status of `Ready to configure`.
-// RESEARCH ROVO REVIEW Rovo says a default collection exists, so you do not need to create one before you connect a client. If so, retitle this step "Create or select a data collection" and confirm whether default collections also need the next step.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] link:manage-data-collections.html#configure-a-collection-for-mcp[Configure the collection for MCP]
 [role="quick-margin-para"]

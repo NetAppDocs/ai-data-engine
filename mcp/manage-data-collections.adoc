@@ -15,11 +15,10 @@ Create data collections and enable them for AI access so that connected AI clien
 
 == Before you begin
 
-* You have the AI Data Engine administrator role.
+* You must have the _AI Data Engine administrator_ role.
 // RESEARCH Which NetApp Console role is required to manage MCP collections? Can the viewer role see which collections are enabled?
 * You have set up Microsoft Entra ID as an identity provider in AI Data Engine. Refer to link:configure-mcp-access.html#set-up-an-identity-provider[Set up an identity provider].
-* You have created at least one data collection. Refer to <<create-a-data-collection,Create a data collection>>.
-// RESEARCH ROVO REVIEW Rovo says you do not need to create a collection before you connect a client because default collections exist, and the User Guide says so. Confirm whether default collections exist in M0, whether they have a Ready to configure status, and whether this prerequisite and the Create a data collection section need to change.
+* You have created a custom data collection or are using a default collection that includes only the data that AI clients need to search. Refer to <<create-a-data-collection,Create a data collection>>.
 
 == How collections define MCP scope
 
@@ -29,7 +28,11 @@ To change a collection, an identity provider, or the MCP server settings later, 
 
 You grant access to a collection by assigning it one or more Microsoft Entra ID scopes. Access is granted at the collection level only. In a power-user session, search isn't filtered by file-level permissions, so the session can search every file in the collection.
 
-CAUTION: Before you grant a scope access to a collection, confirm that everyone who has that scope is allowed to search the metadata for every file in the collection.
+AI Data Engine also provides a collection named *All Systems and Volumes* that includes every system and volume that AI Data Engine has scanned. To limit what AI clients can search, create your own collections that include only the data that your users need.
+
+CAUTION: Before you grant a scope access to a collection, confirm that everyone who has that scope is allowed to search the metadata for every file in the collection. If you grant a scope access to *All Systems and Volumes*, everyone who has that scope can search the metadata for all scanned data.
+
+// RESEARCH Is the *All Systems and Volumes* collection always present, or does it appear only after a system is scanned? What status does it show in the *Collections* list, and can you edit, disable, or remove it?
 
 [#create-a-data-collection]
 == Create a data collection
@@ -96,7 +99,7 @@ Users whose tokens carry a granted scope can discover and search the collection.
 
 // RESEARCH The Figma flow shows a *ChatGPT* tab and no Visual Studio Code tab. Connect AI clients lists Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot, and says that cloud-originated connections aren't supported. Confirm the final client list, and whether the *Claude* tab is for Claude Desktop.
 // RESEARCH Confirm where the scopes in the dropdown come from (for example, imported from Entra ID), and whether customers must match scope names exactly between Entra ID and the console.
-// RESEARCH Document first-time MCP host name setup and the SSL/TLS certificate requirement. Maintain your MCP setup covers only reviewing and changing the host name, and the host name might need to be a prerequisite.
+// RESEARCH Does the *MCP hostname not setup* warning need a link to any setup guidance? Maintain your MCP setup covers only reviewing and changing the host name.
 // RESEARCH Is selecting an identity provider and scope required before AI clients can use the collection? Confirm what happens if you close the task without generating a snippet.
 
 [#enable-a-collection-for-ai-access]

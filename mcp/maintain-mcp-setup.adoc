@@ -45,6 +45,7 @@ Update the name, description, or data resources of an MCP collection.
 . Select or clear data resources to update the collection.
 . Select *Save MCP collection*.
 
+// RESEARCH Can you edit the *All Systems and Volumes* collection, or only configure it for MCP?
 // RESEARCH Confirm the S3 and structured data restriction, because AI Data Engine scans StorageGRID data over S3 (connect-data-source.adoc). Add the restriction to the Create a data collection steps in manage-data-collections.adoc and to known-limitations.adoc if it applies to MCP collections.
 
 [#update-an-identity-provider]
