@@ -4,7 +4,7 @@ permalink: mcp/configure-mcp-access.html
 keywords: mcp, governed ai access, microsoft entra id, entra, scopes, app roles, authentication, token, collection access
 summary: Register AI Data Engine in Microsoft Entra ID, define the supported scope and app role, set up Entra ID as an identity provider in AI Data Engine, and register AI client applications so that users can work with collections through MCP.
 ---
-= Configure Entra ID and MCP access
+= Configure Entra ID and MCP access for AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
@@ -16,7 +16,7 @@ Register AI Data Engine in Microsoft Entra ID, set up Entra ID as an identity pr
 == Before you begin
 
 * You have a Microsoft Entra ID tenant and a role that lets you register applications and grant consent in that tenant, such as Application Administrator or Cloud Application Administrator.
-// RESEARCH Confirm whether Application Administrator or Cloud Application Administrator is the role to name, and whether a higher-privileged role is needed for tenant-wide admin consent. Owner is an assignment on an existing app registration, not an Entra ID directory role.
+// RESEARCH Confirm whether Application Administrator or Cloud Application Administrator is the role to name, and whether a higher-privileged role is needed for tenant-wide admin consent. The owner of the service principal can also assign users to an app role.
 * You must have the _AI Data Engine administrator_ role.
 // RESEARCH Which NetApp Console role is required to set up an identity provider?
 * AI Data Engine is deployed and has at least one data collection. Refer to link:manage-data-collections.html#create-a-data-collection[Create a data collection].
@@ -48,7 +48,7 @@ Complete this task once per tenant. If an AI Data Engine app registration alread
 .Steps
 
 . In the Microsoft Entra admin center, go to *App registrations* and select *New registration*.
-. Enter a name, such as `NetApp AI Data Engine MCP`, select *Accounts in this organizational directory only*, and select *Register*.
+. Enter a name, such as `NetApp AI Data Engine MCP`, select *Single tenant only*, and select *Register*.
 . On the *Overview* page, record the *Application (client) ID* and the *Directory (tenant) ID*. You enter both values in NetApp Console.
 . Open *Manifest*, set `requestedAccessTokenVersion` to `2`, and save. AI Data Engine accepts only v2.0 access tokens.
 . Open *Expose an API* and select *Add* next to *Application ID URI*. Accept the default value, `api://<application-client-id>`, and save. Record this value. AI clients use it to request scopes.
@@ -71,17 +71,19 @@ The `power_users` scope requests a power-user session. A power-user session can 
 * *Who can consent*: *Admins and users*, or *Admins only* to restrict consent
 * *Admin consent display name*: `Access AIDE as a Power User`
 * *Admin consent description*: `Allows the app to access NetApp AI Data Engine as a power user on behalf of the signed-in user.`
+* *User consent display name* and *User consent description*: If you select *Admins and users*, enter text that users see when they consent.
 * *State*: *Enabled*
+* Select *Add scope*.
 // RESEARCH Confirm the exact display name and consent description for the power_users scope. The values here follow the pattern of the Confluence source.
 . Open *App roles* and select *Create app role*:
 * *Display name*: `AIDE Power Users`
 * *Allowed member types*: *Users/Groups*
 * *Value*: `AIDEPowerUsers`
 * *Description*: `Grants power-user sessions in AI Data Engine.`
-* *State*: *Enabled*
-. Go to *Enterprise applications*, open the AI Data Engine application, select *Users and groups*, and assign the `AIDE Power Users` role to the users or groups who curate collections, such as storage administrators.
+* Select *Do you want to enable this app role?*, and then select *Apply*.
+. Go to *Entra ID* > *Enterprise apps* > *All applications*, open the AI Data Engine application, and select *Users and groups* > *Add user/group*. Select the users or groups who curate collections, such as storage administrators, select the `AIDE Power Users` role, and select *Assign*.
 
-To assign the app role to groups instead of individual users, your tenant needs Microsoft Entra ID P1 or P2.
+To assign the app role to groups instead of individual users, your tenant needs Microsoft Entra ID P1 or P2. Assignment to a group doesn't apply to the members of nested groups.
 
 IMPORTANT: Assigning the app role, not only defining it, is required for tagging. Tag operations work only in a power-user session. If no user holds the role, no one can tag files through MCP.
 
@@ -148,6 +150,7 @@ If an AI client needs its own Entra ID app registration, register it separately 
 .Steps
 
 . In the Microsoft Entra admin center, register a new application for the AI client.
+. Make sure that both the AI client application and the AI Data Engine application have an owner under *Manage* > *Owners*. Without an owner, the AI Data Engine application might not appear when you add permissions.
 . Under *Authentication*, add the redirect URI that the AI client requires. Refer to link:connect-ai-clients-mcp.html[Connect AI clients] for each client's values.
 . Under *Certificates & secrets*, create a client secret and record its value immediately. Entra ID shows the value only once.
 . Under *API permissions*, select *Add a permission* > *APIs my organization uses*, and then select the AI Data Engine application.

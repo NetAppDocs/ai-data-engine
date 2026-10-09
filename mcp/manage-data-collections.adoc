@@ -4,7 +4,7 @@ permalink: mcp/manage-data-collections.html
 keywords: mcp, governed ai access, data collections, collection, ai access, scope, create collection, enable collection
 summary: Create data collections and enable them for AI access so that connected AI clients can search them. Each collection that you enable defines the searchable scope for MCP.
 ---
-= Manage data collections
+= Manage data collections for AI Data Engine governed AI access
 :icons: font
 :imagesdir: ../media/
 
@@ -22,15 +22,15 @@ Create data collections and enable them for AI access so that connected AI clien
 
 == How collections define MCP scope
 
-A data collection is a group of files from volumes that you select in AI Data Engine. When you enable a collection for AI access, AI clients can search the metadata for the files in that collection. AI clients can't search files outside the collections that you enable. To create a collection, refer to <<create-a-data-collection,Create a data collection>>.
-
-To change a collection, an identity provider, or the MCP server settings later, refer to link:maintain-mcp-setup.html[Maintain your MCP setup].
+A data collection is a group of files from volumes that you select in AI Data Engine. When you enable a collection for AI access, AI clients can search the metadata for the files in that collection. AI clients can't search files outside the collections that you enable. 
 
 You grant access to a collection by assigning it one or more Microsoft Entra ID scopes. Access is granted at the collection level only. In a power-user session, search isn't filtered by file-level permissions, so the session can search every file in the collection.
 
 AI Data Engine also provides a collection named *All Systems and Volumes* that includes every system and volume that AI Data Engine has scanned. To limit what AI clients can search, create your own collections that include only the data that your users need.
 
 CAUTION: Before you grant a scope access to a collection, confirm that everyone who has that scope is allowed to search the metadata for every file in the collection. If you grant a scope access to *All Systems and Volumes*, everyone who has that scope can search the metadata for all scanned data.
+
+To create a collection, refer to <<create-a-data-collection,Create a data collection>>. To change a collection, an identity provider, or the MCP server settings later, refer to link:maintain-mcp-setup.html[Maintain your MCP setup].
 
 // RESEARCH Is the *All Systems and Volumes* collection always present, or does it appear only after a system is scanned? What status does it show in the *Collections* list, and can you edit, disable, or remove it?
 
@@ -93,7 +93,7 @@ NOTE: If the *MCP hostname not setup* warning appears, select *MCP settings* to 
 
 You have the MCP server URL or a client-specific configuration snippet for the selected identity providers and user scopes. Use these details to connect your AI client and validate access to the collection. If your AI client needs its own Entra ID application, register it and add its client application ID and client secret to the snippet. Refer to link:configure-mcp-access.html#register-an-application-for-each-ai-client[Register an application for each AI client].
 
-NOTE: Generating connection details doesn't connect or validate your AI client. Complete those tasks in the AI client.
+NOTE: Generating connection details doesn't connect or validate your AI client. link:connect-ai-clients-mcp.html[Complete those tasks in the AI client].
 
 Users whose tokens carry a granted scope can discover and search the collection. Users without a matching scope can't discover, search, or work with the collection.
 
@@ -107,7 +107,7 @@ Users whose tokens carry a granted scope can discover and search the collection.
 
 .Steps
 
-. In NetApp Console, go to *AI data hub* > *AI Data Engine*.
+. In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration*.
 // RESEARCH Reconcile these steps with the configure for MCP step. MCP is enabled after the configuration is complete and scopes are selected, so is a separate enable step still needed, or do these steps apply only after a collection is disabled?
 . Select the collection that you want to enable.
 . Enable AI access for the collection.
@@ -122,7 +122,7 @@ Disable AI access for a collection when AI clients no longer need to search it.
 
 .Steps
 
-. In NetApp Console, go to *AI data hub* > *AI Data Engine*.
+. In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration*.
 . Select the collection that you want to disable.
 . Turn off AI access for the collection.
 . Save your changes.

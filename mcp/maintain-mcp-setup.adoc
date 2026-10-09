@@ -4,7 +4,7 @@ permalink: mcp/maintain-mcp-setup.html
 keywords: mcp, governed ai access, maintain, update, edit collection, identity provider, user scopes, mcp settings, mcp host name, enable connection to mcp, validate access
 summary: Review and update your MCP collections, identity providers, access scopes, and server settings as your requirements change, and then validate access from your AI clients.
 ---
-= Maintain your AI Data Engine MCP setup
+= Maintain your AI Data Engine governed AI access setup
 :icons: font
 :imagesdir: ../media/
 

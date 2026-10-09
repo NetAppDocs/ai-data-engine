@@ -4,7 +4,7 @@ permalink: mcp/connect-ai-clients-mcp.html
 keywords: mcp, governed ai access, claude desktop, cursor, vs code, github copilot, ai client, mcp server, prompts, tags
 summary: Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot to the AI Data Engine MCP server, and use sample prompts to search file metadata and tag files in a collection.
 ---
-= Connect AI clients
+= Connect AI clients to use with AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
