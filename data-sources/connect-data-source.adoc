@@ -47,7 +47,7 @@ AI Data Engine scans your storage systems to collect and analyze metadata. To ad
 |Source type |Required details
 
 |*File shares group*
-|A name for the share group, then the share host and path details. For SMB/CIFS shares that use Kerberos authentication, enter the share path as an FQDN and leave the credentials empty. Refer to link:../administer/configure-kerberos-smb.html[Configure Kerberos authentication for SMB/CIFS shares].
+|A name for the share group, then the share host and path details. For SMB/CIFS shares that use Kerberos authentication, enter the share path as the FQDN followed by the share name, for example `filer.corp.example.com/sharename`, and leave the credentials empty. Refer to link:../administer/configure-kerberos-smb.html[Configure Kerberos authentication for SMB/CIFS shares].
 // RESEARCH Confirm the UI label of the Kerberos authentication option.
 
 |*Database*

@@ -354,8 +354,9 @@ Kerberos authentication fails when the clocks on the AIDE nodes and the KDC diff
 
 * Every AIDE node can resolve the file server and the KDC by fully qualified domain name (FQDN).
 * If you configure the nodes to use your Active Directory DNS server, that server must also resolve external names. Otherwise, AIDE can't reach the endpoints listed in <<outbound-internet-access,Outbound internet access>>.
-* For a multi-node deployment, configure your Active Directory DNS server as the only name server on every node. A mixed list of name servers can cause intermittent name resolution failures.
-// RESEARCH Confirm the multi-node single-nameserver requirement and the reason to state to customers.
+* For a multi-node deployment, configure your Active Directory DNS server as the only name server on every node. Name resolution in the cluster picks one of the listed name servers at random, so a name server that can't resolve Active Directory names causes intermittent failures.
+
+To change the DNS settings, refer to link:../administer/configure-kerberos-smb.html#configure-name-resolution[Configure Kerberos authentication for SMB/CIFS shares].
 
 === Host packages
 
