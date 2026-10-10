@@ -14,10 +14,9 @@ Review and update your MCP collections, identity providers, access scopes, and s
 == Before you begin
 
 * You have configured an MCP collection and connected an AI client. Refer to link:quick-start-mcp.html[Quick start for governed AI access with AI Data Engine].
-* You have the permissions that are required to change the settings that you want to update.
-// RESEARCH Which NetApp Console role is required to edit collections, edit identity providers, and change MCP settings? Is it the AI Data Engine administrator role only? Can the viewer role see the MCP server status?
+* You have the *AI Data Engine administrator* role.
 
-// RESEARCH Do changes to collections, identity providers, or scopes apply immediately, or does the MCP server pick them up later? configure-mcp-access.adoc says changes might not take effect immediately.
+Changes don't take effect immediately. If you change Microsoft Entra ID app roles or scopes, users receive the updated access only after their AI client gets a new access token, which can take up to about one hour. Users can sign in again to get a new token sooner. If you add data to a collection, the files become searchable only after AI Data Engine scans and indexes them.
 
 [#review-mcp-server-and-collection-status]
 == Review MCP server and collection status
@@ -27,10 +26,15 @@ Review the status of the MCP server and of the collections that your AI clients 
 .Steps
 
 . In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
-. Review the MCP server status and the status of the collections that your AI clients use.
-. Address any configuration warnings.
-
-// RESEARCH What are the possible MCP server and collection statuses and warnings, and how do you address each one?
+. Review the MCP server status:
+* *Active*: The MCP server is running and enabled, and it accepts requests from AI clients.
+* *Degraded*: The MCP server is running, but a prerequisite is missing or unhealthy, such as no configured identity provider or a slow response from the metadata catalog. AI clients might not be able to authenticate or retrieve collections.
+* *Offline*: The MCP server is stopped, disabled, or unreachable. AI clients can't connect.
+. In the collections list, review the status of each collection that your AI clients use. If a collection shows *Scanning*, wait for indexing to finish before you search for new files.
+. Address any configuration warnings:
+* If an identity provider is missing, add it under *Configuration* > *Identity providers*. Refer to link:configure-mcp-access.html#set-up-an-identity-provider[Set up an identity provider].
+* If a collection shows *Ready to configure* or *Needs configuration*, open its *Actions* menu, select *Configure for MCP*, and select identity providers and user scopes. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
+* If a volume in a collection shows a scan error, refer to link:../data-sources/monitor-scanning-health.html[Monitor scanning health in AI Data Engine].
 
 [#edit-a-data-collection]
 == Edit a data collection
@@ -45,13 +49,12 @@ Update the name, description, or data resources of an MCP collection.
 . Select or clear data resources to update the collection.
 . Select *Save MCP collection*.
 
-// RESEARCH Can you edit the *All Systems and Volumes* collection, or only configure it for MCP?
-// RESEARCH Confirm the S3 and structured data restriction, because AI Data Engine scans StorageGRID data over S3 (connect-data-source.adoc). Add the restriction to the Create a data collection steps in manage-data-collections.adoc and to known-limitations.adoc if it applies to MCP collections.
+You can't edit, rename, or delete the *All Systems and Volumes* collection. You can configure it for MCP. Refer to <<update-identity-providers-or-user-scopes-for-a-collection,Update the identity providers or user scopes for a collection>>.
 
 [#update-an-identity-provider]
 == Update an identity provider
 
-Update an identity provider when its Microsoft Entra ID configuration changes.
+Update an identity provider when the provider configuration changes.
 
 .Steps
 
@@ -61,8 +64,6 @@ Update an identity provider when its Microsoft Entra ID configuration changes.
 . Select *Save*.
 
 If administrator access is required, ask your administrator to update the identity provider.
-
-// RESEARCH Confirm that an identity provider has a name, because the add steps in configure-mcp-access.adoc enter only the tenant ID and application (client) ID.
 
 [#update-identity-providers-or-user-scopes-for-a-collection]
 == Update the identity providers or user scopes for a collection
@@ -99,14 +100,13 @@ Review whether AI clients can connect to the MCP server, and review the MCP host
 . Select *MCP settings*.
 . Under *MCP server connection*, review *Enable connection to MCP*.
 +
-CAUTION: Disabling the MCP server connection blocks all requests from AI clients to all MCP collections. Disable the connection only when you intend to suspend access across the server.
+CAUTION: Disabling the MCP server connection blocks all requests from AI clients to all MCP collections, regardless of collection settings. AI clients that are already connected lose access on their next request. Disable the connection only when you intend to suspend access across the server.
 . Under *MCP host name*, review the host name. If you need to change it, enter the updated host name and select *Configure*.
 +
-NOTE: Securing the MCP server with HTTPS requires an SSL/TLS certificate.
+CAUTION: Changing the host name changes the MCP server URL. AI clients that use the previous URL can't connect until you update their connection settings. Refer to <<update-ai-client-connections-and-validate-access,Update AI client connections and validate access>>.
++
+NOTE: Securing the MCP server with HTTPS requires an SSL/TLS certificate. NetApp Console doesn't manage the certificate. Provide it where your host name is served, such as on your load balancer.
 . Select *Close*.
-
-// RESEARCH Confirm where *MCP settings* appears and the exact UI labels. The *MCP hostname not setup* warning says "hostname" and this task says "MCP host name". Confirm how the certificate is provided and whether changing the host name changes the MCP server URL.
-// RESEARCH How does *Enable connection to MCP* relate to enabling or disabling AI access for a single collection? Confirm what happens to AI clients that are already connected when the connection is disabled.
 
 [#update-ai-client-connections-and-validate-access]
 == Update AI client connections and validate access

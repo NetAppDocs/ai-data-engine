@@ -85,7 +85,7 @@ NOTE: If the identity provider that you need isn't listed, add it under *Identit
 * To use the endpoint directly, select the copy icon next to *MCP server URL*.
 * To use a client-specific configuration snippet, select the *Claude* or *Cursor* tab under *Code snippets*, and then select the copy icon.
 +
-NOTE: If the *MCP hostname not setup* warning appears, select *MCP settings* to configure the hostname. Securing the MCP server with HTTPS requires an SSL/TLS certificate.
+NOTE: If the *MCP hostname not setup* warning appears, select *MCP settings* to configure the host name. Securing the MCP server with HTTPS requires an SSL/TLS certificate.
 . Optional: To change the identity providers or user scopes, select *Go back*, and then generate the snippet again.
 . Select *Close*.
 
