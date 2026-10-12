@@ -1,0 +1,192 @@
+---
+sidebar: sidebar
+permalink: mcp/configure-mcp-access.html
+keywords: mcp, governed ai access, microsoft entra id, entra, scopes, app roles, authentication, token, collection access
+summary: Register AI Data Engine in Microsoft Entra ID, define the supported scope and app role, set up Entra ID as an identity provider in AI Data Engine, and register AI client applications so that users can work with collections through MCP.
+---
+= Configure Entra ID and MCP access for AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Register AI Data Engine in Microsoft Entra ID, set up Entra ID as an identity provider in AI Data Engine, and register an Entra ID application for your AI clients. Governed AI access uses Entra ID to authenticate users, and the scopes that you include for each collection determine which collections a user can work with through the Model Context Protocol (MCP).
+
+// RESEARCH UI Help ID help-mcp-access: confirm the anchor against the staging build, and confirm who owns help ID updates.
+
+== Before you begin
+
+* You have a Microsoft Entra ID tenant and a role that lets you register applications and grant consent in that tenant, such as Application Administrator or Cloud Application Administrator.
+* You must have the _AI Data Engine administrator_ role.
+* AI Data Engine is deployed and has at least one data collection. Refer to link:manage-data-collections.html#create-a-data-collection[Create a data collection].
+* The MCP server has a host name that AI clients can reach over HTTPS.
+
+== How MCP access works
+
+AI Data Engine doesn't issue tokens. It validates the Entra ID access tokens that AI clients present. When a user connects an AI client, the user signs in with Microsoft Entra ID, and Entra ID issues an access token for the AI Data Engine application. AI Data Engine checks the token and lets the client work only with the collections whose granted scopes match.
+
+Microsoft Entra ID is the only identity provider that governed AI access supports.
+
+You grant access at the collection level. In a power-user session, search isn't filtered by file-level permissions, so the session can search every file in a collection that you granted the scope to. Include in a collection only files that everyone with the granted scope is meant to see. Grant a scope access to the *All Systems and Volumes* collection (the AI Data Engine default) only if everyone with that scope is meant to see all scanned data.
+
+You'll complete these tasks:
+
+. Register an application for AI Data Engine in Microsoft Entra ID and expose its API.
+. Define the `power_users` scope and the power-user app role, and assign the app role to the users who tag files.
+. Set up Microsoft Entra ID as an identity provider in AI Data Engine.
+. Configure each collection for MCP by selecting identity providers and user scopes, and then copy the connection details for your AI client.
+. Register an Entra ID application for your AI clients.
+
+An Entra ID administrator completes the Entra ID tasks manually in the Microsoft Entra admin center. NetApp Console doesn't create or change Entra ID app registrations.
+
+[#register-the-ai-data-engine-application]
+== Register the AI Data Engine application
+
+Complete this task once per tenant. If an AI Data Engine app registration already exists in your tenant, use it.
+
+.Steps
+
+. In the Microsoft Entra admin center, go to *App registrations* and select *New registration*.
+. Enter a name, such as `NetApp AI Data Engine MCP`, select *Single tenant only*, and select *Register*.
+. On the *Overview* page, record the *Application (client) ID* and the *Directory (tenant) ID*. You enter both values in NetApp Console.
+. Open *Manifest*, set `requestedAccessTokenVersion` to `2`, and save. AI Data Engine accepts only v2.0 access tokens.
+. Open *Expose an API* and select *Add* next to *Application ID URI*. Accept the default value, `api://<application-client-id>`, and save. Record this value. AI clients use it to request scopes.
++
+NOTE: You can use a custom Application ID URI if the domain is verified in your tenant. If Entra ID rejects it with the error `Failed to add identifier URI`, make sure that `requestedAccessTokenVersion` is set to `2`, and then try again.
+
+// RESEARCH Have these steps been tested in a clean tenant?
+
+[#define-scopes-and-the-power-user-app-role]
+== Define the scope and the power-user app role
+
+AI Data Engine recognizes the `power_users` delegated scope. You define the scope and the app role on the AI Data Engine application registration in Entra ID. They don't map to a NetApp Console role, and the scope and app role names must match exactly, including the plural form.
+
+The `power_users` scope requests a power-user session. A power-user session can search file metadata in the collections that you grant the scope access to, list tags, and add tags to or remove tags from files. AI Data Engine grants a power-user session only if the user also holds the `AIDEPowerUsers` app role.
+
+.Steps
+
+. In *Expose an API*, select *Add a scope* and add the `power_users` scope:
+* *Who can consent*: *Admins and users*, or *Admins only* to restrict consent
+* *Admin consent display name*: `Access AIDE as a Power User`
+* *Admin consent description*: `Allows the app to access NetApp AI Data Engine as a power user on behalf of the signed-in user.`
+* *User consent display name* and *User consent description*: If you select *Admins and users*, enter text that users see when they consent.
+* *State*: *Enabled*
+* Select *Add scope*.
+. Open *App roles* and select *Create app role*:
+* *Display name*: `AIDE Power Users`
+* *Allowed member types*: *Users/Groups*
+* *Value*: `AIDEPowerUsers`
+* *Description*: `Grants power-user sessions in AI Data Engine.`
+* Select *Do you want to enable this app role?*, and then select *Apply*.
+. Go to *Entra ID* > *Enterprise apps* > *All applications*, open the AI Data Engine application, and select *Users and groups* > *Add user/group*. Select the users or groups who curate collections, such as storage administrators, select the `AIDE Power Users` role, and select *Assign*.
+
+To assign the app role to groups instead of individual users, your tenant needs Microsoft Entra ID P1 or P2. Assignment to a group doesn't apply to the members of nested groups.
+
+IMPORTANT: Assigning the app role, not only defining it, is required for tagging. Tag operations work only in a power-user session. If no user holds the role, no one can tag files through MCP.
+
+.How power-user sessions work
+
+A user gets a power-user session only when both of these are true:
+
+* The user holds the `AIDEPowerUsers` app role.
+* The AI client requests the `power_users` scope.
+
+If a client requests `power_users` for a user who doesn't hold the role, AI Data Engine doesn't start a power-user session, and the user can't tag files.
+
+
+[#set-up-an-identity-provider]
+== Set up an identity provider
+
+Connect Microsoft Entra ID as an identity provider (IdP) to authenticate and authorize access to the data resources in your data collections.
+
+.Before you begin
+
+* You must have the _AI Data Engine administrator_ role.
+* You have the tenant ID and the application (client) ID of the AI Data Engine application that you registered in Microsoft Entra ID.
+
+.Steps
+
+. In NetApp Console, go to *AI data hub* > *AI Data Engine*.
+. Select *Configuration* > *Identity providers*.
+. Select *Add identity provider*.
++
+The *Add identity provider* panel opens.
+. From *Select identity provider*, select *Microsoft EntraID*.
+. In *Entra Tenant ID*, enter the Directory (tenant) ID of your Entra ID tenant.
+. In *Application (Client) ID*, enter the Application (client) ID of the AI Data Engine application.
++
+IMPORTANT: Enter the Application (client) ID, which is a GUID. Don't enter the Application ID URI (`api://...`). Tokens identify the AI Data Engine application by its GUID, so a URI causes sign-in failures.
++
+Use the identifiers from your Microsoft Entra ID configuration. AI Data Engine checks the format of both values and confirms that the tenant exists. If an *Invalid identity* message appears, verify the values and correct them before you try again.
+. Select *Add identity provider*.
+
+When setup completes, AI Data Engine displays the confirmation message *Identity provider successfully created.*
+
+Changes to identity provider and collection settings might not take effect immediately because NetApp Console applies them to the MCP server asynchronously.
+
+Adding an identity provider doesn't automatically associate it with a data collection. Select the identity provider when you configure the collection so that AI applications can access its resources with authentication and authorization. Refer to <<configure-collections-for-mcp,Configure collections for MCP>>. You can delete an identity provider only if no collection uses it. To edit one, refer to link:maintain-mcp-setup.html#update-an-identity-provider[Update an identity provider].
+
+// RESEARCH Newer builds might label the identity provider option *Microsoft Entra ID*. Confirm the label in the GA build.
+// RESEARCH What are the steps and UI labels for deleting an identity provider?
+
+[#configure-collections-for-mcp]
+== Configure collections for MCP
+
+After you set up an identity provider and create a collection, configure the collection for MCP in NetApp Console. You select the identity providers and user scopes that can access the collection, and then copy the MCP server URL or a client-specific configuration snippet for your AI client. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
+
+[#register-an-application-for-each-ai-client]
+== Register an application for your AI clients
+
+Register one public client application in Entra ID for Claude Code, Claude Desktop, Cursor, and OpenCode. Register it separately from the AI Data Engine application. These clients sign in with PKCE, so you don't create a client secret. Complete this task when you connect the clients, after you configure a collection for MCP.
+
+.Steps
+
+. In the Microsoft Entra admin center, register a new application for the AI clients. Enter a name, such as `NetApp AI Data Engine AI clients`.
+. Make sure that both the AI client application and the AI Data Engine application have an owner under *Manage* > *Owners*. Without an owner, the AI Data Engine application might not appear when you add permissions.
+. Under *Authentication*, select *Add a platform* > *Mobile and desktop applications*, and add the redirect URIs for the clients that you use:
++
+[cols="1,2",options="header"]
+|===
+|Client |Redirect URI
+
+|Claude Code
+|`\http://localhost:8080/callback` and `\http://127.0.0.1:8080/callback`
+
+|Cursor
+|`\http://localhost:8787/callback`
+
+|OpenCode
+|`\http://127.0.0.1:19876/callback` and `\http://localhost:19876/callback`
+|===
+. Optional: If users also sign in from Cursor on the web or from Cursor Agents, select *Add a platform* > *Web*, and add `\https://www.cursor.com/agents/mcp/oauth/callback`.
+. In *Authentication* > *Advanced settings*, set *Allow public client flows* to *Yes*, and save.
+. Under *API permissions*, select *Add a permission* > *APIs my organization uses*, and then select the AI Data Engine application.
+. Add the `power_users` delegated permission.
+. Add the Microsoft Graph delegated permission `offline_access` so that the client can refresh tokens without asking the user to sign in again.
+. If your tenant requires admin consent, select *Grant admin consent*.
+. Record the client application's *Application (client) ID*. This GUID is different from the Application (client) ID of the AI Data Engine application. You add it to the MCP client configuration when you connect each AI client.
+
+If a client reports a redirect URI mismatch, add the exact URI that the error shows. Use the same port in the client configuration that you register here.
+
+// RESEARCH What redirect URI does Claude Desktop need when it connects through mcp-remote? Is the *Owners* requirement still needed for a public client? Does the MCP client snippet that Console generates include the client application ID, or does the user add it?
+
+== Token expectations
+
+AI clients must send an Entra ID access token in the `Authorization: Bearer` header of each request. AI Data Engine accepts a token only if all of these are true:
+
+* It's a v2.0 token issued by your Entra ID tenant.
+* Its audience (`aud`) matches the Application (client) ID of the AI Data Engine application.
+* It hasn't expired. Entra ID access tokens typically last about one hour. Clients that request `offline_access` can refresh tokens without asking the user to sign in again.
+
+If a token is missing, expired, or invalid, AI Data Engine returns `401 Unauthorized`.
+
+If AI Data Engine can't verify a user's identity or scope, it returns no data from the collection.
+
+You don't need to configure optional claims in Entra ID for AI Data Engine to accept a token.
+
+== Related information
+
+* link:learn-about-mcp.html[Learn about governed AI access]
+* link:manage-data-collections.html[Manage data collections]
+* link:connect-ai-clients-mcp.html[Connect AI clients]
+* link:maintain-mcp-setup.html[Maintain your MCP setup]
+* link:../release-notes/known-limitations.html[Known limitations]
