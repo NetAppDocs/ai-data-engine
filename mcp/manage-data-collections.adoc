@@ -79,7 +79,7 @@ NOTE: If the identity provider that you need isn't listed, add it under *Identit
 . Select *Generate MCP code snippet*.
 . In the *Generate MCP code snippet* step, copy the connection details that your AI client requires:
 * To use the endpoint directly, select the copy icon next to *MCP server URL*.
-* To use a client-specific configuration snippet, select the *Claude* tab for Claude Desktop or the *Cursor* tab for Cursor under *Code snippets*, and then select the copy icon.
+* To use a client-specific configuration snippet, select the *Claude* tab for Claude Desktop or the *Cursor* tab for Cursor under *Code snippets*, and then select the copy icon. For Claude Code and OpenCode, use the MCP server URL.
 +
 NOTE: If the *MCP hostname not setup* warning appears, select *MCP settings* to configure the host name. Refer to link:maintain-mcp-setup.html#review-mcp-server-settings[Review MCP server settings]. Securing the MCP server with HTTPS requires an SSL/TLS certificate.
 . Optional: To change the identity providers or user scopes, select *Go back*, and then generate the snippet again.
@@ -87,7 +87,7 @@ NOTE: If the *MCP hostname not setup* warning appears, select *MCP settings* to 
 
 .Result
 
-You have the MCP server URL or a client-specific configuration snippet for the selected identity providers and user scopes. Use these details to connect your AI client and validate access to the collection. If your AI client needs its own Entra ID application, register it and add its client application ID and client secret to the snippet. Refer to link:configure-mcp-access.html#register-an-application-for-each-ai-client[Register an application for each AI client].
+You have the MCP server URL or a client-specific configuration snippet for the selected identity providers and user scopes. Use these details to connect your AI client and validate access to the collection. Register an Entra ID application for your AI clients and add its client application ID to the configuration. Refer to link:configure-mcp-access.html#register-an-application-for-each-ai-client[Register an application for your AI clients].
 
 NOTE: Generating connection details doesn't connect or validate your AI client. link:connect-ai-clients-mcp.html[Complete those tasks in the AI client].
 
@@ -95,7 +95,6 @@ A collection isn't available to AI clients until you select identity providers a
 
 Users whose tokens carry a granted scope can discover and search the collection. Users without a matching scope can't discover, search, or work with the collection.
 
-// RESEARCH Is Visual Studio Code with GitHub Copilot part of the final supported client list?
 // RESEARCH Is the configuration saved when you select *Generate MCP code snippet*, or when you select *Close*?
 
 == Disable AI access for a collection

@@ -27,7 +27,7 @@ AI Data Engine focuses on storage optimization and data lifecycle management for
 
 == Governed AI access
 
-Governed AI access lets supported AI clients search the metadata in the collections that you enable for AI access. Supported clients are Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot. You control which collections a user can search by selecting the Microsoft Entra ID scopes that can access each collection. AI clients can search metadata and tag files. They can't retrieve file contents.
+Governed AI access lets supported AI clients search the metadata in the collections that you enable for AI access. Supported clients are Claude Code, Claude Desktop, Cursor, and OpenCode. You control which collections a user can search by selecting the Microsoft Entra ID scopes that can access each collection. AI clients can search metadata and tag files. They can't retrieve file contents.
 
 // RESEARCH Confirm which release features this page should list, and add them from their own content updates.
 

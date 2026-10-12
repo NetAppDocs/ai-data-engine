@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: mcp/learn-about-mcp.html
-keywords: governed ai access, mcp, model context protocol, ai clients, collections, entra id, claude desktop, cursor, vs code, github copilot
+keywords: governed ai access, mcp, model context protocol, ai clients, collections, entra id, claude code, claude desktop, cursor, opencode
 summary: Governed AI access lets supported AI clients search the metadata in selected AI Data Engine collections through the Model Context Protocol (MCP), using access that you control in NetApp Console.
 ---
 = Learn about governed AI access with AI Data Engine
@@ -72,9 +72,10 @@ Access is granted at the collection level only. You can't grant access to indivi
 
 The following AI clients are supported:
 
+* Claude Code
 * Claude Desktop
 * Cursor
-* Visual Studio Code with GitHub Copilot
+* OpenCode
 
 == What isn't available through MCP
 

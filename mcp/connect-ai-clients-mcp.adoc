@@ -1,45 +1,45 @@
 ---
 sidebar: sidebar
 permalink: mcp/connect-ai-clients-mcp.html
-keywords: mcp, governed ai access, claude desktop, cursor, vs code, github copilot, ai client, mcp server, prompts, tags
-summary: Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot to the AI Data Engine MCP server, and use sample prompts to search file metadata and tag files in a collection.
+keywords: mcp, governed ai access, claude code, claude desktop, cursor, opencode, ai client, mcp server, prompts, tags
+summary: Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine MCP server, and use sample prompts to search file metadata and tag files in a collection.
 ---
 = Connect AI clients to use with AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot to the AI Data Engine MCP server. After you connect, you can search file metadata and tag files in the collections that you have access to.
+Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine MCP server. After you connect, you can search file metadata and tag files in the collections that you have access to.
 
 == Before you begin
 
 * An administrator has completed the steps in link:configure-mcp-access.html[Configure Entra ID and MCP access], including these:
 ** Assigning you the `AIDE Power Users` app role, which you need to tag files.
 ** Configuring a collection for MCP with a scope that includes you. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
-** Registering an Entra ID application for your AI client, if your AI client needs one.
-* You have the MCP client configuration from your administrator. The administrator generates it in NetApp Console by configuring the collection for MCP, copies the MCP server URL or the client-specific snippet from the *Generate MCP code snippet* step, adds the client application ID and client secret, and shares it with you. It includes the following:
+** Registering an Entra ID application for your AI clients. The application is a public client, so you don't need a client secret.
+* You have the MCP client configuration from your administrator. The administrator generates it in NetApp Console by configuring the collection for MCP, copies the MCP server URL or the client-specific snippet from the *Generate MCP code snippet* step, adds the client application ID, and shares it with you. It includes the following:
 ** The MCP server URL, in the format `https://<mcp-server-host>/mcp/tools`.
 ** The Microsoft Entra ID tenant ID.
 ** The client application ID for your AI client.
-** The client secret for your AI client's Entra ID application.
 ** The scopes that your AI client requests:
 *** `api://<application-id-uri>/power_users`
 *** `offline_access`, so that the client can refresh tokens without asking you to sign in again.
 ** The ID of the collection that you want to work with.
-// RESEARCH The generated configuration is pending validation. Confirm the snippet formats (the console shows client-specific snippets and a standalone MCP server URL). Does the console show a *ChatGPT* tab and no Visual Studio Code tab, even though ChatGPT isn't a supported client? Confirm what each tab generates.
+// RESEARCH The generated configuration is pending validation. Confirm the snippet formats (the console shows client-specific snippets and a standalone MCP server URL). Does the console show tabs for any client that isn't supported? Does it show tabs for Claude Code or OpenCode? Confirm what each tab generates.
 // RESEARCH Confirm the field list that Console generates, and which values you add from your own client registration.
 * Your device can reach the MCP server over HTTPS on port 443. The MCP server runs in your network, so connect from your corporate network or through VPN. Your device must also be able to reach Microsoft Entra ID sign-in (`login.microsoftonline.com`).
 // RESEARCH Does the MCP server accept a custom port for AI client access, and should this prerequisite mention it?
 * You have a supported version of the AI client.
-// RESEARCH What are the minimum supported versions of Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot?
+// RESEARCH What are the minimum supported versions of Claude Code, Claude Desktop, Cursor, and OpenCode?
 
 == Supported AI clients
 
 AI Data Engine supports the following AI clients:
 
+* Claude Code
 * Claude Desktop
 * Cursor
-* Visual Studio Code with GitHub Copilot
+* OpenCode
 
 Other MCP clients aren't supported.
 
@@ -77,7 +77,7 @@ Install Node.js on your computer. The `mcp-remote` helper runs with Node.js.
         "mcp-remote@<tested version>",
         "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>",
         "--static-oauth-client-info",
-        "{\"client_id\": \"<client-application-id>\", \"client_secret\": \"<client-secret>\"}",
+        "{\"client_id\": \"<client-application-id>\"}",
         "--static-oauth-client-metadata",
         "{\"scope\": \"api://<application-id-uri>/power_users offline_access\"}",
         "--disable-resource-parameter"
@@ -87,13 +87,52 @@ Install Node.js on your computer. The `mcp-remote` helper runs with Node.js.
 }
 ----
 +
-NOTE: Keep the `--disable-resource-parameter` argument. Without it, Microsoft Entra ID rejects the sign-in request.
-+
-IMPORTANT: The configuration file stores the client secret in plain text. Restrict access to the file, and don't share or commit it.
+NOTE: Keep the `--disable-resource-parameter` argument. Without it, Microsoft Entra ID rejects the sign-in request with error `AADSTS9010010`.
 // RESEARCH Pin a tested mcp-remote version in the command. Confirm that mcp-remote accepts a collection_id query string and the redirect URI that the client app registration needs for Claude Desktop.
 . Save the file and restart Claude Desktop.
 . When the browser opens, sign in with your Microsoft Entra ID account and accept the consent prompt if it appears.
-. In Claude Desktop, confirm that the AI Data Engine server is connected and that its tools are listed.
+. In Claude Desktop, open *Connectors* and confirm that the AI Data Engine server is listed with its tools.
+
+== Connect Claude Code
+
+Claude Code connects to the AI Data Engine MCP server directly.
+
+.Steps
+
+. Add the AI Data Engine MCP server. Replace the placeholders with values from your administrator:
++
+[source,bash]
+----
+claude mcp add --transport http \
+  --client-id <client-application-id> \
+  --callback-port 8080 \
+  --scope user \
+  netapp-ai-data-engine "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>"
+----
++
+NOTE: Don't pass `--client-secret`. The client application is a public client.
+. To request the AI Data Engine scopes, open the Claude Code configuration file and edit the `netapp-ai-data-engine` entry. User-scope entries are in `~/.claude.json`. Project-scope entries are in `.mcp.json`.
++
+[source,json]
+----
+{
+  "mcpServers": {
+    "netapp-ai-data-engine": {
+      "type": "http",
+      "url": "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>",
+      "oauth": {
+        "clientId": "<client-application-id>",
+        "callbackPort": 8080,
+        "scopes": "api://<application-id-uri>/power_users offline_access",
+        "authServerMetadataUrl": "https://login.microsoftonline.com/<tenant-id>/v2.0/.well-known/openid-configuration"
+      }
+    }
+  }
+}
+----
+// RESEARCH Does Claude Code accept a collection_id query string, and does it need offline_access in the scopes string? What is the minimum Claude Code version?
+. In Claude Code, run `/mcp` and sign in with your Microsoft Entra ID account. Or, from a shell, run `claude mcp login netapp-ai-data-engine`.
+. Run `claude mcp list` and confirm that the AI Data Engine server shows as connected.
 
 == Connect Cursor
 
@@ -112,7 +151,6 @@ Cursor connects to the AI Data Engine MCP server directly.
       "url": "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>",
       "auth": {
         "CLIENT_ID": "<client-application-id>",
-        "CLIENT_SECRET": "<client-secret>",
         "scopes": [
           "api://<application-id-uri>/power_users",
           "offline_access"
@@ -123,35 +161,53 @@ Cursor connects to the AI Data Engine MCP server directly.
 }
 ----
 +
-IMPORTANT: The configuration file stores the client secret in plain text. Restrict access to the file, and don't share or commit it.
-// RESEARCH Confirm the redirect URI that the Cursor client app registration needs.
+NOTE: Don't paste a bearer token into this file. Cursor uses the client ID to sign you in.
 . Save the file.
 . When the browser opens, sign in with your Microsoft Entra ID account and accept the consent prompt if it appears.
-. In Cursor settings, confirm that the AI Data Engine server is connected and that its tools are listed.
+. In *Cursor Settings* > *MCP*, confirm that the AI Data Engine server is enabled and that its tools are listed. If it isn't, check *Output* > *MCP Logs*.
 
-== Connect Visual Studio Code with GitHub Copilot
+== Connect OpenCode
 
-// RESEARCH Confirm a tested VS Code configuration and sign-in steps before publishing this section, or remove it.
+OpenCode connects to the AI Data Engine MCP server directly.
 
 .Steps
 
-. In your workspace, create or open `.vscode/mcp.json`.
-. Add the AI Data Engine MCP server:
+. Add the AI Data Engine MCP server. Replace the placeholders with values from your administrator:
++
+[source,bash]
+----
+opencode mcp add netapp-ai-data-engine --global --url "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>"
+----
+. To add your client application, open `~/.config/opencode/opencode.json`, or the `opencode.json` file in your project, and edit the `netapp-ai-data-engine` entry:
 +
 [source,json]
 ----
 {
-  "servers": {
-    "netappAiDataEngine": {
-      "type": "http",
-      "url": "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>"
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "netapp-ai-data-engine": {
+        "type": "remote",
+        "url": "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>",
+        "oauth": {
+          "client_id": "<client-application-id>",
+          "scope": "api://<application-id-uri>/power_users offline_access",
+          "callback_port": 19876,
+          "redirect_uri": "http://127.0.0.1:19876/callback",
+          "auth_server_metadata_url": "https://login.microsoftonline.com/<tenant-id>/v2.0/.well-known/openid-configuration"
+        }
+      }
     }
   }
 }
 ----
-// RESEARCH How does VS Code get an Entra ID token for this server (client ID, scope, and redirect URI)? Does a GitHub Copilot plan or organization policy need to allow MCP servers? Confirm the workflow (the MCP: Add Server command, user-level mcp.json, or workspace .vscode/mcp.json).
-. Start the server and sign in with your Microsoft Entra ID account when prompted.
-. In GitHub Copilot Chat, switch to agent mode and confirm that the AI Data Engine tools are available.
++
+NOTE: Don't set `oauth` to `false`, and don't add a client secret to this file.
+// RESEARCH Are these the correct OpenCode configuration structure and key names? Does OpenCode accept a collection_id query string, and does it need offline_access in the scope? What is the minimum OpenCode version?
+. In OpenCode, run `/mcps`, select the AI Data Engine server, and sign in with your Microsoft Entra ID account when the browser opens.
+. Run `opencode mcp list` and confirm that the AI Data Engine server shows as connected.
++
+A status of `needs authentication` means that OpenCode saved the configuration but you haven't completed sign-in.
 
 == What you can do
 
@@ -202,7 +258,13 @@ TIP: Search filters on file name prefix, file type, and owner. If you ask for fi
 |Problem |Resolution
 
 |The browser sign-in fails with a redirect URI error.
-|Ask your administrator to add the redirect URI that your AI client uses to the *Authentication* settings of your AI client's Entra ID application.
+|Ask your administrator to add the exact redirect URI that the error shows to the *Authentication* settings of your AI client's Entra ID application. The port in your client configuration must match the registered URI.
+
+|Claude Code or OpenCode shows `needs authentication`.
+|Sign in. In Claude Code, run `/mcp`. In OpenCode, run `/mcps`.
+
+|Claude Desktop sign-in fails with error `AADSTS9010010`.
+|Make sure that the `mcp-remote` arguments include `--disable-resource-parameter`.
 
 |The AI client receives `401 Unauthorized`.
 |Sign in again to get a new token. If the error continues, ask your administrator to confirm that the AI client requests the `power_users` scope and that the token audience is the Application (client) ID of the AI Data Engine application.
