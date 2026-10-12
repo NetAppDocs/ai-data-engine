@@ -11,10 +11,6 @@ summary: Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copil
 [.lead]
 Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot to the AI Data Engine MCP server. After you connect, you can search file metadata and tag files in the collections that you have access to.
 
-// RESEARCH Confirm the help link target and anchor for this page against the staging build.
-
-// RESEARCH Confirm whether the connect-claude-desktop.html and connect-cursor.html URLs were ever published. If they were, add redirect files.
-
 == Before you begin
 
 * An administrator has completed the steps in link:configure-mcp-access.html[Configure Entra ID and MCP access], including these:
@@ -30,12 +26,10 @@ Connect Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot to the
 *** `api://<application-id-uri>/power_users`
 *** `offline_access`, so that the client can refresh tokens without asking you to sign in again.
 ** The ID of the collection that you want to work with.
-// RESEARCH The generated configuration is pending validation. Confirm the snippet formats (the console shows client-specific snippets and a standalone MCP server URL). The Figma flow shows a *ChatGPT* tab and no Visual Studio Code tab, which conflicts with the supported client list on this page. Confirm what each tab generates.
+// RESEARCH The generated configuration is pending validation. Confirm the snippet formats (the console shows client-specific snippets and a standalone MCP server URL). Does the console show a *ChatGPT* tab and no Visual Studio Code tab, even though ChatGPT isn't a supported client? Confirm what each tab generates.
 // RESEARCH Confirm the field list that Console generates, and which values you add from your own client registration.
-// RESEARCH Confirm that the collection ID is part of the connection details before you keep collection_id in the configuration snippets.
-* Your computer can reach the MCP server. The MCP server runs in your network, so connect from your corporate network or through VPN. Your computer must also be able to reach Microsoft Entra ID sign-in (`login.microsoftonline.com`).
-// RESEARCH Confirm the networking requirements for AI client access (ports and ingress), and move the administrator requirements to aide-requirements.adoc.
-// RESEARCH ROVO REVIEW Rovo cites inbound TCP 8443/443 from client subnets to the MCP endpoint. Confirm the ports. See the matching note in aide-requirements.adoc.
+* Your device can reach the MCP server over HTTPS on port 443. The MCP server runs in your network, so connect from your corporate network or through VPN. Your device must also be able to reach Microsoft Entra ID sign-in (`login.microsoftonline.com`).
+// RESEARCH Does the MCP server accept a custom port for AI client access, and should this prerequisite mention it?
 * You have a supported version of the AI client.
 // RESEARCH What are the minimum supported versions of Claude Desktop, Cursor, and Visual Studio Code with GitHub Copilot?
 
@@ -67,8 +61,9 @@ Install Node.js on your computer. The `mcp-remote` helper runs with Node.js.
 
 .Steps
 
-. In Claude Desktop, open the configuration file `claude_desktop_config.json`.
-// RESEARCH Confirm the file path and menu against Anthropic documentation (for example Settings > Developer > Edit Config). Consider linking to vendor documentation instead of repeating the path.
+. In Claude Desktop, open the configuration file `claude_desktop_config.json`. By default, the file is in one of the following locations:
+* macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+* Windows: `%APPDATA%\Claude\claude_desktop_config.json`
 . Add the AI Data Engine MCP server under `mcpServers`. Replace the placeholders with values from your administrator:
 +
 [source,json]
@@ -106,8 +101,7 @@ Cursor connects to the AI Data Engine MCP server directly.
 
 .Steps
 
-. In Cursor, open the MCP configuration file `mcp.json`.
-// RESEARCH Confirm whether to document the user-level file (~/.cursor/mcp.json) or the project-level file (.cursor/mcp.json), against Cursor documentation.
+. In Cursor, open the MCP configuration file `mcp.json`. To use the server in all of your projects, open `~/.cursor/mcp.json`. To use it in the current project only, open `.cursor/mcp.json`.
 . Add the AI Data Engine MCP server. Replace the placeholders with values from your administrator:
 +
 [source,json]
@@ -161,20 +155,21 @@ IMPORTANT: The configuration file stores the client secret in plain text. Restri
 
 == What you can do
 
-After you connect, your AI client can do the following:
+After you connect, your AI client can use the following tools. A connection is limited to the collection in the MCP server URL. To work with a different collection, use the connection details for that collection.
 
-* List the collections that are available to you.
-* Search files by name prefix, file type, or owner. Results include each file's name, path, type, size, last-modified time, and owner.
-* List tags and how many files have each tag.
-* Add a tag to a file or remove a tag from a file. An AI client works on one file at a time.
+* `get_collection`: Returns the collection that your connection is limited to.
+* `search`: Searches file metadata in a collection by name prefix, file type, or owner. Results include each file's name, path, type, size, last-modified time, and owner.
+* `list_tags`: Lists the tags that are in use and how many files have each tag.
+* `tag_document`: Adds a tag to a file or removes a tag from a file. An AI client works on one file at a time.
+
+The `list_tags` and `tag_document` tools are available only in a power-user session, which requires the `AIDEPowerUsers` app role.
+
+NOTE: Power users also work within a single collection. To search all scanned systems and volumes, use the connection details for the *All Systems and Volumes* collection.
 
 Your AI client can't retrieve file contents, add, delete, or modify files, change data sources, or create collections.
 
-// RESEARCH ROVO REVIEW Rovo lists the tools in a power-user session as get_collection, search, tag_document, and list_tags, with retrieve_document hidden. Confirm the tool names and whether to show them to customers.
-
 Tags apply across AI Data Engine, not only to one collection. If you add a tag that doesn't exist, AI Data Engine creates it, so a misspelled tag name creates a new tag. Tag names aren't case-sensitive. For limitations on tag names, refer to link:../release-notes/known-limitations.html[Known limitations].
 
-// RESEARCH Does a connection cover only the collection in the connection URL, or all collections that the user's scopes can access? Update this section and the prompts to match.
 // RESEARCH Do applied tags appear in later searches? Confirm before describing searching by tag.
 
 == Sample prompts

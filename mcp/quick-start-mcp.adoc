@@ -24,7 +24,6 @@ In the Microsoft Entra admin center, link:configure-mcp-access.html#register-the
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] link:configure-mcp-access.html#set-up-an-identity-provider[Connect Entra ID to AI Data Engine]
 [role="quick-margin-para"]
 In NetApp Console, set up Microsoft Entra ID as an identity provider by entering the tenant ID and the application (client) ID.
-// RESEARCH ROVO REVIEW Rovo says Console imports the scopes after you enter the IDs, and that a separate MCP connection might be created under Settings > MCP Connections. The current identity provider steps show neither. Confirm against Figma and the build.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] link:manage-data-collections.html#create-a-data-collection[Create a data collection]
 [role="quick-margin-para"]
@@ -39,7 +38,6 @@ Configure the collection for MCP by selecting the identity providers and user sc
 Use the MCP server URL or the client-specific configuration snippet that you copied in the previous step. It includes the MCP server URL, the Entra ID tenant ID, the client application ID, the scopes, and the collection ID. If your AI client needs its own Entra ID application, register it, create a client secret, and add the application ID and the secret to the configuration. Then add the configuration to a supported AI client, such as Claude Desktop, Cursor, or Visual Studio Code with GitHub Copilot. The configuration must request the `power_users` and `offline_access` scopes.
 // RESEARCH Figma lists "Configure authentication for an MCP client" in the connect phase. Confirm which clients need their own Entra ID application.
 // RESEARCH Confirm the field list that Console generates, and which values you add from your own client registration.
-// RESEARCH Confirm that the collection ID is part of the connection details before you keep it here and in the snippets in connect-ai-clients-mcp.adoc.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png[Six] link:connect-ai-clients-mcp.html[Sign in and verify the connection]
 [role="quick-margin-para"]

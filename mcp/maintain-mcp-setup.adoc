@@ -30,10 +30,10 @@ Review the status of the MCP server and of the collections that your AI clients 
 * *Active*: The MCP server is running and enabled, and it accepts requests from AI clients.
 * *Degraded*: The MCP server is running, but a prerequisite is missing or unhealthy, such as no configured identity provider or a slow response from the metadata catalog. AI clients might not be able to authenticate or retrieve collections.
 * *Offline*: The MCP server is stopped, disabled, or unreachable. AI clients can't connect.
-. In the collections list, review the status of each collection that your AI clients use. If a collection shows *Scanning*, wait for indexing to finish before you search for new files.
+. In the collections list, review the status of each collection that your AI clients use. A collection with a status of *Enabled* is available to AI clients. If volumes in a collection are still being scanned, wait for indexing to finish before you search for new files.
 . Address any configuration warnings:
 * If an identity provider is missing, add it under *Configuration* > *Identity providers*. Refer to link:configure-mcp-access.html#set-up-an-identity-provider[Set up an identity provider].
-* If a collection shows *Ready to configure* or *Needs configuration*, open its *Actions* menu, select *Configure for MCP*, and select identity providers and user scopes. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
+* If a collection shows *Ready to configure*, open its *Actions* menu, select *Configure for MCP*, and select identity providers and user scopes. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
 * If a volume in a collection shows a scan error, refer to link:../data-sources/monitor-scanning-health.html[Monitor scanning health in AI Data Engine].
 
 [#edit-a-data-collection]
