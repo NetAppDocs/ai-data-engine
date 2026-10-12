@@ -15,6 +15,8 @@ Before you deploy AI Data Engine, review the networking, VM sizing, and operatin
 
 The following network connections must be open:
 
+// RESEARCH Does the MCP server accept a custom port for AI client access, and should the AI client row list it?
+
 [cols="2,1,1,1,2",options="header"]
 |===
 |Connection |Port |Protocol |Direction |Purpose
@@ -36,6 +38,12 @@ The following network connections must be open:
 |TCP
 |Bidirectional
 |Communication between Console Agent and AI Data Engine
+
+|AI client to MCP server
+|443
+|TCP
+|Inbound
+|HTTPS: AI client access to the MCP server from your corporate network or VPN
 
 |AI Data Engine to ONTAP (NFS)
 |111, 2049

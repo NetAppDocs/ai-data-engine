@@ -1,8 +1,8 @@
 indexpage:
   title: AI Data Engine documentation
-  lead: "AI Data Engine is a metadata intelligence service, managed through NetApp Console, that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale."
-  summary: "AI Data Engine documentation covers how to deploy, connect data sources, and use AI Data Engine for storage optimization, metadata investigation, and data governance."
-  keywords: ai data engine, aide, storage optimization, investigation, policies, data governance, NetApp Console
+  lead: "AI Data Engine is a metadata intelligence service, managed through NetApp Console, that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale. With governed AI access, supported AI clients can search that metadata through the Model Context Protocol (MCP)."
+  summary: "AI Data Engine documentation covers how to deploy, connect data sources, and use AI Data Engine for storage optimization, metadata investigation, data governance, and governed AI access through MCP."
+  keywords: ai data engine, aide, storage optimization, investigation, policies, data governance, NetApp Console, governed ai access, mcp, model context protocol
   tiles:
     - title: Get started
       links:
@@ -42,6 +42,20 @@ indexpage:
           url: /policies/create-policy.html
         - title: Manage policies
           url: /policies/manage-policies.html
+    - title: Governed AI access (MCP)
+      links:
+        - title: Learn about governed AI access
+          url: /mcp/learn-about-mcp.html
+        - title: Quick start for governed AI access
+          url: /mcp/quick-start-mcp.html
+        - title: Configure Entra ID and MCP access
+          url: /mcp/configure-mcp-access.html
+        - title: Manage data collections
+          url: /mcp/manage-data-collections.html
+        - title: Connect AI clients
+          url: /mcp/connect-ai-clients-mcp.html
+        - title: Maintain your MCP setup
+          url: /mcp/maintain-mcp-setup.html
     - title: Administer
       links:
         - title: Manage users and roles

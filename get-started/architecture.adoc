@@ -25,6 +25,16 @@ AI Data Engine requires a NetApp Console Agent deployed in your environment. The
 
 NOTE: The Console Agent isn't specific to AI Data Engine. If you already have a Console Agent deployed for other NetApp services, you can use the same agent. For Console Agent deployment instructions, refer to the link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html[NetApp Console Agent documentation].
 
+=== Governed Access Gateway
+
+The Governed Access Gateway is the Model Context Protocol (MCP) server for AI Data Engine. It lets supported AI clients connect to the metadata catalog. The gateway authenticates each user through Microsoft Entra ID and limits the client to the collections that the user's Entra ID scopes can access. The gateway supports metadata search and tag operations. The gateway runs in your network. AI clients connect to it directly from your corporate network or through VPN. The Console Agent doesn't relay MCP traffic.
+
+// RESEARCH Where does the Governed Access Gateway run (on the AIDE single-node VM, in the multi-node cluster, or elsewhere)? Is it deployed with AI Data Engine or enabled separately?
+// RESEARCH Confirm how AI clients reach the gateway, and whether any proxy or runtime communication notes belong here.
+// RESEARCH Is Governed Access Gateway the final customer-facing name for this component?
+
+link:../mcp/learn-about-mcp.html[Learn more about governed AI access].
+
 == Deployment types
 
 AI Data Engine supports two deployment types:
@@ -46,6 +56,7 @@ link:../deploy/deployment-overview.html[Learn more about deployment options].
 . The dashboard surfaces storage insights from the catalog.
 . Investigation lets you query the catalog directly with metadata filters.
 . You can save search criteria as policies and re-run them to identify and act on matching files.
+. You can enable collections for AI access. Users connect supported AI clients to the Governed Access Gateway, sign in with Microsoft Entra ID, and search the metadata in the collections that their scopes can access.
 
 NOTE: After the Metadata Engine finishes scanning all configured volumes, it immediately starts a new scanning round, rescanning the file systems to detect additions, changes, and deletions.
 
@@ -53,3 +64,4 @@ NOTE: After the Metadata Engine finishes scanning all configured volumes, it imm
 
 * link:learn-about.html[Learn about AI Data Engine]
 * link:../deploy/deployment-overview.html[Learn about AIDE deployment]
+* link:../mcp/learn-about-mcp.html[Learn about governed AI access]

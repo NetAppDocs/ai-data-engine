@@ -11,6 +11,15 @@ summary: Learn about new capabilities in AI Data Engine.
 [.lead]
 Learn about new capabilities in AI Data Engine.
 
+== AI Data Engine October 2026 release
+
+// RESEARCH What is the final release name and version number, and what should this heading be?
+// RESEARCH Confirm the full feature list for this release entry, and add the remaining features from their own content updates.
+
+New capabilities:
+
+link:../mcp/learn-about-mcp.html[Give AI clients governed access to your metadata]:: Connect Claude Code, Claude Desktop, Cursor, or OpenCode to AI Data Engine through the Model Context Protocol (MCP). Enable the collections that AI clients can search, and use Microsoft Entra ID scopes to control who can search each collection. AI clients can search metadata and tag files.
+
 == AI Data Engine 1.1.0
 
 AI Data Engine is a metadata intelligence service, managed through NetApp Console, that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale. You can deploy AI Data Engine as an link:../deploy/deployment-overview.html[AIDE single-node deployment], or as an AIDE multi-node deployment if your environment requires Kubernetes-based high availability at large scale.
