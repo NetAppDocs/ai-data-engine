@@ -78,5 +78,5 @@ If an ID doesn't resolve, AI Data Engine retries the lookup after 24 hours. If y
 == Related information
 
 * link:../deploy/aide-requirements.html[AI Data Engine requirements]
-* link:configure-kerberos-smb.html[Configure Kerberos authentication for SMB/CIFS shares]
+* link:configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine]
 * link:configure-settings.html[Configure cold and stale data thresholds]

@@ -2,416 +2,59 @@
 sidebar: sidebar
 permalink: administer/configure-kerberos-smb.html
 keywords: kerberos, smb, cifs, keytab, krb5.conf, ktutil, kdc, realm, fqdn, dns, authentication, active directory, scan service account
-summary: Configure Kerberos authentication so that AI Data Engine can scan SMB/CIFS shares by using a scan service account and a keytab.
+summary: Understand how AI Data Engine uses Kerberos to scan SMB/CIFS shares without a stored password, and choose the procedure for your single-node or multi-node deployment.
 ---
-= Configure Kerberos authentication for SMB/CIFS shares in AI Data Engine
+= Kerberos authentication for SMB/CIFS shares in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Configure Kerberos authentication so that AI Data Engine can scan SMB/CIFS shares without storing a password in the data source. AI Data Engine acts as a Kerberos client. It uses a keytab for a scan service account to get Kerberos tickets from your existing Active Directory domain controller.
+AI Data Engine can scan SMB/CIFS shares by using Kerberos authentication, so that no password is stored in the data source. AI Data Engine acts as a Kerberos client. It uses a keytab for a scan service account to get Kerberos tickets from your existing Active Directory domain controller.
 
 Kerberos authentication applies to SMB/CIFS data sources. To map NFS user and group IDs to Active Directory names, refer to link:configure-ad-nfs.html[Map NFS users and groups to Active Directory].
 
-.Before you begin
+== How Kerberos scanning works
 
-* You have _AI Data Engine administrator_ privileges.
-* You have reviewed the link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements], including ports, time synchronization, DNS, and host packages.
-* You have a scan service account in Active Directory with read access to the SMB/CIFS shares you want to scan. The account must support AES256 encryption.
-* You have root access to the hosts where you configure Kerberos.
-* (Multi-node deployments only) You have `cifs-utils` installed on every node, and you have `kubectl` access to the cluster.
-* You have the following information:
-+
-[cols="2,4,2",options="header"]
-|===
-|Item |Description |Placeholder
+. You create three files: a Kerberos configuration file, a keytab for the scan service account, and a principal file that names the account.
+. AI Data Engine uses the keytab to get a Kerberos ticket from your Active Directory domain controller, which acts as the Kerberos key distribution center (KDC). AI Data Engine refreshes the ticket every 3 hours.
+. When you add an SMB/CIFS share and select Kerberos as the authentication method, AI Data Engine scans the share by using the ticket.
 
-|KDC IP address
-|IP address of the domain controller that acts as the Kerberos key distribution center (KDC)
-|`<kdc_ip>`
+AI Data Engine finds your domain controller and your file server by name, so the nodes must resolve both names by using your Active Directory DNS server.
 
-|KDC FQDN
-|FQDN of the same domain controller
-|`<kdc_fqdn>`
+== Choose a procedure
 
-|Domain
-|Active Directory domain, in lowercase
-|`<domain>`
-
-|Realm
-|Kerberos realm, which is the domain in uppercase
-|`<REALM>`
-
-|Scan user
-|Service account with read access to the share
-|`<scan_user>`
-
-|Scan password
-|Password of the scan user. You enter it only when you create the keytab.
-|Not applicable
-
-|File server FQDN
-|FQDN of the file server that hosts the share. Don't use an IP address.
-|`<file_server_fqdn>`
-
-|Share name
-|Name of the SMB/CIFS share
-|`<share_name>`
-
-|NFS server (multi-node only)
-|Host name or IP address of the NFS server that hosts the AI Data Engine configuration volume. You specified this server when you deployed AI Data Engine.
-|`<nfs_server>`
-
-|NFS export path (multi-node only)
-|Exported path on the NFS server for the AI Data Engine configuration volume. You specified this path when you deployed AI Data Engine.
-|`<export_path>`
-
-|===
-// RESEARCH How can a customer look up the NFS server and export path after deployment if they don't have the values?
-
-In the procedures on this page, values in angle brackets, such as `<kdc_ip>`, are placeholders. Replace each placeholder with your value. Don't include the angle brackets.
-
-[[kerberos-file-locations]]
-== Kerberos file locations
-
-AI Data Engine reads three files that you create. The locations depend on your deployment type.
+The Kerberos files, the host packages, and the verification steps depend on your deployment type.
 
 [cols="1,2,2",options="header"]
 |===
-|File |Single-node deployment |Multi-node deployment
+|Deployment |Where the Kerberos files live |Procedure
 
-|Kerberos configuration
-|`/etc/krb5.conf`
-|`<export>/kerberos/krb5.conf`
+|Single-node
+|On the AI Data Engine host
+|link:configure-kerberos-smb-single-node.html[Configure Kerberos for SMB/CIFS shares on a single-node AI Data Engine deployment]
 
-|Keytab
-|`/opt/netapp/aide/kerberos_refresher/datasense.keytab`
-|`<export>/kerberos/kerberos_refresher/datasense.keytab`
-
-|Principal file
-|`/opt/netapp/aide/kerberos_refresher/kerberos_creds.env`
-|`<export>/kerberos/kerberos_refresher/kerberos_creds.env`
+|Multi-node
+|On the shared NFS export that holds the AI Data Engine configuration
+|link:configure-kerberos-smb-multi-node.html[Configure Kerberos for SMB/CIFS shares on a multi-node AI Data Engine deployment]
 
 |===
 
-In the procedures, `<krb5_conf_path>`, `<keytab_path>`, and `<principal_file_path>` stand for the locations in this table for your deployment type.
+== What you need
 
-Note the following about these locations:
+Before you start either procedure, gather the following:
 
-* In a single-node deployment, the installer creates the `/opt/netapp/aide` directories.
-* In a multi-node deployment, `<export>` is the root of the NFS export at `<nfs_server>:<export_path>`. For example, if you mount the export at `/mnt/aide-config`, `<export>` is `/mnt/aide-config`.
+* A scan service account in Active Directory with read access to the SMB/CIFS shares that you want to scan. The account must support AES256 encryption.
+* The IP address and the FQDN of a domain controller that acts as the KDC.
+* Your Active Directory domain and Kerberos realm. The realm is the domain in uppercase.
+* The FQDN and the share name of each file server that you want to scan. Kerberos authentication doesn't accept an IP address for the file server.
+* Root access to the hosts where you configure Kerberos.
 
-== Create the Kerberos files
-
-.Steps
-. (Multi-node deployments only) On the host where you create the files, mount the NFS export and create the Kerberos directories.
-.. Verify that the host has NFS client tools installed and can reach the NFS server on port 2049.
-.. Run the following commands. Replace `<nfs_server>` and `<export_path>` with the NFS server and export path that you specified for the AI Data Engine configuration volume. The commands use `/mnt/aide-config` as the mount point. You can use any empty directory.
-+
-[source,cli]
-----
-mkdir -p /mnt/aide-config
-mount -t nfs <nfs_server>:<export_path> /mnt/aide-config
-mkdir -p /mnt/aide-config/kerberos/kerberos_refresher /mnt/aide-config/kerberos/kerberos_ccache
-----
-// RESEARCH Does the NFS export need to allow root write access from this host, and which NFS client packages should the docs name for Ubuntu and RHEL?
-. Identify the host where you create the keytab:
-.. In a single-node deployment, use the AI Data Engine host.
-.. In a multi-node deployment, use the host where you mounted the NFS export.
-. On that host, install the Kerberos client tools.
-.. On Ubuntu, run the following commands.
-+
-[source,cli]
-----
-apt-get update -qq
-apt-get install -y krb5-user
-----
-.. On RHEL, run the following command.
-+
-[source,cli]
-----
-dnf -y install krb5-workstation
-----
-. Create the Kerberos configuration file.
-.. Create the file in the location shown in <<kerberos-file-locations,Kerberos file locations>>. The following example shows the contents of the file.
-+
-[source,ini]
-----
-[libdefaults]
-    default_realm = <REALM>
-    dns_lookup_realm = false
-    dns_lookup_kdc = false
-    rdns = false
-    ticket_lifetime = 24h
-    renew_lifetime = 7d
-    forwardable = true
-
-[realms]
-    <REALM> = {
-        kdc = <kdc_ip>:88
-        admin_server = <kdc_ip>:749
-    }
-
-[domain_realm]
-    .<domain> = <REALM>
-    <domain> = <REALM>
-----
-// RESEARCH Is the admin_server entry required for an Active Directory KDC? If so, which host and port should customers enter, because a domain controller might not listen on port 749? If not required, remove the entry from the sample.
-.. Replace `<REALM>`, `<domain>`, and `<kdc_ip>` with your values.
-.. Enter the realm in uppercase and the domain in lowercase.
-.. Use the KDC IP address, not the FQDN, so that Kerberos authentication doesn't depend on DNS.
-. Make the file readable. Replace `<krb5_conf_path>` with the Kerberos configuration file location for your deployment type.
-+
-[source,cli]
-----
-chmod 644 <krb5_conf_path>
-----
-. Create a keytab for the scan service account.
-.. Run `ktutil`.
-.. At the `ktutil` prompt, enter the following commands. Replace `<scan_user>` and `<REALM>` with your values.
-+
-[source,cli]
-----
-addent -password -p <scan_user>@<REALM> -k 1 -e aes256-cts-hmac-sha1-96
-wkt /tmp/krb5.keytab
-quit
-----
-.. When `ktutil` prompts for a password, enter the password of the scan user.
-. Test the keytab.
-.. (Multi-node deployments only) Set the `KRB5_CONFIG` environment variable to the path of the `krb5.conf` file on the mounted export. For example, if you mounted the export at `/mnt/aide-config`, use `/mnt/aide-config/kerberos/krb5.conf`.
-.. Run the following commands. Replace `<scan_user>` and `<REALM>` with your values.
-+
-[source,cli]
-----
-klist -kt /tmp/krb5.keytab
-kinit -kt /tmp/krb5.keytab <scan_user>@<REALM>
-klist
-kdestroy
-----
-.. Verify that the output shows a ticket for the scan user. A ticket confirms that the keytab and the KDC connection work.
-. Install the keytab, and then delete the temporary copy. Replace `<keytab_path>` with the keytab location for your deployment type.
-+
-[source,cli]
-----
-install -m 600 /tmp/krb5.keytab <keytab_path>
-rm -f /tmp/krb5.keytab
-----
-// RESEARCH Which ownership and permissions must the keytab, the principal file, and the ticket cache directory have in each deployment type so that the ticket refresher can read and write them? Does a multi-node deployment require a specific group ID?
-. Create the principal file.
-.. Run the following commands. Replace `<principal_file_path>` with the principal file location for your deployment type, and replace `<scan_user>` and `<REALM>` with your values. The `KRB5_RENEW_INTERVAL_H` value is the ticket renewal interval in hours.
-+
-[source,cli]
-----
-tee <principal_file_path> >/dev/null <<EOF
-KRB5_USER=<scan_user>
-KRB5_REALM=<REALM>
-KRB5_RENEW_INTERVAL_H=3
-EOF
-chmod 640 <principal_file_path>
-----
-
-[[configure-name-resolution]]
-== Configure name resolution
-
-AI Data Engine resolves the file server and the KDC by using the DNS settings of each node. Verify name resolution first, and then change the DNS settings only if a name doesn't resolve.
-
-.Steps
-. From every node, verify that the file server and the KDC resolve by FQDN.
-.. Run the following commands. Replace `<file_server_fqdn>` and `<kdc_fqdn>` with your values.
-+
-[source,cli]
-----
-nslookup <file_server_fqdn>
-nslookup <kdc_fqdn>
-----
-.. If both names resolve to the correct IP addresses on every node, skip the rest of this procedure.
-. Verify that your Active Directory DNS server also resolves external names.
-.. Run the following command. Replace `<kdc_ip>` with your value, and replace `<external_fqdn>` with a name outside your domain that AI Data Engine must reach. For example, use an endpoint listed in link:../deploy/aide-requirements.html#outbound-internet-access[Outbound internet access].
-+
-[source,cli]
-----
-nslookup <external_fqdn> <kdc_ip>
-----
-.. If the command fails, ask your Active Directory administrator to enable DNS forwarding.
-. On every node, set your Active Directory DNS server as the name server.
-.. Run the following commands to back up `/etc/resolv.conf` and replace the name server. Replace `<kdc_ip>` with the IP address of your Active Directory DNS server.
-+
-[source,cli]
-----
-cp /etc/resolv.conf /etc/resolv.conf.bak
-ORIG_SEARCH=$(grep '^search' /etc/resolv.conf.bak | head -1 | cut -d' ' -f2-)
-printf 'search %s\nnameserver %s\n' "${ORIG_SEARCH}" "<kdc_ip>" > /etc/resolv.conf
-----
-.. (Multi-node deployments only) Confirm that the Active Directory DNS server is the only name server in `/etc/resolv.conf`.
-. Prevent the network manager from overwriting the DNS settings.
-.. On RHEL with NetworkManager, run the following commands.
-+
-[source,cli]
-----
-mkdir -p /etc/NetworkManager/conf.d
-printf '[main]\ndns=none\n' > /etc/NetworkManager/conf.d/90-dns-none.conf
-systemctl reload NetworkManager
-----
-.. On Ubuntu with systemd-resolved, run the following commands. Replace `<kdc_ip>` and `<domain>` with your values.
-+
-[source,cli]
-----
-mkdir -p /etc/systemd/resolved.conf.d
-printf '[Resolve]\nDNS=%s\nDomains=%s\n' "<kdc_ip>" "<domain>" > /etc/systemd/resolved.conf.d/ad-dns.conf
-systemctl restart systemd-resolved
-----
-. From a host with `kubectl` access to the cluster, restart CoreDNS so that it uses the new DNS settings.
-+
-[source,cli]
-----
-kubectl -n kube-system rollout restart deployment coredns
-kubectl -n kube-system rollout status deployment coredns --timeout=120s
-----
-// RESEARCH What are the CoreDNS deployment name and the kubeconfig path in a customer-managed multi-node cluster?
-
-[[start-first-ticket-refresh]]
-== Start the first ticket refresh
-
-AI Data Engine refreshes the Kerberos ticket for the scan service account every 3 hours. Start the first refresh so that you can scan shares immediately.
-
-NOTE: Don't add a `kinit` entry to the host crontab. AI Data Engine refreshes tickets automatically.
-
-.Steps
-. Set `KUBECONFIG` for your cluster.
-.. In a single-node deployment, run the following command.
-+
-[source,cli]
-----
-export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-----
-.. In a multi-node deployment, set `KUBECONFIG` to the path of the kubeconfig file for your cluster.
-. Start a refresh job and wait for it to complete.
-+
-[source,cli]
-----
-JOB="ds-krb5-manual-$(date +%s)"
-kubectl -n aide create job "${JOB}" --from=cronjob/ds-krb5-ticket-refresher
-kubectl -n aide wait --for=condition=complete "job/${JOB}" --timeout=120s
-----
-// RESEARCH Does the aide namespace apply to both deployment types?
-
-.Result
-
-AI Data Engine has a Kerberos ticket for the scan service account.
-
-[[apply-krb5-changes]]
-== Apply changes to the Kerberos configuration file
-
-If you replace `krb5.conf` after setup, for example by copying a new file over it, the mount service continues to use the previous file until you restart it.
-
-.Steps
-. Restart the mount service.
-+
-[source,cli]
-----
-kubectl -n aide rollout restart deployment ds-mount-server
-----
-. Start a new ticket refresh. Refer to <<start-first-ticket-refresh,Start the first ticket refresh>>.
-// RESEARCH Is restarting the mount service enough for the SMB/CIFS scan workers to read the new file?
-
-== Add an SMB/CIFS data source that uses Kerberos
-
-.Steps
-. From the AI Data Engine UI, select *Configuration*.
-. On the *Scanned systems* tab, select *Add system*.
-. Select *File shares group*.
-. Enter a name for the group.
-. Enter the share path in the format `<file_server_fqdn>/<share_name>`. Replace the placeholders with your values.
-. For the authentication method, select *Kerberos*. Leave the user name and password fields empty.
-// RESEARCH Confirm the exact UI labels and field names for the Kerberos authentication option in the GA UI.
-. Review your selections and select *Confirm*.
-. Select *Activate scans* for the new system.
-
-For more information about connecting data sources, refer to link:../data-sources/connect-data-source.html[Connect a data source to AI Data Engine].
-
-== Troubleshoot Kerberos authentication
-
-[cols="2,3,3",options="header"]
-|===
-|Symptom |Possible cause |Resolution
-
-|The error *IP not allowed with Kerberos* appears when you add a share.
-|The share path uses an IP address.
-|Enter the share path as an FQDN.
-
-|Authentication fails and no ticket is issued.
-|The AIDE node can't reach the KDC on port 88, or the clock on the node differs from the KDC by more than the allowed skew.
-|Open port 88 to the KDC. Confirm that NTP is active on every node.
-
-|`kinit` fails when you test the keytab.
-|The password or realm is incorrect, the realm isn't in uppercase, or the scan account doesn't support AES256 encryption.
-|Verify the password and realm. Confirm that the account supports AES256 encryption, and then create the keytab again.
-
-|The ticket refresh job fails or no ticket is created.
-|The keytab, principal file, or `krb5.conf` is missing, empty, or not readable by AI Data Engine.
-|Verify that the three files exist in the locations listed in <<kerberos-file-locations,Kerberos file locations>> and that their permissions allow AI Data Engine to read them.
-
-|The file server or KDC name doesn't resolve.
-|The node doesn't use a DNS server that can resolve your Active Directory names.
-|Verify the DNS settings on every node. Refer to <<configure-name-resolution,Configure name resolution>> and the link:../deploy/aide-requirements.html#kerberos-ad-requirements[DNS requirements].
-
-|Names resolve on a node but not within AI Data Engine.
-|CoreDNS wasn't restarted after you changed `/etc/resolv.conf`.
-|Restart CoreDNS.
-
-|Names intermittently fail to resolve in a multi-node deployment.
-|A node lists more than one name server, and one of them can't resolve Active Directory names.
-|Remove all name servers except your Active Directory DNS server.
-
-|External names fail to resolve after you set the Active Directory DNS server.
-|The Active Directory DNS server doesn't forward external queries.
-|Ask your Active Directory administrator to enable DNS forwarding.
-
-|Kerberos scanning works from one node but fails from others in a multi-node deployment. The error *mount error(2)* or *failed to create a new SMB session with Kerberos* appears.
-|`cifs-utils` isn't installed on every node.
-|Install `cifs-utils` on every node. To verify the installation, run `which cifs.upcall`.
-
-|The error *mount error(126)* appears.
-|AI Data Engine can't read `krb5.conf`.
-|Verify that `krb5.conf` exists in the location listed in <<kerberos-file-locations,Kerberos file locations>>.
-
-|Changes to `krb5.conf` don't take effect.
-|The file was replaced after setup, and the mount service still uses the previous file.
-|Restart the mount service. Refer to <<apply-krb5-changes,Apply changes to the Kerberos configuration file>>.
-
-|DNS settings revert after a node restarts.
-|The network manager on the node overwrites `/etc/resolv.conf`.
-|Set the DNS server in the network manager configuration instead of editing `/etc/resolv.conf` directly.
-
-|===
-
-== Remove the Kerberos configuration
-
-If you no longer scan SMB/CIFS shares with Kerberos, remove the data source and the Kerberos files.
-
-.Steps
-. From the AI Data Engine UI, delete the SMB/CIFS data source that uses Kerberos.
-// RESEARCH Confirm the UI steps to delete a scanned system that uses Kerberos.
-. Delete the keytab, the principal file, and `krb5.conf` from the locations listed in <<kerberos-file-locations,Kerberos file locations>>.
-. If you changed the DNS settings, restore the original settings.
-.. On every node, restore the backup of `/etc/resolv.conf` and remove the network manager configuration that you added.
-+
-[source,cli]
-----
-cp /etc/resolv.conf.bak /etc/resolv.conf
-rm -f /etc/NetworkManager/conf.d/90-dns-none.conf
-systemctl reload NetworkManager
-----
-.. From a host with `kubectl` access to the cluster, restart CoreDNS.
-+
-[source,cli]
-----
-kubectl -n kube-system rollout restart deployment coredns
-----
+Also verify that your environment meets the link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements], including ports, time synchronization, DNS, and host packages.
 
 == Related information
 
-* link:../deploy/aide-requirements.html[AI Data Engine requirements]
+* link:configure-kerberos-smb-single-node.html[Configure Kerberos for SMB/CIFS shares on a single-node AI Data Engine deployment]
+* link:configure-kerberos-smb-multi-node.html[Configure Kerberos for SMB/CIFS shares on a multi-node AI Data Engine deployment]
+* link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements]
 * link:../data-sources/connect-data-source.html[Connect a data source to AI Data Engine]
-* link:../data-sources/manage-data-sources.html[Manage data sources]
 * link:configure-ad-nfs.html[Map NFS users and groups to Active Directory]

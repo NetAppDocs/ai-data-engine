@@ -364,7 +364,7 @@ Kerberos authentication fails when the clocks on the AIDE nodes and the KDC diff
 * If you configure the nodes to use your Active Directory DNS server, that server must also resolve external names. Otherwise, AIDE can't reach the endpoints listed in <<outbound-internet-access,Outbound internet access>>.
 * For a multi-node deployment, configure your Active Directory DNS server as the only name server on every node. Name resolution in the cluster picks one of the listed name servers at random, so a name server that can't resolve Active Directory names causes intermittent failures.
 
-To change the DNS settings, refer to link:../administer/configure-kerberos-smb.html#configure-name-resolution[Configure Kerberos authentication for SMB/CIFS shares].
+To change the DNS settings, refer to "Fix name resolution" in link:../administer/configure-kerberos-smb-single-node.html#fix-name-resolution[Configure Kerberos for SMB/CIFS shares on a single-node deployment] or link:../administer/configure-kerberos-smb-multi-node.html#fix-name-resolution[Configure Kerberos for SMB/CIFS shares on a multi-node deployment].
 
 === Host packages
 
@@ -388,7 +388,7 @@ To show NFS file owners and groups as Active Directory names, the `uidNumber` an
 
 == Related information
 
-* link:../administer/configure-kerberos-smb.html[Configure Kerberos authentication for SMB/CIFS shares]
+* link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine]
 * link:../administer/configure-ad-nfs.html[Map NFS users and groups to Active Directory]
 * link:deployment-overview.html[AIDE deployment overview]
 * link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment]
