@@ -18,7 +18,7 @@ Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine M
 ** Configuring a collection for MCP with a scope that includes you. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
 ** Registering an Entra ID application for your AI clients. The application is a public client, so you don't need a client secret.
 * You have the MCP client configuration from your administrator. The administrator generates it in NetApp Console by configuring the collection for MCP, copies the MCP server URL or the client-specific snippet from the *Generate MCP code snippet* step, adds the client application ID, and shares it with you. It includes the following:
-** The MCP server URL, in the format `https://<mcp-server-host>/mcp/tools`.
+** The MCP server URL, in the format `\https://<mcp-server-host>/mcp/tools`.
 ** The Microsoft Entra ID tenant ID.
 ** The client application ID for your AI client.
 ** The scopes that your AI client requests:

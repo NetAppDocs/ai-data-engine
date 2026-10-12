@@ -149,15 +149,15 @@ Register one public client application in Entra ID for Claude Code, Claude Deskt
 |Client |Redirect URI
 
 |Claude Code
-|`http://localhost:8080/callback` and `http://127.0.0.1:8080/callback`
+|`\http://localhost:8080/callback` and `\http://127.0.0.1:8080/callback`
 
 |Cursor
-|`http://localhost:8787/callback`
+|`\http://localhost:8787/callback`
 
 |OpenCode
-|`http://127.0.0.1:19876/callback` and `http://localhost:19876/callback`
+|`\http://127.0.0.1:19876/callback` and `\http://localhost:19876/callback`
 |===
-. Optional: If users also sign in from Cursor on the web or from Cursor Agents, select *Add a platform* > *Web*, and add `https://www.cursor.com/agents/mcp/oauth/callback`.
+. Optional: If users also sign in from Cursor on the web or from Cursor Agents, select *Add a platform* > *Web*, and add `\https://www.cursor.com/agents/mcp/oauth/callback`.
 . In *Authentication* > *Advanced settings*, set *Allow public client flows* to *Yes*, and save.
 . Under *API permissions*, select *Add a permission* > *APIs my organization uses*, and then select the AI Data Engine application.
 . Add the `power_users` delegated permission.
