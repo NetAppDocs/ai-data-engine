@@ -88,7 +88,6 @@ unset PROXY_PW
 |===
 
 // RESEARCH Is the default proxy scheme http or https?
-// RESEARCH Is --proxy-bypass-registries (registries that the container runtime reaches directly, single-node only) a customer-facing option?
 NOTE: `--proxy-password` and the `PROXY_PASSWORD` environment variable are not supported, to avoid exposing credentials in process tables, shell history, or logs. Use `--proxy-password-file` or the interactive prompt instead.
 
 == Configure the proxy
