@@ -31,23 +31,45 @@ NetApp Console doesn't provision the infrastructure for AI Data Engine. You prep
 
 Single-node deployments typically complete within 45 minutes. Multi-node deployments typically complete within 30 minutes. The installer includes built-in timeouts and retries to handle transient issues while components start.
 
-== Deployment mode reference
-
 [cols="1h,2,2",options="header"]
 |===
 | |AIDE single-node deployment |AIDE multi-node deployment
 
-|Deployment types
+|Deployment type
 |Single Linux VM
 |Multi-node Kubernetes cluster (customer-provisioned RKE2)
 
-|Scan rate
-|50 million to 1 billion files/day, varies by size
-|250 million to 2 billion files/day, varies by size
+|Nodes
+|1 Linux VM
+|3 to 9 nodes (Small to Large)
 
-|Max files (Large size)
-|Approximately 3 billion
-|Approximately 6 billion
+|Scan rate
+|50 million to 1 billion files per day, varies by size
+|250 million to 2 billion files per day, varies by size
+
+|Approximate files (Small to Large)
+|200 million to 3 billion
+|1 billion to 6 billion
+
+|Compute
+|16 to 96 vCPU, 64 to 192 GB RAM
+|32 to 64 vCPU, 128 to 256 GB RAM per node
+
+|Storage
+|500 GB to 6 TB SSD
+|4 to 24 TB total cluster capacity, 8,000 to 16,000 IOPS per node
+
+|Network
+|1 GbE (10 GbE recommended for Large)
+|1 to 10 GbE
+
+|High availability
+|Not supported
+|Supported across nodes
+
+|When to choose it
+|You have a single site, want a fast start, and don't require HA
+|Production scale or HA is a requirement
 
 |===
 

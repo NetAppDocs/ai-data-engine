@@ -312,7 +312,7 @@ NOTE: A single-node deployment doesn't support high availability or horizontal s
 === Additional prerequisites
 
 * You have root or sudo access on the target VM to run the installer.
-* A 1 GbE minimum network connection (10 GbE for Large deployments).
+* A 1 GbE minimum network connection (10 GbE recommended for Large deployments).
 * The target host must have bash 4.0 or later, curl, and tar available.
 * The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. Pre-installing these tools on the target VM isn't required.
 * Ports 6443 (TCP), 10250 (TCP), and 8472 (UDP) must be free on the host before the installer starts. If a host firewall (`firewalld` on RHEL or `ufw` on Ubuntu) is active, allow these ports and the k3s pod CIDR (`10.44.0.0/16`) and service CIDR (`10.45.0.0/16`) before running the installer. Refer to your OS firewall documentation for the required commands.
@@ -337,7 +337,7 @@ NOTE: NVMe or high-performance SSD storage is recommended for all multi-node dep
 [[multi-node-sizes]]
 === Node sizing
 
-These sizes are recommended baseline cluster configurations optimized for an approximately three-day initial scan window, not hard capacity limits. AIDE multi-node deployments support environments beyond 6 billion files through horizontal scale-out. Refer to <<flexible-sizing-multi-node,Flexible sizing guidelines>> for details.
+These sizes are recommended baseline cluster configurations optimized for a three to four day initial scan window, not hard capacity limits. AIDE multi-node deployments support environments beyond 6 billion files through horizontal scale-out. Refer to <<flexible-sizing-multi-node,Flexible sizing guidelines>> for details.
 
 [cols="1,1,1,1,1,1,1,1,1",options="header"]
 |===
@@ -378,7 +378,7 @@ These sizes are recommended baseline cluster configurations optimized for an app
 [[flexible-sizing-multi-node]]
 === Flexible sizing guidelines
 
-<<multi-node-sizes,Small, Medium, and Large configurations>> are recommended baseline cluster configurations for an approximate three day initial scan window, not hard capacity ceilings enforced by the software. AIDE multi-node deployments support environments exceeding 3 billion files through horizontal scale-out across cluster nodes.
+<<multi-node-sizes,Small, Medium, and Large configurations>> are recommended baseline cluster configurations for a three to four day initial scan window, not hard capacity ceilings enforced by the software. AIDE multi-node deployments support environments exceeding 6 billion files through horizontal scale-out across cluster nodes.
 
 What drives the sizing recommendations::
 +
