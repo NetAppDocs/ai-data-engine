@@ -63,11 +63,11 @@ The following network connections must be open:
 |Outbound
 |LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and SMB/CIFS scanning. Port 389 uses both TCP and UDP; all other ports use TCP only.
 
-|AI Data Engine to NetApp Services / Container Registry
+|AI Data Engine to NetApp services, container registry, and CDN
 |443
 |TCP
 |Outbound
-|HTTPS: artifact downloads and container image pulls (AWS S3 and ECR)
+|HTTPS: container image pulls from ECR, and installer script and Helm chart downloads from S3 and a CDN
 
 |===
 
@@ -75,6 +75,7 @@ The following network connections must be open:
 === Outbound internet access
 For an online installation, the following endpoints must be reachable. The *Initiated by* column shows which component connects to each endpoint.
 
+// RESEARCH Do the ECR, S3, and CDN endpoints in this table match what the Console team provides? Is the ECR region us-west-2 or us-east-1, and is the wrapper script and Helm chart CDN endpoint (d13jb5dapseb36.cloudfront.net) required in addition to S3?
 // RESEARCH Which component initiates each of the api.console.netapp.com, auth0, support.compliance, and CloudFront connections? Is api.console.netapp.com or api.bluexp.netapp.com the current Console endpoint, or are both required?
 // RESEARCH Should the ECR, S3, and STS rows use a region placeholder instead of us-west-2, and does the account ID in the registry rows change per deployment?
 [cols="3,3,2,1",options="header"]
@@ -155,6 +156,11 @@ For an online installation, the following endpoints must be reachable. The *Init
 |AI Data Engine
 |Both
 
+|`\https://d13jb5dapseb36.cloudfront.net`
+|CloudFront CDN for installer wrapper script and Helm chart downloads
+|Installer
+|Both
+
 |`\https://get.helm.sh`
 |Helm download
 |Installer
@@ -226,6 +232,8 @@ Verify that DNS resolution for these endpoints is working from the AI Data Engin
 
 == AIDE single-node deployment requirements
 
+You provide a Linux VM that meets these requirements. The installer provisions k3s and the supporting tools automatically.
+
 [[single-node-vm-sizes]]
 === VM sizing
 
@@ -266,6 +274,8 @@ These sizes are recommended baseline configurations optimized for a three to fou
 
 NOTE: NVMe SSD or other solid-state storage is recommended for all deployment sizes. The disk values in this table reflect AIDE data volume storage only. If the OS, k3s runtime, and AIDE data all share a single disk, add approximately 65 GB to the disk value for your chosen size. For example, a Small deployment on a single disk requires approximately 565 GB total.
 
+NOTE: Use block storage, not NFS, for the AIDE data volume on a single-node deployment. NFS-backed storage can cause underperformance.
+
 [[flexible-sizing-single-node]]
 === Flexible sizing guidelines
 
@@ -286,7 +296,7 @@ Provisioning below the recommended size doesn't prevent installation or cause se
 * *Reduced ongoing ingest throughput*: New file events and incremental scan updates process more slowly under sustained load.
 * *Storage capacity risk*: Undersized storage relative to total object count can push the metadata index toward capacity thresholds. You can typically resolve this by expanding storage capacity, without a full redeployment.
 
-Scale when you need more capacity::
+Scale beyond the recommended size::
 +
 A single-node deployment runs on a single VM, so scaling is vertical:
 +
@@ -323,6 +333,8 @@ NOTE: A single-node deployment doesn't support high availability or horizontal s
 
 == AIDE multi-node deployment requirements
 
+You must bring your own RKE2 cluster. The installer deploys AI Data Engine onto the existing cluster and doesn't provision or manage it.
+
 * You have kubectl access with cluster-admin privileges on the machine from which you run the installer.
 * You have Sudo (or root) permissions on the machine from which you run the install command.
 * RKE2 v1.34 or later (v1.36.x recommended) is installed on the target cluster.
@@ -337,7 +349,7 @@ NOTE: NVMe or high-performance SSD storage is recommended for all multi-node dep
 [[multi-node-sizes]]
 === Node sizing
 
-These sizes are recommended baseline cluster configurations optimized for a three to four day initial scan window, not hard capacity limits. AIDE multi-node deployments support environments beyond 6 billion files through horizontal scale-out. Refer to <<flexible-sizing-multi-node,Flexible sizing guidelines>> for details.
+These sizes are recommended baseline cluster configurations optimized for a three to four day initial scan window, not hard capacity limits. Environments beyond 6 billion files require custom sizing with NetApp. Refer to <<flexible-sizing-multi-node,Flexible sizing guidelines>> for details.
 
 [cols="1,1,1,1,1,1,1,1,1",options="header"]
 |===
@@ -378,7 +390,7 @@ These sizes are recommended baseline cluster configurations optimized for a thre
 [[flexible-sizing-multi-node]]
 === Flexible sizing guidelines
 
-<<multi-node-sizes,Small, Medium, and Large configurations>> are recommended baseline cluster configurations for a three to four day initial scan window, not hard capacity ceilings enforced by the software. AIDE multi-node deployments support environments exceeding 6 billion files through horizontal scale-out across cluster nodes.
+<<multi-node-sizes,Small, Medium, and Large configurations>> are recommended baseline cluster configurations for a three to four day initial scan window, not hard capacity ceilings enforced by the software. Environments exceeding 6 billion files require custom sizing with NetApp.
 
 What drives the sizing recommendations::
 +
@@ -394,17 +406,17 @@ Provisioning below the recommended size doesn't prevent installation or cause ha
 +
 * *Extended initial catalog duration*: Fewer nodes or reduced per-node resources lower throughput, extending the initial catalog window proportionally.
 * *Increased processing latency under peak load*: Insufficient memory across the cluster can cause elevated processing latency during high-volume ingestion periods. Ongoing operations are not interrupted, but sustained throughput is reduced.
-* *Storage capacity risk*: Insufficient cluster storage for the target object count can push the metadata index toward capacity thresholds. You can resolve this by expanding storage on existing nodes (non-disruptive) or adding a dedicated storage node.
+* *Storage capacity risk*: Insufficient cluster storage for the target object count can push the metadata index toward capacity thresholds. You can resolve this by contacting NetApp Support to plan a storage expansion.
 
-Scale when you need more capacity::
+Scale beyond the recommended size::
 +
-AIDE multi-node deployments support horizontal scale-out without redeployment:
+Horizontal scale-out of an existing multi-node cluster isn't a self-service operation. To add worker nodes, add dedicated storage nodes, or scale beyond 6 billion files, engage NetApp before you change the cluster:
 +
-* Add worker nodes to increase the CPU and memory available for scan processing and event ingestion.
-* Add dedicated storage nodes to increase total catalog capacity. This is the primary way to scale environments beyond the largest predefined deployment size.
-* Scale beyond 6 billion files by adding more nodes to the cluster. Contact your NetApp representative for node sizing guidance at custom scales.
-+
-NOTE: Adding nodes to an existing multi-node cluster is non-disruptive to ongoing scan operations, but coordinate the change during a low-activity window.
+* Contact your NetApp representative or NetApp Support to plan the change and get node sizing guidance for custom scale.
+* Coordinate the change during a low-activity window.
+
+// RESEARCH The engineering specs list horizontal scaling as supported for multi-node deployments. Is horizontal scaling unsupported without NetApp engagement at general availability, and should the support matrix change?
+// RESEARCH Should the contact-your-representative threshold be 6 billion files (the largest standard size) or 10 billion files?
 
 == Related information
 

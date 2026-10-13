@@ -37,7 +37,7 @@ The AI Data Engine landing page appears.
 * *Medium (Default)*: recommended for environments with up to approximately 3 billion files.
 * *Large*: recommended for environments with up to approximately 6 billion files.
 +
-These sizes are recommended baselines, not hard limits. An AIDE multi-node deployment supports environments beyond 6 billion files through horizontal scale-out; see link:aide-requirements.html#flexible-sizing-multi-node[flexible sizing guidelines] for details.
+These sizes are recommended baselines, not hard limits. An AIDE multi-node deployment requires custom sizing with NetApp for environments beyond 6 billion files; see link:aide-requirements.html#flexible-sizing-multi-node[flexible sizing guidelines] for details.
 
 . For small or large configurations, adjust the install command to reflect the chosen size: `--flavor <small|medium|large>`
 
