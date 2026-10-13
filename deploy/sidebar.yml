@@ -9,3 +9,5 @@ entries:
     url: /deploy/deploy-aide-single-node.html
   - title: Deploy AIDE as a multi-node deployment
     url: /deploy/deploy-aide-multi-node.html
+  - title: Configure a proxy
+    url: /deploy/configure-proxy.html
