@@ -9,7 +9,7 @@ summary: Find oversized or unused database tables across your connected database
 :imagesdir: ../media/
 
 [.lead]
-When database storage is growing unexpectedly, filter by table metadata to find which tables are oversized or have shown no activity since they were first discovered. For example, a storage administrator can identify large tables that have not changed since an early scan, then coordinate with the database owner to evaluate whether they are still needed.
+When database storage is growing unexpectedly, filter by table metadata to find which tables are oversized or have shown no activity since they were first discovered. For example, a storage administrator can identify large tables that haven't changed since an early scan, then coordinate with the database owner to evaluate whether they are still needed.
 
 .Before you begin
 * At least one database data source must be connected and scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
@@ -33,8 +33,6 @@ Use filters to narrow the listing to tables most likely to offer reclamation opp
 +
 Applied filters appear as tags below the filter bar. The results update as you add each filter.
 
-For a complete list of available filters, refer to link:use-filters.html[Work with filters].
-
 == Review table details
 
 Select a table row to open the detail panel and assess whether the table is a reclamation candidate.
@@ -55,7 +53,6 @@ To download the filtered results from the Structured tab, select image:icon_down
 
 == Related information
 
-* link:use-filters.html[Work with filters]
 * link:../policies/create-policy.html[Create a policy]
 * link:../data-sources/connect-data-source.html[Connect a data source]
 * link:understand-dashboard.html[Assess storage utilization from the dashboard]

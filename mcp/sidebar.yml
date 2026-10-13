@@ -1,0 +1,15 @@
+section: mcp
+title: Governed AI access (MCP)
+entries:
+  - title: Learn about governed AI access
+    url: /mcp/learn-about-mcp.html
+  - title: Quick start
+    url: /mcp/quick-start-mcp.html
+  - title: Configure Entra ID and MCP access
+    url: /mcp/configure-mcp-access.html
+  - title: Manage data collections
+    url: /mcp/manage-data-collections.html
+  - title: Connect AI clients
+    url: /mcp/connect-ai-clients-mcp.html
+  - title: Maintain your MCP setup
+    url: /mcp/maintain-mcp-setup.html

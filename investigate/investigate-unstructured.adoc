@@ -9,14 +9,14 @@ summary: Find and classify files as cold, stale, or large across NFS and SMB/CIF
 :imagesdir: ../media/
 
 [.lead]
-When file-based storage is growing unexpectedly, filter by last-access time, file size, and owner to find which files are consuming capacity. For example, a storage administrator can identify terabytes of VM snapshots that have not been accessed in over a year and evaluate whether to archive, delete, or retain them.
+When file-based storage is growing unexpectedly, filter by last-access time, file size, and owner to find which files are consuming capacity. For example, a storage administrator can identify terabytes of VM snapshots that haven't been accessed in over a year and evaluate whether to archive, delete, or retain them.
 
 .Before you begin
 * At least one data source must be connected and scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
 
 == Find cold or stale files by last-access time
 
-Use date-based filters to identify files that have not been accessed within your organization's cold or stale data thresholds. Thresholds are configurable in *Configuration* > *Settings*. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
+Use date-based filters to identify files that haven't been accessed within your organization's cold or stale data thresholds. Thresholds are configurable in *Configuration* > *Settings*. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
 
 .Steps
 . From the AI Data Engine UI, select *Investigation*.
@@ -27,8 +27,6 @@ The Unstructured tab is selected by default.
 . To focus on the largest consumers, select *Add filter* again, then select *File size*, and set a minimum value, for example *>1 GiB*.
 +
 Applied filters appear as tags below the filter bar. The results table and item count update as you add each filter.
-
-For a complete list of available filters, refer to link:use-filters.html[Work with filters].
 
 == Group results by owner
 
@@ -50,15 +48,14 @@ The detail panel shows the file's system, storage repository, file owner, and an
 
 After identifying the files you want to address, select one or more items using the checkboxes in the results table.
 
-* To take an immediate action, refer to link:take-actions.html[Take action with your data].
+* To take an immediate action, refer to link:take-actions.html[Take action on your data].
 * To save the filter criteria for ongoing monitoring, select *Create policy* in the filter toolbar. Refer to link:../policies/create-policy.html[Create a policy].
 
 To download the filtered results from the Unstructured tab, select image:icon_download_file.png[Download].
 
 == Related information
 
-* link:use-filters.html[Work with filters]
-* link:take-actions.html[Take action with your data]
+* link:take-actions.html[Take action on your data]
 * link:../policies/create-policy.html[Create a policy]
 * link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
 * link:understand-dashboard.html[Assess storage utilization from the dashboard]

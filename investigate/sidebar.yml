@@ -11,7 +11,5 @@ entries:
     url: /investigate/investigate-structured.html
   - title: Investigate directories
     url: /investigate/investigate-directories.html
-  - title: Work with filters
-    url: /investigate/use-filters.html
   - title: Take actions on data
     url: /investigate/take-actions.html

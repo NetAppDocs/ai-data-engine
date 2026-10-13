@@ -28,8 +28,6 @@ The table displays directory name (full path), data container, directory owner, 
 +
 The results table updates to show directories matching the permission criteria, including the last accessed date and permission status.
 
-For a complete list of available filters, refer to link:use-filters.html[Work with filters].
-
 == Review directory permissions
 
 Select a directory row to open the detail panel and review who has access.
@@ -50,7 +48,6 @@ To download the filtered results from the Directories tab, select image:icon_dow
 
 == Related information
 
-* link:use-filters.html[Work with filters]
 * link:../policies/create-policy.html[Create a policy]
 * link:../administer/manage-users-roles.html[Manage users and roles]
 * link:understand-dashboard.html[Assess storage utilization from the dashboard]
