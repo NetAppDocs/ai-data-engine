@@ -42,7 +42,9 @@ The installer uses one proxy for every internet destination and every AI Data En
 * For a single-node deployment, the installer configures the host container runtime to pull images through the proxy. If you supply a proxy CA certificate, the installer also adds it to the host trust store. No additional proxy configuration is needed on the host. The operating system repositories on the host must still provide the packages listed in link:aide-requirements.html[AIDE requirements]. If those repositories need a proxy, see <<package-manager-proxy-settings,Package manager proxy settings>>. If the package manager proxy URL uses `https://`, the package manager uses the host trust store, and the installer adds a CA certificate that you supply with `--proxy-ca-cert` before it installs host packages.
 * For a multi-node deployment, you have configured the container runtime of every cluster node with the same proxy host, port, and scheme that you give the installer. If the proxy certificate is signed by a private CA, you have also added the same CA certificate to the trust store of every node. The installer does not configure or check the cluster nodes. If only some nodes are configured, the installation can succeed but pods later fail with `ImagePullBackOff`.
 * If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the host where you run the installer.
-* To supply the proxy password without being prompted for it (for example, in an automated deployment), create a password file with restricted permissions before you run the installer. Enter the password exactly as it is, without percent-encoding special characters:
+* To supply the proxy password without being prompted for it (for example, in an automated deployment), create a password file with restricted permissions before you run the installer. Enter the password exactly as it is, without percent-encoding special characters. The file contains only the password.
++
+This example command creates the password file:
 +
 [source,bash]
 ----
@@ -87,7 +89,6 @@ unset PROXY_PW
 
 |===
 
-// RESEARCH Is the default proxy scheme http or https?
 // RESEARCH Is a self-signed proxy certificate a supported scenario, and does the customer supply that certificate itself as the CA certificate?
 NOTE: The installer doesn't accept `--proxy-password` or the `PROXY_PASSWORD` environment variable. Use `--proxy-password-file` or the interactive prompt instead.
 
@@ -102,7 +103,7 @@ If the copied install command includes `--no-proxy`, replace it with your proxy 
 
 [source,bash]
 ----
---proxy-host proxy.customer.example \
+--proxy-host proxy.example \
 --proxy-port 8443 \
 --proxy-scheme https \
 --proxy-ca-cert /root/aide-proxy-ca.crt \
