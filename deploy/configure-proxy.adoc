@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: deploy/configure-proxy.html
-keywords: proxy, outbound proxy, forward proxy, firewall, install, proxy host, proxy port, proxy bypass
+keywords: proxy, outbound proxy, forward proxy, HTTPS proxy, proxy certificate, proxy authentication, firewall, install, proxy host, proxy port
 summary: Configure a forward proxy so AI Data Engine can reach the internet during installation.
 ---
 = Configure a proxy for AI Data Engine
@@ -9,7 +9,7 @@ summary: Configure a forward proxy so AI Data Engine can reach the internet duri
 :imagesdir: ../media/
 
 [.lead]
-If your AI Data Engine host or cluster cannot reach the internet directly, configure a forward proxy so the installer can download components, pull container images, and communicate with NetApp Console. Traffic to local infrastructure — the Console Agent, the Kubernetes API, ONTAP, and NFS/SMB storage — always bypasses the proxy and connects directly. The same proxy options work for both `install-lite.sh` and `install-enterprise.sh`.
+If your AI Data Engine host or cluster cannot reach the internet directly, configure a forward proxy so the installer and AI Data Engine can download components, pull container images, and communicate with NetApp Console. Only internet-bound traffic uses the proxy. Traffic to local infrastructure, such as the Console agent, the Kubernetes API, ONTAP, StorageGRID, and NFS/SMB storage, connects directly. The proxy options are the same for single-node and multi-node deployments.
 
 == Supported proxy configurations
 
@@ -21,31 +21,34 @@ If your AI Data Engine host or cluster cannot reach the internet directly, confi
 |Direct connection to the internet; no proxy is used.
 |None
 
-|Unauthenticated forward proxy
-|Forward proxy that does not require credentials.
-|None
+|HTTP forward proxy
+|AI Data Engine connects to the proxy over HTTP.
+|None, or HTTP Basic authentication (username and password)
 
-|Authenticated forward proxy
-|Forward proxy that requires credentials.
-|HTTP Basic authentication (username and password)
+|HTTPS forward proxy
+|AI Data Engine connects to the proxy over TLS. If a private certificate authority (CA) signed the proxy certificate, you supply the CA certificate.
+|None, or HTTP Basic authentication (username and password)
 
 |===
 
-IMPORTANT: AI Data Engine supports standard forward proxies that tunnel connections with HTTP `CONNECT`, including HTTPS destinations. Proxies that decrypt and re-sign HTTPS traffic with a custom certificate authority (TLS-inspecting proxies) are not supported.
+IMPORTANT: AI Data Engine supports standard forward proxies that tunnel connections with HTTP `CONNECT`, including HTTPS destinations. Proxies that decrypt and re-sign HTTPS traffic with a custom certificate authority (TLS-inspecting proxies) are not supported. NTLM, Kerberos, and client-certificate authentication to the proxy are also not supported.
+
+The installer uses one proxy for every internet destination and every AI Data Engine component. The proxy settings are set during installation.
+// RESEARCH What is the procedure to change the proxy credentials, or replace the proxy CA certificate, after installation?
 
 == Before you begin
 
-* Confirm your proxy allows outbound access to the endpoints required by AI Data Engine. See link:aide-requirements.html[AIDE requirements].
-//RESEARCH NEEDED: A separate proxy allowlist was circulated for this feature (api.bluexp.netapp.com, *.api.bluexp.netapp.com, cloudinsights*.netapp.com, cloudsecure.netapp.com, get.helm.sh, dl.k8s.io, github.com/jqlang, *.dkr.ecr.<region>.amazonaws.com, s3.us-west-2.amazonaws.com, get.k3s.io).
-//It uses different domains/region and BlueXP branding than the verified "Outbound internet access" table above (api.console.netapp.com, us-east-1 ECR, s3.amazonaws.com, cloudfront, auth0). Reconcile with engineering before publishing; do not merge silently.
-* If you're deploying AIDE Enterprise, confirm that your Kubernetes worker nodes are already able to reach the proxy. AI Data Engine does not configure worker nodes for you.
-* AIDE Lite automatically configures the host to route image pulls through the proxy; no additional configuration is needed.
-* To supply the proxy password without being prompted for it (for example, in an automated deployment), create a password file and restrict its permissions before running the installer:
+* You have configured your proxy to allow outbound access to the endpoints listed in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
+* For a single-node deployment, the installer configures the host container runtime to pull images through the proxy. If you supply a proxy CA certificate, the installer also adds it to the host trust store. No additional host configuration is needed.
+* For a multi-node deployment, you have configured the proxy on the container runtime of every cluster node. If the proxy certificate is signed by a private CA, you have also added the CA certificate to the trust store of every node. The installer does not configure or check the cluster nodes. If only some nodes are configured, the installation can succeed but pods later fail with `ImagePullBackOff`.
+* If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a directory that contains only `.crt` and `.pem` files, on the host where you run the installer.
+* To supply the proxy password without being prompted for it (for example, in an automated deployment), create a password file with restricted permissions before you run the installer. Enter the password exactly as it is, without percent-encoding special characters:
 +
 [source,bash]
 ----
-echo -n "<proxy-password>" > /root/aide-proxy.pass
-chmod 0600 /root/aide-proxy.pass
+read -rsp 'Proxy password: ' PROXY_PW; echo
+(umask 077; printf '%s' "$PROXY_PW" > /root/aide-proxy.pass)
+unset PROXY_PW
 ----
 
 == Proxy configuration parameters
@@ -63,20 +66,20 @@ chmod 0600 /root/aide-proxy.pass
 |Port the proxy listens on. Ignored if the port is already included in `--proxy-host`.
 
 |`--proxy-scheme <http\|https>`
-|`http`
-|Protocol used to connect to the proxy server itself.
+|`https`
+|Protocol used to connect to the proxy server itself. This is not the scheme of the destinations that the proxy reaches.
+
+|`--proxy-ca-cert <path>`
+|None
+|Path to a PEM file, or to a directory of `.crt` and `.pem` files, that contains the CA certificate that signed the proxy certificate. Required for an HTTPS proxy whose certificate is signed by a private CA. Not used with an HTTP proxy.
 
 |`--proxy-user <user>`
 |None
-|Username for basic authentication. Requires a password, supplied with `--proxy-password-file` or entered interactively.
+|Username for basic authentication. Requires a password, supplied with `--proxy-password-file` or entered at the prompt.
 
 |`--proxy-password-file <path>`
 |None
 |Path to a local file, with permissions set to `0600`, containing the proxy password.
-
-|`--proxy-bypass <hosts>`
-|None
-|Comma-separated hostnames, IP addresses, or CIDR blocks that bypass the proxy in addition to local infrastructure traffic.
 
 |`--no-proxy`
 |—
@@ -84,39 +87,100 @@ chmod 0600 /root/aide-proxy.pass
 
 |===
 
-NOTE: `--proxy-password` is not supported as a command-line argument, to avoid exposing credentials in process tables, shell history, or logs. Use `--proxy-password-file` or the interactive prompt instead.
+// RESEARCH Is the default proxy scheme http or https?
+// RESEARCH Is --proxy-bypass-registries (registries that the container runtime reaches directly, single-node only) a customer-facing option?
+NOTE: `--proxy-password` and the `PROXY_PASSWORD` environment variable are not supported, to avoid exposing credentials in process tables, shell history, or logs. Use `--proxy-password-file` or the interactive prompt instead.
 
 == Configure the proxy
 
+// RESEARCH Does the guided setup show a proxy type prompt at release, and should customers accept its default?
 Choose one of the following methods to configure the proxy when you run the install command copied from NetApp Console.
 
 === Configure the proxy using command-line flags
 
-Replace `--no-proxy` in the copied install command with your proxy parameters:
+Replace `--no-proxy` in the copied install command with your proxy parameters. This example uses an HTTPS proxy with a privately signed certificate and basic authentication:
 
 [source,bash]
 ----
-sudo ./install-lite.sh \
-  --proxy-host proxy.customer.example \
-  --proxy-port 8080 \
-  --proxy-scheme http \
-  --proxy-user aide-proxy-user \
-  --proxy-password-file /root/aide-proxy.pass \
-  --proxy-bypass connector.customer.example,10.0.0.0/8
+--proxy-host proxy.customer.example \
+--proxy-port 8443 \
+--proxy-scheme https \
+--proxy-ca-cert /root/aide-proxy-ca.crt \
+--proxy-user aide-proxy-user \
+--proxy-password-file /root/aide-proxy.pass
 ----
 
-If your proxy doesn't require authentication, omit `--proxy-user` and `--proxy-password-file`. If you omit `--proxy-password-file`, the installer prompts you to enter the password interactively.
+* If your proxy doesn't require authentication, omit `--proxy-user` and `--proxy-password-file`.
+* If the proxy certificate is signed by a publicly trusted CA, or you use an HTTP proxy, omit `--proxy-ca-cert`.
+* If you specify `--proxy-user` without `--proxy-password-file`, the installer prompts you for the password when you run it from a terminal. In a non-interactive run, the installer stops before it makes any network connection.
 
-NOTE: Use `install-enterprise.sh` in place of `install-lite.sh` for AIDE Enterprise deployments; the same proxy flags apply to both installers.
+CAUTION: With an HTTP proxy, the proxy username and password are sent in clear text. Use an HTTPS proxy when the proxy requires authentication.
 
 === Configure the proxy using interactive guided setup
 
 . Remove `--no-proxy` from the copied install command and run it without any proxy flags.
-. When prompted `Do you want to configure a proxy? [y/N]`, enter `y`.
-. Follow the interactive prompts to enter the proxy host, port, scheme, username, and password.
+. When prompted `Configure outbound proxy?`, enter `y`.
+. Enter the proxy host, port, and scheme when prompted.
+. For an HTTPS proxy with a privately signed certificate, enter the path to the CA certificate.
+. If the proxy requires authentication, enter the username, and then enter the password at the hidden prompt.
+
+== Proxy verification
+
+Before the installer downloads anything, it runs a check from the installer host. The check confirms that the proxy responds, that the proxy accepts your credentials, and that the proxy certificate is valid for the scheme you chose. If the check fails, the installation stops.
+
+For multi-node deployments, the check covers the proxy only. It does not test whether the cluster nodes can reach the proxy.
+
+== Troubleshoot proxy problems
+
+// RESEARCH Confirm the installer messages that correspond to each symptom below.
+[cols="2,2,3",options="header"]
+|===
+|Symptom |Cause |Action
+
+|The installer reports HTTP 407.
+|The proxy username or password is wrong, or the proxy requires authentication and you didn't supply credentials.
+|Check the username and the contents of the password file. Add `--proxy-user` and `--proxy-password-file` if the proxy requires authentication.
+
+|The installer reports that the proxy certificate check failed and asks for `--proxy-ca-cert`.
+|The installer can't verify the HTTPS proxy certificate.
+|Supply the CA certificate that signed the proxy certificate with `--proxy-ca-cert`.
+
+|The installer reports a connection failure that names the proxy host and port.
+|The proxy isn't listening on that port, or a firewall blocks the connection.
+|Verify the host, port, and scheme, and confirm that the installer host can reach the proxy.
+
+|The installer rejects the CA certificate path.
+|The file is empty or isn't PEM-encoded, the directory is empty, or the path doesn't exist.
+|Supply a valid PEM file, or a directory that contains `.crt` or `.pem` files.
+
+|Pods show `ImagePullBackOff` on a multi-node deployment.
+|One or more cluster nodes aren't configured to use the proxy.
+|Configure the container runtime proxy and the CA certificate trust on every node.
+|===
+
+== Package manager proxy settings
+
+The AI Data Engine proxy options don't apply to `apt`, `dnf`, or `yum`. These tools follow their own configuration files, which you maintain. If the file is absent, the tools connect directly.
+
+Percent-encode special characters in the proxy username and password when you write them in a package manager proxy URL. For example, `@` is `%40`, `:` is `%3A`, a space is `%20`, `%` is `%25`, `#` is `%23`, and `?` is `%3F`.
+
+Ubuntu and Debian, in `/etc/apt/apt.conf.d/95proxy`:
+
+[source,text]
+----
+Acquire::http::Proxy "http://<user>:<encoded-password>@proxy.example:8080";
+Acquire::https::Proxy "http://<user>:<encoded-password>@proxy.example:8080";
+----
+
+RHEL, in `/etc/dnf/dnf.conf`:
+
+[source,text]
+----
+proxy=http://<user>:<encoded-password>@proxy.example:8080
+----
 
 == Related information
 
 * link:aide-requirements.html[AIDE requirements]
-* link:deploy-aide-lite.html[Deploy AI Data Engine — Lite]
-* link:deploy-enterprise.html[Deploy AI Data Engine — Enterprise]
+* link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment]
+* link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment]
