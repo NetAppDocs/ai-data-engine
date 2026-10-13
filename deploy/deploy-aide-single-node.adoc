@@ -37,7 +37,7 @@ These sizes are recommended baselines, not hard limits. See link:aide-requiremen
 
 . For small or large configurations, adjust the install command to reflect the chosen size: `--flavor <small|medium|large>`
 
-. If you use a proxy, remove `--no-proxy` from the install command and add the proxy options. See link:configure-proxy.html[Configure a proxy].
+. If you use a proxy, remove `--no-proxy` from the install command if it's present, and add the proxy options. See link:configure-proxy.html[Configure a proxy].
 
 . Run the install command with any configuration size adjustments on your target host.
 +
