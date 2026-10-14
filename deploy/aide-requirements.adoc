@@ -458,12 +458,12 @@ Kerberos scanning of an SMB/CIFS share fails if `cifs-utils` is missing on a nod
 
 === Active Directory attributes for NFS
 
-To show NFS file owners and groups as Active Directory names, the `uidNumber` and `gidNumber` attributes must be populated and replicated to the Global Catalog. Refer to link:../administer/configure-ad-nfs.html[Map NFS users and groups to Active Directory].
+To resolve NFS user and group IDs to Active Directory names, the `uidNumber` and `gidNumber` attributes must be populated, and replicated to the Global Catalog if AI Data Engine queries it. Refer to link:../administer/configure-ad-nfs.html[Configure Active Directory identity mapping for NFS].
 
 == Related information
 
 * link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine]
-* link:../administer/configure-ad-nfs.html[Map NFS users and groups to Active Directory]
+* link:../administer/configure-ad-nfs.html[Configure Active Directory identity mapping for NFS]
 * link:deployment-overview.html[AIDE deployment overview]
 * link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment]
 * link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment]

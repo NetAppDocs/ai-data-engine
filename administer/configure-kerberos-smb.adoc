@@ -11,7 +11,7 @@ summary: Understand how AI Data Engine uses Kerberos to scan SMB/CIFS shares wit
 [.lead]
 AI Data Engine can scan SMB/CIFS shares by using Kerberos authentication, so that no password is stored in the data source. AI Data Engine acts as a Kerberos client. It uses a keytab for a scan service account to get Kerberos tickets from your existing Active Directory domain controller.
 
-Kerberos authentication applies to SMB/CIFS data sources. To map NFS user and group IDs to Active Directory names, refer to link:configure-ad-nfs.html[Map NFS users and groups to Active Directory].
+Kerberos authentication applies to SMB/CIFS data sources. To map NFS user and group IDs to Active Directory names, refer to link:configure-ad-nfs.html[Configure Active Directory identity mapping for NFS].
 
 == How Kerberos scanning works
 
@@ -57,4 +57,4 @@ Also verify that your environment meets the link:../deploy/aide-requirements.htm
 * link:configure-kerberos-smb-multi-node.html[Configure Kerberos for SMB/CIFS shares on a multi-node AI Data Engine deployment]
 * link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements]
 * link:../data-sources/connect-data-source.html[Connect a data source to AI Data Engine]
-* link:configure-ad-nfs.html[Map NFS users and groups to Active Directory]
+* link:configure-ad-nfs.html[Configure Active Directory identity mapping for NFS]

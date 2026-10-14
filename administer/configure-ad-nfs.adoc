@@ -2,25 +2,27 @@
 sidebar: sidebar
 permalink: administer/configure-ad-nfs.html
 keywords: active directory, nfs, uidNumber, gidNumber, global catalog, identity mapping, file owner, ldap, general settings
-summary: Map NFS user IDs and group IDs to Active Directory names so that AI Data Engine can show file owners and groups for NFS data.
+summary: Configure Active Directory mapping for NFS user IDs and group IDs. AI Data Engine uses resolved user identities to display file-owner names for NFS data.
 ---
-= Map NFS users and groups to Active Directory in AI Data Engine
+= Configure Active Directory identity mapping for NFS in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-NFS files identify their owners and groups by numeric user IDs (UIDs) and group IDs (GIDs). To show owner and group names for NFS data, AI Data Engine looks up those IDs in Active Directory. Complete the Active Directory prerequisites, and then enable Active Directory for NFS in AI Data Engine settings.
+NFS files identify their owners and groups by numeric user IDs (UIDs) and group IDs (GIDs). AI Data Engine looks up these IDs in Active Directory and displays the corresponding file-owner names. Complete the Active Directory prerequisites, and then enable Active Directory for NFS in AI Data Engine settings.
+// RESEARCH Does GA display owning-group names for NFS files anywhere in the UI or MCP results? If so, state where.
 
-This mapping doesn't authenticate AI Data Engine to NFS storage. It converts the IDs that AI Data Engine finds during scanning to Active Directory user and group names.
+This mapping doesn't authenticate AI Data Engine to NFS storage. It converts the IDs that AI Data Engine finds during scanning to Active Directory names.
 
 .Before you begin
 
 * You have _AI Data Engine administrator_ privileges.
-* You have link:../deploy/aide-requirements.html#kerberos-ad-requirements[opened the required ports] from AI Data Engine to your Active Directory domain controllers, including the Global Catalog ports (3268 and 3269).
+* You have link:../deploy/aide-requirements.html#kerberos-ad-requirements[opened the required ports] from AI Data Engine to your Active Directory domain controllers.
+// RESEARCH Which ports does the configured LDAP, LDAPS, or Global Catalog connection require? The requirements page lists 3268 and 3269 for the Global Catalog.
 * You have an Active Directory account that AI Data Engine can use to query user and group attributes. You enter its user name and password in AI Data Engine.
 // RESEARCH Confirm the permissions the Active Directory account needs and whether it must be a dedicated account.
 * You have the IP address of your DNS server, the IP address and port of your LDAP server, and your Active Directory domain name.
-* You have access to Active Directory with the _Schema Admins_ role if the attributes aren't yet replicated to the Global Catalog.
+* If AI Data Engine queries the Global Catalog and the attributes aren't yet replicated to it, you or your Active Directory administrator has the _Schema Admins_ role to make the schema change.
 
 == Prepare Active Directory
 
@@ -48,15 +50,15 @@ AI Data Engine looks up the `uidNumber` and `gidNumber` attributes by their defa
 // RESEARCH The UI has no fields for custom UID and GID attribute names. Does AI Data Engine support custom attribute names? If so, how are they configured?
 
 .Steps
-. Verify that every user and group you want to resolve has a `uidNumber` or `gidNumber` value. Each value must be unique across the domain.
-. Replicate the `uidNumber` and `gidNumber` attributes to the Global Catalog. This is a one-time change for the entire forest. You must be a member of the _Schema Admins_ group.
+. Verify that every user that you want to resolve has a `uidNumber` value and every group has a `gidNumber` value. Each UID must be unique among users, and each GID must be unique among groups. A user and a group can have the same numeric value.
+. If AI Data Engine queries the Global Catalog, replicate the `uidNumber` and `gidNumber` attributes to it. This is a one-time change for the entire forest. You must be a member of the _Schema Admins_ group.
 +
 .. On a domain controller, open the Active Directory Schema snap-in.
 .. Open the properties of the `uidNumber` attribute.
 .. Select *Replicate this attribute to the Global Catalog*.
 .. Repeat for the `gidNumber` attribute.
 
-CAUTION: If these attributes aren't replicated to the Global Catalog, AI Data Engine can't resolve IDs to names. Owners and groups remain unresolved.
+CAUTION: If AI Data Engine queries the Global Catalog and these attributes aren't replicated to it, identity lookups can't return them. File owners remain unresolved.
 
 == Enable Active Directory for NFS
 
@@ -99,10 +101,13 @@ CAUTION: If these attributes aren't replicated to the Global Catalog, AI Data En
 
 .Result
 
-AI Data Engine uses Active Directory to resolve the owners and groups of NFS files that it scans.
+AI Data Engine uses Active Directory to resolve the owners of NFS files that it scans.
 
-If an ID doesn't resolve, AI Data Engine retries the lookup after 24 hours. If you correct the attributes in Active Directory after a scan, owner and group names can take up to 24 hours to appear.
-// RESEARCH Can an administrator force an earlier retry from the UI? State how if so.
+AI Data Engine resolves identities asynchronously. Owner names might not appear immediately after you enable mapping or update attributes in Active Directory.
+// RESEARCH Confirm the retry interval for unresolved IDs, the expected time for corrected attributes to appear, and any supported manual refresh.
+
+To check the result, open the file details in the link:../investigate/investigate-unstructured.html[Investigation] view and verify that the file owner shows an Active Directory user name.
+// RESEARCH Confirm where a resolved NFS file owner appears in the GA UI.
 
 == Related information
 

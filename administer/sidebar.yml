@@ -11,5 +11,5 @@ entries:
     url: /administer/configure-kerberos-smb-single-node.html
   - title: Configure Kerberos on multiple nodes
     url: /administer/configure-kerberos-smb-multi-node.html
-  - title: Map NFS users and groups to Active Directory
+  - title: Configure Active Directory identity mapping for NFS
     url: /administer/configure-ad-nfs.html
