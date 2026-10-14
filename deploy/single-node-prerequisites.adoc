@@ -145,9 +145,9 @@ On RHEL systems running SELinux in Enforcing mode, the installer automatically c
 
 == Operating system packages
 
-The operating system repositories enabled on the host must provide `nfs-utils` (RHEL) or `nfs-kernel-server` (Ubuntu) when the configuration location uses a persistent volume, and `cifs-utils` if you scan SMB/CIFS shares with Kerberos. If those repositories require a proxy, configure it in `dnf` or `apt`. The AI Data Engine proxy options don't apply to them.
+The operating system repositories enabled on the host must provide `nfs-utils` (RHEL) or `nfs-kernel-server` (Ubuntu) when the deployment uses an NFS-backed configuration volume. The installer also installs `cifs-utils` from these repositories to support Kerberos-authenticated SMB access, so no separate package installation step is required. If those repositories require a proxy, configure it in `dnf` or `apt`. The AI Data Engine proxy options don't apply to them.
 
-// RESEARCH What is the customer-facing name of the configuration location setting (hostPath or persistent volume)? Does the installer install cifs-utils itself, or must the repositories provide it?
+// RESEARCH Is an NFS-backed configuration volume customer-configurable on a single-node deployment, and does the NFS package requirement apply to it? Is cifs-utils installation unconditional in a normal install, and can any supported installer option skip it?
 
 == Related information
 

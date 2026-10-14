@@ -331,8 +331,8 @@ NOTE: A single-node deployment doesn't support high availability or horizontal s
 * The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. Pre-installing these tools on the target VM isn't required.
 * Ports 6443 (TCP), 10250 (TCP), and 8472 (UDP) must be free on the host before the installer starts. If a host firewall (`firewalld` on RHEL or `ufw` on Ubuntu) is active, allow these ports and the k3s pod CIDR (`10.44.0.0/16`) and service CIDR (`10.45.0.0/16`) before running the installer. Refer to your OS firewall documentation for the required commands.
 * On RHEL systems running SELinux in Enforcing mode, the installer automatically configures the required SELinux policy packages. No manual SELinux configuration is needed, but the host must be able to reach `\https://rpm.rancher.io`.
-* The operating system repositories enabled on the host must provide `nfs-utils` (RHEL) or `nfs-kernel-server` (Ubuntu) when the configuration location uses a persistent volume, and `cifs-utils` if you scan SMB/CIFS shares with Kerberos. If those repositories require a proxy, configure it in `dnf` or `apt`. The AI Data Engine proxy options don't apply to them.
-// RESEARCH What is the customer-facing name of the configuration location setting (hostPath or persistent volume), and does the NFS package requirement apply to the multi-node deployment hosts?
+* The operating system repositories enabled on the host must provide `nfs-utils` (RHEL) or `nfs-kernel-server` (Ubuntu) when the deployment uses an NFS-backed configuration volume. The installer also installs `cifs-utils` from these repositories to support Kerberos-authenticated SMB access, so no separate package installation step is required. If those repositories require a proxy, configure it in `dnf` or `apt`. The AI Data Engine proxy options don't apply to them.
+// RESEARCH Is an NFS-backed configuration volume customer-configurable on a single-node deployment, and does the NFS package requirement apply to the multi-node deployment hosts?
 * If your environment requires an outbound proxy to reach the AI Data Engine endpoints listed above, see link:configure-proxy.html[Configure a proxy].
 
 == AIDE multi-node deployment requirements
@@ -448,14 +448,14 @@ To change the DNS settings, refer to "Fix name resolution" in link:../administer
 |Deployment |Required packages
 
 |Single node
-|Kerberos client tools: `krb5-user` on Ubuntu or `krb5-workstation` on RHEL. The installer adds `cifs-utils` automatically.
+|Kerberos client tools: `krb5-user` on Ubuntu or `krb5-workstation` on RHEL. The installer automatically installs `cifs-utils` to support Kerberos-authenticated SMB access.
 
 |Multi-node
-|`cifs-utils` on every node, and Kerberos client tools on the host where you create and test the keytab.
+|`cifs-utils` on every node, and Kerberos client tools and an NFS client on the host where you create and test the keytab.
 
 |===
 
-`cifs-utils` is required on every AIDE node only for Kerberos-based SMB/CIFS scanning. Kerberos scanning of an SMB/CIFS share fails if `cifs-utils` is missing on a node.
+`cifs-utils` is required on every AIDE node only for Kerberos-based SMB/CIFS scanning. The single-node installer installs it. On a multi-node deployment, you install it on every node. Kerberos scanning of an SMB/CIFS share fails if `cifs-utils` is missing on a node.
 
 === Active Directory attributes for NFS
 

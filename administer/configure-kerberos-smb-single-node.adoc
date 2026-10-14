@@ -65,7 +65,7 @@ If you have a multi-node deployment, refer to link:configure-kerberos-smb-multi-
 [[kerberos-file-locations]]
 == Kerberos files that AI Data Engine uses
 
-You create the following files on the AI Data Engine host. The installer creates the `/opt/netapp/aide` directories, and it installs `cifs-utils` automatically.
+You create the following files on the AI Data Engine host. The installer creates the `/opt/netapp/aide` directories, and it installs `cifs-utils` automatically to support Kerberos-authenticated SMB access.
 
 [cols="1,2",options="header"]
 |===
