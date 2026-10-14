@@ -4,8 +4,9 @@ entries:
   - title: Learn about AIDE deployment
     url: /deploy/deployment-overview.html
   - title: AIDE requirements
-    url: /deploy/aide-requirements.html
     entries:
+      - title: AIDE deployment requirements
+        url: /deploy/aide-requirements.html
       - title: AIDE single-node deployment prerequisites
         url: /deploy/single-node-prerequisites.html
       - title: AIDE multi-node deployment prerequisites

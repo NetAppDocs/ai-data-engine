@@ -232,4 +232,4 @@ Save the manifest as `aide-sc.yaml` and apply it by running `kubectl apply -f ai
 
 * link:aide-requirements.html[AIDE requirements]
 * link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment]
-* link:deploy/configure-proxy.html[Configure proxy]
+* link:configure-proxy.html[Configure proxy]
