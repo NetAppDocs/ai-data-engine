@@ -1,0 +1,152 @@
+---
+sidebar: sidebar
+permalink: deploy/single-node-prerequisites.html
+keywords: single-node, prerequisites, disk space, firewall, k3s, ports, SELinux, host preparation, block storage
+summary: Prepare a Linux VM for an AIDE single-node deployment by verifying access, disk space, firewall rules, and operating system packages.
+---
+= AI Data Engine single-node deployment prerequisites
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+For an AI Data Engine (AIDE) single-node deployment, you provide a Linux VM and the installer installs k3s and configures kernel parameters, host directories, and the Kubernetes resources. Prepare the VM by verifying access and tools, free disk space, firewall rules, and operating system packages before you run the install command.
+
+Your VM must meet the requirements in the following sections before you run the install command. For VM sizing, supported operating systems, and network ports, see link:aide-requirements.html[AIDE requirements].
+
+== Access and tools
+
+* You have root or sudo access on the target VM to run the installer.
+* The target host has bash 4.0 or later, curl, and tar available.
+* The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. You don't need to install these tools on the VM.
+* The host has a 1 GbE minimum network connection (10 GbE recommended for Large deployments).
+* If your environment requires an outbound proxy to reach the AI Data Engine endpoints, see link:configure-proxy.html[Configure a proxy].
+* If you restrict where container images can be pulled from, you must also allow the NetApp container registry listed in link:aide-requirements.html#networking-requirements[AIDE requirements].
+
+== Storage type
+
+// RESEARCH Should NFS-backed storage be avoided for the AIDE data volume on a single-node deployment, with block storage as the documented recommendation? This needs confirmation.
+Use block storage, not NFS, for the AIDE data volume. NFS-backed storage can cause underperformance. NVMe SSD or other solid-state storage is preferred for all deployment sizes. The storage must also meet the IOPS and throughput for your size in link:aide-requirements.html#single-node-vm-sizes[AIDE requirements].
+
+[[single-node-disk-space]]
+== Disk space
+
+Free space is required on each file system that hosts the paths in the following table. Paths that share a disk share one free-space pool, so add their minimums together.
+
+If a single disk hosts everything, the minimum free space is 65 GB plus the AIDE data volume size for your configuration:
+
+[cols="1,1",options="header"]
+|===
+|Size |Minimum free space on a single disk
+
+|Small
+|565 GB
+
+|Medium
+|2,065 GB
+
+|Large
+|6,065 GB
+
+|===
+
+If the paths are on separate mounts, each mount must meet the minimum for the paths that it hosts. If you move the k3s data directory by using the `--k3s-data-dir` installer option, the k3s minimum applies to the new location, and the disk must already be mounted.
+
+[cols="2,1,1,3",options="header"]
+|===
+|Path |Minimum |Recommended |Purpose
+
+|`/var/lib/rancher/k3s`
+|20 GB
+|20 GB
+|Container images, containerd snapshots, and the embedded database
+
+|`/var/lib/kubelet`
+|10 GB
+|15 GB
+|Kubelet state, pod ephemeral storage, and `emptyDir` volumes
+
+|`/var/log`
+|10 GB
+|10 GB
+|Container output and k3s system logs
+
+|`/`
+|25 GB
+|50 GB
+|Operating system packages, k3s binaries, and installer tools
+
+|`/var/run`
+|1 GB
+|2 GB
+|Sockets and process IDs (usually `tmpfs`, which doesn't add to a single-disk total)
+
+|`/var/lib/netapp/aide`
+|Small: 500 GB; Medium: 2,000 GB; Large: 6,000 GB
+|Same as minimum
+|AIDE data volume
+
+|===
+
+Don't use a mount that is below its minimum. Mounts that are below the recommended size, or more than 85% full, aren't recommended because the kubelet can evict pods when free space is low.
+
+[[single-node-firewall]]
+== Firewall
+
+The k3s ports in the following table must be free on the host before the installer starts. If a host firewall is enabled, you must also allow these ports and the pod and service CIDRs before you run the installer. Otherwise, pod networking doesn't work. These ports are internal to k3s and are separate from the ports in link:aide-requirements.html#networking-requirements[AIDE requirements].
+
+[cols="1,1,3",options="header"]
+|===
+|Port |Protocol |Used by
+
+|6443
+|TCP
+|Kubernetes API server
+
+|10250
+|TCP
+|Kubelet API for pod logs, exec, and metrics
+
+|8472
+|UDP
+|Flannel VXLAN for pod-to-pod networking
+
+|===
+
+The default pod CIDR is `10.44.0.0/16` and the default service CIDR is `10.45.0.0/16`. If you override these values with the `--k3s-cluster-cidr` and `--k3s-service-cidr` installer options, use your values in the following commands. Override the defaults only if they overlap your existing networks.
+
+.RHEL (firewalld)
+[source,bash]
+----
+sudo firewall-cmd --permanent --add-port=6443/tcp
+sudo firewall-cmd --permanent --add-port=10250/tcp
+sudo firewall-cmd --permanent --add-port=8472/udp
+sudo firewall-cmd --permanent --zone=trusted --add-source=10.44.0.0/16
+sudo firewall-cmd --permanent --zone=trusted --add-source=10.45.0.0/16
+sudo firewall-cmd --reload
+----
+
+.Ubuntu (ufw)
+[source,bash]
+----
+sudo ufw allow 6443/tcp
+sudo ufw allow 10250/tcp
+sudo ufw allow 8472/udp
+sudo ufw allow from 10.44.0.0/16
+sudo ufw allow from 10.45.0.0/16
+sudo ufw reload
+----
+
+For the application ports that must be open, see link:aide-requirements.html#networking-requirements[AIDE requirements].
+
+== SELinux
+
+If SELinux is in Enforcing mode, k3s automatically configures the required SELinux contexts during installation. No manual SELinux configuration is needed. On RHEL systems, the host must be able to reach `\https://rpm.rancher.io` to download the k3s SELinux policy package.
+
+== Operating system packages
+
+The installer installs `cifs-utils`, which is required for Kerberos-based CIFS/SMB scanning, from the operating system repositories enabled on the host. If those repositories require a proxy, configure it in `dnf` or `apt`. The AI Data Engine proxy options don't apply to them.
+
+== Related information
+
+* link:aide-requirements.html[AIDE requirements]
+* link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment]

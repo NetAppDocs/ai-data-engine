@@ -5,6 +5,11 @@ entries:
     url: /deploy/deployment-overview.html
   - title: AIDE requirements
     url: /deploy/aide-requirements.html
+    entries:
+      - title: AIDE single-node deployment prerequisites
+        url: /deploy/single-node-prerequisites.html
+      - title: AIDE multi-node deployment prerequisites
+        url: /deploy/multi-node-prerequisites.html
   - title: Deploy AIDE as a single-node deployment
     url: /deploy/deploy-aide-single-node.html
   - title: Deploy AIDE as a multi-node deployment

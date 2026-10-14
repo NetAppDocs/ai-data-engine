@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: deploy/deploy-aide-multi-node.html
-keywords: deploy, install, multi-node, multi node, wizard, NetApp Console, deployment wizard, kubernetes, RKE2
+keywords: deploy, install, multi-node, multi node, wizard, NetApp Console, deployment wizard, kubernetes, RKE2, OpenShift, AKS
 summary: Deploy AIDE as a multi-node deployment from NetApp Console using the deployment wizard.
 ---
 = Deploy AI Data Engine as a multi-node deployment
@@ -9,12 +9,12 @@ summary: Deploy AIDE as a multi-node deployment from NetApp Console using the de
 :imagesdir: ../media/
 
 [.lead]
-Deploy AIDE as a multi-node deployment from NetApp Console using the deployment wizard. The wizard guides you through selecting your installation location, choosing a configuration size, and running the install command against your RKE2 cluster.
+Deploy AIDE as a multi-node deployment from NetApp Console using the deployment wizard. The wizard guides you through selecting your installation location, choosing a configuration size, and running the install command against your Kubernetes cluster.
 
 .Before you begin
 
 * You have _Organization admin_ or greater permissions in NetApp Console.
-* Your RKE2 cluster meets the multi-node prerequisites described in link:aide-requirements.html[AIDE requirements].
+* Your Kubernetes cluster meets the multi-node prerequisites described in link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
 * Sudo (or root) permissions are required on the machine from which you run the install command.
 * An NFS server with an exported path is available and reachable from the cluster for the AIDE config volume.
 * A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the cluster nodes. The Console Agent IP is required to run the install command.
@@ -37,13 +37,13 @@ The AI Data Engine landing page appears.
 * *Medium (Default)*: recommended for environments with up to approximately 3 billion files.
 * *Large*: recommended for environments with up to approximately 6 billion files.
 +
-These sizes are recommended baselines, not hard limits. An AIDE multi-node deployment supports environments beyond 6 billion files through horizontal scale-out; see link:aide-requirements.html#flexible-sizing-multi-node[flexible sizing guidelines] for details.
+These sizes are recommended baselines, not hard limits. An AIDE multi-node deployment requires custom sizing with NetApp for environments beyond 6 billion files; see link:aide-requirements.html#flexible-sizing-multi-node[flexible sizing guidelines] for details.
 
 . For small or large configurations, adjust the install command to reflect the chosen size: `--flavor <small|medium|large>`
 
 . If you use a proxy, remove `--no-proxy` from the install command if it's present, and add the proxy options. See link:configure-proxy.html[Configure a proxy].
 
-. Run the install command with any configuration size adjustments from your target host with kubectl access to your RKE2 cluster.
+. Run the install command with any configuration size adjustments from your target host with kubectl access to your Kubernetes cluster.
 +
 NOTE: Installation takes about 30 minutes to complete. Timeouts and retries might occur, and this is normal.
 

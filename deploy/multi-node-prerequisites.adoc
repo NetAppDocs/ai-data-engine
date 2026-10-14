@@ -1,0 +1,229 @@
+---
+sidebar: sidebar
+permalink: deploy/multi-node-prerequisites.html
+keywords: multi-node, prerequisites, RKE2, OpenShift, AKS, kubernetes, cluster, NFS, StorageClass, namespace, kubectl, installer host
+summary: Prepare your Kubernetes cluster, installer host, nodes, NFS server, and storage for an AIDE multi-node deployment on RKE2, OpenShift, or AKS.
+---
+= AI Data Engine multi-node deployment prerequisites
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+For an AI Data Engine (AIDE) multi-node deployment, you bring your own Kubernetes cluster. The installer deploys AI Data Engine onto your existing cluster and doesn't provision or manage it. Prepare the cluster, nodes, storage, and installer host before you run the install command.
+
+Your environment must meet the requirements in the following sections before you run the install command. For node sizing, supported Kubernetes versions, and network ports, see link:aide-requirements.html[AIDE requirements].
+
+// RESEARCH Which node operating system versions are supported for multi-node deployments?
+
+== Kubernetes cluster
+
+* You provide a Kubernetes cluster that runs RKE2, OpenShift, or Azure Kubernetes Service (AKS) and meets the link:aide-requirements.html#supported-kubernetes[supported Kubernetes versions].
+* The cluster can be shared with other workloads or dedicated to AI Data Engine.
+* The cluster has at least three nodes with enough allocatable capacity for your configuration. See link:aide-requirements.html#multi-node-sizes[node sizing].
+* Every node has outbound network access to the NetApp container registry. See link:aide-requirements.html#outbound-internet-access[Outbound internet access]. If you restrict where images can be pulled from, allow the NetApp registry.
+* If your environment requires an outbound proxy, see link:configure-proxy.html[Configure a proxy].
+
+// RESEARCH What OpenShift-specific requirements apply to a multi-node deployment? For example, does the host-port requirement for ports 80 and 443 apply to OpenShift, which uses those ports for its own router, and are there security or permission settings that customers must configure?
+// RESEARCH Does general availability include node taints and tolerations for shared clusters? If so, what taint should customers apply to isolate AI Data Engine nodes?
+
+== Installer host
+
+The installer host is a lightweight management machine. It doesn't run AI Data Engine workloads. It can be any machine with network access to the Kubernetes API server, such as a laptop, a jump host, or a CI runner.
+
+* You have a valid kubeconfig for the target cluster. Specify it with the `--kubeconfig` option or the `KUBECONFIG` environment variable. If you don't provide one, the installer prompts for it. The current context must point to the cluster where you want to deploy. To check or change it, run `kubectl config current-context` or `kubectl config use-context <name>`.
+* The kubeconfig user can read namespaces, StorageClasses, and nodes; apply custom resources; and create PersistentVolumes, PersistentVolumeClaims, Secrets, ConfigMaps, Deployments, Services, StatefulSets, DaemonSets, CronJobs, and Jobs.
+* The installer host has bash 4.0 or later, curl, and tar.
+* The installer automatically downloads `helm`, `kubectl`, and `jq` into a tools directory. You don't need to install them in advance.
+* You have root or sudo access to use the default tools directory. If you don't have root access, specify a directory that you own with the `--tools-dir` option.
+
+NOTE: The `sudo` command removes environment variables, so always specify `--kubeconfig` when you run the installer with `sudo`.
+
+At startup, the installer runs `kubectl config current-context` and `kubectl cluster-info` and stops if either command fails. Run these commands first, as the same user and with the same privileges that you use for the installer. The installer also asks you to confirm that you completed the node, NFS, and cluster preparation in the following sections.
+
+== Node preparation
+
+Complete these steps on every node that schedules AI Data Engine workloads.
+
+=== Kernel version
+
+Linux kernel 5.3 or later is recommended. It supports the `nconnect` NFS mount option, which provides the throughput that the shared configuration volume requires. RHEL 8.3 and later (through a Red Hat backport), RHEL 9.x, and the supported Ubuntu versions meet this recommendation. To check the kernel version, run `uname -r`.
+
+=== Kernel parameters
+
+. Check the value of `net.core.somaxconn`:
++
+[source,bash]
+----
+sysctl net.core.somaxconn
+----
++
+If the value is 511 or higher, no action is needed. If the value is lower, contact NetApp Support before you continue.
+
+. Add the following lines to `/etc/sysctl.conf`:
++
+[source,ini]
+----
+vm.max_map_count=262144
+fs.inotify.max_user_instances=1280
+sunrpc.min_resvport=1000
+----
++
+If a node already has a higher value for `vm.max_map_count` or `fs.inotify.max_user_instances`, keep the higher value. Always set `sunrpc.min_resvport=1000`.
+
+. Load the `sunrpc` module, make it persistent, and apply the settings:
++
+[source,bash]
+----
+sudo modprobe sunrpc
+echo "sunrpc" | sudo tee /etc/modules-load.d/aide-sunrpc.conf
+sudo sysctl -p
+----
+
+. Verify the settings on each node:
++
+[source,bash]
+----
+lsmod | grep sunrpc
+cat /etc/modules-load.d/aide-sunrpc.conf
+sysctl vm.max_map_count sunrpc.min_resvport
+----
++
+The `sunrpc` module must be loaded, the file must contain `sunrpc`, `vm.max_map_count` must be at least 262144, and `sunrpc.min_resvport` must be 1000. If `sysctl -p` reports `cannot stat /proc/sys/...` for a key, load the kernel module for that setting, for example `sudo modprobe sunrpc`, and run `sudo sysctl -p` again.
+
+=== Host directories
+
+Create the following directories and set their ownership and permissions:
+
+[source,bash]
+----
+sudo mkdir -p /var/lib/netapp/aide /var/lib/netapp/aide/filebeat /var/lib/netapp/aide/elasticsearch /var/log/netapp/aide
+sudo chown 4321:4321 /var/lib/netapp/aide /var/lib/netapp/aide/filebeat /var/lib/netapp/aide/elasticsearch /var/log/netapp/aide
+sudo chmod 775 /var/lib/netapp/aide /var/lib/netapp/aide/filebeat /var/lib/netapp/aide/elasticsearch /var/log/netapp/aide
+----
+
+=== Kerberos CIFS/SMB support (optional)
+
+The `cifs-utils` package is required on every node that schedules AI Data Engine workloads only for Kerberos-based CIFS/SMB scanning. Skip this step if you use NTLM-only CIFS or don't scan SMB shares.
+
+.RHEL
+[source,bash]
+----
+sudo dnf install -y cifs-utils
+----
+
+.Ubuntu
+[source,bash]
+----
+sudo apt-get update
+sudo apt-get install -y cifs-utils
+----
+
+=== Node labels
+
+AI Data Engine schedules its components by using node labels. Apply the following labels to the nodes that schedule AI Data Engine workloads. Each label must be present on at least three nodes. Some configuration sizes use more nodes, so apply the labels to every node that schedules workloads. Replace `<node-name>` with the name of each node.
+
+[source,bash]
+----
+kubectl label node <node-name> \
+  3rdparty-aide-nginx=true 3rdparty-aide-postgres=true \
+  3rdparty-aide-rabbitmq=true 3rdparty-aide-redis=true \
+  3rdparty-aide-es=true 3rdparty-aide-kafka=true \
+  3rdparty-aide-logstash=true 3rdparty-aide-filebeat=true \
+  3rdparty-aide-k8s-event-exporter=true 3rdparty-aide-telegraf=true \
+  microservices-aide=true --overwrite
+----
+
+=== Ingress ports
+
+AI Data Engine deploys an ingress controller that uses host ports TCP 80 and 443 on the nodes that have the `3rdparty-aide-nginx=true` label. No other Kubernetes workload can claim these ports on those nodes. Remove or disable other ingress controllers, such as Traefik, schedule them away from these nodes, or configure them not to use host ports 80 and 443.
+
+== NFS server
+
+The AI Data Engine configuration volume is backed by NFS. You must provide an NFS server and an export before you run the installer. The installation can't proceed without them. You specify the NFS server host name or IP address and the export path when you run the install command.
+
+// RESEARCH What IOPS and throughput must the NFS export provide for each configuration size?
+
+[cols="1,2",options="header"]
+|===
+|Requirement |Value
+
+|Export access
+|Read-write, reachable from all Kubernetes node IP addresses
+
+|Owner
+|UID:GID 4321:4321
+
+|Permission mode
+|0770
+
+|Squash
+|Do not remap UID 4321 to another user. UID 4321 must retain write access to the mounted export.
+
+|===
+
+To prepare the export, run the following commands on the NFS server, or on any host that has the export mounted:
+
+[source,bash]
+----
+sudo mkdir -p <nfs-data-share>
+sudo chown 4321:4321 <nfs-data-share>
+sudo chmod 0770 <nfs-data-share>
+----
+
+The installer creates the required subdirectories under the export on first install.
+
+== StorageClass
+
+A StorageClass for the stateful components must exist on the cluster, and it must meet the IOPS and throughput in link:aide-requirements.html#multi-node-sizes[node sizing]. You specify the StorageClass when you run the install command. The default name is `aide-sc`. The installer stops if the StorageClass doesn't exist.
+
+Use block storage, such as NVMe or iSCSI. Shared storage performs very poorly.
+
+The StorageClass is separate from the NFS configuration volume.
+
+== Namespace
+
+The target Kubernetes namespace (default `aide`) must exist before you run the installer. The installer doesn't create it.
+
+[source,bash]
+----
+kubectl create namespace aide
+----
+
+== AKS requirements
+
+In addition to the preceding requirements, an AKS cluster must meet the following requirements.
+
+* Use a node pool with a premium-capable VM size, which has an `s` in the SKU, such as `Standard_D16s_v5`. Azure premium disks attach only to premium-capable VM sizes. If the VM size doesn't support the disk type that the StorageClass provisions, the pod is scheduled but the volume attach fails with a `FailedAttachVolume` error.
+* To check the disk type that a StorageClass provisions and the VM size of your nodes, run the following commands:
++
+[source,bash]
+----
+kubectl get sc <name> -o jsonpath='{.provisioner}{"  "}{.parameters}{"\n"}'
+kubectl get nodes -o custom-columns=NAME:.metadata.name,VMSIZE:.metadata.labels.node\.kubernetes\.io/instance-type
+----
+* Use Premium SSD v2 (`PremiumV2_LRS`) for the StorageClass so that you can set IOPS and throughput independently. Premium SSD v2 requires a premium-capable VM size and `cachingMode: None`. Set `diskIOPSReadWrite` and `diskMBpsReadWrite` to the values for your size in link:aide-requirements.html#multi-node-sizes[node sizing]. The following example uses small deployment size values:
++
+[source,yaml]
+----
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: aide-sc
+provisioner: disk.csi.azure.com
+allowVolumeExpansion: true
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Retain
+parameters:
+  skuName: PremiumV2_LRS
+  cachingMode: None
+  diskIOPSReadWrite: "8000"
+  diskMBpsReadWrite: "1000"
+----
+
+* Run `az login` as the user that runs the installer. AKS kubeconfig files authenticate by using the Azure CLI sign-in of the current user, so don't run the installer with `sudo`. Specify a tools directory that you own instead.
+* If the AKS cluster is private, the installer host must reach the API server over the virtual network, a peered network, or a VPN. Run `kubectl cluster-info` from the installer host to verify access.
+
+== Related information
+
+* link:aide-requirements.html[AIDE requirements]
+* link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment]
