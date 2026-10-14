@@ -18,7 +18,7 @@ Your environment must meet the requirements in the following sections before you
 == Kubernetes cluster
 
 * You provide a Kubernetes cluster that runs RKE2, OpenShift, or Azure Kubernetes Service (AKS) and meets the link:aide-requirements.html#supported-kubernetes[supported Kubernetes versions].
-* The cluster can be shared with other workloads or dedicated to AI Data Engine.
+* AI Data Engine components run on the nodes that you label. See <<node-labels,Node labels>>. Other workloads on those nodes can't use host ports 80 and 443.
 * The cluster has at least three nodes with enough allocatable capacity for your configuration. See link:aide-requirements.html#multi-node-sizes[node sizing].
 * Every node has outbound network access to the NetApp container registry. See link:aide-requirements.html#outbound-internet-access[Outbound internet access]. If you restrict where images can be pulled from, allow the NetApp registry.
 * If your environment requires an outbound proxy, see link:configure-proxy.html[Configure a proxy].
@@ -46,7 +46,7 @@ Complete these steps on every node that schedules AI Data Engine workloads.
 
 === Kernel version
 
-Linux kernel 5.3 or later is recommended. It supports the `nconnect` NFS mount option, which provides the throughput that the shared configuration volume requires. RHEL 8.3 and later (through a Red Hat backport), RHEL 9.x, and the supported Ubuntu versions meet this recommendation. To check the kernel version, run `uname -r`.
+Linux kernel 5.3 or later is recommended. It supports the `nconnect` NFS mount option, which provides the throughput that the shared configuration volume requires. RHEL 8.3 and later (through a Red Hat backport), RHEL 9.x, and Ubuntu 22.04 LTS and 24.04 LTS meet this recommendation. To check the kernel version, run `uname -r`.
 
 === Kernel parameters
 
@@ -118,9 +118,12 @@ sudo apt-get update
 sudo apt-get install -y cifs-utils
 ----
 
+[[node-labels]]
 === Node labels
 
 AI Data Engine schedules its components by using node labels. Apply the following labels to the nodes that schedule AI Data Engine workloads. Each label must be present on at least three nodes. Some configuration sizes use more nodes, so apply the labels to every node that schedules workloads. Replace `<node-name>` with the name of each node.
+
+The following command applies all of the labels to a node:
 
 [source,bash]
 ----
@@ -174,7 +177,7 @@ The installer creates the required subdirectories under the export on first inst
 
 == StorageClass
 
-A StorageClass for the stateful components must exist on the cluster, and it must meet the IOPS and throughput in link:aide-requirements.html#multi-node-sizes[node sizing]. You specify the StorageClass when you run the install command. The default name is `aide-sc`. The installer stops if the StorageClass doesn't exist.
+A StorageClass for the stateful components (Elasticsearch, Kafka, PostgreSQL, RabbitMQ, and Redis) must exist on the cluster, and it must meet the IOPS and throughput in link:aide-requirements.html#multi-node-sizes[node sizing]. You specify the StorageClass when you run the install command. The default name is `aide-sc`. The installer stops if the StorageClass doesn't exist.
 
 Use block storage, such as NVMe or iSCSI. Shared storage performs very poorly.
 
@@ -219,6 +222,8 @@ parameters:
   diskIOPSReadWrite: "8000"
   diskMBpsReadWrite: "1000"
 ----
++
+Save the manifest as `aide-sc.yaml` and apply it by running `kubectl apply -f aide-sc.yaml`. Then specify the `aide-sc` StorageClass when you run the install command.
 
 * Run `az login` as the user that runs the installer. AKS kubeconfig files authenticate by using the Azure CLI sign-in of the current user, so don't run the installer with `sudo`. Specify a tools directory that you own instead.
 * If the AKS cluster is private, the installer host must reach the API server over the virtual network, a peered network, or a VPN. Run `kubectl cluster-info` from the installer host to verify access.
@@ -227,3 +232,4 @@ parameters:
 
 * link:aide-requirements.html[AIDE requirements]
 * link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment]
+* link:deploy/configure-proxy.html[Configure proxy]

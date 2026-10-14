@@ -150,3 +150,4 @@ The installer installs `cifs-utils`, which is required for Kerberos-based CIFS/S
 
 * link:aide-requirements.html[AIDE requirements]
 * link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment]
+* link:deploy/configure-proxy.html[Configure proxy]
