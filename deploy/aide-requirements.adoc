@@ -238,17 +238,17 @@ AI Data Engine supports only the distributions and versions listed in this table
 
 |AIDE multi-node
 |RKE2
-|v1.34 or later (v1.36.x recommended)
+|v1.34 to v1.36 (v1.36.x recommended)
 |You provide the cluster, which can be shared or dedicated.
 
 |AIDE multi-node
 |OpenShift
-|To be confirmed
+|**To be confirmed**
 |You provide the cluster, which can be shared or dedicated.
 
 |AIDE multi-node
 |Azure Kubernetes Service (AKS)
-|To be confirmed
+|**To be confirmed**
 |You provide the cluster, which can be shared or dedicated.
 
 |===
