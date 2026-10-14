@@ -49,7 +49,7 @@ Before you start either procedure, gather the following:
 * The FQDN and the share name of each file server that you want to scan. Kerberos authentication doesn't accept an IP address for the file server.
 * Root access to the hosts where you configure Kerberos.
 
-Also verify that your environment meets the link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements], including ports, time synchronization, DNS, and host packages.
+Also verify that your environment meets the link:../deploy/aide-requirements.html#networking-requirements[networking requirements] and the link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements], including time synchronization, DNS, and host packages.
 
 == Related information
 

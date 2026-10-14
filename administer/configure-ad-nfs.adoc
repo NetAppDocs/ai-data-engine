@@ -17,7 +17,7 @@ This mapping doesn't authenticate AI Data Engine to NFS storage. It converts the
 .Before you begin
 
 * You have _AI Data Engine administrator_ privileges.
-* You have link:../deploy/aide-requirements.html#kerberos-ad-requirements[opened the required ports] from AI Data Engine to your Active Directory domain controllers.
+* You have link:../deploy/aide-requirements.html#networking-requirements[opened the required ports] from AI Data Engine to your Active Directory domain controllers.
 // RESEARCH Which ports does the configured LDAP, LDAPS, or Global Catalog connection require? The requirements page lists 3268 and 3269 for the Global Catalog.
 * You have an Active Directory account that AI Data Engine can use to query user and group attributes. You enter its user name and password in AI Data Engine.
 // RESEARCH Confirm the permissions the Active Directory account needs and whether it must be a dedicated account.

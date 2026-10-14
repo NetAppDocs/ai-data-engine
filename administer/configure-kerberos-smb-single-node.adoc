@@ -17,7 +17,7 @@ If you have a multi-node deployment, refer to link:configure-kerberos-smb-multi-
 
 * You have _AI Data Engine administrator_ privileges.
 * You have root access to the AI Data Engine host.
-* You have reviewed the link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements], including ports, time synchronization, and DNS.
+* You have reviewed the link:../deploy/aide-requirements.html#networking-requirements[networking requirements] and the link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements], including time synchronization and DNS.
 * You have verified that the AI Data Engine host can reach the KDC on port 88, the file server on port 445, and your DNS server on port 53.
 * You have verified that NTP is active on the AI Data Engine host and that its clock is synchronized with your domain controllers. To check, run `timedatectl`.
 * You have a scan service account in Active Directory with read access to the SMB/CIFS shares you want to scan. The account must support AES256 encryption.
@@ -183,10 +183,11 @@ The second `klist` command must show a valid ticket for the scan user. A ticket 
 +
 [source,cli]
 ----
-install -m 600 /tmp/krb5.keytab /opt/netapp/aide/kerberos_refresher/datasense.keytab
+install -o root -g 4321 -m 640 /tmp/krb5.keytab /opt/netapp/aide/kerberos_refresher/datasense.keytab
 rm -f /tmp/krb5.keytab
 ----
-// RESEARCH Which ownership and permissions must the keytab and the principal file have in a single-node deployment so that the ticket refresher can read them? Does the refresher need group ID 4321 as it does in a multi-node deployment?
++
+The ticket refresher runs as a non-root user with group ID 4321. The keytab and the principal file must be readable by that group and by no other users.
 . Create the principal file. The `KRB5_RENEW_INTERVAL_H` value is the ticket renewal interval in hours.
 +
 [source,cli]
@@ -196,8 +197,10 @@ KRB5_USER=${SCAN_USER}
 KRB5_REALM=${REALM}
 KRB5_RENEW_INTERVAL_H=3
 EOF
+chgrp 4321 /opt/netapp/aide/kerberos_refresher/kerberos_creds.env
 chmod 640 /opt/netapp/aide/kerberos_refresher/kerberos_creds.env
 ----
+// RESEARCH Does the installer set the ownership and permissions of the ticket cache directory, or must the administrator set them?
 // RESEARCH How does an administrator update the keytab after the password of the scan service account changes?
 
 [[verify-name-resolution]]
@@ -373,8 +376,8 @@ kubectl -n aide delete job -l app.kubernetes.io/name=ds-krb5-ticket-refresher --
 |Verify the password and realm, and confirm that the account supports AES256 encryption. Open port 88 to the KDC, and confirm that NTP is active on the host. Then create the keytab again.
 
 |The ticket refresh job fails, or no ticket cache is created.
-|The keytab, principal file, or `/etc/krb5.conf` is missing or empty, or the ticket cache directory isn't writable by AI Data Engine.
-|Verify that the files exist in the locations listed in <<kerberos-file-locations,Kerberos files that AI Data Engine uses>>. If the refresh job still can't read the keytab or the principal file, set the group to 4321 and the mode to 640 on both files. To make the ticket cache directory writable, run `chown root:4321 /opt/netapp/aide/kerberos_ccache && chmod 770 /opt/netapp/aide/kerberos_ccache`.
+|The keytab, principal file, or `/etc/krb5.conf` is missing or empty, or the group ownership and permissions are incorrect.
+|Verify that the files exist in the locations listed in <<kerberos-file-locations,Kerberos files that AI Data Engine uses>>. Verify that the keytab and the principal file have group 4321 and mode 640. Verify that the ticket cache directory is owned by `root:4321` with mode 770. If it isn't, run `chown root:4321 /opt/netapp/aide/kerberos_ccache && chmod 770 /opt/netapp/aide/kerberos_ccache`.
 
 |The file server or KDC name doesn't resolve on the host.
 |The host doesn't use a DNS server that can resolve your Active Directory names.

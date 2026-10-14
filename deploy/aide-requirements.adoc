@@ -11,6 +11,7 @@ summary: Review infrastructure and networking requirements before deploying AI D
 [.lead]
 Before you deploy AI Data Engine, review the networking, VM sizing, and operating system requirements for your environment.
 
+[[networking-requirements]]
 == Networking requirements
 
 The following network connections must be open:
@@ -59,9 +60,9 @@ The following network connections must be open:
 
 |AI Data Engine to Active Directory
 |389, 636, 3268, 3269
-|TCP/UDP
+|TCP (UDP also for 389)
 |Outbound
-|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication, SMB/CIFS scanning, and mapping NFS user and group IDs to Active Directory names. Port 389 uses both TCP and UDP; all other ports use TCP only.
+|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication, SMB/CIFS scanning, and mapping NFS user and group IDs to Active Directory names.
 
 |AI Data Engine to Kerberos KDC (Active Directory domain controller)
 |88
@@ -330,7 +331,7 @@ NOTE: A single-node deployment doesn't support high availability or horizontal s
 * The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. Pre-installing these tools on the target VM isn't required.
 * Ports 6443 (TCP), 10250 (TCP), and 8472 (UDP) must be free on the host before the installer starts. If a host firewall (`firewalld` on RHEL or `ufw` on Ubuntu) is active, allow these ports and the k3s pod CIDR (`10.44.0.0/16`) and service CIDR (`10.45.0.0/16`) before running the installer. Refer to your OS firewall documentation for the required commands.
 * On RHEL systems running SELinux in Enforcing mode, the installer automatically configures the required SELinux policy packages. No manual SELinux configuration is needed, but the host must be able to reach `\https://rpm.rancher.io`.
-* The operating system repositories enabled on the host must provide `cifs-utils`, and `nfs-utils` (RHEL) or `nfs-kernel-server` (Ubuntu) when the configuration location uses a persistent volume. If those repositories require a proxy, configure it in `dnf` or `apt`. The AI Data Engine proxy options don't apply to them.
+* The operating system repositories enabled on the host must provide `nfs-utils` (RHEL) or `nfs-kernel-server` (Ubuntu) when the configuration location uses a persistent volume, and `cifs-utils` if you scan SMB/CIFS shares with Kerberos. If those repositories require a proxy, configure it in `dnf` or `apt`. The AI Data Engine proxy options don't apply to them.
 // RESEARCH What is the customer-facing name of the configuration location setting (hostPath or persistent volume), and does the NFS package requirement apply to the multi-node deployment hosts?
 * If your environment requires an outbound proxy to reach the AI Data Engine endpoints listed above, see link:configure-proxy.html[Configure a proxy].
 
@@ -422,7 +423,7 @@ NOTE: Adding nodes to an existing multi-node cluster is non-disruptive to ongoin
 [[kerberos-ad-requirements]]
 == Kerberos and Active Directory requirements
 
-Review these requirements before you scan SMB/CIFS shares with Kerberos authentication or map NFS user and group IDs to Active Directory names. AIDE is a Kerberos client: it authenticates to your existing Kerberos key distribution center (KDC) and doesn't act as a Kerberos server.
+Review these requirements before you scan SMB/CIFS shares with Kerberos authentication or map NFS user and group IDs to Active Directory names. The time synchronization, DNS, and host package requirements apply to Kerberos only. AI Data Engine (AIDE) is a Kerberos client: it authenticates to your existing Kerberos key distribution center (KDC) and doesn't act as a Kerberos server.
 
 === Time synchronization
 
@@ -436,7 +437,7 @@ Kerberos authentication fails when the clocks on the AIDE nodes and the KDC diff
 
 * Every AIDE node can resolve the file server and the KDC by fully qualified domain name (FQDN).
 * If you configure the nodes to use your Active Directory DNS server, that server must also resolve external names. Otherwise, AIDE can't reach the endpoints listed in <<outbound-internet-access,Outbound internet access>>.
-* For a multi-node deployment, configure your Active Directory DNS server as the only name server on every node. Name resolution in the cluster picks one of the listed name servers at random, so a name server that can't resolve Active Directory names causes intermittent failures.
+* If you change the DNS settings on a multi-node deployment, configure your Active Directory DNS server as the only name server on every node. Name resolution in the cluster picks one of the listed name servers at random, so a name server that can't resolve Active Directory names causes intermittent failures.
 
 To change the DNS settings, refer to "Fix name resolution" in link:../administer/configure-kerberos-smb-single-node.html#fix-name-resolution[Configure Kerberos for SMB/CIFS shares on a single-node deployment] or link:../administer/configure-kerberos-smb-multi-node.html#fix-name-resolution[Configure Kerberos for SMB/CIFS shares on a multi-node deployment].
 
@@ -454,11 +455,11 @@ To change the DNS settings, refer to "Fix name resolution" in link:../administer
 
 |===
 
-Kerberos scanning of an SMB/CIFS share fails if `cifs-utils` is missing on a node. This package isn't required if you don't use Kerberos.
+`cifs-utils` is required on every AIDE node only for Kerberos-based SMB/CIFS scanning. Kerberos scanning of an SMB/CIFS share fails if `cifs-utils` is missing on a node.
 
 === Active Directory attributes for NFS
 
-To resolve NFS user and group IDs to Active Directory names, the `uidNumber` and `gidNumber` attributes must be populated, and replicated to the Global Catalog if AI Data Engine queries it. Refer to link:../administer/configure-ad-nfs.html[Configure Active Directory identity mapping for NFS].
+To resolve NFS user and group IDs to Active Directory names, the `uidNumber` and `gidNumber` attributes must be populated, and replicated to the Global Catalog if AIDE queries it. Refer to link:../administer/configure-ad-nfs.html[Configure Active Directory identity mapping for NFS].
 
 == Related information
 

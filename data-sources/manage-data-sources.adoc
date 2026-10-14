@@ -67,7 +67,7 @@ Requeue data resources that are in a failed or error state. Resolve the root cau
 
 Update the credentials that AI Data Engine uses to authenticate to SMB/CIFS shares.
 
-NOTE: If the share uses Kerberos authentication, AI Data Engine authenticates with the keytab instead of a stored password. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine].
+NOTE: If the share uses Kerberos authentication, AI Data Engine authenticates with a ticket from the keytab, and no password is stored in the data source. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine].
 // RESEARCH Confirm whether Edit CIFS credentials applies to Kerberos shares and how to change the scan service account or keytab.
 
 .Steps
