@@ -9,7 +9,7 @@ summary: Configure Kerberos authentication on a single-node AI Data Engine deplo
 :imagesdir: ../media/
 
 [.lead]
-Configure Kerberos authentication so that a single-node AI Data Engine deployment can scan SMB/CIFS shares without a stored password. You create a Kerberos configuration file, a keytab for a scan service account, and a principal file on the AI Data Engine host. AI Data Engine then refreshes the Kerberos ticket automatically.
+Configure Kerberos authentication so that a single-node AI Data Engine deployment can scan SMB/CIFS shares without storing a password in the data source. You create a Kerberos configuration file, a keytab for a scan service account, and a principal file on the AI Data Engine host. AI Data Engine then refreshes the Kerberos ticket automatically.
 
 If you have a multi-node deployment, refer to link:configure-kerberos-smb-multi-node.html[Configure Kerberos for SMB/CIFS shares on a multi-node AI Data Engine deployment].
 
@@ -21,6 +21,7 @@ If you have a multi-node deployment, refer to link:configure-kerberos-smb-multi-
 * You have verified that the AI Data Engine host can reach the KDC on port 88, the file server on port 445, and your DNS server on port 53.
 * You have verified that NTP is active on the AI Data Engine host and that its clock is synchronized with your domain controllers. To check, run `timedatectl`.
 * You have a scan service account in Active Directory with read access to the SMB/CIFS shares you want to scan. The account must support AES256 encryption.
+// RESEARCH Are the AES256 requirement and the AI Data Engine administrator privilege requirement correct?
 * You have the following information:
 +
 [cols="2,4,2",options="header"]
@@ -166,6 +167,7 @@ addent -password -p <scan_user>@<REALM> -k 1 -e aes256-cts-hmac-sha1-96
 wkt /tmp/krb5.keytab
 quit
 ----
+// RESEARCH Has the interactive ktutil password entry been validated in QA?
 . Test the keytab.
 +
 [source,cli]
@@ -301,7 +303,8 @@ Complete this procedure only if the file server or the KDC doesn't resolve by FQ
 ----
 nslookup <external_fqdn> "${KDC_IP}"
 ----
-.. If the command fails, ask your Active Directory administrator to enable DNS forwarding, and then repeat this step. Alternatively, keep your original DNS server as a second name server in `/etc/resolv.conf` after the Active Directory DNS server in the next step.
+.. If the command fails, ask your Active Directory administrator to enable DNS forwarding, and then repeat this step.
+// RESEARCH Is it supported to keep the original DNS server as a second name server on a single-node deployment, and in which order?
 . Back up `/etc/resolv.conf`, and set your Active Directory DNS server as the name server.
 +
 [source,cli]
@@ -340,7 +343,7 @@ kubectl -n kube-system rollout status deployment coredns --timeout=120s
 [[update-kerberos-configuration]]
 == Update the Kerberos configuration file
 
-If you replace `/etc/krb5.conf` after setup, for example by copying a new file over it, AI Data Engine continues to use the previous file until you restart the affected services. Editing the file in place doesn't change it.
+If you replace `/etc/krb5.conf` after setup, for example by copying a new file over it, AI Data Engine continues to use the previous file until you restart the affected services.
 
 .Steps
 . Restart the mount service, and delete the previous ticket refresh jobs.
@@ -383,7 +386,7 @@ kubectl -n aide delete job -l app.kubernetes.io/name=ds-krb5-ticket-refresher --
 
 |External names don't resolve within AI Data Engine after you set your Active Directory DNS server.
 |The Active Directory DNS server doesn't forward external queries.
-|Verify that `nslookup <external_fqdn> "${KDC_IP}"` returns a result. If it doesn't, ask your Active Directory administrator to enable DNS forwarding, or add your original DNS server as a second name server in `/etc/resolv.conf`.
+|Verify that `nslookup <external_fqdn> "${KDC_IP}"` returns a result. If it doesn't, ask your Active Directory administrator to enable DNS forwarding.
 
 |The error *mount error(126)* appears.
 |AI Data Engine can't read `/etc/krb5.conf`.
@@ -392,6 +395,14 @@ kubectl -n aide delete job -l app.kubernetes.io/name=ds-krb5-ticket-refresher --
 |Changes to `/etc/krb5.conf` don't take effect.
 |The file was replaced after setup, and AI Data Engine still uses the previous file.
 |Refer to <<update-kerberos-configuration,Update the Kerberos configuration file>>.
+
+|The `ktutil`, `kinit`, or `klist` command isn't found.
+|The Kerberos client tools aren't installed on the host.
+|Install the Kerberos client tools. Refer to <<create-kerberos-files,Create the Kerberos files>>.
+
+|The `/etc/resolv.conf` file reverts to its previous settings after a restart.
+|The network manager overwrites the file.
+|Prevent the network manager from overwriting the DNS settings. Refer to <<fix-name-resolution,Fix name resolution>>.
 
 |===
 // RESEARCH Does the DNS lookup issue where mount.cifs reports "could not resolve address" while nslookup works still apply at GA? If so, what is the customer resolution?
@@ -414,11 +425,16 @@ rm -f /opt/netapp/aide/kerberos_ccache/krb5cc_shared
 ----
 . If no other application on the host uses it, delete `/etc/krb5.conf`.
 . If you changed the DNS settings, restore the original settings.
-.. Restore the backup of `/etc/resolv.conf`, and remove the network manager configuration that you added.
+.. Restore the backup of `/etc/resolv.conf`.
 +
 [source,cli]
 ----
 cp /etc/resolv.conf.bak /etc/resolv.conf
+----
+.. On RHEL where you added a NetworkManager configuration, remove it.
++
+[source,cli]
+----
 rm -f /etc/NetworkManager/conf.d/90-dns-none.conf
 systemctl reload NetworkManager
 ----

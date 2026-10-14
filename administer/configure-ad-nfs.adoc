@@ -17,8 +17,9 @@ This mapping doesn't authenticate AI Data Engine to NFS storage. It converts the
 
 * You have _AI Data Engine administrator_ privileges.
 * You have link:../deploy/aide-requirements.html#kerberos-ad-requirements[opened the required ports] from AI Data Engine to your Active Directory domain controllers, including the Global Catalog ports (3268 and 3269).
-* You have an Active Directory account that AI Data Engine can use to query user and group attributes.
+* You have an Active Directory account that AI Data Engine can use to query user and group attributes. You enter its user name and password in AI Data Engine.
 // RESEARCH Confirm the permissions the Active Directory account needs and whether it must be a dedicated account.
+* You have the IP address of your DNS server, the IP address and port of your LDAP server, and your Active Directory domain name.
 * You have access to Active Directory with the _Schema Admins_ role if the attributes aren't yet replicated to the Global Catalog.
 
 == Prepare Active Directory
@@ -43,7 +44,8 @@ AI Data Engine reads the following Active Directory attributes:
 
 |===
 
-You can use different attribute names for the UID and GID. If you do, enter the names when you configure AI Data Engine. The default names are `uidNumber` and `gidNumber`.
+AI Data Engine looks up the `uidNumber` and `gidNumber` attributes by their default names.
+// RESEARCH The UI has no fields for custom UID and GID attribute names. Does AI Data Engine support custom attribute names? If so, how are they configured?
 
 .Steps
 . Verify that every user and group you want to resolve has a `uidNumber` or `gidNumber` value. Each value must be unique across the domain.
@@ -60,13 +62,40 @@ CAUTION: If these attributes aren't replicated to the Global Catalog, AI Data En
 
 .Steps
 . From the AI Data Engine UI, select *Configuration*.
-. Select *Settings*.
-// RESEARCH Confirm the navigation path to General Settings and the exact setting name for Active Directory for NFS in the GA UI.
-. Enable *Active Directory for NFS*.
+. Select *General settings*.
+. Turn on the *Enabled* toggle.
 . Enter the connection details for your Active Directory domain.
++
+[cols="1,3",options="header"]
+|===
+|Field |Description
+
+|*Username*
+|The Active Directory account that AI Data Engine uses to query user and group attributes. Enter the name in the format `domain\user` or `user@domain`.
+
+|*Password*
+|The password of the account.
+
+|*DNS Server IP address*
+|The IP address of the DNS server that resolves your Active Directory domain. For example, `10.0.1.50`.
+
+|*Domain name*
+|The fully qualified name of your Active Directory domain. For example, `corp.example.com`.
+
+|*LDAP Server IP address*
+|The IP address of the LDAP server, which is a domain controller. For example, `10.0.1.50`.
+
+|*LDAP Server Port*
+|The port of the LDAP server. The default is `389`.
+
+|*LDAP secure connection*
+|Select this option to connect to the LDAP server over a secure connection.
+
+|===
+// RESEARCH Does selecting LDAP secure connection require port 636, and does the port field update automatically? Is a domain controller certificate required?
 // RESEARCH Does GA support more than one Active Directory domain or forest? If so, document how to add each one. If not, state that one Active Directory is supported.
-. If your Active Directory uses custom attribute names, enter the names for the UID and GID attributes.
-. Select *Save*.
+. Save your changes.
+// RESEARCH Confirm the label of the action that saves the Active Directory settings, and whether AI Data Engine tests the connection.
 
 .Result
 

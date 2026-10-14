@@ -9,7 +9,7 @@ summary: Configure Kerberos authentication on a multi-node AI Data Engine deploy
 :imagesdir: ../media/
 
 [.lead]
-Configure Kerberos authentication so that a multi-node AI Data Engine deployment can scan SMB/CIFS shares without a stored password. In a multi-node deployment, the Kerberos files live on the shared NFS export that holds the AI Data Engine configuration, so that every node uses the same files. AI Data Engine then refreshes the Kerberos ticket automatically.
+Configure Kerberos authentication so that a multi-node AI Data Engine deployment can scan SMB/CIFS shares without storing a password in the data source. In a multi-node deployment, the Kerberos files live on the shared NFS export that holds the AI Data Engine configuration, so that every node uses the same files. AI Data Engine then refreshes the Kerberos ticket automatically.
 
 If you have a single-node deployment, refer to link:configure-kerberos-smb-single-node.html[Configure Kerberos for SMB/CIFS shares on a single-node AI Data Engine deployment].
 
@@ -19,8 +19,10 @@ If you have a single-node deployment, refer to link:configure-kerberos-smb-singl
 * You have root access to every node and to the admin host. The admin host is the host where you mount the NFS export and create the keytab. It can be one of the nodes.
 * You have `kubectl` access with cluster-admin privileges to your RKE2 cluster from the admin host. If you use a kubeconfig file, set the `KUBECONFIG` environment variable to its path.
 * You have reviewed the link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements], including ports, time synchronization, and DNS.
-* Every node can reach the NFS server on TCP port 2049 and the KDC on port 88.
+* You have verified that every node can reach the NFS server on TCP port 2049, the KDC on port 88, the file server on port 445, and your DNS server on port 53.
+* You have verified that NTP is active on every node and that each clock is synchronized with your domain controllers. To check, run `timedatectl`.
 * You have a scan service account in Active Directory with read access to the SMB/CIFS shares you want to scan. The account must support AES256 encryption.
+// RESEARCH Are the AES256 requirement, the AI Data Engine administrator privilege requirement, and the statement that the admin host can be one of the nodes all correct?
 * You have the following information:
 +
 [cols="2,4,2",options="header"]
@@ -102,6 +104,8 @@ Kerberos scanning of an SMB/CIFS share fails on any node that doesn't have `cifs
 |Required
 
 |===
+
+The Kerberos client tools provide the `ktutil`, `kinit`, and `klist` commands that you use to create and test the keytab.
 
 .Steps
 . On the admin host, install the Kerberos client tools and `cifs-utils`.
@@ -207,7 +211,7 @@ echo "NAMESPACE=[${NAMESPACE}] AIDE_CONFIG_ROOT=[${AIDE_CONFIG_ROOT}] KDC_IP=[${
 ----
 +
 NOTE: The variables exist only in the current shell session. If you open a new shell, set them again.
-. Create the Kerberos configuration file on the NFS export. AI Data Engine provides this file to every node. Don't create it in `/etc/krb5.conf` on the nodes.
+. Create the Kerberos configuration file on the NFS export. AI Data Engine reads this file from the export. Don't create it in `/etc/krb5.conf` on the nodes.
 +
 [source,cli]
 ----
@@ -251,6 +255,7 @@ addent -password -p <scan_user>@<REALM> -k 1 -e aes256-cts-hmac-sha1-96
 wkt /tmp/krb5.keytab
 quit
 ----
+// RESEARCH Has the interactive ktutil password entry been validated in QA?
 . Test the keytab. The `KRB5_CONFIG` variable points the Kerberos tools at the file on the export.
 +
 [source,cli]
@@ -454,7 +459,7 @@ kubectl -n kube-system rollout status deployment <coredns_deployment> --timeout=
 [[update-kerberos-configuration]]
 == Update the Kerberos configuration file
 
-If you replace `krb5.conf` on the NFS export after setup, for example by copying a new file over it, AI Data Engine continues to use the previous file until you restart the affected services. Editing the file in place doesn't change it.
+If you replace `krb5.conf` on the NFS export after setup, for example by copying a new file over it, AI Data Engine continues to use the previous file until you restart the affected services.
 
 .Steps
 . On the admin host, restart the mount service, and delete the previous ticket refresh jobs.
@@ -502,6 +507,14 @@ kubectl -n "${NAMESPACE}" delete job -l app.kubernetes.io/name=ds-krb5-ticket-re
 |The file was replaced after setup, and AI Data Engine still uses the previous file.
 |Refer to <<update-kerberos-configuration,Update the Kerberos configuration file>>.
 
+|The `ktutil`, `kinit`, or `klist` command isn't found.
+|The Kerberos client tools aren't installed on the admin host.
+|Install the Kerberos client tools. Refer to <<install-packages,Install the required packages>>.
+
+|The `/etc/resolv.conf` file on a node reverts to its previous settings after a restart.
+|The network manager overwrites the file.
+|Prevent the network manager from overwriting the DNS settings. Refer to <<fix-name-resolution,Fix name resolution>>.
+
 |===
 // RESEARCH Does the DNS lookup issue where mount.cifs reports "could not resolve address" while nslookup works still apply at GA? If so, what is the customer resolution?
 
@@ -524,11 +537,16 @@ rm -f /mnt/aide-config/kerberos/kerberos_ccache/krb5cc_shared
 umount /mnt/aide-config
 ----
 . If you changed the DNS settings, restore the original settings.
-.. On every node, restore the backup of `/etc/resolv.conf`, and remove the network manager configuration that you added.
+.. On every node, restore the backup of `/etc/resolv.conf`.
 +
 [source,cli]
 ----
 cp /etc/resolv.conf.bak /etc/resolv.conf
+----
+.. On RHEL nodes where you added a NetworkManager configuration, remove it.
++
+[source,cli]
+----
 rm -f /etc/NetworkManager/conf.d/90-dns-none.conf
 systemctl reload NetworkManager
 ----

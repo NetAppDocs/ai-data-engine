@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: administer/configure-kerberos-smb.html
 keywords: kerberos, smb, cifs, keytab, krb5.conf, ktutil, kdc, realm, fqdn, dns, authentication, active directory, scan service account
-summary: Understand how AI Data Engine uses Kerberos to scan SMB/CIFS shares without a stored password, and choose the procedure for your single-node or multi-node deployment.
+summary: Understand how AI Data Engine uses Kerberos to scan SMB/CIFS shares without storing a password in the data source, and choose the procedure for your single-node or multi-node deployment.
 ---
 = Kerberos authentication for SMB/CIFS shares in AI Data Engine
 :icons: font
@@ -19,7 +19,7 @@ Kerberos authentication applies to SMB/CIFS data sources. To map NFS user and gr
 . AI Data Engine uses the keytab to get a Kerberos ticket from your Active Directory domain controller, which acts as the Kerberos key distribution center (KDC). AI Data Engine refreshes the ticket every 3 hours.
 . When you add an SMB/CIFS share and select Kerberos as the authentication method, AI Data Engine scans the share by using the ticket.
 
-AI Data Engine finds your domain controller and your file server by name, so the nodes must resolve both names by using your Active Directory DNS server.
+AI Data Engine finds your domain controller and your file server by name, so the nodes must resolve both names by using a DNS server that can resolve your Active Directory names.
 
 == Choose a procedure
 
