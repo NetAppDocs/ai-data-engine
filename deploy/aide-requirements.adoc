@@ -86,82 +86,152 @@ The following network connections must be open:
 
 [[outbound-internet-access]]
 === Outbound internet access
-For an online installation, the following endpoints must be reachable from the AI Data Engine host:
-[cols="2,2,1",options="header"]
+For an online installation, the following endpoints must be reachable. The *Initiated by* column shows which component connects to each endpoint.
+
+// RESEARCH Which component initiates each of the api.console.netapp.com, auth0, support.compliance, and CloudFront connections? Is api.console.netapp.com or api.bluexp.netapp.com the current Console endpoint, or are both required?
+// RESEARCH Should the ECR, S3, and STS rows use a region placeholder instead of us-west-2, and does the account ID in the registry rows change per deployment?
+[cols="3,3,2,1",options="header"]
 |===
-|Endpoint |Purpose |Scope
+|Endpoint |Purpose |Initiated by |Scope
 |`\https://api.console.netapp.com`
 |NetApp Console communication
+|AI Data Engine
+|Both
+
+|`\https://api.bluexp.netapp.com`
+|NetApp Console registration
+|Installer
 |Both
 
 |`\https://netapp-cloud-account.auth0.com`
 |Centralized user authentication
+|AI Data Engine
 |Both
 
 |`\https://auth0.com`
 |Authentication services
+|AI Data Engine
 |Both
 
 |`\https://582244788873.dkr.ecr.us-west-2.amazonaws.com`
-|NetApp container registry (AIDE container images)
+|NetApp container registry (AIDE container images and Helm charts)
+|Container runtime and installer
 |Both
 
 |`\https://582244788873.dkr-ecr.us-west-2.on.aws`
 |NetApp container registry (dualstack/virtual private cloud (VPC) endpoint access)
+|Container runtime and installer
 |Both
 
 |`\https://api.ecr.us-west-2.amazonaws.com`
 |AWS ECR API (authentication and image manifest retrieval)
+|Container runtime and installer
+|Both
+
+|`\https://ecr.us-west-2.amazonaws.com`
+|AWS ECR registry credential refresh
+|AI Data Engine
 |Both
 
 |`\https://prod-us-west-2-starport-layer-bucket.s3.us-west-2.amazonaws.com`
 |AWS S3 (ECR container image layer storage)
+|Container runtime
 |Both
 
 |`\https://prod-us-west-2-starport-layer-bucket.s3.amazonaws.com`
 |AWS S3 (ECR container image layer storage)
+|Container runtime
 |Both
 
 |`\https://s3.us-west-2.amazonaws.com`
 |AWS S3 (installer wrapper script, Helm charts, and component version catalog)
+|Installer and AI Data Engine
 |Both
 
 |`\https://s3.amazonaws.com`
 |AWS S3 (installer wrapper script, Helm charts, and component version catalog)
+|Installer and AI Data Engine
 |Both
 
 |`\https://sts.us-west-2.amazonaws.com`
 |AWS STS (temporary credential exchange for registry and S3 access)
+|AI Data Engine
 |Both
 
 |`\https://support.compliance.api.bluexp.netapp.com`
 |Software images, manifests, and templates; logs and metrics streaming
+|AI Data Engine
 |Both
 
 |`\https://dseasb33srnrn.cloudfront.net`
 |CloudFront CDN for software distribution
+|AI Data Engine
 |Both
+
+|`\https://get.helm.sh`
+|Helm download
+|Installer
+|Both
+
+|`\https://dl.k8s.io`
+|kubectl download
+|Installer
+|Both
+
+|`\https://github.com`
+|jq download, and the k3s binary download on single-node deployments
+|Installer
+|Both
+
+|`\https://release-assets.githubusercontent.com`
+|GitHub download redirects
+|Installer
+|Both
+
+|`\https://get.k3s.io`
+|k3s runtime download
+|Installer
+|Single node only
+
+|`\https://rpm.rancher.io`
+|k3s SELinux policy package, on RHEL with SELinux in Enforcing mode
+|Installer
+|Single node only (RHEL)
+
+|`\https://auth.docker.io`
+|Docker Hub authentication for k3s system images
+|Container runtime
+|Single node only
+
+|`\https://registry-1.docker.io`
+|Docker Hub registry for k3s system images
+|Container runtime
+|Single node only
+
+|`\https://production.cloudfront.docker.com`
+|Docker Hub image layer storage for k3s system images
+|Container runtime
+|Single node only
 
 |`\http://packages.ubuntu.com`
 |Ubuntu prerequisite packages
+|Operating system package manager
 |Single node only (Ubuntu)
 
 |`\http://archive.ubuntu.com`
 |Ubuntu package archive
+|Operating system package manager
 |Single node only (Ubuntu)
 
 |`\http://security.ubuntu.com`
 |Ubuntu security package archive
+|Operating system package manager
 |Single node only (Ubuntu)
-
-|`\https://get.k3s.io`
-|k3s runtime download (installer-initiated)
-|Single node only
-
-|`\https://get.helm.sh`
-|Helm download (installer-initiated)
-|Single node only
 |===
+
+If you use a proxy, allow these endpoints on your proxy using the exact hostnames listed, without wildcards or a leading dot. For multi-node deployments, the container runtime connections are made by the cluster nodes. See link:configure-proxy.html[Configure a proxy].
+
+NOTE: Operating system package repositories aren't reached through the AI Data Engine proxy settings. The package manager follows its own proxy configuration.
 
 AI Data Engine also relies on NetApp Console for centralized authentication and console services. Refer to link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html[network access requirements for NetApp Console^] for the endpoints required for Console and Console agent connectivity.
 
@@ -259,7 +329,10 @@ NOTE: A single-node deployment doesn't support high availability or horizontal s
 * The target host must have bash 4.0 or later, curl, and tar available.
 * The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. Pre-installing these tools on the target VM isn't required.
 * Ports 6443 (TCP), 10250 (TCP), and 8472 (UDP) must be free on the host before the installer starts. If a host firewall (`firewalld` on RHEL or `ufw` on Ubuntu) is active, allow these ports and the k3s pod CIDR (`10.44.0.0/16`) and service CIDR (`10.45.0.0/16`) before running the installer. Refer to your OS firewall documentation for the required commands.
-* On RHEL systems running SELinux in Enforcing mode, the installer automatically configures the required SELinux policy packages. No manual SELinux configuration is needed.
+* On RHEL systems running SELinux in Enforcing mode, the installer automatically configures the required SELinux policy packages. No manual SELinux configuration is needed, but the host must be able to reach `\https://rpm.rancher.io`.
+* The operating system repositories enabled on the host must provide `cifs-utils`, and `nfs-utils` (RHEL) or `nfs-kernel-server` (Ubuntu) when the configuration location uses a persistent volume. If those repositories require a proxy, configure it in `dnf` or `apt`. The AI Data Engine proxy options don't apply to them.
+// RESEARCH What is the customer-facing name of the configuration location setting (hostPath or persistent volume), and does the NFS package requirement apply to the multi-node deployment hosts?
+* If your environment requires an outbound proxy to reach the AI Data Engine endpoints listed above, see link:configure-proxy.html[Configure a proxy].
 
 == AIDE multi-node deployment requirements
 
@@ -270,6 +343,7 @@ NOTE: A single-node deployment doesn't support high availability or horizontal s
 * A configured StorageClass (default name `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
 * An NFS server with at least one exported path is available, used for the AIDE configuration data volume and shared index snapshots.
 * A target Kubernetes namespace (default `aide`) already exists on the cluster; the installer doesn't create it.
+* If your environment requires an outbound proxy, see link:configure-proxy.html[Configure a proxy].
 
 NOTE: NVMe or high-performance SSD storage is recommended for all multi-node deployments.
 

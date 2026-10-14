@@ -17,6 +17,7 @@ Deploy AIDE as a single-node deployment from NetApp Console using the deployment
 * Sudo (or root) permissions are required on the target host to run the install command.
 * Your environment meets all prerequisites as described in link:aide-requirements.html[AIDE requirements].
 * A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
+* If your environment uses an outbound proxy, see link:configure-proxy.html[Configure a proxy].
 
 .Steps
 . In NetApp Console, navigate to *AI data hub* > *AI Data Engine*.
@@ -35,6 +36,8 @@ The AI Data Engine landing page appears.
 These sizes are recommended baselines, not hard limits. See link:aide-requirements.html#flexible-sizing-single-node[flexible sizing guidelines] if your environment falls outside these ranges.
 
 . For small or large configurations, adjust the install command to reflect the chosen size: `--flavor <small|medium|large>`
+
+. If you use a proxy, remove `--no-proxy` from the install command if it's present, and add the proxy options. See link:configure-proxy.html[Configure a proxy].
 
 . Run the install command with any configuration size adjustments on your target host.
 +
