@@ -9,7 +9,7 @@ summary: Configure Active Directory mapping for NFS user IDs and group IDs. AI D
 :imagesdir: ../media/
 
 [.lead]
-NFS files identify their owners and groups by numeric user IDs (UIDs) and group IDs (GIDs). AI Data Engine looks up these IDs in Active Directory and displays the corresponding file-owner names. Complete the Active Directory prerequisites, and then enable Active Directory for NFS in AI Data Engine settings.
+NFS files identify their owners and owning groups by numeric user IDs (UIDs) and group IDs (GIDs). AI Data Engine can map these IDs to Active Directory identities. It uses resolved user identities to display file-owner names for NFS data. Complete the Active Directory prerequisites, and then enable Active Directory for NFS in AI Data Engine settings.
 // RESEARCH Does GA display owning-group names for NFS files anywhere in the UI or MCP results? If so, state where.
 
 This mapping doesn't authenticate AI Data Engine to NFS storage. It converts the IDs that AI Data Engine finds during scanning to Active Directory names.
@@ -46,19 +46,22 @@ AI Data Engine reads the following Active Directory attributes:
 
 |===
 
-AI Data Engine looks up the `uidNumber` and `gidNumber` attributes by their default names.
+Populate `uidNumber` on the users and `gidNumber` on the groups that you want AI Data Engine to resolve.
+
+NOTE: Set `gidNumber` on the group object. The `gidNumber` on a user object identifies that user's primary group. It isn't the group attribute that AI Data Engine uses for this lookup.
 // RESEARCH The UI has no fields for custom UID and GID attribute names. Does AI Data Engine support custom attribute names? If so, how are they configured?
 
 .Steps
 . Verify that every user that you want to resolve has a `uidNumber` value and every group has a `gidNumber` value. Each UID must be unique among users, and each GID must be unique among groups. A user and a group can have the same numeric value.
-. If AI Data Engine queries the Global Catalog, replicate the `uidNumber` and `gidNumber` attributes to it. This is a one-time change for the entire forest. You must be a member of the _Schema Admins_ group.
+. If AI Data Engine queries the Global Catalog and the attributes aren't already replicated to it, replicate the `uidNumber` and `gidNumber` attributes to it. This is a one-time change for the entire forest. You must be a member of the _Schema Admins_ group.
 +
 .. On a domain controller, open the Active Directory Schema snap-in.
 .. Open the properties of the `uidNumber` attribute.
 .. Select *Replicate this attribute to the Global Catalog*.
 .. Repeat for the `gidNumber` attribute.
+// RESEARCH Confirm the Active Directory Schema snap-in procedure for replicating attributes to the Global Catalog, or provide the supported PowerShell alternative.
 
-CAUTION: If AI Data Engine queries the Global Catalog and these attributes aren't replicated to it, identity lookups can't return them. File owners remain unresolved.
+CAUTION: If AI Data Engine queries the Global Catalog, attributes that aren't replicated to it aren't returned by identity lookups. The corresponding IDs remain unresolved.
 
 == Enable Active Directory for NFS
 
@@ -66,6 +69,7 @@ CAUTION: If AI Data Engine queries the Global Catalog and these attributes aren'
 . From the AI Data Engine UI, select *Configuration*.
 . Select *General settings*.
 . Turn on the *Enabled* toggle.
+// RESEARCH Does the Enabled toggle activate the Active Directory connection, NFS identity mapping, or both? Confirm any separate NFS mapping control and its label and location.
 . Enter the connection details for your Active Directory domain.
 +
 [cols="1,3",options="header"]
