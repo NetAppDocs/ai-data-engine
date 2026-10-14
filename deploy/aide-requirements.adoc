@@ -88,16 +88,6 @@ For an online installation, the following endpoints must be reachable.
 |AI Data Engine
 |Both
 
-|`\https://api.bluexp.netapp.com`
-|NetApp Console registration
-|Installer
-|Both
-
-|`\https://netapp-cloud-account.auth0.com`
-|Centralized user authentication
-|AI Data Engine
-|Both
-
 |`\https://auth0.com`
 |Authentication services
 |AI Data Engine
@@ -228,7 +218,7 @@ If you use a proxy, allow these endpoints on your proxy using the exact hostname
 
 NOTE: Operating system package repositories aren't reached through the AI Data Engine proxy settings. The package manager follows its own proxy configuration.
 
-AI Data Engine also relies on NetApp Console for centralized authentication and console services. Refer to link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html[network access requirements for NetApp Console^] for the endpoints required for Console and Console agent connectivity.
+AI Data Engine also relies on NetApp Console for centralized authentication and console services. Endpoints such as `\https://api.bluexp.netapp.com` and `\https://netapp-cloud-account.auth0.com` are listed in the link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html#endpoints-contacted-by-netapp-console-and-console-agents[network access requirements for NetApp Console^].
 
 Verify that DNS resolution for these endpoints is working from the AI Data Engine host before you begin deployment.
 
