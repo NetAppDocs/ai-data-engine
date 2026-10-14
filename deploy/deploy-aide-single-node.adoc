@@ -15,7 +15,7 @@ Deploy AIDE as a single-node deployment from NetApp Console using the deployment
 
 * You have _Organization admin_ or greater permissions in NetApp Console.
 * Sudo (or root) permissions are required on the target host to run the install command.
-* Your environment meets all prerequisites as described in link:aide-requirements.html[AIDE requirements].
+* Your environment meets all prerequisites as described in link:single-node-prerequisites.html[AIDE single-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
 * A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
 * If your environment uses an outbound proxy, see link:configure-proxy.html[Configure a proxy].
 

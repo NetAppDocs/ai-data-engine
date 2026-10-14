@@ -41,7 +41,7 @@ AI Data Engine supports two deployment types:
 
 AIDE single-node deployment:: A deployment on a single VM suitable for smaller environments. The installer provisions k3s and the supporting components automatically. Available in Small, Medium, and Large configurations based on the number of files to be cataloged.
 
-AIDE multi-node deployment:: A Kubernetes-based cluster deployment for larger environments requiring high availability. You must bring your own RKE2 cluster.
+AIDE multi-node deployment:: A Kubernetes-based cluster deployment for larger environments requiring high availability. You must bring your own Kubernetes cluster (RKE2, OpenShift, or AKS).
 
 An AIDE multi-node deployment scales from a three-node configuration supporting up to approximately one billion files and 250 million files per day to a nine-node configuration supporting up to approximately six billion files and two billion files per day. Refer to link:../deploy/aide-requirements.html[AIDE requirements] for node sizing details. Contact your NetApp representative for custom sizing beyond six billion files. See link:../deploy/aide-requirements.html#flexible-sizing-multi-node[flexible sizing guidelines] for details.
 
