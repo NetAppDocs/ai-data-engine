@@ -29,7 +29,7 @@ AI Data Engine scans your storage systems to collect and analyze metadata. To ad
 |Source type |Description
 
 |*File shares group*
-|Add NFS or SMB/CIFS file shares from the cloud or on-premises as a named group.
+|Add NFS or SMB file shares from the cloud or on-premises as a named group.
 
 |*Database*
 |Add a database server to scan selected schemas.

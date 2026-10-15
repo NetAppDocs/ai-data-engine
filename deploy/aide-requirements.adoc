@@ -52,17 +52,17 @@ The following network connections must be open:
 |To storage
 |NFS data source access
 
-|AI Data Engine to ONTAP (SMB/CIFS)
+|AI Data Engine to ONTAP (SMB)
 |139, 445
 |TCP/UDP
 |To storage
-|SMB/CIFS data source access
+|SMB data source access
 
 |AI Data Engine to Active Directory
 |389, 636, 3268, 3269
 |TCP/UDP
 |Outbound
-|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and SMB/CIFS scanning. Port 389 uses both TCP and UDP; all other ports use TCP only.
+|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and SMB scanning. Port 389 uses both TCP and UDP; all other ports use TCP only.
 
 |AI Data Engine to NetApp services, container registry, and CDN
 |443
