@@ -22,7 +22,7 @@ Select *Investigation* in the left navigation to open the view. You can also ope
 |Tab |Use when you want to |More information
 
 |*Unstructured*
-|Find cold, stale, or duplicate file-based data across NFS and SMB/CIFS volumes
+|Find cold, stale, or duplicate file-based data across NFS and SMB volumes
 |link:investigate-unstructured.html[Investigate unstructured data]
 
 |*Structured*
