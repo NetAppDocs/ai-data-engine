@@ -53,10 +53,14 @@ NOTE: This threshold is configurable in *Configuration* > *Settings*.
 Multiple identical copies of the same files exist across volumes or shares, a common issue in environments with backup jobs, data migrations, or shared project folders.
 
 .Steps
-. In link:../investigate/investigate-unstructured.html[Investigation], select *Add filter* and then select *Duplicates*.
-. Review the results. Files listed have one or more identical copies elsewhere in the catalog.
-. Select files to act on and choose link:../investigate/take-actions.html[an action]. Archive or delete confirmed duplicates that have an original copy elsewhere.
-. link:../policies/create-policy.html[Save the filter as a policy] to track duplicate accumulation over time and receive notifications when the count increases.
+. In link:../investigate/investigate-unstructured.html[Investigation], select *Unstructured* and open the details of a file that you suspect has copies, such as a file from a recent data migration.
+. Next to *Duplicates*, select *View details* to display every copy of the file and its location.
+. Review the matching files and their locations to confirm which copies are redundant.
+. Select the redundant files, and then select *Clean up duplicates*.
+. Under *Action*, select *Delete*. Keep the copy with the *Last modified* option, leave a breadcrumb at the original location, and select *Submit*. For details, refer to link:../investigate/take-actions.html[Investigate and clean up duplicate files].
+. link:../policies/create-policy.html[Create a policy] to track duplicate accumulation over time and receive notifications when the count increases.
+
+// RESEARCH Can a policy use the Duplicates filter without the File hash filter that View details applies for a single file, so that the policy tracks duplicate accumulation across all files?
 
 == Target cleanup by data owner
 

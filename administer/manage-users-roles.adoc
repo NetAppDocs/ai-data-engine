@@ -69,6 +69,10 @@ The AI Data Engine viewer role provides limited access to AI Data Engine. Viewer
 |Yes
 |-
 
+|Actions: Clean up duplicates
+|Yes
+|-
+
 |Manage business tags
 |Yes
 |Yes

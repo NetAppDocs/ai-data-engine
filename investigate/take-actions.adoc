@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: investigate/take-actions.html
-keywords: actions, tag, archive, delete, data lifecycle, storage optimization, breadcrumb
-summary: Act on files you have identified as cold, stale, or obsolete by archiving them, tagging items for tracking, or permanently deleting what you no longer need.
+keywords: actions, tag, archive, delete, data lifecycle, storage optimization, breadcrumb, duplicates, clean up duplicates
+summary: Act on files you have identified as cold, stale, duplicated, or obsolete by archiving them, tagging items for tracking, or permanently deleting what you no longer need.
 ---
 = Take action on your data in AI Data Engine
 :icons: font
@@ -12,7 +12,7 @@ summary: Act on files you have identified as cold, stale, or obsolete by archivi
 After identifying files using your defined filters, you can take direct action to enforce your organization's data lifecycle policies. For example, a storage administrator who filters to find terabytes of VM snapshots not accessed in over a year can archive them in bulk to a cold storage share, or delete them, depending on retention requirements and business policies.
 
 .About this task
-To take action, select one or more items in the Investigation results table using the checkboxes. The action toolbar activates with four options: *Delete*, *Archive*, *Copy*, and *Tag*.
+To take action, select one or more items in the Investigation results table using the checkboxes. The action toolbar activates with four options: *Delete*, *Archive*, *Copy*, and *Tag*. To remove duplicate copies of a file, use *Clean up duplicates*. Refer to <<Investigate and clean up duplicate files>>.
 
 The actions available to you depend on your assigned role:
 
@@ -33,6 +33,10 @@ The actions available to you depend on your assigned role:
 |-
 
 |Delete
+|Yes
+|-
+
+|Clean up duplicates
 |Yes
 |-
 
@@ -63,7 +67,6 @@ Choose an action based on how certain you are about the data:
 |===
 
 When data might still have value or require further review, choose tagging, archiving, or copying over deleting. Only delete when you are certain the data is safe to remove permanently.
-
 == Archive files
 
 Archiving moves files to a cold storage destination over NFS or SMB. You can optionally leave a breadcrumb file at the original location.
@@ -116,6 +119,61 @@ CAUTION: Deletion is permanent and can't be undone. This action deletes source f
 
 .Result
 The selected files are permanently deleted from storage.
+
+== Investigate and clean up duplicate files
+
+Use Investigation to find duplicate copies of a file, review their metadata and locations, and identify redundant data that you can remove. You can tag duplicates for review, archive them, or permanently delete duplicate copies while retaining one copy.
+
+.Before you begin
+* You must have the _AI Data Engine administrator_ role.
+
+.Steps
+. In NetApp Console, go to *AI data hub* > *AI Data Engine*.
+. Select *Investigation* > *Unstructured*.
++
+The table displays file names, sizes, owners, systems, and tags.
+. Optional: Select *Add filter* to narrow the list of files.
+. Select a file name to open its details.
++
+Review the file's system, storage repository, path, size, timestamps, access, and owner. The *Duplicates* field displays the number of duplicate copies.
+. Next to *Duplicates*, select *View details*.
++
+The Investigation view applies a *Duplicates* filter that includes files with duplicates and a *File hash* filter that matches the selected file.
+. Review the matching files and their locations.
+. Select the files you want to clean up.
++
+Review the *Selected items* count. To start again, select *Clear selection*.
+. Select *Clean up duplicates*.
+. Review the estimated number of files matching the current filters that have duplicate copies.
++
+NOTE: The count is an estimate. Exact duplicates are recalculated when the action runs, and only files confirmed identical are affected.
+. Decide how to handle the duplicates:
++
+* Tag the duplicates for review:
+.. Under *Action*, select *Tag*.
+.. Select *Add*, and then choose the tag to apply. Repeat to add more tags.
+.. Select *Submit*.
+* Archive the duplicates to a destination volume:
+.. Under *Action*, select *Archive*.
+.. Under *At the original location*, select *Remove cleanly* or *Leave a breadcrumb*.
+.. Select the destination volume protocol. For *NFS*, enter the destination folder path in the format `Hostname:/SHAREPATH`. For *SMB*, enter the destination folder path, and then select *Kerberos* or *NTLM* authentication. For NTLM, enter your Active Directory user name and password.
+.. Select *Submit*.
+* Delete the duplicates and keep one copy:
++
+CAUTION: Deletion is permanent and can't be undone.
+
+.. Under *Action*, select *Delete*.
+.. Under *Keep copy with the*, select *Last accessed*, *Last modified*, or *Created*.
+.. Under *At the original location*, select *Remove cleanly* or *Leave a breadcrumb*.
+.. Select *Submit*.
+
+To exit without submitting an action, select *Cancel*.
+
+// RESEARCH What does each Keep copy with the option retain (for example, the most recently accessed copy or the earliest created copy)?
+// RESEARCH Does the Delete action show a confirmation dialog (for example, a Delete the duplicate copies dialog that requires typing permanently delete) in the final UI, and does it need a step?
+// RESEARCH What does Remove cleanly do at the original location compared with Leave a breadcrumb, and does the breadcrumb match the breadcrumb file in the Archive files action?
+// RESEARCH Does the estimated count in the Clean up duplicates step reflect the selected files or all files matching the current filters, and does the count change the order of the selection and Clean up duplicates steps?
+// RESEARCH Can customers start from the Duplicates filter alone (Add filter > Duplicates) instead of a file's View details, and does that path support Clean up duplicates?
 
 == Tag files
 

@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: investigate/investigate-unstructured.html
-keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS
-summary: Find and classify files as cold, stale, or large across NFS and SMB volumes using metadata filters, then review results, take action as appropriate, or save your filter criteria as a reusable policy.
+keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS, duplicates, duplicate files, file hash
+summary: Find and classify files as cold, stale, large, or duplicated across NFS and SMB volumes using metadata filters, then review results, take action as appropriate, or save your filter criteria as a reusable policy.
 ---
 = Investigate unstructured data in AI Data Engine
 :icons: font
@@ -42,7 +42,24 @@ The results reorganize to show total file count and size per owner. Select any o
 
 Select any file row to open the detail panel and confirm the file matches your intended scope before taking action.
 
-The detail panel shows the file's system, storage repository, file owner, and any applied tags or policies. Verify the system and owner before archiving or deleting.
+The detail panel shows the file's system, storage repository, path, size, timestamps, access, file owner, and any applied tags or policies. The *Duplicates* field shows the number of duplicate copies of the file. Verify the system and owner before archiving or deleting.
+
+== Find duplicate files
+
+Use the *Duplicates* filter to list every file that has one or more identical copies elsewhere in the catalog. This is a good starting point when you want to see how widespread duplicates are before you decide where to clean up.
+
+.Steps
+. From the AI Data Engine UI, select *Investigation*.
++
+The Unstructured tab is selected by default.
+. Select *Add filter*, then select *Duplicates*.
++
+The results table lists the files that have duplicate copies.
+. To see every copy of a specific file and its location, select the file name, and then select *View details* next to *Duplicates*.
+
+To review the copies and clean them up, refer to link:take-actions.html[Investigate and clean up duplicate files].
+
+// RESEARCH Can customers run Clean up duplicates directly from the Duplicates filter results, without opening a file's View details first?
 
 == Act on results or save as a policy
 
