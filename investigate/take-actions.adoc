@@ -166,14 +166,16 @@ CAUTION: Deletion is permanent and can't be undone.
 .. Under *Keep copy with the*, select *Last accessed*, *Last modified*, or *Created*.
 .. Under *At the original location*, select *Remove cleanly* or *Leave a breadcrumb*.
 .. Select *Submit*.
+.. In the *Delete the duplicate copies* dialog, review the number of files to be deleted and the information about retaining one copy.
+.. Enter `permanently delete`, and then select *Delete*.
 
 To exit without submitting an action, select *Cancel*.
 
-// RESEARCH What does each Keep copy with the option retain (for example, the most recently accessed copy or the earliest created copy)?
-// RESEARCH Does the Delete action show a confirmation dialog (for example, a Delete the duplicate copies dialog that requires typing permanently delete) in the final UI, and does it need a step?
-// RESEARCH What does Remove cleanly do at the original location compared with Leave a breadcrumb, and does the breadcrumb match the breadcrumb file in the Archive files action?
-// RESEARCH Does the estimated count in the Clean up duplicates step reflect the selected files or all files matching the current filters, and does the count change the order of the selection and Clean up duplicates steps?
-// RESEARCH Can customers start from the Duplicates filter alone (Add filter > Duplicates) instead of a file's View details, and does that path support Clean up duplicates?
+// RESEARCH What does each Keep copy with the option retain (for example, the most recently accessed copy or the earliest created copy)? Archive has no Keep copy with the selector, so what determines which copy remains when you archive?
+// RESEARCH What does Remove cleanly do at the original location compared with Leave a breadcrumb, and does the breadcrumb match the breadcrumb file in the Archive files action, including for Delete?
+// RESEARCH Does the estimated count in the Clean up duplicates step reflect the selected files or all files matching the current filters? The estimate refers to the current filters, but the Selected items count remains visible, so the scope of the action is unclear.
+// RESEARCH Does the Duplicates filter, then selecting files, then Clean up duplicates work end to end without opening a file's View details? The design shows both entry points, but not this sequence.
+// RESEARCH Do the Tag and Archive actions of Clean up duplicates leave one copy untouched, as Delete does, or do they apply to all selected duplicates?
 
 == Tag files
 
