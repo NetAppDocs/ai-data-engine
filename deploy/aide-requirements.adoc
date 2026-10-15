@@ -9,8 +9,9 @@ summary: Review infrastructure and networking requirements before deploying AI D
 :imagesdir: ../media/
 
 [.lead]
-Before you deploy AI Data Engine, review the networking, VM sizing, and operating system requirements for your environment.
+Before you deploy AI Data Engine, review the networking, Kubernetes, sizing, and operating system requirements for your environment. For a single-node deployment, you provide a Linux VM and AI Data Engine provisions everything else automatically. For a multi-node deployment, you bring your own Kubernetes cluster.
 
+[[networking-requirements]]
 == Networking requirements
 
 The following network connections must be open:
@@ -63,35 +64,27 @@ The following network connections must be open:
 |Outbound
 |LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication and SMB scanning. Port 389 uses both TCP and UDP; all other ports use TCP only.
 
-|AI Data Engine to NetApp Services / Container Registry
+|AI Data Engine to NetApp services, container registry, and CDN
 |443
 |TCP
 |Outbound
-|HTTPS: artifact downloads and container image pulls (AWS S3 and ECR)
+|HTTPS: installer script downloads from a CDN, container image and Helm chart pulls from ECR, and component catalog downloads from S3
 
 |===
 
 [[outbound-internet-access]]
 === Outbound internet access
-For an online installation, the following endpoints must be reachable. The *Initiated by* column shows which component connects to each endpoint.
+For an online installation, the following endpoints must be reachable.
 
+// RESEARCH Do the ECR, S3, and CDN endpoints in this table match what the Console team provides? Is the ECR region us-west-2 or us-east-1?
+// RESEARCH Which CloudFront endpoint hosts the installer scripts, and is the second CloudFront endpoint (dseasb33srnrn.cloudfront.net) still required?
 // RESEARCH Which component initiates each of the api.console.netapp.com, auth0, support.compliance, and CloudFront connections? Is api.console.netapp.com or api.bluexp.netapp.com the current Console endpoint, or are both required?
 // RESEARCH Should the ECR, S3, and STS rows use a region placeholder instead of us-west-2, and does the account ID in the registry rows change per deployment?
 [cols="3,3,2,1",options="header"]
 |===
-|Endpoint |Purpose |Initiated by |Scope
+|Endpoint |Purpose |Initiated by |Deployment type
 |`\https://api.console.netapp.com`
 |NetApp Console communication
-|AI Data Engine
-|Both
-
-|`\https://api.bluexp.netapp.com`
-|NetApp Console registration
-|Installer
-|Both
-
-|`\https://netapp-cloud-account.auth0.com`
-|Centralized user authentication
 |AI Data Engine
 |Both
 
@@ -131,12 +124,12 @@ For an online installation, the following endpoints must be reachable. The *Init
 |Both
 
 |`\https://s3.us-west-2.amazonaws.com`
-|AWS S3 (installer wrapper script, Helm charts, and component version catalog)
+|AWS S3 (component version catalog)
 |Installer and AI Data Engine
 |Both
 
 |`\https://s3.amazonaws.com`
-|AWS S3 (installer wrapper script, Helm charts, and component version catalog)
+|AWS S3 (component version catalog)
 |Installer and AI Data Engine
 |Both
 
@@ -153,6 +146,11 @@ For an online installation, the following endpoints must be reachable. The *Init
 |`\https://dseasb33srnrn.cloudfront.net`
 |CloudFront CDN for software distribution
 |AI Data Engine
+|Both
+
+|`\https://d13jb5dapseb36.cloudfront.net`
+|CloudFront CDN for installer scripts
+|Installer
 |Both
 
 |`\https://get.helm.sh`
@@ -220,11 +218,47 @@ If you use a proxy, allow these endpoints on your proxy using the exact hostname
 
 NOTE: Operating system package repositories aren't reached through the AI Data Engine proxy settings. The package manager follows its own proxy configuration.
 
-AI Data Engine also relies on NetApp Console for centralized authentication and console services. Refer to link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html[network access requirements for NetApp Console^] for the endpoints required for Console and Console agent connectivity.
+AI Data Engine also relies on NetApp Console for centralized authentication and console services. Endpoints such as `\https://api.bluexp.netapp.com` and `\https://netapp-cloud-account.auth0.com` are listed in the link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html#endpoints-contacted-by-netapp-console-and-console-agents[network access requirements for NetApp Console^].
 
 Verify that DNS resolution for these endpoints is working from the AI Data Engine host before you begin deployment.
 
+[[supported-kubernetes]]
+== Supported Kubernetes versions
+
+AI Data Engine supports only the distributions and versions listed in this table.
+
+[cols="1,1,1,2",options="header"]
+|===
+|Deployment |Kubernetes distribution |Supported version |Provided by
+
+|AIDE single-node
+|k3s
+|v1.36.x
+|The installer provisions k3s automatically. No action is required.
+
+|AIDE multi-node
+|RKE2
+|v1.34 to v1.36 (v1.36.x recommended)
+|You provide the cluster, which can be shared or dedicated.
+
+|AIDE multi-node
+|OpenShift
+|**To be confirmed**
+|You provide the cluster, which can be shared or dedicated.
+
+|AIDE multi-node
+|Azure Kubernetes Service (AKS)
+|**To be confirmed**
+|You provide the cluster, which can be shared or dedicated.
+
+|===
+
+// RESEARCH Is v1.34 the correct minimum RKE2 version? Other sources list v1.35 and v1.36.x, and the table should probably list exact supported versions only.
+// RESEARCH Which exact OpenShift and AKS versions are supported for multi-node deployments, and should GKE be listed?
+
 == AIDE single-node deployment requirements
+
+You provide a Linux VM, and AI Data Engine provisions everything else automatically, including k3s. You don't need to set up or manage Kubernetes. For host preparation, disk space, and firewall requirements, see link:single-node-prerequisites.html[AIDE single-node deployment prerequisites].
 
 [[single-node-vm-sizes]]
 === VM sizing
@@ -266,6 +300,9 @@ These sizes are recommended baseline configurations optimized for a three to fou
 
 NOTE: NVMe SSD or other solid-state storage is recommended for all deployment sizes. The disk values in this table reflect AIDE data volume storage only. If the OS, k3s runtime, and AIDE data all share a single disk, add approximately 65 GB to the disk value for your chosen size. For example, a Small deployment on a single disk requires approximately 565 GB total.
 
+// RESEARCH Should NFS-backed storage be avoided for the AIDE data volume on a single-node deployment, with block storage as the documented recommendation? This needs confirmation.
+NOTE: Use block storage, not NFS, for the AIDE data volume on a single-node deployment. NFS-backed storage can cause underperformance.
+
 [[flexible-sizing-single-node]]
 === Flexible sizing guidelines
 
@@ -278,20 +315,18 @@ What drives the sizing recommendations::
 * *Required scan throughput*: Initial catalog completion speed is tied directly to CPU and memory allocation. Provisioning below the recommended size reduces throughput and extends the initial scan window.
 * *Storage performance*: High-performance storage is strongly recommended. Metadata indexing and event processing require sustained IOPS and throughput proportional to the deployment size.
 
-What happens if you undersize::
+What happens if you undersize or outgrow the deployed size::
 +
-Provisioning below the recommended size doesn't prevent installation or cause service failures. The system remains operational and scanning continues, but you can expect the following:
+Each configuration is tuned for a specific file count and scan rate. If your environment exceeds what the configuration supports, you can expect the following:
 +
 * *Extended initial catalog duration*: Reduced compute lowers objects scanned per day. For example, a deployment targeting 3 billion objects but provisioned at a smaller size can take significantly longer than the three to four day target.
 * *Reduced ongoing ingest throughput*: New file events and incremental scan updates process more slowly under sustained load.
-* *Storage capacity risk*: Undersized storage relative to total object count can push the metadata index toward capacity thresholds. You can typically resolve this by expanding storage capacity, without a full redeployment.
+* *Stalled scanning*: AI Data Engine components are configured for the size that you deploy. When the environment significantly exceeds that size, scanning can stall instead of only slowing down.
+* *Storage capacity risk*: Undersized storage relative to total object count can push the metadata index toward capacity thresholds. Contact NetApp Support to plan a storage expansion.
 
-Scale when you need more capacity::
+Scale beyond the recommended size::
 +
-A single-node deployment runs on a single VM, so scaling is vertical:
-+
-* Increase vCPU, memory, or storage on the host VM.
-* No cluster reconfiguration or reinstallation is required.
+AI Data Engine components are configured for the size that you deploy, so adding vCPU, memory, or storage to the host VM doesn't automatically increase capacity. If the number of files or the performance that you need exceeds the size that you deployed, contact NetApp Support to readjust the sizing.
 +
 NOTE: A single-node deployment doesn't support high availability or horizontal scale-out. If your environment consistently exceeds 3 billion files, or you require high availability and fault tolerance, deploy an link:deploy-aide-multi-node.html[AIDE multi-node deployment] instead.
 
@@ -309,35 +344,16 @@ NOTE: A single-node deployment doesn't support high availability or horizontal s
 
 |===
 
-=== Additional prerequisites
-
-* You have root or sudo access on the target VM to run the installer.
-* A 1 GbE minimum network connection (10 GbE for Large deployments).
-* The target host must have bash 4.0 or later, curl, and tar available.
-* The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. Pre-installing these tools on the target VM isn't required.
-* Ports 6443 (TCP), 10250 (TCP), and 8472 (UDP) must be free on the host before the installer starts. If a host firewall (`firewalld` on RHEL or `ufw` on Ubuntu) is active, allow these ports and the k3s pod CIDR (`10.44.0.0/16`) and service CIDR (`10.45.0.0/16`) before running the installer. Refer to your OS firewall documentation for the required commands.
-* On RHEL systems running SELinux in Enforcing mode, the installer automatically configures the required SELinux policy packages. No manual SELinux configuration is needed, but the host must be able to reach `\https://rpm.rancher.io`.
-* The operating system repositories enabled on the host must provide `cifs-utils`, and `nfs-utils` (RHEL) or `nfs-kernel-server` (Ubuntu) when the configuration location uses a persistent volume. If those repositories require a proxy, configure it in `dnf` or `apt`. The AI Data Engine proxy options don't apply to them.
-// RESEARCH What is the customer-facing name of the configuration location setting (hostPath or persistent volume), and does the NFS package requirement apply to the multi-node deployment hosts?
-* If your environment requires an outbound proxy to reach the AI Data Engine endpoints listed above, see link:configure-proxy.html[Configure a proxy].
-
 == AIDE multi-node deployment requirements
 
-* You have kubectl access with cluster-admin privileges on the machine from which you run the installer.
-* You have Sudo (or root) permissions on the machine from which you run the install command.
-* RKE2 v1.34 or later (v1.36.x recommended) is installed on the target cluster.
-* The installer host automatically downloads and bootstraps `helm`, `kubectl`, and `jq` via `--tools-dir`. Pre-installing these tools on the management machine isn't required.
-* A configured StorageClass (default name `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
-* An NFS server with at least one exported path is available, used for the AIDE configuration data volume and shared index snapshots.
-* A target Kubernetes namespace (default `aide`) already exists on the cluster; the installer doesn't create it.
-* If your environment requires an outbound proxy, see link:configure-proxy.html[Configure a proxy].
+You bring your own Kubernetes cluster, which can be shared with other workloads or dedicated to AI Data Engine. The installer deploys AI Data Engine onto your existing Kubernetes cluster and doesn't provision or manage it. For the cluster, storage, and installer host requirements, see link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites].
 
 NOTE: NVMe or high-performance SSD storage is recommended for all multi-node deployments.
 
 [[multi-node-sizes]]
 === Node sizing
 
-These sizes are recommended baseline cluster configurations optimized for an approximately three-day initial scan window, not hard capacity limits. AIDE multi-node deployments support environments beyond 6 billion files through horizontal scale-out. Refer to <<flexible-sizing-multi-node,Flexible sizing guidelines>> for details.
+These sizes are recommended baseline cluster configurations optimized for a three to four day initial scan window, not hard capacity limits. Environments beyond 6 billion files require custom sizing with NetApp. Refer to <<flexible-sizing-multi-node,Flexible sizing guidelines>> for details.
 
 [cols="1,1,1,1,1,1,1,1,1",options="header"]
 |===
@@ -378,7 +394,7 @@ These sizes are recommended baseline cluster configurations optimized for an app
 [[flexible-sizing-multi-node]]
 === Flexible sizing guidelines
 
-<<multi-node-sizes,Small, Medium, and Large configurations>> are recommended baseline cluster configurations for an approximate three day initial scan window, not hard capacity ceilings enforced by the software. AIDE multi-node deployments support environments exceeding 3 billion files through horizontal scale-out across cluster nodes.
+<<multi-node-sizes,Small, Medium, and Large configurations>> are recommended baseline cluster configurations for a three to four day initial scan window, not hard capacity ceilings enforced by the software. Environments exceeding 6 billion files require custom sizing with NetApp.
 
 What drives the sizing recommendations::
 +
@@ -388,26 +404,28 @@ What drives the sizing recommendations::
 * *Required scan throughput*: Cluster-wide CPU and memory allocation governs the daily scan rate and how quickly the initial catalog completes.
 * *Per-node storage performance*: High-performance storage is strongly recommended on each node, and total cluster capacity scales proportionally with node count.
 
-What happens if you undersize::
+What happens if you undersize or outgrow the deployed size::
 +
-Provisioning below the recommended size doesn't prevent installation or cause hard failures. Practical impacts include:
+Each configuration is tuned for a specific file count and scan rate. If your environment exceeds what the configuration supports, you can expect the following:
 +
 * *Extended initial catalog duration*: Fewer nodes or reduced per-node resources lower throughput, extending the initial catalog window proportionally.
-* *Increased processing latency under peak load*: Insufficient memory across the cluster can cause elevated processing latency during high-volume ingestion periods. Ongoing operations are not interrupted, but sustained throughput is reduced.
-* *Storage capacity risk*: Insufficient cluster storage for the target object count can push the metadata index toward capacity thresholds. You can resolve this by expanding storage on existing nodes (non-disruptive) or adding a dedicated storage node.
+* *Increased processing latency under peak load*: Insufficient memory across the cluster can cause elevated processing latency during high-volume ingestion periods.
+* *Stalled scanning*: AI Data Engine components are configured for the size that you deploy. When the environment significantly exceeds that size, scanning can stall instead of only slowing down.
+* *Storage capacity risk*: Insufficient cluster storage for the target object count can push the metadata index toward capacity thresholds. Contact NetApp Support to plan a storage expansion.
 
-Scale when you need more capacity::
+Scale beyond the recommended size::
 +
-AIDE multi-node deployments support horizontal scale-out without redeployment:
+Horizontal scaling of an existing multi-node cluster isn't supported. Adding worker nodes or dedicated storage nodes doesn't automatically increase scan processing, event ingestion, or catalog capacity. If your environment exceeds the size that you deployed, or you need more scan processing or event ingestion capacity, contact NetApp Support or your NetApp representative to plan the change.
 +
-* Add worker nodes to increase the CPU and memory available for scan processing and event ingestion.
-* Add dedicated storage nodes to increase total catalog capacity. This is the primary way to scale environments beyond the largest predefined deployment size.
-* Scale beyond 6 billion files by adding more nodes to the cluster. Contact your NetApp representative for node sizing guidance at custom scales.
-+
-NOTE: Adding nodes to an existing multi-node cluster is non-disruptive to ongoing scan operations, but coordinate the change during a low-activity window.
+NOTE: To scale beyond 10 billion files, contact your NetApp representative for node sizing guidance and custom scale.
+
+// RESEARCH The engineering specs list horizontal scaling as supported for multi-node deployments. Should the specs be updated to match this guidance?
+// RESEARCH The largest standard size is 6 billion files and scaling beyond 10 billion files is a custom engagement. Is scaling from 6 to 10 billion files supported with NetApp Support involvement?
 
 == Related information
 
 * link:deployment-overview.html[AIDE deployment overview]
+* link:single-node-prerequisites.html[AIDE single-node deployment prerequisites]
+* link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites]
 * link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment]
 * link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment]
