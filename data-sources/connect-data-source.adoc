@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: data-sources/connect-data-source.html
-keywords: connect, data source, storage system, scanned systems, configuration, scan, NFS, CIFS, StorageGRID, database, file shares, console agent, scope, content intelligence, activate
+keywords: connect, data source, storage system, add system, scan, NFS, CIFS, StorageGRID, database, file shares, console agent, scope, content intelligence, activate
 summary: Connect storage systems to AI Data Engine by completing the data source onboarding wizard, then activate scanning to begin metadata collection.
 ---
 = Connect a data source to AI Data Engine
@@ -20,8 +20,8 @@ AI Data Engine scans your storage systems to collect and analyze metadata. To ad
 == Add a data source
 
 .Steps
-. From the AI Data Engine UI, select *Configuration*.
-. On the *Scanned systems* tab, select *Add system*.
+. From the AI Data Engine UI, select *Data sources*.
+. Select *Add system*.
 . Select a source type:
 +
 [cols="1,2",options="header"]
@@ -63,17 +63,17 @@ AI Data Engine scans your storage systems to collect and analyze metadata. To ad
 After you configure a data source, scanning doesn't start automatically. You must activate scanning for each system.
 
 .Steps
-. From the AI Data Engine UI, select *Configuration*.
-. On the *Scanned systems* tab, locate the system you want to scan.
+. From the AI Data Engine UI, select *Data sources*.
+. Locate the system you want to scan.
 . Select *Activate scans*.
 
 .Result
 
-The system status updates in the Scanned systems tab to show that scanning is running. To monitor scan progress and verify that AI Data Engine is indexing data resources, refer to link:manage-data-sources.html[Manage data sources] and link:monitor-scanning-health.html[Monitor scanning health].
+The system status on the *Data sources* page updates to show that scanning is running. To monitor scan progress and verify that AI Data Engine is indexing data resources, refer to link:manage-data-sources.html[Manage data sources]. If scans stop or pause unexpectedly, refer to link:../administer/monitor-deployment-health.html[Monitor deployment health and investigate issues].
 
 == Related information
 
 * link:manage-data-sources.html[Manage data sources]
 * link:../deploy/aide-requirements.html[AI Data Engine requirements]
 * link:../investigate/understand-dashboard.html[Assess storage utilization from the dashboard]
-* link:monitor-scanning-health.html[Monitor scanning health]
+* link:../administer/monitor-deployment-health.html[Monitor deployment health and investigate issues]

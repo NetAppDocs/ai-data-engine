@@ -1,0 +1,4 @@
+---
+permalink: data-sources/monitor-scanning-health.html
+redirect: administer/monitor-deployment-health.html
+---
