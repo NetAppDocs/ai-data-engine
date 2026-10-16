@@ -16,7 +16,7 @@ When file-based storage is growing unexpectedly, filter by last-access time, fil
 
 == Find cold or stale files by last-access time
 
-Use date-based filters to identify files that haven't been accessed within your organization's cold or stale data thresholds. Thresholds are configurable in *Configuration* > *Settings*. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
+Use date-based filters to identify files that haven't been accessed within your organization's cold or stale data thresholds. You define these thresholds, including the timestamp that each one uses, in the data classification settings. Refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
 
 .Steps
 . From the AI Data Engine UI, select *Investigation*.
@@ -74,5 +74,6 @@ To download the filtered results from the Unstructured tab, select image:icon_do
 
 * link:take-actions.html[Take action on your data]
 * link:../policies/create-policy.html[Create a policy]
+* link:../administer/configure-settings.html[Configure data classification thresholds and access scanning]
 * link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
 * link:understand-dashboard.html[Assess storage utilization from the dashboard]

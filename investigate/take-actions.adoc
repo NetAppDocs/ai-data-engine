@@ -67,9 +67,12 @@ Choose an action based on how certain you are about the data:
 |===
 
 When data might still have value or require further review, choose tagging, archiving, or copying over deleting. Only delete when you are certain the data is safe to remove permanently.
+
 == Archive files
 
 Archiving moves files to a cold storage destination over NFS or SMB. You can optionally leave a breadcrumb file at the original location.
+
+NOTE: The credentials you provide for an SMB destination are separate from the Active Directory integration. To display user names and permissions in AI Data Engine, refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
 
 .Before you begin
 * You must have the _AI Data Engine administrator_ role.

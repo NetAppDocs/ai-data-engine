@@ -44,10 +44,13 @@ After filtering to identify broadly accessible directories, save the criteria as
 . With your permission filters applied, select *Create policy* in the filter toolbar.
 . Complete the policy form. Refer to link:../policies/create-policy.html[Create a policy].
 
+To control whether AI Data Engine scans permissions, refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
+
 To download the filtered results from the Directories tab, select image:icon_download_file.png[Download].
 
 == Related information
 
 * link:../policies/create-policy.html[Create a policy]
+* link:../administer/configure-settings.html[Configure data classification thresholds and access scanning]
 * link:../administer/manage-users-roles.html[Manage users and roles]
 * link:understand-dashboard.html[Assess storage utilization from the dashboard]

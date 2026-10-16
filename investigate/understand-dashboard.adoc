@@ -23,7 +23,7 @@ The summary panel shows the scale of the problem across your scanned environment
 * *Stale data*: Storage that hasn't changed within the stale data threshold (default: three years). Stale data could warrant review according to your organization's data lifecycle policies before deciding on actions such as archival or deletion.
 * *Exposed directories*: The number of directories with overly permissive access settings and their associated file count. These represent a governance risk independent of storage consumption.
 
-Cold and stale thresholds reflect your configured settings and can be changed in *Configuration* > *Settings*. The default values are product defaults and don't represent legal, compliance, or industry-standard retention periods. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
+The cold and stale thresholds reflect your configured settings, including the timestamp and age that you choose. The default values are product defaults and don't represent legal, compliance, or industry-standard retention periods. To change them, refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
 
 The *System* and *System type* filters control dashboard scope. If a storage system doesn't appear in the filter list, refer to link:../data-sources/connect-data-source.html[Connect a data source].
 
@@ -47,7 +47,7 @@ Use the summary panel and these charts to identify and prioritize storage optimi
 
 == Review access exposure
 
-The *Access exposure* tab shows the _Directories with open permissions_ chart, which lists directory paths and their file counts. Use this view to identify directories to prioritize for a permissions review. To see these directories in detail, refer to link:investigate-directories.html[Investigate directories].
+The *Access exposure* tab shows the _Directories with open permissions_ chart, which lists directory paths and their file counts. Use this view to identify directories to prioritize for a permissions review. To see these directories in detail, refer to link:investigate-directories.html[Investigate directories]. To control whether AI Data Engine scans permissions, refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
 
 == Explore structured data
 
@@ -68,4 +68,4 @@ Reviewing the dashboard doesn't archive or delete data or change directory permi
 * link:investigate-data.html[Investigate your data]
 * link:../data-sources/monitor-scanning-health.html[Monitor scanning health]
 * link:../data-sources/connect-data-source.html[Connect a data source]
-* link:../administer/configure-settings.html[Configure cold and stale data thresholds]
+* link:../administer/configure-settings.html[Configure data classification thresholds and access scanning]
