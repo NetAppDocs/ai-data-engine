@@ -121,7 +121,7 @@ CAUTION: Copying or archiving files can change destination permissions, ownershi
 * For *NFS*, enter the destination folder path in the format `hostname:/path/to/destination`.
 * For *SMB*, enter the destination folder path in the format `\\hostname\share_name`. Specify the SMB authentication type as Kerberos or NTLM and enter the password when prompted.
 
-.Review how copying might affect file metadata:
+. Review how copying might affect file metadata:
 +
 * Permissions, ownership, and group information might be preserved when possible. If source identities cannot be mapped, destination defaults might apply.
 * Source timestamps, including creation time, might not be preserved and might reflect the copy operation or destination behavior.
