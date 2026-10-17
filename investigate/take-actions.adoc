@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: investigate/take-actions.html
-keywords: actions, tag, archive, delete, data lifecycle, storage optimization, breadcrumb
+keywords: actions, tag, archive, delete, copy, data lifecycle, storage optimization, breadcrumb
 summary: Act on files you have identified as cold, stale, or obsolete by archiving them, tagging items for tracking, or permanently deleting what you no longer need.
 ---
 = Take action on your data in AI Data Engine
@@ -68,6 +68,8 @@ When data might still have value or require further review, choose tagging, arch
 
 Archiving moves files to a cold storage destination over NFS or SMB. You can optionally leave a breadcrumb file at the original location.
 
+CAUTION: Copying or archiving files can change destination permissions, ownership, group information, and timestamps. Cross-protocol transfers can substantially broaden access. Review the destination security settings before transferring sensitive data, and verify permissions afterward.
+
 .Before you begin
 * You must have the _AI Data Engine administrator_ role.
 
@@ -106,10 +108,11 @@ Choose the method that matches your goal:
 
 Use regular copy to place copies of selected items in a destination folder while leaving the original files unchanged.
 
+CAUTION: Copying or archiving files can change destination permissions, ownership, group information, and timestamps. Cross-protocol transfers can substantially broaden access. Review the destination security settings before transferring sensitive data, and verify permissions afterward.
+
 .Before you begin
-* Select no more than 100,000 items.
 * Ensure that the destination share allows access from the AI Data Engine. NFS and SMB shares are supported regardless of where they are hosted.
-* For a SMB destination, have Kerberos or NTLM credentials available.
+* For an SMB destination, have Kerberos or NTLM credentials available.
 
 .Steps
 . In the *Copy selected items* dialog, select *Regular copy*.
@@ -117,12 +120,14 @@ Use regular copy to place copies of selected items in a destination folder while
 +
 * For *NFS*, enter the destination folder path in the format `hostname:/path/to/destination`.
 * For *SMB*, enter the destination folder path in the format `\\hostname\share_name`. Specify the SMB authentication type as Kerberos or NTLM and enter the password when prompted.
-. Review how copying affects file metadata:
+
+.Review how copying might affect file metadata:
 +
-* Permissions, file ownership, and group information are preserved when possible. Default values might be applied when the original values cannot be mapped.
-* Creation time is set to the time of the copy.
+* Permissions, ownership, and group information might be preserved when possible. If source identities cannot be mapped, destination defaults might apply.
+* Source timestamps, including creation time, might not be preserved and might reflect the copy operation or destination behavior.
 * New directories use the destination's default permissions.
-. If a warning displays the number of items to be copied, confirm that the count matches your intended scope.
+* Cross-protocol transfers can broaden access. Review the destination's security settings before copying and verify permissions afterward.
+
 . Select *Submit*.
 . Select *Close*.
 
@@ -173,7 +178,7 @@ The selected files are permanently deleted from storage.
 
 == Tag files
 
-Tagging applies a business tag to files for classification and tracking.
+Apply business tags to files for organization, filtering, and tracking. For example, apply an "Archive candidate" tag to identify files that require review before you archive or delete them.
 
 .Steps
 . In the Investigation view, select the files you want to tag.
