@@ -9,7 +9,7 @@ summary: Configure Kerberos authentication on a single-node AI Data Engine deplo
 :imagesdir: ../media/
 
 [.lead]
-Configure Kerberos authentication so that a single-node AI Data Engine deployment can scan SMB/CIFS shares without storing a password in the data source. You create a Kerberos configuration file, a keytab for a scan service account, and a principal file on the AI Data Engine host. AI Data Engine then refreshes the Kerberos ticket automatically.
+Scan SMB/CIFS shares from a single-node AI Data Engine deployment by using Kerberos authentication, so that no password is stored in the data source. After you complete the setup, AI Data Engine refreshes the Kerberos ticket automatically.
 
 If you have a multi-node deployment, refer to link:configure-kerberos-smb-multi-node.html[Configure Kerberos for SMB/CIFS shares on a multi-node AI Data Engine deployment].
 
@@ -87,6 +87,8 @@ You create the following files on the AI Data Engine host. The installer creates
 
 [[create-kerberos-files]]
 == Create the Kerberos files
+
+Give AI Data Engine the configuration and credentials it needs to get Kerberos tickets for the scan service account.
 
 .Steps
 . Install the Kerberos client tools.
@@ -281,6 +283,8 @@ The file server resolves to the correct IP address, and `klist` shows a ticket f
 
 == Add an SMB/CIFS data source that uses Kerberos
 
+Add the share as a data source and start scans so AI Data Engine can begin analyzing its data.
+
 .Steps
 . From the AI Data Engine UI, select *Configuration*.
 . On the *Scanned systems* tab, select *Add system*.
@@ -362,6 +366,8 @@ kubectl -n aide delete job -l app.kubernetes.io/name=ds-krb5-ticket-refresher --
 
 [[troubleshoot-kerberos]]
 == Troubleshoot Kerberos authentication
+
+Find the cause of a Kerberos failure and restore scanning of your SMB/CIFS shares.
 
 [cols="2,3,3",options="header"]
 |===
