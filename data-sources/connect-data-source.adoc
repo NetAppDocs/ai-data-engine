@@ -1,77 +1,128 @@
 ---
 sidebar: sidebar
 permalink: data-sources/connect-data-source.html
-keywords: connect, data source, storage system, scanned systems, configuration, scan, NFS, CIFS, StorageGRID, database, file shares, console agent, scope, content intelligence, activate
-summary: Connect storage systems to AI Data Engine by completing the data source onboarding wizard, then activate scanning to begin metadata collection.
+keywords: connect, data source, storage system, add system, scan, NFS, CIFS, SMB, StorageGRID, database, file shares, console agent, scope, activate, Kerberos
+summary: Connect data sources to AI Data Engine and configure the data resources to scan.
 ---
 = Connect a data source to AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine scans your storage systems to collect and analyze metadata. To add a data source, complete the onboarding wizard. The wizard collects connection details, scan scope, and settings for your source type. After you add the system, activate scanning to begin metadata collection.
+Connect the data sources that you want AI Data Engine to analyze, and choose which of their data resources to scan. AI Data Engine scans connected data sources to collect metadata, and the connection procedure depends on the source type.
 
 .Before you begin
 
-* You must have _AI Data Engine administrator_ privileges to connect and configure data sources in AI Data Engine.
-* Discover storage systems in NetApp Console using a Console Agent before adding them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery doesn't enable data services such as AI Data Engine.
+* You must have _AI Data Engine administrator_ privileges to connect and configure data sources.
+* For systems connected through NetApp Console discovery, discover storage systems in NetApp Console using a Console Agent before adding them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery doesn't enable data services such as AI Data Engine.
 * Verify that the network connections required for AI Data Engine to reach your data sources are open. Refer to link:../deploy/aide-requirements.html[AI Data Engine requirements].
 * To scan SMB/CIFS shares with Kerberos authentication, complete the procedure for your deployment type in link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine] first.
 
+[[add-data-source]]
 == Add a data source
 
-.Steps
-. From the AI Data Engine UI, select *Configuration*.
-. On the *Scanned systems* tab, select *Add system*.
-. Select a source type:
-+
-[cols="1,2",options="header"]
-|===
-|Source type |Description
+Bring your data into AI Data Engine so that you can analyze it. Use *Add system* on the *Data sources* page to connect a file shares group, a database server, or a StorageGRID system. After you add the data source, configure scanning to specify which of its resources AI Data Engine scans to collect metadata. Refer to <<configure-scanning>>.
 
-|*File shares group*
-|Add NFS or SMB/CIFS file shares from the cloud or on-premises as a named group.
+// RESEARCH: Confirm which source types require Console Agent discovery. Do not apply the discovery prerequisite to direct-add sources unless confirmed.
 
-|*Database*
-|Add a database server to scan selected schemas.
+[[add-file-shares-group]]
+=== Add a file shares group
 
-|*StorageGRID*
-|Scan data from NetApp StorageGRID using the S3 protocol.
+Bring NFS or SMB shares into AI Data Engine as one named system so that you can manage them together. Create the group, add the shares, and then configure which shares to scan.
 
-|===
-
-. Enter the connection details for your source type:
-+
-[cols="1,3",options="header"]
-|===
-|Source type |Required details
-
-|*File shares group*
-|A name for the share group, then the share host and path details. For SMB/CIFS shares that use Kerberos authentication, enter the share path as the FQDN followed by the share name, for example `filer.corp.example.com/sharename`, and leave the credentials empty. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine].
-// RESEARCH Confirm the UI label of the Kerberos authentication option.
-
-|*Database*
-|Database type, host, port, and authentication credentials.
-
-|*StorageGRID*
-|System name, S3 endpoint URL, and S3 access key and secret key.
-
-|===
-
-. Review your selections and select *Confirm* to add the data source.
-
-== Activate scanning
-
-After you configure a data source, scanning doesn't start automatically. You must activate scanning for each system.
+[[add-file-shares-group-prerequisites]]
+.Before you begin
+* Identify a name for the group and the host and path of each share.
+* Verify that the AI Data Engine deployment can reach the share servers.
+* For NFS, configure the export access that AI Data Engine needs.
+* For SMB, prepare the authentication method and the access needed to read the shares.
 
 .Steps
-. From the AI Data Engine UI, select *Configuration*.
-. On the *Scanned systems* tab, locate the system you want to scan.
-. Select *Activate scans*.
+. From the AI Data Engine UI, select *Data sources*.
+. Select *Add system*, and then select *Add File Shares Group*.
+. Enter a name for the group and continue.
+. Select the protocol of the shares to add.
+. Enter the shares to add and submit them.
++
+NOTE: For SMB/CIFS shares that use Kerberos authentication, enter the share path as the FQDN followed by the share name, for example `filer.corp.example.com/sharename`, and leave the credentials empty. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine].
+
+. Review the result for each share. Resolve any failed shares, and then add them again.
+. Configure scanning for the group. Refer to <<configure-scanning>>.
+
+// RESEARCH: SMB authentication step. Confirm where credentials are entered (during group creation or a separate dialog), the password-based method name (NTLM?), username/domain syntax, and the Kerberos behavior (select Kerberos, FQDN path, empty username and password). Add this as a step only after verification.
+// RESEARCH: Confirm path syntax and one-share-per-line entry for each protocol and authentication method. Add tested examples.
+
+[[add-database]]
+=== Add a database server
+
+Bring the data in a database server into AI Data Engine so that you can scan it. Connect the database server, and then choose the schemas to scan.
+
+.Before you begin
+* Know the database type, server host name or IP address, port, and scan account credentials.
+* Ensure that the account can read the schemas and tables that you want to scan.
+* Verify that AI Data Engine can reach the database server.
+
+// RESEARCH: Confirm engine-specific fields (for example, Oracle service name), engine-specific privileges (for example, a read-only admin role for MongoDB), statistics prerequisites, supported authentication, and TLS requirements.
+
+.Steps
+. From the AI Data Engine UI, select *Data sources*.
+. Select *Add system*, and then select *Add Database Server*.
+. Select the database type and enter the connection details.
+. Submit the connection details.
+. Configure scanning for the database server. Refer to <<configure-scanning>>.
+
+// RESEARCH: Confirm rescan cadence.
+
+[[add-storagegrid]]
+=== Add StorageGRID
+
+Bring your StorageGRID object data into AI Data Engine through its S3 endpoint so that you can scan it. Connect StorageGRID, and then choose the buckets to scan.
+
+.Before you begin
+* Prepare a system name, the StorageGRID S3 endpoint URL, and an S3 access key and secret key.
+* Verify that AI Data Engine can reach the endpoint.
+
+// RESEARCH: Confirm supported StorageGRID versions, endpoint format, TLS and certificate handling, tenant requirements, and minimum bucket and object permissions. Do not invent an S3 policy.
+// RESEARCH: Confirm supported bucket and prefix scope.
+
+.Steps
+. From the AI Data Engine UI, select *Data sources*.
+. Select *Add system*, and then select *Add StorageGRID*.
+. Enter the system name, S3 endpoint URL, access key, and secret key.
+. Submit the connection details.
+. Configure scanning for the StorageGRID system. Refer to <<configure-scanning>>.
+
+// RESEARCH: Confirm connection-test behavior, the completion button label, and whether bucket selection opens right after creation.
+// RESEARCH: Confirm whether buckets are discovered automatically and whether activation is automatic.
+
+[[configure-scanning]]
+== Configure scanning
+
+After you connect a system, choose which of its data resources AI Data Engine scans so that metadata collection covers the data that you need to analyze. Choose one of the following approaches:
+
+* Enable auto-scan for the entire system on the *Data sources* page. AI Data Engine scans all existing and future resources in the system.
+* Enable scanning for individual volumes, shares, buckets, or schemas on the system's *View details* page.
+
+.Steps
+
+* Enable auto-scan for a system:
+. From the AI Data Engine UI, select *Data sources*.
+. Locate the system and toggle the auto-scan switch to enable auto-scan.
++
+NOTE: You'll need to turn off auto-scan to manage scanning for individual resources.
+
+* Enable scanning for individual resources:
+. From the AI Data Engine UI, select *Data sources*.
+. Locate the system and select *View details*.
+. In the data resources list, enable scanning for the volumes, shares, buckets, or schemas that you want to include.
+. Return to *Data sources*, locate the system, and select *Activate scans*.
+
+For more resource-level procedures, refer to link:manage-data-sources.html[Manage data sources].
 
 .Result
+The system status on the *Data sources* page updates to show that scanning is running. The page shows the scan status of each resource.
 
-The system status updates in the Scanned systems tab to show that scanning is running. To monitor scan progress and verify that AI Data Engine is indexing data resources, refer to link:manage-data-sources.html[Manage data sources] and link:monitor-scanning-health.html[Monitor scanning health].
+If scans stop or pause unexpectedly, refer to link:../administer/monitor-deployment-health.html[Monitor deployment health and investigate issues].
 
 == Related information
 
@@ -79,4 +130,4 @@ The system status updates in the Scanned systems tab to show that scanning is ru
 * link:../deploy/aide-requirements.html[AI Data Engine requirements]
 * link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine]
 * link:../investigate/understand-dashboard.html[Assess storage utilization from the dashboard]
-* link:monitor-scanning-health.html[Monitor scanning health]
+* link:../administer/monitor-deployment-health.html[Monitor deployment health and investigate issues]

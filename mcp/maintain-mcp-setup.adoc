@@ -34,7 +34,7 @@ Review the status of the MCP server and of the collections that your AI clients 
 . Address any configuration warnings:
 * If an identity provider is missing, add it under *Configuration* > *Identity providers*. Refer to link:configure-mcp-access.html#set-up-an-identity-provider[Set up an identity provider].
 * If a collection shows *Ready to configure*, open its *Actions* menu, select *Configure for MCP*, and select identity providers and user scopes. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
-* If a volume in a collection shows a scan error, refer to link:../data-sources/monitor-scanning-health.html[Monitor scanning health in AI Data Engine].
+* If a volume in a collection shows a scan error, refer to link:../data-sources/manage-data-sources.html#view-scan-status-and-details[View scan status and details].
 
 [#edit-a-data-collection]
 == Edit a data collection

@@ -52,17 +52,17 @@ The following network connections must be open:
 |To storage
 |NFS data source access
 
-|AI Data Engine to ONTAP (SMB/CIFS)
+|AI Data Engine to ONTAP (SMB)
 |139, 445
 |TCP/UDP
 |To storage
-|SMB/CIFS data source access
+|SMB data source access
 
 |AI Data Engine to Active Directory
 |389, 636, 3268, 3269
 |TCP (UDP also for 389)
 |Outbound
-|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication, SMB/CIFS scanning, and mapping NFS user and group IDs to Active Directory names.
+|LDAP (389), LDAPS (636), and Global Catalog (3268, 3269) for user authentication, SMB/CIFS scanning, and mapping NFS user and group IDs to Active Directory names. Port 389 uses both TCP and UDP; all other ports use TCP only.
 
 |AI Data Engine to Kerberos KDC (Active Directory domain controller)
 |88
@@ -334,7 +334,7 @@ Each configuration is tuned for a specific file count and scan rate. If your env
 +
 * *Extended initial catalog duration*: Reduced compute lowers objects scanned per day. For example, a deployment targeting 3 billion objects but provisioned at a smaller size can take significantly longer than the three to four day target.
 * *Reduced ongoing ingest throughput*: New file events and incremental scan updates process more slowly under sustained load.
-* *Stalled scanning*: AI Data Engine components are configured for the size that you deploy. When the environment significantly exceeds that size, scanning can stall instead of only slowing down.
+* *Stalled scanning*: AI Data Engine components are configured for the size that you deploy. When the environment significantly exceeds that size, scanning can stall instead of only slowing down. To check for unhealthy workloads and resource constraints, refer to link:../administer/monitor-deployment-health.html[Monitor deployment health and investigate issues].
 * *Storage capacity risk*: Undersized storage relative to total object count can push the metadata index toward capacity thresholds. Contact NetApp Support to plan a storage expansion.
 
 Scale beyond the recommended size::
@@ -423,7 +423,7 @@ Each configuration is tuned for a specific file count and scan rate. If your env
 +
 * *Extended initial catalog duration*: Fewer nodes or reduced per-node resources lower throughput, extending the initial catalog window proportionally.
 * *Increased processing latency under peak load*: Insufficient memory across the cluster can cause elevated processing latency during high-volume ingestion periods.
-* *Stalled scanning*: AI Data Engine components are configured for the size that you deploy. When the environment significantly exceeds that size, scanning can stall instead of only slowing down.
+* *Stalled scanning*: AI Data Engine components are configured for the size that you deploy. When the environment significantly exceeds that size, scanning can stall instead of only slowing down. To check for unhealthy workloads and resource constraints, refer to link:../administer/monitor-deployment-health.html[Monitor deployment health and investigate issues].
 * *Storage capacity risk*: Insufficient cluster storage for the target object count can push the metadata index toward capacity thresholds. Contact NetApp Support to plan a storage expansion.
 
 Scale beyond the recommended size::
@@ -431,9 +431,6 @@ Scale beyond the recommended size::
 Horizontal scaling of an existing multi-node cluster isn't supported. Adding worker nodes or dedicated storage nodes doesn't automatically increase scan processing, event ingestion, or catalog capacity. If your environment exceeds the size that you deployed, or you need more scan processing or event ingestion capacity, contact NetApp Support or your NetApp representative to plan the change.
 +
 NOTE: To scale beyond 10 billion files, contact your NetApp representative for node sizing guidance and custom scale.
-
-// RESEARCH The engineering specs list horizontal scaling as supported for multi-node deployments. Should the specs be updated to match this guidance?
-// RESEARCH The largest standard size is 6 billion files and scaling beyond 10 billion files is a custom engagement. Is scaling from 6 to 10 billion files supported with NetApp Support involvement?
 
 [[kerberos-ad-requirements]]
 == Kerberos and Active Directory requirements
@@ -475,6 +472,10 @@ To change the DNS settings, refer to "Fix name resolution" in link:../administer
 === Active Directory attributes for NFS
 
 To resolve NFS user and group IDs to Active Directory names, the `uidNumber` and `gidNumber` attributes must be populated, and replicated to the Global Catalog if AIDE queries it. Refer to link:../administer/configure-ad-nfs.html[Configure Active Directory identity mapping for NFS].
+
+== Active version and support contact
+
+To find the active version of AI Data Engine and the NetApp Support contact information, go to *Configuration* > *About AIDE*.
 
 == Related information
 
