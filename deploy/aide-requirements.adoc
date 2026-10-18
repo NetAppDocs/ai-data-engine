@@ -321,7 +321,7 @@ Each configuration is tuned for a specific file count and scan rate. If your env
 +
 * *Extended initial catalog duration*: Reduced compute lowers objects scanned per day. For example, a deployment targeting 3 billion objects but provisioned at a smaller size can take significantly longer than the three to four day target.
 * *Reduced ongoing ingest throughput*: New file events and incremental scan updates process more slowly under sustained load.
-* *Stalled scanning*: AI Data Engine components are configured for the size that you deploy. When the environment significantly exceeds that size, scanning can stall instead of only slowing down.
+* *Stalled scanning*: AI Data Engine components are configured for the size that you deploy. When the environment significantly exceeds that size, scanning can stall instead of only slowing down. To check for unhealthy workloads and resource constraints, refer to link:../administer/monitor-deployment-health.html[Monitor deployment health and investigate issues].
 * *Storage capacity risk*: Undersized storage relative to total object count can push the metadata index toward capacity thresholds. Contact NetApp Support to plan a storage expansion.
 
 Scale beyond the recommended size::
@@ -410,7 +410,7 @@ Each configuration is tuned for a specific file count and scan rate. If your env
 +
 * *Extended initial catalog duration*: Fewer nodes or reduced per-node resources lower throughput, extending the initial catalog window proportionally.
 * *Increased processing latency under peak load*: Insufficient memory across the cluster can cause elevated processing latency during high-volume ingestion periods.
-* *Stalled scanning*: AI Data Engine components are configured for the size that you deploy. When the environment significantly exceeds that size, scanning can stall instead of only slowing down.
+* *Stalled scanning*: AI Data Engine components are configured for the size that you deploy. When the environment significantly exceeds that size, scanning can stall instead of only slowing down. To check for unhealthy workloads and resource constraints, refer to link:../administer/monitor-deployment-health.html[Monitor deployment health and investigate issues].
 * *Storage capacity risk*: Insufficient cluster storage for the target object count can push the metadata index toward capacity thresholds. Contact NetApp Support to plan a storage expansion.
 
 Scale beyond the recommended size::

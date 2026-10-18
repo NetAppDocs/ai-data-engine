@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: investigate/take-actions.html
-keywords: actions, tag, archive, delete, data lifecycle, storage optimization, breadcrumb, duplicates, clean up duplicates
+keywords: actions, tag, archive, delete, copy,data lifecycle, storage optimization, breadcrumb, duplicates, clean up duplicates
 summary: Act on files you have identified as cold, stale, duplicated, or obsolete by archiving them, tagging items for tracking, or permanently deleting what you no longer need.
 ---
 = Take action on your data in AI Data Engine
@@ -59,7 +59,7 @@ Choose an action based on how certain you are about the data:
 |The data might still have value, but it doesn't belong in primary storage. Archiving moves it to a lower-cost destination while keeping it recoverable.
 
 |Copy
-|The data should exist in a second location, for example for backup or migration purposes. Copying preserves the original in place.
+|The data should exist in a second location, for example for backup or migration purposes. Copying preserves the original in place. You can copy to an NFS or SMB folder, create a filtered FlexClone volume, or transfer items with Cloud Sync.
 
 |Delete
 |The data is no longer needed and has no retention requirements. Deletion is permanent, so use it only when you are sure.
@@ -72,6 +72,8 @@ When data might still have value or require further review, choose tagging, arch
 
 Archiving moves files to a cold storage destination over NFS or SMB. You can optionally leave a breadcrumb file at the original location.
 
+CAUTION: Copying or archiving files can change destination permissions, ownership, group information, and timestamps. Cross-protocol transfers can substantially broaden access. Review the destination security settings before transferring sensitive data, and verify permissions afterward.
+
 NOTE: The credentials you provide for an SMB destination are separate from the Active Directory integration. To display user names and permissions in AI Data Engine, refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
 
 .Before you begin
@@ -82,28 +84,85 @@ NOTE: The credentials you provide for an SMB destination are separate from the A
 . Select *Archive*.
 . In the Archive dialog, select the destination volume protocol:
 +
-* *NFS*: enter the NFS destination folder path.
-* *CIFS*: enter the SMB destination folder path in the format `\\Hostname\share_name`. Provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
+* For *NFS*, enter the destination folder path in the format `hostname:/path/to/destination`.
+* For *SMB*, enter the SMB destination folder path in the format `\\Hostname\share_name`. Provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
 . To create a breadcrumb file at the original location, enable *Leave breadcrumb*.
 +
 A breadcrumb file helps users understand why a file was moved.
 . Select *Archive*.
 
-== Copy files
+== Copy selected items
 
-Copying duplicates files to a destination volume without removing them from the original location.
+Copy items from AI Data Engine (AIDE) to another location, create a point-in-time copy of an ONTAP volume that contains only the items you need, or transfer items using Cloud Sync.
+
+Choose the method that matches your goal:
+
+* *Regular copy*: Copy items to an NFS or SMB destination folder without changing the original files.
+* *FlexClone*: Create a point-in-time copy of an ONTAP volume and remove items that were not included in your query from the cloned volume. The original volume is not affected.
+* *Sync*: Transfer items between file or object storage, on premises or in the cloud, using Cloud Sync.
 
 .Before you begin
 * You must have the _AI Data Engine administrator_ role.
 
 .Steps
-. In the Investigation view, select the files you want to copy.
+. In AIDE, select *Investigation* from the left navigation.
+. Use filters to find the items you want to copy, and then select the items in the results table.
 . Select *Copy*.
-. In the Copy dialog, select the destination volume protocol:
+. Complete the procedure for your chosen copy method.
+
+=== Copy items to an NFS or SMB folder
+
+Use regular copy to place copies of selected items in a destination folder while leaving the original files unchanged.
+
+CAUTION: Copying or archiving files can change destination permissions, ownership, group information, and timestamps. Cross-protocol transfers can substantially broaden access. Review the destination security settings before transferring sensitive data, and verify permissions afterward.
+
+.Before you begin
+* Ensure that the destination share allows access from the AI Data Engine. NFS and SMB shares are supported regardless of where they are hosted.
+* For an SMB destination, have Kerberos or NTLM credentials available.
+
+.Steps
+. In the *Copy selected items* dialog, select *Regular copy*.
+. Choose the destination protocol and provide the destination details:
 +
-* *NFS*: enter the NFS destination folder path.
-* *CIFS*: enter the SMB destination folder path in the format `\\Hostname\share_name`. Provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
-. Select *Copy*.
+* For *NFS*, enter the destination folder path in the format `hostname:/path/to/destination`.
+* For *SMB*, enter the destination folder path in the format `\\hostname\share_name`. Specify the SMB authentication type as Kerberos or NTLM and enter the password when prompted.
+
+. Review how copying might affect file metadata:
++
+* Permissions, ownership, and group information might be preserved when possible. If source identities cannot be mapped, destination defaults might apply.
+* Source timestamps, including creation time, might not be preserved and might reflect the copy operation or destination behavior.
+* New directories use the destination's default permissions.
+* Cross-protocol transfers can broaden access. Review the destination's security settings before copying and verify permissions afterward.
+
+. Select *Submit*.
+. Select *Close*.
+
+=== Create a filtered copy of an ONTAP volume
+
+Use FlexClone to create a point-in-time volume copy that retains the items included in your query. Items outside the query are deleted from the cloned volume, leaving a cleaned-up copy ready to migrate.
+
+.Before you begin
+Ensure that all selected items belong to the same ONTAP volume. The FlexClone volume is created in the same aggregate as its parent volume.
+
+.Steps
+. In the *Copy selected items* dialog, select *FlexClone*.
+. Enter a *Name* for the cloned volume.
+. Confirm that your query includes all the items you want to retain in the cloned volume.
++
+Items not included in the query are deleted from the clone. The original volume is not affected.
+. Select *Submit*.
+
+=== Transfer items using Cloud Sync
+
+Use Sync to transfer selected items between file or object storage locations, on premises, or in the cloud.
+
+.Before you begin
+Ensure that all selected items belong to the same storage repository. If your selection spans repositories, cancel the operation and select items from a single repository.
+
+.Steps
+. In the *Copy selected items* dialog, select *Sync*.
+. Review the number of items to be synced and confirm that it matches the items you intend to transfer.
+. Select *Sync* to proceed with Cloud Sync.
 
 == Delete files
 
@@ -182,7 +241,7 @@ To exit without submitting an action, select *Cancel*.
 
 == Tag files
 
-Tagging applies a business tag to files for classification and tracking.
+Apply business tags to files for organization, filtering, and tracking. For example, apply an "Archive candidate" tag to identify files that require review before you archive or delete them.
 
 .Steps
 . In the Investigation view, select the files you want to tag.
