@@ -27,7 +27,7 @@ Cold and stale thresholds reflect your configured settings and can be changed in
 
 The *System* and *System type* filters control dashboard scope. If a storage system doesn't appear in the filter list, refer to link:../data-sources/connect-data-source.html[Connect a data source].
 
-The *Last updated* timestamp shows when the dashboard data was last refreshed. Select *Refresh* to update the dashboard. To confirm that the underlying data is current, refer to link:../data-sources/monitor-scanning-health.html[Monitor scanning health].
+The *Last updated* timestamp shows when the dashboard data was last refreshed. Select *Refresh* to update the dashboard. To confirm that the underlying data is current, refer to link:../data-sources/manage-data-sources.html#view-scan-status-and-details[View scan status and details].
 
 == Identify storage optimization opportunities
 
@@ -66,6 +66,7 @@ Reviewing the dashboard doesn't archive or delete data or change directory permi
 == Related information
 
 * link:investigate-data.html[Investigate your data]
-* link:../data-sources/monitor-scanning-health.html[Monitor scanning health]
+* link:../data-sources/manage-data-sources.html[Manage data sources]
+* link:../administer/monitor-deployment-health.html[Monitor deployment health and investigate issues]
 * link:../data-sources/connect-data-source.html[Connect a data source]
 * link:../administer/configure-settings.html[Configure cold and stale data thresholds]
