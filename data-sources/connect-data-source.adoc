@@ -9,7 +9,7 @@ summary: Connect data sources to AI Data Engine and configure the data resources
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine scans connected data sources to collect and analyze metadata. The connection procedure depends on the source type. After you connect a data source, configure scanning for the data resources that you want to include.
+Connect the data sources that you want AI Data Engine to analyze, and choose which of their data resources to scan. AI Data Engine scans connected data sources to collect metadata, and the connection procedure depends on the source type.
 
 .Before you begin
 
@@ -20,14 +20,14 @@ AI Data Engine scans connected data sources to collect and analyze metadata. The
 [[add-data-source]]
 == Add a data source
 
-Use *Add system* on the *Data sources* page to connect a file shares group, a database server, or a StorageGRID system. The steps depend on the source type. After you add the data source, configure scanning to specify which of its resources AI Data Engine scans to collect metadata. Refer to <<configure-scanning>>.
+Bring your data into AI Data Engine so that you can analyze it. Use *Add system* on the *Data sources* page to connect a file shares group, a database server, or a StorageGRID system. After you add the data source, configure scanning to specify which of its resources AI Data Engine scans to collect metadata. Refer to <<configure-scanning>>.
 
 // RESEARCH: Confirm which source types require Console Agent discovery. Do not apply the discovery prerequisite to direct-add sources unless confirmed.
 
 [[add-file-shares-group]]
 === Add a file shares group
 
-A file shares group organizes NFS or SMB shares under one system name. Create the group, add shares to it, and then configure which shares to scan.
+Bring NFS or SMB shares into AI Data Engine as one named system so that you can manage them together. Create the group, add the shares, and then configure which shares to scan.
 
 [[add-file-shares-group-prerequisites]]
 .Before you begin
@@ -56,7 +56,7 @@ A file shares group organizes NFS or SMB shares under one system name. Create th
 [[add-database]]
 === Add a database server
 
-Connect a database server, and then select the schemas to scan.
+Bring the data in a database server into AI Data Engine so that you can scan it. Connect the database server, and then choose the schemas to scan.
 
 .Before you begin
 * Know the database type, server host name or IP address, port, and scan account credentials.
@@ -77,7 +77,7 @@ Connect a database server, and then select the schemas to scan.
 [[add-storagegrid]]
 === Add StorageGRID
 
-Connect StorageGRID, and then select the buckets to scan.
+Bring your StorageGRID object data into AI Data Engine through its S3 endpoint so that you can scan it. Connect StorageGRID, and then choose the buckets to scan.
 
 .Before you begin
 * Prepare a system name, the StorageGRID S3 endpoint URL, and an S3 access key and secret key.
@@ -99,7 +99,7 @@ Connect StorageGRID, and then select the buckets to scan.
 [[configure-scanning]]
 == Configure scanning
 
-After you connect a system, choose how AI Data Engine scans its data resources:
+After you connect a system, choose which of its data resources AI Data Engine scans so that metadata collection covers the data that you need to analyze. Choose one of the following approaches:
 
 * Enable auto-scan for the entire system on the *Data sources* page. AI Data Engine scans all existing and future resources in the system.
 * Enable scanning for individual volumes, shares, buckets, or schemas on the system's *View details* page.
