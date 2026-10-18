@@ -16,7 +16,7 @@ When you need to identify which directories are exposed to more users than inten
 
 == Find broadly accessible directories
 
-Use permission filters to identify directories that are open beyond the intended audience.
+Find directories that are open beyond the intended audience by filtering on permissions.
 
 .Steps
 . From the AI Data Engine UI, select *Investigation*.
@@ -30,7 +30,7 @@ The results table updates to show directories matching the permission criteria, 
 
 == Review directory permissions
 
-Select a directory row to open the detail panel and review who has access.
+Confirm who has access to a directory and whether that access is intentional. Select a directory row to open the detail panel.
 
 The detail panel shows the directory type, system, directory owner, and a permissions summary (for example, "Open to organization"). Select *View permissions* to see a breakdown of read and write access for each user or group with access to the directory.
 

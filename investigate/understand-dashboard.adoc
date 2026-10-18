@@ -15,7 +15,7 @@ From NetApp Console, select *AI data hub* > *AI Data Engine*. The dashboard open
 
 == Understand how much storage is affected
 
-The summary panel shows the scale of the problem across your scanned environment:
+Understand how much of your scanned storage is cold, stale, or exposed. The summary panel shows the scale of the problem across your scanned environment:
 
 * *Data resources*: The count of volumes, shares, and buckets currently scanned.
 * *Items scanned*: The total number of items indexed across all scanned data resources.
@@ -31,7 +31,7 @@ The *Last updated* timestamp shows when the dashboard data was last refreshed. S
 
 == Identify storage optimization opportunities
 
-The *Storage optimization* tab helps you identify opportunities to reclaim storage. It includes the following charts and tables:
+Find where you can reclaim the most storage. The *Storage optimization* tab includes the following charts and tables:
 
 * _Active versus reclaimable storage_: Shows the proportion of active data compared to cold and stale data across all scanned resources. A high proportion of cold, stale, or duplicated data could indicate a significant storage optimization opportunity.
 * _Top data resources by reclaimable storage_: Shows the data resources with the most reclaimable capacity.
@@ -47,11 +47,11 @@ Use the summary panel and these charts to identify and prioritize storage optimi
 
 == Review access exposure
 
-The *Access exposure* tab shows the _Directories with open permissions_ chart, which lists directory paths and their file counts. Use this view to identify directories to prioritize for a permissions review. To see these directories in detail, refer to link:investigate-directories.html[Investigate directories]. To control whether AI Data Engine scans permissions, refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
+Find the directories to prioritize for a permissions review. The *Access exposure* tab shows the _Directories with open permissions_ chart, which lists directory paths and their file counts. To see these directories in detail, refer to link:investigate-directories.html[Investigate directories]. To control whether AI Data Engine scans permissions, refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
 
 == Explore structured data
 
-The *Structured data* tab shows the _Structured data summary_ table, which lists the schema, database table name, and number of rows. Use it to identify the schemas and tables represented in your scanned data and compare their row counts. To search and filter this data, refer to link:investigate-structured.html[Investigate structured data].
+See which schemas and tables are in your scanned data and compare their row counts. The *Structured data* tab shows the _Structured data summary_ table, which lists the schema, database table name, and number of rows. To search and filter this data, refer to link:investigate-structured.html[Investigate structured data].
 
 == Move from the dashboard to investigation
 

@@ -16,7 +16,7 @@ When file-based storage is growing unexpectedly, filter by last-access time, fil
 
 == Find cold or stale files by last-access time
 
-Use date-based filters to identify files that haven't been accessed within your organization's cold or stale data thresholds. You define these thresholds, including the timestamp that each one uses, in the data classification settings. Refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
+Find files that haven't been accessed within your organization's cold or stale data thresholds by using date-based filters. You define these thresholds, including the timestamp that each one uses, in the data classification settings. Refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
 
 .Steps
 . From the AI Data Engine UI, select *Investigation*.
@@ -40,13 +40,13 @@ The results reorganize to show total file count and size per owner. Select any o
 
 == Review file details
 
-Select any file row to open the detail panel and confirm the file matches your intended scope before taking action.
+Confirm that a file matches your intended scope before you take action. Select any file row to open the detail panel.
 
 The detail panel shows the file's system, storage repository, path, size, timestamps, access, file owner, and any applied tags or policies. The *Duplicates* field shows the number of duplicate copies of the file. Verify the system and owner before archiving or deleting.
 
 == Find duplicate files
 
-Use the *Duplicates* filter to list every file that has one or more identical copies elsewhere in the catalog. This is a good starting point when you want to see how widespread duplicates are before you decide where to clean up.
+See how widespread duplicate files are before you decide where to clean up. The *Duplicates* filter lists every file that has one or more identical copies elsewhere in the catalog.
 
 .Steps
 . From the AI Data Engine UI, select *Investigation*.
