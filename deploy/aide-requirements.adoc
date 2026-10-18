@@ -422,6 +422,10 @@ NOTE: To scale beyond 10 billion files, contact your NetApp representative for n
 // RESEARCH The engineering specs list horizontal scaling as supported for multi-node deployments. Should the specs be updated to match this guidance?
 // RESEARCH The largest standard size is 6 billion files and scaling beyond 10 billion files is a custom engagement. Is scaling from 6 to 10 billion files supported with NetApp Support involvement?
 
+== Active version and support contact
+
+To find the active version of AI Data Engine and the NetApp Support contact information, go to *Configuration* > *About AIDE*.
+
 == Related information
 
 * link:deployment-overview.html[AIDE deployment overview]

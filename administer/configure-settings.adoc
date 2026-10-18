@@ -1,54 +1,103 @@
 ---
 sidebar: sidebar
 permalink: administer/configure-settings.html
-keywords: cold threshold, stale threshold, configuration, settings, data classification, cold data, stale data
-summary: Configure the time thresholds that AI Data Engine uses to classify data as cold or stale across your environment.
+keywords: general settings, cold data, stale data, data classification, thresholds, permission scanning, Active Directory, LDAP, NFS identity mapping, access risk, configuration
+summary: Define which files AI Data Engine classifies as cold or stale data, turn on permission scanning, and connect Active Directory to identify storage optimization opportunities and access risks.
 ---
-= Configure cold and stale data thresholds in AI Data Engine
+= Configure data classification thresholds and access scanning in AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine classifies files as cold or stale based on time thresholds you define. These thresholds affect which data appears in dashboard summaries, which files appear when you apply cold or stale filters in Investigation, and which files policies target. Set thresholds that match your organization's data classification and retention practices and help you identify data you consider important to monitor.
+Cold and stale thresholds help you find storage that you can optimize. Permission scanning and Active Directory integration help you find and understand access risks. Set them to match your organization's data classification, retention, and access policies.
 
 == What is cold and stale data?
 
-Cold data:: Files that haven't been accessed within the configured cold data threshold. Cold data is a key metric your organization can use to identify storage that could be optimized according to your retention and business policies.
+Cold data:: Files that haven't been accessed within the cold data threshold. Cold data is a key metric your organization can use to identify storage that could be optimized according to your retention and business policies.
 
-Stale data:: Files that haven't been accessed or modified within the configured stale data threshold. Stale data includes files that are occasionally accessed but not recently modified, which your organization can monitor or manage according to your policies.
+Stale data:: Files that haven't been modified within the stale data threshold. Stale data helps your organization identify files that haven't changed recently, which you can monitor or manage according to your policies.
+
+These thresholds affect dashboard summaries, the files shown when you apply cold or stale filters in Investigation, and the files that policies target. Choose thresholds that reflect how long data can go unused or unchanged before your organization evaluates it. A shorter threshold classifies more data as cold or stale, and a longer threshold narrows the results to the data that has been inactive the longest.
 
 NOTE: The default threshold values are product defaults provided as a starting point. They don't represent legal, compliance, or industry-standard retention periods. Set thresholds that reflect your organization's specific policies and requirements.
 
-Changes to either threshold take effect after the next scan cycle completes.
+Changes to the cold and stale thresholds take effect after the next scan cycle completes.
 
-== Configure the cold data threshold
+// RESEARCH When do changes to the permission scanning and Active Directory settings take effect (next scan cycle or immediately)?
+// RESEARCH What do the dashboard, Investigation filters, and policies show when cold data, stale data, or permission scanning is disabled?
 
-.Before you begin
-* You must have the _AI Data Engine administrator_ role.
+== Before you begin
 
-.Steps
-. From the AI Data Engine UI, select *Configuration*.
-. Select *Settings*.
-. Select *Edit* for *Cold data definition*.
-. Set the file property to *Last Accessed* or *Last Modified*.
-. Set the time threshold. The default is one year.
-. Select *Save*.
+You must have the _AI Data Engine administrator_ role.
 
-== Configure the stale data threshold
+== Set the cold data threshold
 
-.Before you begin
-* You must have the _AI Data Engine administrator_ role.
+Decide how long files can go without being accessed before your organization evaluates them for archiving, deletion, or monitoring. You can also limit the classification by file size, and keep specific file types or paths out of it.
 
 .Steps
-. From the AI Data Engine UI, select *Configuration*.
-. Select *Settings*.
-. Select *Edit* for *Stale data definition*.
-. Set the file property to *Last Accessed* or *Last Modified*.
-. Set the time threshold. The default is three years.
+. From the AI Data Engine UI, select *Configuration* > *General settings*.
+. Expand *Cold data definition*, and enable cold data classification if it is disabled.
+. Under *Age based on*, select the timestamp that determines age: *Last accessed* to identify files that haven't been used recently, or *Last modified* to identify files that haven't changed recently.
+. Set the *Cold age threshold*. The default is one year.
+. Set the *Minimum file size (MiB)* and *Max file size cap (MiB)* to focus on the files that matter to you.
+. Optional: To keep specific files out of this classification, enter *Exclude file types* and *Exclude paths*. Enter files and full paths, and separate multiple entries with commas.
 . Select *Save*.
+
+// RESEARCH Can the exclusion fields use wildcards? The current guidance supports files and full paths only.
+// RESEARCH Cold data is defined as not accessed, and stale data as not modified, but each definition offers Age based on options for both Last accessed and Last modified. Confirm how the selected timestamp changes each classification.
+
+== Set the stale data threshold
+
+Decide how long files can go without changing before your organization reviews them under its data lifecycle policies. You can also limit the classification by file size, and keep specific file types or paths out of it.
+
+.Steps
+. From the AI Data Engine UI, select *Configuration* > *General settings*.
+. Expand *Stale data definition*, and enable stale data classification if it is disabled.
+. Under *Age based on*, select the timestamp that determines age: *Last modified* or *Last accessed*.
+. Set the *Stale age threshold*. The default is three years.
+. Set the *Minimum file size (MiB)* and *Max file size cap (MiB)* to focus on the files that matter to you.
+. Optional: To keep specific files out of this classification, enter *Exclude file types* and *Exclude paths*. Enter files and full paths, and separate multiple entries with commas.
+. Select *Save*.
+
+== Find access risks with permission scanning
+
+Turn on permission scanning when you need to find files and folders that are open to more people than your policies allow. To review the results, refer to link:../investigate/investigate-directories.html[Investigate directories].
+
+.Steps
+. From the AI Data Engine UI, select *Configuration* > *General settings*.
+. Expand *Permission scanning*, and turn on the toggle.
++
+To stop scanning permissions, turn the toggle off.
+
+== Show user and group names with Active Directory
+
+Connect AI Data Engine to Active Directory when you need to see user names and permissions, rather than numeric IDs, as you review your data. If your environment uses NFS, you can also map numeric user IDs (UIDs) and group IDs (GIDs) to directory users and groups.
+
+NOTE: The credentials you enter here are for the directory integration. They are separate from the credentials you provide for an SMB archive destination. Refer to link:../investigate/take-actions.html[Take action on your data].
+
+.Before you begin
+* Obtain the user name and password for the directory connection.
+* Obtain the DNS server IP address, domain name, LDAP server IP address, and LDAP server port. Refer to link:../deploy/aide-requirements.html[AIDE requirements] for the network ports that AI Data Engine uses to reach Active Directory.
+* Confirm whether your directory requires a secure LDAP connection.
+* If you plan to enable NFS identity mapping, confirm the directory attributes used for UIDs and GIDs.
+
+.Steps
+. From the AI Data Engine UI, select *Configuration* > *General settings*.
+. Expand *Active Directory*, and turn on *Enable*.
+. Enter the *User name* and *Password* for the directory connection.
+. Enter the *DNS Server IP address* and *Domain name*.
+. Enter the *LDAP Server IP address* and *LDAP Server Port*.
+. Select *LDAP secure connection* if your directory requires it.
+. Optional: To map NFS user and group IDs, turn on *Enable NFS identity mapping*, and then specify the *UID number attribute* and *GID number attribute* that your directory uses, such as `uidNumber` and `gidNumber`.
+. Select *Save*.
+
+// RESEARCH What permissions does the Active Directory account need? How are the credentials stored? What happens in AI Data Engine if the directory connection fails?
 
 == Related information
 
 * link:../investigate/understand-dashboard.html[Learn about the AI Data Engine dashboard]
+* link:../investigate/investigate-directories.html[Investigate directories]
+* link:../investigate/investigate-unstructured.html[Investigate unstructured data]
 * link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
+* link:../deploy/aide-requirements.html[AIDE requirements]
 * link:manage-users-roles.html[Manage users and roles]
