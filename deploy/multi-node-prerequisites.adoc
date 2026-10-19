@@ -13,16 +13,6 @@ For an AI Data Engine (AIDE) multi-node deployment, you bring your own Kubernete
 
 Your environment must meet the requirements in the following sections before you run the install command. For node sizing, supported Kubernetes versions, and network ports, see link:aide-requirements.html[AIDE requirements].
 
-== Kubernetes cluster
-
-* You provide a Kubernetes cluster that runs RKE2, OpenShift, or Azure Kubernetes Service (AKS) and meets the link:aide-requirements.html#supported-kubernetes[supported Kubernetes versions].
-* AI Data Engine components run on the nodes that you label. See <<node-labels,Node labels>>. Other workloads on those nodes can't use host ports 80 and 443.
-* The cluster has at least three nodes with enough allocatable capacity for your configuration. See link:aide-requirements.html#multi-node-sizes[node sizing].
-* Every node has outbound network access to the NetApp container registry. See link:aide-requirements.html#outbound-internet-access[Outbound internet access]. If you restrict where images can be pulled from, allow the NetApp registry.
-* If your environment requires an outbound proxy, see link:configure-proxy.html[Configure a proxy].
-
-// RESEARCH Does general availability include node taints and tolerations for shared clusters? If so, what taint should customers apply to isolate AI Data Engine nodes?
-
 == Installer host
 
 The installer host is a lightweight management machine. It doesn't run AI Data Engine workloads. It can be any machine with network access to the Kubernetes API server, such as a laptop, a jump host, or a CI runner. Before running shell commands on this page, switch to bash.
@@ -38,6 +28,16 @@ NOTE: The `sudo` command removes environment variables, so always pass `--kubeco
 Managed-cluster kubeconfigs authenticate through an exec credential plugin that reads the cloud CLI login for the current user. Running the installer with `sudo` can switch to a root account without that cloud login and cause authentication to fail. To avoid this, run the installer as the user with the cloud CLI login and specify a writable tools directory with `--tools-dir`. For AKS-specific guidance, see <<aks-requirements,AKS requirements>>.
 
 At startup, the installer runs `kubectl config current-context` and `kubectl cluster-info` and stops if either command fails. Run these commands first, as the same user and with the same privileges that you use for the installer. The installer also asks you to confirm that you completed the node, NFS, and cluster preparation in the following sections.
+
+== Kubernetes cluster
+
+* You provide a Kubernetes cluster that runs RKE2, OpenShift, or Azure Kubernetes Service (AKS) and meets the link:aide-requirements.html#supported-kubernetes[supported Kubernetes versions].
+* AI Data Engine components run on the nodes that you label. See <<node-labels,Node labels>>. Other workloads on those nodes can't use host ports 80 and 443.
+* The cluster has at least three nodes with enough allocatable capacity for your configuration. See link:aide-requirements.html#multi-node-sizes[node sizing].
+* Every node has outbound network access to the NetApp container registry. See link:aide-requirements.html#outbound-internet-access[Outbound internet access]. If you restrict where images can be pulled from, allow the NetApp registry.
+* If your environment requires an outbound proxy, see link:configure-proxy.html[Configure a proxy].
+
+// RESEARCH Does general availability include node taints and tolerations for shared clusters? If so, what taint should customers apply to isolate AI Data Engine nodes?
 
 == Node preparation
 
@@ -117,40 +117,6 @@ sudo apt-get update
 sudo apt-get install -y cifs-utils
 ----
 
-[[node-labels]]
-=== Node labels
-
-AI Data Engine schedules its components by using node labels. Apply the following labels to the nodes that schedule AI Data Engine workloads. Each label must be present on at least three nodes. Some configuration sizes use more nodes, so apply the labels to every node that schedules workloads. Replace `<node-name>` with the name of each node.
-
-The following command applies all of the labels to a node:
-
-[source,bash]
-----
-kubectl label node <node-name> \
-  3rdparty-aide-nginx=true 3rdparty-aide-postgres=true \
-  3rdparty-aide-rabbitmq=true 3rdparty-aide-redis=true \
-  3rdparty-aide-es=true 3rdparty-aide-kafka=true \
-  3rdparty-aide-logstash=true 3rdparty-aide-filebeat=true \
-  3rdparty-aide-k8s-event-exporter=true 3rdparty-aide-telegraf=true \
-  microservices-aide=true --overwrite
-----
-
-=== Ingress ports
-
-AI Data Engine deploys an ingress controller that uses host ports TCP 80 and 443 on the nodes that have the `3rdparty-aide-nginx=true` label. No other Kubernetes workload can claim these ports on those nodes. Remove or disable other ingress controllers, such as Traefik, schedule them away from these nodes, or configure them not to use host ports 80 and 443.
-
-To check for existing Kubernetes host-port claims, run:
-
-[source,bash]
-----
-kubectl get pods -A -o json | jq -r '
-  .items[] | . as $pod
-  | .spec.containers[]?.ports[]?
-  | select(.hostPort == 80 or .hostPort == 443)
-  | "\($pod.spec.nodeName // "-")  \($pod.metadata.namespace)/\($pod.metadata.name)  hostPort=\(.hostPort)"
-'
-----
-
 == NFS server
 
 The AI Data Engine configuration volume is backed by NFS. You must provide an NFS server and an export before you run the installer. The installation can't proceed without them. Specify the NFS server host name or IP address with `--nfs-server <host>` and the export path with `--nfs-data-share <path>` when you run the install command.
@@ -186,7 +152,52 @@ sudo chmod 0770 <nfs-data-share>
 
 The installer creates the required subdirectories under the export on first install.
 
-== StorageClass
+== Cluster configuration
+
+=== Namespace
+
+The target Kubernetes namespace (default `aide`) must exist before you run the installer. The installer doesn't create it. If you install the operator into a custom namespace, the `aide` workload namespace must also exist because component charts reference it directly.
+
+[source,bash]
+----
+kubectl create namespace aide
+----
+
+[[node-labels]]
+=== Node labels
+
+AI Data Engine schedules its components by using node labels. Apply the following labels to the nodes that schedule AI Data Engine workloads. Each label must be present on at least three nodes. Some configuration sizes use more nodes, so apply the labels to every node that schedules workloads. Replace `<node-name>` with the name of each node.
+
+The following command applies all of the labels to a node:
+
+[source,bash]
+----
+kubectl label node <node-name> \
+  3rdparty-aide-nginx=true 3rdparty-aide-postgres=true \
+  3rdparty-aide-rabbitmq=true 3rdparty-aide-redis=true \
+  3rdparty-aide-es=true 3rdparty-aide-kafka=true \
+  3rdparty-aide-logstash=true 3rdparty-aide-filebeat=true \
+  3rdparty-aide-k8s-event-exporter=true 3rdparty-aide-telegraf=true \
+  microservices-aide=true --overwrite
+----
+
+=== Ingress ports
+
+AI Data Engine deploys an ingress controller that uses host ports TCP 80 and 443 on the nodes that have the `3rdparty-aide-nginx=true` label. No other Kubernetes workload can claim these ports on those nodes. Remove or disable other ingress controllers, such as Traefik, schedule them away from these nodes, or configure them not to use host ports 80 and 443.
+
+To check for existing Kubernetes host-port claims, run:
+
+[source,bash]
+----
+kubectl get pods -A -o json | jq -r '
+  .items[] | . as $pod
+  | .spec.containers[]?.ports[]?
+  | select(.hostPort == 80 or .hostPort == 443)
+  | "\($pod.spec.nodeName // "-")  \($pod.metadata.namespace)/\($pod.metadata.name)  hostPort=\(.hostPort)"
+'
+----
+
+=== StorageClass
 
 A StorageClass for the stateful components (Elasticsearch, Kafka, PostgreSQL, RabbitMQ, and Redis) must exist on the cluster, and it must meet the IOPS and throughput in link:aide-requirements.html#multi-node-sizes[node sizing]. Pass its name to the installer with `--storage-class <name>`. The default name is `aide-sc`. If the named StorageClass doesn't exist, the installer stops and lists the available StorageClasses.
 
@@ -195,15 +206,6 @@ Use block storage, such as NVMe or iSCSI. Shared storage performs poorly.
 The StorageClass is separate from the NFS configuration volume.
 
 On managed Kubernetes platforms, the disk type provisioned by the StorageClass must be attachable to the worker node instance type. The installer can't verify this compatibility in advance. If the disk and node types are incompatible, the pod can schedule but the volume attachment fails during deployment.
-
-== Namespace
-
-The target Kubernetes namespace (default `aide`) must exist before you run the installer. The installer doesn't create it. If you install the operator into a custom namespace, the `aide` workload namespace must also exist because component charts reference it directly.
-
-[source,bash]
-----
-kubectl create namespace aide
-----
 
 == Cloud-specific requirements
 
@@ -215,15 +217,17 @@ In addition to the preceding requirements, an AKS cluster must meet the followin
 The node VM size must support the disk type that the StorageClass provisions. Azure premium disks (`Premium_LRS`, `Premium_ZRS`, and `PremiumV2_LRS`) attach only to premium-capable VM sizes, which have an `s` in the SKU, such as `Standard_D16s_v5`. If the VM size doesn't support the provisioned disk, the pod is scheduled but the volume attach fails with a `FailedAttachVolume` error.
 
 Use a premium-capable VM size for the AIDE node pool. This is recommended because AIDE stateful components require high IOPS and throughput. Alternatively, use a StorageClass with a disk SKU supported by the current VM size. The built-in `managed-csi` provisions `StandardSSD_LRS`. `managed-csi-premium` provisions `Premium_LRS`.
-* To check the disk type that a StorageClass provisions and the VM size of your nodes, run the following commands:
-+
+
+To check the disk type that a StorageClass provisions and the VM size of your nodes, run the following commands:
+
 [source,bash]
 ----
 kubectl get sc <name> -o jsonpath='{.provisioner}{"  "}{.parameters}{"\n"}'
 kubectl get nodes -o custom-columns=NAME:.metadata.name,VMSIZE:.metadata.labels.node\.kubernetes\.io/instance-type
 ----
+
 The following example uses Premium SSD v2 (`PremiumV2_LRS`) and shows how to set IOPS and throughput independently. Premium SSD v2 requires a premium-capable VM size and `cachingMode: None`. Set `diskIOPSReadWrite` and `diskMBpsReadWrite` to the values for your size in link:aide-requirements.html#multi-node-sizes[node sizing]. The example uses Small deployment values:
-+
+
 [source,yaml]
 ----
 apiVersion: storage.k8s.io/v1
@@ -240,7 +244,7 @@ parameters:
   diskIOPSReadWrite: "8000"
   diskMBpsReadWrite: "1000"
 ----
-+
+
 Save the manifest as `aide-sc.yaml` and apply it by running `kubectl apply -f aide-sc.yaml`. Then specify `--storage-class aide-sc` when you run the install command.
 
 * Run `az login` as the user that runs the installer. AKS kubeconfig files authenticate by using the Azure CLI sign-in of the current user, so don't run the installer with `sudo`. Specify a tools directory that you own instead.
