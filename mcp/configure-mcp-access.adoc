@@ -26,7 +26,7 @@ AI Data Engine doesn't issue tokens. It validates the Entra ID access tokens tha
 
 Microsoft Entra ID is the only identity provider that governed AI access supports.
 
-You grant access at the collection level. In a power-user session, search isn't filtered by file-level permissions, so the session can search every file in a collection that you granted the scope to. Include in a collection only files that everyone with the granted scope is meant to see. Grant a scope access to the *All Systems and Volumes* collection (the AI Data Engine default) only if everyone with that scope is meant to see all scanned data.
+You grant access at the collection level. Grant each scope access only to collections that its users are allowed to search.
 
 You'll complete these tasks:
 
@@ -43,15 +43,17 @@ An Entra ID administrator completes the Entra ID tasks manually in the Microsoft
 
 Complete this task once per tenant. If an AI Data Engine app registration already exists in your tenant, use it.
 
+NOTE: These steps are subject to change based on changes to the Microsoft Entra ID UI. The essential configurations remain the same.
+
 .Steps
 
 . In the Microsoft Entra admin center, go to *App registrations* and select *New registration*.
 . Enter a name, such as `NetApp AI Data Engine MCP`, select *Single tenant only*, and select *Register*.
 . On the *Overview* page, record the *Application (client) ID* and the *Directory (tenant) ID*. You enter both values in NetApp Console.
 . Open *Manifest*, set `requestedAccessTokenVersion` to `2`, and save. AI Data Engine accepts only v2.0 access tokens.
-. Open *Expose an API* and select *Add* next to *Application ID URI*. Accept the default value, `api://<application-client-id>`, and save. Record this value. AI clients use it to request scopes.
+. Open *Expose an API* and select *Add* next to *Application ID URI*. Enter the FQDN of your AI Data Engine instance, such as `https://<aide-instance-fqdn>`, and save. Use `http://` only if your environment uses HTTP. The domain must be verified in your Entra ID tenant. Record this URL; AI clients use it to request scopes.
 +
-NOTE: You can use a custom Application ID URI if the domain is verified in your tenant. If Entra ID rejects it with the error `Failed to add identifier URI`, make sure that `requestedAccessTokenVersion` is set to `2`, and then try again.
+NOTE: If Entra ID rejects the URL with the error `Failed to add identifier URI`, make sure that `requestedAccessTokenVersion` is set to `2` and that the domain is verified in your tenant, and then try again.
 
 // RESEARCH Have these steps been tested in a clean tenant?
 
@@ -114,7 +116,7 @@ The *Add identity provider* panel opens.
 . In *Entra Tenant ID*, enter the Directory (tenant) ID of your Entra ID tenant.
 . In *Application (Client) ID*, enter the Application (client) ID of the AI Data Engine application.
 +
-IMPORTANT: Enter the Application (client) ID, which is a GUID. Don't enter the Application ID URI (`api://...`). Tokens identify the AI Data Engine application by its GUID, so a URI causes sign-in failures.
+IMPORTANT: Enter the Application (client) ID, which is a GUID. Don't enter the Application ID URI. Tokens identify the AI Data Engine application by its GUID, so a URI causes sign-in failures.
 +
 Use the identifiers from your Microsoft Entra ID configuration. AI Data Engine checks the format of both values and confirms that the tenant exists. If an *Invalid identity* message appears, verify the values and correct them before you try again.
 . Select *Add identity provider*.

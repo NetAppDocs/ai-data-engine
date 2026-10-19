@@ -22,7 +22,7 @@ Create data collections and enable them for AI access so that connected AI clien
 
 A data collection is a group of files from volumes that you select in AI Data Engine. When you enable a collection for AI access, AI clients can search the metadata for the files in that collection. AI clients can't search files outside the collections that you enable. 
 
-You grant access to a collection by assigning it one or more Microsoft Entra ID scopes. Access is granted at the collection level only. In a power-user session, search isn't filtered by file-level permissions, so the session can search every file in the collection.
+You grant access to a collection by assigning it one or more Microsoft Entra ID scopes. Access is granted at the collection level only.
 
 AI Data Engine also provides a collection named *All Systems and Volumes* that includes every system and volume that AI Data Engine has scanned. To limit what AI clients can search, create your own collections that include only the data that your users need. You can't edit, rename, or delete the *All Systems and Volumes* collection. You can configure it for MCP and disable AI access for it.
 
@@ -58,6 +58,8 @@ After you create a collection, <<configure-a-collection-for-mcp,configure it for
 == Configure a collection for MCP
 
 Select the identity providers and user scopes for an MCP collection, and then obtain the connection details for your AI client.
+
+IMPORTANT: In a power-user session, search isn't filtered by file-level permissions. Users with access to the collection can search every file in it. Include only files that all users assigned to the collection's scopes are allowed to see. Grant a scope access to *All Systems and Volumes* only if everyone with that scope is allowed to search all scanned data.
 
 .Before you begin
 

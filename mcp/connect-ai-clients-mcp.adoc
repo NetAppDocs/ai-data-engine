@@ -22,7 +22,7 @@ Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine M
 ** The Microsoft Entra ID tenant ID.
 ** The client application ID for your AI client.
 ** The scopes that your AI client requests:
-*** `api://<application-id-uri>/power_users`
+*** `https://<aide-instance-fqdn>/power_users`
 *** `offline_access`, so that the client can refresh tokens without asking you to sign in again.
 ** The ID of the collection that you want to work with.
 // RESEARCH The generated configuration is pending validation. Confirm the snippet formats (the console shows client-specific snippets and a standalone MCP server URL). Does the console show tabs for any client that isn't supported? Does it show tabs for Claude Code or OpenCode? Confirm what each tab generates.
@@ -79,7 +79,7 @@ Install Node.js on your computer. The `mcp-remote` helper runs with Node.js.
         "--static-oauth-client-info",
         "{\"client_id\": \"<client-application-id>\"}",
         "--static-oauth-client-metadata",
-        "{\"scope\": \"api://<application-id-uri>/power_users offline_access\"}",
+        "{\"scope\": \"https://<aide-instance-fqdn>/power_users offline_access\"}",
         "--disable-resource-parameter"
       ]
     }
@@ -123,7 +123,7 @@ NOTE: Don't pass `--client-secret`. The client application is a public client.
       "oauth": {
         "clientId": "<client-application-id>",
         "callbackPort": 8080,
-        "scopes": "api://<application-id-uri>/power_users offline_access",
+        "scopes": "https://<aide-instance-fqdn>/power_users offline_access",
         "authServerMetadataUrl": "https://login.microsoftonline.com/<tenant-id>/v2.0/.well-known/openid-configuration"
       }
     }
@@ -152,7 +152,7 @@ Cursor connects to the AI Data Engine MCP server directly.
       "auth": {
         "CLIENT_ID": "<client-application-id>",
         "scopes": [
-          "api://<application-id-uri>/power_users",
+          "https://<aide-instance-fqdn>/power_users",
           "offline_access"
         ]
       }
@@ -191,7 +191,7 @@ opencode mcp add netapp-ai-data-engine --global --url "https://<mcp-server-host>
         "url": "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>",
         "oauth": {
           "client_id": "<client-application-id>",
-          "scope": "api://<application-id-uri>/power_users offline_access",
+          "scope": "https://<aide-instance-fqdn>/power_users offline_access",
           "callback_port": 19876,
           "redirect_uri": "http://127.0.0.1:19876/callback",
           "auth_server_metadata_url": "https://login.microsoftonline.com/<tenant-id>/v2.0/.well-known/openid-configuration"
@@ -216,7 +216,7 @@ After you connect, your AI client can use the following tools. A connection is l
 * `get_collection`: Returns the collection that your connection is limited to.
 * `search`: Searches file metadata in a collection by name prefix, file type, or owner. Results include each file's name, path, type, size, last-modified time, and owner.
 * `list_tags`: Lists the tags that are in use and how many files have each tag.
-* `tag_document`: Adds a tag to a file or removes a tag from a file. An AI client works on one file at a time.
+* `tag_document`: Creates a tag if it doesn't exist, adds a tag to a file, or removes a tag from a file. An AI client works on one file at a time.
 
 The `list_tags` and `tag_document` tools are available only in a power-user session, which requires the `AIDEPowerUsers` app role.
 
@@ -224,7 +224,7 @@ NOTE: Power users also work within a single collection. To search all scanned sy
 
 Your AI client can't retrieve file contents, add, delete, or modify files, change data sources, or create collections.
 
-Tags apply across AI Data Engine, not only to one collection. If you add a tag that doesn't exist, AI Data Engine creates it, so a misspelled tag name creates a new tag. Tag names aren't case-sensitive. For limitations on tag names, refer to link:../release-notes/known-limitations.html[Known limitations].
+Tags apply across AI Data Engine, not only to one collection. You can create tags from scratch by applying a new tag name to a file. A misspelled tag name also creates a new tag. Tag names aren't case-sensitive. For limitations on tag names, refer to link:../release-notes/known-limitations.html[Known limitations].
 
 // RESEARCH Do applied tags appear in later searches? Confirm before describing searching by tag.
 
@@ -248,6 +248,7 @@ TIP: Search filters on file name prefix, file type, and owner. If you ask for fi
 === Tag files
 
 * "List the tags in use and how many files have each tag."
+* "Create the tag <tag name> and apply it to <file name>."
 * "Apply the tag <tag name> to the files from my last search."
 * "Remove the tag <tag name> from <file name> in the <collection name> collection."
 
