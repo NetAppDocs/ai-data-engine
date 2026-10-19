@@ -26,7 +26,6 @@ The AI Data Engine landing page appears.
 
 . Select *Deploy AI Data Engine*.
 . Select the *Single-node* deployment option and select *Next*.
-. Copy the preconfigured install command displayed in the wizard to an editor.
 . Select your configuration size:
 +
 * *Small*: recommended for environments with up to approximately 200 million files.
@@ -35,11 +34,20 @@ The AI Data Engine landing page appears.
 +
 These sizes are recommended baselines, not hard limits. See link:aide-requirements.html#flexible-sizing-single-node[flexible sizing guidelines] if your environment falls outside these ranges.
 
-. For small or large configurations, adjust the install command to reflect the chosen size: `--flavor <small|medium|large>`
+
+. Copy the install command displayed in the wizard to an editor.
++
+// RESEARCH Replace this installer download wording with the final wording and steps from engineering (Nitin Biradar).
+The install command downloads the installer from a content delivery network (CDN) and then runs it.
++
+* *If you don't use a proxy*: Run the install command as copied. No additional steps are required.
+* *If you use a proxy or your environment restricts internet access*: The download step doesn't use a proxy. Download the installer by using your standard methods, transfer it to the target host, and then run the installer from that host.
 
 . If you use a proxy, remove `--no-proxy` from the install command if it's present, and add the proxy options. See link:configure-proxy.html[Configure a proxy].
++
+NOTE: If the command doesn't include `--no-proxy`, the installer asks whether to configure an outbound proxy when you run it.
 
-. Run the install command with any configuration size adjustments on your target host.
+. Run the install command on your target host.
 +
 NOTE: Installation takes about 45 minutes to complete. Timeouts and retries might occur, and this is normal.
 

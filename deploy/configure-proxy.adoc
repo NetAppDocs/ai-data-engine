@@ -39,7 +39,8 @@ The installer uses one proxy for every internet destination and every AI Data En
 == Before you begin
 
 * You have configured your proxy to allow outbound access to the endpoints listed in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
-* For a single-node deployment, the installer configures the host container runtime to pull images through the proxy. If you supply a proxy CA certificate, the installer also adds it to the host trust store. No additional proxy configuration is needed on the host. The operating system repositories on the host must still provide the packages listed in link:aide-requirements.html[AIDE requirements]. If those repositories need a proxy, see <<package-manager-proxy-settings,Package manager proxy settings>>. If the package manager proxy URL uses `https://`, the package manager uses the host trust store, and the installer adds a CA certificate that you supply with `--proxy-ca-cert` before it installs host packages.
+* The installer is on the machine where you run the install command. The command copied from NetApp Console downloads the installer from a content delivery network (CDN), and that download doesn't use the proxy. If your environment restricts internet access, download the installer by using your standard methods and transfer it to the installation machine before you configure the proxy.
+* For a single-node deployment, the installer configures the host container runtime to pull images through the proxy. If you supply a proxy CA certificate, the installer also adds it to the host trust store. No additional proxy configuration is needed on the host. The operating system repositories on the host must still provide the packages listed in link:aide-requirements.html[AIDE requirements]. Ensure that your package managers have the appropriate proxy configuration if required in your environment.
 * For a multi-node deployment, you have configured the container runtime of every cluster node with the same proxy host, port, and scheme that you give the installer. If the proxy certificate is signed by a private CA, you have also added the same CA certificate to the trust store of every node. The installer does not configure or check the cluster nodes. If only some nodes are configured, the installation can succeed but pods later fail with `ImagePullBackOff`.
 * If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the host where you run the installer.
 * To supply the proxy password without being prompted for it (for example, in an automated deployment), create a password file with restricted permissions before you run the installer. Enter the password exactly as it is, without percent-encoding special characters. The file contains only the password.
@@ -95,11 +96,26 @@ NOTE: The installer doesn't accept `--proxy-password` or the `PROXY_PASSWORD` en
 == Configure the proxy
 
 // RESEARCH Does the guided setup show a proxy type prompt at release, and should customers accept its default?
-Choose one of the following methods to configure the proxy when you run the install command copied from NetApp Console.
+You can configure the proxy in two ways when you run the install command copied from NetApp Console:
+
+* *Interactive guided setup*: Run the install command without proxy flags. The installer prompts you for the proxy settings. This is the default method.
+* *Command-line flags*: Add the proxy flags to the install command. Use this method for automated or other non-interactive deployments that must run without prompts. The flags are optional. The installer prompts you for any proxy information you don't supply.
+
+=== Configure the proxy using interactive guided setup
+
+. If the copied install command includes `--no-proxy`, remove it. Run the command from a terminal.
++
+If the command doesn't include `--no-proxy`, the installer asks whether to configure an outbound proxy when you run it.
+
+. When prompted `Configure outbound proxy?`, enter `y`.
+. Enter the proxy host, scheme, and port when prompted.
+. If prompted for the proxy type, accept the default (standard forward proxy).
+. For an HTTPS proxy with a privately signed certificate, enter the path to the CA certificate.
+. If the proxy requires authentication, enter the username, and then enter the password at the hidden prompt.
 
 === Configure the proxy using command-line flags
 
-If the copied install command includes `--no-proxy`, replace it with your proxy parameters. This example uses an HTTPS proxy with a privately signed certificate and basic authentication:
+For an automated or non-interactive deployment, add the proxy flags to the install command. If the copied install command includes `--no-proxy`, replace it with your proxy parameters. This example uses an HTTPS proxy with a privately signed certificate and basic authentication:
 
 [source,bash]
 ----
@@ -117,15 +133,6 @@ If the copied install command includes `--no-proxy`, replace it with your proxy 
 
 CAUTION: With an HTTP proxy, the proxy username and password are sent in clear text. Use an HTTPS proxy when the proxy requires authentication.
 
-=== Configure the proxy using interactive guided setup
-
-. If the copied install command includes `--no-proxy`, remove it. Run the command from a terminal.
-. When prompted `Configure outbound proxy?`, enter `y`.
-. Enter the proxy host, scheme, and port when prompted.
-. If prompted for the proxy type, accept the default (standard forward proxy).
-. For an HTTPS proxy with a privately signed certificate, enter the path to the CA certificate.
-. If the proxy requires authentication, enter the username, and then enter the password at the hidden prompt.
-
 == Proxy verification
 
 Before the installer downloads anything, it runs a check from the installer host. The check confirms that the proxy responds, that the proxy accepts your credentials, and that the proxy certificate is valid for the scheme you chose. If the check fails, the installation stops.
@@ -133,6 +140,8 @@ Before the installer downloads anything, it runs a check from the installer host
 For multi-node deployments, the check covers the proxy only. It does not test whether the cluster nodes can reach the proxy.
 
 == Troubleshoot proxy problems
+
+If the proxy verification fails, the installer stops and reports an error. Use the following table to identify the cause of a verification error or a related problem after installation.
 
 [cols="2,2,3",options="header"]
 |===
@@ -158,43 +167,6 @@ For multi-node deployments, the check covers the proxy only. It does not test wh
 |One or more cluster nodes aren't configured to use the proxy.
 |Configure the container runtime proxy and the CA certificate trust on every node.
 |===
-
-[[package-manager-proxy-settings]]
-== Package manager proxy settings
-
-The AI Data Engine proxy options don't apply to `apt`, `dnf`, or `yum`. These tools follow their own configuration files, which you maintain. If the file is absent, the tools connect directly. If the file exists, the tools follow it, including during the AI Data Engine installation. Because the file contains the proxy password, set its mode to `0600`.
-
-Percent-encode special characters in the proxy username and password when you write them in a package manager proxy URL. For example, `@` is `%40`, `:` is `%3A`, a space is `%20`, `%` is `%25`, `#` is `%23`, and `?` is `%3F`.
-
-Ubuntu and Debian, in `/etc/apt/apt.conf.d/95proxy`:
-
-[source,text]
-----
-Acquire::http::Proxy "http://<user>:<encoded-password>@proxy.example:8080";
-Acquire::https::Proxy "http://<user>:<encoded-password>@proxy.example:8080";
-----
-
-To keep an internal mirror off the proxy, add a `DIRECT` line for it:
-
-[source,text]
-----
-Acquire::http::Proxy::mirror.example.com "DIRECT";
-Acquire::https::Proxy::mirror.example.com "DIRECT";
-----
-
-RHEL, in `/etc/dnf/dnf.conf`. On RHEL, `yum` is `dnf`:
-
-[source,text]
-----
-proxy=http://<user>:<encoded-password>@proxy.example:8080
-----
-
-To keep an internal mirror off the proxy, add this line to its repository file:
-
-[source,text]
-----
-proxy=_none_
-----
 
 == Related information
 
