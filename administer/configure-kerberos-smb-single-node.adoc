@@ -189,7 +189,7 @@ install -o root -g 4321 -m 640 /tmp/krb5.keytab /opt/netapp/aide/kerberos_refres
 rm -f /tmp/krb5.keytab
 ----
 +
-The ticket refresher runs as a non-root user with group ID 4321. The keytab and the principal file must be readable by that group and by no other users.
+The ticket refresher runs as a root user with group ID 4321. The keytab and the principal file must be readable by that group and by no other users.
 . Create the principal file. The `KRB5_RENEW_INTERVAL_H` value is the ticket renewal interval in hours.
 +
 [source,cli]
