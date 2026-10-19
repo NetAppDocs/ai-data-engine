@@ -363,6 +363,33 @@ You bring your own Kubernetes cluster, which can be shared with other workloads 
 
 NOTE: NVMe or high-performance SSD storage is recommended for all multi-node deployments.
 
+[[multi-node-requirements]]
+=== Linux kernel and NFS nconnect support
+
+Linux kernel 5.3 or later is recommended for the `nconnect` NFS mount option, which provides the throughput required by the shared AIDE configuration volume. The following distribution versions support `nconnect` and meet the kernel recommendation; RHEL and CentOS 8.3 use a Red Hat kernel backport.
+
+[cols="2,1,2",options="header"]
+|===
+|Distribution |Kernel version |`nconnect` support
+
+|RHEL / CentOS 8.3+
+|4.18 (backport)
+|Yes
+
+|RHEL / CentOS 9.x
+|5.14
+|Yes
+
+|Ubuntu 20.04
+|5.4
+|Yes
+
+|Ubuntu 22.04
+|5.15
+|Yes
+
+|===
+
 [[multi-node-sizes]]
 === Node sizing
 

@@ -9,18 +9,16 @@ summary: Prepare a Linux VM for an AIDE single-node deployment by verifying acce
 :imagesdir: ../media/
 
 [.lead]
-For an AI Data Engine (AIDE) single-node deployment, you provide a Linux VM and the installer installs k3s and configures kernel parameters, host directories, and the Kubernetes resources. Prepare the VM by verifying access and tools, free disk space, firewall rules, and operating system packages before you run the install command.
+For an AI Data Engine (AIDE) single-node deployment, you provide a Linux VM. The installer installs k3s, uses local hostPath storage for the AIDE config volume, and configures kernel parameters, host directories, and the Kubernetes resources. Prepare the VM by verifying access and tools, free disk space, firewall rules, and operating system packages before you run the install command.
 
 Your VM must meet the requirements in the following sections before you run the install command. For VM sizing, supported operating systems, and network ports, see link:aide-requirements.html[AIDE requirements].
 
 == Access and tools
 
 * You have root or sudo access on the target VM to run the installer.
-* The target host has bash 4.0 or later, curl, and tar available.
+* The target host has bash 4.0 or later, curl, and tar available. macOS is not supported because it ships with bash 3.2.
+* If curl or tar is not installed, install them with `dnf install curl tar` on RHEL-based distributions or `apt-get install curl tar` on Ubuntu.
 * The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. You don't need to install these tools on the VM.
-* The host has a 1 GbE minimum network connection (10 GbE recommended for Large deployments).
-* If your environment requires an outbound proxy to reach the AI Data Engine endpoints, see link:configure-proxy.html[Configure a proxy].
-* If you restrict where container images can be pulled from, you must also allow the NetApp container registry listed in link:aide-requirements.html#networking-requirements[AIDE requirements].
 
 == Storage type
 
@@ -32,7 +30,7 @@ Use block storage, not NFS, for the AIDE data volume. NFS-backed storage can cau
 
 Free space is required on each file system that hosts the paths in the following table. Paths that share a disk share one free-space pool, so add their minimums together.
 
-If a single disk hosts everything, the minimum free space is 65 GB plus the AIDE data volume size for your configuration:
+If a single disk hosts everything, the minimum free space is 65 GB plus the AIDE data volume size for your configuration. The 65 GB fixed floors exclude `/var/run`, which is typically `tmpfs` and does not add to this total:
 
 [cols="1,1",options="header"]
 |===
@@ -49,7 +47,7 @@ If a single disk hosts everything, the minimum free space is 65 GB plus the AIDE
 
 |===
 
-If the paths are on separate mounts, each mount must meet the minimum for the paths that it hosts. If you move the k3s data directory by using the `--k3s-data-dir` installer option, the k3s minimum applies to the new location, and the disk must already be mounted.
+If the paths are on separate mounts, each mount must meet the minimum for the paths that it hosts. If you move the k3s data directory by using the `--k3s-data-dir` installer option, the k3s minimum applies to the new location.
 
 [cols="2,1,1,3",options="header"]
 |===
@@ -89,8 +87,15 @@ If the paths are on separate mounts, each mount must meet the minimum for the pa
 
 Don't use a mount that is below its minimum. Mounts that are below the recommended size, or more than 85% full, aren't recommended because the kubelet can evict pods when free space is low.
 
+For example, if k3s data, logs, and AIDE data each have a dedicated disk, provide at least 20 GB, 10 GB, and the AIDE data minimum for your configuration on those mounts, respectively. Also provide at least 25 GB free on `/` for the operating system and binaries, and at least 10 GB on the kubelet filesystem if it is not `/`.
+
 [[single-node-firewall]]
 == Firewall
+
+* The installer downloads k3s from `\https://get.k3s.io` and Helm from `\https://get.helm.sh`. For all required outbound endpoints, see the outbound internet access section in link:aide-requirements.html#outbound-internet-access[AIDE requirements].
+* The host has a 1 GbE minimum network connection (10 GbE recommended for Large deployments).
+* If your environment requires an outbound proxy to reach the AI Data Engine endpoints, see link:configure-proxy.html[Configure a proxy].
+* The installer host must have outbound access to the NetApp container registry at `582244788873.dkr.ecr.us-west-2.amazonaws.com` to pull AIDE container images and Helm charts. If you restrict where images can be pulled from, allow this registry as well. See link:aide-requirements.html#outbound-internet-access[AIDE requirements] for the required registry endpoints.
 
 The k3s ports in the following table must be free on the host before the installer starts. If a host firewall is enabled, you must also allow these ports and the pod and service CIDRs before you run the installer. Otherwise, pod networking doesn't work. These ports are internal to k3s and are separate from the ports in link:aide-requirements.html#networking-requirements[AIDE requirements].
 
@@ -100,11 +105,11 @@ The k3s ports in the following table must be free on the host before the install
 
 |6443
 |TCP
-|Kubernetes API server
+|k3s / Kubernetes API server and control-plane endpoint for kubectl, the operator, and cluster components
 
 |10250
 |TCP
-|Kubelet API for pod logs, exec, and metrics
+|Kubelet API used for pod logs, exec/attach, and metrics-server
 
 |8472
 |UDP
@@ -112,9 +117,9 @@ The k3s ports in the following table must be free on the host before the install
 
 |===
 
-The default pod CIDR is `10.44.0.0/16` and the default service CIDR is `10.45.0.0/16`. If you override these values with the `--k3s-cluster-cidr` and `--k3s-service-cidr` installer options, use your values in the following commands. Override the defaults only if they overlap your existing networks.
+The default pod CIDR is `10.44.0.0/16` and the default service CIDR is `10.45.0.0/16`. The firewall rules permit these CIDRs so in-cluster traffic, including CoreDNS and other Services, is not dropped. If you override the defaults with the `--k3s-cluster-cidr` and `--k3s-service-cidr` installer options, use your values in the following commands.
 
-.RHEL (firewalld)
+.RHEL, Rocky Linux, AlmaLinux, and CentOS (firewalld)
 [source,bash]
 ----
 sudo firewall-cmd --permanent --add-port=6443/tcp
@@ -135,6 +140,8 @@ sudo ufw allow from 10.44.0.0/16
 sudo ufw allow from 10.45.0.0/16
 sudo ufw reload
 ----
+
+Unlike firewalld, ufw has no trusted zone. Use `ufw allow from <cidr>` to permit pod and service CIDRs; there is no `--zone` argument.
 
 For the application ports that must be open, see link:aide-requirements.html#networking-requirements[AIDE requirements].
 
