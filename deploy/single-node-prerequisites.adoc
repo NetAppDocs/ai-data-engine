@@ -19,10 +19,6 @@ Your VM must meet the requirements in the following sections before you run the 
 * The target host has bash 4.0 or later, curl, and tar available. macOS is not supported because it ships with bash 3.2.
 * If curl or tar is not installed, install them with `dnf install curl tar` on RHEL-based distributions or `apt-get install curl tar` on Ubuntu.
 * The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. You don't need to install these tools on the VM.
-* The installer downloads k3s from `\https://get.k3s.io` and Helm from `\https://get.helm.sh`. For all required outbound endpoints, see the outbound internet access section in link:aide-requirements.html#outbound-internet-access[AIDE requirements].
-* The host has a 1 GbE minimum network connection (10 GbE recommended for Large deployments).
-* If your environment requires an outbound proxy to reach the AI Data Engine endpoints, see link:configure-proxy.html[Configure a proxy].
-* The installer host must have outbound access to the NetApp container registry at `582244788873.dkr.ecr.us-west-2.amazonaws.com` to pull AIDE container images and Helm charts. If you restrict where images can be pulled from, allow this registry as well. See link:aide-requirements.html#outbound-internet-access[AIDE requirements] for the required registry endpoints.
 
 == Storage type
 
@@ -95,6 +91,11 @@ For example, if k3s data, logs, and AIDE data each have a dedicated disk, provid
 
 [[single-node-firewall]]
 == Firewall
+
+* The installer downloads k3s from `\https://get.k3s.io` and Helm from `\https://get.helm.sh`. For all required outbound endpoints, see the outbound internet access section in link:aide-requirements.html#outbound-internet-access[AIDE requirements].
+* The host has a 1 GbE minimum network connection (10 GbE recommended for Large deployments).
+* If your environment requires an outbound proxy to reach the AI Data Engine endpoints, see link:configure-proxy.html[Configure a proxy].
+* The installer host must have outbound access to the NetApp container registry at `582244788873.dkr.ecr.us-west-2.amazonaws.com` to pull AIDE container images and Helm charts. If you restrict where images can be pulled from, allow this registry as well. See link:aide-requirements.html#outbound-internet-access[AIDE requirements] for the required registry endpoints.
 
 The k3s ports in the following table must be free on the host before the installer starts. If a host firewall is enabled, you must also allow these ports and the pod and service CIDRs before you run the installer. Otherwise, pod networking doesn't work. These ports are internal to k3s and are separate from the ports in link:aide-requirements.html#networking-requirements[AIDE requirements].
 
