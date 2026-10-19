@@ -76,7 +76,7 @@ The following network connections must be open:
 === Outbound internet access
 For an online installation, the following endpoints must be reachable.
 
-// RESEARCH Do the ECR, S3, and CDN endpoints in this table match what the Console team provides? Is the ECR region us-west-2 or us-east-1?
+// RESEARCH Do the ECR, S3, and CDN endpoints in this table match what the Console team provides?
 // RESEARCH Which CloudFront endpoint hosts the installer scripts, and is the second CloudFront endpoint (dseasb33srnrn.cloudfront.net) still required?
 // RESEARCH Which component initiates each of the api.console.netapp.com, auth0, support.compliance, and CloudFront connections? Is api.console.netapp.com or api.bluexp.netapp.com the current Console endpoint, or are both required?
 // RESEARCH Should the ECR, S3, and STS rows use a region placeholder instead of us-west-2, and does the account ID in the registry rows change per deployment?
@@ -214,7 +214,7 @@ For an online installation, the following endpoints must be reachable.
 |Single node only (Ubuntu)
 |===
 
-If you use a proxy, allow these endpoints on your proxy using the exact hostnames listed, without wildcards or a leading dot. For multi-node deployments, the container runtime connections are made by the cluster nodes. See link:configure-proxy.html[Configure a proxy].
+If you use a proxy, allow these endpoints on your proxy using the exact hostnames listed, without wildcards or a leading dot. For multi-node deployments, the container runtime connections are made by the cluster nodes. See link:configure-proxy.html[Configure a proxy]. For the additional hosts that proxy installations need, see link:configure-proxy.html#proxy-allowlist[Hosts to allow on your proxy].
 
 NOTE: Operating system package repositories aren't reached through the AI Data Engine proxy settings. The package manager follows its own proxy configuration.
 
