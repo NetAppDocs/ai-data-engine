@@ -11,6 +11,8 @@ summary: Save investigation filter criteria as a named policy so you can track t
 [.lead]
 Create a policy when you want to monitor a recurring data condition without repeating the same investigation manually. For example, a data governance manager can save a "large stale files" policy to track that grouping across scan cycles and receive an email update when the impacted file count changes.
 
+// IE UX Link dependency: The UI links to this page from Policies > "Learn more". Do not change the permalink or filename without creating a redirect file.
+
 == About policies
 
 Policies save the filter criteria you define in Investigation as a reusable rule. AI Data Engine evaluates each policy against the metadata catalog after every scan cycle. You can open a policy at any time to view the current matching result set. If you attach a Delete action, AI Data Engine removes matching files after each scan cycle. If you attach an email notification, AI Data Engine sends an update when the impacted file count changes.

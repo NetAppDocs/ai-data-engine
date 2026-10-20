@@ -11,6 +11,8 @@ summary: Connect data sources to AI Data Engine and configure the data resources
 [.lead]
 Connect the data sources that you want AI Data Engine to analyze, and choose which of their data resources to scan. AI Data Engine scans connected data sources to collect metadata, and the connection procedure depends on the source type.
 
+// IE UX Link dependency: The UI links to this page from Data sources > "Learn more". Do not change the permalink or filename without creating a redirect file.
+
 .Before you begin
 
 * You must have _AI Data Engine administrator_ privileges to connect and configure data sources.

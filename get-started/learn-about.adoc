@@ -11,6 +11,8 @@ summary: Learn about AI Data Engine, which provides visibility into structured a
 [.lead]
 AI Data Engine is a metadata intelligence service that gives you visibility into structured and unstructured data stored on your storage systems. By scanning your storage systems and cataloging file system metadata, AI Data Engine helps you identify storage optimization opportunities, investigate your data, and enforce governance policies by analyzing metadata in place, without moving or copying data.
 
+// IE UX Link dependency: The UI links to this page from Overview > "Learn more". Do not change the permalink or filename without creating a redirect file.
+
 == What AI Data Engine does
 
 AI Data Engine scans connected storage systems to extract file system metadata and builds a catalog that is updated after each scan cycle. From this catalog, you can:
