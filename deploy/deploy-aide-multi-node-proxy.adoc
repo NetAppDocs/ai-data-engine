@@ -19,6 +19,8 @@ In a multi-node deployment, you own the Kubernetes cluster. The installer config
 
 The installer checks the proxy from the installer host only. It doesn't check your nodes. If a node's container runtime isn't configured, the installation completes and pods on that node later show `ImagePullBackOff`.
 
+The installer also doesn't install operating system packages on your nodes. Ensure that the nodes have the packages that your environment requires, and that your package managers have the appropriate proxy configuration if required in your environment.
+
 .Before you begin
 
 * You have _Organization admin_ or greater permissions in NetApp Console.
@@ -141,7 +143,7 @@ The wizard generates the install command with the configuration size you select.
 
 The install command downloads the installer from `d13jb5dapseb36.cloudfront.net` and starts it in one step. That download doesn't use the proxy.
 
-* If the installer host can reach `d13jb5dapseb36.cloudfront.net` directly, skip the next section and continue with <<create-password-file-multi-node,Create a proxy password file>>.
+* If the installer host can reach `d13jb5dapseb36.cloudfront.net` directly, skip the next section and continue with <<create-password-file-multi-node,Create a proxy password file>>. Run the install command as copied. If you add proxy parameters, add them inside the quotes, before the closing quote.
 * If the installer host reaches the internet only through a proxy, the command stops at the download. Complete the next section first. Only the installer host needs this. Your nodes don't download the installer.
 
 [[download-installer-multi-node]]
@@ -256,7 +258,12 @@ Without a terminal, the installer never prompts. Pass `--proxy-host` to use a pr
 [[command-line-flags-multi-node]]
 === Command-line flags
 
-Add the proxy parameters to the install command after the last existing parameter. If the command contains `--no-proxy`, remove it. Keep every other parameter from the install command. For the description and default of each parameter, see link:configure-proxy.html#proxy-parameters[Proxy configuration parameters]. The following examples show only the proxy parameters.
+Add the proxy parameters to the install command after the last existing parameter.
+
+* If you run the install command as copied from NetApp Console, add the parameters inside the quotes, before the closing quote.
+* If you downloaded the installer and shortened the command, add the parameters to the end of the shortened command.
+
+If the command contains `--no-proxy`, remove it. Keep every other parameter from the install command. For the description and default of each parameter, see link:configure-proxy.html#proxy-parameters[Proxy configuration parameters]. The following examples show only the proxy parameters.
 
 .HTTP proxy with a username and password
 [source,bash]
@@ -298,6 +305,18 @@ NOTE: Installation takes about 30 minutes to complete. Timeouts and retries migh
 
 .Result
 Your AI Data Engine multi-node deployment is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
+
+[[check-proxy-multi-node]]
+== Check the proxy after installation
+
+The AI Data Engine operator logs the proxy that it uses. The log never includes the password. To check the proxy, run the following command from a host with kubectl access to your cluster:
+
+[source,bash]
+----
+kubectl -n aide logs -l control-plane=controller-manager -c chart-fetcher | grep -m1 'proxy enabled'
+----
+
+The line shows the proxy endpoint, whether authentication is on, and whether a CA certificate is mounted.
 
 [[troubleshoot-multi-node]]
 == Troubleshoot proxy problems

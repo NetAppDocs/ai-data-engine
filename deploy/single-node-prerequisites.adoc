@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: deploy/single-node-prerequisites.html
-keywords: single-node, prerequisites, disk space, firewall, k3s, ports, SELinux, host preparation, block storage
+keywords: single-node, prerequisites, disk space, firewall, k3s, ports, host preparation, block storage
 summary: Prepare a Linux VM for an AIDE single-node deployment by verifying access, disk space, firewall rules, and operating system packages.
 ---
 = AI Data Engine single-node deployment prerequisites
@@ -145,9 +145,7 @@ Unlike firewalld, ufw has no trusted zone. Use `ufw allow from <cidr>` to permit
 
 For the application ports that must be open, see link:aide-requirements.html#networking-requirements[AIDE requirements].
 
-== SELinux
-
-If SELinux is in Enforcing mode, k3s automatically configures the required SELinux contexts during installation. No manual SELinux configuration is needed. On RHEL systems, the host must be able to reach `\https://rpm.rancher.io` to download the k3s SELinux policy package.
+// RESEARCH SELinux is not supported for single-node (Lite) installs. Confirm what that means for RHEL-family hosts (Enforcing only, or any mode) and whether a prerequisite or known limitation should tell customers what to do. The SELinux section was removed because it said that no manual SELinux configuration is needed.
 
 == Operating system packages
 

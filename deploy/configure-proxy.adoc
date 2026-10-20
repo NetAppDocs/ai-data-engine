@@ -58,11 +58,11 @@ The installer uses one proxy for every internet destination and every AI Data En
 [[proxy-allowlist]]
 == Hosts to allow on your proxy
 
-Allow the endpoints for your deployment type in link:aide-requirements.html#outbound-internet-access[Outbound internet access] on your proxy, and also allow the hosts in the following table. For a multi-node deployment, the container runtime connections are made by the cluster nodes.
+Allow the endpoints for your deployment type in link:aide-requirements.html#outbound-internet-access[Outbound internet access] on your proxy, and also allow the hosts in the following table. For a multi-node deployment, the container runtime connections are made by the cluster nodes. The operating system package manager endpoints in that table don't use the AI Data Engine proxy settings.
 
 Allow each host for HTTPS (`CONNECT`) on port 443. Use the exact hostnames. Don't use a leading dot or a wildcard.
 
-// RESEARCH Confirm the allowlist with engineering and QA. The aide-requirements outbound table lists hosts that the installation source does not (api.console.netapp.com, auth0.com, dseasb33srnrn.cloudfront.net, and the Ubuntu package archives). It does not list the hosts in this table. Confirm whether proxy installations need them, and whether these hosts belong in the general table.
+// RESEARCH Confirm the allowlist with engineering and QA. The aide-requirements outbound table lists hosts that the installation source does not (api.console.netapp.com, auth0.com, dseasb33srnrn.cloudfront.net, and the Ubuntu package archives). It does not list the hosts in this table. Confirm whether proxy installations need them, and whether these hosts belong in the general table. The three Ubuntu package archive rows use HTTP on port 80, not HTTPS on port 443, and the installation source says OS repositories are not reached through the AI Data Engine proxy. Confirm how those rows should read for proxy installations.
 The following hosts are not in the outbound internet access table:
 
 [cols="4,4,2",options="header"]
