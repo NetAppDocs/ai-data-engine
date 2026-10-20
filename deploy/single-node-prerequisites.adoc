@@ -151,7 +151,7 @@ If SELinux is in Enforcing mode, k3s automatically configures the required SELin
 
 == Operating system packages
 
-The installer installs `cifs-utils`, which is required for Kerberos-based CIFS/SMB scanning, from the operating system repositories enabled on the host. If those repositories require a proxy, configure it in `dnf` or `apt`. The AI Data Engine proxy options don't apply to them.
+The installer installs `cifs-utils`, which is required for Kerberos-based CIFS/SMB scanning, from the operating system repositories enabled on the host. Ensure that your package managers have the appropriate proxy configuration if required in your environment.
 
 == Related information
 

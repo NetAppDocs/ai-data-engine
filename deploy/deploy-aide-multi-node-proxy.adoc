@@ -11,7 +11,7 @@ summary: Deploy AIDE as a multi-node deployment from NetApp Console when your cl
 [.lead]
 Deploy AIDE as a multi-node deployment from NetApp Console when your Kubernetes cluster and the installer host reach the internet only through an outbound proxy. This topic includes every step of the multi-node deployment, along with the proxy steps. If your cluster and installer host have direct internet access, use link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment] instead.
 
-For the supported proxy types, the proxy parameters, and the hosts to allow on your proxy, see link:configure-proxy.html[Learn about proxies for AI Data Engine].
+For the supported proxy types, the complete parameter reference, and the hosts to allow on your proxy, see link:configure-proxy.html[Learn about proxies for AI Data Engine].
 
 == How the proxy applies to a multi-node deployment
 
@@ -210,14 +210,55 @@ chmod 600 $HOME/.aide-proxy-password
 
 Delete the file after the installation completes.
 
-== Run the installation with the proxy settings
+== Supply the proxy settings
 
-. Add the proxy parameters to the install command after the last existing parameter, or leave them out and answer the installer prompts. If the command contains `--no-proxy`, remove it.
-+
-If the command doesn't include `--no-proxy`, the installer asks whether to configure an outbound proxy when you run it. Enter `y`.
-+
-For the parameter descriptions, see link:configure-proxy.html#proxy-parameters[Proxy configuration parameters]. The following examples show only the proxy parameters. Keep every other parameter from the install command.
-+
+You can supply the proxy settings in two ways:
+
+* *Interactive guided setup*: The installer prompts you for the proxy settings. This is the default method.
+* *Command-line flags*: Add the proxy parameters to the install command. The flags are optional. Use them for automated or other non-interactive deployments that must run without prompts. The installer prompts you for any proxy information you don't supply.
+
+Use the same proxy host, port, scheme, and CA certificate that you configured on the nodes.
+
+[[interactive-setup-multi-node]]
+=== Interactive guided setup
+
+When you run the install command in a terminal without `--proxy-host` or `--no-proxy`, the installer asks the following questions. If you pass a value as a parameter, the installer doesn't ask for it again.
+
+// RESEARCH Confirm the prompt wording at release, including the proxy type prompt, and update the proxy type guidance if TLS inspection is qualified for GA.
+
+[cols="2,3",options="header"]
+|===
+|Prompt |What to enter
+
+|`Configure outbound proxy? (y/N)`
+|Enter `y`.
+
+|Proxy host or IP
+|Enter the proxy hostname or IPv4 address, optionally with a port (`host:port`).
+
+|Proxy scheme (`https` or `http`)
+|Enter the protocol that your proxy listens on. The default is `https`.
+
+|Proxy port
+|Enter the proxy port. The default is `443` for HTTPS and `80` for HTTP.
+
+|Proxy type
+|Press Enter to accept the default.
+
+|CA certificate for the proxy's own certificate (HTTPS only, optional)
+|Enter the path to the CA file or directory. Press Enter if a public CA signed the proxy certificate.
+
+|Does the proxy require a username and password? (y/N)
+|If yes, enter the username, and then enter the password twice. The installer doesn't echo the password.
+|===
+
+Without a terminal, the installer never prompts. Pass `--proxy-host` to use a proxy, and `--proxy-password-file` if the proxy needs a password.
+
+[[command-line-flags-multi-node]]
+=== Command-line flags
+
+Add the proxy parameters to the install command after the last existing parameter. If the command contains `--no-proxy`, remove it. Keep every other parameter from the install command. For the description and default of each parameter, see link:configure-proxy.html#proxy-parameters[Proxy configuration parameters]. The following examples show only the proxy parameters.
+
 .HTTP proxy with a username and password
 [source,bash]
 ----
@@ -227,7 +268,7 @@ For the parameter descriptions, see link:configure-proxy.html#proxy-parameters[P
 --proxy-user svc-aide \
 --proxy-password-file $HOME/.aide-proxy-password
 ----
-+
+
 .HTTPS proxy with a privately signed certificate and no authentication
 [source,bash]
 ----
@@ -236,27 +277,33 @@ For the parameter descriptions, see link:configure-proxy.html#proxy-parameters[P
 --proxy-scheme https \
 --proxy-ca-cert $HOME/proxy-ca.pem
 ----
-+
+
+* If your proxy doesn't require authentication, omit `--proxy-user` and `--proxy-password-file`.
+* If you specify `--proxy-user` without `--proxy-password-file`, the installer prompts you for the password when you run it from a terminal.
+
 CAUTION: With an HTTP proxy, the proxy username and password are sent in clear text. Use an HTTPS proxy when the proxy requires authentication.
+
+== Run the installation
 
 . Run the install command from your target host with kubectl access to your Kubernetes cluster. If you downloaded the installer, run the command from the installer folder.
 +
-The installer checks the proxy before it downloads anything. See link:configure-proxy.html#proxy-verification[Proxy verification].
+Before the installer downloads anything, it checks from the installer host that the proxy responds, that the proxy accepts your credentials, and that the proxy certificate is valid for the scheme you chose. If the check fails, the installer stops and names the cause. See <<troubleshoot-multi-node,Troubleshoot proxy problems>>. The check doesn't test whether the cluster nodes can reach the proxy.
 +
 NOTE: The `sudo` command removes environment variables, so always pass `--kubeconfig` explicitly if you run the installer with `sudo`. For more information, see link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites].
 +
 NOTE: Installation takes about 30 minutes to complete. Timeouts and retries might occur, and this is normal.
 
-. If you didn't pass all of the proxy parameters, answer the proxy prompts. See link:configure-proxy.html#interactive-prompts[Interactive guided setup].
+. If you didn't pass all of the proxy parameters, answer the proxy prompts. See <<interactive-setup-multi-node,Interactive guided setup>>.
 . When prompted, confirm the host IP address and user ID to continue the installation.
 . Monitor the progress screen until the success screen appears and displays "AI Data Engine deployed".
 
 .Result
 Your AI Data Engine multi-node deployment is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
 
+[[troubleshoot-multi-node]]
 == Troubleshoot proxy problems
 
-If the proxy verification fails, the installer stops and names the cause.
+If the proxy check fails, the installer stops and names the cause.
 
 // RESEARCH Engineering to verify the installer error messages and the HTTP 407 behavior. Keep the CA certificate path row only if the installer behaves as described.
 [cols="2,2,3",options="header"]

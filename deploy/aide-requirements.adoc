@@ -233,7 +233,7 @@ AI Data Engine supports only the distributions and versions listed in this table
 
 |AIDE single-node
 |k3s
-|v1.36.x
+|v1.35
 |The installer provisions k3s automatically. No action is required.
 
 |AIDE multi-node
@@ -243,18 +243,15 @@ AI Data Engine supports only the distributions and versions listed in this table
 
 |AIDE multi-node
 |OpenShift
-|**To be confirmed**
+|OpenShift 4.22.16 (Kubernetes v1.35.8)
 |You provide the cluster, which can be shared or dedicated.
 
 |AIDE multi-node
 |Azure Kubernetes Service (AKS)
-|**To be confirmed**
+|v1.34 to v1.36
 |You provide the cluster, which can be shared or dedicated.
 
 |===
-
-// RESEARCH Is v1.34 the correct minimum RKE2 version? Other sources list v1.35 and v1.36.x, and the table should probably list exact supported versions only.
-// RESEARCH Which exact OpenShift and AKS versions are supported for multi-node deployments, and should GKE be listed?
 
 == AIDE single-node deployment requirements
 

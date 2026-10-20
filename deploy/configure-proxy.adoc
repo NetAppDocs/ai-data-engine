@@ -51,17 +51,7 @@ Traffic on your network connects directly and must stay reachable without the pr
 
 You can address the proxy by hostname or IPv4 address.
 
-IMPORTANT: AI Data Engine supports standard forward proxies that tunnel connections with HTTP `CONNECT`, including HTTPS destinations. Proxies that decrypt and re-sign HTTPS traffic with a custom certificate authority (TLS-inspecting proxies) are not supported. If your proxy inspects TLS traffic, exempt the endpoints and hosts in <<proxy-allowlist,Hosts to allow on your proxy>> from inspection, including the installer download host.
-
-// RESEARCH Update the TLS-inspecting proxy wording and the proxy type prompt guidance if QA qualifies TLS inspection for GA and the product manager approves it.
-The following proxy features are not supported:
-
-* NTLM, Kerberos, or client-certificate authentication to the proxy
-* SOCKS proxies
-* Proxy auto-configuration (PAC file or WPAD). Give the installer the proxy host and port directly.
-* A different proxy for different destinations. One proxy carries all AI Data Engine internet traffic.
-* An IPv6 address as the proxy address. Use a hostname instead; the hostname can resolve to IPv6.
-* A proxy with an air-gapped installation. The installer rejects proxy options on an air-gapped installation.
+IMPORTANT: AI Data Engine supports standard forward proxies that tunnel connections with HTTP `CONNECT`, including HTTPS destinations. If your proxy inspects TLS traffic, exempt the endpoints and hosts in <<proxy-allowlist,Hosts to allow on your proxy>> from inspection, including the installer download host. TLS-inspecting proxies and some other proxy features aren't supported. See link:../release-notes/known-limitations.html[Known limitations].
 
 The installer uses one proxy for every internet destination and every AI Data Engine component. The proxy settings are set during installation.
 
@@ -150,56 +140,6 @@ Allow `sts.us-west-2.amazonaws.com` only if the AI Data Engine registry credenti
 
 // RESEARCH Is a self-signed proxy certificate a supported scenario, and does the customer supply that certificate itself as the CA certificate?
 NOTE: The installer doesn't accept `--proxy-password` or the `PROXY_PASSWORD` environment variable. Use `--proxy-password-file` or the interactive prompt instead.
-
-== Supply the proxy settings
-
-You can supply the proxy settings in two ways when you run the install command copied from NetApp Console:
-
-* *Interactive guided setup*: Run the install command in a terminal without proxy flags. The installer prompts you for the proxy settings. This is the default method.
-* *Command-line flags*: Add the proxy flags to the install command. Use this method for automated or other non-interactive deployments that must run without prompts. The flags are optional. The installer prompts you for any proxy information you don't supply.
-
-[[interactive-prompts]]
-=== Interactive guided setup
-
-When the installer runs in a terminal and you pass neither `--proxy-host` nor `--no-proxy`, it asks the following questions. If you pass a value as a parameter, the installer doesn't ask for it again.
-
-// RESEARCH Confirm the prompt wording at release, including the proxy type prompt, and update the proxy type guidance if TLS inspection is qualified for GA.
-[cols="2,3",options="header"]
-|===
-|Prompt |What to enter
-
-|`Configure outbound proxy? (y/N)`
-|Enter `y` if the host reaches the internet only through a proxy. The default is no.
-
-|Proxy host or IP
-|Enter the proxy hostname or IPv4 address, optionally with a port (`host:port`).
-
-|Proxy scheme (`https` or `http`)
-|Enter the protocol that your proxy listens on. The default is `https`.
-
-|Proxy port
-|Enter the proxy port. The default is `443` for HTTPS and `80` for HTTP.
-
-|Proxy type
-|Press Enter to accept the default, a regular forward proxy.
-
-|CA certificate for the proxy's own certificate (HTTPS only, optional)
-|Enter the path to the CA file or directory. Press Enter if a public CA signed the proxy certificate.
-
-|Does the proxy require a username and password? (y/N)
-|If yes, enter the username, and then enter the password twice. The installer doesn't echo the password.
-|===
-
-=== Command-line flags
-
-Add the proxy flags after the last existing parameter in the install command. If you run the command as copied, add them inside the quotes, before the closing quote. If the copied install command includes `--no-proxy`, remove it when you add `--proxy-host`.
-
-* If your proxy doesn't require authentication, omit `--proxy-user` and `--proxy-password-file`.
-* If the proxy certificate is signed by a publicly trusted CA, or you use an HTTP proxy, omit `--proxy-ca-cert`.
-* If you specify `--proxy-user` without `--proxy-password-file`, the installer prompts you for the password when you run it from a terminal.
-* Without a terminal, the installer never prompts. Pass `--proxy-host` to use a proxy, and `--proxy-password-file` if the proxy needs a password. In a non-interactive run that is missing required proxy information, the installer stops before it makes any network connection.
-
-CAUTION: With an HTTP proxy, the proxy username and password are sent in clear text. Use an HTTPS proxy when the proxy requires authentication.
 
 == The installer download
 
