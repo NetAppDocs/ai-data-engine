@@ -11,6 +11,8 @@ summary: Learn about new capabilities in AI Data Engine.
 [.lead]
 Learn about new capabilities in AI Data Engine.
 
+// IE UX Link dependency: The UI links to this page from About AIDE > "Documentation Link". Do not change the permalink or filename without creating a redirect file.
+
 == AI Data Engine 1.3 release
 
 AI Data Engine 1.3 is the first generally available (GA) release. 

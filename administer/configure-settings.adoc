@@ -11,6 +11,8 @@ summary: Define which files AI Data Engine classifies as cold or stale data, tur
 [.lead]
 Cold and stale thresholds help you find storage that you can optimize. Permission scanning and Active Directory integration help you find and understand access risks. Set them to match your organization's data classification, retention, and access policies.
 
+// IE UX Link dependency: The UI links to this page from General settings > "Learn more". Do not change the permalink or filename without creating a redirect file.
+
 == What is cold and stale data?
 
 Cold data:: Files that haven't been accessed within the cold data threshold. Cold data is a key metric your organization can use to identify storage that could be optimized according to your retention and business policies.
