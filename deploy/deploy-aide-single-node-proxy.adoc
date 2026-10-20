@@ -65,7 +65,6 @@ The install command downloads the installer from `d13jb5dapseb36.cloudfront.net`
 
 Download the installer yourself, and then run the install command from `sudo ./install-lite.sh` onward.
 
-// RESEARCH Confirm the installer download URL and the curl commands with engineering before publication.
 . Get the installer onto the target host. Use any method that your environment allows, and then place the file on the target host.
 +
 To download the installer from the target host through your proxy:
@@ -106,7 +105,7 @@ The remaining command looks like this after you add the proxy parameters:
 +
 [source,bash]
 ----
-sudo ./install-lite.sh --account-id <...> --organization-id <...> --agent-id <...> --env <...> --user-token <...> --cm-host <...> --catalog-endpoint <...> --flavor <...> --proxy-host proxy.example.com --proxy-port 3128 --proxy-scheme http
+sudo ./install-lite.sh --account-id <account-id> --organization-id <organization-id> --agent-id <agent-id> --env <environment> --user-token <user-token> --cm-host <console-agent-ip> --catalog-endpoint <catalog-endpoint> --flavor <small|medium|large> --proxy-host proxy.example.com --proxy-port 3128 --proxy-scheme http
 ----
 
 [[create-password-file-single-node]]

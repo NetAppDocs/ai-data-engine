@@ -149,7 +149,6 @@ The install command downloads the installer from `d13jb5dapseb36.cloudfront.net`
 
 Download the installer yourself, and then run the install command from `./install-enterprise.sh` onward.
 
-// RESEARCH Confirm the installer download URL and the curl commands with engineering before publication.
 . Get the installer onto the installer host. Use any method that your environment allows, and then place the file on the installer host.
 +
 To download the installer from the installer host through your proxy:
@@ -189,7 +188,7 @@ The remaining command looks like this after you add the proxy parameters:
 +
 [source,bash]
 ----
-./install-enterprise.sh --flavor <...> --kubeconfig <...> --nfs-server <...> --nfs-data-share <...> --registry <...> --account-id <...> --organization-id <...> --agent-id <...> --cm-host <...> --proxy-host proxy.example.com --proxy-port 3128 --proxy-scheme http
+./install-enterprise.sh --flavor <small|medium|large> --kubeconfig <kubeconfig-path> --nfs-server <nfs-server> --nfs-data-share <export-path> --registry <registry> --account-id <account-id> --organization-id <organization-id> --agent-id <agent-id> --cm-host <console-agent-ip> --proxy-host proxy.example.com --proxy-port 3128 --proxy-scheme http
 ----
 
 [[create-password-file-multi-node]]
