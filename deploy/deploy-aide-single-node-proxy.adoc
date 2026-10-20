@@ -1,0 +1,211 @@
+---
+sidebar: sidebar
+permalink: deploy/deploy-aide-single-node-proxy.html
+keywords: deploy, install, single-node, single node, proxy, outbound proxy, forward proxy, wizard, NetApp Console, installer download, proxy password file, proxy CA certificate
+summary: Deploy AIDE as a single-node deployment from NetApp Console when the target host reaches the internet only through an outbound proxy.
+---
+= Deploy AI Data Engine as a single-node deployment with a proxy
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Deploy AIDE as a single-node deployment from NetApp Console when the target host reaches the internet only through an outbound proxy. This topic includes every step of the single-node deployment, along with the proxy steps. If the target host has direct internet access, use link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment] instead.
+
+For the supported proxy types, the proxy parameters, and the hosts to allow on your proxy, see link:configure-proxy.html[Learn about proxies for AI Data Engine].
+
+== What the installer configures
+
+In a single-node deployment, AI Data Engine owns the VM that it installs on, so the installer configures every AI Data Engine part of the host for the proxy. The installer does the following:
+
+* Downloads the k3s install script and binary through the proxy. It doesn't give k3s or the kubelet a system-wide proxy.
+* Configures the k3s container runtime to pull images through the proxy. Registries that you list in `--proxy-bypass-registries` connect directly.
+* Adds the CA certificate that you supply with `--proxy-ca-cert` to the host trust store.
+
+// RESEARCH Confirm whether customer documentation should describe where the installer stores proxy settings and credentials (the aide-proxy-config ConfigMap, the aide-proxy-credentials Secret, and the k3s service environment file on single-node deployments), and whether it should include the proxy log check command for the chart-fetcher container.
+You don't configure the VM container runtime or trust store.
+
+.Before you begin
+
+* You have _Organization admin_ or greater permissions in NetApp Console.
+* Sudo (or root) permissions are required on the target host to run the install command.
+* Your environment meets all prerequisites as described in link:single-node-prerequisites.html[AIDE single-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
+* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
+* You have configured your proxy to allow the endpoints and hosts in link:configure-proxy.html#proxy-allowlist[Hosts to allow on your proxy].
+* You know the proxy host, port, and scheme (`http` or `https`). If the proxy requires authentication, you also know the username and password.
+* If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the target host.
+* The operating system repositories on the target host provide the packages listed in link:single-node-prerequisites.html[AIDE single-node deployment prerequisites]. Ensure that your package managers have the appropriate proxy configuration if required in your environment.
+
+== Copy the install command
+
+. In NetApp Console, navigate to *AI data hub* > *AI Data Engine*.
++
+The AI Data Engine landing page appears.
+
+. Select *Deploy AI Data Engine*.
+. Select the *Single-node* deployment option and select *Next*.
+. Select your configuration size:
++
+* *Small*: recommended for environments with up to approximately 200 million files.
+* *Medium (Default)*: recommended for environments with up to approximately 1 billion files.
+* *Large*: recommended for environments with up to approximately 3 billion files.
++
+These sizes are recommended baselines, not hard limits. See link:aide-requirements.html#flexible-sizing-single-node[flexible sizing guidelines] if your environment falls outside these ranges.
++
+The wizard generates the install command with the configuration size you select. You don't need to edit the command to set the size.
+
+. Copy the install command displayed in the wizard to an editor.
+
+The install command downloads the installer from `d13jb5dapseb36.cloudfront.net` and starts it in one step. That download doesn't use the proxy.
+
+* If the target host can reach `d13jb5dapseb36.cloudfront.net` directly, skip the next section and continue with <<create-password-file-single-node,Create a proxy password file>>.
+* If the target host reaches the internet only through a proxy, the command stops at the download. Complete the next section first.
+
+[[download-installer-single-node]]
+== Download the installer through the proxy
+
+Download the installer yourself, and then run the install command from `sudo ./install-lite.sh` onward.
+
+// RESEARCH Confirm the installer download URL and the curl commands with engineering before publication.
+. Get the installer onto the target host. Use any method that your environment allows, and then place the file on the target host.
++
+To download the installer from the target host through your proxy:
++
+[source,bash]
+----
+mkdir -p ~/aide && cd ~/aide
+curl -fsSL -x http://PROXY_HOST:PROXY_PORT \
+  https://d13jb5dapseb36.cloudfront.net/aide/latest/aide-installer.tar.gz -o aide-installer.tar.gz
+----
++
+If the proxy requires a username, add `--proxy-user USER` to the `curl` command. If you omit the password, `curl` prompts for it, so it isn't saved in your shell history.
++
+* Use `https://` in the `-x` address if your proxy listens on HTTPS.
+* If your proxy uses a privately signed certificate, add `--proxy-cacert CA_FILE`, or add the CA certificate to the target host trust store first.
+* With an HTTPS proxy and a `curl` version earlier than 8.3, which includes Ubuntu 22.04, the download can pause for about a minute. Wait for it to finish.
++
+Alternatively, download `\https://d13jb5dapseb36.cloudfront.net/aide/latest/aide-installer.tar.gz` from another computer, and then copy it to the target host with `scp` or your usual file transfer method.
+
+. Extract the installer, and change to the installer folder:
++
+[source,bash]
+----
+tar -xzf aide-installer.tar.gz
+cd installer
+----
++
+Run every following command from inside this installer folder. The `version.txt` file in the folder shows the installer build version.
+
+. Prepare the install command that you copied from NetApp Console. It starts with `sudo bash -c '`, downloads the installer, and then runs `./install-lite.sh` with your parameters. Because you already downloaded the installer:
++
+* Delete everything before `./install-lite.sh`, so the command starts with `./install-lite.sh`.
+* Delete the single quote (`'`) at the very end.
+* Add `sudo` in front, so the command starts with `sudo ./install-lite.sh`. The installer must run as root, and removing the `bash -c` wrapper removes the `sudo` that was providing it.
+* If the command contains `--no-proxy`, delete it.
++
+The remaining command looks like this after you add the proxy parameters:
++
+[source,bash]
+----
+sudo ./install-lite.sh --account-id <...> --organization-id <...> --agent-id <...> --env <...> --user-token <...> --cm-host <...> --catalog-endpoint <...> --flavor <...> --proxy-host proxy.example.com --proxy-port 3128 --proxy-scheme http
+----
+
+[[create-password-file-single-node]]
+== Create a proxy password file
+
+If your proxy requires authentication and you want to supply the password without being prompted for it, for example in an automated deployment, create a password file before you run the installer. Otherwise, skip this section. The installer prompts for the password with hidden input.
+
+The file contains only the password. Enter the password exactly as it is, without percent-encoding special characters.
+
+Run the following commands as root. The single-node install command runs with `sudo`, so it can read a file under `/root`.
+
+[source,bash]
+----
+umask 077
+read -rs -p 'Proxy password: ' P && printf '%s' "$P" > /root/.aide-proxy-password; unset P; echo
+chmod 600 /root/.aide-proxy-password
+----
+
+Delete the file after the installation completes.
+
+== Run the installation with the proxy settings
+
+. Add the proxy parameters to the install command after the last existing parameter, or leave them out and answer the installer prompts. If the command contains `--no-proxy`, remove it.
++
+If the command doesn't include `--no-proxy`, the installer asks whether to configure an outbound proxy when you run it. Enter `y`.
++
+For the parameter descriptions, see link:configure-proxy.html#proxy-parameters[Proxy configuration parameters]. The following examples show only the proxy parameters. Keep every other parameter from the install command.
++
+.HTTP proxy with a username and password
+[source,bash]
+----
+--proxy-host proxy.example.com \
+--proxy-port 3128 \
+--proxy-scheme http \
+--proxy-user svc-aide \
+--proxy-password-file /root/.aide-proxy-password
+----
++
+.HTTPS proxy with a privately signed certificate and no authentication
+[source,bash]
+----
+--proxy-host proxy.example.com \
+--proxy-port 8443 \
+--proxy-scheme https \
+--proxy-ca-cert /root/proxy-ca.pem
+----
++
+CAUTION: With an HTTP proxy, the proxy username and password are sent in clear text. Use an HTTPS proxy when the proxy requires authentication.
+
+. Run the install command on your target host. If you downloaded the installer, run the command from the installer folder.
++
+The installer checks the proxy before it downloads anything. See link:configure-proxy.html#proxy-verification[Proxy verification].
++
+NOTE: Installation takes about 45 minutes to complete. Timeouts and retries might occur, and this is normal.
+
+. If you didn't pass all of the proxy parameters, answer the proxy prompts. See link:configure-proxy.html#interactive-prompts[Interactive guided setup].
+. When prompted, confirm the host IP address and user ID to continue the installation.
+. Monitor the progress screen until the success screen appears and displays "AI Data Engine deployed".
+
+.Result
+AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
+
+== Troubleshoot proxy problems
+
+If the proxy verification fails, the installer stops and names the cause.
+
+// RESEARCH Engineering to verify the installer error messages and the HTTP 407 behavior. Keep the CA certificate path row only if the installer behaves as described.
+[cols="2,2,3",options="header"]
+|===
+|Symptom |Cause |Action
+
+|The install command from NetApp Console stops at the download, with a `curl` timeout, a connection error, or an HTTP error.
+|The target host can't reach `d13jb5dapseb36.cloudfront.net` directly. The download doesn't use the proxy.
+|Follow <<download-installer-single-node,Download the installer through the proxy>>. Check that the host is allowed on your proxy and exempt from TLS inspection.
+
+|The installer stops at the proxy check with HTTP 407 or "Proxy Authentication Required".
+|The proxy username or password is wrong, the proxy requires a method other than basic authentication, or you didn't supply credentials.
+|Check the username and the contents of the password file with your proxy administrator. Add `--proxy-user` and `--proxy-password-file` if the proxy requires authentication.
+
+|The installer stops at the proxy check with a connection or TLS error.
+|The port or scheme is wrong. An HTTP proxy fails with `--proxy-scheme https`, which is the default. For an HTTPS proxy with a private certificate, you didn't supply the CA certificate, or the CA certificate you supplied didn't sign the proxy certificate.
+|Verify the host, port, and scheme. Pass `--proxy-scheme http` for an HTTP proxy. For an HTTPS proxy with a private certificate, supply the CA certificate that signed the proxy certificate with `--proxy-ca-cert`.
+
+|The installer rejects the CA certificate path.
+|The file is empty or isn't PEM-encoded, the directory is empty, or the path doesn't exist.
+|Supply a valid PEM file, or a flat directory of `.crt` or `.pem` files.
+
+|Downloads or AI Data Engine pods fail with HTTP 403 from the proxy.
+|A host is missing from the proxy allowlist.
+|Check the proxy access log for denied requests, and compare them with the endpoints and hosts in link:configure-proxy.html#proxy-allowlist[Hosts to allow on your proxy].
+
+|Pods stay in `ImagePullBackOff`.
+|The NetApp container registry or the image layer bucket isn't allowed on the proxy, or a TLS-inspecting proxy re-signs those hosts.
+|Check the proxy allowlist and the TLS inspection exemptions.
+|===
+
+== Related information
+
+* link:configure-proxy.html[Learn about proxies for AI Data Engine]
+* link:single-node-prerequisites.html[AIDE single-node deployment prerequisites]
+* link:aide-requirements.html[AIDE requirements]
+* link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment]

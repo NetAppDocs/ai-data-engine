@@ -214,7 +214,7 @@ For an online installation, the following endpoints must be reachable.
 |Single node only (Ubuntu)
 |===
 
-If you use a proxy, allow these endpoints on your proxy using the exact hostnames listed, without wildcards or a leading dot. For multi-node deployments, the container runtime connections are made by the cluster nodes. See link:configure-proxy.html[Configure a proxy]. For the additional hosts that proxy installations need, see link:configure-proxy.html#proxy-allowlist[Hosts to allow on your proxy].
+If you use a proxy, allow these endpoints on your proxy using the exact hostnames listed, without wildcards or a leading dot. For multi-node deployments, the container runtime connections are made by the cluster nodes. See link:configure-proxy.html[Learn about proxies for AI Data Engine]. For the additional hosts that proxy installations need, see link:configure-proxy.html#proxy-allowlist[Hosts to allow on your proxy]. To deploy with a proxy, see link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy] or link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy].
 
 NOTE: Operating system package repositories aren't reached through the AI Data Engine proxy settings. The package manager follows its own proxy configuration.
 
