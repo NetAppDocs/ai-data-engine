@@ -14,20 +14,23 @@ Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine M
 == Before you begin
 
 * An administrator has completed the steps in link:configure-mcp-access.html[Configure Entra ID and MCP access], including these:
-** Assigning you the `AIDE Power Users` app role, which you need to tag files.
+** Assigning you the `AIDE Power Users` app role.
 ** Configuring a collection for MCP with a scope that includes you. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
-** Registering an Entra ID application for your AI clients. The application is a public client, so you don't need a client secret.
-* You have the MCP client configuration from your administrator. The administrator generates it in NetApp Console by configuring the collection for MCP, copies the MCP server URL or the client-specific snippet from the *Generate MCP code snippet* step, adds the client application ID, and shares it with you. It includes the following:
+** Adding the redirect URI for your AI client to the AI Data Engine application and allowing public client flows. The AI client signs in as a public client, so you don't need a client secret.
+* You have the MCP client configuration from your administrator. The administrator generates it in NetApp Console by configuring the collection for MCP, copies the MCP server URL or the client-specific snippet from the *Generate MCP code snippet* step, and shares it with you. It includes the following:
 ** The MCP server URL, in the format `\https://<mcp-server-host>/mcp/tools`.
 ** The Microsoft Entra ID tenant ID.
-** The client application ID for your AI client.
+** The client ID, which is the Application (client) ID of the AI Data Engine application in Entra ID.
 ** The scopes that your AI client requests:
-*** `https://<aide-instance-fqdn>/power_users`
+*** `\https://<mcp-server-host>/mcp/tools/power_users`, which is the Application ID URI plus `/power_users`.
 *** `offline_access`, so that the client can refresh tokens without asking you to sign in again.
 ** The ID of the collection that you want to work with.
-// RESEARCH The generated configuration is pending validation. Confirm the snippet formats (the console shows client-specific snippets and a standalone MCP server URL). Does the console show tabs for any client that isn't supported? Does it show tabs for Claude Code or OpenCode? Confirm what each tab generates.
-// RESEARCH Confirm the field list that Console generates, and which values you add from your own client registration.
-* Your device can reach the MCP server over HTTPS on port 443. The MCP server runs in your network, so connect from your corporate network or through VPN. Your device must also be able to reach Microsoft Entra ID sign-in (`login.microsoftonline.com`).
+// RESEARCH The generated configuration is pending validation. Confirm the snippet formats (the console shows client-specific snippets and a standalone MCP server URL). Does the console show tabs for any client that isn't supported? Does it show tabs for Claude Code or OpenCode? Does the architect's General client tab ship in GA, and is it supported for clients other than the four that are listed here? Confirm what each tab generates.
+// RESEARCH Confirm the field list that Console generates, and which values you add yourself.
+* Your device can reach the MCP server over HTTPS on port 443. The MCP server runs in your network, so connect from your corporate network or through VPN. Your device must also be able to do the following:
+** Resolve the MCP host name through DNS.
+** Trust the certificate that the host presents. If the certificate is self-signed, install it as a trusted certificate on your device.
+** Reach Microsoft Entra ID sign-in (`login.microsoftonline.com`).
 // RESEARCH Does the MCP server accept a custom port for AI client access, and should this prerequisite mention it?
 * You have a supported version of the AI client.
 // RESEARCH What are the minimum supported versions of Claude Code, Claude Desktop, Cursor, and OpenCode?
@@ -46,6 +49,17 @@ Other MCP clients aren't supported.
 AI clients that connect from a cloud provider's service into your network aren't supported. For example, custom connectors that are built into an AI client and called from the provider's cloud can't reach the MCP server in your network. Use the configuration steps on this page instead.
 
 // RESEARCH Confirm the final supported client list with the product team.
+
+== Check your configuration before you paste it
+
+Before you paste a snippet into your AI client, confirm the following:
+
+* The host is your external MCP host name, not a cluster or service IP address.
+* The URL ends in `/mcp/tools` and includes the `collection_id` of the collection that you want to work with.
+* The scope is `\https://<mcp-server-host>/mcp/tools/power_users`, which is the Application ID URI plus `/power_users`.
+* The client ID is the Application (client) ID of the AI Data Engine application in Entra ID.
+
+// RESEARCH The single-application setup was verified with Cursor and OpenCode. Confirm that Claude Desktop and Claude Code use the same client ID.
 
 == Connect Claude Desktop
 
@@ -77,9 +91,9 @@ Install Node.js on your computer. The `mcp-remote` helper runs with Node.js.
         "mcp-remote@<tested version>",
         "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>",
         "--static-oauth-client-info",
-        "{\"client_id\": \"<client-application-id>\"}",
+        "{\"client_id\": \"<application-client-id>\"}",
         "--static-oauth-client-metadata",
-        "{\"scope\": \"https://<aide-instance-fqdn>/power_users offline_access\"}",
+        "{\"scope\": \"https://<mcp-server-host>/mcp/tools/power_users offline_access\"}",
         "--disable-resource-parameter"
       ]
     }
@@ -104,7 +118,7 @@ Claude Code connects to the AI Data Engine MCP server directly.
 [source,bash]
 ----
 claude mcp add --transport http \
-  --client-id <client-application-id> \
+  --client-id <application-client-id> \
   --callback-port 8080 \
   --scope user \
   netapp-ai-data-engine "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>"
@@ -121,9 +135,9 @@ NOTE: Don't pass `--client-secret`. The client application is a public client.
       "type": "http",
       "url": "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>",
       "oauth": {
-        "clientId": "<client-application-id>",
+        "clientId": "<application-client-id>",
         "callbackPort": 8080,
-        "scopes": "https://<aide-instance-fqdn>/power_users offline_access",
+        "scopes": "https://<mcp-server-host>/mcp/tools/power_users offline_access",
         "authServerMetadataUrl": "https://login.microsoftonline.com/<tenant-id>/v2.0/.well-known/openid-configuration"
       }
     }
@@ -150,9 +164,9 @@ Cursor connects to the AI Data Engine MCP server directly.
     "netapp-ai-data-engine": {
       "url": "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>",
       "auth": {
-        "CLIENT_ID": "<client-application-id>",
+        "CLIENT_ID": "<application-client-id>",
         "scopes": [
-          "https://<aide-instance-fqdn>/power_users",
+          "https://<mcp-server-host>/mcp/tools/power_users",
           "offline_access"
         ]
       }
@@ -162,7 +176,8 @@ Cursor connects to the AI Data Engine MCP server directly.
 ----
 +
 NOTE: Don't paste a bearer token into this file. Cursor uses the client ID to sign you in.
-. Save the file.
+. Save the file, and then reload Cursor.
+. In *Cursor Settings* > *MCP*, select *Connect* for the AI Data Engine server.
 . When the browser opens, sign in with your Microsoft Entra ID account and accept the consent prompt if it appears.
 . In *Cursor Settings* > *MCP*, confirm that the AI Data Engine server is enabled and that its tools are listed. If it isn't, check *Output* > *MCP Logs*.
 
@@ -190,8 +205,8 @@ opencode mcp add netapp-ai-data-engine --global --url "https://<mcp-server-host>
         "type": "remote",
         "url": "https://<mcp-server-host>/mcp/tools?collection_id=<collection-id>",
         "oauth": {
-          "client_id": "<client-application-id>",
-          "scope": "https://<aide-instance-fqdn>/power_users offline_access",
+          "client_id": "<application-client-id>",
+          "scope": "https://<mcp-server-host>/mcp/tools/power_users offline_access",
           "callback_port": 19876,
           "redirect_uri": "http://127.0.0.1:19876/callback",
           "auth_server_metadata_url": "https://login.microsoftonline.com/<tenant-id>/v2.0/.well-known/openid-configuration"
@@ -211,20 +226,15 @@ A status of `needs authentication` means that OpenCode saved the configuration b
 
 == What you can do
 
-After you connect, your AI client can use the following tools. A connection is limited to the collection in the MCP server URL. To work with a different collection, use the connection details for that collection.
+After you connect, your AI client can use five tools: `get_collection`, `search`, `list_tags`, `create_tag`, and `tag_document`. A connection is limited to the collection in the MCP server URL. To work with a different collection, use the connection details for that collection. Refer to link:mcp-tools-reference.html[MCP tools reference] for what each tool does.
 
-* `get_collection`: Returns the collection that your connection is limited to.
-* `search`: Searches file metadata in a collection by name prefix, file type, or owner. Results include each file's name, path, type, size, last-modified time, and owner.
-* `list_tags`: Lists the tags that are in use and how many files have each tag.
-* `tag_document`: Creates a tag if it doesn't exist, adds a tag to a file, or removes a tag from a file. An AI client works on one file at a time.
+The tools are available in a power-user session, which requires the `AIDEPowerUsers` app role and the `power_users` scope.
 
-The `list_tags` and `tag_document` tools are available only in a power-user session, which requires the `AIDEPowerUsers` app role.
-
-NOTE: Power users also work within a single collection. To search all scanned systems and volumes, use the connection details for the *All Systems and Volumes* collection.
+NOTE: To search all scanned systems and volumes, use the connection details for the *All files* collection.
 
 Your AI client can't retrieve file contents, add, delete, or modify files, change data sources, or create collections.
 
-Tags apply across AI Data Engine, not only to one collection. You can create tags from scratch by applying a new tag name to a file. A misspelled tag name also creates a new tag. Tag names aren't case-sensitive. For limitations on tag names, refer to link:../release-notes/known-limitations.html[Known limitations].
+Tags apply across AI Data Engine, not only to one collection. A misspelled tag name creates a new tag, and tag names aren't case-sensitive. For limitations on tag names, refer to link:../release-notes/known-limitations.html[Known limitations].
 
 // RESEARCH Do applied tags appear in later searches? Confirm before describing searching by tag.
 
@@ -258,8 +268,14 @@ TIP: Search filters on file name prefix, file type, and owner. If you ask for fi
 |===
 |Problem |Resolution
 
-|The browser sign-in fails with a redirect URI error.
-|Ask your administrator to add the exact redirect URI that the error shows to the *Authentication* settings of your AI client's Entra ID application. The port in your client configuration must match the registered URI.
+|The browser sign-in fails with error `AADSTS50011` or another redirect URI error.
+|Ask your administrator to add the exact redirect URI that the error shows to the *Authentication* settings, under *Mobile and desktop applications*, of the AI Data Engine application in Entra ID. The port in your client configuration must match the registered URI.
+
+|Sign-in fails with error `AADSTS65001`.
+|Consent wasn't granted, or the client isn't authorized. Ask your administrator to grant consent, or to add the Application (client) ID as an authorized client application for the `power_users` scope.
+
+|Sign-in fails with error `AADSTS70011`.
+|The scope string doesn't match. Use the Application ID URI plus `/power_users` exactly, for example `\https://<mcp-server-host>/mcp/tools/power_users`.
 
 |Claude Code or OpenCode shows `needs authentication`.
 |Sign in. In Claude Code, run `/mcp`. In OpenCode, run `/mcps`.
@@ -267,13 +283,24 @@ TIP: Search filters on file name prefix, file type, and owner. If you ask for fi
 |Claude Desktop sign-in fails with error `AADSTS9010010`.
 |Make sure that the `mcp-remote` arguments include `--disable-resource-parameter`.
 
+|The AI client receives `401 Unauthorized` right after you sign in.
+|Entra ID might have issued a v1 token, or the tenant ID or client ID doesn't match. Ask your administrator to confirm that `requestedAccessTokenVersion` is set to `2` in the application manifest and that the tenant ID and Application (client) ID in AI Data Engine are correct.
+
 |The AI client receives `401 Unauthorized`.
 |Sign in again to get a new token. If the error continues, ask your administrator to confirm that the AI client requests the `power_users` scope and that the token audience is the Application (client) ID of the AI Data Engine application.
+
+|The AI client lists no tools, or tagging is refused.
+|Ask your administrator to confirm that you hold the `AIDEPowerUsers` app role and that your AI client requests the `power_users` scope. A power-user session requires both.
+
+|The AI client reports a TLS or connection error.
+|Confirm that your device resolves the MCP host name and trusts the certificate that the host presents. If the certificate is self-signed, install it as a trusted certificate on your device. Refer to link:prepare-mcp-host.html#make-the-host-reachable[Make the host reachable from client machines].
 |===
 
 == Related information
 
 * link:learn-about-mcp.html[Learn about governed AI access]
+* link:mcp-tools-reference.html[MCP tools reference]
+* link:prepare-mcp-host.html[Prepare the MCP host]
 * link:manage-data-collections.html[Manage data collections]
 * link:maintain-mcp-setup.html[Maintain your MCP setup]
 * link:configure-mcp-access.html[Configure Entra ID and MCP access]
