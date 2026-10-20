@@ -46,6 +46,8 @@ AIDE multi-node deployment:: Runs on a Kubernetes cluster that you provide and i
 
 For supported platforms, sizing, and infrastructure requirements, refer to link:../deploy/aide-requirements.html[AIDE requirements].
 
+Each deployment type also has a separate procedure for environments that reach the internet only through an outbound proxy. Refer to link:../deploy/configure-proxy.html[Learn about proxies for AI Data Engine].
+
 link:../deploy/deployment-overview.html[Learn more about deployment options].
 
 == Data flow
