@@ -16,6 +16,7 @@ Connect the data sources that you want AI Data Engine to analyze, and choose whi
 * You must have _AI Data Engine administrator_ privileges to connect and configure data sources.
 * For systems connected through NetApp Console discovery, discover storage systems in NetApp Console using a Console Agent before adding them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery doesn't enable data services such as AI Data Engine.
 * Verify that the network connections required for AI Data Engine to reach your data sources are open. Refer to link:../deploy/aide-requirements.html[AI Data Engine requirements].
+* To scan SMB/CIFS shares with Kerberos authentication, complete the procedure for your deployment type in link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine] first.
 
 [[add-data-source]]
 == Add a data source
@@ -36,17 +37,15 @@ Bring NFS or SMB shares into AI Data Engine as one named system so that you can 
 * For NFS, configure the export access that AI Data Engine needs.
 * For SMB, prepare the authentication method and the access needed to read the shares.
 
-// RESEARCH: Confirm supported NFS and SMB versions, NFS export-policy requirements, and the permissions needed for M0 metadata scanning.
-// RESEARCH: Do not import the legacy SMBv1 / 7-Mode workaround.
-// RESEARCH: Confirm whether a group can mix NFS and SMB shares, whether all SMB shares in a group share one identity, and whether NTLM and Kerberos shares must be in separate groups.
-// RESEARCH: Add a prerequisite bullet for Kerberos (deployment configuration, FQDN share path) once the customer-facing Kerberos topic and its filename exist. Link to it.
-
 .Steps
 . From the AI Data Engine UI, select *Data sources*.
 . Select *Add system*, and then select *Add File Shares Group*.
 . Enter a name for the group and continue.
 . Select the protocol of the shares to add.
 . Enter the shares to add and submit them.
++
+NOTE: For SMB/CIFS shares that use Kerberos authentication, enter the share path as the FQDN followed by the share name, for example `filer.corp.example.com/sharename`, and leave the credentials empty. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine].
+
 . Review the result for each share. Resolve any failed shares, and then add them again.
 . Configure scanning for the group. Refer to <<configure-scanning>>.
 
@@ -129,5 +128,6 @@ If scans stop or pause unexpectedly, refer to link:../administer/monitor-deploym
 
 * link:manage-data-sources.html[Manage data sources]
 * link:../deploy/aide-requirements.html[AI Data Engine requirements]
+* link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine]
 * link:../investigate/understand-dashboard.html[Assess storage utilization from the dashboard]
 * link:../administer/monitor-deployment-health.html[Monitor deployment health and investigate issues]

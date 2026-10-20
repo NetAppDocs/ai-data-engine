@@ -78,6 +78,9 @@ Restore scan coverage for resources that could not be scanned successfully. Firs
 
 Maintain or restore access to SMB shares when the scan account's credentials change or authentication fails. Update the SMB (CIFS) credentials that AI Data Engine uses to authenticate to the shares.
 
+NOTE: If the share uses Kerberos authentication, AI Data Engine authenticates with a ticket from the keytab, and no password is stored in the data source. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine].
+// RESEARCH Confirm whether Edit CIFS credentials applies to Kerberos shares and how to change the scan service account or keytab.
+
 .Steps
 . From the AI Data Engine UI, select *Data sources*.
 . Locate the SMB system.

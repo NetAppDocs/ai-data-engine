@@ -85,7 +85,8 @@ NOTE: The credentials you provide for an SMB destination are separate from the A
 . In the Archive dialog, select the destination volume protocol:
 +
 * For *NFS*, enter the destination folder path in the format `hostname:/path/to/destination`.
-* For *SMB*, enter the SMB destination folder path in the format `\\Hostname\share_name`. Provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
+* For *SMB*, enter the SMB destination folder path in the format `\\Hostname\share_name`. Select the authentication method. For Kerberos, use the FQDN of the host and leave the credentials empty. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine]. For other methods, provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
+// RESEARCH Does the Kerberos setup for scanning also apply to CIFS destinations, and does the destination host need to be in the same realm?
 . To create a breadcrumb file at the original location, enable *Leave breadcrumb*.
 +
 A breadcrumb file helps users understand why a file was moved.
@@ -125,7 +126,7 @@ CAUTION: Copying or archiving files can change destination permissions, ownershi
 . Choose the destination protocol and provide the destination details:
 +
 * For *NFS*, enter the destination folder path in the format `hostname:/path/to/destination`.
-* For *SMB*, enter the destination folder path in the format `\\hostname\share_name`. Specify the SMB authentication type as Kerberos or NTLM and enter the password when prompted.
+* For *SMB*, enter the destination folder path in the format `\\hostname\share_name`. Specify the SMB authentication type as Kerberos or NTLM and enter the password when prompted. For Kerberos, use the FQDN of the host and leave the credentials empty. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine]. For other methods, provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
 
 . Review how copying might affect file metadata:
 +
@@ -135,7 +136,6 @@ CAUTION: Copying or archiving files can change destination permissions, ownershi
 * Cross-protocol transfers can broaden access. Review the destination's security settings before copying and verify permissions afterward.
 
 . Select *Submit*.
-. Select *Close*.
 
 === Create a filtered copy of an ONTAP volume
 

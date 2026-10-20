@@ -101,3 +101,4 @@ NOTE: The credentials you enter here are for the directory integration. They are
 * link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
 * link:../deploy/aide-requirements.html[AIDE requirements]
 * link:manage-users-roles.html[Manage users and roles]
+* link:configure-ad-nfs.html[Configure Active Directory identity mapping for NFS]
