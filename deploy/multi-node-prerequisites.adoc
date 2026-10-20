@@ -35,7 +35,7 @@ At startup, the installer runs `kubectl config current-context` and `kubectl clu
 * AI Data Engine components run on the nodes that you label. See <<node-labels,Node labels>>. Other workloads on those nodes can't use host ports 80 and 443.
 * The cluster has at least three nodes with enough allocatable capacity for your configuration. See link:aide-requirements.html#multi-node-sizes[node sizing].
 * Every node has outbound network access to the NetApp container registry. See link:aide-requirements.html#outbound-internet-access[Outbound internet access]. If you restrict where images can be pulled from, allow the NetApp registry.
-* If your environment requires an outbound proxy, see link:configure-proxy.html[Configure a proxy].
+* If your environment requires an outbound proxy, see link:configure-proxy.html[Learn about proxies for AI Data Engine]. To deploy with a proxy, including configuring the container runtime proxy and CA certificate trust on every node, follow link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy].
 
 // RESEARCH Does general availability include node taints and tolerations for shared clusters? If so, what taint should customers apply to isolate AI Data Engine nodes?
 
@@ -254,4 +254,5 @@ Save the manifest as `aide-sc.yaml` and apply it by running `kubectl apply -f ai
 
 * link:aide-requirements.html[AIDE requirements]
 * link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment]
-* link:configure-proxy.html[Configure proxy]
+* link:configure-proxy.html[Learn about proxies for AI Data Engine]
+* link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy]

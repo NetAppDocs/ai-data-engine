@@ -16,6 +16,21 @@ Known limitations identify functionality that isn't supported in AI Data Engine,
 Single-node and multi-node deployments are independent::
 An AIDE single-node deployment and an AIDE multi-node deployment are separate deployment types. There is no supported migration path to move an existing deployment from one type to the other.
 
+Proxy support is limited::
+You can deploy AI Data Engine with a forward proxy, but the following proxy features aren't supported:
++
+* TLS-inspecting proxies, which decrypt and re-sign HTTPS traffic with a custom certificate authority.
+* NTLM, Kerberos, or client-certificate authentication to the proxy. Use no authentication or basic authentication.
+* SOCKS proxies.
+* Proxy auto-configuration (PAC file or WPAD). Give the installer the proxy host and port directly.
+* A different proxy for different destinations. One proxy carries all AI Data Engine internet traffic.
+* An IPv6 address as the proxy address. Use a hostname instead; the hostname can resolve to IPv6.
+* A proxy with an air-gapped installation. The installer rejects proxy options on an air-gapped installation.
++
+For supported proxy configurations, see link:../deploy/configure-proxy.html[Learn about proxies for AI Data Engine].
+
+// RESEARCH Update the TLS-inspecting proxy limitation, and the proxy type prompt guidance in the proxy topics, if QA qualifies TLS inspection for GA and the product manager approves it.
+
 == Policies and actions
 
 Policy-triggered actions are limited::
@@ -33,8 +48,6 @@ AI clients can search files by name prefix, file type, and owner only. If you as
 
 MCP tag operations are limited::
 AI clients can't list the files that have a tag, and they can add or remove a tag on only one file at a time.
-
-// RESEARCH Confirm whether any proxy limitations belong on this page, and add them when the related content is written.
 
 == Related information
 

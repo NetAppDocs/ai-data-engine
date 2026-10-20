@@ -24,6 +24,8 @@ indexpage:
           url: /deploy/deploy-aide-single-node.html
         - title: Deploy AIDE as a multi-node deployment
           url: /deploy/deploy-aide-multi-node.html
+        - title: Learn about proxies for AIDE
+          url: /deploy/configure-proxy.html
     - title: Explore your data
       links:
         - title: Connect a data source

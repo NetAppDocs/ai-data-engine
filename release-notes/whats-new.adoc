@@ -19,7 +19,7 @@ AI Data Engine is a metadata intelligence service, managed through NetApp Consol
 
 === Deploy and connect your data
 
-link:../deploy/deployment-overview.html[Deploy at the scale your environment requires]:: Choose an AIDE single-node deployment for a fast start on a single VM, or an AIDE multi-node deployment on your own Kubernetes cluster for high availability and larger scale. If your environment requires a proxy to reach the internet, link:../deploy/configure-proxy.html[configure it during installation].
+link:../deploy/deployment-overview.html[Deploy at the scale your environment requires]:: Choose an AIDE single-node deployment for a fast start on a single VM, or an AIDE multi-node deployment on your own Kubernetes cluster for high availability and larger scale. If your environment requires a proxy to reach the internet, link:../deploy/configure-proxy.html[learn about proxies for AIDE] and deploy with a proxy.
 
 link:../data-sources/connect-data-source.html[Bring your data into scope]:: Connect file shares, database servers, and StorageGRID systems, and choose which data resources to scan.
 

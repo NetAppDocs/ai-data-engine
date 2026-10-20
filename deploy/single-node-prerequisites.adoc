@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: deploy/single-node-prerequisites.html
-keywords: single-node, prerequisites, disk space, firewall, k3s, ports, SELinux, host preparation, block storage
+keywords: single-node, prerequisites, disk space, firewall, k3s, ports, host preparation, block storage
 summary: Prepare a Linux VM for an AIDE single-node deployment by verifying access, disk space, firewall rules, and operating system packages.
 ---
 = AI Data Engine single-node deployment prerequisites
@@ -94,7 +94,7 @@ For example, if k3s data, logs, and AIDE data each have a dedicated disk, provid
 
 * The installer downloads k3s from `\https://get.k3s.io` and Helm from `\https://get.helm.sh`. For all required outbound endpoints, see the outbound internet access section in link:aide-requirements.html#outbound-internet-access[AIDE requirements].
 * The host has a 1 GbE minimum network connection (10 GbE recommended for Large deployments).
-* If your environment requires an outbound proxy to reach the AI Data Engine endpoints, see link:configure-proxy.html[Configure a proxy].
+* If your environment requires an outbound proxy to reach the AI Data Engine endpoints, see link:configure-proxy.html[Learn about proxies for AI Data Engine]. To deploy with a proxy, follow link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy].
 * The installer host must have outbound access to the NetApp container registry at `582244788873.dkr.ecr.us-west-2.amazonaws.com` to pull AIDE container images and Helm charts. If you restrict where images can be pulled from, allow this registry as well. See link:aide-requirements.html#outbound-internet-access[AIDE requirements] for the required registry endpoints.
 
 The k3s ports in the following table must be free on the host before the installer starts. If a host firewall is enabled, you must also allow these ports and the pod and service CIDRs before you run the installer. Otherwise, pod networking doesn't work. These ports are internal to k3s and are separate from the ports in link:aide-requirements.html#networking-requirements[AIDE requirements].
@@ -145,16 +145,15 @@ Unlike firewalld, ufw has no trusted zone. Use `ufw allow from <cidr>` to permit
 
 For the application ports that must be open, see link:aide-requirements.html#networking-requirements[AIDE requirements].
 
-== SELinux
-
-If SELinux is in Enforcing mode, k3s automatically configures the required SELinux contexts during installation. No manual SELinux configuration is needed. On RHEL systems, the host must be able to reach `\https://rpm.rancher.io` to download the k3s SELinux policy package.
+// RESEARCH SELinux is not supported for single-node (Lite) installs. Confirm what that means for RHEL-family hosts (Enforcing only, or any mode) and whether a prerequisite or known limitation should tell customers what to do. The SELinux section was removed because it said that no manual SELinux configuration is needed.
 
 == Operating system packages
 
-The installer installs `cifs-utils`, which is required for Kerberos-based CIFS/SMB scanning, from the operating system repositories enabled on the host. If those repositories require a proxy, configure it in `dnf` or `apt`. The AI Data Engine proxy options don't apply to them.
+The installer installs `cifs-utils`, which is required for Kerberos-based CIFS/SMB scanning, from the operating system repositories enabled on the host. Ensure that your package managers have the appropriate proxy configuration if required in your environment.
 
 == Related information
 
 * link:aide-requirements.html[AIDE requirements]
 * link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment]
-* link:configure-proxy.html[Configure proxy]
+* link:configure-proxy.html[Learn about proxies for AI Data Engine]
+* link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy]
