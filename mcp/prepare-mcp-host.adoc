@@ -41,16 +41,46 @@ The ingress script sets up the following items so that AI clients can reach the 
 
 .Steps
 
-. On the system where you downloaded the AI Data Engine installer, open the installer's scripts folder: `/tmp/aide-installer/installer/runbook/ingress-manager-scripts/scripts/`. The ingress script is downloaded as part of the installer.
-. Run the ingress script.
+. On the system where you downloaded the AI Data Engine installer, open the installer's scripts folder: `/tmp/installer/runbook/ingress-manager-scripts/scripts/`. The ingress script is downloaded as part of the installer. If the folder is missing, refer to <<restore-the-ingress-script,Restore the ingress script>>.
+. Run the ingress script:
++
+[source,bash]
+----
+./ingress-manager.sh
+----
 . Record the host name that the script sets up. You use this host name as `<host>` in the Application ID URI, the scope, and the AI client configuration.
 
 NOTE: The host name that the script sets up is the host name of the AIDE cluster. In the AI Data Engine UI, this value is labeled *MCP host name* in *MCP settings*.
 
-// RESEARCH What is the file name of the ingress script? What arguments or prompts does it have, and does it need a host name or a certificate as input? Confirm that the scripts folder path is the same for every installer type (single-node and multi-node). Add the exact command.
-// RESEARCH Confirm whether the ingress script also sets the *MCP host name* value in Console *MCP settings*, or whether you must enter it there.
+// RESEARCH Does the ingress script have arguments or prompts, and does it need a host name or a certificate as input? Confirm that the scripts folder path is the same for every installer type (single-node and multi-node).
+// RESEARCH Confirm whether the ingress script also sets the *MCP host name* value in the AI Data Engine UI *MCP settings*, or whether you must enter it there.
 
 If the script creates a self-signed certificate, every machine that runs an AI client must trust that certificate. Refer to <<make-the-host-reachable,Make the host reachable from client machines>>.
+
+[#restore-the-ingress-script]
+=== Restore the ingress script
+
+The installer folder is in a temporary directory by default. Your operating system might delete temporary directories when the system restarts. If the scripts folder is no longer on the system, download and extract the installer again, and then run the script.
+
+.Steps
+
+. On the system where you run the script, download and extract the installer:
++
+[source,bash]
+----
+curl -fsSL https://d13jb5dapseb36.cloudfront.net/aide/latest/aide-installer.tar.gz | tar -xzf - -C /tmp
+----
+. Open the scripts folder and run the ingress script:
++
+[source,bash]
+----
+cd /tmp/installer/runbook/ingress-manager-scripts/scripts/
+./ingress-manager.sh
+----
+
+To keep the script after a restart, extract the installer to a directory that isn't cleared on restart. Replace `/tmp` in the `tar` command and in the `cd` command with that directory.
+
+// RESEARCH Confirm the extraction directory name and the scripts folder path. Confirm a persistent directory that NetApp recommends, if any. The script download path is under discussion.
 
 [#make-the-host-reachable]
 == Make the host reachable from client machines
