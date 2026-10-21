@@ -21,22 +21,26 @@ After setup, AI Data Engine gets and refreshes Kerberos tickets automatically, s
 . AI Data Engine uses the keytab to get a Kerberos ticket from your Active Directory domain controller, which acts as the Kerberos key distribution center (KDC). AI Data Engine refreshes the ticket every 3 hours.
 . When you add an SMB/CIFS share and select Kerberos as the authentication method, AI Data Engine scans the share by using the ticket.
 
-AI Data Engine finds your domain controller and your file server by name, so the nodes must resolve both names by using a DNS server that can resolve your Active Directory names.
+AI Data Engine finds your domain controller and your file server by name, so the host or nodes must resolve both names by using a DNS server that can resolve your Active Directory names. If you point the host or nodes to your Active Directory DNS server, that server must also resolve external names. On a multi-node deployment, it must be the only name server on every node.
+
+If you replace the Kerberos configuration file after setup, AI Data Engine continues to use the previous file until you restart the affected services. For the steps, refer to link:configure-kerberos-smb-single-node.html#update-kerberos-configuration[Update the Kerberos configuration file] for a single-node deployment or link:configure-kerberos-smb-multi-node.html#update-kerberos-configuration[Update the Kerberos configuration file] for a multi-node deployment.
 
 == Choose a procedure
 
 The Kerberos files, the host packages, and the verification steps depend on your deployment type.
 
-[cols="1,2,2",options="header"]
+[cols="1,2,2,2",options="header"]
 |===
-|Deployment |Where the Kerberos files live |Procedure
+|Deployment |Where the Kerberos files live |Packages |Procedure
 
 |Single-node
-|On the AI Data Engine host
+|On the AI Data Engine host. The Kerberos configuration file is `/etc/krb5.conf`.
+|Install the Kerberos client tools on the host. The installer installs `cifs-utils`.
 |link:configure-kerberos-smb-single-node.html[Configure Kerberos for SMB/CIFS shares on a single-node AI Data Engine deployment]
 
 |Multi-node
-|On the shared NFS export that holds the AI Data Engine configuration
+|On the shared NFS export that holds the AI Data Engine configuration. The nodes don't use `/etc/krb5.conf`.
+|Install the Kerberos client tools on one admin host. Install `cifs-utils` on every node.
 |link:configure-kerberos-smb-multi-node.html[Configure Kerberos for SMB/CIFS shares on a multi-node AI Data Engine deployment]
 
 |===
@@ -46,10 +50,12 @@ The Kerberos files, the host packages, and the verification steps depend on your
 Gather these details so you can configure Kerberos access to the SMB/CIFS shares you want to scan.
 
 * A scan service account in Active Directory with read access to the SMB/CIFS shares that you want to scan. The account must support AES256 encryption.
+// RESEARCH Is the AES256 requirement correct? This question is also open in the single-node and multi-node topics.
 * The IP address and the FQDN of a domain controller that acts as the KDC.
 * Your Active Directory domain and Kerberos realm. The realm is the domain in uppercase.
 * The FQDN and the share name of each file server that you want to scan. Kerberos authentication doesn't accept an IP address for the file server.
-* Root access to the hosts where you configure Kerberos.
+* Root access to the AI Data Engine host for a single-node deployment. For a multi-node deployment, root access to every node and to the admin host, and `kubectl` access with cluster-admin privileges from the admin host.
+* For a multi-node deployment, access from every node to the NFS server on TCP port 2049.
 
 Also verify that your environment meets the link:../deploy/aide-requirements.html#networking-requirements[networking requirements] and the link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements], including time synchronization, DNS, and host packages.
 
