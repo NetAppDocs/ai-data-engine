@@ -92,14 +92,14 @@ Give AI Data Engine the configuration and credentials it needs to get Kerberos t
 
 .Steps
 . Install the Kerberos client tools.
-.. On Ubuntu, run the following commands.
+.. On Ubuntu or Debian, run the following commands.
 +
 [source,cli]
 ----
 apt-get update -qq
 apt-get install -y krb5-user
 ----
-.. On RHEL, run the following command.
+.. On RHEL, CentOS, or Rocky Linux, run the following command.
 +
 [source,cli]
 ----
@@ -142,6 +142,7 @@ tee /etc/krb5.conf >/dev/null <<EOF
 [realms]
     ${REALM} = {
         kdc = ${KDC_IP}:88
+        admin_server = ${KDC_IP}:749
     }
 
 [domain_realm]
@@ -152,7 +153,7 @@ chmod 644 /etc/krb5.conf
 ----
 +
 The file uses the KDC IP address so that Kerberos authentication doesn't depend on DNS.
-// RESEARCH Is the admin_server entry required for an Active Directory KDC? It was removed from this sample. Restore it only if it is required, and state which host and port customers enter.
+// RESEARCH The admin_server entry was restored from the spec (KDC IP, port 749). SME to confirm that the entry and the port are correct for an Active Directory KDC.
 . Create a keytab for the scan service account.
 .. Run `ktutil`.
 .. At the `ktutil` prompt, enter the following commands. Replace `<scan_user>` and `<REALM>` with your values. The `ktutil` prompt doesn't use the shell variables.
@@ -190,6 +191,7 @@ rm -f /tmp/krb5.keytab
 ----
 +
 The ticket refresher runs as a root user with group ID 4321. The keytab and the principal file must be readable by that group and by no other users.
+// RESEARCH The spec installs the keytab with mode 600 (owner root) and sets the principal file to mode 640, and its troubleshooting table says both files need group 4321 and mode 640. SME to confirm that root:4321 with mode 640 is correct for the keytab and that the statement about the refresher user and group is accurate.
 . Create the principal file. The `KRB5_RENEW_INTERVAL_H` value is the ticket renewal interval in hours.
 +
 [source,cli]
@@ -311,7 +313,7 @@ Complete this procedure only if the file server or the KDC doesn't resolve by FQ
 nslookup <external_fqdn> "${KDC_IP}"
 ----
 .. If the command fails, ask your Active Directory administrator to enable DNS forwarding, and then repeat this step.
-// RESEARCH Is it supported to keep the original DNS server as a second name server on a single-node deployment, and in which order?
+// RESEARCH The spec says that you can add the original DNS server as a second name server if the AD DNS server doesn't forward external queries. This is mentioned only in the troubleshooting table. SME to confirm the order of the name servers and whether to add this to this step.
 . Back up `/etc/resolv.conf`, and set your Active Directory DNS server as the name server.
 +
 [source,cli]
@@ -329,6 +331,7 @@ mkdir -p /etc/NetworkManager/conf.d
 printf '[main]\ndns=none\n' > /etc/NetworkManager/conf.d/90-dns-none.conf
 systemctl reload NetworkManager
 ----
+// RESEARCH The spec mentions a systemd-resolved drop-in only in passing and gives no commands. SME to validate this Ubuntu procedure, including how /etc/resolv.conf and k3s CoreDNS interact with systemd-resolved.
 .. On Ubuntu with systemd-resolved, run the following commands.
 +
 [source,cli]
@@ -361,7 +364,7 @@ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 kubectl -n aide rollout restart deployment ds-mount-server
 kubectl -n aide delete job -l app.kubernetes.io/name=ds-krb5-ticket-refresher --ignore-not-found
 ----
-// RESEARCH Do the SMB/CIFS scan workers also need to be restarted to read the new file, and how does a customer restart them?
+// RESEARCH The spec says that after /etc/krb5.conf is replaced, ds-mount-server, the CIFS workers, and ds-krb5-ticket-refresher must be restarted. The spec gives a command only for ds-mount-server. Add the customer-facing command to restart the CIFS workers, and update the "Changes to /etc/krb5.conf don't take effect" troubleshooting row if needed.
 . Start a new ticket refresh. Refer to <<start-first-ticket-refresh,Start the first ticket refresh>>.
 
 [[troubleshoot-kerberos]]
@@ -395,7 +398,7 @@ Find the cause of a Kerberos failure and restore scanning of your SMB/CIFS share
 
 |External names don't resolve within AI Data Engine after you set your Active Directory DNS server.
 |The Active Directory DNS server doesn't forward external queries.
-|Verify that `nslookup <external_fqdn> "${KDC_IP}"` returns a result. If it doesn't, ask your Active Directory administrator to enable DNS forwarding.
+|Verify that `nslookup <external_fqdn> "${KDC_IP}"` returns a result. If it doesn't, ask your Active Directory administrator to enable DNS forwarding, or add your original DNS server as a second name server in `/etc/resolv.conf`.
 
 |The error *mount error(126)* appears.
 |AI Data Engine can't read `/etc/krb5.conf`.
@@ -414,7 +417,6 @@ Find the cause of a Kerberos failure and restore scanning of your SMB/CIFS share
 |Prevent the network manager from overwriting the DNS settings. Refer to <<fix-name-resolution,Fix name resolution>>.
 
 |===
-// RESEARCH Does the DNS lookup issue where mount.cifs reports "could not resolve address" while nslookup works still apply at GA? If so, what is the customer resolution?
 
 [[remove-kerberos-configuration]]
 == Remove the Kerberos configuration

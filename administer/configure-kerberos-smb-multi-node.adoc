@@ -95,7 +95,7 @@ Kerberos scanning of an SMB/CIFS share fails on any node that doesn't have `cifs
 |===
 |Package |Admin host |Every node
 
-|`krb5-user` (Ubuntu) or `krb5-workstation` (RHEL)
+|`krb5-user` (Ubuntu or Debian) or `krb5-workstation` (RHEL, CentOS, or Rocky Linux)
 |Required
 |Not required
 
@@ -109,28 +109,28 @@ The Kerberos client tools provide the `ktutil`, `kinit`, and `klist` commands th
 
 .Steps
 . On the admin host, install the Kerberos client tools and `cifs-utils`.
-.. On Ubuntu, run the following commands.
+.. On Ubuntu or Debian, run the following commands.
 +
 [source,cli]
 ----
 apt-get update -qq
 apt-get install -y krb5-user cifs-utils
 ----
-.. On RHEL, run the following command.
+.. On RHEL, CentOS, or Rocky Linux, run the following command.
 +
 [source,cli]
 ----
 dnf -y install krb5-workstation cifs-utils
 ----
 . On every other node, install `cifs-utils`.
-.. On Ubuntu, run the following commands.
+.. On Ubuntu or Debian, run the following commands.
 +
 [source,cli]
 ----
 apt-get update -qq
 apt-get install -y cifs-utils
 ----
-.. On RHEL, run the following command.
+.. On RHEL, CentOS, or Rocky Linux, run the following command.
 +
 [source,cli]
 ----
@@ -230,6 +230,7 @@ tee "${KRB5_CONF_SOURCE}" >/dev/null <<EOF
 [realms]
     ${REALM} = {
         kdc = ${KDC_IP}:88
+        admin_server = ${KDC_IP}:749
     }
 
 [domain_realm]
@@ -240,7 +241,7 @@ chmod 644 "${KRB5_CONF_SOURCE}"
 ----
 +
 The file uses the KDC IP address so that Kerberos authentication doesn't depend on DNS.
-// RESEARCH Is the admin_server entry required for an Active Directory KDC? It was removed from this sample. Restore it only if it is required, and state which host and port customers enter.
+// RESEARCH The admin_server entry was restored from the spec (KDC IP, port 749). SME to confirm that the entry and the port are correct for an Active Directory KDC.
 . Create a keytab for the scan service account.
 .. Run `ktutil`.
 .. At the `ktutil` prompt, enter the following command. Replace `<scan_user>` and `<REALM>` with your values. The `ktutil` prompt doesn't use the shell variables.
@@ -286,6 +287,7 @@ chmod 770 "${AIDE_CONFIG_ROOT}/kerberos/kerberos_ccache"
 ----
 +
 The ticket refresher runs as a non-root user with group ID 4321. It must be able to read the keytab and the principal file, and it must be able to write to the ticket cache directory.
+// RESEARCH The multi-node spec says that the refresher runs as non-root UID and GID 4321. The single-node draft says root with group ID 4321. SME to confirm and align both topics.
 . Create the principal file. The `KRB5_RENEW_INTERVAL_H` value is the ticket renewal interval in hours.
 +
 [source,cli]
@@ -373,6 +375,7 @@ kubectl -n "${NAMESPACE}" exec "${POD}" -- nslookup "${FILE_SERVER_FQDN}"
 kubectl -n "${NAMESPACE}" exec "${POD}" -- klist
 kubectl -n "${NAMESPACE}" exec "${POD}" -- cat /etc/krb5.conf
 ----
+// RESEARCH The spec doesn't include the following mount test. SME to validate the command, or remove this step.
 . (Optional) Test a mount of the share by using Kerberos.
 +
 [source,cli]
@@ -434,6 +437,7 @@ mkdir -p /etc/NetworkManager/conf.d
 printf '[main]\ndns=none\n' > /etc/NetworkManager/conf.d/90-dns-none.conf
 systemctl reload NetworkManager
 ----
+// RESEARCH The spec includes the systemd-resolved commands only as commented-out lines for hosts where systemd-resolved is active. SME to validate this Ubuntu procedure, including how /etc/resolv.conf and CoreDNS interact with systemd-resolved.
 .. On Ubuntu with systemd-resolved, run the following commands. Replace `<domain>` with your domain.
 +
 [source,cli]
@@ -473,7 +477,7 @@ If you replace `krb5.conf` on the NFS export after setup, for example by copying
 kubectl -n "${NAMESPACE}" rollout restart deployment ds-mount-server
 kubectl -n "${NAMESPACE}" delete job -l app.kubernetes.io/name=ds-krb5-ticket-refresher --ignore-not-found
 ----
-// RESEARCH Do the SMB/CIFS scan workers also need to be restarted to read the new file, and how does a customer restart them?
+// RESEARCH The spec says that after krb5.conf is replaced, ds-mount-server, the CIFS workers, and ds-krb5-ticket-refresher must be restarted. The spec gives a command only for ds-mount-server. Add the customer-facing command to restart the CIFS workers, and update the "Changes to krb5.conf don't take effect" troubleshooting row if needed.
 . Start a new ticket refresh. Refer to <<start-first-ticket-refresh,Start the first ticket refresh>>.
 
 [[troubleshoot-kerberos]]
@@ -501,6 +505,10 @@ Find the cause of a Kerberos failure and restore scanning of your SMB/CIFS share
 |A node lists more than one name server and one of them can't resolve Active Directory names, or CoreDNS wasn't restarted after you changed `/etc/resolv.conf`.
 |Remove all name servers except your Active Directory DNS server on every node, and restart CoreDNS. Refer to <<fix-name-resolution,Fix name resolution>>.
 
+|External names don't resolve within AI Data Engine after you set your Active Directory DNS server.
+|The Active Directory DNS server doesn't forward external queries.
+|Verify that `nslookup <external_fqdn> "${KDC_IP}"` returns a result. If it doesn't, ask your Active Directory administrator to enable DNS forwarding.
+
 |Kerberos scanning works from one node but fails from others. The error *mount error(2)* appears, and `dmesg` on the node shows *failed to create a new SMB session with Kerberos*.
 |`cifs-utils` isn't installed on every node.
 |Install `cifs-utils` on every node. To verify the installation, run `which cifs.upcall`.
@@ -522,7 +530,6 @@ Find the cause of a Kerberos failure and restore scanning of your SMB/CIFS share
 |Prevent the network manager from overwriting the DNS settings. Refer to <<fix-name-resolution,Fix name resolution>>.
 
 |===
-// RESEARCH Does the DNS lookup issue where mount.cifs reports "could not resolve address" while nslookup works still apply at GA? If so, what is the customer resolution?
 
 [[remove-kerberos-configuration]]
 == Remove the Kerberos configuration

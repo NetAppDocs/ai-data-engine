@@ -58,6 +58,12 @@ The following network connections must be open:
 |To storage
 |SMB data source access
 
+|Cluster nodes to NFS server (multi-node configuration volume)
+|2049
+|TCP
+|Outbound
+|NFS access to the export that holds the AI Data Engine configuration. Applies to multi-node deployments only. If you use Kerberos, the admin host also mounts this export.
+
 |AI Data Engine to Active Directory
 |389, 636, 3268, 3269
 |TCP (UDP also for 389)
@@ -84,6 +90,7 @@ The following network connections must be open:
 
 |===
 // RESEARCH Confirm whether ports 88 and 53 use TCP, UDP, or both for AIDE traffic.
+// RESEARCH Confirm whether other NFS ports, such as 111, are required for the multi-node configuration volume and whether UDP is used.
 
 [[outbound-internet-access]]
 === Outbound internet access
