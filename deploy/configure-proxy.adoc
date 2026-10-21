@@ -15,7 +15,7 @@ If your AI Data Engine host or cluster cannot reach the internet directly, confi
 
 Each deployment type has its own topic with the complete procedure, from preparing the environment to running the installer and troubleshooting.
 
-* link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy]: The installer configures the proxy for the host, the k3s runtime, and the host trust store.
+* link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy]: The installer configures the proxy for the k3s runtime, the host trust store and AIDE.
 * link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy]: You configure the container runtime proxy and the CA certificate trust on every node before you run the installer.
 
 == What goes through the proxy

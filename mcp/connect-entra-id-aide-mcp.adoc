@@ -78,7 +78,7 @@ Before users connect, confirm that each of the following is true. The Applicatio
 * The AIDE cluster host name is on a domain that is verified in Entra ID.
 * The host name resolves from user machines.
 * The host presents a certificate that client machines trust.
-* The host passes the verification in link:prepare-mcp-host.html#verify-the-host[Prepare the MCP host].
+* The well-known endpoint of the MCP server returns the expected response. Refer to link:prepare-mcp-host.html#verify-the-host[Verify the host].
 
 *Microsoft Entra ID*
 

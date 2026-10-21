@@ -78,8 +78,6 @@ When a user connects an AI client, the following happens:
 . Entra ID issues a v2.0 token for your application. The token audience is the application (client) ID, the `scp` claim is `power_users`, and the `roles` claim holds `AIDEPowerUsers`.
 . The MCP server validates the token signature, issuer, audience, and expiry against your Entra ID tenant on every request.
 
-// RESEARCH Confirm that the OAuth metadata discovery sequence (the /.well-known/oauth-protected-resource/mcp/tools path) is customer-facing content.
-
 For the token requirements, refer to link:configure-entra-id-mcp.html#token-expectations[Token expectations].
 
 [#validated-ai-clients]
