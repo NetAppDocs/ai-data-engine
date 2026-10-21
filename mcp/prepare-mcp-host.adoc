@@ -1,0 +1,97 @@
+---
+sidebar: sidebar
+permalink: mcp/prepare-mcp-host.html
+keywords: mcp, governed ai access, egress script, mcp host, host name, verified domain, certificate, ingress, dns, entra id, 401
+summary: Set up the host name and certificate that AI clients use to reach the AI Data Engine MCP server, and make sure that the host name is on a domain that is verified in your Microsoft Entra ID tenant.
+---
+= Prepare the MCP host for AI Data Engine governed AI access
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Set up the host name and certificate that AI clients use to reach the AI Data Engine MCP server. Complete this task before you prepare Microsoft Entra ID, because the Application ID URI in Entra ID is built from the host name.
+
+NOTE: The Microsoft Entra ID steps and paths in this topic are subject to change based on changes to the Microsoft Entra ID UI. The essential configurations remain the same.
+
+== Before you begin
+
+* AI Data Engine is deployed. The MCP server is deployed together with AI Data Engine, so you don't install it separately.
+* You have access to the cluster where AI Data Engine runs.
+* The host name that you use for the MCP server is on a domain that is verified in your Microsoft Entra ID tenant. Refer to <<verified-domain-requirement,Verified domain requirement>>.
+
+[#verified-domain-requirement]
+== Verified domain requirement
+
+The MCP host name must be on a domain that is verified in your company's Microsoft Entra ID tenant. The host name that the egress script sets up becomes `<host>` in the Application ID URI, so the domain must be verified before you register the application.
+
+AI Data Engine uses `\https://<host>/mcp/tools` as the Application ID URI of the application that you register in Microsoft Entra ID. Microsoft Entra ID accepts an Application ID URI only if it is on a verified domain. A host on an unverified domain, such as a `.cluster.local` host name, can't be used.
+
+To check which domains are verified, in the Microsoft Entra admin center, go to *Entra ID* > *Domain names*.
+
+[#run-the-egress-script]
+== Run the egress script
+
+The egress script sets up the following items so that AI clients can reach the MCP server from outside the cluster:
+
+* The certificate
+* The cluster host name
+* External egress
+
+.Steps
+
+. On the system where you downloaded the AI Data Engine installer, open the installer's scripts folder: `/tmp/aide-installer/installer/runbooks/scripts`. The egress script is downloaded as part of the installer.
+. Run the egress script.
+. Record the host name that the script sets up. You use this host name as `<host>` in the Application ID URI, the scope, and the AI client configuration.
+
+// RESEARCH What is the file name of the egress script? What arguments or prompts does it have, and does it need a host name or a certificate as input? Confirm that the scripts folder path is the same for every installer type (single-node and multi-node). Add the exact command.
+// RESEARCH How does the host name that the egress script sets up relate to the *MCP host name* in Console *MCP settings*? Do they need to match, or does one set the other?
+
+If the script creates a self-signed certificate, every machine that runs an AI client must trust that certificate. Refer to <<make-the-host-reachable,Make the host reachable from client machines>>.
+
+[#configure-your-own-ingress]
+== Configure your own ingress
+
+If you configure ingress yourself instead of using the egress script, forward the following public paths on your host name to the `aide-mcp` service on port `5016`:
+
+* `/mcp/tools`
+* `/.well-known/oauth-protected-resource/mcp/tools`
+
+Present a certificate for the host name on your ingress. AI clients connect to `\https://<host>/mcp/tools` over HTTPS on port 443. They don't connect to port `5016`.
+
+// RESEARCH Confirm the complete list of public paths that a customer-managed ingress must forward, and whether a customer-managed ingress is a supported option.
+
+[#make-the-host-reachable]
+== Make the host reachable from client machines
+
+Every machine that runs an AI client must be able to do the following:
+
+* Resolve the host name through DNS.
+* Reach the host on port 443 over HTTPS, from your corporate network or through VPN.
+* Trust the certificate that the host presents. If the certificate is self-signed, install it as a trusted certificate on each client machine.
+* Reach Microsoft Entra ID sign-in (`login.microsoftonline.com`).
+
+== Verify the host
+
+Confirm that the MCP endpoint answers.
+
+.Steps
+
+. From a client machine, request `\https://<host>/mcp/tools` without a token. For example:
++
+[source,bash]
+----
+curl -i https://<host>/mcp/tools
+----
+. Confirm that the response is `401 Unauthorized`.
+
+A `401` response without a token is the expected reply. It confirms that the host resolves, that the certificate is trusted, and that the MCP server is reachable. A TLS or connection error means that the certificate isn't trusted or the host name doesn't resolve.
+
+.What's next
+link:configure-mcp-access.html[Prepare Microsoft Entra ID].
+
+== Related information
+
+* link:quick-start-mcp.html[Quick start for governed AI access with AI Data Engine]
+* link:configure-mcp-access.html[Configure Entra ID and MCP access]
+* link:maintain-mcp-setup.html#review-mcp-server-settings[Review MCP server settings]
+* link:../deploy/aide-requirements.html#networking-requirements[Networking requirements]

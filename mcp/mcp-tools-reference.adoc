@@ -1,0 +1,72 @@
+---
+sidebar: sidebar
+permalink: mcp/mcp-tools-reference.html
+keywords: mcp, governed ai access, tools, get_collection, search, list_tags, create_tag, tag_document, power users, tags
+summary: Review the tools that AI clients can use through the AI Data Engine MCP server, the access that they require, and how search and tagging behave.
+---
+= MCP tools reference for AI Data Engine governed AI access
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Review the tools that a connected AI client can use through the AI Data Engine MCP server, what each tool does, and the access that the tools require.
+
+== Access requirements
+
+AI clients use the tools in a power-user session. A user gets a power-user session only when both of these are true:
+
+* The user holds the `AIDEPowerUsers` app role in Microsoft Entra ID.
+* The AI client requests the `power_users` scope.
+
+Refer to link:configure-mcp-access.html#define-scopes-and-the-power-user-app-role[Define the scope and the power-user app role].
+
+// RESEARCH What does a signed-in user who doesn't hold the AIDEPowerUsers app role see and experience in GA (no tools, an error, or a sign-in failure)? Document the result once confirmed. Do not describe other access levels.
+
+A connection is limited to the collection in the MCP server URL. To work with a different collection, use the connection details for that collection.
+
+== Tools
+
+[cols="1,3",options="header"]
+|===
+|Tool |Description
+
+|`get_collection`
+|Returns the collection that your connection is limited to.
+
+|`search`
+|Searches file metadata in a collection by name prefix, file type, or owner, with paging. In a power-user session, search isn't filtered by file-level permissions and returns every file in the collection that matches. Results include each file's name, path, type, size, last-modified time, and owner.
+
+|`list_tags`
+|Lists the tags that are defined for your tenant, and the number of files that have each tag.
+
+|`create_tag`
+|Creates a tag for your tenant and returns its ID and name.
+
+|`tag_document`
+|Adds a tag to a file or removes a tag from a file. If the tag doesn't exist, the tool creates it first. An AI client works on one file at a time.
+|===
+
+// RESEARCH Does get_collection list every collection the user can search, and does a collection_id in the connection URL narrow the list to that collection? Confirm the behavior before you change the get_collection description.
+// RESEARCH Do advanced search rules (path, size, dates, duplicates, tags) work in the GA build? If they do, update the search description and the MCP search limitation in Known limitations.
+
+== How tags work
+
+* Tags apply across AI Data Engine, not only to one collection. Tags that you create or apply through an AI client are also available in the Investigation view.
+* A misspelled tag name creates a new tag. Tag names aren't case-sensitive.
+* You can't delete or rename a tag after you create it. For limitations on tag names, refer to link:../release-notes/known-limitations.html[Known limitations].
+* AI clients can't list the files that have a tag.
+
+// RESEARCH Do applied tags appear in later searches? Confirm before describing searching by tag.
+
+== What AI clients can't do
+
+An AI client can't retrieve file contents, add, delete, or modify files, change data sources, or create collections.
+
+// RESEARCH Prompts: The architect's presentation lists two built-in prompts, find_in_collection and tag_review. Confirm that they ship in GA and that they run as described before you document them.
+// RESEARCH Rate limits: The architect's presentation lists per-user, per-minute limits for search, tag_document, and the other tools. Confirm the values and that they are customer-facing before you document them.
+
+== Related information
+
+* link:connect-ai-clients-mcp.html[Connect AI clients]
+* link:learn-about-mcp.html[Learn about governed AI access]
+* link:../release-notes/known-limitations.html[Known limitations]

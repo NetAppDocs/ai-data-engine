@@ -15,7 +15,7 @@ Create data collections and enable them for AI access so that connected AI clien
 
 * You must have the _AI Data Engine administrator_ role.
 // RESEARCH Can users with the viewer role see collections and their status?
-* You have set up Microsoft Entra ID as an identity provider in AI Data Engine. Refer to link:configure-mcp-access.html#set-up-an-identity-provider[Set up an identity provider].
+* You have set up Microsoft Entra ID as an identity provider in AI Data Engine, and its connection status is *Connected*. Refer to link:configure-mcp-access.html#set-up-an-identity-provider[Set up an identity provider].
 * You have created a custom data collection or are using a default collection that includes only the data that AI clients need to search. Refer to <<create-a-data-collection,Create a data collection>>.
 
 == How collections define MCP scope
@@ -24,13 +24,13 @@ A data collection is a group of files from volumes that you select in AI Data En
 
 You grant access to a collection by assigning it one or more Microsoft Entra ID scopes. Access is granted at the collection level only.
 
-AI Data Engine also provides a collection named *All Systems and Volumes* that includes every system and volume that AI Data Engine has scanned. To limit what AI clients can search, create your own collections that include only the data that your users need. You can't edit, rename, or delete the *All Systems and Volumes* collection. You can configure it for MCP and disable AI access for it.
+AI Data Engine also provides a collection named *All files* that includes every system and volume that AI Data Engine has scanned. To limit what AI clients can search, create your own collections that include only the data that your users need. You can't edit, rename, or delete the *All files* collection. You can configure it for MCP and disable AI access for it.
 
-CAUTION: Before you grant a scope access to a collection, confirm that everyone who has that scope is allowed to search the metadata for every file in the collection. If you grant a scope access to *All Systems and Volumes*, everyone who has that scope can search the metadata for all scanned data.
+CAUTION: Before you grant a scope access to a collection, confirm that everyone who has that scope is allowed to search the metadata for every file in the collection. If you grant a scope access to *All files*, everyone who has that scope can search the metadata for all scanned data.
 
 To create a collection, refer to <<create-a-data-collection,Create a data collection>>. To change a collection, an identity provider, or the MCP server settings later, refer to link:maintain-mcp-setup.html[Maintain your MCP setup].
 
-// RESEARCH Is the *All Systems and Volumes* collection always present, or does it appear only after a system is scanned? What status does it show before you configure it?
+// RESEARCH Is the *All files* collection always present, or does it appear only after a system is scanned? What status does it show before you configure it?
 
 [#create-a-data-collection]
 == Create a data collection
@@ -47,10 +47,16 @@ Create a data collection to define the data resources that AI clients can search
 . Use the *Systems* and *Protocols* filters to narrow the list of data resources.
 . Select the checkbox next to each data resource that you want to include in the collection.
 +
+The *Scan status* column shows whether each data resource is *Completed*, *Re-scanning*, or in *Error*. S3 and structured data resources can't be added to a collection.
++
 The *Selected rows* summary displays the number of selected resources, their scanned capacity, and their scanned file count. To clear the selection and start again, select *Reset*.
 . Select *Create MCP collection*.
 
 A confirmation message appears, and the new collection is added to the *Collections* list with a status of *Ready to configure*. Creating the collection doesn't complete its MCP connection configuration.
+
+The *Collections* list shows each collection's name, description, number of volumes, scanned capacity, scanned file count, owner, and status. The owner is *System* for collections that AI Data Engine provides and *User* for collections that you create.
+
+// RESEARCH The architect's presentation shows the server banner as "MCP server: Running" with a kebab menu (View, Configure for MCP, Disable). This page uses an *Actions* menu. Confirm the labels in the GA build.
 
 After you create a collection, <<configure-a-collection-for-mcp,configure it for MCP>>.
 
@@ -59,11 +65,11 @@ After you create a collection, <<configure-a-collection-for-mcp,configure it for
 
 Select the identity providers and user scopes for an MCP collection, and then obtain the connection details for your AI client.
 
-IMPORTANT: In a power-user session, search isn't filtered by file-level permissions. Users with access to the collection can search every file in it. Include only files that all users assigned to the collection's scopes are allowed to see. Grant a scope access to *All Systems and Volumes* only if everyone with that scope is allowed to search all scanned data.
+IMPORTANT: In a power-user session, search isn't filtered by file-level permissions. Users with access to the collection can search every file in it. Include only files that all users assigned to the collection's scopes are allowed to see. Grant a scope access to *All files* only if everyone with that scope is allowed to search all scanned data.
 
 .Before you begin
 
-* You have created an MCP collection, or you are using *All Systems and Volumes*. Refer to <<create-a-data-collection,Create a data collection>>.
+* You have created an MCP collection, or you are using *All files*. Refer to <<create-a-data-collection,Create a data collection>>.
 * The identity providers that you want to use are connected to AI Data Engine. Refer to link:configure-mcp-access.html#set-up-an-identity-provider[Set up an identity provider].
 
 .Steps
@@ -83,13 +89,15 @@ NOTE: If the identity provider that you need isn't listed, add it under *Identit
 * To use the endpoint directly, select the copy icon next to *MCP server URL*.
 * To use a client-specific configuration snippet, select the *Claude* tab for Claude Desktop or the *Cursor* tab for Cursor under *Code snippets*, and then select the copy icon. For Claude Code and OpenCode, use the MCP server URL.
 +
+Before you share a snippet, confirm that the host is your external MCP host name and not a cluster or service IP address, and that the URL ends in `/mcp/tools` and includes the `collection_id` of this collection. The scope must be `\https://<host>/mcp/tools/power_users`, and the client ID must be the Application (client) ID of your AI Data Engine application in Entra ID.
++
 NOTE: If the *MCP hostname not setup* warning appears, select *MCP settings* to configure the host name. Refer to link:maintain-mcp-setup.html#review-mcp-server-settings[Review MCP server settings]. Securing the MCP server with HTTPS requires an SSL/TLS certificate.
 . Optional: To change the identity providers or user scopes, select *Go back*, and then generate the snippet again.
 . Select *Close*.
 
 .Result
 
-You have the MCP server URL or a client-specific configuration snippet for the selected identity providers and user scopes. Use these details to connect your AI client and validate access to the collection. Register an Entra ID application for your AI clients and add its client application ID to the configuration. Refer to link:configure-mcp-access.html#register-an-application-for-each-ai-client[Register an application for your AI clients].
+You have the MCP server URL or a client-specific configuration snippet for the selected identity providers and user scopes. Use these details to connect your AI client and validate access to the collection. Make sure that the redirect URI for your AI client is registered in the AI Data Engine application in Entra ID. Use the application's Application (client) ID as the client ID. Refer to link:configure-mcp-access.html#add-redirect-uris-for-ai-clients[Add redirect URIs for your AI clients].
 
 NOTE: Generating connection details doesn't connect or validate your AI client. link:connect-ai-clients-mcp.html[Complete those tasks in the AI client].
 

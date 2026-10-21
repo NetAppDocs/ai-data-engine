@@ -16,7 +16,7 @@ Before you deploy AI Data Engine, review the networking, Kubernetes, sizing, and
 
 The following network connections must be open:
 
-// RESEARCH Does the MCP server accept a custom port for AI client access, and should the AI client row list it?
+// RESEARCH Does the MCP server accept a custom port for AI client access, and should the AI client row list it? The architect's presentation calls port 5016 the public MCP endpoint, but the QA setup page shows clients connecting over HTTPS on 443 and 5016 as the service port behind ingress. Confirm which port customers must open.
 
 [cols="2,1,1,1,2",options="header"]
 |===
@@ -44,7 +44,7 @@ The following network connections must be open:
 |443
 |TCP
 |Inbound
-|HTTPS: AI client access to the MCP server from your corporate network or VPN
+|HTTPS: AI client access to the MCP server host name from your corporate network or VPN. AI clients connect to the host name on port 443. They don't connect to the internal service port.
 
 |AI Data Engine to ONTAP (NFS)
 |111, 2049
