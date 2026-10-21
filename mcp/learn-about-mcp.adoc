@@ -85,7 +85,7 @@ For the token requirements, refer to link:configure-entra-id-mcp.html#token-expe
 [#validated-ai-clients]
 == Validated AI clients
 
-NetApp has tested and validated the following AI clients with governed AI access:
+NetApp has tested and validated the governed AI access setup with the following AI clients:
 
 * Claude Code
 * Claude Desktop

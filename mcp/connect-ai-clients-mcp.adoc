@@ -93,7 +93,7 @@ Install Node.js on your computer. The `mcp-remote` helper runs with Node.js.
 ----
 +
 NOTE: Keep the `--disable-resource-parameter` argument. Without it, Microsoft Entra ID rejects the sign-in request with error `AADSTS9010010`.
-// RESEARCH Pin a tested mcp-remote version in the command. Confirm that mcp-remote accepts a collection_id query string and the redirect URI that the client app registration needs for Claude Desktop.
+// RESEARCH Pin a tested mcp-remote version in the command. Confirm that mcp-remote accepts a collection_id query string.
 . Save the file and restart Claude Desktop.
 . When the browser opens, sign in with your Microsoft Entra ID account and accept the consent prompt if it appears.
 . In Claude Desktop, open *Connectors* and confirm that the AI Data Engine server is listed with its tools.

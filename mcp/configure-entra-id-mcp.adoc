@@ -16,7 +16,7 @@ When you finish, give the values that you record to the AI Data Engine administr
 == Before you begin
 
 * You have a Microsoft Entra ID tenant and a role that lets you register applications and grant consent in that tenant, such as Application Administrator or Cloud Application Administrator.
-* You have the AIDE cluster host name that the AI Data Engine administrator set up in link:prepare-mcp-host.html[Prepare the MCP host]. The host name must be on a domain that is verified in your Entra ID tenant.
+* You have the AIDE cluster host name that the AI Data Engine administrator set up in link:prepare-mcp-host.html[Prepare the MCP host]. The host name must be on a registered DNS domain that is verified in your Entra ID tenant.
 
 == How MCP access works
 
@@ -111,16 +111,18 @@ Add the redirect URIs that your AI clients use to the AI Data Engine application
 |===
 |Client |Redirect URI
 
+|Claude Desktop
+|`\http://localhost:6491/oauth/callback`
+
 |Claude Code
-|`\http://localhost:8080/callback` and `\http://127.0.0.1:8080/callback`
+|`\http://localhost:8080/callback`
 
 |Cursor
-|`cursor://anysphere.cursor-mcp/oauth/callback` and `\http://localhost:8787/callback`
+|`\http://localhost:8787/callback`
 
 |OpenCode
-|`\http://127.0.0.1:19876/callback` and `\http://localhost:19876/callback`
+|`\http://127.0.0.1:19876/callback`
 |===
-// TODO Add the Claude redirect URI. Waiting on Kristi to confirm it.
 . Optional: If users also sign in from Cursor on the web or from Cursor Agents, select *Add a platform* > *Web*, and add `\https://www.cursor.com/agents/mcp/oauth/callback`.
 . On the *Settings* tab, set *Allow public client flows* to *Yes*, and save.
 . Under *API permissions*, add the Microsoft Graph delegated permission `offline_access` so that the client can refresh tokens without asking the user to sign in again.
@@ -129,8 +131,6 @@ Add the redirect URIs that your AI clients use to the AI Data Engine application
 If sign-in fails with error `AADSTS50011`, the callback URI of the AI client isn't registered. The error shows the exact URI to add. Add it under *Mobile and desktop applications*, and use the same port in the client configuration that you register here.
 
 // RESEARCH Is offline_access required, recommended, or optional? The QA end-to-end setup page and the architect's presentation request only the power_users scope and don't configure offline_access. Confirm before you change the permission step or the client snippets.
-// RESEARCH What redirect URI does Claude Desktop need when it connects through mcp-remote? The architect's presentation also lists the loopback URI http://localhost:6491/oauth/callback. Confirm which client uses it.
-// RESEARCH Confirm whether the OpenCode redirect URIs are still required now that the OpenCode configuration no longer sets a callback port or redirect URI.
 // RESEARCH The single-application setup was verified with Cursor and OpenCode. Confirm that Claude Desktop and Claude Code use the same Application (client) ID without a separate client application.
 // RESEARCH Does the Console-generated snippet include the Application (client) ID, or does the user add it?
 

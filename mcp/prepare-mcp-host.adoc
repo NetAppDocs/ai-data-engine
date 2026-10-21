@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: mcp/prepare-mcp-host.html
-keywords: mcp, governed ai access, ingress script, mcp host, aide cluster host name, host name, verified domain, certificate, dns, entra id, 401
+keywords: mcp, governed ai access, ingress script, kubernetes ingress rule, mcp host, aide cluster host name, host name, verified domain, certificate, dns, entra id, 401
 summary: Run the ingress script to set up the AIDE cluster host name and certificate that AI clients use to reach the AI Data Engine MCP server, and make sure that the host name is on a domain that is verified in your Microsoft Entra ID tenant.
 ---
 = Prepare the MCP host for AI Data Engine governed AI access
@@ -19,12 +19,12 @@ NOTE: The Microsoft Entra ID steps and paths in this topic are subject to change
 
 * AI Data Engine is deployed. The MCP server is deployed together with AI Data Engine, so you don't install it separately.
 * You have access to the cluster where AI Data Engine runs.
-* The AIDE cluster host name that you use is on a domain that is verified in your Microsoft Entra ID tenant. Refer to <<verified-domain-requirement,Verified domain requirement>>.
+* You have a registered DNS domain name that is verified in your Microsoft Entra ID tenant. The AIDE cluster host name must be on this domain. Refer to <<verified-domain-requirement,Verified domain requirement>>.
 
 [#verified-domain-requirement]
 == Verified domain requirement
 
-The AIDE cluster host name must be on a domain that is verified in your company's Microsoft Entra ID tenant. The host name that the ingress script sets up becomes `<host>` in the Application ID URI, so the domain must be verified before you register the application.
+The AIDE cluster host name must be on a registered DNS domain that is verified in your company's Microsoft Entra ID tenant. The host name that the ingress script sets up becomes `<host>` in the Application ID URI, so the domain must be verified before you register the application.
 
 AI Data Engine uses `\https://<host>/mcp/tools` as the Application ID URI of the application that you register in Microsoft Entra ID. Microsoft Entra ID accepts an Application ID URI only if it is on a verified domain. A host on an unverified domain, such as a `.cluster.local` host name, can't be used.
 
@@ -37,7 +37,7 @@ The ingress script sets up the following items so that AI clients can reach the 
 
 * The certificate
 * The cluster host name
-* External ingress
+* A Kubernetes ingress rule that routes traffic for the cluster host name to the MCP server
 
 .Steps
 

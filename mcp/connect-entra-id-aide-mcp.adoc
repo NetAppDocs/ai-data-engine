@@ -17,7 +17,7 @@ Governed AI access uses Entra ID to authenticate users, and the scopes that you 
 
 * You must have the _AI Data Engine administrator_ role.
 * AI Data Engine is deployed and has scanned at least one data source. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
-* The AIDE cluster host name is set up and is on a domain that is verified in your Entra ID tenant. Refer to link:prepare-mcp-host.html[Prepare the MCP host].
+* The AIDE cluster host name is set up on a registered DNS domain that is verified in your Entra ID tenant. Refer to link:prepare-mcp-host.html[Prepare the MCP host].
 * A Microsoft Entra ID administrator has registered the AI Data Engine application and given you the Directory (tenant) ID and the Application (client) ID. Refer to link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access].
 
 You complete these tasks:

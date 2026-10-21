@@ -11,7 +11,7 @@ summary: Set up governed AI access with AI Data Engine by preparing Microsoft En
 [.lead]
 Set up governed AI access with AI Data Engine by preparing the MCP host and Microsoft Entra ID, configuring a data collection for MCP, and connecting an AI client that can search the collection and tag files through the Model Context Protocol (MCP).
 
-This quick start assumes that you have already link:../data-sources/connect-data-source.html[connected a data source] and that AI Data Engine has scanned and indexed it. The MCP server is deployed together with AI Data Engine. The AIDE cluster host name that you use must be on a domain that is verified in your Microsoft Entra ID tenant. You also need permission to register applications and grant consent in Microsoft Entra ID, or you need an Entra ID administrator to complete the Entra ID steps for you.
+This quick start assumes that you have already link:../data-sources/connect-data-source.html[connected a data source] and that AI Data Engine has scanned and indexed it. The MCP server is deployed together with AI Data Engine. You need a registered DNS domain that is verified in your Microsoft Entra ID tenant. The AIDE cluster host name that you use must be on that domain. You also need permission to register applications and grant consent in Microsoft Entra ID, or you need an Entra ID administrator to complete the Entra ID steps for you.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] link:prepare-mcp-host.html[Prepare the MCP host]
 [role="quick-margin-para"]
@@ -36,7 +36,7 @@ In NetApp Console, configure a collection for MCP by selecting the identity prov
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png[Six] link:connect-ai-clients-mcp.html[Connect an AI client and verify the connection]
 [role="quick-margin-para"]
 In your AI client, add the snippet and sign in with Microsoft Entra ID. Confirm that the AI Data Engine tools are available, and then link:connect-ai-clients-mcp.html#sample-prompts[try sample prompts].
-// RESEARCH Figma lists "Configure authentication for an MCP client" in the connect phase. Confirm that all four supported clients can use the AI Data Engine application's client ID without a separate client application.
+// RESEARCH Figma lists "Configure authentication for an MCP client" in the connect phase. Confirm that all four validated clients can use the AI Data Engine application's client ID without a separate client application.
 // RESEARCH Confirm the field list that Console generates, and which values you add yourself.
 // RESEARCH Add a link to troubleshooting topics for MCP connection, authentication, and access issues when they exist.
 

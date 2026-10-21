@@ -97,23 +97,13 @@ The following network connections must be open:
 For an online installation, the following endpoints must be reachable.
 
 // RESEARCH Do the ECR, S3, and CDN endpoints in this table match what the Console team provides?
-// RESEARCH Which CloudFront endpoint hosts the installer scripts, and is the second CloudFront endpoint (dseasb33srnrn.cloudfront.net) still required?
-// RESEARCH Which component initiates each of the api.console.netapp.com, auth0, support.compliance, and CloudFront connections? Is api.console.netapp.com or api.bluexp.netapp.com the current Console endpoint, or are both required?
+// RESEARCH Which CloudFront endpoint hosts the installer scripts?
+// RESEARCH Which component initiates each of the support.compliance and CloudFront connections?
 // RESEARCH Should the ECR, S3, and STS rows use a region placeholder instead of us-west-2, and does the account ID in the registry rows change per deployment?
 // RESEARCH The rpm.rancher.io row describes the k3s SELinux policy package on RHEL with SELinux in Enforcing mode. SELinux is not supported for single-node installs, and the installation source says the k3s installation downloads this package whenever SELinux is installed, in any mode. Confirm whether to keep, reword, or remove this row.
 [cols="3,3,2,1",options="header"]
 |===
 |Endpoint |Purpose |Initiated by |Deployment type
-|`\https://api.console.netapp.com`
-|NetApp Console communication
-|AI Data Engine
-|Both
-
-|`\https://auth0.com`
-|Authentication services
-|AI Data Engine
-|Both
-
 |`\https://582244788873.dkr.ecr.us-west-2.amazonaws.com`
 |NetApp container registry (AIDE container images and Helm charts)
 |Container runtime and installer
@@ -161,11 +151,6 @@ For an online installation, the following endpoints must be reachable.
 
 |`\https://support.compliance.api.bluexp.netapp.com`
 |Software images, manifests, and templates; logs and metrics streaming
-|AI Data Engine
-|Both
-
-|`\https://dseasb33srnrn.cloudfront.net`
-|CloudFront CDN for software distribution
 |AI Data Engine
 |Both
 
