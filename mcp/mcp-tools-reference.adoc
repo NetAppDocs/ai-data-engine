@@ -18,7 +18,7 @@ AI clients use the tools in a power-user session. A user gets a power-user sessi
 * The user holds the `AIDEPowerUsers` app role in Microsoft Entra ID.
 * The AI client requests the `power_users` scope.
 
-Refer to link:configure-entra-id-mcp.html#define-scopes-and-the-power-user-app-role[Define the scope and the power-user app role].
+Refer to link:configure-entra-id-mcp.html#create-and-assign-the-power-user-app-role[Create and assign the power-user app role].
 
 // RESEARCH What does a signed-in user who doesn't hold the AIDEPowerUsers app role see and experience in GA (no tools, an error, or a sign-in failure)? Document the result once confirmed. Do not describe other access levels.
 

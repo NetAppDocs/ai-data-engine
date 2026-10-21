@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: mcp/configure-entra-id-mcp.html
-keywords: mcp, governed ai access, microsoft entra id, entra, app registration, scopes, app roles, redirect uri, authentication, token, entra administrator
-summary: As a Microsoft Entra ID administrator, register AI Data Engine in Microsoft Entra ID, define the Application ID URI, the supported scope, and the app role, assign the app role to users, and add redirect URIs for your AI clients.
+keywords: mcp, governed ai access, microsoft entra id, entra, app registration, application per aide instance, scopes, app roles, redirect uri, authentication, token, entra administrator
+summary: As a Microsoft Entra ID administrator, register a dedicated application for each AI Data Engine instance in Microsoft Entra ID, define the Application ID URI and the supported scope, create and assign the app role, and add redirect URIs for your AI clients.
 ---
 = Configure Microsoft Entra ID for AI Data Engine governed AI access
 :icons: font
@@ -22,27 +22,29 @@ When you finish, give the values that you record to the AI Data Engine administr
 
 AI Data Engine doesn't issue tokens and doesn't hold a secret. It validates the Entra ID access tokens that AI clients present. When a user connects an AI client, the user signs in with Microsoft Entra ID, and Entra ID issues an access token for the AI Data Engine application. AI Data Engine checks the token against your Entra ID tenant and lets the client work only with the collections whose granted scopes match.
 
-You register one dedicated application in Entra ID for governed AI access. The same application defines the Application ID URI, the scope, and the app role, and its Application (client) ID is the client ID that the AI Data Engine administrator enters in NetApp Console and that users enter in their AI clients.
+You register one dedicated application in Entra ID for each AI Data Engine instance. If you have more than one AI Data Engine installation, register a separate application for each one, because the Application ID URI is built from the host name of that instance. The application defines the Application ID URI, the scope, and the app role, and its Application (client) ID is the client ID that the AI Data Engine administrator enters in NetApp Console and that users enter in their AI clients.
 
 Microsoft Entra ID is the only identity provider that AIDE governed AI access supports.
 
-NetApp Console doesn't create or change Entra ID app registrations. You complete the following tasks manually in the Microsoft Entra admin center:
-
-. Register an application for AI Data Engine in Microsoft Entra ID and expose its API.
-. Define the `power_users` scope and the power-user app role, and assign the app role to your users.
-. Add redirect URIs for your AI clients and allow public client flows.
+NetApp Console doesn't create or change Entra ID app registrations. You complete all of the Entra ID tasks in this topic manually in the Microsoft Entra admin center.
 
 [#register-the-ai-data-engine-application]
-== Register the AI Data Engine application
+== Register the AI Data Engine application and define its scope
 
-Complete this task once per tenant. If an AI Data Engine app registration already exists in your tenant, use it.
+Register a dedicated application for the AI Data Engine instance, set its Application ID URI, and define the `power_users` scope. Complete this task once for each AI Data Engine instance. If you have more than one instance, register a separate application for each instance, and use a name that identifies the instance.
+
+AI Data Engine recognizes the `power_users` delegated scope. You define the scope on the application registration in Entra ID. The scope doesn't map to a NetApp Console role, and the scope name must match exactly, including the plural form.
+
+The `power_users` scope requests a power-user session. A power-user session can search file metadata in the collections that you grant the scope access to, list tags, create tags, and add tags to or remove tags from files. AI Data Engine grants a power-user session only if the user also holds the `AIDEPowerUsers` app role. Refer to <<create-and-assign-the-power-user-app-role,Create and assign the power-user app role>>.
+
+The full scope value that AI clients request is the Application ID URI and `/power_users`: `\https://<host>/mcp/tools/power_users`. AI clients must request this exact value.
 
 NOTE: These steps are subject to change based on changes to the Microsoft Entra ID UI. The essential configurations remain the same.
 
 .Steps
 
 . In the Microsoft Entra admin center, go to *App registrations* and select *New registration*.
-. Enter a name, such as `NetApp AI Data Engine MCP`, select *Single tenant only*, and select *Register*. Use an application that is dedicated to AI Data Engine governed AI access.
+. Enter a name, such as `NetApp AI Data Engine MCP - <instance>`, select *Single tenant only*, and select *Register*. Use an application that is dedicated to this AI Data Engine instance.
 . On the *Overview* page, record the *Application (client) ID* and the *Directory (tenant) ID*. The AI Data Engine administrator enters both values in NetApp Console, and users enter the Application (client) ID as the client ID in their AI clients.
 . Open *Manifest*, set `requestedAccessTokenVersion` to `2`, and save. AI Data Engine accepts only v2.0 access tokens.
 . Open *Expose an API* and select *Add* next to *Application ID URI*. Enter `\https://<host>/mcp/tools`, where `<host>` is the AIDE cluster host name that you set up in link:prepare-mcp-host.html[Prepare the MCP host], and save. Record this URI; AI clients use it to build the scope that they request.
@@ -50,20 +52,6 @@ NOTE: These steps are subject to change based on changes to the Microsoft Entra 
 The domain of the host name must be verified in your Entra ID tenant. Entra ID accepts an Application ID URI only on a verified domain.
 +
 NOTE: If Entra ID rejects the URI with the error `Failed to add identifier URI`, make sure that `requestedAccessTokenVersion` is set to `2` and that the domain is verified in your tenant, and then try again.
-
-// RESEARCH Have these steps been tested in a clean tenant?
-
-[#define-scopes-and-the-power-user-app-role]
-== Define the scope and the power-user app role
-
-AI Data Engine recognizes the `power_users` delegated scope. You define the scope and the app role on the AI Data Engine application registration in Entra ID. They don't map to a NetApp Console role, and the scope and app role names must match exactly, including the plural form.
-
-The `power_users` scope requests a power-user session. A power-user session can search file metadata in the collections that you grant the scope access to, list tags, create tags, and add tags to or remove tags from files. AI Data Engine grants a power-user session only if the user also holds the `AIDEPowerUsers` app role.
-
-The full scope value that AI clients request is the Application ID URI and `/power_users`: `\https://<host>/mcp/tools/power_users`. AI clients must request this exact value.
-
-.Steps
-
 . In *Expose an API*, select *Add a scope* and add the `power_users` scope:
 * *Who can consent*: *Admins and users*, or *Admins only* to restrict consent
 * *Admin consent display name*: `Access AIDE as a Power User`
@@ -72,6 +60,17 @@ The full scope value that AI clients request is the Application ID URI and `/pow
 * *State*: *Enabled*
 * Select *Add scope*.
 . Optional: To skip the consent prompt for users, under *Authorized client applications*, select *Add a client application*, enter the Application (client) ID of this application, select the `power_users` scope, and select *Add application*.
+
+// RESEARCH Have these steps been tested in a clean tenant?
+// RESEARCH Confirm that the authorized-client entry for the application's own client ID is the supported way to skip the consent prompt for Cursor, OpenCode, Claude Desktop, and Claude Code.
+
+[#create-and-assign-the-power-user-app-role]
+== Create and assign the power-user app role
+
+Create the power-user app role on the AI Data Engine application, and assign it to the users or groups who use governed AI access. The app role name must match exactly, including the plural form.
+
+.Steps
+
 . Open *App roles* and select *Create app role*:
 * *Display name*: `AIDE Power Users`
 * *Allowed member types*: *Users/Groups*
@@ -83,8 +82,6 @@ The full scope value that AI clients request is the Application ID URI and `/pow
 To assign the app role to groups instead of individual users, your tenant needs Microsoft Entra ID P1 or P2. Assignment to a group doesn't apply to the members of nested groups.
 
 IMPORTANT: Assigning the app role, not only defining it, is required. A user who doesn't hold the app role doesn't get a power-user session.
-
-// RESEARCH Confirm that the authorized-client entry for the application's own client ID is the supported way to skip the consent prompt for Cursor, OpenCode, Claude Desktop, and Claude Code.
 
 .How power-user sessions work
 

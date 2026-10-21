@@ -18,13 +18,7 @@ Governed AI access uses Entra ID to authenticate users, and the scopes that you 
 * You must have the _AI Data Engine administrator_ role.
 * AI Data Engine is deployed and has scanned at least one data source. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
 * The AIDE cluster host name is set up on a registered DNS domain that is verified in your Entra ID tenant. Refer to link:prepare-mcp-host.html[Prepare the MCP host].
-* A Microsoft Entra ID administrator has registered the AI Data Engine application and given you the Directory (tenant) ID and the Application (client) ID. Refer to link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access].
-
-You complete these tasks:
-
-. Set up Microsoft Entra ID as an identity provider in AI Data Engine.
-. Configure each collection for MCP by selecting identity providers and user scopes, and then copy the connection details for your AI client.
-. Verify your configuration.
+* A Microsoft Entra ID administrator has registered the AI Data Engine application for this AI Data Engine instance and given you the Directory (tenant) ID and the Application (client) ID. Refer to link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access].
 
 [#set-up-an-identity-provider]
 == Set up an identity provider
@@ -34,7 +28,7 @@ Connect Microsoft Entra ID as an identity provider (IdP) to authenticate and aut
 .Before you begin
 
 * You must have the _AI Data Engine administrator_ role.
-* You have the tenant ID and the application (client) ID of the AI Data Engine application that is registered in Microsoft Entra ID.
+* You have the tenant ID and the application (client) ID of the AI Data Engine application that is registered in Microsoft Entra ID for this AI Data Engine instance.
 
 .Steps
 
@@ -82,7 +76,7 @@ Before users connect, confirm that each of the following is true. The Applicatio
 
 *Microsoft Entra ID*
 
-* A dedicated application is registered.
+* A dedicated application is registered for this AI Data Engine instance.
 * The Application ID URI is `\https://<host>/mcp/tools`.
 * The `power_users` scope exists, and `requestedAccessTokenVersion` is set to `2` in the manifest.
 * A redirect URI is registered for each AI client, and public client flows are allowed.
