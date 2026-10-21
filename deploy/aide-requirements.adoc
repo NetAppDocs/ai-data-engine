@@ -44,7 +44,7 @@ The following network connections must be open:
 |443
 |TCP
 |Inbound
-|HTTPS: AI client access to the MCP server host name from your corporate network or VPN. AI clients connect to the host name on port 443. They don't connect to the internal service port.
+|HTTPS: AI client access to the AIDE cluster host name from your corporate network or VPN. AI clients connect to the host name on port 443. They don't connect to the internal service port.
 
 |AI Data Engine to ONTAP (NFS)
 |111, 2049
