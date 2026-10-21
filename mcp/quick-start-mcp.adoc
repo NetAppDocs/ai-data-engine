@@ -15,7 +15,7 @@ This quick start assumes that you have already link:../data-sources/connect-data
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] link:prepare-mcp-host.html[Prepare the MCP host]
 [role="quick-margin-para"]
-On the system where you downloaded the AI Data Engine installer, run the link:prepare-mcp-host.html#run-the-egress-script[egress script] to set up the certificate and the AIDE cluster host name. The host name must be on a domain that is verified in your Entra ID tenant. Then confirm that the host is reachable.
+On the system where you downloaded the AI Data Engine installer, run the link:prepare-mcp-host.html#run-the-ingress-script[ingress script] to set up the certificate and the AIDE cluster host name. The host name must be on a domain that is verified in your Entra ID tenant. Then confirm that the host is reachable.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] link:configure-entra-id-mcp.html[Configure Microsoft Entra ID (Entra ID administrator)]
 [role="quick-margin-para"]

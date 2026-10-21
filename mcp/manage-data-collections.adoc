@@ -88,7 +88,7 @@ NOTE: If the identity provider that you need isn't listed, add it under *Identit
 +
 Before you share a snippet, confirm that the host is your AIDE cluster host name and not a cluster or service IP address, and that the URL ends in `/mcp/tools` and includes the `collection_id` of this collection. The scope must be `\https://<host>/mcp/tools/power_users`, and the client ID must be the Application (client) ID of your AI Data Engine application in Entra ID.
 +
-NOTE: If the *MCP hostname not setup* warning appears, select *MCP settings* to configure the AIDE cluster host name. Refer to link:maintain-mcp-setup.html#review-mcp-server-settings[Review MCP server settings] and link:prepare-mcp-host.html[Prepare the MCP host]. Securing the MCP server with HTTPS requires an SSL/TLS certificate, which the egress script sets up.
+NOTE: If the *MCP hostname not setup* warning appears, select *MCP settings* to configure the AIDE cluster host name. Refer to link:maintain-mcp-setup.html#review-mcp-server-settings[Review MCP server settings] and link:prepare-mcp-host.html[Prepare the MCP host]. Securing the MCP server with HTTPS requires an SSL/TLS certificate, which the ingress script sets up.
 . Optional: To change the identity providers or user scopes, select *Go back*, and then generate the snippet again.
 . Select *Close*.
 

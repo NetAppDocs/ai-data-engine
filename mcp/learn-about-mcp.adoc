@@ -55,7 +55,7 @@ For sample prompts, refer to link:connect-ai-clients-mcp.html#sample-prompts[Con
 
 You configure governed AI access in Microsoft Entra ID and NetApp Console. The tasks are split between an AI Data Engine administrator and a Microsoft Entra ID administrator, who might be the same person:
 
-. AI Data Engine administrator: link:prepare-mcp-host.html[Prepare the MCP host] by running the egress script. Use an AIDE cluster host name on a domain that is verified in Microsoft Entra ID.
+. AI Data Engine administrator: link:prepare-mcp-host.html[Prepare the MCP host] by running the ingress script. Use an AIDE cluster host name on a domain that is verified in Microsoft Entra ID.
 . Entra ID administrator: link:configure-entra-id-mcp.html[Configure Microsoft Entra ID] by registering an application for AI Data Engine, defining the Application ID URI, the `power_users` scope, and the power-user app role, assigning the app role, and adding redirect URIs for your AI clients.
 . AI Data Engine administrator: link:connect-entra-id-aide-mcp.html[Set up Microsoft Entra ID as an identity provider] in AI Data Engine.
 . Optional: Create data collections from selected volumes. The *All files* collection exists by default and includes every scanned file.

@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: mcp/prepare-mcp-host.html
-keywords: mcp, governed ai access, egress script, mcp host, aide cluster host name, host name, verified domain, certificate, dns, entra id, 401
-summary: Run the egress script to set up the AIDE cluster host name and certificate that AI clients use to reach the AI Data Engine MCP server, and make sure that the host name is on a domain that is verified in your Microsoft Entra ID tenant.
+keywords: mcp, governed ai access, ingress script, mcp host, aide cluster host name, host name, verified domain, certificate, dns, entra id, 401
+summary: Run the ingress script to set up the AIDE cluster host name and certificate that AI clients use to reach the AI Data Engine MCP server, and make sure that the host name is on a domain that is verified in your Microsoft Entra ID tenant.
 ---
 = Prepare the MCP host for AI Data Engine governed AI access
 :icons: font
@@ -24,31 +24,31 @@ NOTE: The Microsoft Entra ID steps and paths in this topic are subject to change
 [#verified-domain-requirement]
 == Verified domain requirement
 
-The AIDE cluster host name must be on a domain that is verified in your company's Microsoft Entra ID tenant. The host name that the egress script sets up becomes `<host>` in the Application ID URI, so the domain must be verified before you register the application.
+The AIDE cluster host name must be on a domain that is verified in your company's Microsoft Entra ID tenant. The host name that the ingress script sets up becomes `<host>` in the Application ID URI, so the domain must be verified before you register the application.
 
 AI Data Engine uses `\https://<host>/mcp/tools` as the Application ID URI of the application that you register in Microsoft Entra ID. Microsoft Entra ID accepts an Application ID URI only if it is on a verified domain. A host on an unverified domain, such as a `.cluster.local` host name, can't be used.
 
 To check which domains are verified, in the Microsoft Entra admin center, go to *Entra ID* > *Domain names*.
 
-[#run-the-egress-script]
-== Run the egress script
+[#run-the-ingress-script]
+== Run the ingress script
 
-The egress script sets up the following items so that AI clients can reach the MCP server from outside the cluster:
+The ingress script sets up the following items so that AI clients can reach the MCP server from outside the cluster:
 
 * The certificate
 * The cluster host name
-* External egress
+* External ingress
 
 .Steps
 
-. On the system where you downloaded the AI Data Engine installer, open the installer's scripts folder: `/tmp/aide-installer/installer/runbook/ingress-manager-scripts/scripts/`. The egress script is downloaded as part of the installer.
-. Run the egress script.
+. On the system where you downloaded the AI Data Engine installer, open the installer's scripts folder: `/tmp/aide-installer/installer/runbook/ingress-manager-scripts/scripts/`. The ingress script is downloaded as part of the installer.
+. Run the ingress script.
 . Record the host name that the script sets up. You use this host name as `<host>` in the Application ID URI, the scope, and the AI client configuration.
 
 NOTE: The host name that the script sets up is the host name of the AIDE cluster. In the AI Data Engine UI, this value is labeled *MCP host name* in *MCP settings*.
 
-// RESEARCH What is the file name of the egress script? What arguments or prompts does it have, and does it need a host name or a certificate as input? Confirm that the scripts folder path is the same for every installer type (single-node and multi-node). Add the exact command.
-// RESEARCH Confirm whether the egress script also sets the *MCP host name* value in Console *MCP settings*, or whether you must enter it there.
+// RESEARCH What is the file name of the ingress script? What arguments or prompts does it have, and does it need a host name or a certificate as input? Confirm that the scripts folder path is the same for every installer type (single-node and multi-node). Add the exact command.
+// RESEARCH Confirm whether the ingress script also sets the *MCP host name* value in Console *MCP settings*, or whether you must enter it there.
 
 If the script creates a self-signed certificate, every machine that runs an AI client must trust that certificate. Refer to <<make-the-host-reachable,Make the host reachable from client machines>>.
 
