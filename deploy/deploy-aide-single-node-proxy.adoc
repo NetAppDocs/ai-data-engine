@@ -224,11 +224,11 @@ AI Data Engine is deployed and connected to NetApp Console. You can now link:../
 [[check-proxy-single-node]]
 == Check the proxy after installation
 
-The AI Data Engine operator logs the proxy that it uses. The log never includes the password. To check the proxy, run the following command on the target host:
+The AI Data Engine operator logs the proxy that it uses. The log never includes the password. The installer downloads its own copy of `kubectl` to `/opt/netapp/aide/.aide-installer-tools` and doesn't add it to your `PATH`. The k3s kubeconfig is readable only by root. To check the proxy, run the following command on the target host:
 
 [source,bash]
 ----
-sudo k3s kubectl -n aide logs -l control-plane=controller-manager -c chart-fetcher | grep -m1 'proxy enabled'
+sudo /opt/netapp/aide/.aide-installer-tools/kubectl --kubeconfig /etc/rancher/k3s/k3s.yaml -n aide logs deploy/aide-operator -c chart-fetcher | grep -m1 'proxy enabled'
 ----
 
 The line shows the proxy endpoint, whether authentication is on, and whether a CA certificate is mounted.

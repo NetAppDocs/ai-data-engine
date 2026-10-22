@@ -180,37 +180,37 @@ For an online installation, the following endpoints must be reachable. Where a r
 |Both
 
 |`\https://checkip.amazonaws.com`
-|Optional. The health monitor uses it to show the public IP address on the health dashboard. AI Data Engine works without it.
+|The health monitor uses it to show the public IP address on the health dashboard. AI Data Engine works without it.
 |AI Data Engine
 |Both
 
 |`\https://api.ipify.org`
-|Optional. Fallback for obtaining the public IP address shown on the health dashboard. AI Data Engine works without it.
+|Fallback for obtaining the public IP address shown on the health dashboard. AI Data Engine works without it.
 |AI Data Engine
 |Both
 
 |`\https://icanhazip.com`
-|Optional. Fallback for obtaining the public IP address shown on the health dashboard. AI Data Engine works without it.
+|Fallback for obtaining the public IP address shown on the health dashboard. AI Data Engine works without it.
 |AI Data Engine
 |Both
 
 |`\https://ipinfo.io`
-|Optional. Fallback for obtaining the public IP address shown on the health dashboard. AI Data Engine works without it.
+|Fallback for obtaining the public IP address shown on the health dashboard. AI Data Engine works without it.
 |AI Data Engine
 |Both
 
 |`\https://hub.docker.com`
-|Optional. Proxy connectivity test, used only when you use an outbound proxy. A failed test doesn't block installation or runtime. This endpoint is separate from the Docker Hub endpoints that serve k3s system images.
+|Proxy connectivity test, used only when you use an outbound proxy. A failed test doesn't block installation or runtime. This endpoint is separate from the Docker Hub endpoints that serve k3s system images.
 |AI Data Engine
 |Both
 
 |`\https://cognito-idp.us-east-1.amazonaws.com`
-|Optional. Proxy connectivity test, used only when you use an outbound proxy. A failed test doesn't block installation or runtime.
+|Proxy connectivity test, used only when you use an outbound proxy. A failed test doesn't block installation or runtime.
 |AI Data Engine
 |Both
 
 |`\https://cognito-identity.us-east-1.amazonaws.com`
-|AWS Cognito access, required only when AI Data Engine services use the direct AWS path instead of the support gateway. Also used for an optional proxy connectivity test.
+|AWS Cognito access, required only when AI Data Engine services use the direct AWS path instead of the support gateway. Also used for a proxy connectivity test.
 |AI Data Engine
 |Both
 
@@ -255,7 +255,7 @@ For an online installation, the following endpoints must be reachable. Where a r
 |Single node only
 
 |`\https://rpm.rancher.io`
-|k3s SELinux policy package (`k3s-selinux`), on RHEL, Rocky Linux, or AlmaLinux 8 or 9 when SELinux is installed, in any mode. The installer uses your repository's copy if it provides one.
+|k3s SELinux policy package (`k3s-selinux`), on RHEL, Rocky Linux, or AlmaLinux 8 or 9 when SELinux files are present on the host, even if SELinux is disabled. The installer uses your repository's copy if it provides one.
 |Installer
 |Single node only (RHEL family)
 

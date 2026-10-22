@@ -26,9 +26,11 @@ The installer host is a lightweight management machine. It doesn't run AI Data E
 ** Create ClusterRoles and ClusterRoleBindings.
 ** Create ServiceAccounts, Roles, and RoleBindings in the `aide` namespace.
 * The installer host runs Linux and has bash 4.0 or later, curl, and tar.
-* The installer automatically downloads `helm`, `kubectl`, and `jq` into a tools directory. You don't need to install them in advance.
-// RESEARCH Confirm the default tools directory when the installer runs without elevated privileges, and whether the installer still uses /opt/netapp/aide/.aide-installer-tools. Update this bullet to name the default.
-* Run the installer as the user who has access to the cluster. Specify a tools directory that you own with the `--tools-dir` option, for example `--tools-dir "$HOME/.aide-installer-tools"`. The installer creates this directory and writes the install log there.
+* The installer automatically downloads `helm`, `kubectl`, and `jq` into a tools directory. If `kubectl` is already on your `PATH`, the installer uses that copy and doesn't download one. You don't need to install any of these tools in advance. The installer doesn't add them to your `PATH`.
+* The default tools directory is `/opt/netapp/aide/.aide-installer-tools`. The installer also writes the install log there. If the default directory is writable, you can omit the `--tools-dir` option.
+** If the default directory isn't writable and you run the installer from a terminal, the installer asks for another directory. Press Enter to use `$HOME/.cache/netapp/aide`.
+** If the default directory isn't writable and the installer has no terminal, the installation stops. Specify a directory that you own with the `--tools-dir` option, for example `--tools-dir "$HOME/.aide-installer-tools"`.
+* Run the installer as the user who has access to the cluster.
 
 Managed-cluster kubeconfigs authenticate through an exec credential plugin that reads the cloud CLI login for the current user. Run the installer as the user who has that login. For AKS-specific guidance, see <<aks-requirements,AKS requirements>>.
 
@@ -170,6 +172,8 @@ kubectl create namespace aide
 === Node labels
 
 AI Data Engine schedules its components by using node labels. Apply the following labels to the nodes that schedule AI Data Engine workloads. Each label must be present on at least three nodes. Some configuration sizes use more nodes, so apply the labels to every node that schedules workloads. Replace `<node-name>` with the name of each node.
+
+The installer doesn't apply or check these labels. You must label the nodes before you run the installer. If a label is missing, AI Data Engine pods later stay in the `Pending` state.
 
 The following command applies all of the labels to a node:
 

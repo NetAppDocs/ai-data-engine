@@ -19,7 +19,7 @@ For the supported proxy types and the complete parameter reference, see link:con
 * Your Kubernetes cluster meets the multi-node prerequisites described in link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
 * An NFS server with an exported path is available and reachable from the cluster for the AIDE config volume.
 * A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the cluster nodes. The Console Agent IP is required to run the install command.
-* You have a kubeconfig with cluster-admin access to the target cluster. The installer installs `kubectl` if it isn't already available.
+* You have a kubeconfig with cluster-admin access to the target cluster. If `kubectl` isn't on your `PATH`, the installer downloads it to the tools directory.
 * The `aide` namespace exists on the cluster before you run the install command.
 * The nodes that schedule AI Data Engine workloads have the node labels described in link:multi-node-prerequisites.html#node-labels[Node labels].
 * A configured StorageClass (default name: `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
@@ -238,12 +238,14 @@ Your AI Data Engine multi-node deployment is deployed and connected to NetApp Co
 [[check-proxy-multi-node]]
 == Check the proxy after installation
 
-The AI Data Engine operator logs the proxy that it uses. The log never includes the password. To check the proxy, run the following command from a host with kubectl access to your cluster:
+The AI Data Engine operator logs the proxy that it uses. The log never includes the password. To check the proxy, run the following command from a host that can reach your cluster. Replace `<kubeconfig>` with the path to your kubeconfig file:
 
 [source,bash]
 ----
-kubectl -n aide logs -l control-plane=controller-manager -c chart-fetcher | grep -m1 'proxy enabled'
+kubectl --kubeconfig <kubeconfig> -n aide logs deploy/aide-operator -c chart-fetcher | grep -m1 'proxy enabled'
 ----
+
+If `kubectl` isn't on your `PATH`, the installer downloaded it to the tools directory. Run `<tools-dir>/kubectl` instead. The default tools directory is `/opt/netapp/aide/.aide-installer-tools`.
 
 The line shows the proxy endpoint, whether authentication is on, and whether a CA certificate is mounted.
 
