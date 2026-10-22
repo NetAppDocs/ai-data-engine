@@ -13,15 +13,7 @@ Deploy AIDE as a multi-node deployment from NetApp Console when your Kubernetes 
 
 For the supported proxy types and the complete parameter reference, see link:configure-proxy.html[Learn about proxies for AI Data Engine]. For the endpoints to allow on your proxy, see link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 
-== How the proxy applies to a multi-node deployment
-
-In a multi-node deployment, you own the Kubernetes cluster. The installer configures the AI Data Engine workloads for the proxy and doesn't change your nodes. You must configure the container runtime and certificate trust on every node before you run the installer.
-
-The installer checks the proxy from the installer host only. It doesn't check your nodes. If a node's container runtime isn't configured, the installation completes and pods on that node later show `ImagePullBackOff`.
-
-The installer also doesn't install operating system packages on your nodes. Ensure that the nodes have the packages that your environment requires, and that your package managers have the appropriate proxy configuration if required in your environment.
-
-.Before you begin
+== Before you begin
 
 * You have _Organization admin_ or greater permissions in NetApp Console.
 * Your Kubernetes cluster meets the multi-node prerequisites described in link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
@@ -34,6 +26,14 @@ The installer also doesn't install operating system packages on your nodes. Ensu
 * You have configured your proxy to allow the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 * You know the proxy host, port, and scheme (`http` or `https`). If the proxy requires authentication, you also know the username and password.
 * If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the installer host.
+
+== How the proxy applies to a multi-node deployment
+
+In a multi-node deployment, you own the Kubernetes cluster. The installer configures the AI Data Engine workloads for the proxy and doesn't change your nodes. You must configure the container runtime and certificate trust on every node before you run the installer.
+
+The installer checks the proxy from the installer host only. It doesn't check your nodes. If a node's container runtime isn't configured, the installation completes and pods on that node later show `ImagePullBackOff`.
+
+The installer also doesn't install operating system packages on your nodes. Ensure that the nodes have the packages that your environment requires, and that your package managers have the appropriate proxy configuration if required in your environment.
 
 [[configure-proxy-multi-node]]
 == Prepare every node

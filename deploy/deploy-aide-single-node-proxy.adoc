@@ -13,6 +13,17 @@ Deploy AIDE as a single-node deployment from NetApp Console when the target host
 
 For the supported proxy types and the complete parameter reference, see link:configure-proxy.html[Learn about proxies for AI Data Engine]. For the endpoints to allow on your proxy, see link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 
+== Before you begin
+
+* You have _Organization admin_ or greater permissions in NetApp Console.
+* Sudo (or root) permissions are required on the target host to run the install command.
+* Your environment meets all prerequisites as described in link:single-node-prerequisites.html[AIDE single-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
+* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
+* You have configured your proxy to allow the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
+* You know the proxy host, port, and scheme (`http` or `https`). If the proxy requires authentication, you also know the username and password.
+* If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the target host.
+* The operating system repositories on the target host provide the packages listed in link:single-node-prerequisites.html#operating-system-packages[Operating system packages]. Ensure that your package managers have the appropriate proxy configuration if required in your environment.
+
 == What the installer configures
 
 In a single-node deployment, AI Data Engine owns the VM that it installs on. The installer configures the k3s runtime and AI Data Engine for the proxy. It doesn't change the proxy configuration of the host, such as the operating system package managers. The installer does the following:
@@ -23,17 +34,6 @@ In a single-node deployment, AI Data Engine owns the VM that it installs on. The
 
 // RESEARCH Confirm whether customer documentation should describe where the installer stores proxy settings and credentials (the aide-proxy-config ConfigMap, the aide-proxy-credentials Secret, and the k3s service environment file on single-node deployments).
 You don't configure the k3s container runtime or the trust store.
-
-.Before you begin
-
-* You have _Organization admin_ or greater permissions in NetApp Console.
-* Sudo (or root) permissions are required on the target host to run the install command.
-* Your environment meets all prerequisites as described in link:single-node-prerequisites.html[AIDE single-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
-* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
-* You have configured your proxy to allow the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
-* You know the proxy host, port, and scheme (`http` or `https`). If the proxy requires authentication, you also know the username and password.
-* If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the target host.
-* The operating system repositories on the target host provide the packages listed in link:single-node-prerequisites.html#operating-system-packages[Operating system packages]. Ensure that your package managers have the appropriate proxy configuration if required in your environment.
 
 == Copy the install command
 
