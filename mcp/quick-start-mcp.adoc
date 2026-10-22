@@ -11,6 +11,8 @@ summary: Set up governed AI access with AI Data Engine by preparing Microsoft En
 [.lead]
 Set up governed AI access with AI Data Engine by preparing the MCP host and Microsoft Entra ID, configuring a data collection for MCP, and connecting an AI client that can search the collection and tag files through the Model Context Protocol (MCP).
 
+// IE UX Link dependency: The UI links to this page through the redirect from mcp/configure-mcp-access.html. Do not change the permalink or filename without creating a redirect file and updating the redirect in the redirect folder.
+
 This quick start assumes that you have already link:../data-sources/connect-data-source.html[connected a data source] and that AI Data Engine has scanned and indexed it. The MCP server is deployed together with AI Data Engine. You need a registered DNS domain that is verified in your Microsoft Entra ID tenant. The AIDE cluster host name that you use must be on that domain. You also need permission to register applications and grant consent in Microsoft Entra ID, or you need an Entra ID administrator to complete the Entra ID steps for you.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] link:prepare-mcp-host.html[Prepare the MCP host]

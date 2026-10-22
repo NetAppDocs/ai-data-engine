@@ -18,10 +18,11 @@ This mapping doesn't authenticate AI Data Engine to NFS storage. It converts the
 
 * You have _AI Data Engine administrator_ privileges.
 * You have link:../deploy/aide-requirements.html#networking-requirements[opened the required ports] from AI Data Engine to your Active Directory domain controllers.
-// RESEARCH Which ports does the configured LDAP, LDAPS, or Global Catalog connection require? The requirements page lists 3268 and 3269 for the Global Catalog.
 * You have an Active Directory account that AI Data Engine can use to query user and group attributes. You enter its user name and password in AI Data Engine.
 // RESEARCH Confirm the permissions the Active Directory account needs and whether it must be a dedicated account.
-* You have the IP address of your DNS server, the IP address and port of your LDAP server, and your Active Directory domain name.
+* You have link:configure-settings.html#find-access-risks-with-permission-scanning[turned on permission scanning].
+* You have your Active Directory domain name and either the IP address of your DNS server or the IP address and port of your LDAP server.
+* You know whether your directory requires a secure LDAP connection.
 * If AI Data Engine queries the Global Catalog and the attributes aren't yet replicated to it, you or your Active Directory administrator has the _Schema Admins_ role to make the schema change.
 
 == Prepare Active Directory
@@ -51,7 +52,7 @@ AI Data Engine reads the following Active Directory attributes:
 Populate `uidNumber` on the users and `gidNumber` on the groups that you want AI Data Engine to resolve.
 
 NOTE: Set `gidNumber` on the group object. The `gidNumber` on a user object identifies that user's primary group. It isn't the group attribute that AI Data Engine uses for this lookup.
-// RESEARCH The UI has no fields for custom UID and GID attribute names. Does AI Data Engine support custom attribute names? If so, how are they configured?
+
 
 .Steps
 . Verify that every user that you want to resolve has a `uidNumber` value and every group has a `gidNumber` value. Each UID must be unique among users, and each GID must be unique among groups. A user and a group can have the same numeric value.
@@ -72,8 +73,10 @@ Connect AI Data Engine to the Active Directory domain that contains the matching
 .Steps
 . From the AI Data Engine UI, select *Configuration*.
 . Select *General settings*.
-. Turn on the *Enabled* toggle.
-. Enter the connection details for your Active Directory domain.
+. On the page, find *Active Directory* and select *Enabled*.
+. Enter the connection details for your Active Directory domain. Select either the *DNS Server IP address* option or the *LDAP Server IP address* option.
++
+NOTE: The credentials you enter here are for the directory integration. They are separate from the credentials you provide for an SMB archive destination. Refer to link:../investigate/take-actions.html[Take action on your data].
 +
 [cols="1,3",options="header"]
 |===
@@ -86,25 +89,29 @@ Connect AI Data Engine to the Active Directory domain that contains the matching
 |The password of the account.
 
 |*DNS Server IP address*
-|The IP address of the DNS server that resolves your Active Directory domain. For example, `10.0.1.50`.
+|The IP address of the DNS server that resolves your Active Directory domain. For example, `10.0.1.50`. Select this option instead of *LDAP Server IP address*.
 
 |*Domain name*
-|The fully qualified name of your Active Directory domain. For example, `corp.example.com`.
+|The fully qualified name of your Active Directory domain. For example, `corp.example.com`. This field is required for both the DNS and LDAP options.
 
 |*LDAP Server IP address*
-|The IP address of the LDAP server, which is a domain controller. For example, `10.0.1.50`.
+|The IP address of the LDAP server, which is a domain controller. For example, `10.0.1.50`. Select this option instead of *DNS Server IP address*.
 
 |*LDAP Server Port*
 |The port of the LDAP server. The default is `389`.
 
 |*LDAP secure connection*
-|Select this option to connect to the LDAP server over a secure connection.
+|Select this option to connect to the LDAP server over a secure connection. It is available with both the DNS and LDAP options.
 
 |===
+// RESEARCH Does the LDAP Server Port field apply only to the LDAP Server IP address option?
+// RESEARCH What permissions does the Active Directory account need? How are the credentials stored? What happens in AI Data Engine if the directory connection fails?
 
-. Optionally, enable NFS identity mapping.
+. Optionally, turn on *Enable NFS identity mapping*.
 +
-Enabling NFS identity mapping allows AIDE to resolve numeric NFS file-owner IDs to Active Directory owner names. Enable this option only if Active Directory contains the Unix UID/GID attributes used by your NFS environment. Specify the UID and GID attribute names; the defaults are `uidNumber` and `gidNumber`. Owner information is resolved in the background.
+Enabling NFS identity mapping allows AIDE to resolve numeric NFS file-owner IDs to Active Directory owner names. Enable this option only if Active Directory contains the Unix UID/GID attributes used by your NFS environment. 
+
+.. Enter the *UID number attribute* and the *GID number attribute*, such as `uidNumber` and `gidNumber`. Both fields are required when NFS identity mapping is enabled. Owner information is resolved in the background.
 // RESEARCH Does selecting LDAP secure connection require port 636, and does the port field update automatically? Is a domain controller certificate required?
 // RESEARCH Does GA support more than one Active Directory domain or forest? If so, document how to add each one. If not, state that one Active Directory is supported.
 . Save your changes.
