@@ -17,11 +17,11 @@ IMPORTANT: If your cluster nodes or the installer host reach the internet only t
 
 * You have _Organization admin_ or greater permissions in NetApp Console.
 * Your Kubernetes cluster meets the multi-node prerequisites described in link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
-* Sudo (or root) permissions are required on the machine from which you run the install command.
 * An NFS server with an exported path is available and reachable from the cluster for the AIDE config volume.
 * A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the cluster nodes. The Console Agent IP is required to run the install command.
-* kubectl is available on the machine from which you run the install command, with cluster-admin access to the target cluster.
-* The target Kubernetes namespace (default `aide`) already exists on the cluster before you run the install command.
+* You have a kubeconfig with cluster-admin access to the target cluster. If `kubectl` isn't on your `PATH`, the installer downloads it to the tools directory.
+* The `aide` namespace exists on the cluster before you run the install command.
+* The nodes that schedule AI Data Engine workloads have the node labels described in link:multi-node-prerequisites.html#node-labels[Node labels].
 * A configured StorageClass (default name: `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
 
 .Steps
@@ -43,14 +43,19 @@ These sizes are recommended baselines, not hard limits. An AIDE multi-node deplo
 +
 The wizard generates the install command with the configuration size you select.
 
-. Run the install command from your target host with kubectl access to your Kubernetes cluster.
+. Run the install command from a host that can reach your Kubernetes cluster.
 +
 If the installer asks whether to configure an outbound proxy, enter `n`.
 +
 NOTE: Installation takes about 30 minutes to complete. Timeouts and retries might occur, and this is normal.
 
-. When prompted, confirm the host IP address and user ID to continue the installation.
-. Monitor the progress screen until the success screen appears and displays "AI Data Engine deployed".
+. Answer the installer's confirmation prompts to continue the installation.
++
+* The installer shows the Kubernetes cluster selected by your kubeconfig, including the context, cluster name, and API server. Answer yes only if that is the cluster you intend to use. If it is the wrong cluster, stop the installer, select the correct kubeconfig context, and run the installer again.
+* The installer asks you to confirm that the prerequisites for a multi-node deployment are complete. Answer yes to continue.
+* The installer detects the IP address of the node that runs the AI Data Engine NGINX ingress and asks you to confirm it. Press Enter to keep the address shown, or type a different address. Use an address that can be reached from outside the cluster. If the detected address is an internal cluster address, type the reachable address instead. Do not enter the Console agent address.
+
+. Monitor the progress screen until the success screen appears and displays that AIDE installation is complete.
 
 .Result
 Your AI Data Engine multi-node deployment is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.

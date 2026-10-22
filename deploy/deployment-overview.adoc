@@ -23,17 +23,7 @@ Deploy an AIDE multi-node deployment if your environment requires high availabil
 
 An AIDE multi-node deployment is available in three sizes — Small, Medium, and Large — for environments up to approximately 1 billion, 3 billion, and 6 billion files respectively. For full node sizing and cluster requirements, refer to link:aide-requirements.html[AIDE requirements]. These sizes are recommended baselines, not hard limits: environments exceeding 6 billion files require custom sizing with NetApp. See link:aide-requirements.html#flexible-sizing-multi-node[flexible sizing guidelines] for details.
 
-== Deployment process
-
-You can deploy AI Data Engine directly from NetApp Console. Go to *AI data hub > AI Data Engine* and deploy AI Data Engine. Use the wizard and choose a deployment type and run the installation command in an environment that meets the link:aide-requirements.html[AIDE requirements].
-
-NetApp Console doesn't provision the infrastructure for AI Data Engine. For a single-node deployment, you prepare a Linux VM, and the installer sets up the rest. For a multi-node deployment, you prepare a Kubernetes cluster. In both cases, the infrastructure must meet the requirements. Then you copy the pre-generated installation command from NetApp Console and run it on the target host. The command bootstraps the runtime and deploys the AI Data Engine stack automatically. During installation, the installer prompts you to confirm the target host IP address and user ID before the install proceeds.
-
-Single-node deployments typically complete within 45 minutes. Multi-node deployments typically complete within 30 minutes. The installer includes built-in timeouts and retries to handle transient issues while components start.
-
-== Deployment with a proxy
-
-If your host or cluster reaches the internet only through an outbound proxy, deploy AI Data Engine with a proxy. The proxy steps differ for each deployment type, so each type has its own complete topic that replaces the standard deployment topic. See link:configure-proxy.html[Learn about proxies for AI Data Engine] for the supported proxy types, and link:aide-requirements.html#outbound-internet-access[Outbound internet access] for the endpoints to allow on your proxy.
+== Compare deployment types
 
 [cols="1h,2,2",options="header"]
 |===
@@ -60,8 +50,8 @@ If your host or cluster reaches the internet only through an outbound proxy, dep
 |32 to 64 vCPU, 128 to 256 GB RAM per node
 
 |Storage
-|500 GB to 6 TB SSD block storage
-|4 to 24 TB total cluster capacity, 8,000 to 16,000 IOPS per node
+|500 GB to 6 TB SSD block storage, 8,000 to 16,000 IOPS, 1,000 to 2,000 MB/s throughput
+|4 to 24 TB total cluster capacity, 8,000 to 16,000 IOPS per node, 1,000 to 2,000 MB/s throughput per node
 
 |Network
 |1 GbE (10 GbE recommended for Large)
@@ -76,6 +66,22 @@ If your host or cluster reaches the internet only through an outbound proxy, dep
 |Production scale or HA is a requirement
 
 |===
+
+== Deployment process
+
+You can deploy AI Data Engine directly from NetApp Console. Go to *AI data hub > AI Data Engine* and deploy AI Data Engine. Use the wizard and choose a deployment type and run the installation command in an environment that meets the link:aide-requirements.html[AIDE requirements].
+
+NetApp Console doesn't provision the infrastructure for AI Data Engine. For a single-node deployment, you prepare a Linux VM, and the installer sets up the rest. For a multi-node deployment, you prepare a Kubernetes cluster. In both cases, the infrastructure must meet the requirements. Then you copy the pre-generated installation command from NetApp Console and run it on the target host. The command bootstraps the runtime and deploys the AI Data Engine stack automatically.
+
+Single-node deployments typically complete within 45 minutes. Multi-node deployments typically complete within 30 minutes. The installer includes built-in timeouts and retries to handle transient issues while components start.
+
+For the complete steps, see link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment] and link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment].
+
+== Deployment with a proxy
+
+If your host or cluster reaches the internet only through an outbound proxy, deploy AI Data Engine with a proxy. The proxy steps differ for each deployment type, so each type has its own complete topic that replaces the standard deployment topic. 
+
+For the complete steps, see link:configure-proxy.html[Learn about proxies for AI Data Engine] for the supported proxy types, and link:aide-requirements.html#outbound-internet-access[Outbound internet access] for the endpoints to allow on your proxy.
 
 == Related information
 

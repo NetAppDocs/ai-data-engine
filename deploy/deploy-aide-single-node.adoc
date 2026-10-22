@@ -45,8 +45,11 @@ If the installer asks whether to configure an outbound proxy, enter `n`.
 +
 NOTE: Installation takes about 45 minutes to complete. Timeouts and retries might occur, and this is normal.
 
-. When prompted, confirm the host IP address and user ID to continue the installation.
-. Monitor the progress screen until the success screen appears and displays "AI Data Engine deployed".
+. Answer the installer's confirmation prompt to continue the installation.
++
+The installer detects the IP address of the node that runs the AI Data Engine NGINX ingress and asks you to confirm it. Press Enter to keep the address shown, or type a different address. Use an address that can be reached from outside the VM. Do not enter the Console agent address.
+
+. Monitor the progress screen until the success screen appears and displays that AIDE installation is complete.
 
 .Result
 AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.

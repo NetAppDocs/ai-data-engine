@@ -15,17 +15,24 @@ Your environment must meet the requirements in the following sections before you
 
 == Installer host
 
-The installer host is a lightweight management machine. It doesn't run AI Data Engine workloads. It can be any machine with network access to the Kubernetes API server, such as a laptop, a jump host, or a CI runner. Before running shell commands on this page, switch to bash.
+The installer host is a lightweight management machine. It doesn't run AI Data Engine workloads. It must be a Linux machine with bash and network access to the Kubernetes API server. macOS isn't supported. Before running shell commands on this page, switch to bash.
 
 * You have a valid kubeconfig for the target cluster. Specify it with the `--kubeconfig` option or the `KUBECONFIG` environment variable. If you don't provide one, the installer prompts for it. The current context must point to the cluster where you want to deploy. To check or change it, run `kubectl config current-context` or `kubectl config use-context <name>`.
-* The kubeconfig user can read namespaces, StorageClasses, and nodes; apply custom resources; and create PersistentVolumes, PersistentVolumeClaims, Secrets, ConfigMaps, Deployments, Services, StatefulSets, DaemonSets, CronJobs, and Jobs.
-* The installer host has bash 4.0 or later, curl, and tar.
-* The installer automatically downloads `helm`, `kubectl`, and `jq` into a tools directory. You don't need to install them in advance.
-* You have root or sudo access to use the default tools directory, `/opt/netapp/aide/.aide-installer-tools`. If you don't have root access, specify a user-writable directory with the `--tools-dir` option, for example `--tools-dir "$HOME/.aide-installer-tools"`. The installer creates this directory and writes the install log there for non-root runs. A path under `/opt/netapp/aide` must already exist and be owned by the installer user.
+* The kubeconfig user has cluster-admin or equivalent permissions on the target cluster. At a minimum, the user can do the following:
+** Read namespaces, StorageClasses, and nodes.
+** Apply custom resources.
+** Create PersistentVolumes, PersistentVolumeClaims, Secrets, ConfigMaps, Deployments, Services, StatefulSets, DaemonSets, CronJobs, and Jobs.
+** Create and update CustomResourceDefinitions. The installer installs the `aidecomponents`, `aideservices`, and `aideoperators` definitions.
+** Create ClusterRoles and ClusterRoleBindings.
+** Create ServiceAccounts, Roles, and RoleBindings in the `aide` namespace.
+* The installer host runs Linux and has bash 4.0 or later, curl, and tar.
+* The installer automatically downloads `helm`, `kubectl`, and `jq` into a tools directory. If `kubectl` is already on your `PATH`, the installer uses that copy and doesn't download one. You don't need to install any of these tools in advance. The installer doesn't add them to your `PATH`.
+* The default tools directory is `/opt/netapp/aide/.aide-installer-tools`. The installer also writes the install log there. If the default directory is writable, you can omit the `--tools-dir` option.
+** If the default directory isn't writable and you run the installer from a terminal, the installer asks for another directory. Press Enter to use `$HOME/.cache/netapp/aide`.
+** If the default directory isn't writable and the installer has no terminal, the installation stops. Specify a directory that you own with the `--tools-dir` option, for example `--tools-dir "$HOME/.aide-installer-tools"`.
+* Run the installer as the user who has access to the cluster.
 
-NOTE: The `sudo` command removes environment variables, so always pass `--kubeconfig` explicitly when you run the installer with `sudo`.
-
-Managed-cluster kubeconfigs authenticate through an exec credential plugin that reads the cloud CLI login for the current user. Running the installer with `sudo` can switch to a root account without that cloud login and cause authentication to fail. To avoid this, run the installer as the user with the cloud CLI login and specify a writable tools directory with `--tools-dir`. For AKS-specific guidance, see <<aks-requirements,AKS requirements>>.
+Managed-cluster kubeconfigs authenticate through an exec credential plugin that reads the cloud CLI login for the current user. Run the installer as the user who has that login. For AKS-specific guidance, see <<aks-requirements,AKS requirements>>.
 
 At startup, the installer runs `kubectl config current-context` and `kubectl cluster-info` and stops if either command fails. Run these commands first, as the same user and with the same privileges that you use for the installer. The installer also asks you to confirm that you completed the node, NFS, and cluster preparation in the following sections.
 
@@ -36,8 +43,6 @@ At startup, the installer runs `kubectl config current-context` and `kubectl clu
 * The cluster has at least three nodes with enough allocatable capacity for your configuration. See link:aide-requirements.html#multi-node-sizes[node sizing].
 * Every node has outbound network access to the NetApp container registry. See link:aide-requirements.html#outbound-internet-access[Outbound internet access]. If you restrict where images can be pulled from, allow the NetApp registry.
 * If your environment requires an outbound proxy, see link:configure-proxy.html[Learn about proxies for AI Data Engine]. To deploy with a proxy, including configuring the container runtime proxy and CA certificate trust on every node, follow link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy].
-
-// RESEARCH Does general availability include node taints and tolerations for shared clusters? If so, what taint should customers apply to isolate AI Data Engine nodes?
 
 == Node preparation
 
@@ -156,7 +161,7 @@ The installer creates the required subdirectories under the export on first inst
 
 === Namespace
 
-The target Kubernetes namespace (default `aide`) must exist before you run the installer. The installer doesn't create it. If you install the operator into a custom namespace, the `aide` workload namespace must also exist because component charts reference it directly.
+The `aide` Kubernetes namespace must exist before you run the installer. The installer doesn't create it. AI Data Engine supports only the `aide` namespace.
 
 [source,bash]
 ----
@@ -167,6 +172,8 @@ kubectl create namespace aide
 === Node labels
 
 AI Data Engine schedules its components by using node labels. Apply the following labels to the nodes that schedule AI Data Engine workloads. Each label must be present on at least three nodes. Some configuration sizes use more nodes, so apply the labels to every node that schedules workloads. Replace `<node-name>` with the name of each node.
+
+The installer doesn't apply or check these labels. You must label the nodes before you run the installer. If a label is missing, AI Data Engine pods later stay in the `Pending` state.
 
 The following command applies all of the labels to a node:
 
@@ -179,6 +186,60 @@ kubectl label node <node-name> \
   3rdparty-aide-logstash=true 3rdparty-aide-filebeat=true \
   3rdparty-aide-k8s-event-exporter=true 3rdparty-aide-telegraf=true \
   microservices-aide=true --overwrite
+----
+
+[[taints-tolerations]]
+=== Taints and tolerations
+
+This step is optional. Complete it only if AI Data Engine shares a cluster with other workloads.
+
+In a shared cluster, you typically reserve nodes for AI Data Engine. Apply a Kubernetes taint to those nodes to keep other workloads off them. The labels that you applied in <<node-labels,Node labels>> keep AI Data Engine pods on those nodes. Every AI Data Engine workload includes a built-in toleration for the following taint, so its pods can schedule on the tainted nodes:
+
+[source,text]
+----
+netapp.com/aide=true:NoSchedule
+----
+
+If you don't use taints, the toleration has no effect, and you don't need to change anything.
+
+[cols="2,1,2,3",options="header"]
+|===
+|Deployment |Label the nodes |Taint on AI Data Engine nodes |Result
+
+|Dedicated cluster
+|Yes
+|Not required
+|The built-in toleration has no effect.
+
+|Dedicated nodes in a shared cluster
+|Yes
+|`netapp.com/aide=true:NoSchedule`
+|AI Data Engine pods run only on those nodes, and other workloads stay off them.
+|===
+
+NOTE: If a node has a taint that AI Data Engine pods don't tolerate, the pods stay in the `Pending` state.
+
+. For a shared cluster, taint each node that you reserved for AI Data Engine. Replace `<node-name>` with the name of the node:
++
+[source,bash]
+----
+kubectl taint node <node-name> netapp.com/aide=true:NoSchedule
+----
++
+Non-AI Data Engine pods can't schedule on the node. AI Data Engine pods tolerate the taint.
+
+. If the nodes have other taints, add the `--extra-toleration` parameter to the end of the install command, after the last existing parameter. Repeat the parameter for each additional taint.
++
+* To match a key and value, use `--extra-toleration KEY=VALUE:EFFECT`.
+* To match a key only, use `--extra-toleration KEY:EFFECT`.
++
+`EFFECT` is `NoSchedule`, `PreferNoSchedule`, or `NoExecute`. If you specify an invalid effect, the installer stops. The installer applies the extra tolerations to every AI Data Engine component.
++
+For example, if a node is also tainted `dedicated=redis:NoSchedule`, add the following parameter:
++
+[source,bash]
+----
+--extra-toleration dedicated=redis:NoSchedule
 ----
 
 === Ingress ports
@@ -247,7 +308,7 @@ parameters:
 
 Save the manifest as `aide-sc.yaml` and apply it by running `kubectl apply -f aide-sc.yaml`. Then specify `--storage-class aide-sc` when you run the install command.
 
-* Run `az login` as the user that runs the installer. AKS kubeconfig files authenticate by using the Azure CLI sign-in of the current user, so don't run the installer with `sudo`. Specify a tools directory that you own instead.
+* Run `az login` as the user that runs the installer. AKS kubeconfig files authenticate by using the Azure CLI sign-in of the current user. Specify a tools directory that you own.
 * If the AKS cluster is private, the installer host must reach the API server over the virtual network, a peered network, or a VPN. Run `kubectl cluster-info` from the installer host to verify access.
 
 == Related information

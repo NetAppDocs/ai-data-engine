@@ -18,7 +18,7 @@ Your VM must meet the requirements in the following sections before you run the 
 * You have root or sudo access on the target VM to run the installer.
 * The target host has bash 4.0 or later, curl, and tar available. macOS is not supported because it ships with bash 3.2.
 * If curl or tar is not installed, install them with `dnf install curl tar` on RHEL-based distributions or `apt-get install curl tar` on Ubuntu.
-* The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. You don't need to install these tools on the VM.
+* The installer automatically downloads and bootstraps `k3s`, `helm`, `kubectl`, and `jq`. You don't need to install these tools on the VM. The installer always downloads its own copy of `kubectl` to `/opt/netapp/aide/.aide-installer-tools` and doesn't add it to your `PATH`.
 
 == Storage type
 
@@ -145,8 +145,6 @@ Unlike firewalld, ufw has no trusted zone. Use `ufw allow from <cidr>` to permit
 
 For the application ports that must be open, see link:aide-requirements.html#networking-requirements[AIDE requirements].
 
-// RESEARCH SELinux is not supported for single-node (Lite) installs. Confirm what that means for RHEL-family hosts (Enforcing only, or any mode) and whether a prerequisite or known limitation should tell customers what to do. The SELinux section was removed because it said that no manual SELinux configuration is needed.
-
 [[operating-system-packages]]
 == Operating system packages
 
@@ -162,7 +160,7 @@ The installer installs the packages in the following table. Ensure that your pac
 |Make the package available from those repositories.
 
 |`container-selinux`, `policycoreutils`, `libselinux-utils`, `selinux-policy-targeted`
-|RHEL, Rocky Linux, or AlmaLinux 8 or 9, when SELinux is installed, in any mode. Not used on Ubuntu.
+|RHEL, Rocky Linux, or AlmaLinux 8 or 9 when SELinux files are present on the host, even if SELinux is disabled. These distributions include SELinux by default. The packages are not used on Ubuntu.
 |The VM's own repositories.
 |Make the packages available from those repositories.
 
@@ -171,6 +169,8 @@ The installer installs the packages in the following table. Ensure that your pac
 |`rpm.rancher.io`, through the AI Data Engine proxy when you use a proxy. If your repositories already provide it, the installer uses that copy.
 |Allow `rpm.rancher.io` on the proxy. You don't have to supply this package yourself.
 |===
+
+NOTE: NetApp hasn't validated AI Data Engine on hosts with SELinux. The installer downloads the SELinux packages in this table whenever SELinux files are present on the host, even if SELinux is disabled.
 
 == Related information
 
