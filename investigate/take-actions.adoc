@@ -90,7 +90,7 @@ NOTE: The credentials you provide for an SMB destination are separate from the A
 . To create a breadcrumb file at the original location, enable *Leave breadcrumb*.
 +
 A breadcrumb file helps users understand why a file was moved.
-. Select *Archive*.
+. Select *Archive file*.
 
 == Copy selected items
 
@@ -204,7 +204,7 @@ The Investigation view applies a *Duplicates* filter that includes files with du
 . Review the matching files and their locations.
 . Select the files you want to clean up.
 +
-Review the *Selected items* count. To start again, select *Clear selection*.
+Review the *Selected items* count.
 . Select *Clean up duplicates*.
 . Review the estimated number of files matching the current filters that have duplicate copies.
 +

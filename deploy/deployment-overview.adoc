@@ -33,7 +33,7 @@ Single-node deployments typically complete within 45 minutes. Multi-node deploym
 
 == Deployment with a proxy
 
-If your host or cluster reaches the internet only through an outbound proxy, deploy AI Data Engine with a proxy. The proxy steps differ for each deployment type, so each type has its own complete topic that replaces the standard deployment topic. See link:configure-proxy.html[Learn about proxies for AI Data Engine] for the supported proxy types and the hosts to allow on your proxy.
+If your host or cluster reaches the internet only through an outbound proxy, deploy AI Data Engine with a proxy. The proxy steps differ for each deployment type, so each type has its own complete topic that replaces the standard deployment topic. See link:configure-proxy.html[Learn about proxies for AI Data Engine] for the supported proxy types, and link:aide-requirements.html#outbound-internet-access[Outbound internet access] for the endpoints to allow on your proxy.
 
 [cols="1h,2,2",options="header"]
 |===

@@ -7,8 +7,10 @@ entries:
     url: /mcp/quick-start-mcp.html
   - title: Prepare the MCP host
     url: /mcp/prepare-mcp-host.html
-  - title: Configure Entra ID and MCP access
-    url: /mcp/configure-mcp-access.html
+  - title: Configure Microsoft Entra ID
+    url: /mcp/configure-entra-id-mcp.html
+  - title: Connect AI Data Engine to Microsoft Entra ID
+    url: /mcp/connect-entra-id-aide-mcp.html
   - title: Manage data collections
     url: /mcp/manage-data-collections.html
   - title: Connect AI clients

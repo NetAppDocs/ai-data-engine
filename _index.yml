@@ -1,6 +1,6 @@
 indexpage:
   title: AI Data Engine documentation
-  lead: "AI Data Engine is a metadata intelligence service, managed through NetApp Console, that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale. With governed AI access, supported AI clients can search that metadata through the Model Context Protocol (MCP)."
+  lead: "AI Data Engine is a metadata intelligence service, managed through NetApp Console, that scans your connected systems, builds a metadata catalog, and gives you the visibility and tools to optimize storage and govern data at scale. With governed AI access, AI clients can search that metadata through the Model Context Protocol (MCP)."
   summary: "AI Data Engine documentation covers how to deploy, connect data sources, and use AI Data Engine for storage optimization, metadata investigation, data governance, and governed AI access through MCP."
   keywords: ai data engine, aide, storage optimization, investigation, policies, data governance, NetApp Console, governed ai access, mcp, model context protocol
   tiles:
@@ -50,8 +50,12 @@ indexpage:
           url: /mcp/learn-about-mcp.html
         - title: Quick start for governed AI access
           url: /mcp/quick-start-mcp.html
-        - title: Configure Entra ID and MCP access
-          url: /mcp/configure-mcp-access.html
+        - title: Prepare the MCP host
+          url: /mcp/prepare-mcp-host.html
+        - title: Configure Microsoft Entra ID
+          url: /mcp/configure-entra-id-mcp.html
+        - title: Connect AI Data Engine to Microsoft Entra ID
+          url: /mcp/connect-entra-id-aide-mcp.html
         - title: Manage data collections
           url: /mcp/manage-data-collections.html
         - title: Connect AI clients

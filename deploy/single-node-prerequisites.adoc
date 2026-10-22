@@ -147,9 +147,30 @@ For the application ports that must be open, see link:aide-requirements.html#net
 
 // RESEARCH SELinux is not supported for single-node (Lite) installs. Confirm what that means for RHEL-family hosts (Enforcing only, or any mode) and whether a prerequisite or known limitation should tell customers what to do. The SELinux section was removed because it said that no manual SELinux configuration is needed.
 
+[[operating-system-packages]]
 == Operating system packages
 
-The installer installs `cifs-utils`, which is required for Kerberos-based CIFS/SMB scanning, from the operating system repositories enabled on the host. Ensure that your package managers have the appropriate proxy configuration if required in your environment.
+The installer installs the packages in the following table. Ensure that your package managers have the appropriate proxy configuration if required in your environment.
+
+[cols="3,3,3,3",options="header"]
+|===
+|Package |When it is needed |Where it comes from |Your responsibility
+
+|`cifs-utils`
+|Every connected installation, unless `cifs.upcall` is already installed. Required for Kerberos-based CIFS/SMB scanning.
+|The VM's own repositories.
+|Make the package available from those repositories.
+
+|`container-selinux`, `policycoreutils`, `libselinux-utils`, `selinux-policy-targeted`
+|RHEL, Rocky Linux, or AlmaLinux 8 or 9, when SELinux is installed, in any mode. Not used on Ubuntu.
+|The VM's own repositories.
+|Make the packages available from those repositories.
+
+|`k3s-selinux`
+|The same RHEL-family hosts as the previous row.
+|`rpm.rancher.io`, through the AI Data Engine proxy when you use a proxy. If your repositories already provide it, the installer uses that copy.
+|Allow `rpm.rancher.io` on the proxy. You don't have to supply this package yourself.
+|===
 
 == Related information
 

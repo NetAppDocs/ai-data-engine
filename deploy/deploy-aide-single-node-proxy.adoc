@@ -11,29 +11,29 @@ summary: Deploy AIDE as a single-node deployment from NetApp Console when the ta
 [.lead]
 Deploy AIDE as a single-node deployment from NetApp Console when the target host reaches the internet only through an outbound proxy. This topic includes every step of the single-node deployment, along with the proxy steps. If the target host has direct internet access, use link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment] instead.
 
-For the supported proxy types, the complete parameter reference, and the hosts to allow on your proxy, see link:configure-proxy.html[Learn about proxies for AI Data Engine].
+For the supported proxy types and the complete parameter reference, see link:configure-proxy.html[Learn about proxies for AI Data Engine]. For the endpoints to allow on your proxy, see link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 
-== What the installer configures
-
-In a single-node deployment, AI Data Engine owns the VM that it installs on, so the installer configures every AI Data Engine part of the host for the proxy. The installer does the following:
-
-* Downloads the k3s install script and binary through the proxy. It doesn't give k3s or the kubelet a system-wide proxy.
-* Configures the k3s container runtime to pull images through the proxy. Registries that you list in `--proxy-bypass-registries` connect directly.
-* Adds the CA certificate that you supply with `--proxy-ca-cert` to the host trust store.
-
-// RESEARCH Confirm whether customer documentation should describe where the installer stores proxy settings and credentials (the aide-proxy-config ConfigMap, the aide-proxy-credentials Secret, and the k3s service environment file on single-node deployments).
-You don't configure the VM container runtime or trust store.
-
-.Before you begin
+== Before you begin
 
 * You have _Organization admin_ or greater permissions in NetApp Console.
 * Sudo (or root) permissions are required on the target host to run the install command.
 * Your environment meets all prerequisites as described in link:single-node-prerequisites.html[AIDE single-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
 * A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
-* You have configured your proxy to allow the endpoints and hosts in link:configure-proxy.html#proxy-allowlist[Hosts to allow on your proxy].
+* You have configured your proxy to allow the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 * You know the proxy host, port, and scheme (`http` or `https`). If the proxy requires authentication, you also know the username and password.
 * If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the target host.
-* The operating system repositories on the target host provide the packages listed in link:single-node-prerequisites.html[AIDE single-node deployment prerequisites]. Ensure that your package managers have the appropriate proxy configuration if required in your environment.
+* The operating system repositories on the target host provide the packages listed in link:single-node-prerequisites.html#operating-system-packages[Operating system packages]. Ensure that your package managers have the appropriate proxy configuration if required in your environment.
+
+== What the installer configures
+
+In a single-node deployment, AI Data Engine owns the VM that it installs on. The installer configures the k3s runtime and AI Data Engine for the proxy. It doesn't change the proxy configuration of the host, such as the operating system package managers. The installer does the following:
+
+* Downloads the k3s install script and binary through the proxy. It doesn't give k3s or the kubelet a system-wide proxy.
+* Configures the k3s container runtime to pull images through the proxy.
+* Adds the CA certificate that you supply with `--proxy-ca-cert` to the AI Data Engine trust store.
+
+// RESEARCH Confirm whether customer documentation should describe where the installer stores proxy settings and credentials (the aide-proxy-config ConfigMap, the aide-proxy-credentials Secret, and the k3s service environment file on single-node deployments).
+You don't configure the k3s container runtime or the trust store.
 
 == Copy the install command
 
@@ -54,10 +54,10 @@ These sizes are recommended baselines, not hard limits. See link:aide-requiremen
 The wizard generates the install command with the configuration size you select. You don't need to edit the command to set the size.
 
 . Copy the install command displayed in the wizard to an editor.
-
++
 The install command downloads the installer from `d13jb5dapseb36.cloudfront.net` and starts it in one step. That download doesn't use the proxy.
 
-* If the target host can reach `d13jb5dapseb36.cloudfront.net` directly, skip the next section and continue with <<create-password-file-single-node,Create a proxy password file>>. Run the install command as copied. If you add proxy parameters, add them inside the quotes, before the closing quote.
+* If the target host can reach `d13jb5dapseb36.cloudfront.net` directly, skip the next section and continue with <<create-password-file-single-node,Create a proxy password file>>. Run the install command as copied. The installer prompts you for the proxy settings. To supply them on the command line instead, see <<command-line-flags-single-node,Non-interactive installation with command-line flags>>.
 * If the target host reaches the internet only through a proxy, the command stops at the download. Complete the next section first.
 
 [[download-installer-single-node]]
@@ -82,7 +82,7 @@ If the proxy requires a username, add `--proxy-user USER` to the `curl` command.
 * If your proxy uses a privately signed certificate, add `--proxy-cacert CA_FILE`, or add the CA certificate to the target host trust store first.
 * With an HTTPS proxy and a `curl` version earlier than 8.3, which includes Ubuntu 22.04, the download can pause for about a minute. Wait for it to finish.
 +
-Alternatively, download `\https://d13jb5dapseb36.cloudfront.net/aide/latest/aide-installer.tar.gz` from another computer, and then copy it to the target host with `scp` or your usual file transfer method.
+Alternatively, download `\https://d13jb5dapseb36.cloudfront.net/aide/latest/aide-installer.tar.gz` from another device, and then copy it to the target host with `scp` or your usual file transfer method.
 
 . Extract the installer, and change to the installer folder:
 +
@@ -101,12 +101,14 @@ Run every following command from inside this installer folder. The `version.txt`
 * Add `sudo` in front, so the command starts with `sudo ./install-lite.sh`. The installer must run as root, and removing the `bash -c` wrapper removes the `sudo` that was providing it.
 * If the command contains `--no-proxy`, delete it.
 +
-The remaining command looks like this after you add the proxy parameters:
+The remaining command looks like this:
 +
 [source,bash]
 ----
-sudo ./install-lite.sh --account-id <account-id> --organization-id <organization-id> --agent-id <agent-id> --env <environment> --user-token <user-token> --cm-host <console-agent-ip> --catalog-endpoint <catalog-endpoint> --flavor <small|medium|large> --proxy-host proxy.example.com --proxy-port 3128 --proxy-scheme http
+sudo ./install-lite.sh --account-id <account-id> --organization-id <organization-id> --agent-id <agent-id> --env <environment> --user-token <user-token> --cm-host <console-agent-ip> --catalog-endpoint <catalog-endpoint> --flavor <small|medium|large>
 ----
++
+Keep every parameter that follows `./install-lite.sh` exactly as it appears in the command that you copied. The installer prompts you for the proxy settings. See <<interactive-setup-single-node,Interactive guided setup>>.
 
 [[create-password-file-single-node]]
 == Create a proxy password file
@@ -128,13 +130,10 @@ Delete the file after the installation completes.
 
 == Supply the proxy settings
 
-You can supply the proxy settings in two ways:
-
-* *Interactive guided setup*: The installer prompts you for the proxy settings. This is the default method.
-* *Command-line flags*: Add the proxy parameters to the install command. The flags are optional. Use them for automated or other non-interactive deployments that must run without prompts. The installer prompts you for any proxy information you don't supply.
+The installer prompts you for the proxy settings. Run the install command as copied from NetApp Console, and answer the prompts. For automated deployments that must run without prompts, see <<command-line-flags-single-node,Non-interactive installation with command-line flags>>.
 
 [[interactive-setup-single-node]]
-=== Interactive guided setup
+=== Use the interactive guided setup
 
 When you run the install command in a terminal without `--proxy-host` or `--no-proxy`, the installer asks the following questions. If you pass a value as a parameter, the installer doesn't ask for it again.
 
@@ -169,14 +168,16 @@ When you run the install command in a terminal without `--proxy-host` or `--no-p
 Without a terminal, the installer never prompts. Pass `--proxy-host` to use a proxy, and `--proxy-password-file` if the proxy needs a password.
 
 [[command-line-flags-single-node]]
-=== Command-line flags
+== Use command-line flags for setup
 
-Add the proxy parameters to the install command after the last existing parameter.
+Use command-line flags for automated or other non-interactive deployments that must run without prompts. The flags are optional. The installer prompts you for any proxy information you don't supply.
+
+Add the proxy parameters to the end of the install command, after the last existing parameter.
 
 * If you run the install command as copied from NetApp Console, add the parameters inside the quotes, before the closing quote.
 * If you downloaded the installer and shortened the command, add the parameters to the end of the shortened command.
 
-If the command contains `--no-proxy`, remove it. Keep every other parameter from the install command. For the description and default of each parameter, including `--proxy-bypass-registries`, see link:configure-proxy.html#proxy-parameters[Proxy configuration parameters]. The following examples show only the proxy parameters.
+If the command contains `--no-proxy`, remove it. Keep every other parameter from the install command. For the description and default of each parameter, see link:configure-proxy.html#proxy-parameters[Proxy configuration parameters]. The following examples show only the proxy parameters.
 
 .HTTP proxy with a username and password
 [source,bash]
@@ -206,7 +207,7 @@ CAUTION: With an HTTP proxy, the proxy username and password are sent in clear t
 
 . Run the install command on your target host. If you downloaded the installer, run the command from the installer folder.
 +
-Before the installer downloads anything, it checks from the target host that the proxy responds, that the proxy accepts your credentials, and that the proxy certificate is valid for the scheme you chose. If the check fails, the installer stops and names the cause. See <<troubleshoot-single-node,Troubleshoot proxy problems>>.
+Before the installer downloads anything, it checks from the target host that the proxy responds, that the proxy accepts your credentials, and that the proxy certificate is valid for the scheme you chose. If the check fails, the installer stops and names the cause.
 +
 NOTE: Installation takes about 45 minutes to complete. Timeouts and retries might occur, and this is normal.
 
@@ -228,41 +229,6 @@ sudo k3s kubectl -n aide logs -l control-plane=controller-manager -c chart-fetch
 ----
 
 The line shows the proxy endpoint, whether authentication is on, and whether a CA certificate is mounted.
-
-[[troubleshoot-single-node]]
-== Troubleshoot proxy problems
-
-If the proxy check fails, the installer stops and names the cause.
-
-// RESEARCH Engineering to verify the installer error messages and the HTTP 407 behavior. Keep the CA certificate path row only if the installer behaves as described.
-[cols="2,2,3",options="header"]
-|===
-|Symptom |Cause |Action
-
-|The install command from NetApp Console stops at the download, with a `curl` timeout, a connection error, or an HTTP error.
-|The target host can't reach `d13jb5dapseb36.cloudfront.net` directly. The download doesn't use the proxy.
-|Follow <<download-installer-single-node,Download the installer through the proxy>>. Check that the host is allowed on your proxy and exempt from TLS inspection.
-
-|The installer stops at the proxy check with HTTP 407 or "Proxy Authentication Required".
-|The proxy username or password is wrong, the proxy requires a method other than basic authentication, or you didn't supply credentials.
-|Check the username and the contents of the password file with your proxy administrator. Add `--proxy-user` and `--proxy-password-file` if the proxy requires authentication.
-
-|The installer stops at the proxy check with a connection or TLS error.
-|The port or scheme is wrong. An HTTP proxy fails with `--proxy-scheme https`, which is the default. For an HTTPS proxy with a private certificate, you didn't supply the CA certificate, or the CA certificate you supplied didn't sign the proxy certificate.
-|Verify the host, port, and scheme. Pass `--proxy-scheme http` for an HTTP proxy. For an HTTPS proxy with a private certificate, supply the CA certificate that signed the proxy certificate with `--proxy-ca-cert`.
-
-|The installer rejects the CA certificate path.
-|The file is empty or isn't PEM-encoded, the directory is empty, or the path doesn't exist.
-|Supply a valid PEM file, or a flat directory of `.crt` or `.pem` files.
-
-|Downloads or AI Data Engine pods fail with HTTP 403 from the proxy.
-|A host is missing from the proxy allowlist.
-|Check the proxy access log for denied requests, and compare them with the endpoints and hosts in link:configure-proxy.html#proxy-allowlist[Hosts to allow on your proxy].
-
-|Pods stay in `ImagePullBackOff`.
-|The NetApp container registry or the image layer bucket isn't allowed on the proxy, or a TLS-inspecting proxy re-signs those hosts.
-|Check the proxy allowlist and the TLS inspection exemptions.
-|===
 
 == Related information
 

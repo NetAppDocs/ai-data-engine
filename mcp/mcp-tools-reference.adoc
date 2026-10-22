@@ -18,7 +18,7 @@ AI clients use the tools in a power-user session. A user gets a power-user sessi
 * The user holds the `AIDEPowerUsers` app role in Microsoft Entra ID.
 * The AI client requests the `power_users` scope.
 
-Refer to link:configure-mcp-access.html#define-scopes-and-the-power-user-app-role[Define the scope and the power-user app role].
+Refer to link:configure-entra-id-mcp.html#create-and-assign-the-power-user-app-role[Create and assign the power-user app role].
 
 // RESEARCH What does a signed-in user who doesn't hold the AIDEPowerUsers app role see and experience in GA (no tools, an error, or a sign-in failure)? Document the result once confirmed. Do not describe other access levels.
 
@@ -52,7 +52,7 @@ A connection is limited to the collection in the MCP server URL. To work with a 
 == How tags work
 
 * Tags apply across AI Data Engine, not only to one collection. Tags that you create or apply through an AI client are also available in the Investigation view.
-* A misspelled tag name creates a new tag. Tag names aren't case-sensitive.
+* A misspelled tag name creates a new tag. Tag names are case-sensitive, so `Finance` and `finance` are different tags.
 * You can't delete or rename a tag after you create it. For limitations on tag names, refer to link:../release-notes/known-limitations.html[Known limitations].
 * AI clients can't list the files that have a tag.
 
