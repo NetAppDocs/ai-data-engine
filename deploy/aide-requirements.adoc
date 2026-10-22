@@ -100,7 +100,7 @@ For an online installation, the following endpoints must be reachable.
 // RESEARCH Which CloudFront endpoint hosts the installer scripts?
 // RESEARCH Which component initiates each of the support.compliance and CloudFront connections?
 // RESEARCH Should the ECR, S3, and STS rows use a region placeholder instead of us-west-2, and does the account ID in the registry rows change per deployment?
-// RESEARCH The rpm.rancher.io row describes the k3s SELinux policy package on RHEL with SELinux in Enforcing mode. SELinux is not supported for single-node installs, and the installation source says the k3s installation downloads this package whenever SELinux is installed, in any mode. Confirm whether to keep, reword, or remove this row.
+// RESEARCH Dave follow-up with Nitin: confirm the Ubuntu package archive rows (HTTP, port 80). OS package managers don't use the AI Data Engine proxy settings, so confirm whether these rows belong in this table.
 [cols="3,3,2,1",options="header"]
 |===
 |Endpoint |Purpose |Initiated by |Deployment type
@@ -149,6 +149,26 @@ For an online installation, the following endpoints must be reachable.
 |AI Data Engine
 |Both
 
+|`\https://aide-version-policy.s3.us-west-2.amazonaws.com`
+|AI Data Engine operator: version policy
+|AI Data Engine
+|Both
+
+|`\https://api.bluexp.netapp.com`
+|NetApp Console registration
+|Installer
+|Both
+
+|`\https://netapp-cloud-account.auth0.com`
+|NetApp Console authentication
+|AI Data Engine
+|Both
+
+|`\https://checkip.amazonaws.com`
+|Optional. The health monitor uses it to show the public IP address on the health dashboard. AI Data Engine works without it.
+|AI Data Engine
+|Both
+
 |`\https://support.compliance.api.bluexp.netapp.com`
 |Software images, manifests, and templates; logs and metrics streaming
 |AI Data Engine
@@ -185,9 +205,9 @@ For an online installation, the following endpoints must be reachable.
 |Single node only
 
 |`\https://rpm.rancher.io`
-|k3s SELinux policy package, on RHEL with SELinux in Enforcing mode
+|k3s SELinux policy package (`k3s-selinux`), on RHEL, Rocky Linux, or AlmaLinux 8 or 9 when SELinux is installed, in any mode. The installer uses your repository's copy if it provides one.
 |Installer
-|Single node only (RHEL)
+|Single node only (RHEL family)
 
 |`\https://auth.docker.io`
 |Docker Hub authentication for k3s system images
@@ -220,7 +240,9 @@ For an online installation, the following endpoints must be reachable.
 |Single node only (Ubuntu)
 |===
 
-If you use a proxy, allow these endpoints on your proxy using the exact hostnames listed, without wildcards or a leading dot. For multi-node deployments, the container runtime connections are made by the cluster nodes. See link:configure-proxy.html[Learn about proxies for AI Data Engine]. For the additional hosts that proxy installations need, see link:configure-proxy.html#proxy-allowlist[Hosts to allow on your proxy]. To deploy with a proxy, see link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy] or link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy].
+The endpoints in this table are the same whether you connect directly to the internet or through a proxy.
+
+If you use a proxy, allow each endpoint for HTTPS (`CONNECT`) on port 443 using the exact hostnames listed, without wildcards or a leading dot. Allow `d13jb5dapseb36.cloudfront.net`, which hosts the installer download, by hostname. Its IP addresses are shared with other sites and change often, so a rule based on IP addresses stops working. For multi-node deployments, the container runtime connections are made by the cluster nodes. See link:configure-proxy.html[Learn about proxies for AI Data Engine]. To deploy with a proxy, see link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy] or link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy].
 
 NOTE: Ensure that your package managers have the appropriate proxy configuration if required in your environment.
 

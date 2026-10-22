@@ -11,7 +11,7 @@ summary: Deploy AIDE as a multi-node deployment from NetApp Console when your cl
 [.lead]
 Deploy AIDE as a multi-node deployment from NetApp Console when your Kubernetes cluster and the installer host reach the internet only through an outbound proxy. This topic includes every step of the multi-node deployment, along with the proxy steps. If your cluster and installer host have direct internet access, use link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment] instead.
 
-For the supported proxy types, the complete parameter reference, and the hosts to allow on your proxy, see link:configure-proxy.html[Learn about proxies for AI Data Engine].
+For the supported proxy types and the complete parameter reference, see link:configure-proxy.html[Learn about proxies for AI Data Engine]. For the endpoints to allow on your proxy, see link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 
 == How the proxy applies to a multi-node deployment
 
@@ -31,7 +31,7 @@ The installer also doesn't install operating system packages on your nodes. Ensu
 * kubectl is available on the machine from which you run the install command, with cluster-admin access to the target cluster.
 * The target Kubernetes namespace (default `aide`) already exists on the cluster before you run the install command.
 * A configured StorageClass (default name: `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
-* You have configured your proxy to allow the endpoints and hosts in link:configure-proxy.html#proxy-allowlist[Hosts to allow on your proxy].
+* You have configured your proxy to allow the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 * You know the proxy host, port, and scheme (`http` or `https`). If the proxy requires authentication, you also know the username and password.
 * If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the installer host.
 
@@ -84,8 +84,6 @@ sudo systemctl daemon-reload && sudo systemctl restart containerd
 
 Other distributions::
 Follow the vendor's procedure for configuring an HTTP proxy for image pulls.
-
-The `--proxy-bypass-registries` parameter isn't available for multi-node deployments. Configure registries that bypass the proxy in each node's container runtime.
 
 === Add the proxy CA certificate
 
@@ -143,7 +141,7 @@ The wizard generates the install command with the configuration size you select.
 
 The install command downloads the installer from `d13jb5dapseb36.cloudfront.net` and starts it in one step. That download doesn't use the proxy.
 
-* If the installer host can reach `d13jb5dapseb36.cloudfront.net` directly, skip the next section and continue with <<create-password-file-multi-node,Create a proxy password file>>. Run the install command as copied. If you add proxy parameters, add them inside the quotes, before the closing quote.
+* If the installer host can reach `d13jb5dapseb36.cloudfront.net` directly, skip the next section and continue with <<create-password-file-multi-node,Create a proxy password file>>. Run the install command as copied. The installer prompts you for the proxy settings. To supply them on the command line instead, see <<command-line-flags-multi-node,Non-interactive installation with command-line flags>>.
 * If the installer host reaches the internet only through a proxy, the command stops at the download. Complete the next section first. Only the installer host needs this. Your nodes don't download the installer.
 
 [[download-installer-multi-node]]
@@ -186,12 +184,14 @@ Run every following command from inside this installer folder. The `version.txt`
 * If the command was wrapped in quotes, for example `bash -c '...'`, delete the single quote (`'`) at the very end.
 * If the command contains `--no-proxy`, delete it.
 +
-The remaining command looks like this after you add the proxy parameters:
+The remaining command looks like this:
 +
 [source,bash]
 ----
-./install-enterprise.sh --flavor <small|medium|large> --kubeconfig <kubeconfig-path> --nfs-server <nfs-server> --nfs-data-share <export-path> --registry <registry> --account-id <account-id> --organization-id <organization-id> --agent-id <agent-id> --cm-host <console-agent-ip> --proxy-host proxy.example.com --proxy-port 3128 --proxy-scheme http
+./install-enterprise.sh --flavor <small|medium|large> --kubeconfig <kubeconfig-path> --nfs-server <nfs-server> --nfs-data-share <export-path> --registry <registry> --account-id <account-id> --organization-id <organization-id> --agent-id <agent-id> --cm-host <console-agent-ip>
 ----
++
+Keep every parameter that follows `./install-enterprise.sh` exactly as it appears in the command that you copied. The installer prompts you for the proxy settings. See <<interactive-setup-multi-node,Interactive guided setup>>.
 
 [[create-password-file-multi-node]]
 == Create a proxy password file
@@ -213,15 +213,12 @@ Delete the file after the installation completes.
 
 == Supply the proxy settings
 
-You can supply the proxy settings in two ways:
-
-* *Interactive guided setup*: The installer prompts you for the proxy settings. This is the default method.
-* *Command-line flags*: Add the proxy parameters to the install command. The flags are optional. Use them for automated or other non-interactive deployments that must run without prompts. The installer prompts you for any proxy information you don't supply.
+The installer prompts you for the proxy settings. Run the install command as copied from NetApp Console, and answer the prompts. For automated deployments that must run without prompts, see <<command-line-flags-multi-node,Non-interactive installation with command-line flags>>.
 
 Use the same proxy host, port, scheme, and CA certificate that you configured on the nodes.
 
 [[interactive-setup-multi-node]]
-=== Interactive guided setup
+=== Use the interactive guided setup
 
 When you run the install command in a terminal without `--proxy-host` or `--no-proxy`, the installer asks the following questions. If you pass a value as a parameter, the installer doesn't ask for it again.
 
@@ -256,9 +253,11 @@ When you run the install command in a terminal without `--proxy-host` or `--no-p
 Without a terminal, the installer never prompts. Pass `--proxy-host` to use a proxy, and `--proxy-password-file` if the proxy needs a password.
 
 [[command-line-flags-multi-node]]
-=== Command-line flags
+== Use command-line flags for setup
 
-Add the proxy parameters to the install command after the last existing parameter.
+Use command-line flags for automated or other non-interactive deployments that must run without prompts. The flags are optional. The installer prompts you for any proxy information you don't supply.
+
+Add the proxy parameters to the end of the install command, after the last existing parameter.
 
 * If you run the install command as copied from NetApp Console, add the parameters inside the quotes, before the closing quote.
 * If you downloaded the installer and shortened the command, add the parameters to the end of the shortened command.
@@ -293,7 +292,7 @@ CAUTION: With an HTTP proxy, the proxy username and password are sent in clear t
 
 . Run the install command from your target host with kubectl access to your Kubernetes cluster. If you downloaded the installer, run the command from the installer folder.
 +
-Before the installer downloads anything, it checks from the installer host that the proxy responds, that the proxy accepts your credentials, and that the proxy certificate is valid for the scheme you chose. If the check fails, the installer stops and names the cause. See <<troubleshoot-multi-node,Troubleshoot proxy problems>>. The check doesn't test whether the cluster nodes can reach the proxy.
+Before the installer downloads anything, it checks from the installer host that the proxy responds, that the proxy accepts your credentials, and that the proxy certificate is valid for the scheme you chose. If the check fails, the installer stops and names the cause. The check doesn't test whether the cluster nodes can reach the proxy.
 +
 NOTE: The `sudo` command removes environment variables, so always pass `--kubeconfig` explicitly if you run the installer with `sudo`. For more information, see link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites].
 +
@@ -317,45 +316,6 @@ kubectl -n aide logs -l control-plane=controller-manager -c chart-fetcher | grep
 ----
 
 The line shows the proxy endpoint, whether authentication is on, and whether a CA certificate is mounted.
-
-[[troubleshoot-multi-node]]
-== Troubleshoot proxy problems
-
-If the proxy check fails, the installer stops and names the cause.
-
-// RESEARCH Engineering to verify the installer error messages and the HTTP 407 behavior. Keep the CA certificate path row only if the installer behaves as described.
-[cols="2,2,3",options="header"]
-|===
-|Symptom |Cause |Action
-
-|The install command from NetApp Console stops at the download, with a `curl` timeout, a connection error, or an HTTP error.
-|The installer host can't reach `d13jb5dapseb36.cloudfront.net` directly. The download doesn't use the proxy.
-|Follow <<download-installer-multi-node,Download the installer through the proxy>>. Check that the host is allowed on your proxy and exempt from TLS inspection.
-
-|The installer stops at the proxy check with HTTP 407 or "Proxy Authentication Required".
-|The proxy username or password is wrong, the proxy requires a method other than basic authentication, or you didn't supply credentials.
-|Check the username and the contents of the password file with your proxy administrator. Add `--proxy-user` and `--proxy-password-file` if the proxy requires authentication.
-
-|The installer stops at the proxy check with a connection or TLS error.
-|The port or scheme is wrong. An HTTP proxy fails with `--proxy-scheme https`, which is the default. For an HTTPS proxy with a private certificate, you didn't supply the CA certificate, or the CA certificate you supplied didn't sign the proxy certificate.
-|Verify the host, port, and scheme. Pass `--proxy-scheme http` for an HTTP proxy. For an HTTPS proxy with a private certificate, supply the CA certificate that signed the proxy certificate with `--proxy-ca-cert`.
-
-|The installer rejects the CA certificate path.
-|The file is empty or isn't PEM-encoded, the directory is empty, or the path doesn't exist.
-|Supply a valid PEM file, or a flat directory of `.crt` or `.pem` files.
-
-|The installer stops because it can't read the password file.
-|You created the password file as a different user than the one who runs the installer, for example under `/root`.
-|Create the file as the user who runs the installer.
-
-|Downloads or AI Data Engine pods fail with HTTP 403 from the proxy.
-|A host is missing from the proxy allowlist.
-|Check the proxy access log for denied requests, and compare them with the endpoints and hosts in link:configure-proxy.html#proxy-allowlist[Hosts to allow on your proxy].
-
-|Pods stay in `ImagePullBackOff` on some or all nodes.
-|The container runtime on those nodes isn't configured for the proxy, or the nodes don't trust the proxy CA certificate. The installer doesn't check nodes, so the installation itself succeeds. The NetApp container registry or the image layer bucket might also not be allowed on the proxy.
-|Check the container runtime proxy and CA certificate trust on the nodes first, and then check the proxy allowlist and TLS inspection exemptions. Use <<check-node-multi-node,Check a node>> to confirm each node.
-|===
 
 == Related information
 

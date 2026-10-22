@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: deploy/configure-proxy.html
-keywords: proxy, outbound proxy, forward proxy, HTTPS proxy, proxy certificate, proxy authentication, install, proxy host, proxy port, allowlist, CONNECT, installer download, container runtime, bypass registries
-summary: Learn how AI Data Engine works with a forward proxy, which proxy types and parameters it supports, and which hosts to allow on your proxy.
+keywords: proxy, outbound proxy, forward proxy, HTTPS proxy, proxy certificate, proxy authentication, install, proxy host, proxy port, allowlist, CONNECT, installer download, container runtime
+summary: Learn how AI Data Engine works with a forward proxy, and which proxy types and parameters it supports.
 ---
 = Learn about proxies for AI Data Engine
 :icons: font
@@ -11,16 +11,18 @@ summary: Learn how AI Data Engine works with a forward proxy, which proxy types 
 [.lead]
 If your AI Data Engine host or cluster cannot reach the internet directly, configure a forward proxy so the installer and AI Data Engine can download components, pull container images, and register with NetApp Console. The proxy options are the same for single-node and multi-node deployments. The steps to prepare for and run the installation differ, so each deployment type has its own workflow.
 
+The proxy settings apply only to the k3s runtime and AI Data Engine, not to the host system.
+
 == Deploy AI Data Engine with a proxy
 
-Each deployment type has its own topic with the complete procedure, from preparing the environment to running the installer and troubleshooting.
+Each deployment type has its own topic with the complete procedure, from preparing the environment to running the installer.
 
-* link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy]: The installer configures the proxy for the k3s runtime, the host trust store and AIDE.
+* link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy]: The installer configures the proxy for the k3s runtime and for AI Data Engine, including its trust store.
 * link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy]: You configure the container runtime proxy and the CA certificate trust on every node before you run the installer.
 
 == What goes through the proxy
 
-Only internet-bound traffic uses the proxy. All AI Data Engine internet destinations use HTTPS on port 443, so your proxy must allow `CONNECT` to port 443 for each endpoint and host in <<proxy-allowlist,Hosts to allow on your proxy>>.
+Only internet-bound traffic uses the proxy. All AI Data Engine internet destinations use HTTPS on port 443, so your proxy must allow `CONNECT` to port 443 for each endpoint in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 
 Traffic on your network connects directly and must stay reachable without the proxy:
 
@@ -51,47 +53,14 @@ Traffic on your network connects directly and must stay reachable without the pr
 
 You can address the proxy by hostname or IPv4 address.
 
-IMPORTANT: AI Data Engine supports standard forward proxies that tunnel connections with HTTP `CONNECT`, including HTTPS destinations. If your proxy inspects TLS traffic, exempt the endpoints and hosts in <<proxy-allowlist,Hosts to allow on your proxy>> from inspection, including the installer download host. TLS-inspecting proxies and some other proxy features aren't supported. See link:../release-notes/known-limitations.html[Known limitations].
+IMPORTANT: AI Data Engine supports standard forward proxies that tunnel connections with HTTP `CONNECT`, including HTTPS destinations. If your proxy inspects TLS traffic, exempt the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access] from inspection, including the installer download host. TLS-inspecting proxies and some other proxy features aren't supported. See link:../release-notes/known-limitations.html[Known limitations].
 
 The installer uses one proxy for every internet destination and every AI Data Engine component. The proxy settings are set during installation.
 
 [[proxy-allowlist]]
 == Hosts to allow on your proxy
 
-Allow the endpoints for your deployment type in link:aide-requirements.html#outbound-internet-access[Outbound internet access] on your proxy, and also allow the hosts in the following table. For a multi-node deployment, the container runtime connections are made by the cluster nodes. The operating system package manager endpoints in that table don't use the AI Data Engine proxy settings.
-
-Allow each host for HTTPS (`CONNECT`) on port 443. Use the exact hostnames. Don't use a leading dot or a wildcard.
-
-// RESEARCH Confirm the allowlist with engineering and QA. The aide-requirements outbound table lists hosts that the installation source does not (the Ubuntu package archives). It does not list the hosts in this table. Confirm whether proxy installations need them, and whether these hosts belong in the general table. The three Ubuntu package archive rows use HTTP on port 80, not HTTPS on port 443, and the installation source says OS repositories are not reached through the AI Data Engine proxy. Confirm how those rows should read for proxy installations.
-The following hosts are not in the outbound internet access table:
-
-[cols="4,4,2",options="header"]
-|===
-|Host |Purpose |Deployment type
-
-|`api.bluexp.netapp.com`
-|Installer: NetApp Console registration
-|Both
-
-|`netapp-cloud-account.auth0.com`
-|AI Data Engine services: NetApp Console authentication
-|Both
-
-|`aide-version-policy.s3.us-west-2.amazonaws.com`
-|AI Data Engine operator: version policy
-|Both
-
-|`checkip.amazonaws.com`
-|Optional. The AI Data Engine health monitor uses it to show the public IP address on the health dashboard. AI Data Engine works without it.
-|Both
-
-|===
-
-The container registry and AWS region in the outbound internet access table are the production values (`582244788873` and `us-west-2`). They match the `--registry` value in the install command from NetApp Console. If your install command shows a different `--registry` value, allow that host instead.
-
-Allow `d13jb5dapseb36.cloudfront.net`, which hosts the installer download, by hostname. Its IP addresses are shared with other sites and change often, so a rule based on IP addresses stops working.
-
-Allow `sts.us-west-2.amazonaws.com` only if the AI Data Engine registry credential refresh job uses an IAM role (IRSA) instead of access keys.
+Allow the endpoints for your deployment type in link:aide-requirements.html#outbound-internet-access[Outbound internet access] on your proxy. The list is the same whether or not you use a proxy. For a multi-node deployment, the container runtime connections are made by the cluster nodes.
 
 [[proxy-parameters]]
 == Proxy configuration parameters
@@ -127,10 +96,6 @@ Allow `sts.us-west-2.amazonaws.com` only if the AI Data Engine registry credenti
 |`--proxy-type <r>`
 |`r`
 |Type of proxy. `r` is a regular forward proxy and is the default. Don't change it. TLS-inspecting proxies are not supported.
-
-|`--proxy-bypass-registries <list>`
-|None
-|Single-node deployments only. Comma-separated list of container registries that the host reaches directly instead of through the proxy, for example an internal registry mirror. Accepts a host, `.domain`, `host:port`, IPv4 address, or CIDR. AWS hosts are rejected because AI Data Engine images must come from the NetApp container registry through the proxy.
 
 |`--no-proxy`
 |—
