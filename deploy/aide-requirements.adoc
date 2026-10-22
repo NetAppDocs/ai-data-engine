@@ -94,8 +94,13 @@ The following network connections must be open:
 
 [[outbound-internet-access]]
 === Outbound internet access
-For an online installation, the following endpoints must be reachable.
+For an online installation, the following endpoints must be reachable. Where a row states a condition, the endpoint is needed only in that case.
 
+// RESEARCH Confirm with the Console team whether the alternate ECR registry, api.ecr.us-west-2.amazonaws.com, and the nonregional S3 endpoints are required. The proxy prerequisite pages in DSENSE don't list them. Don't replace all AWS regions with a common placeholder: the registry and version-policy endpoints use us-west-2, and Cognito uses us-east-1.
+// RESEARCH Confirm which configurations in GA use the direct AWS Cognito path rather than the support gateway, so the cognito-identity row can state the condition in customer terms.
+// RESEARCH Confirm which component contacts login.microsoftonline.com for the MCP flow (AI Data Engine services, or the MCP host or AI client) and update the Initiated by value.
+// RESEARCH Confirm which components call api.workloads.netapp.com and api.gcp.workloads.netapp.com, and when they are needed.
+// RESEARCH Confirm that the hub.docker.com and cognito-idp connectivity tests apply only when an outbound proxy is configured.
 // RESEARCH Do the ECR, S3, and CDN endpoints in this table match what the Console team provides?
 // RESEARCH Which CloudFront endpoint hosts the installer scripts?
 // RESEARCH Which component initiates each of the support.compliance and CloudFront connections?
@@ -164,13 +169,58 @@ For an online installation, the following endpoints must be reachable.
 |AI Data Engine
 |Both
 
+|`\https://api.workloads.netapp.com`
+|FSx and NetApp workloads discovery
+|AI Data Engine
+|Both
+
+|`\https://api.gcp.workloads.netapp.com`
+|Google Cloud NetApp Volumes discovery
+|AI Data Engine
+|Both
+
 |`\https://checkip.amazonaws.com`
 |Optional. The health monitor uses it to show the public IP address on the health dashboard. AI Data Engine works without it.
 |AI Data Engine
 |Both
 
+|`\https://api.ipify.org`
+|Optional. Fallback for obtaining the public IP address shown on the health dashboard. AI Data Engine works without it.
+|AI Data Engine
+|Both
+
+|`\https://icanhazip.com`
+|Optional. Fallback for obtaining the public IP address shown on the health dashboard. AI Data Engine works without it.
+|AI Data Engine
+|Both
+
+|`\https://ipinfo.io`
+|Optional. Fallback for obtaining the public IP address shown on the health dashboard. AI Data Engine works without it.
+|AI Data Engine
+|Both
+
+|`\https://hub.docker.com`
+|Optional. Proxy connectivity test, used only when you use an outbound proxy. A failed test doesn't block installation or runtime. This endpoint is separate from the Docker Hub endpoints that serve k3s system images.
+|AI Data Engine
+|Both
+
+|`\https://cognito-idp.us-east-1.amazonaws.com`
+|Optional. Proxy connectivity test, used only when you use an outbound proxy. A failed test doesn't block installation or runtime.
+|AI Data Engine
+|Both
+
+|`\https://cognito-identity.us-east-1.amazonaws.com`
+|AWS Cognito access, required only when AI Data Engine services use the direct AWS path instead of the support gateway. Also used for an optional proxy connectivity test.
+|AI Data Engine
+|Both
+
 |`\https://support.compliance.api.bluexp.netapp.com`
 |Software images, manifests, and templates; logs and metrics streaming
+|AI Data Engine
+|Both
+
+|`\https://login.microsoftonline.com`
+|Required only if you use governed AI access (MCP). Microsoft Entra ID tenant discovery and signing-key retrieval.
 |AI Data Engine
 |Both
 
@@ -223,26 +273,11 @@ For an online installation, the following endpoints must be reachable.
 |Docker Hub image layer storage for k3s system images
 |Container runtime
 |Single node only
-
-|`\http://packages.ubuntu.com`
-|Ubuntu prerequisite packages
-|Operating system package manager
-|Single node only (Ubuntu)
-
-|`\http://archive.ubuntu.com`
-|Ubuntu package archive
-|Operating system package manager
-|Single node only (Ubuntu)
-
-|`\http://security.ubuntu.com`
-|Ubuntu security package archive
-|Operating system package manager
-|Single node only (Ubuntu)
 |===
 
 The endpoints in this table are the same whether you connect directly to the internet or through a proxy.
 
-If you use a proxy, allow each endpoint for HTTPS (`CONNECT`) on port 443 using the exact hostnames listed, without wildcards or a leading dot. Allow `d13jb5dapseb36.cloudfront.net`, which hosts the installer download, by hostname. Its IP addresses are shared with other sites and change often, so a rule based on IP addresses stops working. For multi-node deployments, the container runtime connections are made by the cluster nodes. See link:configure-proxy.html[Learn about proxies for AI Data Engine]. To deploy with a proxy, see link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy] or link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy].
+If you use a proxy, allow each endpoint for HTTPS (`CONNECT`) on port 443 using the exact hostnames listed, without wildcards or a leading dot. Allow `d13jb5dapseb36.cloudfront.net`, which hosts the installer download, by hostname. Its IP addresses are shared with other sites and change often, so a rule based on IP addresses stops working. For multi-node deployments, the container runtime connections are made by the cluster nodes. If the multi-node install command from NetApp Console specifies a different `--registry` value, allow that registry hostname instead of the registry hostnames in the table. See link:configure-proxy.html[Learn about proxies for AI Data Engine]. To deploy with a proxy, see link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy] or link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy].
 
 NOTE: Ensure that your package managers have the appropriate proxy configuration if required in your environment.
 

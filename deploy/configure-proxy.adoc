@@ -57,11 +57,6 @@ IMPORTANT: AI Data Engine supports standard forward proxies that tunnel connecti
 
 The installer uses one proxy for every internet destination and every AI Data Engine component. The proxy settings are set during installation.
 
-[[proxy-allowlist]]
-== Hosts to allow on your proxy
-
-Allow the endpoints for your deployment type in link:aide-requirements.html#outbound-internet-access[Outbound internet access] on your proxy. The list is the same whether or not you use a proxy. For a multi-node deployment, the container runtime connections are made by the cluster nodes.
-
 [[proxy-parameters]]
 == Proxy configuration parameters
 
