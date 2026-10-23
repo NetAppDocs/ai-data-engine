@@ -96,8 +96,7 @@ The following network connections must be open:
 === Outbound internet access
 For an online installation, the following endpoints must be reachable. Where a row states a condition, the endpoint is needed only in that case.
 
-// RESEARCH Confirm with the Console team whether the alternate ECR registry, api.ecr.us-west-2.amazonaws.com, and the nonregional S3 endpoints are required. The proxy prerequisite pages in DSENSE don't list them. Don't replace all AWS regions with a common placeholder: the registry and version-policy endpoints use us-west-2, and Cognito uses us-east-1.
-// RESEARCH Confirm which configurations in GA use the direct AWS Cognito path rather than the support gateway, so the cognito-identity row can state the condition in customer terms.
+// RESEARCH The alternate ECR registry, api.ecr.us-west-2.amazonaws.com, and the nonregional S3 endpoints stay in the table for this release. Engineering can't verify whether they are required, and they might be wider than needed. Revisit when engineering can confirm. Don't replace all AWS regions with a common placeholder: the registry and version-policy endpoints use us-west-2, and Cognito uses us-east-1.
 // RESEARCH Confirm which component contacts login.microsoftonline.com for the MCP flow (AI Data Engine services, or the MCP host or AI client) and update the Initiated by value.
 // RESEARCH Confirm which components call api.workloads.netapp.com and api.gcp.workloads.netapp.com, and when they are needed.
 // RESEARCH Confirm that the hub.docker.com and cognito-idp connectivity tests apply only when an outbound proxy is configured.
@@ -210,7 +209,7 @@ For an online installation, the following endpoints must be reachable. Where a r
 |Both
 
 |`\https://cognito-identity.us-east-1.amazonaws.com`
-|AWS Cognito access, required only when AI Data Engine services use the direct AWS path instead of the support gateway. Also used for a proxy connectivity test.
+|AWS Cognito access, used for sending product usage metrics from AI Data Engine instances to NetApp. Also used for a proxy connectivity test.
 |AI Data Engine
 |Both
 
