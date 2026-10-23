@@ -9,7 +9,7 @@ summary: Review and update your MCP collections, identity providers, access scop
 :imagesdir: ../media/
 
 [.lead]
-Review and update your MCP collections, identity providers, access scopes, and server settings as your requirements change.
+Keep governed AI access in AI Data Engine aligned with your requirements by reviewing and updating your Model Context Protocol (MCP) collections, identity providers, access scopes, and server settings, and by validating access from your AI clients.
 
 == Before you begin
 
@@ -137,12 +137,12 @@ After you change collections, identity providers, user scopes, or server setting
 
 .Result
 
-Your MCP setup reflects your changes, and you confirmed that your affected AI clients can connect and that access matches your intended permissions.
+Your MCP setup reflects your changes, your affected AI clients can connect, and access matches your intended permissions.
 
 == Related information
 
 * link:manage-data-collections.html[Manage data collections]
 * link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access]
 * link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID]
-* link:connect-ai-clients-mcp.html[Connect AI clients]
+* link:connect-ai-clients-mcp.html[Connect AI clients to the AI Data Engine MCP server]
 * link:../release-notes/known-limitations.html[Known limitations]

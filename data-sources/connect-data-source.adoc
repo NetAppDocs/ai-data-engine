@@ -80,6 +80,7 @@ Bring the data in a database server into AI Data Engine so that you can scan it.
 
 Bring your StorageGRID object data into AI Data Engine through its S3 endpoint so that you can scan it. Connect StorageGRID, and then choose the buckets to scan.
 
+// IE UX Link dependency: The UI links to this section from the dialog for adding a StorageGRID (S3) data source > "Learn more". Do not change the section anchor (add-storagegrid) or the filename without updating the UI link.
 .Before you begin
 * Prepare a system name, the StorageGRID S3 endpoint URL, and an S3 access key and secret key.
 * Verify that AI Data Engine can reach the endpoint.

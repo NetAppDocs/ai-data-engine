@@ -9,7 +9,7 @@ summary: Create data collections and enable them for AI access so that connected
 :imagesdir: ../media/
 
 [.lead]
-Create data collections and enable them for AI access so that connected AI clients can search them through the Model Context Protocol (MCP).
+A collection is a logical container for data sources that you make searchable to AI clients through the AI Data Engine Model Context Protocol (MCP) server. Create collections and enable them for AI access so that connected AI clients can search them.
 
 == Before you begin
 
@@ -123,5 +123,5 @@ AI clients that use the disabled collection lose access to it after the change a
 * link:maintain-mcp-setup.html[Maintain your MCP setup]
 * link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access]
 * link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID]
-* link:connect-ai-clients-mcp.html[Connect AI clients]
+* link:connect-ai-clients-mcp.html[Connect AI clients to the AI Data Engine MCP server]
 * link:../release-notes/known-limitations.html[Known limitations]

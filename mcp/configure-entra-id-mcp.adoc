@@ -9,7 +9,7 @@ summary: As a Microsoft Entra ID administrator, register a dedicated application
 :imagesdir: ../media/
 
 [.lead]
-Register AI Data Engine in Microsoft Entra ID, define the scope and the app role, and add redirect URIs for your AI clients. Governed AI access uses Entra ID to authenticate users. These tasks are completed in the Microsoft Entra admin center by a Microsoft Entra ID administrator.
+Governed AI access in AI Data Engine uses Microsoft Entra ID to authenticate users. As a Microsoft Entra ID administrator, you register AI Data Engine in the Microsoft Entra admin center, define the scope and the app role, and add redirect URIs for your AI clients so that users can sign in and work with their authorized collections.
 
 When you finish, give the values that you record to the AI Data Engine administrator, who connects AI Data Engine to Entra ID in NetApp Console. Refer to link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID].
 
@@ -37,9 +37,9 @@ AI Data Engine recognizes the `power_users` delegated scope. You define the scop
 
 The `power_users` scope requests a power-user session. A power-user session can search file metadata in the collections that you grant the scope access to, list tags, create tags, and add tags to or remove tags from files. AI Data Engine grants a power-user session only if the user also holds the `AIDEPowerUsers` app role. Refer to <<create-and-assign-the-power-user-app-role,Create and assign the power-user app role>>.
 
-The full scope value that AI clients request is the Application ID URI and `/power_users`: `\https://<host>/mcp/tools/power_users`. AI clients must request this exact value.
+The full scope value that AI clients request is the Application ID URI plus `/power_users`: `\https://<host>/mcp/tools/power_users`. AI clients must request this exact value.
 
-NOTE: These steps are subject to change based on changes to the Microsoft Entra ID UI. The essential configurations remain the same.
+NOTE: Microsoft might change the Microsoft Entra ID UI, so these steps might differ from what you see. The essential configurations remain the same.
 
 .Steps
 
@@ -166,6 +166,6 @@ The AI Data Engine administrator link:connect-entra-id-aide-mcp.html[connects AI
 * link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID]
 * link:learn-about-mcp.html[Learn about governed AI access]
 * link:prepare-mcp-host.html[Prepare the MCP host]
-* link:connect-ai-clients-mcp.html[Connect AI clients]
-* link:mcp-tools-reference.html[MCP tools reference]
+* link:connect-ai-clients-mcp.html[Connect AI clients to the AI Data Engine MCP server]
+* link:mcp-tools-reference.html[MCP tools for AI Data Engine governed AI access]
 * link:../release-notes/known-limitations.html[Known limitations]

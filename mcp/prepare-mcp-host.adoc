@@ -13,7 +13,7 @@ Set up the AIDE cluster host name and certificate that AI clients use to reach t
 
 In this task, you run a script to set up the domain and the certificate, make sure that client machines can reach the host, and then verify the host.
 
-NOTE: The Microsoft Entra ID steps and paths in this topic are subject to change based on changes to the Microsoft Entra ID UI. The essential configurations remain the same.
+NOTE: Microsoft might change the Microsoft Entra ID UI, so the steps and paths might differ from what you see. The essential configurations remain the same.
 
 == Before you begin
 

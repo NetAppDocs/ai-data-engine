@@ -11,6 +11,8 @@ summary: Deploy AIDE as a single-node deployment from NetApp Console using the d
 [.lead]
 Deploy AI Data Engine (AIDE) as a single-node deployment from NetApp Console using the deployment wizard. The wizard guides you through selecting your installation location, choosing a configuration size, and running the install command on your target host.
 
+// IE UX Link dependency: The UI links to this page through the redirect from deploy/deploy-aide-lite.html. Do not change the permalink or filename without creating a redirect file and updating the redirect in the redirect folder.
+
 IMPORTANT: If the target host reaches the internet only through an outbound proxy, use link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy] instead.
 
 .Before you begin

@@ -12,7 +12,7 @@ summary: Find oversized or unused database tables across your connected database
 When database storage is growing unexpectedly, filter by table metadata to find which tables are oversized or have shown no activity since they were first discovered. For example, a storage administrator can identify large tables that haven't changed since an early scan, then coordinate with the database owner to evaluate whether they are still needed.
 
 .Before you begin
-* At least one database data source must be connected and scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
+* You have connected at least one database data source, and it is scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
 
 == Review the database table listing
 
@@ -30,7 +30,7 @@ Use filters to narrow the listing to tables most likely to offer reclamation opp
 
 .Steps
 . Select *Add filter*, then select *Discovered time*.
-. Set the range to surface tables that have been present across multiple scan cycles, for example tables first discovered more than a year ago.
+. Set the range to show tables that have been present across multiple scan cycles, for example, tables first discovered more than a year ago.
 . To narrow further, select *Add filter* again and filter by DB server or schema to focus on a specific system.
 +
 Applied filters appear as tags below the filter bar. The results update as you add each filter.
@@ -39,7 +39,7 @@ Applied filters appear as tags below the filter bar. The results update as you a
 
 Assess whether a table is a reclamation candidate. Select a table row to open the detail panel.
 
-The detail panel shows the DB server, schema, table dimensions, table size, and discovered time. Use this information to determine whether the table has grown since discovery or remains unchanged.
+The detail panel shows the DB server, schema, table dimensions, table size, and discovered time. Use this information to check whether the table has grown since discovery or stayed the same.
 
 NOTE: Before acting on database tables, coordinate with the database owner to confirm the table is no longer needed.
 

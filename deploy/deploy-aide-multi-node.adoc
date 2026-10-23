@@ -11,6 +11,8 @@ summary: Deploy AIDE as a multi-node deployment from NetApp Console using the de
 [.lead]
 Deploy AI Data Engine (AIDE) as a multi-node deployment from NetApp Console using the deployment wizard. The wizard guides you through selecting your installation location, choosing a configuration size, and running the install command against your Kubernetes cluster.
 
+// IE UX Link dependency: The UI links to this page through the redirect from deploy/deploy-enterprise.html. Do not change the permalink or filename without creating a redirect file and updating the redirect in the redirect folder.
+
 IMPORTANT: If your cluster nodes or the installer host reach the internet only through an outbound proxy, use link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy] instead.
 
 .Before you begin

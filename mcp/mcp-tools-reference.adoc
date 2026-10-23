@@ -4,12 +4,12 @@ permalink: mcp/mcp-tools-reference.html
 keywords: mcp, governed ai access, tools, get_collection, search, list_tags, create_tag, tag_document, power users, tags
 summary: Review the tools that AI clients can use through the AI Data Engine MCP server, the access that they require, and how search and tagging behave.
 ---
-= MCP tools reference for AI Data Engine governed AI access
+= MCP tools for AI Data Engine governed AI access
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Review the tools that a connected AI client can use through the AI Data Engine MCP server, what each tool does, and the access that the tools require.
+A connected AI client can use a set of tools through the AI Data Engine Model Context Protocol (MCP) server to search and tag files in a collection. Use this information to understand what each tool does and the access that the tools require.
 
 == Access requirements
 
@@ -60,13 +60,13 @@ A connection is limited to the collection in the MCP server URL. To work with a 
 
 == What AI clients can't do
 
-An AI client can't retrieve file contents, add, delete, or modify files, change data sources, or create collections.
+An AI client can't retrieve file contents, add files, delete files, modify files, change data sources, or create collections.
 
 // RESEARCH Prompts: The architect's presentation lists two built-in prompts, find_in_collection and tag_review. Confirm that they ship in GA and that they run as described before you document them.
 // RESEARCH Rate limits: The architect's presentation lists per-user, per-minute limits for search, tag_document, and the other tools. Confirm the values and that they are customer-facing before you document them.
 
 == Related information
 
-* link:connect-ai-clients-mcp.html[Connect AI clients]
+* link:connect-ai-clients-mcp.html[Connect AI clients to the AI Data Engine MCP server]
 * link:learn-about-mcp.html[Learn about governed AI access]
 * link:../release-notes/known-limitations.html[Known limitations]

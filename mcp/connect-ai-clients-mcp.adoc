@@ -4,12 +4,12 @@ permalink: mcp/connect-ai-clients-mcp.html
 keywords: mcp, governed ai access, claude code, claude desktop, cursor, opencode, ai client, mcp server, prompts, tags
 summary: Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine MCP server, and use sample prompts to search file metadata and tag files in a collection.
 ---
-= Connect AI clients to use with AI Data Engine
+= Connect AI clients to the AI Data Engine MCP server
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine MCP server. After you connect, you can search file metadata and tag files in the collections that you have access to.
+Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine Model Context Protocol (MCP) server so that you can search file metadata and tag files in the collections that you have access to.
 
 == Before you begin
 
@@ -214,7 +214,7 @@ A status of `needs authentication` means that OpenCode saved the configuration b
 
 == What you can do
 
-After you connect, your AI client can use five tools: `get_collection`, `search`, `list_tags`, `create_tag`, and `tag_document`. A connection is limited to the collection in the MCP server URL. To work with a different collection, use the connection details for that collection. Refer to link:mcp-tools-reference.html[MCP tools reference] for what each tool does.
+After you connect, your AI client can use five tools: `get_collection`, `search`, `list_tags`, `create_tag`, and `tag_document`. A connection is limited to the collection in the MCP server URL. To work with a different collection, use the connection details for that collection. Refer to link:mcp-tools-reference.html[MCP tools for AI Data Engine governed AI access] for what each tool does.
 
 The tools are available in a power-user session, which requires the `AIDEPowerUsers` app role and the `power_users` scope.
 
@@ -287,7 +287,7 @@ TIP: Search filters on file name prefix, file type, and owner. If you ask for fi
 == Related information
 
 * link:learn-about-mcp.html[Learn about governed AI access]
-* link:mcp-tools-reference.html[MCP tools reference]
+* link:mcp-tools-reference.html[MCP tools for AI Data Engine governed AI access]
 * link:prepare-mcp-host.html[Prepare the MCP host]
 * link:manage-data-collections.html[Manage data collections]
 * link:maintain-mcp-setup.html[Maintain your MCP setup]

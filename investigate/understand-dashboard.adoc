@@ -43,7 +43,7 @@ Find where you can reclaim the most storage. The *Storage optimization* tab incl
 Use the summary panel and these charts to identify and prioritize storage optimization opportunities:
 
 * Focus on resources that have the largest potentially reclaimable size, rather than those with the highest total size. A small system that is mostly cold or stale data might be a better first resource to evaluate than a large system that is mostly active.
-* Look for large concentrations of cold or stale data rather than isolated files. Tens of terabytes of data meeting your stale threshold on one resource warrants evaluation; isolated files might not require action.
+* Look for large concentrations of cold or stale data rather than isolated files. Tens of terabytes of data that meet your stale threshold on one resource warrant evaluation. Isolated files might not require action.
 
 == Review access exposure
 
@@ -59,7 +59,7 @@ When you have identified a resource or owner worth investigating, use the tables
 
 The _Top data resources by reclaimable storage_ table lists your scanned storage resources ranked by the proportion of data that is duplicated or meets your organization's cold and stale thresholds. Select any row to open the Investigation view filtered to that resource. From there, use the link:investigate-unstructured.html[Unstructured] tab to identify cold or stale files, or the link:investigate-directories.html[Directories] tab to audit permission exposure.
 
-The _Top consumers by reclaimable storage_ table shows which data owners own data that is potentially reclaimable. Select any row to open the link:investigate-unstructured.html[Investigation] view filtered to that owner's files. From there, you can review results, act on them, or save them as a policy.
+The _Top consumers by reclaimable storage_ table shows which data owners hold potentially reclaimable data. Select any row to open the link:investigate-unstructured.html[Investigation] view filtered to that owner's files. From there, you can review results, act on them, or save them as a policy.
 
 Reviewing the dashboard doesn't archive or delete data or change directory permissions.
 

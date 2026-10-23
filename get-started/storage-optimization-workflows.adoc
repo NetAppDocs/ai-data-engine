@@ -9,7 +9,7 @@ summary: Use end-to-end flows for taking a dashboard finding through investigati
 :imagesdir: ../media/
 
 [.lead]
-These AI Data Engine workflows take you from identifying a storage problem on the dashboard through investigation and action to an ongoing monitoring policy. Each workflow follows the same path: dashboard, investigate, act, and save as a policy.
+These AI Data Engine workflows take you from identifying a storage problem on the dashboard through investigation and action to an ongoing monitoring policy. Each workflow follows the same path: review the dashboard, investigate, act, and save a policy.
 
 == Identify and act on cold data
 
@@ -18,14 +18,14 @@ You notice on the dashboard that a storage resource has a large amount of data f
 
 .Steps
 . From link:../investigate/understand-dashboard.html[the dashboard], identify the resource with the highest concentration of cold data and select *Investigate*.
-. In link:../investigate/investigate-unstructured.html[Investigation], confirm the resources using the *Last accessed* filter set to match your configured cold data threshold (default: *1+ year*).
+. In link:../investigate/investigate-unstructured.html[Investigation], set the *Last accessed* filter to match your configured cold data threshold (default: *1+ year*) and confirm the resources.
 . Review the results to decide link:../investigate/take-actions.html[whether to tag, archive, or delete] the matching files.
-. If these resources are worth monitoring on an ongoing basis, link:../policies/create-policy.html[save the filter set as a policy] so you are notified as new files go cold.
+. If these resources are worth monitoring on an ongoing basis, link:../policies/create-policy.html[save the filter set as a policy] so that you receive a notification when new files become cold.
 
 == Identify and act on stale data
 
 .Scenario
-Files that haven't been modified in years are classified as stale when they fall outside your organization's stale threshold (default: three years). 
+AI Data Engine classifies files as stale when they haven't been modified for longer than your organization's stale threshold (default: three years). 
 
 NOTE: You can change this threshold in the link:../administer/configure-settings.html[data classification settings].
 
@@ -47,7 +47,7 @@ NOTE: This threshold is configurable in *Configuration* > *General settings*.
 .Steps
 . In link:../investigate/investigate-unstructured.html[Investigation], apply the *Last created* filter set to your retention threshold (default *7+ years*).
 . Review the results with the relevant stakeholders before acting. Retention-flagged files are often monitored rather than automatically deleted.
-. link:../policies/create-policy.html[Create a policy] with a monitor-only or email notification action so you are alerted as new files meet the retention threshold, rather than acting on these resources once.
+. link:../policies/create-policy.html[Create a policy] with a monitor-only or email notification action so that you receive an alert when new files meet the retention threshold, instead of acting on these resources one time.
 
 == Find and eliminate duplicate files
 
@@ -70,7 +70,7 @@ Multiple identical copies of the same files exist across volumes or shares, a co
 Data meeting your organization's cold and stale thresholds is distributed across many owners. Identifying which data owners hold the most files in these categories can help you prioritize cleanup.
 
 .Steps
-. From link:../investigate/understand-dashboard.html[the dashboard], locate the _Top data owners by reclaimable storage_ table.
+. From link:../investigate/understand-dashboard.html[the dashboard], locate the _Top consumers by reclaimable storage_ table.
 . Select an owner row to open link:../investigate/investigate-unstructured.html[Investigation] filtered to that owner's files.
 . Review the results and decide link:../investigate/take-actions.html[whether to tag, archive, or delete] files.
 . link:../policies/create-policy.html[Save the filter set as a policy] to monitor how that owner's potentially reclaimable data changes over time.

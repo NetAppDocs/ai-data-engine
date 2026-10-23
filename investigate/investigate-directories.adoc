@@ -12,7 +12,7 @@ summary: Audit directory-level permissions across your storage systems to find b
 When you need to identify which directories are exposed to more users than intended, filter by permissions to find folders that are open to the entire organization. For example, a security administrator who sees exposed directories flagged on the dashboard can find all directories with org-wide access, review who holds read and write permissions, and create a policy to monitor for new exposures after each scan.
 
 .Before you begin
-* At least one data source must be connected and scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
+* You have connected at least one data source, and it is scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
 
 == Find broadly accessible directories
 
@@ -41,7 +41,7 @@ Use this information to confirm whether the access level is intentional before c
 After filtering to identify broadly accessible directories, save the criteria as a policy to monitor for new exposures after each scan cycle.
 
 .Steps
-. With your permission filters applied, select *Create policy* in the filter toolbar.
+. After you apply your permission filters, select *Create policy* in the filter toolbar.
 . Complete the policy form. Refer to link:../policies/create-policy.html[Create a policy].
 
 To control whether AI Data Engine scans permissions, refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].

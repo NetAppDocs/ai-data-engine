@@ -9,7 +9,7 @@ summary: Act on files you have identified as cold, stale, duplicated, or obsolet
 :imagesdir: ../media/
 
 [.lead]
-Enforce your organization's data lifecycle policies by acting on the files you identified with your filters. For example, a storage administrator who filters to find terabytes of VM snapshots not accessed in over a year can archive them in bulk to a cold storage share, or delete them, depending on retention requirements and business policies.
+In AI Data Engine (AIDE), you can enforce your organization's data lifecycle policies by archiving, copying, tagging, or deleting the files that you identified with your filters. For example, a storage administrator who filters to find terabytes of VM snapshots not accessed in over a year can archive them in bulk to a cold storage share or delete them, depending on retention requirements and business policies.
 
 .About this task
 To take action, select one or more items in the Investigation results table using the checkboxes. The action toolbar activates with four options: *Delete*, *Archive*, *Copy*, and *Tag*. To remove duplicate copies of a file, use *Clean up duplicates*. Refer to <<Investigate and clean up duplicate files>>.
@@ -106,7 +106,7 @@ Choose the method that matches your goal:
 * You must have the _AI Data Engine administrator_ role.
 
 .Steps
-. In AIDE, select *Investigation* from the left navigation.
+. In AI Data Engine, select *Investigation* from the left navigation.
 . Use filters to find the items you want to copy, and then select the items in the results table.
 . Select *Copy*.
 . Complete the procedure for your chosen copy method.
@@ -118,7 +118,7 @@ Use regular copy to place copies of selected items in a destination folder while
 CAUTION: Copying or archiving files can change destination permissions, ownership, group information, and timestamps. Cross-protocol transfers can substantially broaden access. Review the destination security settings before transferring sensitive data, and verify permissions afterward.
 
 .Before you begin
-* Ensure that the destination share allows access from the AI Data Engine. NFS and SMB shares are supported regardless of where they are hosted.
+* Verify that the destination share allows access from AI Data Engine. NFS and SMB shares are supported regardless of where they are hosted.
 * For an SMB destination, have Kerberos or NTLM credentials available.
 
 .Steps
@@ -126,7 +126,7 @@ CAUTION: Copying or archiving files can change destination permissions, ownershi
 . Choose the destination protocol and provide the destination details:
 +
 * For *NFS*, enter the destination folder path in the format `hostname:/path/to/destination`.
-* For *SMB*, enter the destination folder path in the format `\\hostname\share_name`. Specify the SMB authentication type as Kerberos or NTLM and enter the password when prompted. For Kerberos, use the FQDN of the host and leave the credentials empty. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine]. For other methods, provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
+* For *SMB*, enter the destination folder path in the format `\\hostname\share_name`. Select Kerberos or NTLM as the SMB authentication type. For Kerberos, use the FQDN of the host and leave the credentials empty. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine]. For other methods, provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
 
 . Review how copying might affect file metadata:
 +
@@ -142,7 +142,7 @@ CAUTION: Copying or archiving files can change destination permissions, ownershi
 Create a cleaned-up copy of an ONTAP volume that contains only the items in your query, ready to migrate. FlexClone creates a point-in-time copy of the volume and deletes the items outside your query from the clone only.
 
 .Before you begin
-Ensure that all selected items belong to the same ONTAP volume. The FlexClone volume is created in the same aggregate as its parent volume.
+Confirm that all selected items belong to the same ONTAP volume. The FlexClone volume is created in the same aggregate as its parent volume.
 
 .Steps
 . In the *Copy selected items* dialog, select *FlexClone*.
@@ -157,7 +157,7 @@ Items not included in the query are deleted from the clone. The original volume 
 Transfer selected items between file or object storage locations, on premises or in the cloud.
 
 .Before you begin
-Ensure that all selected items belong to the same storage repository. If your selection spans repositories, cancel the operation and select items from a single repository.
+Confirm that all selected items belong to the same storage repository. If your selection spans repositories, cancel the operation and select items from a single repository.
 
 .Steps
 . In the *Copy selected items* dialog, select *Sync*.
