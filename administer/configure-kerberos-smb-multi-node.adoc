@@ -15,14 +15,21 @@ If you have a single-node deployment, refer to link:configure-kerberos-smb-singl
 
 == Before you begin
 
+.Permissions and access
 * You have _AI Data Engine administrator_ privileges.
 * You have root access to every node and to the admin host. The admin host is the host where you mount the NFS export and create the keytab. It can be one of the nodes.
 * You have `kubectl` access with cluster-admin privileges to your Kubernetes cluster from the admin host. If you use a kubeconfig file, set the `KUBECONFIG` environment variable to its path.
+
+.Network and time synchronization
 * You have reviewed the link:../deploy/aide-requirements.html#networking-requirements[networking requirements] and the link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements], including time synchronization and DNS.
 * You have verified that every node can reach the NFS server on TCP port 2049, the KDC on port 88, the file server on port 445, and your DNS server on port 53.
 * You have verified that NTP is active on every node and that each clock is synchronized with your domain controllers. To check, run `timedatectl`.
+
+.Active Directory
 * You have a scan service account in Active Directory with read access to the SMB/CIFS shares you want to scan. The account must support AES256 encryption.
 // RESEARCH Are the AES256 requirement, the AI Data Engine administrator privilege requirement, and the statement that the admin host can be one of the nodes all correct?
+
+.Information to gather
 * You have the following information:
 +
 [cols="2,4,2",options="header"]

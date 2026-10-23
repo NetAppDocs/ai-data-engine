@@ -13,11 +13,13 @@ Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the Model Context Pr
 
 == Before you begin
 
+.Administrator setup
 * An administrator has completed the setup in link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access] and link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID], including these:
 ** Assigning you the `AIDE Power Users` app role.
 ** Configuring a collection for MCP with a scope that includes you. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
 ** Turning on *Enable connection to MCP* in *MCP settings*. If the connection is off, AI clients can't connect to any collection.
 ** Adding the redirect URI for your AI client to the AI Data Engine application and allowing public client flows. The AI client signs in as a public client, so you don't need a client secret.
+.MCP client configuration
 * You have the MCP client configuration from your administrator. The administrator generates it in NetApp Console by configuring the collection for MCP, copies the MCP server URL or the client-specific snippet from the *Generate MCP code snippet* step, and shares it with you. It includes the following:
 ** The MCP server URL, in the format `\https://<mcp-server-host>/mcp/tools`.
 ** The Microsoft Entra ID tenant ID.
@@ -28,11 +30,13 @@ Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the Model Context Pr
 ** The ID of the collection that you want to work with.
 // RESEARCH The generated configuration is pending validation. Confirm the snippet formats (the console shows client-specific snippets and a standalone MCP server URL). Does the console show tabs for any client that isn't supported? Does it show tabs for Claude Code or OpenCode? Does the architect's General client tab ship in GA, and is it supported for clients other than the four that are listed here? Confirm what each tab generates.
 // RESEARCH Confirm the field list that Console generates, and which values you add yourself.
+.Network access
 * Your device can reach the MCP server over HTTPS on port 443. The MCP server runs in your network, so connect from your corporate network or through VPN. Your device must also be able to do the following:
 ** Resolve the AIDE cluster host name through DNS.
 ** Trust the certificate that the host presents. If the certificate is self-signed, install it as a trusted certificate on your device.
 ** Reach Microsoft Entra ID sign-in (`login.microsoftonline.com`).
 // RESEARCH Does the MCP server accept a custom port for AI client access, and should this prerequisite mention it?
+.AI client
 * You have a supported version of the AI client.
 // RESEARCH What are the minimum supported versions of Claude Code, Claude Desktop, Cursor, and OpenCode?
 

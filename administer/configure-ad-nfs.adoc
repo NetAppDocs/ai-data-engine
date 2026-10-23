@@ -16,11 +16,16 @@ This mapping doesn't authenticate AI Data Engine to NFS storage. It converts the
 
 == Before you begin
 
+.Permissions and access
 * You have _AI Data Engine administrator_ privileges.
+
+.AI Data Engine configuration
 * You have link:../deploy/aide-requirements.html#networking-requirements[opened the required ports] from AI Data Engine to your Active Directory domain controllers.
+* You have link:configure-settings.html#find-access-risks-with-permission-scanning[turned on permission scanning].
+
+.Active Directory
 * You have an Active Directory account that AI Data Engine can use to query user and group attributes. You enter its user name and password in AI Data Engine.
 // RESEARCH Confirm the permissions the Active Directory account needs and whether it must be a dedicated account.
-* You have link:configure-settings.html#find-access-risks-with-permission-scanning[turned on permission scanning].
 * You have your Active Directory domain name and either the IP address of your DNS server or the IP address and port of your LDAP server.
 * You know whether your directory requires a secure LDAP connection.
 * If AI Data Engine queries the Global Catalog and the attributes aren't yet replicated to it, you or your Active Directory administrator has the _Schema Admins_ role to make the schema change.

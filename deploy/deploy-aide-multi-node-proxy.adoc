@@ -15,14 +15,21 @@ For the supported proxy types and the complete parameter reference, see link:con
 
 == Before you begin
 
+.Permissions and access
 * You have _Organization admin_ or greater permissions in NetApp Console.
-* Your Kubernetes cluster meets the multi-node prerequisites described in link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
-* An NFS server with an exported path is available and reachable from the cluster for the AIDE config volume.
-* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the cluster nodes. The Console agent IP is required to run the install command.
 * You have a kubeconfig with cluster-admin access to the target cluster. If `kubectl` isn't on your `PATH`, the installer downloads it to the tools directory.
+
+.Kubernetes cluster
+* Your Kubernetes cluster meets the multi-node prerequisites described in link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
 * The `aide` namespace exists on the cluster before you run the install command.
 * The nodes that schedule AI Data Engine workloads have the node labels described in link:multi-node-prerequisites.html#node-labels[Node labels].
 * A configured StorageClass (default name: `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
+
+.Storage and NetApp Console
+* An NFS server with an exported path is available and reachable from the cluster for the AIDE config volume.
+* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the cluster nodes. The Console agent IP is required to run the install command.
+
+.Proxy
 * You have configured your proxy to allow the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 * You know the proxy host, port, and scheme (`http` or `https`). If the proxy requires authentication, you also know the username and password.
 * If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the installer host.
