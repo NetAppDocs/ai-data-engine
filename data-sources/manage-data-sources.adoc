@@ -33,7 +33,7 @@ If scan errors appear, expand the error details to see which data resources (vol
 
 == Pause scanning
 
-Temporarily stop scanning a system when you don't want AI Data Engine to scan it for a period of time. The system stays connected, and you can resume scanning later.
+Temporarily stop scanning a system when you don't want AI Data Engine to scan it. The system stays connected, and you can resume scanning later.
 
 // RESEARCH: Confirm the supported pause use cases and how Pause differs from Deactivate AI Data Engine (for example, whether queued or in-progress scans are affected).
 

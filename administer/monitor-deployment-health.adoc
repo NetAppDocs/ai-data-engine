@@ -9,14 +9,14 @@ summary: Monitor your AI Data Engine deployment to identify unhealthy workloads 
 :imagesdir: ../media/
 
 [.lead]
-Monitor your AI Data Engine deployment to identify unhealthy workloads and resource constraints that could interrupt scanning. Use health details to assess the impact of an issue and gather information for troubleshooting.
+The AI Data Engine (AIDE) health monitor helps you identify unhealthy workloads and resource constraints that could interrupt scanning. Use the health details to assess the impact of an issue and gather information for troubleshooting.
 
 == Monitor deployment health and investigate issues
 
 .Steps
 . In NetApp Console, go to *AI data hub* > *AI Data Engine*.
 . Select *Configuration*, then select *Health monitor*.
-. Check *System stability* under *Infrastructure Status* to determine whether any pods are unhealthy.
+. Check *System stability* under *Infrastructure Status* to see whether any pods are unhealthy.
 +
 An unhealthy pod can't run its workload as expected. Unhealthy statuses include Pending, Failed, Evicted, Unknown, OOMKilled, and CrashLoopBackOff.
 // RESEARCH: Does single-node Node health show only Warning, or the same Critical, Warning, Offline, and Healthy statuses as multi-node? What conditions trigger Warning? The Figma design shows only a static Warning example for single-node.
@@ -40,7 +40,7 @@ Pay particular attention to memory and disk warnings because these conditions ca
 +
 Review each affected pod's workload, status, and resource usage. Use this information to distinguish resource pressure from pods that are failing, repeatedly restarting, or waiting to run.
 . Review *Problematic workloads* to identify workloads that have stopped or are frequently restarting. Note the reported times to help correlate these events with resource usage.
-. Review resource utilization trends to determine whether resource pressure is temporary or sustained:
+. Review resource utilization trends to see whether resource pressure is temporary or sustained:
 +
 --
 * For a single-node deployment, review *Resource utilization distribution* for the relevant time range.
@@ -50,7 +50,7 @@ Review each affected pod's workload, status, and resource usage. Use this inform
 
 .Result
 
-After corrective action is taken, return to *Health monitor* and review *System stability*, *Pod health*, *Node health*, and resource utilization to verify that the reported conditions have cleared. If scanning was interrupted, go to *Data sources* to verify that it has resumed. Refer to link:../data-sources/manage-data-sources.html#view-scan-status-and-details[View scan status and details].
+After you take corrective action, return to *Health monitor* and review *System stability*, *Pod health*, *Node health*, and resource utilization to verify that the reported conditions have cleared. If scanning was interrupted, go to *Data sources* to verify that it has resumed. Refer to link:../data-sources/manage-data-sources.html#view-scan-status-and-details[View scan status and details].
 
 == Related information
 

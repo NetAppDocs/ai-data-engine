@@ -9,7 +9,7 @@ summary: Control access by assigning each user an administrator or viewer role. 
 :imagesdir: ../media/
 
 [.lead]
-Control what each user can view and do in AI Data Engine by assigning them an administrator or viewer role. Before your team starts using AI Data Engine, assign each user the role that matches their required level of access.
+Control what each user can view and do in AI Data Engine (AIDE) by assigning them an administrator or viewer role. Before your team starts using AI Data Engine, assign each user the role that matches their required level of access.
 
 You assign roles through NetApp Console organization settings. AI Data Engine supports two roles.
 
@@ -98,7 +98,7 @@ You assign roles in NetApp Console, not within AI Data Engine itself.
 * To add a new user, select *Add user* and enter the user's email address.
 * To update an existing user, select the user from the list.
 . Select the organization, folder, or project, and then choose the *Data Service* category.
-. Assign the *AI data engine administrator* or *AI data engine viewer* role.
+. Assign the *AI Data Engine administrator* or *AI Data Engine viewer* role.
 . Save your changes.
 
 The user receives an email invitation and can access AI Data Engine after accepting it.

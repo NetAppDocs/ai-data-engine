@@ -30,7 +30,7 @@ The installer host is a lightweight management machine. It doesn't run AI Data E
 * The default tools directory is `/opt/netapp/aide/.aide-installer-tools`. The installer also writes the install log there. If the default directory is writable, you can omit the `--tools-dir` option.
 ** If the default directory isn't writable and you run the installer from a terminal, the installer asks for another directory. Press Enter to use `$HOME/.cache/netapp/aide`.
 ** If the default directory isn't writable and the installer has no terminal, the installation stops. Specify a directory that you own with the `--tools-dir` option, for example `--tools-dir "$HOME/.aide-installer-tools"`.
-* Run the installer as the user who has access to the cluster.
+* You run the installer as the user who has access to the cluster.
 
 Managed-cluster kubeconfigs authenticate through an exec credential plugin that reads the cloud CLI login for the current user. Run the installer as the user who has that login. For AKS-specific guidance, see <<aks-requirements,AKS requirements>>.
 
@@ -107,7 +107,7 @@ sudo chmod 775 /var/lib/netapp/aide /var/lib/netapp/aide/filebeat /var/lib/netap
 
 === Kerberos CIFS/SMB support (optional)
 
-The `cifs-utils` package is required on every node that schedules AI Data Engine workloads only for Kerberos-based CIFS/SMB scanning. Skip this step if you use NTLM-only CIFS or don't scan SMB shares.
+The `cifs-utils` package is required only for Kerberos-based CIFS/SMB scanning, on every node that schedules AI Data Engine workloads. Skip this step if you use NTLM-only CIFS or don't scan SMB shares.
 
 .RHEL
 [source,bash]
@@ -133,7 +133,7 @@ For deployment sizing and storage performance requirements, see link:aide-requir
 |Requirement |Value
 
 |Export access
-|Read-write, reachable from all Kubernetes node IP addresses
+|Read/write, reachable from all Kubernetes node IP addresses
 
 |Owner
 |UID:GID 4321:4321
@@ -277,7 +277,7 @@ In addition to the preceding requirements, an AKS cluster must meet the followin
 
 The node VM size must support the disk type that the StorageClass provisions. Azure premium disks (`Premium_LRS`, `Premium_ZRS`, and `PremiumV2_LRS`) attach only to premium-capable VM sizes, which have an `s` in the SKU, such as `Standard_D16s_v5`. If the VM size doesn't support the provisioned disk, the pod is scheduled but the volume attach fails with a `FailedAttachVolume` error.
 
-Use a premium-capable VM size for the AIDE node pool. This is recommended because AIDE stateful components require high IOPS and throughput. Alternatively, use a StorageClass with a disk SKU supported by the current VM size. The built-in `managed-csi` provisions `StandardSSD_LRS`. `managed-csi-premium` provisions `Premium_LRS`.
+Use a premium-capable VM size for the AIDE node pool because AIDE stateful components require high IOPS and throughput. Alternatively, use a StorageClass with a disk SKU supported by the current VM size. The built-in `managed-csi` provisions `StandardSSD_LRS`. `managed-csi-premium` provisions `Premium_LRS`.
 
 To check the disk type that a StorageClass provisions and the VM size of your nodes, run the following commands:
 

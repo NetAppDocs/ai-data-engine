@@ -9,7 +9,7 @@ summary: Configure Kerberos authentication on a single-node AI Data Engine deplo
 :imagesdir: ../media/
 
 [.lead]
-Scan SMB/CIFS shares from a single-node AI Data Engine deployment by using Kerberos authentication, so that no password is stored in the data source. After you complete the setup, AI Data Engine refreshes the Kerberos ticket automatically.
+Scan SMB/CIFS shares from a single-node AI Data Engine (AIDE) deployment by using Kerberos authentication, so that no password is stored in the data source. After you complete the setup, AI Data Engine refreshes the Kerberos ticket automatically.
 
 If you have a multi-node deployment, refer to link:configure-kerberos-smb-multi-node.html[Configure Kerberos for SMB/CIFS shares on a multi-node AI Data Engine deployment].
 
@@ -156,7 +156,7 @@ The file uses the KDC IP address so that Kerberos authentication doesn't depend 
 // RESEARCH The admin_server entry was restored from the spec (KDC IP, port 749). SME to confirm that the entry and the port are correct for an Active Directory KDC.
 . Create a keytab for the scan service account.
 .. Run `ktutil`.
-.. At the `ktutil` prompt, enter the following commands. Replace `<scan_user>` and `<REALM>` with your values. The `ktutil` prompt doesn't use the shell variables.
+.. At the `ktutil` prompt, enter the following command. Replace `<scan_user>` and `<REALM>` with your values. The `ktutil` prompt doesn't use the shell variables.
 +
 [source,cli]
 ----
@@ -190,7 +190,7 @@ install -o root -g 4321 -m 640 /tmp/krb5.keytab /opt/netapp/aide/kerberos_refres
 rm -f /tmp/krb5.keytab
 ----
 +
-The ticket refresher runs as a root user with group ID 4321. The keytab and the principal file must be readable by that group and by no other users.
+The ticket refresher runs as the root user with group ID 4321. The keytab and the principal file must be readable by that group and by no other users.
 // RESEARCH The spec installs the keytab with mode 600 (owner root) and sets the principal file to mode 640, and its troubleshooting table says both files need group 4321 and mode 640. SME to confirm that root:4321 with mode 640 is correct for the keytab and that the statement about the refresher user and group is accurate.
 . Create the principal file. The `KRB5_RENEW_INTERVAL_H` value is the ticket renewal interval in hours.
 +
@@ -227,7 +227,7 @@ nslookup "${KDC_FQDN}"
 [[start-first-ticket-refresh]]
 == Start the first ticket refresh
 
-AI Data Engine refreshes the Kerberos ticket for the scan service account every 3 hours. Start the first refresh so that you can scan shares immediately.
+AI Data Engine refreshes the Kerberos ticket for the scan service account every three hours. Start the first refresh so that you can scan shares immediately.
 
 NOTE: Don't add a `kinit` entry to the host crontab. AI Data Engine refreshes tickets automatically.
 

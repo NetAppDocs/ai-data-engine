@@ -9,7 +9,7 @@ summary: Configure Kerberos authentication on a multi-node AI Data Engine deploy
 :imagesdir: ../media/
 
 [.lead]
-Scan SMB/CIFS shares from a multi-node AI Data Engine deployment by using Kerberos authentication, so that no password is stored in the data source. Every node uses the same Kerberos configuration, and AI Data Engine refreshes the Kerberos ticket automatically.
+Scan SMB/CIFS shares from a multi-node AI Data Engine (AIDE)deployment by using Kerberos authentication, so that no password is stored in the data source. Every node uses the same Kerberos configuration, and AI Data Engine refreshes the Kerberos ticket automatically.
 
 If you have a single-node deployment, refer to link:configure-kerberos-smb-single-node.html[Configure Kerberos for SMB/CIFS shares on a single-node AI Data Engine deployment].
 
@@ -328,7 +328,7 @@ nslookup <kdc_fqdn>
 [[start-first-ticket-refresh]]
 == Start the first ticket refresh
 
-AI Data Engine refreshes the Kerberos ticket for the scan service account every 3 hours. Start the first refresh so that you can scan shares immediately.
+AI Data Engine refreshes the Kerberos ticket for the scan service account every three hours. Start the first refresh so that you can scan shares immediately.
 
 NOTE: Don't add a `kinit` entry to the host crontab. AI Data Engine refreshes tickets automatically.
 

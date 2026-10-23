@@ -16,7 +16,7 @@ Connect the data sources that you want AI Data Engine to analyze, and choose whi
 .Before you begin
 
 * You must have _AI Data Engine administrator_ privileges to connect and configure data sources.
-* For systems connected through NetApp Console discovery, discover storage systems in NetApp Console using a Console Agent before adding them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery doesn't enable data services such as AI Data Engine.
+* For systems connected through NetApp Console discovery, use a Console Agent to discover the storage systems in NetApp Console before you add them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery doesn't enable data services such as AI Data Engine.
 * Verify that the network connections required for AI Data Engine to reach your data sources are open. Refer to link:../deploy/aide-requirements.html[AI Data Engine requirements].
 * To scan SMB/CIFS shares with Kerberos authentication, complete the procedure for your deployment type in link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine] first.
 
@@ -61,7 +61,7 @@ Bring the data in a database server into AI Data Engine so that you can scan it.
 
 .Before you begin
 * Know the database type, server host name or IP address, port, and scan account credentials.
-* Ensure that the account can read the schemas and tables that you want to scan.
+* Verify that the account can read the schemas and tables that you want to scan.
 * Verify that AI Data Engine can reach the database server.
 
 // RESEARCH: Confirm engine-specific fields (for example, Oracle service name), engine-specific privileges (for example, a read-only admin role for MongoDB), statistics prerequisites, supported authentication, and TLS requirements.
@@ -111,7 +111,7 @@ After you connect a system, choose which of its data resources AI Data Engine sc
 . From the AI Data Engine UI, select *Data sources*.
 . Locate the system and toggle the auto-scan switch to enable auto-scan.
 +
-NOTE: You'll need to turn off auto-scan to manage scanning for individual resources.
+NOTE: You must turn off auto-scan to manage scanning for individual resources.
 
 * Enable scanning for individual resources:
 . From the AI Data Engine UI, select *Data sources*.

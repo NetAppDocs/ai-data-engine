@@ -9,7 +9,7 @@ summary: Define which files AI Data Engine classifies as cold or stale data, tur
 :imagesdir: ../media/
 
 [.lead]
-Cold and stale thresholds help you find storage that you can optimize. Permission scanning and Active Directory integration help you find and understand access risks. Set them to match your organization's data classification, retention, and access policies.
+Cold and stale thresholds help you find storage that you can optimize using AI Data Engine (AIDE). Permission scanning and Active Directory integration help you find and understand access risks. Set them to match your organization's data classification, retention, and access policies.
 
 // IE UX Link dependency: The UI links to this page from General settings > "Learn more". Do not change the permalink or filename without creating a redirect file.
 

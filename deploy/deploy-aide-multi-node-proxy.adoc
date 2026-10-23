@@ -9,7 +9,7 @@ summary: Deploy AIDE as a multi-node deployment from NetApp Console when your cl
 :imagesdir: ../media/
 
 [.lead]
-Deploy AIDE as a multi-node deployment from NetApp Console when your Kubernetes cluster and the installer host reach the internet only through an outbound proxy. This topic includes every step of the multi-node deployment, along with the proxy steps. If your cluster and installer host have direct internet access, use link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment] instead.
+Deploy AI Data Engine (AIDE) as a multi-node deployment from NetApp Console when your Kubernetes cluster and the installer host reach the internet only through an outbound proxy. This procedure includes every step of the multi-node deployment, along with the proxy steps. If your cluster and installer host have direct internet access, use link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment] instead.
 
 For the supported proxy types and the complete parameter reference, see link:configure-proxy.html[Learn about proxies for AI Data Engine]. For the endpoints to allow on your proxy, see link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 
@@ -33,7 +33,7 @@ In a multi-node deployment, you own the Kubernetes cluster. The installer config
 
 The installer checks the proxy from the installer host only. It doesn't check your nodes. If a node's container runtime isn't configured, the installation completes and pods on that node later show `ImagePullBackOff`.
 
-The installer also doesn't install operating system packages on your nodes. Ensure that the nodes have the packages that your environment requires, and that your package managers have the appropriate proxy configuration if required in your environment.
+The installer also doesn't install operating system packages on your nodes. Verify that the nodes have the packages that your environment requires, and that your package managers have the appropriate proxy configuration if required in your environment.
 
 [[configure-proxy-multi-node]]
 == Configure the nodes for the proxy
@@ -91,7 +91,7 @@ If the proxy requires a username, add `--proxy-user USER` to the `curl` command.
 +
 * Use `https://` in the `-x` address if your proxy listens on HTTPS.
 * If your proxy uses a privately signed certificate, add `--proxy-cacert CA_FILE`, or add the CA certificate to the installer host trust store first.
-* With an HTTPS proxy and a `curl` version earlier than 8.3, which includes Ubuntu 22.04, the download can pause for about a minute. Wait for it to finish.
+* If you use an HTTPS proxy and a `curl` version earlier than 8.3, the download can pause for about a minute. Ubuntu 22.04 includes such a version. Wait for it to finish.
 +
 Alternatively, download `\https://d13jb5dapseb36.cloudfront.net/aide/latest/aide-installer.tar.gz` from another computer, and then copy it to the installer host with `scp` or your usual file transfer method.
 
@@ -230,7 +230,7 @@ NOTE: Installation takes about 30 minutes to complete. Timeouts and retries migh
 * The installer asks you to confirm that the prerequisites for a multi-node deployment are complete. Answer yes to continue.
 * The installer detects the IP address of the node that runs the AI Data Engine NGINX ingress and asks you to confirm it. Press Enter to keep the address shown, or type a different address. Use an address that can be reached from outside the cluster. If the detected address is an internal cluster address, type the reachable address instead. Do not enter the Console agent address.
 
-. Monitor the progress screen until the success screen appears and displays that AIDE installation is complete.
+. Monitor the progress screen until the success screen appears and confirms that the AIDE installation is complete.
 
 .Result
 Your AI Data Engine multi-node deployment is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.

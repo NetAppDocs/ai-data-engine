@@ -9,7 +9,7 @@ summary: Deploy AIDE as a multi-node deployment from NetApp Console using the de
 :imagesdir: ../media/
 
 [.lead]
-Deploy AIDE as a multi-node deployment from NetApp Console using the deployment wizard. The wizard guides you through selecting your installation location, choosing a configuration size, and running the install command against your Kubernetes cluster.
+Deploy AI Data Engine (AIDE) as a multi-node deployment from NetApp Console using the deployment wizard. The wizard guides you through selecting your installation location, choosing a configuration size, and running the install command against your Kubernetes cluster.
 
 IMPORTANT: If your cluster nodes or the installer host reach the internet only through an outbound proxy, use link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy] instead.
 
@@ -55,7 +55,7 @@ NOTE: Installation takes about 30 minutes to complete. Timeouts and retries migh
 * The installer asks you to confirm that the prerequisites for a multi-node deployment are complete. Answer yes to continue.
 * The installer detects the IP address of the node that runs the AI Data Engine NGINX ingress and asks you to confirm it. Press Enter to keep the address shown, or type a different address. Use an address that can be reached from outside the cluster. If the detected address is an internal cluster address, type the reachable address instead. Do not enter the Console agent address.
 
-. Monitor the progress screen until the success screen appears and displays that AIDE installation is complete.
+. Monitor the progress screen until the success screen appears and confirms that the AIDE installation is complete.
 
 .Result
 Your AI Data Engine multi-node deployment is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.

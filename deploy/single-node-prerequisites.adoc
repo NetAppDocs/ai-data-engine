@@ -30,7 +30,7 @@ Use block storage, not NFS, for the AIDE data volume. NFS-backed storage can cau
 
 Free space is required on each file system that hosts the paths in the following table. Paths that share a disk share one free-space pool, so add their minimums together.
 
-If a single disk hosts everything, the minimum free space is 65 GB plus the AIDE data volume size for your configuration. The 65 GB fixed floors exclude `/var/run`, which is typically `tmpfs` and does not add to this total:
+If a single disk hosts everything, the minimum free space is 65 GB plus the AIDE data volume size for your configuration. The 65 GB fixed floors exclude `/var/run`, which is typically `tmpfs` and doesn't add to this total:
 
 [cols="1,1",options="header"]
 |===

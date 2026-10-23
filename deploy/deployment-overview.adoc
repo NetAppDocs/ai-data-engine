@@ -9,7 +9,7 @@ summary: Deploy AI Data Engine as an AIDE single-node deployment on a Linux VM t
 :imagesdir: ../media/
 
 [.lead]
-Deploy AI Data Engine as an AIDE single-node deployment, where the installer sets up everything on a single Linux VM that you provide. If your environment requires Kubernetes-based high availability at large scale, you can deploy an AIDE multi-node deployment instead on a Kubernetes cluster that you bring.
+Deploy AI Data Engine (AIDE) as an AIDE single-node deployment, where the installer sets up everything on a single Linux VM that you provide. If your environment requires Kubernetes-based high availability at large scale, you can deploy an AIDE multi-node deployment instead on a Kubernetes cluster that you bring.
 
 == AIDE single-node deployment
 
@@ -19,7 +19,7 @@ An AIDE single-node deployment is available in three sizes — Small, Medium, an
 
 == AIDE multi-node deployment
 
-Deploy an AIDE multi-node deployment if your environment requires high availability, fault tolerance, rolling upgrades, or capacity beyond the largest single-node deployment size. An AIDE multi-node deployment deploys onto an existing Kubernetes cluster. You must bring your own Kubernetes cluster (RKE2, OpenShift, or AKS), which can be shared with other workloads or dedicated to AI Data Engine, and you provision and manage it yourself. The installer doesn't create or manage the cluster. The machine that you run the installer from is a lightweight management host and doesn't run AI Data Engine workloads.
+Deploy an AIDE multi-node deployment if your environment requires high availability, fault tolerance, rolling upgrades, or capacity beyond the largest single-node deployment size. An AIDE multi-node deployment deploys onto an existing Kubernetes cluster. You must bring your own Kubernetes cluster (RKE2, OpenShift, or AKS). You provision and manage the cluster yourself, and it can be shared with other workloads or dedicated to AI Data Engine. The installer doesn't create or manage the cluster. The machine that you run the installer from is a lightweight management host and doesn't run AI Data Engine workloads.
 
 An AIDE multi-node deployment is available in three sizes — Small, Medium, and Large — for environments up to approximately 1 billion, 3 billion, and 6 billion files respectively. For full node sizing and cluster requirements, refer to link:aide-requirements.html[AIDE requirements]. These sizes are recommended baselines, not hard limits: environments exceeding 6 billion files require custom sizing with NetApp. See link:aide-requirements.html#flexible-sizing-multi-node[flexible sizing guidelines] for details.
 
@@ -34,8 +34,8 @@ An AIDE multi-node deployment is available in three sizes — Small, Medium, and
 |Multi-node Kubernetes cluster. You bring your own RKE2, OpenShift, or AKS cluster.
 
 |Nodes
-|1 Linux VM
-|3 to 9 nodes (Small to Large)
+|One Linux VM
+|Three to nine nodes (Small to Large)
 
 |Scan rate
 |50 million to 1 billion files per day, varies by size
@@ -62,14 +62,14 @@ An AIDE multi-node deployment is available in three sizes — Small, Medium, and
 |Supported across nodes
 
 |When to choose it
-|You have a single site, want a fast start, and don't require HA
+|You have a single site, want a fast start, and don't require high availability
 |Production scale or HA is a requirement
 
 |===
 
 == Deployment process
 
-You can deploy AI Data Engine directly from NetApp Console. Go to *AI data hub > AI Data Engine* and deploy AI Data Engine. Use the wizard and choose a deployment type and run the installation command in an environment that meets the link:aide-requirements.html[AIDE requirements].
+You can deploy AI Data Engine directly from NetApp Console. Go to *AI data hub > AI Data Engine* and deploy AI Data Engine. Use the wizard to choose a deployment type, and then run the installation command in an environment that meets the link:aide-requirements.html[AIDE requirements].
 
 NetApp Console doesn't provision the infrastructure for AI Data Engine. For a single-node deployment, you prepare a Linux VM, and the installer sets up the rest. For a multi-node deployment, you prepare a Kubernetes cluster. In both cases, the infrastructure must meet the requirements. Then you copy the pre-generated installation command from NetApp Console and run it on the target host. The command bootstraps the runtime and deploys the AI Data Engine stack automatically.
 

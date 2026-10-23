@@ -9,20 +9,20 @@ summary: Deploy AIDE as a single-node deployment from NetApp Console when the ta
 :imagesdir: ../media/
 
 [.lead]
-Deploy AIDE as a single-node deployment from NetApp Console when the target host reaches the internet only through an outbound proxy. This topic includes every step of the single-node deployment, along with the proxy steps. If the target host has direct internet access, use link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment] instead.
+Deploy AI Data Engine (AIDE) as a single-node deployment from NetApp Console when the target host reaches the internet only through an outbound proxy. This procedure includes every step of the single-node deployment, along with the proxy steps. If the target host has direct internet access, use link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment] instead.
 
 For the supported proxy types and the complete parameter reference, see link:configure-proxy.html[Learn about proxies for AI Data Engine]. For the endpoints to allow on your proxy, see link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 
 == Before you begin
 
 * You have _Organization admin_ or greater permissions in NetApp Console.
-* Sudo (or root) permissions are required on the target host to run the install command.
+* You have sudo or root permissions on the target host to run the install command.
 * Your environment meets all prerequisites as described in link:single-node-prerequisites.html[AIDE single-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
 * A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
 * You have configured your proxy to allow the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 * You know the proxy host, port, and scheme (`http` or `https`). If the proxy requires authentication, you also know the username and password.
 * If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the target host.
-* The operating system repositories on the target host provide the packages listed in link:single-node-prerequisites.html#operating-system-packages[Operating system packages]. Ensure that your package managers have the appropriate proxy configuration if required in your environment.
+* The operating system repositories on the target host provide the packages listed in link:single-node-prerequisites.html#operating-system-packages[Operating system packages]. Verify that your package managers have the appropriate proxy configuration if required in your environment.
 
 == What the installer configures
 
@@ -80,7 +80,7 @@ If the proxy requires a username, add `--proxy-user USER` to the `curl` command.
 +
 * Use `https://` in the `-x` address if your proxy listens on HTTPS.
 * If your proxy uses a privately signed certificate, add `--proxy-cacert CA_FILE`, or add the CA certificate to the target host trust store first.
-* With an HTTPS proxy and a `curl` version earlier than 8.3, which includes Ubuntu 22.04, the download can pause for about a minute. Wait for it to finish.
+* If you use an HTTPS proxy and a `curl` version earlier than 8.3, the download can pause for about a minute. Ubuntu 22.04 includes such a version. Wait for it to finish.
 +
 Alternatively, download `\https://d13jb5dapseb36.cloudfront.net/aide/latest/aide-installer.tar.gz` from another device, and then copy it to the target host with `scp` or your usual file transfer method.
 
@@ -216,7 +216,7 @@ NOTE: Installation takes about 45 minutes to complete. Timeouts and retries migh
 +
 The installer detects the IP address of the node that runs the AI Data Engine NGINX ingress and asks you to confirm it. Press Enter to keep the address shown, or type a different address. Use an address that can be reached from outside the VM. Do not enter the Console agent address.
 
-. Monitor the progress screen until the success screen appears and displays that AIDE installation is complete.
+. Monitor the progress screen until the success screen appears and confirms that the AIDE installation is complete.
 
 .Result
 AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
