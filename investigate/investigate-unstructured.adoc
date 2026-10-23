@@ -11,8 +11,9 @@ summary: Find and classify files as cold, stale, large, or duplicated across NFS
 [.lead]
 When file-based storage is growing unexpectedly, filter by last-access time, file size, and owner to find which files are consuming capacity. For example, a storage administrator can identify terabytes of VM snapshots that haven't been accessed in over a year and evaluate whether to archive, delete, or retain them.
 
-.Before you begin
-* At least one data source must be connected and scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
+== Before you begin
+
+* You have connected at least one data source, and it is scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
 
 == Find cold or stale files by last-access time
 
@@ -58,8 +59,6 @@ The results table lists the files that have duplicate copies.
 . To see every copy of a specific file and its location, select the file name, and then select *View details* next to *Duplicates*.
 
 To review the copies and clean them up, refer to link:take-actions.html[Investigate and clean up duplicate files].
-
-// RESEARCH Does the Duplicates filter, then selecting files, then Clean up duplicates work end to end without opening a file's View details? Figma shows both entry points but not this sequence.
 
 == Act on results or save as a policy
 

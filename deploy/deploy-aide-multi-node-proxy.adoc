@@ -9,23 +9,32 @@ summary: Deploy AIDE as a multi-node deployment from NetApp Console when your cl
 :imagesdir: ../media/
 
 [.lead]
-Deploy AIDE as a multi-node deployment from NetApp Console when your Kubernetes cluster and the installer host reach the internet only through an outbound proxy. This topic includes every step of the multi-node deployment, along with the proxy steps. If your cluster and installer host have direct internet access, use link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment] instead.
+Deploy AI Data Engine (AIDE) as a multi-node deployment from NetApp Console when your Kubernetes cluster and the installer host reach the internet only through an outbound proxy. This procedure includes every step of the multi-node deployment, along with the proxy steps. If your cluster and installer host have direct internet access, use link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment] instead.
 
 For the supported proxy types and the complete parameter reference, see link:configure-proxy.html[Learn about proxies for AI Data Engine]. For the endpoints to allow on your proxy, see link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 
 == Before you begin
 
+.Permissions and access
 * You have _Organization admin_ or greater permissions in NetApp Console.
-* Your Kubernetes cluster meets the multi-node prerequisites described in link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
-* An NFS server with an exported path is available and reachable from the cluster for the AIDE config volume.
-* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the cluster nodes. The Console Agent IP is required to run the install command.
 * You have a kubeconfig with cluster-admin access to the target cluster. If `kubectl` isn't on your `PATH`, the installer downloads it to the tools directory.
+
+.Kubernetes cluster
+* Your Kubernetes cluster meets the multi-node prerequisites described in link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
 * The `aide` namespace exists on the cluster before you run the install command.
 * The nodes that schedule AI Data Engine workloads have the node labels described in link:multi-node-prerequisites.html#node-labels[Node labels].
 * A configured StorageClass (default name: `aide-sc`) is available on the cluster and used for AIDE's stateful backing services.
+
+.Storage and NetApp Console
+* An NFS server with an exported path is available and reachable from the cluster for the AIDE config volume.
+* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the cluster nodes. The Console agent IP is required to run the install command.
+
+.Proxy
 * You have configured your proxy to allow the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 * You know the proxy host, port, and scheme (`http` or `https`). If the proxy requires authentication, you also know the username and password.
 * If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the installer host.
+
+NOTE: Use the installer only for the first installation of AIDE. Do not use it to upgrade AIDE. After installation, the AIDE operator manages upgrades. For information about upgrades, contact NetApp Support.
 
 == How the proxy applies to a multi-node deployment
 
@@ -33,7 +42,7 @@ In a multi-node deployment, you own the Kubernetes cluster. The installer config
 
 The installer checks the proxy from the installer host only. It doesn't check your nodes. If a node's container runtime isn't configured, the installation completes and pods on that node later show `ImagePullBackOff`.
 
-The installer also doesn't install operating system packages on your nodes. Ensure that the nodes have the packages that your environment requires, and that your package managers have the appropriate proxy configuration if required in your environment.
+The installer also doesn't install operating system packages on your nodes. Verify that the nodes have the packages that your environment requires, and that your package managers have the appropriate proxy configuration if required in your environment.
 
 [[configure-proxy-multi-node]]
 == Configure the nodes for the proxy
@@ -91,7 +100,7 @@ If the proxy requires a username, add `--proxy-user USER` to the `curl` command.
 +
 * Use `https://` in the `-x` address if your proxy listens on HTTPS.
 * If your proxy uses a privately signed certificate, add `--proxy-cacert CA_FILE`, or add the CA certificate to the installer host trust store first.
-* With an HTTPS proxy and a `curl` version earlier than 8.3, which includes Ubuntu 22.04, the download can pause for about a minute. Wait for it to finish.
+* If you use an HTTPS proxy and a `curl` version earlier than 8.3, the download can pause for about a minute. Ubuntu 22.04 includes such a version. Wait for it to finish.
 +
 Alternatively, download `\https://d13jb5dapseb36.cloudfront.net/aide/latest/aide-installer.tar.gz` from another computer, and then copy it to the installer host with `scp` or your usual file transfer method.
 
@@ -149,8 +158,6 @@ Use the same proxy host, port, scheme, and CA certificate that you configured on
 
 When you run the install command in a terminal without `--proxy-host` or `--no-proxy`, the installer asks the following questions. If you pass a value as a parameter, the installer doesn't ask for it again.
 
-// RESEARCH Confirm the prompt wording at release, including the proxy type prompt, and update the proxy type guidance if TLS inspection is qualified for GA.
-
 [cols="2,3",options="header"]
 |===
 |Prompt |What to enter
@@ -159,7 +166,7 @@ When you run the install command in a terminal without `--proxy-host` or `--no-p
 |Enter `y`.
 
 |Proxy host or IP
-|Enter the proxy hostname or IPv4 address, optionally with a port (`host:port`).
+|Enter the proxy host name or IPv4 address, optionally with a port (`host:port`).
 
 |Proxy scheme (`https` or `http`)
 |Enter the protocol that your proxy listens on. The default is `https`.
@@ -230,7 +237,9 @@ NOTE: Installation takes about 30 minutes to complete. Timeouts and retries migh
 * The installer asks you to confirm that the prerequisites for a multi-node deployment are complete. Answer yes to continue.
 * The installer detects the IP address of the node that runs the AI Data Engine NGINX ingress and asks you to confirm it. Press Enter to keep the address shown, or type a different address. Use an address that can be reached from outside the cluster. If the detected address is an internal cluster address, type the reachable address instead. Do not enter the Console agent address.
 
-. Monitor the progress screen until the success screen appears and displays that AIDE installation is complete.
+. Monitor the progress screen until the success screen appears and confirms that the AIDE installation is complete.
++
+If the installation fails, contact NetApp Support.
 
 .Result
 Your AI Data Engine multi-node deployment is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.

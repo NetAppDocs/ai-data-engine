@@ -9,7 +9,7 @@ summary: Review and update your MCP collections, identity providers, access scop
 :imagesdir: ../media/
 
 [.lead]
-Review and update your MCP collections, identity providers, access scopes, and server settings as your requirements change.
+Keep governed AI access in AI Data Engine (AIDE) aligned with your requirements by reviewing and updating your Model Context Protocol (MCP) collections, identity providers, access scopes, and server settings, and by validating access from your AI clients.
 
 == Before you begin
 
@@ -27,7 +27,7 @@ Review the status of the MCP server and of the collections that your AI clients 
 
 . In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
 . Review the MCP server status:
-* *Active*: The MCP server is running and enabled, and it accepts requests from AI clients.
+* *Running*: The MCP server is running. AI clients can connect when *Enable connection to MCP* is turned on.
 * *Degraded*: The MCP server is running, but a prerequisite is missing or unhealthy, such as no configured identity provider or a slow response from the metadata catalog. AI clients might not be able to authenticate or retrieve collections.
 * *Offline*: The MCP server is stopped, disabled, or unreachable. AI clients can't connect. If the connection to MCP is turned off, refer to <<enable-or-disable-the-connection-to-mcp,Enable or disable the connection to MCP>>.
 . In the collections list, review the status of each collection that your AI clients use. A collection with a status of *Enabled* is available to AI clients. If volumes in a collection are still being scanned, wait for indexing to finish before you search for new files.
@@ -92,7 +92,7 @@ For more information about this task, refer to link:manage-data-collections.html
 [#enable-or-disable-the-connection-to-mcp]
 == Enable or disable the connection to MCP
 
-Turn on *Enable connection to MCP* to allow AI clients to connect to your MCP collections. The setting is on by default after setup. If you turn it off, AI clients stay blocked until you turn it back on.
+Turn on *Enable connection to MCP* to allow AI clients to connect to your MCP collections. The connection is disabled by default. Turn it on after you set up the MCP server and before you generate the MCP code snippet for your AI client. If you turn it off later, AI clients stay blocked until you turn it back on.
 
 .Steps
 
@@ -102,6 +102,7 @@ Turn on *Enable connection to MCP* to allow AI clients to connect to your MCP co
 . Use the *Enable connection to MCP* toggle to turn the connection on or off.
 +
 CAUTION: Disabling the MCP server connection blocks all requests from AI clients to all MCP collections, regardless of collection settings. AI clients that are already connected lose access on their next request. Disable the connection only when you intend to suspend access across the server.
+. After you turn the connection on, confirm that the MCP server has a status of *Running*. Refer to <<review-mcp-server-and-collection-status,Review MCP server and collection status>>.
 
 [#review-mcp-server-settings]
 == Review MCP server settings
@@ -116,11 +117,8 @@ Review whether AI clients can connect to the MCP server, and review the AIDE clu
 . Under *MCP hostname*, review the AIDE cluster host name. If you need to change it, enter the updated host name and select *Configure*.
 +
 CAUTION: Changing the AIDE cluster host name changes the MCP server URL. AI clients that use the previous URL can't connect until you update their connection settings. The new host name must be on a domain that is verified in your Entra ID tenant. Because the Application ID URI and the scope are built from the host name, you must also update them in Entra ID. Refer to <<update-ai-client-connections-and-validate-access,Update AI client connections and validate access>>.
-// RESEARCH Confirm what must change in Entra ID, NetApp Console, and the AI client configuration when the AIDE cluster host name changes, and whether changing it after setup is supported.
 +
 NOTE: Securing the MCP server with HTTPS requires an SSL/TLS certificate. NetApp Console doesn't manage the certificate. The ingress script sets up the certificate and the AIDE cluster host name. The host name must be on a domain that is verified in your Entra ID tenant. Refer to link:prepare-mcp-host.html[Prepare the MCP host].
-// RESEARCH Confirm whether changing the host name in MCP settings requires running the ingress script again.
-// RESEARCH The architect's presentation shows the server status as "MCP server: Running". This page lists Active, Degraded, and Offline. Confirm the status labels in the GA build.
 . Select *Close*.
 
 [#update-ai-client-connections-and-validate-access]
@@ -137,12 +135,12 @@ After you change collections, identity providers, user scopes, or server setting
 
 .Result
 
-Your MCP setup reflects your changes, and you confirmed that your affected AI clients can connect and that access matches your intended permissions.
+Your MCP setup reflects your changes, your affected AI clients can connect, and access matches your intended permissions.
 
 == Related information
 
 * link:manage-data-collections.html[Manage data collections]
 * link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access]
 * link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID]
-* link:connect-ai-clients-mcp.html[Connect AI clients]
+* link:connect-ai-clients-mcp.html[Connect AI clients to the AI Data Engine MCP server]
 * link:../release-notes/known-limitations.html[Known limitations]

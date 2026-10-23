@@ -9,7 +9,7 @@ summary: Learn about the components of AI Data Engine and how they work together
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine (AIDE) runs on infrastructure that you provide. The Metadata Engine scans your storage and builds a searchable catalog. NetApp Console manages your deployment through a Console Agent. A Model Context Protocol (MCP) server option lets AI clients search the catalog within boundaries that you set.
+AI Data Engine (AIDE) runs on infrastructure that you provide. The Metadata Engine scans your storage and builds a searchable catalog. NetApp Console manages your deployment through a Console agent. A Model Context Protocol (MCP) server option lets AI clients search the catalog within boundaries that you set.
 
 == Components
 
@@ -19,20 +19,17 @@ The AI Data Engine dashboard, investigation, and policies in NetApp Console all 
 
 The Metadata Engine is the core capability of AI Data Engine. It scans the data sources that you connect, extracts metadata, and stores it in a searchable catalog. It doesn't read or classify file contents. The Metadata Engine updates the catalog at each scan cycle, detecting additions, changes, and deletions across your storage systems.
 
-=== NetApp Console Agent
+=== NetApp Console agent
 
-AI Data Engine requires a NetApp Console Agent deployed in your environment. The Console Agent is a general-purpose NetApp platform component that maintains connectivity between your environment and NetApp Console. It handles authentication and communication between NetApp Console and your AI Data Engine deployment. The scanning and catalog services run in your AI Data Engine deployment, not on the Console Agent.
+AI Data Engine requires a NetApp Console agent deployed in your environment. The Console agent is a general-purpose NetApp platform component that maintains connectivity between your environment and NetApp Console. It handles authentication and communication between NetApp Console and your AI Data Engine deployment. The scanning and catalog services run in your AI Data Engine deployment, not on the Console agent.
 
-NOTE: The Console Agent isn't specific to AI Data Engine. If you already have a Console Agent deployed for other NetApp services, you can use the same agent. For Console Agent deployment instructions, refer to the link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html[NetApp Console Agent documentation].
+NOTE: The Console agent isn't specific to AI Data Engine. If you already have a Console agent deployed for other NetApp services, you can use the same agent. For Console agent deployment instructions, refer to the link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html[NetApp Console agent documentation].
 
 === Governed Access Gateway
 
-The Governed Access Gateway is the MCP server for AI Data Engine. It lets AI clients search the metadata catalog. The gateway runs in your AI Data Engine deployment, and AI clients connect to it over HTTPS from your corporate network or through VPN. The Console Agent doesn't relay MCP traffic.
+The Governed Access Gateway is the MCP server for AI Data Engine. It lets AI clients search the metadata catalog. The gateway runs in your AI Data Engine deployment, and AI clients connect to it over HTTPS from your corporate network or through VPN. The Console agent doesn't relay MCP traffic.
 
 Microsoft Entra ID authenticates users, and the gateway limits each AI client to the collections that the user is authorized to search. The gateway supports metadata search and tagging only, and only power users can tag files. It doesn't retrieve file contents.
-
-// RESEARCH Is Governed Access Gateway the final customer-facing name for this component?
-// RESEARCH Is the gateway deployed with AI Data Engine automatically, or is it enabled separately?
 
 link:../mcp/learn-about-mcp.html[Learn more about governed AI access].
 
@@ -56,7 +53,7 @@ AI Data Engine uses two separate paths: one that builds the catalog and serves i
 
 === Metadata scanning and NetApp Console access
 
-. You deploy AI Data Engine on infrastructure that you manage and connect it to a NetApp Console Agent.
+. You deploy AI Data Engine on infrastructure that you manage and connect it to a NetApp Console agent.
 . You connect the data sources that you want AI Data Engine to catalog in *Data sources*. For more information, refer to link:../data-sources/connect-data-source.html[Connect a data source].
 . The Metadata Engine scans the data sources to extract metadata and indexes it in the catalog.
 . In NetApp Console, the dashboard surfaces storage insights from the catalog, and Investigation lets you query the catalog directly with metadata filters.

@@ -22,7 +22,6 @@ Your VM must meet the requirements in the following sections before you run the 
 
 == Storage type
 
-// RESEARCH Should NFS-backed storage be avoided for the AIDE data volume on a single-node deployment, with block storage as the documented recommendation? This needs confirmation.
 Use block storage, not NFS, for the AIDE data volume. NFS-backed storage can cause underperformance. NVMe SSD or other solid-state storage is preferred for all deployment sizes. The storage must also meet the IOPS and throughput for your size in link:aide-requirements.html#single-node-vm-sizes[AIDE requirements].
 
 [[single-node-disk-space]]
@@ -30,7 +29,7 @@ Use block storage, not NFS, for the AIDE data volume. NFS-backed storage can cau
 
 Free space is required on each file system that hosts the paths in the following table. Paths that share a disk share one free-space pool, so add their minimums together.
 
-If a single disk hosts everything, the minimum free space is 65 GB plus the AIDE data volume size for your configuration. The 65 GB fixed floors exclude `/var/run`, which is typically `tmpfs` and does not add to this total:
+If a single disk hosts everything, the minimum free space is 65 GB plus the AIDE data volume size for your configuration. The 65 GB fixed floors exclude `/var/run`, which is typically `tmpfs` and doesn't add to this total:
 
 [cols="1,1",options="header"]
 |===
@@ -117,7 +116,7 @@ The k3s ports in the following table must be free on the host before the install
 
 |===
 
-The default pod CIDR is `10.44.0.0/16` and the default service CIDR is `10.45.0.0/16`. The firewall rules permit these CIDRs so in-cluster traffic, including CoreDNS and other Services, is not dropped. If you override the defaults with the `--k3s-cluster-cidr` and `--k3s-service-cidr` installer options, use your values in the following commands.
+The default pod CIDR is `10.44.0.0/16` and the default service CIDR is `10.45.0.0/16`. The firewall rules permit these CIDRs so that in-cluster traffic, including CoreDNS and other Services, is not dropped. If you override the defaults with the `--k3s-cluster-cidr` and `--k3s-service-cidr` installer options, use your values in the following commands.
 
 .RHEL, Rocky Linux, AlmaLinux, and CentOS (firewalld)
 [source,bash]

@@ -9,7 +9,7 @@ summary: Known limitations identify functionality that is not supported in AI Da
 :imagesdir: ../media/
 
 [.lead]
-Known limitations identify functionality that isn't supported in AI Data Engine, or functionality that doesn't interoperate correctly. Review these limitations before deploying or using the product.
+Known limitations identify functionality that isn't supported in AI Data Engine (AIDE), or functionality that doesn't interoperate correctly. Review these limitations before deploying or using the product.
 
 == Deployment
 
@@ -24,12 +24,10 @@ You can deploy AI Data Engine with a forward proxy, but the following proxy feat
 * SOCKS proxies.
 * Proxy auto-configuration (PAC file or WPAD). Give the installer the proxy host and port directly.
 * A different proxy for different destinations. One proxy carries all AI Data Engine internet traffic.
-* An IPv6 address as the proxy address. Use a hostname instead; the hostname can resolve to IPv6.
+* An IPv6 address as the proxy address. Use a host name instead; the host name can resolve to IPv6.
 * A proxy with an air-gapped installation. The installer rejects proxy options on an air-gapped installation.
 +
 For supported proxy configurations, see link:../deploy/configure-proxy.html[Learn about proxies for AI Data Engine].
-
-// RESEARCH Update the TLS-inspecting proxy limitation, and the proxy type prompt guidance in the proxy topics, if QA qualifies TLS inspection for GA and the product manager approves it.
 
 == Policies and actions
 

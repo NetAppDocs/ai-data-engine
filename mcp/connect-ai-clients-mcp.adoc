@@ -4,19 +4,23 @@ permalink: mcp/connect-ai-clients-mcp.html
 keywords: mcp, governed ai access, claude code, claude desktop, cursor, opencode, ai client, mcp server, prompts, tags
 summary: Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine MCP server, and use sample prompts to search file metadata and tag files in a collection.
 ---
-= Connect AI clients to use with AI Data Engine
+= Connect AI clients to the AI Data Engine MCP server
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine MCP server. After you connect, you can search file metadata and tag files in the collections that you have access to.
+Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the Model Context Protocol (MCP) server for AI Data Engine (AIDE) so that you can search file metadata and tag files in the collections that you have access to.
 
 == Before you begin
 
+.Administrator setup
 * An administrator has completed the setup in link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access] and link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID], including these:
 ** Assigning you the `AIDE Power Users` app role.
 ** Configuring a collection for MCP with a scope that includes you. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
+** Turning on *Enable connection to MCP* in *MCP settings*. If the connection is off, AI clients can't connect to any collection.
 ** Adding the redirect URI for your AI client to the AI Data Engine application and allowing public client flows. The AI client signs in as a public client, so you don't need a client secret.
+
+.MCP client configuration
 * You have the MCP client configuration from your administrator. The administrator generates it in NetApp Console by configuring the collection for MCP, copies the MCP server URL or the client-specific snippet from the *Generate MCP code snippet* step, and shares it with you. It includes the following:
 ** The MCP server URL, in the format `\https://<mcp-server-host>/mcp/tools`.
 ** The Microsoft Entra ID tenant ID.
@@ -25,15 +29,15 @@ Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine M
 *** `\https://<mcp-server-host>/mcp/tools/power_users`, which is the Application ID URI plus `/power_users`.
 *** `offline_access`, so that the client can refresh tokens without asking you to sign in again.
 ** The ID of the collection that you want to work with.
-// RESEARCH The generated configuration is pending validation. Confirm the snippet formats (the console shows client-specific snippets and a standalone MCP server URL). Does the console show tabs for any client that isn't supported? Does it show tabs for Claude Code or OpenCode? Does the architect's General client tab ship in GA, and is it supported for clients other than the four that are listed here? Confirm what each tab generates.
-// RESEARCH Confirm the field list that Console generates, and which values you add yourself.
+
+.Network access
 * Your device can reach the MCP server over HTTPS on port 443. The MCP server runs in your network, so connect from your corporate network or through VPN. Your device must also be able to do the following:
 ** Resolve the AIDE cluster host name through DNS.
 ** Trust the certificate that the host presents. If the certificate is self-signed, install it as a trusted certificate on your device.
 ** Reach Microsoft Entra ID sign-in (`login.microsoftonline.com`).
-// RESEARCH Does the MCP server accept a custom port for AI client access, and should this prerequisite mention it?
+
+.AI client
 * You have a supported version of the AI client.
-// RESEARCH What are the minimum supported versions of Claude Code, Claude Desktop, Cursor, and OpenCode?
 
 == Validated AI clients
 
@@ -50,8 +54,6 @@ Before you paste a snippet into your AI client, confirm the following:
 * The scope is `\https://<mcp-server-host>/mcp/tools/power_users`, which is the Application ID URI plus `/power_users`.
 * The client ID is the Application (client) ID of the AI Data Engine application in Entra ID.
 
-// RESEARCH The single-application setup was verified with Cursor and OpenCode. Confirm that Claude Desktop and Claude Code use the same client ID.
-
 == Connect Claude Desktop
 
 NOTE: Generating connection details in NetApp Console doesn't connect or validate your AI client. Complete those tasks in the AI client.
@@ -61,8 +63,6 @@ Claude Desktop connects to the AI Data Engine MCP server through `mcp-remote`, a
 .Before you begin
 
 Install Node.js on your computer. The `mcp-remote` helper runs with Node.js.
-
-// RESEARCH Confirm the minimum Node.js version and NetApp's support position for the mcp-remote helper.
 
 .Steps
 
@@ -93,7 +93,6 @@ Install Node.js on your computer. The `mcp-remote` helper runs with Node.js.
 ----
 +
 NOTE: Keep the `--disable-resource-parameter` argument. Without it, Microsoft Entra ID rejects the sign-in request with error `AADSTS9010010`.
-// RESEARCH Pin a tested mcp-remote version in the command. Confirm that mcp-remote accepts a collection_id query string.
 . Save the file and restart Claude Desktop.
 . When the browser opens, sign in with your Microsoft Entra ID account and accept the consent prompt if it appears.
 . In Claude Desktop, open *Connectors* and confirm that the AI Data Engine server is listed with its tools.
@@ -135,7 +134,6 @@ NOTE: Don't pass `--client-secret`. The client application is a public client.
   }
 }
 ----
-// RESEARCH Does Claude Code accept a collection_id query string, and does it need offline_access in the scopes string? What is the minimum Claude Code version?
 . In Claude Code, run `/mcp` and sign in with your Microsoft Entra ID account. Or, from a shell, run `claude mcp login netapp-ai-data-engine`.
 . Run `claude mcp list` and confirm that the AI Data Engine server shows as connected.
 
@@ -206,7 +204,6 @@ opencode mcp add netapp-ai-data-engine --global --url "https://<mcp-server-host>
 ----
 +
 NOTE: Don't set `oauth` to `false`, and don't add a client secret to this file.
-// RESEARCH Are these the correct OpenCode configuration structure and key names? Does OpenCode accept a collection_id query string, and does it need offline_access in the scope? What is the minimum OpenCode version?
 . In OpenCode, run `/mcps`, select the AI Data Engine server, and sign in with your Microsoft Entra ID account when the browser opens.
 . Run `opencode mcp list` and confirm that the AI Data Engine server shows as connected.
 +
@@ -214,7 +211,7 @@ A status of `needs authentication` means that OpenCode saved the configuration b
 
 == What you can do
 
-After you connect, your AI client can use five tools: `get_collection`, `search`, `list_tags`, `create_tag`, and `tag_document`. A connection is limited to the collection in the MCP server URL. To work with a different collection, use the connection details for that collection. Refer to link:mcp-tools-reference.html[MCP tools reference] for what each tool does.
+After you connect, your AI client can use five tools: `get_collection`, `search`, `list_tags`, `create_tag`, and `tag_document`. A connection is limited to the collection in the MCP server URL. To work with a different collection, use the connection details for that collection. Refer to link:mcp-tools-reference.html[MCP tools for AI Data Engine governed AI access] for what each tool does.
 
 The tools are available in a power-user session, which requires the `AIDEPowerUsers` app role and the `power_users` scope.
 
@@ -224,13 +221,9 @@ Your AI client can't retrieve file contents, add, delete, or modify files, chang
 
 Tags apply across AI Data Engine, not only to one collection. A misspelled tag name creates a new tag, and tag names are case-sensitive. For example, `Finance` and `finance` are different tags. You can't rename a tag after you create it. For limitations on tag names, refer to link:../release-notes/known-limitations.html[Known limitations].
 
-// RESEARCH Do applied tags appear in later searches? Confirm before describing searching by tag.
-
 == Sample prompts
 
 Replace the placeholders with values from your environment.
-
-// RESEARCH Validate every prompt against a GA build and the demo collection.
 
 === Search metadata
 
@@ -287,7 +280,7 @@ TIP: Search filters on file name prefix, file type, and owner. If you ask for fi
 == Related information
 
 * link:learn-about-mcp.html[Learn about governed AI access]
-* link:mcp-tools-reference.html[MCP tools reference]
+* link:mcp-tools-reference.html[MCP tools for AI Data Engine governed AI access]
 * link:prepare-mcp-host.html[Prepare the MCP host]
 * link:manage-data-collections.html[Manage data collections]
 * link:maintain-mcp-setup.html[Maintain your MCP setup]

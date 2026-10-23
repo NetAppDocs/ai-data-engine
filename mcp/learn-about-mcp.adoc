@@ -9,7 +9,7 @@ summary: Governed AI access lets AI clients search the metadata in selected AI D
 :imagesdir: ../media/
 
 [.lead]
-Governed AI access lets AI clients search the metadata in AI Data Engine collections that you select using the Model Context Protocol (MCP). You decide which link:manage-data-collections.html#about-data-collections[collections] an AI client can search and who can use them. AI assistants work from your cataloged metadata within the boundaries you set.
+Governed AI access lets AI clients use the Model Context Protocol (MCP) to search the metadata in the AI Data Engine (AIDE) collections that you select. You decide which link:manage-data-collections.html#about-data-collections[collections] an AI client can search and who can use them. AI assistants work from your cataloged metadata within the boundaries that you set.
 
 // IE UX Link dependency: The UI links to this page from MCP Collections > "Learn how to connect your AI agent". Do not change the permalink or filename without creating a redirect file.
 
@@ -20,9 +20,7 @@ The Model Context Protocol (MCP) is an open standard that lets AI clients connec
 Through MCP, a connected AI client can:
 
 * Search the metadata for the files in the collections that you have enabled for AI access.
-* List tags, create tags, and add tags to or remove tags from those files. If a tag doesn't exist, add it to a file to create it. Tag operations are available in a power-user session, which requires the Microsoft Entra ID app role and scope. Refer to link:configure-entra-id-mcp.html#create-and-assign-the-power-user-app-role[Create and assign the power-user app role]. For the tools that AI clients can use, refer to link:mcp-tools-reference.html[MCP tools reference].
-
-// RESEARCH Is the MCP server called the Governed Access Gateway in customer-facing content, and is that name final?
+* List tags, create tags, and add tags to or remove tags from those files. If a tag doesn't exist, add it to a file to create it. Tag operations are available in a power-user session, which requires the Microsoft Entra ID app role and scope. Refer to link:configure-entra-id-mcp.html#create-and-assign-the-power-user-app-role[Create and assign the power-user app role]. For the tools that AI clients can use, refer to link:mcp-tools-reference.html[MCP tools for AI Data Engine governed AI access].
 
 == Governed AI access and the Investigation view
 
@@ -45,7 +43,7 @@ Governed AI access gives you an AI-based alternative to the investigation work t
 |Ask the AI client to create a tag, add it to a file, or remove a tag from a file.
 |===
 
-The same catalog metadata and tags are available in both places. You can create, add, or remove tags in the Investigation view or through an AI client; changes made in either interface are reflected in the other and are available for consistent searches based on tags.
+The same catalog metadata and tags are available in both places. You can create, add, or remove tags in the Investigation view or through an AI client. Each interface reflects the changes that you make in the other, so searches based on tags are consistent.
 
 The AI client works only within the collections that are enabled for AI access. For search options and examples, refer to link:connect-ai-clients-mcp.html#search-metadata[Search metadata].
 
@@ -59,10 +57,11 @@ You configure governed AI access in Microsoft Entra ID and NetApp Console. The t
 . Entra ID administrator: link:configure-entra-id-mcp.html[Configure Microsoft Entra ID] by registering a dedicated application for each AI Data Engine instance, defining the Application ID URI and the `power_users` scope, creating and assigning the power-user app role, and adding redirect URIs for your AI clients.
 . AI Data Engine administrator: link:connect-entra-id-aide-mcp.html[Set up Microsoft Entra ID as an identity provider] in AI Data Engine.
 . Optional: Create data collections from selected volumes. The *All files* collection exists by default and includes every scanned file.
+. Enable the connection to MCP in *MCP settings*, and confirm that the MCP server is running. The connection is disabled by default.
 . Configure each collection for MCP by selecting identity providers and user scopes. The scopes you include define what an AI client can search.
 . Connect AI clients by using the MCP server URL or client-specific snippet that you generate in NetApp Console.
 
-After the configuration is complete, users sign in to anAI client with their Entra ID identity. The client can then search only the collections that the user's Entra ID scopes are allowed to access.
+After the configuration is complete, users sign in to an AI client with their Entra ID identity. The client can then search only the collections that the user's Entra ID scopes are allowed to access.
 
 Access is granted at the collection level only. You can't grant access to individual files or directories.
 
@@ -110,6 +109,6 @@ For the complete list of restrictions, refer to link:../release-notes/known-limi
 * link:prepare-mcp-host.html[Prepare the MCP host]
 * link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access]
 * link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID]
-* link:connect-ai-clients-mcp.html[Connect AI clients]
-* link:mcp-tools-reference.html[MCP tools reference]
+* link:connect-ai-clients-mcp.html[Connect AI clients to the AI Data Engine MCP server]
+* link:mcp-tools-reference.html[MCP tools for AI Data Engine governed AI access]
 * link:../release-notes/known-limitations.html[Known limitations]

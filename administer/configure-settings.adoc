@@ -9,9 +9,13 @@ summary: Define which files AI Data Engine classifies as cold or stale data, tur
 :imagesdir: ../media/
 
 [.lead]
-Cold and stale thresholds help you find storage that you can optimize. Permission scanning and Active Directory integration help you find and understand access risks. Set them to match your organization's data classification, retention, and access policies.
+Cold and stale thresholds help you find storage that you can optimize using AI Data Engine (AIDE). Permission scanning and Active Directory integration help you find and understand access risks. Set them to match your organization's data classification, retention, and access policies.
 
 // IE UX Link dependency: The UI links to this page from General settings > "Learn more". Do not change the permalink or filename without creating a redirect file.
+
+== Before you begin
+
+You must have the _AI Data Engine administrator_ role.
 
 == What is cold and stale data?
 
@@ -25,13 +29,6 @@ NOTE: The default threshold values are product defaults provided as a starting p
 
 Changes to the cold and stale thresholds take effect after the next scan cycle completes.
 
-// RESEARCH When do changes to the permission scanning and Active Directory settings take effect (next scan cycle or immediately)?
-// RESEARCH What do the dashboard, Investigation filters, and policies show when cold data, stale data, or permission scanning is disabled?
-
-== Before you begin
-
-You must have the _AI Data Engine administrator_ role.
-
 == Set the cold data threshold
 
 Decide how long files can go without being accessed before your organization evaluates them for archiving, deletion, or monitoring. You can also limit the classification by file size, and keep specific file types or paths out of it.
@@ -44,9 +41,6 @@ Decide how long files can go without being accessed before your organization eva
 . Set the *Minimum file size (MiB)* and *Max file size cap (MiB)* to focus on the files that matter to you.
 . Optional: To keep specific files out of this classification, enter *Exclude file types* and *Exclude paths*. Enter files and full paths, and separate multiple entries with commas.
 . Select *Save*.
-
-// RESEARCH Can the exclusion fields use wildcards? The current guidance supports files and full paths only.
-// RESEARCH Cold data is defined as not accessed, and stale data as not modified, but each definition offers Age based on options for both Last accessed and Last modified. Confirm how the selected timestamp changes each classification.
 
 == Set the stale data threshold
 

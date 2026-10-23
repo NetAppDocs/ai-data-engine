@@ -9,20 +9,26 @@ summary: Configure Kerberos authentication on a multi-node AI Data Engine deploy
 :imagesdir: ../media/
 
 [.lead]
-Scan SMB/CIFS shares from a multi-node AI Data Engine deployment by using Kerberos authentication, so that no password is stored in the data source. Every node uses the same Kerberos configuration, and AI Data Engine refreshes the Kerberos ticket automatically.
+Scan SMB/CIFS shares from a multi-node AI Data Engine (AIDE) deployment by using Kerberos authentication, so that no password is stored in the data source. Every node uses the same Kerberos configuration, and AI Data Engine refreshes the Kerberos ticket automatically.
 
 If you have a single-node deployment, refer to link:configure-kerberos-smb-single-node.html[Configure Kerberos for SMB/CIFS shares on a single-node AI Data Engine deployment].
 
-.Before you begin
+== Before you begin
 
+.Permissions and access
 * You have _AI Data Engine administrator_ privileges.
 * You have root access to every node and to the admin host. The admin host is the host where you mount the NFS export and create the keytab. It can be one of the nodes.
 * You have `kubectl` access with cluster-admin privileges to your Kubernetes cluster from the admin host. If you use a kubeconfig file, set the `KUBECONFIG` environment variable to its path.
+
+.Network and time synchronization
 * You have reviewed the link:../deploy/aide-requirements.html#networking-requirements[networking requirements] and the link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements], including time synchronization and DNS.
 * You have verified that every node can reach the NFS server on TCP port 2049, the KDC on port 88, the file server on port 445, and your DNS server on port 53.
 * You have verified that NTP is active on every node and that each clock is synchronized with your domain controllers. To check, run `timedatectl`.
+
+.Active Directory
 * You have a scan service account in Active Directory with read access to the SMB/CIFS shares you want to scan. The account must support AES256 encryption.
-// RESEARCH Are the AES256 requirement, the AI Data Engine administrator privilege requirement, and the statement that the admin host can be one of the nodes all correct?
+
+.Information to gather
 * You have the following information:
 +
 [cols="2,4,2",options="header"]
@@ -142,7 +148,6 @@ dnf -y install cifs-utils
 ----
 which cifs.upcall
 ----
-// RESEARCH Which NFS client packages must be installed on the admin host for Ubuntu and RHEL, and why does the admin host need cifs-utils?
 
 [[mount-nfs-export]]
 == Mount the NFS export on the admin host
@@ -159,14 +164,12 @@ kubectl -n "${NAMESPACE}" get pvc aide-config-pvc
 ----
 +
 The status must be `Bound`.
-// RESEARCH What should a customer do if the configuration volume claim isn't Bound?
 . Get the NFS server and the export path of the configuration volume. You specified these values when you deployed AI Data Engine.
 +
 [source,cli]
 ----
 kubectl get pv aide-config-pv -o jsonpath='NFS server: {.spec.nfs.server}{"\n"}Export path: {.spec.nfs.path}{"\n"}'
 ----
-// RESEARCH Can these Kubernetes object names be documented publicly, or is there another way for a customer to look up the NFS server and export path?
 . Mount the export. Replace `<nfs_server>` and `<export_path>` with the values from the previous step. The commands use `/mnt/aide-config` as the mount point. You can use any empty directory.
 +
 [source,cli]
@@ -174,7 +177,6 @@ kubectl get pv aide-config-pv -o jsonpath='NFS server: {.spec.nfs.server}{"\n"}E
 mkdir -p /mnt/aide-config
 mount -t nfs <nfs_server>:<export_path> /mnt/aide-config
 ----
-// RESEARCH Does the NFS export need to allow root write access from the admin host?
 . Create the Kerberos directories.
 +
 [source,cli]
@@ -241,7 +243,6 @@ chmod 644 "${KRB5_CONF_SOURCE}"
 ----
 +
 The file uses the KDC IP address so that Kerberos authentication doesn't depend on DNS.
-// RESEARCH The admin_server entry was restored from the spec (KDC IP, port 749). SME to confirm that the entry and the port are correct for an Active Directory KDC.
 . Create a keytab for the scan service account.
 .. Run `ktutil`.
 .. At the `ktutil` prompt, enter the following command. Replace `<scan_user>` and `<REALM>` with your values. The `ktutil` prompt doesn't use the shell variables.
@@ -258,7 +259,6 @@ addent -password -p <scan_user>@<REALM> -k 1 -e aes256-cts-hmac-sha1-96
 wkt /tmp/krb5.keytab
 quit
 ----
-// RESEARCH Has the interactive ktutil password entry been validated in QA?
 . Test the keytab. The `KRB5_CONFIG` variable points the Kerberos tools at the file on the export.
 +
 [source,cli]
@@ -287,7 +287,6 @@ chmod 770 "${AIDE_CONFIG_ROOT}/kerberos/kerberos_ccache"
 ----
 +
 The ticket refresher runs as a root user with group ID 4321. It must be able to read the keytab and the principal file, and it must be able to write to the ticket cache directory.
-// RESEARCH The multi-node spec says that the refresher runs as non-root UID and GID 4321. The single-node draft says root with group ID 4321. SME to confirm and align both topics.
 . Create the principal file. The `KRB5_RENEW_INTERVAL_H` value is the ticket renewal interval in hours.
 +
 [source,cli]
@@ -300,7 +299,6 @@ EOF
 chmod 640 "${KRB5_CREDS}"
 chgrp 4321 "${KRB5_CREDS}"
 ----
-// RESEARCH How does an administrator update the keytab after the password of the scan service account changes?
 . Verify that the files are in place.
 +
 [source,cli]
@@ -328,7 +326,7 @@ nslookup <kdc_fqdn>
 [[start-first-ticket-refresh]]
 == Start the first ticket refresh
 
-AI Data Engine refreshes the Kerberos ticket for the scan service account every 3 hours. Start the first refresh so that you can scan shares immediately.
+AI Data Engine refreshes the Kerberos ticket for the scan service account every three hours. Start the first refresh so that you can scan shares immediately.
 
 NOTE: Don't add a `kinit` entry to the host crontab. AI Data Engine refreshes tickets automatically.
 
@@ -342,7 +340,6 @@ kubectl -n "${NAMESPACE}" create job "${JOB}" --from=cronjob/ds-krb5-ticket-refr
 kubectl -n "${NAMESPACE}" wait --for=condition=complete "job/${JOB}" --timeout=120s
 kubectl -n "${NAMESPACE}" logs "job/${JOB}"
 ----
-// RESEARCH Can the ticket refresh be started from the AI Data Engine UI or the installer so that customers don't run kubectl commands? If not, can these object names be documented publicly?
 . Verify that the shared ticket cache exists and has a recent timestamp.
 +
 [source,cli]
@@ -375,7 +372,6 @@ kubectl -n "${NAMESPACE}" exec "${POD}" -- nslookup "${FILE_SERVER_FQDN}"
 kubectl -n "${NAMESPACE}" exec "${POD}" -- klist
 kubectl -n "${NAMESPACE}" exec "${POD}" -- cat /etc/krb5.conf
 ----
-// RESEARCH The spec doesn't include the following mount test. SME to validate the command, or remove this step.
 . (Optional) Test a mount of the share by using Kerberos.
 +
 [source,cli]
@@ -437,7 +433,6 @@ mkdir -p /etc/NetworkManager/conf.d
 printf '[main]\ndns=none\n' > /etc/NetworkManager/conf.d/90-dns-none.conf
 systemctl reload NetworkManager
 ----
-// RESEARCH The spec includes the systemd-resolved commands only as commented-out lines for hosts where systemd-resolved is active. SME to validate this Ubuntu procedure, including how /etc/resolv.conf and CoreDNS interact with systemd-resolved.
 .. On Ubuntu with systemd-resolved, run the following commands. Replace `<domain>` with your domain.
 +
 [source,cli]
@@ -461,7 +456,6 @@ kubectl -n kube-system get deployments | grep -i coredns
 kubectl -n kube-system rollout restart deployment <coredns_deployment>
 kubectl -n kube-system rollout status deployment <coredns_deployment> --timeout=120s
 ----
-// RESEARCH Does CoreDNS in the supported RKE2 cluster forward to the node resolv.conf by default, and what is the CoreDNS deployment name?
 . Verify name resolution again. Refer to <<verify-name-resolution,Verify name resolution>>.
 
 [[update-kerberos-configuration]]
@@ -477,7 +471,6 @@ If you replace `krb5.conf` on the NFS export after setup, for example by copying
 kubectl -n "${NAMESPACE}" rollout restart daemonset ds-mount-server
 kubectl -n "${NAMESPACE}" delete job -l app.kubernetes.io/name=ds-krb5-ticket-refresher --ignore-not-found
 ----
-// RESEARCH The spec says that after krb5.conf is replaced, ds-mount-server, the CIFS workers, and ds-krb5-ticket-refresher must be restarted. The spec gives a command only for ds-mount-server. Add the customer-facing command to restart the CIFS workers, and update the "Changes to krb5.conf don't take effect" troubleshooting row if needed.
 . Start a new ticket refresh. Refer to <<start-first-ticket-refresh,Start the first ticket refresh>>.
 
 [[troubleshoot-kerberos]]
@@ -538,7 +531,6 @@ If you no longer scan SMB/CIFS shares with Kerberos, remove the data source and 
 
 .Steps
 . From the AI Data Engine UI, delete the SMB/CIFS data source that uses Kerberos.
-// RESEARCH Confirm the UI steps to delete a scanned system that uses Kerberos.
 . On the admin host, with the NFS export mounted at `/mnt/aide-config`, delete the Kerberos files.
 +
 [source,cli]

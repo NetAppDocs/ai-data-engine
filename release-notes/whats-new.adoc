@@ -9,7 +9,7 @@ summary: Learn about new capabilities in AI Data Engine.
 :imagesdir: ../media/
 
 [.lead]
-Learn about new capabilities in AI Data Engine.
+Learn about new capabilities in AI Data Engine (AIDE).
 
 // IE UX Link dependency: The UI links to this page from About AIDE > "Documentation Link". Do not change the permalink or filename without creating a redirect file.
 
@@ -34,7 +34,7 @@ link:../investigate/understand-dashboard.html[Recover storage capacity]:: Identi
 
 link:../administer/configure-settings.html[Define cold and stale data for your organization]:: Set the thresholds that determine which data is classified as cold or stale to match your retention policies.
 
-link:../investigate/understand-dashboard.html[Identify who to contact about data]:: Identify which data owners hold the highest concentrations of cold, stale, or duplicate data from the dashboard, then filter by owner or group in the investigation view to review results and know who to contact about them.
+link:../investigate/understand-dashboard.html[Identify who to contact about data]:: Identify which data owners hold the highest concentrations of cold, stale, or duplicate data from the dashboard. Then filter by owner or group in the investigation view to review results and find out who to contact.
 
 link:../investigate/investigate-data.html[Reduce cost and risk]:: Filter across all connected systems by access time, modification date, creation date, file size, duplicate status, and other criteria to find files that meet your organization's data management goals. Act on results directly or save criteria as a policy.
 

@@ -14,6 +14,10 @@ indexpage:
           url: /get-started/quick-start.html
         - title: Explore storage optimization workflows
           url: /get-started/storage-optimization-workflows.html
+        - title: What's new
+          url: /release-notes/whats-new.html
+        - title: Known limitations
+          url: /release-notes/known-limitations.html
     - title: Deploy
       links:
         - title: Deployment overview
@@ -68,7 +72,3 @@ indexpage:
           url: /administer/manage-users-roles.html
         - title: Configure data classification thresholds and access scanning
           url: /administer/configure-settings.html
-        - title: What's new
-          url: /release-notes/whats-new.html
-        - title: Known limitations
-          url: /release-notes/known-limitations.html

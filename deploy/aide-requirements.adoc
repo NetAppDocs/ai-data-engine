@@ -9,36 +9,34 @@ summary: Review infrastructure and networking requirements before deploying AI D
 :imagesdir: ../media/
 
 [.lead]
-Before you deploy AI Data Engine, review the networking, Kubernetes, sizing, and operating system requirements for your environment. For a single-node deployment, you provide a Linux VM and AI Data Engine provisions everything else automatically. For a multi-node deployment, you bring your own Kubernetes cluster.
+Before you deploy AI Data Engine (AIDE), review the networking, Kubernetes, sizing, and operating system requirements for your environment. For a single-node deployment, you provide a Linux VM and AI Data Engine provisions everything else automatically. For a multi-node deployment, you bring your own Kubernetes cluster.
 
 [[networking-requirements]]
 == Networking requirements
 
 The following network connections must be open:
 
-// RESEARCH Does the MCP server accept a custom port for AI client access, and should the AI client row list it? The architect's presentation calls port 5016 the public MCP endpoint, but the QA setup page shows clients connecting over HTTPS on 443 and 5016 as the service port behind ingress. Confirm which port customers must open.
-
 [cols="2,1,1,1,2",options="header"]
 |===
 |Connection |Port |Protocol |Direction |Purpose
 
-|Console Agent to NetApp Console
+|Console agent to NetApp Console
 |443
 |TCP
 |Outbound
 |HTTPS: connectivity to NetApp Console
 
-|Console Agent to ONTAP
+|Console agent to ONTAP
 |443
 |TCP
 |Outbound
 |HTTPS: ONTAP cluster discovery
 
-|Console Agent to AI Data Engine
+|Console agent to AI Data Engine
 |80, 443, 8080, 9000
 |TCP
 |Bidirectional
-|Communication between Console Agent and AI Data Engine
+|Communication between Console agent and AI Data Engine
 
 |AI client to MCP server
 |443
@@ -89,23 +87,11 @@ The following network connections must be open:
 |HTTPS: installer script downloads from a CDN, container image and Helm chart pulls from ECR, and component catalog downloads from S3
 
 |===
-// RESEARCH Confirm whether ports 88 and 53 use TCP, UDP, or both for AIDE traffic.
-// RESEARCH Confirm whether other NFS ports, such as 111, are required for the multi-node configuration volume and whether UDP is used.
 
 [[outbound-internet-access]]
 === Outbound internet access
 For an online installation, the following endpoints must be reachable. Where a row states a condition, the endpoint is needed only in that case.
 
-// RESEARCH Confirm with the Console team whether the alternate ECR registry, api.ecr.us-west-2.amazonaws.com, and the nonregional S3 endpoints are required. The proxy prerequisite pages in DSENSE don't list them. Don't replace all AWS regions with a common placeholder: the registry and version-policy endpoints use us-west-2, and Cognito uses us-east-1.
-// RESEARCH Confirm which configurations in GA use the direct AWS Cognito path rather than the support gateway, so the cognito-identity row can state the condition in customer terms.
-// RESEARCH Confirm which component contacts login.microsoftonline.com for the MCP flow (AI Data Engine services, or the MCP host or AI client) and update the Initiated by value.
-// RESEARCH Confirm which components call api.workloads.netapp.com and api.gcp.workloads.netapp.com, and when they are needed.
-// RESEARCH Confirm that the hub.docker.com and cognito-idp connectivity tests apply only when an outbound proxy is configured.
-// RESEARCH Do the ECR, S3, and CDN endpoints in this table match what the Console team provides?
-// RESEARCH Which CloudFront endpoint hosts the installer scripts?
-// RESEARCH Which component initiates each of the support.compliance and CloudFront connections?
-// RESEARCH Should the ECR, S3, and STS rows use a region placeholder instead of us-west-2, and does the account ID in the registry rows change per deployment?
-// RESEARCH Dave follow-up with Nitin: confirm the Ubuntu package archive rows (HTTP, port 80). OS package managers don't use the AI Data Engine proxy settings, so confirm whether these rows belong in this table.
 [cols="3,3,2,1",options="header"]
 |===
 |Endpoint |Purpose |Initiated by |Deployment type
@@ -210,12 +196,12 @@ For an online installation, the following endpoints must be reachable. Where a r
 |Both
 
 |`\https://cognito-identity.us-east-1.amazonaws.com`
-|AWS Cognito access, required only when AI Data Engine services use the direct AWS path instead of the support gateway. Also used for a proxy connectivity test.
+|AWS Cognito access, used for sending product usage metrics from AI Data Engine instances to NetApp. Also used for a proxy connectivity test.
 |AI Data Engine
 |Both
 
 |`\https://support.compliance.api.bluexp.netapp.com`
-|Software images, manifests, and templates; logs and metrics streaming
+|Logs and metrics streaming
 |AI Data Engine
 |Both
 
@@ -277,9 +263,15 @@ For an online installation, the following endpoints must be reachable. Where a r
 
 The endpoints in this table are the same whether you connect directly to the internet or through a proxy.
 
-If you use a proxy, allow each endpoint for HTTPS (`CONNECT`) on port 443 using the exact hostnames listed, without wildcards or a leading dot. Allow `d13jb5dapseb36.cloudfront.net`, which hosts the installer download, by hostname. Its IP addresses are shared with other sites and change often, so a rule based on IP addresses stops working. For multi-node deployments, the container runtime connections are made by the cluster nodes. If the multi-node install command from NetApp Console specifies a different `--registry` value, allow that registry hostname instead of the registry hostnames in the table. See link:configure-proxy.html[Learn about proxies for AI Data Engine]. To deploy with a proxy, see link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy] or link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy].
+If you use a proxy, allow each endpoint for HTTPS (`CONNECT`) on port 443 using the exact host names listed, without wildcards or a leading dot.
 
-NOTE: Ensure that your package managers have the appropriate proxy configuration if required in your environment.
+Allow `d13jb5dapseb36.cloudfront.net`, which hosts the installer download, by host name. Its IP addresses are shared with other sites and change often, so a rule based on IP addresses stops working.
+
+For multi-node deployments, the cluster nodes make the container runtime connections. If the multi-node install command from NetApp Console specifies a different `--registry` value, allow that registry host name instead of the registry host names in the table.
+
+See link:configure-proxy.html[Learn about proxies for AI Data Engine]. To deploy with a proxy, see link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy] or link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy].
+
+NOTE: Verify that your package managers have the appropriate proxy configuration if required in your environment.
 
 AI Data Engine also relies on NetApp Console for centralized authentication and console services. Endpoints such as `\https://api.bluexp.netapp.com` and `\https://netapp-cloud-account.auth0.com` are listed in the link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html#endpoints-contacted-by-netapp-console-and-console-agents[network access requirements for NetApp Console^].
 
@@ -360,7 +352,6 @@ These sizes are recommended baseline configurations optimized for a three to fou
 
 NOTE: NVMe SSD or other solid-state storage is recommended for all deployment sizes. The disk values in this table reflect AIDE data volume storage only. If the OS, k3s runtime, and AIDE data all share a single disk, add approximately 65 GB to the disk value for your chosen size. For example, a Small deployment on a single disk requires approximately 565 GB total.
 
-// RESEARCH Should NFS-backed storage be avoided for the AIDE data volume on a single-node deployment, with block storage as the documented recommendation? This needs confirmation.
 NOTE: Use block storage, not NFS, for the AIDE data volume on a single-node deployment. NFS-backed storage can cause underperformance.
 
 [[flexible-sizing-single-node]]
@@ -504,22 +495,25 @@ Scale beyond the recommended size::
 +
 Horizontal scaling of an existing multi-node cluster isn't supported. Adding worker nodes or dedicated storage nodes doesn't automatically increase scan processing, event ingestion, or catalog capacity. If your environment exceeds the size that you deployed, or you need more scan processing or event ingestion capacity, contact NetApp Support or your NetApp representative to plan the change.
 +
-NOTE: To scale beyond 10 billion files, contact your NetApp representative for node sizing guidance and custom scale.
+NOTE: To scale beyond six billion files, contact your NetApp representative for node sizing guidance and custom scale.
 
 [[kerberos-ad-requirements]]
 == Kerberos and Active Directory requirements
 
-Review these requirements before you scan SMB/CIFS shares with Kerberos authentication or map NFS user and group IDs to Active Directory names. The time synchronization, DNS, and host package requirements apply to Kerberos only. AI Data Engine (AIDE) is a Kerberos client: it authenticates to your existing Kerberos key distribution center (KDC) and doesn't act as a Kerberos server.
+Review these requirements before you scan SMB/CIFS shares with Kerberos authentication or map NFS user and group IDs to Active Directory names. The time synchronization, DNS, and host package requirements apply to Kerberos only. AIDE is a Kerberos client: it authenticates to your existing Kerberos key distribution center (KDC) and doesn't act as a Kerberos server.
 
 === Time synchronization
 
 Kerberos authentication fails when the clocks on the AIDE nodes and the KDC differ by more than the allowed clock skew. Active Directory allows a maximum difference of five minutes by default.
-// RESEARCH Confirm the clock skew tolerance that applies to AIDE and whether to state it.
+
+Verify the following:
 
 * Network Time Protocol (NTP) is active on all AIDE nodes.
 * The AIDE nodes use a time source that is synchronized with your domain controllers.
 
 === DNS
+
+Meet the following DNS requirements:
 
 * Every AIDE node can resolve the file server and the KDC by fully qualified domain name (FQDN).
 * If you configure the nodes to use your Active Directory DNS server, that server must also resolve external names. Otherwise, AIDE can't reach the endpoints listed in <<outbound-internet-access,Outbound internet access>>.

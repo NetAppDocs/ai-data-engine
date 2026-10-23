@@ -9,18 +9,21 @@ summary: Configure Active Directory mapping for NFS user IDs and group IDs. AI D
 :imagesdir: ../media/
 
 [.lead]
-Identify the owners of your NFS files by name instead of by numeric ID. AI Data Engine can map the numeric user IDs (UIDs) and group IDs (GIDs) in NFS files to Active Directory identities, and it uses resolved user identities to display file-owner names.
-// RESEARCH Does GA display owning-group names for NFS files anywhere in the UI or MCP results? If so, state where.
+Identify the owners of your NFS files by name instead of by numeric ID. AI Data Engine (AIDE) can map the numeric user IDs (UIDs) and group IDs (GIDs) in NFS files to Active Directory identities, and it uses resolved user identities to display file-owner names.
 
 This mapping doesn't authenticate AI Data Engine to NFS storage. It converts the IDs that AI Data Engine finds during scanning to Active Directory names.
 
-.Before you begin
+== Before you begin
 
+.Permissions and access
 * You have _AI Data Engine administrator_ privileges.
+
+.AI Data Engine configuration
 * You have link:../deploy/aide-requirements.html#networking-requirements[opened the required ports] from AI Data Engine to your Active Directory domain controllers.
-* You have an Active Directory account that AI Data Engine can use to query user and group attributes. You enter its user name and password in AI Data Engine.
-// RESEARCH Confirm the permissions the Active Directory account needs and whether it must be a dedicated account.
 * You have link:configure-settings.html#find-access-risks-with-permission-scanning[turned on permission scanning].
+
+.Active Directory
+* You have an Active Directory account that AI Data Engine can use to query user and group attributes. You enter its user name and password in AI Data Engine.
 * You have your Active Directory domain name and either the IP address of your DNS server or the IP address and port of your LDAP server.
 * You know whether your directory requires a secure LDAP connection.
 * If AI Data Engine queries the Global Catalog and the attributes aren't yet replicated to it, you or your Active Directory administrator has the _Schema Admins_ role to make the schema change.
@@ -56,13 +59,12 @@ NOTE: Set `gidNumber` on the group object. The `gidNumber` on a user object iden
 
 .Steps
 . Verify that every user that you want to resolve has a `uidNumber` value and every group has a `gidNumber` value. Each UID must be unique among users, and each GID must be unique among groups. A user and a group can have the same numeric value.
-. If AI Data Engine queries the Global Catalog and the attributes aren't already replicated to it, replicate the `uidNumber` and `gidNumber` attributes to it. This is a one-time change for the entire forest. You must be a member of the _Schema Admins_ group.
+. If AI Data Engine queries the Global Catalog and the attributes aren't already replicated to it, replicate the `uidNumber` and `gidNumber` attributes to it. The replication is a one-time change for the entire forest. You must be a member of the _Schema Admins_ group.
 +
 .. On a domain controller, open the Active Directory Schema snap-in.
 .. Open the properties of the `uidNumber` attribute.
 .. Select *Replicate this attribute to the Global Catalog*.
 .. Repeat for the `gidNumber` attribute.
-// RESEARCH Confirm the Active Directory Schema snap-in procedure for replicating attributes to the Global Catalog, or provide the supported PowerShell alternative.
 
 CAUTION: If AI Data Engine queries the Global Catalog, attributes that aren't replicated to it aren't returned by identity lookups. The corresponding IDs remain unresolved.
 
@@ -104,16 +106,12 @@ NOTE: The credentials you enter here are for the directory integration. They are
 |Select this option to connect to the LDAP server over a secure connection. It is available with both the DNS and LDAP options.
 
 |===
-// RESEARCH Does the LDAP Server Port field apply only to the LDAP Server IP address option?
-// RESEARCH What permissions does the Active Directory account need? How are the credentials stored? What happens in AI Data Engine if the directory connection fails?
 
 . Optionally, turn on *Enable NFS identity mapping*.
 +
 Enabling NFS identity mapping allows AIDE to resolve numeric NFS file-owner IDs to Active Directory owner names. Enable this option only if Active Directory contains the Unix UID/GID attributes used by your NFS environment. 
 
 .. Enter the *UID number attribute* and the *GID number attribute*, such as `uidNumber` and `gidNumber`. Both fields are required when NFS identity mapping is enabled. Owner information is resolved in the background.
-// RESEARCH Does selecting LDAP secure connection require port 636, and does the port field update automatically? Is a domain controller certificate required?
-// RESEARCH Does GA support more than one Active Directory domain or forest? If so, document how to add each one. If not, state that one Active Directory is supported.
 . Save your changes.
 
 .Result
@@ -121,13 +119,11 @@ Enabling NFS identity mapping allows AIDE to resolve numeric NFS file-owner IDs 
 AI Data Engine uses Active Directory to resolve the owners of NFS files that it scans.
 
 AI Data Engine resolves identities asynchronously. Owner names might not appear immediately after you enable mapping or update attributes in Active Directory.
-// RESEARCH Confirm the retry interval for unresolved IDs, the expected time for corrected attributes to appear, and any supported manual refresh.
 
 To check the result, open the file details in the link:../investigate/investigate-unstructured.html[Investigation] view and verify that the file owner shows an Active Directory user name.
-// RESEARCH Confirm where a resolved NFS file owner appears in the GA UI.
 
 == Related information
 
 * link:../deploy/aide-requirements.html[AI Data Engine requirements]
 * link:configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine]
-* link:configure-settings.html[Configure cold and stale data thresholds]
+* link:configure-settings.html[Configure data classification thresholds]

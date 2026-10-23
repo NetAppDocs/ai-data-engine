@@ -9,12 +9,11 @@ summary: Create data collections and enable them for AI access so that connected
 :imagesdir: ../media/
 
 [.lead]
-Create data collections and enable them for AI access so that connected AI clients can search them through the Model Context Protocol (MCP).
+A collection is a logical container for data sources that you make searchable to AI clients through the Model Context Protocol (MCP) server for AI Data Engine (AIDE). Create collections and enable them for AI access so that connected AI clients can search them.
 
 == Before you begin
 
 * You must have the _AI Data Engine administrator_ role.
-// RESEARCH Can users with the viewer role see collections and their status?
 * You have set up Microsoft Entra ID as an identity provider in AI Data Engine, and its connection status is *Connected*. Refer to link:connect-entra-id-aide-mcp.html#set-up-an-identity-provider[Set up an identity provider].
 * You have created a custom data collection or are using a default collection that includes only the data that AI clients need to search. Refer to <<create-a-data-collection,Create a data collection>>.
 
@@ -26,8 +25,6 @@ A collection is a logical container for one or more data sources. AI Data Engine
 CAUTION: Before you grant a scope access to a collection, confirm that everyone who has that scope is allowed to search the metadata for every file in the collection. If you grant a scope access to *All files*, everyone who has that scope can search the metadata for all scanned data.
 
 To create a collection, refer to <<create-a-data-collection,Create a data collection>>. To change a collection, an identity provider, or the MCP server settings later, refer to link:maintain-mcp-setup.html[Maintain your MCP setup].
-
-// RESEARCH Is the *All files* collection always present, or does it appear only after a system is scanned? What status does it show before you configure it?
 
 [#create-a-data-collection]
 == Create a data collection
@@ -53,8 +50,6 @@ A confirmation message appears, and the new collection is added to the *Collecti
 
 The *Collections* list shows each collection's name, description, number of volumes, scanned capacity, scanned file count, owner, and status. The owner is *System* for collections that AI Data Engine provides and *User* for collections that you create.
 
-// RESEARCH The architect's presentation shows the server banner as "MCP server: Running" with a kebab menu (View, Configure for MCP, Disable). This page uses an *Actions* menu. Confirm the labels in the GA build.
-
 After you create a collection, <<configure-a-collection-for-mcp,configure it for MCP>>.
 
 [#configure-a-collection-for-mcp]
@@ -68,6 +63,8 @@ IMPORTANT: In a power-user session, search isn't filtered by file-level permissi
 
 * You have created an MCP collection, or you are using *All files*. Refer to <<create-a-data-collection,Create a data collection>>.
 * The identity providers that you want to use are connected to AI Data Engine. Refer to link:connect-entra-id-aide-mcp.html#set-up-an-identity-provider[Set up an identity provider].
+* The connection to MCP is enabled. Under *MCP collections* > *MCP settings*, expand *MCP server connection* and confirm that *Enable connection to MCP* is turned on. The connection is disabled by default. Refer to link:maintain-mcp-setup.html#enable-or-disable-the-connection-to-mcp[Enable or disable the connection to MCP].
+* The MCP server has a status of *Running*. Refer to link:maintain-mcp-setup.html#review-mcp-server-and-collection-status[Review MCP server and collection status].
 
 .Steps
 
@@ -102,8 +99,6 @@ A collection isn't available to AI clients until you select identity providers a
 
 Users whose tokens carry a granted scope can discover and search the collection. Users without a matching scope can't discover, search, or work with the collection.
 
-// RESEARCH Is the configuration saved when you select *Generate MCP code snippet*, or when you select *Close*?
-
 == Disable AI access for a collection
 
 Disable AI access for a collection when AI clients no longer need to search it. When you configure a collection for MCP, AI access is enabled automatically.
@@ -113,9 +108,7 @@ Disable AI access for a collection when AI clients no longer need to search it. 
 . In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
 . Open the collection's *Actions* menu and select *Disable*.
 
-AI clients that use the disabled collection lose access to it after the change applies. Your identity provider and user scope selections are kept. To block requests to all collections at once, refer to link:maintain-mcp-setup.html#enable-or-disable-the-connection-to-mcp[Enable or disable the connection to MCP].
-
-// RESEARCH How do you re-enable AI access for a collection after you disable it?
+AI clients that use the disabled collection lose access to it after the change applies. Your identity provider and user scope selections are kept. AI clients also can't reach any collection while the connection to MCP is disabled. To block requests to all collections at once, refer to link:maintain-mcp-setup.html#enable-or-disable-the-connection-to-mcp[Enable or disable the connection to MCP].
 
 == Related information
 
@@ -123,5 +116,5 @@ AI clients that use the disabled collection lose access to it after the change a
 * link:maintain-mcp-setup.html[Maintain your MCP setup]
 * link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access]
 * link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID]
-* link:connect-ai-clients-mcp.html[Connect AI clients]
+* link:connect-ai-clients-mcp.html[Connect AI clients to the AI Data Engine MCP server]
 * link:../release-notes/known-limitations.html[Known limitations]

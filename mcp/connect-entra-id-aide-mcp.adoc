@@ -9,7 +9,7 @@ summary: As an AI Data Engine administrator, connect Microsoft Entra ID to AI Da
 :imagesdir: ../media/
 
 [.lead]
-Set up Microsoft Entra ID as an identity provider in AI Data Engine, configure collections for the Model Context Protocol (MCP), and verify your configuration. These tasks are completed in NetApp Console by an AI Data Engine administrator.
+Connect Microsoft Entra ID to AI Data Engine (AIDE) as an identity provider so that you can authenticate users and control which collections they can work with through the Model Context Protocol (MCP). As an AI Data Engine administrator, you set up the identity provider, configure collections for MCP, and verify your configuration in NetApp Console.
 
 Governed AI access uses Entra ID to authenticate users, and the scopes that you include for each collection determine which collections a user can work with through MCP.
 
@@ -54,9 +54,6 @@ Changes to identity provider and collection settings might not take effect immed
 
 Adding an identity provider doesn't automatically associate it with a data collection. Select the identity provider when you configure the collection so that AI applications can access its resources with authentication and authorization. Refer to <<configure-collections-for-mcp,Configure collections for MCP>>. You can delete an identity provider only if no collection uses it. To edit one, refer to link:maintain-mcp-setup.html#update-an-identity-provider[Update an identity provider].
 
-// RESEARCH Newer builds might label the identity provider option *Microsoft Entra ID*. Confirm the label in the GA build.
-// RESEARCH What are the steps and UI labels for deleting an identity provider?
-
 [#configure-collections-for-mcp]
 == Configure collections for MCP
 
@@ -85,12 +82,14 @@ Before users connect, confirm that each of the following is true. The Applicatio
 *NetApp Console*
 
 * The Entra ID identity provider has the tenant ID and the application (client) ID, and its connection status is *Connected*.
+* *Enable connection to MCP* is turned on under *MCP collections* > *MCP settings* > *MCP server connection*.
+* The MCP server has a status of *Running*.
 * The collection is configured for MCP with the identity provider and the `power_users` scope.
 * You generated the MCP code snippet.
 
 *AI client*
 
-* The snippet is added to the AI client.
+* You added the snippet to the AI client.
 * The client ID is the application (client) ID.
 * The scope is the Application ID URI plus `/power_users`.
 * After you sign in once, the AI Data Engine tools are listed.
@@ -104,6 +103,6 @@ link:manage-data-collections.html[Manage data collections] and link:connect-ai-c
 * link:prepare-mcp-host.html[Prepare the MCP host]
 * link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access]
 * link:manage-data-collections.html[Manage data collections]
-* link:connect-ai-clients-mcp.html[Connect AI clients]
+* link:connect-ai-clients-mcp.html[Connect AI clients to the AI Data Engine MCP server]
 * link:maintain-mcp-setup.html[Maintain your MCP setup]
 * link:../release-notes/known-limitations.html[Known limitations]
