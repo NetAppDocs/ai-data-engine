@@ -50,7 +50,6 @@ The Kerberos files, the host packages, and the verification steps depend on your
 Gather these details so you can configure Kerberos access to the SMB/CIFS shares you want to scan.
 
 * A scan service account in Active Directory with read access to the SMB/CIFS shares that you want to scan. The account must support AES256 encryption.
-// RESEARCH Is the AES256 requirement correct? This question is also open in the single-node and multi-node topics.
 * The IP address and the FQDN of a domain controller that acts as the KDC.
 * Your Active Directory domain and Kerberos realm. The realm is the domain in uppercase.
 * The FQDN and the share name of each file server that you want to scan. Kerberos authentication doesn't accept an IP address for the file server.

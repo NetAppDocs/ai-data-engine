@@ -70,5 +70,6 @@ NOTE: Installation takes about 30 minutes to complete. Timeouts and retries migh
 . Monitor the progress screen until the success screen appears and confirms that the AIDE installation is complete.
 +
 If the installation fails, contact NetApp Support.
+
 .Result
 Your AI Data Engine multi-node deployment is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.

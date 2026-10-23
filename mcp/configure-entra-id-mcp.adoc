@@ -61,9 +61,6 @@ NOTE: If Entra ID rejects the URI with the error `Failed to add identifier URI`,
 * Select *Add scope*.
 . Optional: To skip the consent prompt for users, under *Authorized client applications*, select *Add a client application*, enter the Application (client) ID of this application, select the `power_users` scope, and select *Add application*.
 
-// RESEARCH Have these steps been tested in a clean tenant?
-// RESEARCH Confirm that the authorized-client entry for the application's own client ID is the supported way to skip the consent prompt for Cursor, OpenCode, Claude Desktop, and Claude Code.
-
 [#create-and-assign-the-power-user-app-role]
 == Create and assign the power-user app role
 
@@ -91,8 +88,6 @@ A user gets a power-user session only when both of these are true:
 * The AI client requests the `power_users` scope.
 
 If a client requests `power_users` for a user who doesn't hold the role, AI Data Engine doesn't start a power-user session for the user.
-
-// RESEARCH What does a signed-in user who doesn't hold the AIDEPowerUsers app role experience in GA (no tools, an error, or a sign-in failure)? Document the result once confirmed.
 
 [#add-redirect-uris-for-ai-clients]
 == Add redirect URIs for your AI clients
@@ -126,10 +121,6 @@ Add the redirect URIs that your AI clients use to the AI Data Engine application
 . If your tenant requires admin consent, select *Grant admin consent*.
 
 If sign-in fails with error `AADSTS50011`, the callback URI of the AI client isn't registered. The error shows the exact URI to add. Add it under *Mobile and desktop applications*, and use the same port in the client configuration that you register here.
-
-// RESEARCH Is offline_access required, recommended, or optional? The QA end-to-end setup page and the architect's presentation request only the power_users scope and don't configure offline_access. Confirm before you change the permission step or the client snippets.
-// RESEARCH The single-application setup was verified with Cursor and OpenCode. Confirm that Claude Desktop and Claude Code use the same Application (client) ID without a separate client application.
-// RESEARCH Does the Console-generated snippet include the Application (client) ID, or does the user add it?
 
 [#token-expectations]
 == Token expectations

@@ -117,11 +117,8 @@ Review whether AI clients can connect to the MCP server, and review the AIDE clu
 . Under *MCP hostname*, review the AIDE cluster host name. If you need to change it, enter the updated host name and select *Configure*.
 +
 CAUTION: Changing the AIDE cluster host name changes the MCP server URL. AI clients that use the previous URL can't connect until you update their connection settings. The new host name must be on a domain that is verified in your Entra ID tenant. Because the Application ID URI and the scope are built from the host name, you must also update them in Entra ID. Refer to <<update-ai-client-connections-and-validate-access,Update AI client connections and validate access>>.
-// RESEARCH Confirm what must change in Entra ID, NetApp Console, and the AI client configuration when the AIDE cluster host name changes, and whether changing it after setup is supported.
 +
 NOTE: Securing the MCP server with HTTPS requires an SSL/TLS certificate. NetApp Console doesn't manage the certificate. The ingress script sets up the certificate and the AIDE cluster host name. The host name must be on a domain that is verified in your Entra ID tenant. Refer to link:prepare-mcp-host.html[Prepare the MCP host].
-// RESEARCH Confirm whether changing the host name in MCP settings requires running the ingress script again.
-// RESEARCH The architect's presentation shows the server status as "MCP server: Running". This page lists Active, Degraded, and Offline. Confirm the status labels in the GA build.
 . Select *Close*.
 
 [#update-ai-client-connections-and-validate-access]

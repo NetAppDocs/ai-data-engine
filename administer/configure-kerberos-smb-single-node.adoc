@@ -26,7 +26,6 @@ If you have a multi-node deployment, refer to link:configure-kerberos-smb-multi-
 
 .Active Directory
 * You have a scan service account in Active Directory with read access to the SMB/CIFS shares you want to scan. The account must support AES256 encryption.
-// RESEARCH Are the AES256 requirement and the AI Data Engine administrator privilege requirement correct?
 
 .Information to gather
 * You have the following information:
@@ -160,7 +159,6 @@ chmod 644 /etc/krb5.conf
 ----
 +
 The file uses the KDC IP address so that Kerberos authentication doesn't depend on DNS.
-// RESEARCH The admin_server entry was restored from the spec (KDC IP, port 749). SME to confirm that the entry and the port are correct for an Active Directory KDC.
 . Create a keytab for the scan service account.
 .. Run `ktutil`.
 .. At the `ktutil` prompt, enter the following command. Replace `<scan_user>` and `<REALM>` with your values. The `ktutil` prompt doesn't use the shell variables.
@@ -177,7 +175,6 @@ addent -password -p <scan_user>@<REALM> -k 1 -e aes256-cts-hmac-sha1-96
 wkt /tmp/krb5.keytab
 quit
 ----
-// RESEARCH Has the interactive ktutil password entry been validated in QA?
 . Test the keytab.
 +
 [source,cli]
@@ -198,7 +195,6 @@ rm -f /tmp/krb5.keytab
 ----
 +
 The ticket refresher runs as the root user with group ID 4321. The keytab and the principal file must be readable by that group and by no other users.
-// RESEARCH The spec installs the keytab with mode 600 (owner root) and sets the principal file to mode 640, and its troubleshooting table says both files need group 4321 and mode 640. SME to confirm that root:4321 with mode 640 is correct for the keytab and that the statement about the refresher user and group is accurate.
 . Create the principal file. The `KRB5_RENEW_INTERVAL_H` value is the ticket renewal interval in hours.
 +
 [source,cli]
@@ -211,8 +207,6 @@ EOF
 chgrp 4321 /opt/netapp/aide/kerberos_refresher/kerberos_creds.env
 chmod 640 /opt/netapp/aide/kerberos_refresher/kerberos_creds.env
 ----
-// RESEARCH Does the installer set the ownership and permissions of the ticket cache directory, or must the administrator set them?
-// RESEARCH How does an administrator update the keytab after the password of the scan service account changes?
 
 [[verify-name-resolution]]
 == Verify name resolution
@@ -249,7 +243,6 @@ kubectl -n aide create job "${JOB}" --from=cronjob/ds-krb5-ticket-refresher
 kubectl -n aide wait --for=condition=complete "job/${JOB}" --timeout=120s
 kubectl -n aide logs "job/${JOB}"
 ----
-// RESEARCH Can the ticket refresh be started from the AI Data Engine UI or the installer so that customers don't run kubectl commands? If not, is kubectl on the PATH of the host after installation?
 . Verify that the shared ticket cache exists and has a recent timestamp.
 +
 [source,cli]
@@ -320,7 +313,6 @@ Complete this procedure only if the file server or the KDC doesn't resolve by FQ
 nslookup <external_fqdn> "${KDC_IP}"
 ----
 .. If the command fails, ask your Active Directory administrator to enable DNS forwarding, and then repeat this step.
-// RESEARCH The spec says that you can add the original DNS server as a second name server if the AD DNS server doesn't forward external queries. This is mentioned only in the troubleshooting table. SME to confirm the order of the name servers and whether to add this to this step.
 . Back up `/etc/resolv.conf`, and set your Active Directory DNS server as the name server.
 +
 [source,cli]
@@ -338,7 +330,6 @@ mkdir -p /etc/NetworkManager/conf.d
 printf '[main]\ndns=none\n' > /etc/NetworkManager/conf.d/90-dns-none.conf
 systemctl reload NetworkManager
 ----
-// RESEARCH The spec mentions a systemd-resolved drop-in only in passing and gives no commands. SME to validate this Ubuntu procedure, including how /etc/resolv.conf and k3s CoreDNS interact with systemd-resolved.
 .. On Ubuntu with systemd-resolved, run the following commands.
 +
 [source,cli]
@@ -371,7 +362,6 @@ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 kubectl -n aide rollout restart daemonset ds-mount-server
 kubectl -n aide delete job -l app.kubernetes.io/name=ds-krb5-ticket-refresher --ignore-not-found
 ----
-// RESEARCH The spec says that after /etc/krb5.conf is replaced, ds-mount-server, the CIFS workers, and ds-krb5-ticket-refresher must be restarted. The spec gives a command only for ds-mount-server. Add the customer-facing command to restart the CIFS workers, and update the "Changes to /etc/krb5.conf don't take effect" troubleshooting row if needed.
 . Start a new ticket refresh. Refer to <<start-first-ticket-refresh,Start the first ticket refresh>>.
 
 [[troubleshoot-kerberos]]
@@ -432,7 +422,6 @@ If you no longer scan SMB/CIFS shares with Kerberos, remove the data source and 
 
 .Steps
 . From the AI Data Engine UI, delete the SMB/CIFS data source that uses Kerberos.
-// RESEARCH Confirm the UI steps to delete a scanned system that uses Kerberos.
 . Delete the Kerberos files.
 +
 [source,cli]

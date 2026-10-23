@@ -52,8 +52,6 @@ The ingress script sets up the following items so that AI clients can reach the 
 
 NOTE: The host name that the script sets up is the host name of the AIDE cluster. After the script finishes, you can also see the host name in the AI Data Engine UI. Go to *Configuration* > *MCP collections* > *MCP settings*, and review *MCP hostname*.
 
-// RESEARCH Does the ingress script have arguments or prompts, and does it need a host name or a certificate as input? Confirm that the scripts folder path is the same for every installer type (single-node and multi-node).
-
 If the script creates a self-signed certificate, every machine that runs an AI client must trust that certificate. Refer to <<make-the-host-reachable,Make the host reachable from client machines>>.
 
 [#restore-the-ingress-script]
@@ -78,8 +76,6 @@ cd /tmp/installer/runbook/ingress-manager-scripts/scripts/
 ----
 
 To keep the script after a restart, extract the installer to a directory that isn't cleared on restart. Replace `/tmp` in the `tar` command and in the `cd` command with that directory.
-
-// RESEARCH Confirm the extraction directory name and the scripts folder path. Confirm a persistent directory that NetApp recommends, if any. The script download path is under discussion.
 
 [#make-the-host-reachable]
 == Make the host reachable from client machines

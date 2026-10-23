@@ -35,8 +35,6 @@ If scan errors appear, expand the error details to see which data resources (vol
 
 Temporarily stop scanning a system when you don't want AI Data Engine to scan it. The system stays connected, and you can resume scanning later.
 
-// RESEARCH: Confirm the supported pause use cases and how Pause differs from Deactivate AI Data Engine (for example, whether queued or in-progress scans are affected).
-
 .Steps
 . From the AI Data Engine UI, select *Data sources*.
 . Locate the system you want to pause.
@@ -56,7 +54,6 @@ Resume scanning when you're ready for AI Data Engine to scan a paused system aga
 == Scan all data resources
 
 Refresh metadata across a system after significant data changes so that your analysis reflects the updated data. Use this action to request an immediate scan of all data resources on the system.
-// RESEARCH: Confirm whether "Scan all volumes" and "Activate scans" share the same underlying action; confirm the exact kebab menu label in the V2 UI.
 
 .Steps
 . From the AI Data Engine UI, select *Data sources*.
@@ -79,7 +76,6 @@ Restore scan coverage for resources that could not be scanned successfully. Firs
 Maintain or restore access to SMB shares when the scan account's credentials change or authentication fails. Update the SMB (CIFS) credentials that AI Data Engine uses to authenticate to the shares.
 
 NOTE: If the share uses Kerberos authentication, AI Data Engine authenticates with a ticket from the keytab, and no password is stored in the data source. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine].
-// RESEARCH Confirm whether Edit CIFS credentials applies to Kerberos shares and how to change the scan service account or keytab.
 
 .Steps
 . From the AI Data Engine UI, select *Data sources*.

@@ -56,6 +56,7 @@ The installer detects the IP address of the node that runs the AI Data Engine NG
 . Monitor the progress screen until the success screen appears and confirms that the AIDE installation is complete.
 +
 If the installation fails, contact NetApp Support.
+
 .Result
 AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
 

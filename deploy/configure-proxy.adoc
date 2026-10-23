@@ -98,7 +98,6 @@ The installer uses one proxy for every internet destination and every AI Data En
 
 |===
 
-// RESEARCH Is a self-signed proxy certificate a supported scenario, and does the customer supply that certificate itself as the CA certificate?
 NOTE: The installer doesn't accept `--proxy-password` or the `PROXY_PASSWORD` environment variable. Use `--proxy-password-file` or the interactive prompt instead.
 
 == The installer download
@@ -115,8 +114,6 @@ For multi-node deployments, the check covers the proxy only. It does not test wh
 == Change proxy settings after installation
 
 The proxy settings are set during installation. The installer doesn't run again on an installed cluster. To change the proxy host, port, credentials, or CA certificate after installation, contact NetApp Support.
-
-// RESEARCH Replace this section with a link to the procedure for rotating proxy credentials and the proxy CA certificate when it is published.
 
 == Related information
 

@@ -38,13 +38,9 @@ In NetApp Console, link:maintain-mcp-setup.html#enable-or-disable-the-connection
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png[Six] link:connect-ai-clients-mcp.html[Connect an AI client and verify the connection]
 [role="quick-margin-para"]
 In your AI client, add the snippet and sign in with Microsoft Entra ID. If AI clients can't connect, make sure that link:maintain-mcp-setup.html#enable-or-disable-the-connection-to-mcp[*Enable connection to MCP*] is turned on. Confirm that the AI Data Engine tools are available, and then link:connect-ai-clients-mcp.html#sample-prompts[try sample prompts].
-// RESEARCH Figma lists "Configure authentication for an MCP client" in the connect phase. Confirm that all four validated clients can use the AI Data Engine application's client ID without a separate client application.
-// RESEARCH Confirm the field list that Console generates, and which values you add yourself.
-// RESEARCH Add a link to troubleshooting topics for MCP connection, authentication, and access issues when they exist.
 
 The values that you enter in Entra ID, NetApp Console, and your AI client must match exactly. For a full list of what to check, refer to link:connect-entra-id-aide-mcp.html#verify-your-configuration[Verify your configuration].
 
 .What's next
 link:maintain-mcp-setup.html[Update a collection, an identity provider, the scopes that can access a collection, or the MCP server settings]. Review the link:mcp-tools-reference.html[MCP tools for AI Data Engine governed AI access] and the link:../release-notes/known-limitations.html[known limitations].
 
-// RESEARCH Add links for disconnecting an MCP client or removing a collection when those topics exist.

@@ -31,8 +31,6 @@ The Governed Access Gateway is the MCP server for AI Data Engine. It lets AI cli
 
 Microsoft Entra ID authenticates users, and the gateway limits each AI client to the collections that the user is authorized to search. The gateway supports metadata search and tagging only, and only power users can tag files. It doesn't retrieve file contents.
 
-// RESEARCH Is the gateway deployed with AI Data Engine automatically, or is it enabled separately?
-
 link:../mcp/learn-about-mcp.html[Learn more about governed AI access].
 
 == Deployment types

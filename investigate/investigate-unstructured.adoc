@@ -60,8 +60,6 @@ The results table lists the files that have duplicate copies.
 
 To review the copies and clean them up, refer to link:take-actions.html[Investigate and clean up duplicate files].
 
-// RESEARCH Does the Duplicates filter, then selecting files, then Clean up duplicates work end to end without opening a file's View details? Figma shows both entry points but not this sequence.
-
 == Act on results or save as a policy
 
 After identifying the files you want to address, select one or more items using the checkboxes in the results table.

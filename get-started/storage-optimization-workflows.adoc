@@ -42,8 +42,6 @@ Your organization requires that files older than a certain age are reviewed for 
 
 NOTE: This threshold is configurable in *Configuration* > *General settings*.
 
-// RESEARCH The data classification settings page covers cold and stale data, permission scanning, and Active Directory only. Is the seven-year retention threshold (Last created) still a configurable setting in General settings, and where is it described?
-
 .Steps
 . In link:../investigate/investigate-unstructured.html[Investigation], apply the *Last created* filter set to your retention threshold (default *7+ years*).
 . Review the results with the relevant stakeholders before acting. Retention-flagged files are often monitored rather than automatically deleted.
@@ -61,8 +59,6 @@ Multiple identical copies of the same files exist across volumes or shares, a co
 . Select the redundant files, and then select *Clean up duplicates*.
 . Under *Action*, select *Delete*. Keep the copy with the *Last modified* option, leave a breadcrumb at the original location, and select *Submit*. Then confirm the deletion in the dialog. For details, refer to link:../investigate/take-actions.html[Investigate and clean up duplicate files].
 . link:../policies/create-policy.html[Create a policy] to track duplicate accumulation over time and receive notifications when the count increases.
-
-// RESEARCH Can a policy use the Duplicates filter without the File hash filter that View details applies for a single file, so that the policy tracks duplicate accumulation across all files?
 
 == Target cleanup by data owner
 

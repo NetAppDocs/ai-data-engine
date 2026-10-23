@@ -19,14 +19,12 @@ The AI Data Engine (AIDE) health monitor helps you identify unhealthy workloads 
 . Check *System stability* under *Infrastructure Status* to see whether any pods are unhealthy.
 +
 An unhealthy pod can't run its workload as expected. Unhealthy statuses include Pending, Failed, Evicted, Unknown, OOMKilled, and CrashLoopBackOff.
-// RESEARCH: Does single-node Node health show only Warning, or the same Critical, Warning, Offline, and Healthy statuses as multi-node? What conditions trigger Warning? The Figma design shows only a static Warning example for single-node.
 . Identify resource constraints that might affect your deployment:
 +
 --
 * For a single-node deployment, review *Node health*. If the node indicates a health issue, check the CPU, memory, and disk utilization cards for signs of resource pressure.
 * For a multi-node deployment, review *Node health* to identify nodes with a Critical, Warning, or Offline status. Compare available resource utilization metrics for signs of resource pressure. For offline nodes, investigate node availability.
 --
-// RESEARCH: Investigate the threshold behaviors for CPU, memory, and disk and document them once confirmed. The Figma workflow states that memory usage at the 95% eviction threshold stops services and pauses scans, that scanning resumes at 85% or below, and that services stop and scans pause when free disk space reaches the displayed stop threshold. Confirm these as product behavior and identify any other threshold behaviors, such as CPU warning and critical thresholds and what happens at each level. Also confirm whether these behaviors apply to single-node deployments. The Figma workflow shows *View details* only on the multi-node utilization cards. Confirm whether the single-node CPU, memory, and disk utilization cards are present and whether they provide the same details.
 . For a multi-node deployment, select *View details* on a utilization card to investigate the resource:
 +
 --

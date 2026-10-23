@@ -54,9 +54,6 @@ Changes to identity provider and collection settings might not take effect immed
 
 Adding an identity provider doesn't automatically associate it with a data collection. Select the identity provider when you configure the collection so that AI applications can access its resources with authentication and authorization. Refer to <<configure-collections-for-mcp,Configure collections for MCP>>. You can delete an identity provider only if no collection uses it. To edit one, refer to link:maintain-mcp-setup.html#update-an-identity-provider[Update an identity provider].
 
-// RESEARCH Newer builds might label the identity provider option *Microsoft Entra ID*. Confirm the label in the GA build.
-// RESEARCH What are the steps and UI labels for deleting an identity provider?
-
 [#configure-collections-for-mcp]
 == Configure collections for MCP
 

@@ -158,8 +158,6 @@ Use the same proxy host, port, scheme, and CA certificate that you configured on
 
 When you run the install command in a terminal without `--proxy-host` or `--no-proxy`, the installer asks the following questions. If you pass a value as a parameter, the installer doesn't ask for it again.
 
-// RESEARCH Confirm the prompt wording at release, including the proxy type prompt, and update the proxy type guidance if TLS inspection is qualified for GA.
-
 [cols="2,3",options="header"]
 |===
 |Prompt |What to enter
@@ -242,6 +240,7 @@ NOTE: Installation takes about 30 minutes to complete. Timeouts and retries migh
 . Monitor the progress screen until the success screen appears and confirms that the AIDE installation is complete.
 +
 If the installation fails, contact NetApp Support.
+
 .Result
 Your AI Data Engine multi-node deployment is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
 

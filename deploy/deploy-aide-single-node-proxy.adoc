@@ -41,7 +41,6 @@ In a single-node deployment, AI Data Engine owns the VM that it installs on. The
 * Configures the k3s container runtime to pull images through the proxy.
 * Adds the CA certificate that you supply with `--proxy-ca-cert` to the AI Data Engine trust store.
 
-// RESEARCH Confirm whether customer documentation should describe where the installer stores proxy settings and credentials (the aide-proxy-config ConfigMap, the aide-proxy-credentials Secret, and the k3s service environment file on single-node deployments).
 You don't configure the k3s container runtime or the trust store.
 
 == Copy the install command
@@ -146,8 +145,6 @@ The installer prompts you for the proxy settings. Run the install command as cop
 
 When you run the install command in a terminal without `--proxy-host` or `--no-proxy`, the installer asks the following questions. If you pass a value as a parameter, the installer doesn't ask for it again.
 
-// RESEARCH Confirm the prompt wording at release, including the proxy type prompt, and update the proxy type guidance if TLS inspection is qualified for GA.
-
 [cols="2,3",options="header"]
 |===
 |Prompt |What to enter
@@ -228,6 +225,7 @@ The installer detects the IP address of the node that runs the AI Data Engine NG
 . Monitor the progress screen until the success screen appears and confirms that the AIDE installation is complete.
 +
 If the installation fails, contact NetApp Support.
+
 .Result
 AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
 

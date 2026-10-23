@@ -22,7 +22,6 @@ Your VM must meet the requirements in the following sections before you run the 
 
 == Storage type
 
-// RESEARCH Should NFS-backed storage be avoided for the AIDE data volume on a single-node deployment, with block storage as the documented recommendation? This needs confirmation.
 Use block storage, not NFS, for the AIDE data volume. NFS-backed storage can cause underperformance. NVMe SSD or other solid-state storage is preferred for all deployment sizes. The storage must also meet the IOPS and throughput for your size in link:aide-requirements.html#single-node-vm-sizes[AIDE requirements].
 
 [[single-node-disk-space]]
