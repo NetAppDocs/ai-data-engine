@@ -75,25 +75,7 @@ To stop scanning permissions, turn the toggle off.
 
 Connect AI Data Engine to Active Directory when you need to see user names and permissions, rather than numeric IDs, as you review your data. If your environment uses NFS, you can also map numeric user IDs (UIDs) and group IDs (GIDs) to directory users and groups.
 
-NOTE: The credentials you enter here are for the directory integration. They are separate from the credentials you provide for an SMB archive destination. Refer to link:../investigate/take-actions.html[Take action on your data].
-
-.Before you begin
-* Obtain the user name and password for the directory connection.
-* Obtain the DNS server IP address, domain name, LDAP server IP address, and LDAP server port. Refer to link:../deploy/aide-requirements.html[AIDE requirements] for the network ports that AI Data Engine uses to reach Active Directory.
-* Confirm whether your directory requires a secure LDAP connection.
-* If you plan to enable NFS identity mapping, confirm the directory attributes used for UIDs and GIDs.
-
-.Steps
-. From the AI Data Engine UI, select *Configuration* > *General settings*.
-. Expand *Active Directory*, and turn on *Enable*.
-. Enter the *User name* and *Password* for the directory connection.
-. Enter the *DNS Server IP address* and *Domain name*.
-. Enter the *LDAP Server IP address* and *LDAP Server Port*.
-. Select *LDAP secure connection* if your directory requires it.
-. Optional: To map NFS user and group IDs, turn on *Enable NFS identity mapping*, and then specify the *UID number attribute* and *GID number attribute* that your directory uses, such as `uidNumber` and `gidNumber`.
-. Select *Save*.
-
-// RESEARCH What permissions does the Active Directory account need? How are the credentials stored? What happens in AI Data Engine if the directory connection fails?
+For the prerequisites and steps, refer to link:configure-ad-nfs.html[Configure Active Directory identity mapping for NFS].
 
 == Related information
 

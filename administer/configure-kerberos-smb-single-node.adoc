@@ -361,7 +361,7 @@ If you replace `/etc/krb5.conf` after setup, for example by copying a new file o
 [source,cli]
 ----
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-kubectl -n aide rollout restart deployment ds-mount-server
+kubectl -n aide rollout restart daemonset ds-mount-server
 kubectl -n aide delete job -l app.kubernetes.io/name=ds-krb5-ticket-refresher --ignore-not-found
 ----
 // RESEARCH The spec says that after /etc/krb5.conf is replaced, ds-mount-server, the CIFS workers, and ds-krb5-ticket-refresher must be restarted. The spec gives a command only for ds-mount-server. Add the customer-facing command to restart the CIFS workers, and update the "Changes to /etc/krb5.conf don't take effect" troubleshooting row if needed.
@@ -402,7 +402,7 @@ Find the cause of a Kerberos failure and restore scanning of your SMB/CIFS share
 
 |The error *mount error(126)* appears.
 |AI Data Engine can't read `/etc/krb5.conf`.
-|Verify that `/etc/krb5.conf` exists on the host and that `kubectl -n aide exec "${POD}" -- cat /etc/krb5.conf` displays its contents.
+|Verify that `/etc/krb5.conf` exists on the host and that `+kubectl -n aide exec "${POD}" -- cat /etc/krb5.conf+` displays its contents.
 
 |Changes to `/etc/krb5.conf` don't take effect.
 |The file was replaced after setup, and AI Data Engine still uses the previous file.

@@ -17,7 +17,7 @@ If you have a single-node deployment, refer to link:configure-kerberos-smb-singl
 
 * You have _AI Data Engine administrator_ privileges.
 * You have root access to every node and to the admin host. The admin host is the host where you mount the NFS export and create the keytab. It can be one of the nodes.
-* You have `kubectl` access with cluster-admin privileges to your RKE2 cluster from the admin host. If you use a kubeconfig file, set the `KUBECONFIG` environment variable to its path.
+* You have `kubectl` access with cluster-admin privileges to your Kubernetes cluster from the admin host. If you use a kubeconfig file, set the `KUBECONFIG` environment variable to its path.
 * You have reviewed the link:../deploy/aide-requirements.html#networking-requirements[networking requirements] and the link:../deploy/aide-requirements.html#kerberos-ad-requirements[Kerberos and Active Directory requirements], including time synchronization and DNS.
 * You have verified that every node can reach the NFS server on TCP port 2049, the KDC on port 88, the file server on port 445, and your DNS server on port 53.
 * You have verified that NTP is active on every node and that each clock is synchronized with your domain controllers. To check, run `timedatectl`.
@@ -286,7 +286,7 @@ chown root:4321 "${AIDE_CONFIG_ROOT}/kerberos/kerberos_ccache"
 chmod 770 "${AIDE_CONFIG_ROOT}/kerberos/kerberos_ccache"
 ----
 +
-The ticket refresher runs as a non-root user with group ID 4321. It must be able to read the keytab and the principal file, and it must be able to write to the ticket cache directory.
+The ticket refresher runs as a root user with group ID 4321. It must be able to read the keytab and the principal file, and it must be able to write to the ticket cache directory.
 // RESEARCH The multi-node spec says that the refresher runs as non-root UID and GID 4321. The single-node draft says root with group ID 4321. SME to confirm and align both topics.
 . Create the principal file. The `KRB5_RENEW_INTERVAL_H` value is the ticket renewal interval in hours.
 +
@@ -474,7 +474,7 @@ If you replace `krb5.conf` on the NFS export after setup, for example by copying
 +
 [source,cli]
 ----
-kubectl -n "${NAMESPACE}" rollout restart deployment ds-mount-server
+kubectl -n "${NAMESPACE}" rollout restart daemonset ds-mount-server
 kubectl -n "${NAMESPACE}" delete job -l app.kubernetes.io/name=ds-krb5-ticket-refresher --ignore-not-found
 ----
 // RESEARCH The spec says that after krb5.conf is replaced, ds-mount-server, the CIFS workers, and ds-krb5-ticket-refresher must be restarted. The spec gives a command only for ds-mount-server. Add the customer-facing command to restart the CIFS workers, and update the "Changes to krb5.conf don't take effect" troubleshooting row if needed.
@@ -515,7 +515,7 @@ Find the cause of a Kerberos failure and restore scanning of your SMB/CIFS share
 
 |The error *mount error(126)* appears.
 |AI Data Engine can't read `krb5.conf` from the NFS export.
-|Verify that `<export>/kerberos/krb5.conf` exists, and that `kubectl -n "${NAMESPACE}" exec <pod_name> -- cat /etc/krb5.conf` displays its contents.
+|Verify that `<export>/kerberos/krb5.conf` exists, and that `+kubectl -n "${NAMESPACE}" exec <pod_name> -- cat /etc/krb5.conf+` displays its contents.
 
 |Changes to `krb5.conf` don't take effect.
 |The file was replaced after setup, and AI Data Engine still uses the previous file.
