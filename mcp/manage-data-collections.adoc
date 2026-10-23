@@ -68,6 +68,8 @@ IMPORTANT: In a power-user session, search isn't filtered by file-level permissi
 
 * You have created an MCP collection, or you are using *All files*. Refer to <<create-a-data-collection,Create a data collection>>.
 * The identity providers that you want to use are connected to AI Data Engine. Refer to link:connect-entra-id-aide-mcp.html#set-up-an-identity-provider[Set up an identity provider].
+* The connection to MCP is enabled. Under *MCP collections* > *MCP settings*, expand *MCP server connection* and confirm that *Enable connection to MCP* is turned on. The connection is disabled by default. Refer to link:maintain-mcp-setup.html#enable-or-disable-the-connection-to-mcp[Enable or disable the connection to MCP].
+* The MCP server has a status of *Running*. Refer to link:maintain-mcp-setup.html#review-mcp-server-and-collection-status[Review MCP server and collection status].
 
 .Steps
 
@@ -113,7 +115,7 @@ Disable AI access for a collection when AI clients no longer need to search it. 
 . In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
 . Open the collection's *Actions* menu and select *Disable*.
 
-AI clients that use the disabled collection lose access to it after the change applies. Your identity provider and user scope selections are kept. To block requests to all collections at once, refer to link:maintain-mcp-setup.html#enable-or-disable-the-connection-to-mcp[Enable or disable the connection to MCP].
+AI clients that use the disabled collection lose access to it after the change applies. Your identity provider and user scope selections are kept. AI clients also can't reach any collection while the connection to MCP is disabled. To block requests to all collections at once, refer to link:maintain-mcp-setup.html#enable-or-disable-the-connection-to-mcp[Enable or disable the connection to MCP].
 
 // RESEARCH How do you re-enable AI access for a collection after you disable it?
 

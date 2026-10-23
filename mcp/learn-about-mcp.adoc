@@ -59,6 +59,7 @@ You configure governed AI access in Microsoft Entra ID and NetApp Console. The t
 . Entra ID administrator: link:configure-entra-id-mcp.html[Configure Microsoft Entra ID] by registering a dedicated application for each AI Data Engine instance, defining the Application ID URI and the `power_users` scope, creating and assigning the power-user app role, and adding redirect URIs for your AI clients.
 . AI Data Engine administrator: link:connect-entra-id-aide-mcp.html[Set up Microsoft Entra ID as an identity provider] in AI Data Engine.
 . Optional: Create data collections from selected volumes. The *All files* collection exists by default and includes every scanned file.
+. Enable the connection to MCP in *MCP settings*, and confirm that the MCP server is running. The connection is disabled by default.
 . Configure each collection for MCP by selecting identity providers and user scopes. The scopes you include define what an AI client can search.
 . Connect AI clients by using the MCP server URL or client-specific snippet that you generate in NetApp Console.
 

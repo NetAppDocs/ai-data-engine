@@ -85,6 +85,8 @@ Before users connect, confirm that each of the following is true. The Applicatio
 *NetApp Console*
 
 * The Entra ID identity provider has the tenant ID and the application (client) ID, and its connection status is *Connected*.
+* *Enable connection to MCP* is turned on under *MCP collections* > *MCP settings* > *MCP server connection*.
+* The MCP server has a status of *Running*.
 * The collection is configured for MCP with the identity provider and the `power_users` scope.
 * You generated the MCP code snippet.
 

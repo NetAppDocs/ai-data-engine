@@ -27,7 +27,7 @@ Review the status of the MCP server and of the collections that your AI clients 
 
 . In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
 . Review the MCP server status:
-* *Active*: The MCP server is running and enabled, and it accepts requests from AI clients.
+* *Running*: The MCP server is running. AI clients can connect when *Enable connection to MCP* is turned on.
 * *Degraded*: The MCP server is running, but a prerequisite is missing or unhealthy, such as no configured identity provider or a slow response from the metadata catalog. AI clients might not be able to authenticate or retrieve collections.
 * *Offline*: The MCP server is stopped, disabled, or unreachable. AI clients can't connect. If the connection to MCP is turned off, refer to <<enable-or-disable-the-connection-to-mcp,Enable or disable the connection to MCP>>.
 . In the collections list, review the status of each collection that your AI clients use. A collection with a status of *Enabled* is available to AI clients. If volumes in a collection are still being scanned, wait for indexing to finish before you search for new files.
@@ -92,7 +92,7 @@ For more information about this task, refer to link:manage-data-collections.html
 [#enable-or-disable-the-connection-to-mcp]
 == Enable or disable the connection to MCP
 
-Turn on *Enable connection to MCP* to allow AI clients to connect to your MCP collections. The setting is on by default after setup. If you turn it off, AI clients stay blocked until you turn it back on.
+Turn on *Enable connection to MCP* to allow AI clients to connect to your MCP collections. The connection is disabled by default. Turn it on after you set up the MCP server and before you generate the MCP code snippet for your AI client. If you turn it off later, AI clients stay blocked until you turn it back on.
 
 .Steps
 
@@ -102,6 +102,7 @@ Turn on *Enable connection to MCP* to allow AI clients to connect to your MCP co
 . Use the *Enable connection to MCP* toggle to turn the connection on or off.
 +
 CAUTION: Disabling the MCP server connection blocks all requests from AI clients to all MCP collections, regardless of collection settings. AI clients that are already connected lose access on their next request. Disable the connection only when you intend to suspend access across the server.
+. After you turn the connection on, confirm that the MCP server has a status of *Running*. Refer to <<review-mcp-server-and-collection-status,Review MCP server and collection status>>.
 
 [#review-mcp-server-settings]
 == Review MCP server settings

@@ -16,6 +16,7 @@ Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine M
 * An administrator has completed the setup in link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access] and link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID], including these:
 ** Assigning you the `AIDE Power Users` app role.
 ** Configuring a collection for MCP with a scope that includes you. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
+** Turning on *Enable connection to MCP* in *MCP settings*. If the connection is off, AI clients can't connect to any collection.
 ** Adding the redirect URI for your AI client to the AI Data Engine application and allowing public client flows. The AI client signs in as a public client, so you don't need a client secret.
 * You have the MCP client configuration from your administrator. The administrator generates it in NetApp Console by configuring the collection for MCP, copies the MCP server URL or the client-specific snippet from the *Generate MCP code snippet* step, and shares it with you. It includes the following:
 ** The MCP server URL, in the format `\https://<mcp-server-host>/mcp/tools`.
