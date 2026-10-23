@@ -24,6 +24,8 @@ For the supported proxy types and the complete parameter reference, see link:con
 * If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the target host.
 * The operating system repositories on the target host provide the packages listed in link:single-node-prerequisites.html#operating-system-packages[Operating system packages]. Verify that your package managers have the appropriate proxy configuration if required in your environment.
 
+NOTE: Use the installer only for the first installation of AIDE. Do not use it to upgrade AIDE. After installation, the AIDE operator manages upgrades. For information about upgrades, contact NetApp Support.
+
 == What the installer configures
 
 In a single-node deployment, AI Data Engine owns the VM that it installs on. The installer configures the k3s runtime and AI Data Engine for the proxy. It doesn't change the proxy configuration of the host, such as the operating system package managers. The installer does the following:
@@ -217,7 +219,8 @@ NOTE: Installation takes about 45 minutes to complete. Timeouts and retries migh
 The installer detects the IP address of the node that runs the AI Data Engine NGINX ingress and asks you to confirm it. Press Enter to keep the address shown, or type a different address. Use an address that can be reached from outside the VM. Do not enter the Console agent address.
 
 . Monitor the progress screen until the success screen appears and confirms that the AIDE installation is complete.
-
++
+If the installation fails, contact NetApp Support.
 .Result
 AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
 

@@ -22,6 +22,8 @@ IMPORTANT: If the target host reaches the internet only through an outbound prox
 * Your environment meets all prerequisites as described in link:single-node-prerequisites.html[AIDE single-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
 * A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the AI Data Engine host. The Console agent IP is required to run the install command.
 
+NOTE: Use the installer only for the first installation of AIDE. Do not use it to upgrade AIDE. After installation, the AIDE operator manages upgrades. For information about upgrades, contact NetApp Support.
+
 .Steps
 . In NetApp Console, navigate to *AI data hub* > *AI Data Engine*.
 +
@@ -52,7 +54,8 @@ NOTE: Installation takes about 45 minutes to complete. Timeouts and retries are 
 The installer detects the IP address of the node that runs the AI Data Engine NGINX ingress and asks you to confirm it. Press Enter to keep the address shown, or type a different address. Use an address that can be reached from outside the VM. Do not enter the Console agent address.
 
 . Monitor the progress screen until the success screen appears and confirms that the AIDE installation is complete.
-
++
+If the installation fails, contact NetApp Support.
 .Result
 AI Data Engine is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
 
