@@ -22,23 +22,23 @@ The following network connections must be open:
 |===
 |Connection |Port |Protocol |Direction |Purpose
 
-|Console Agent to NetApp Console
+|Console agent to NetApp Console
 |443
 |TCP
 |Outbound
 |HTTPS: connectivity to NetApp Console
 
-|Console Agent to ONTAP
+|Console agent to ONTAP
 |443
 |TCP
 |Outbound
 |HTTPS: ONTAP cluster discovery
 
-|Console Agent to AI Data Engine
+|Console agent to AI Data Engine
 |80, 443, 8080, 9000
 |TCP
 |Bidirectional
-|Communication between Console Agent and AI Data Engine
+|Communication between Console agent and AI Data Engine
 
 |AI client to MCP server
 |443
@@ -276,11 +276,11 @@ For an online installation, the following endpoints must be reachable. Where a r
 
 The endpoints in this table are the same whether you connect directly to the internet or through a proxy.
 
-If you use a proxy, allow each endpoint for HTTPS (`CONNECT`) on port 443 using the exact hostnames listed, without wildcards or a leading dot.
+If you use a proxy, allow each endpoint for HTTPS (`CONNECT`) on port 443 using the exact host names listed, without wildcards or a leading dot.
 
-Allow `d13jb5dapseb36.cloudfront.net`, which hosts the installer download, by hostname. Its IP addresses are shared with other sites and change often, so a rule based on IP addresses stops working.
+Allow `d13jb5dapseb36.cloudfront.net`, which hosts the installer download, by host name. Its IP addresses are shared with other sites and change often, so a rule based on IP addresses stops working.
 
-For multi-node deployments, the cluster nodes make the container runtime connections. If the multi-node install command from NetApp Console specifies a different `--registry` value, allow that registry hostname instead of the registry hostnames in the table.
+For multi-node deployments, the cluster nodes make the container runtime connections. If the multi-node install command from NetApp Console specifies a different `--registry` value, allow that registry host name instead of the registry host names in the table.
 
 See link:configure-proxy.html[Learn about proxies for AI Data Engine]. To deploy with a proxy, see link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy] or link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy].
 
@@ -509,7 +509,7 @@ Scale beyond the recommended size::
 +
 Horizontal scaling of an existing multi-node cluster isn't supported. Adding worker nodes or dedicated storage nodes doesn't automatically increase scan processing, event ingestion, or catalog capacity. If your environment exceeds the size that you deployed, or you need more scan processing or event ingestion capacity, contact NetApp Support or your NetApp representative to plan the change.
 +
-NOTE: To scale beyond 10 billion files, contact your NetApp representative for node sizing guidance and custom scale.
+NOTE: To scale beyond six billion files, contact your NetApp representative for node sizing guidance and custom scale.
 
 [[kerberos-ad-requirements]]
 == Kerberos and Active Directory requirements
@@ -521,10 +521,14 @@ Review these requirements before you scan SMB/CIFS shares with Kerberos authenti
 Kerberos authentication fails when the clocks on the AIDE nodes and the KDC differ by more than the allowed clock skew. Active Directory allows a maximum difference of five minutes by default.
 // RESEARCH Confirm the clock skew tolerance that applies to AIDE and whether to state it.
 
+Verify the following:
+
 * Network Time Protocol (NTP) is active on all AIDE nodes.
 * The AIDE nodes use a time source that is synchronized with your domain controllers.
 
 === DNS
+
+Meet the following DNS requirements:
 
 * Every AIDE node can resolve the file server and the KDC by fully qualified domain name (FQDN).
 * If you configure the nodes to use your Active Directory DNS server, that server must also resolve external names. Otherwise, AIDE can't reach the endpoints listed in <<outbound-internet-access,Outbound internet access>>.

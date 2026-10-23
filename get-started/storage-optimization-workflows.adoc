@@ -47,7 +47,7 @@ NOTE: This threshold is configurable in *Configuration* > *General settings*.
 .Steps
 . In link:../investigate/investigate-unstructured.html[Investigation], apply the *Last created* filter set to your retention threshold (default *7+ years*).
 . Review the results with the relevant stakeholders before acting. Retention-flagged files are often monitored rather than automatically deleted.
-. link:../policies/create-policy.html[Create a policy] with a monitor-only or email notification action so that you receive an alert when new files meet the retention threshold, instead of acting on these resources one time.
+. link:../policies/create-policy.html[Create a policy] with a monitor-only or email notification action so that you receive an alert when new files meet the retention threshold.
 
 == Find and eliminate duplicate files
 

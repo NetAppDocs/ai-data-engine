@@ -22,8 +22,6 @@ Through MCP, a connected AI client can:
 * Search the metadata for the files in the collections that you have enabled for AI access.
 * List tags, create tags, and add tags to or remove tags from those files. If a tag doesn't exist, add it to a file to create it. Tag operations are available in a power-user session, which requires the Microsoft Entra ID app role and scope. Refer to link:configure-entra-id-mcp.html#create-and-assign-the-power-user-app-role[Create and assign the power-user app role]. For the tools that AI clients can use, refer to link:mcp-tools-reference.html[MCP tools for AI Data Engine governed AI access].
 
-// RESEARCH Is the MCP server called the Governed Access Gateway in customer-facing content, and is that name final?
-
 == Governed AI access and the Investigation view
 
 Governed AI access gives you an AI-based alternative to the investigation work that you do in AI Data Engine. Instead of building filters in the link:../investigate/investigate-data.html[Investigation view] of the UI and selecting files to tag, you ask a question or give an instruction in an AI client, such as Claude Desktop.

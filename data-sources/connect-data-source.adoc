@@ -16,7 +16,7 @@ Connect the data sources that you want AI Data Engine to analyze, and choose whi
 .Before you begin
 
 * You must have _AI Data Engine administrator_ privileges to connect and configure data sources.
-* For systems connected through NetApp Console discovery, use a Console Agent to discover the storage systems in NetApp Console before you add them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery doesn't enable data services such as AI Data Engine.
+* For systems connected through NetApp Console discovery, use a Console agent to discover the storage systems in NetApp Console before you add them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery doesn't enable data services such as AI Data Engine.
 * Verify that the network connections required for AI Data Engine to reach your data sources are open. Refer to link:../deploy/aide-requirements.html[AI Data Engine requirements].
 * To scan SMB/CIFS shares with Kerberos authentication, complete the procedure for your deployment type in link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine] first.
 
@@ -25,7 +25,7 @@ Connect the data sources that you want AI Data Engine to analyze, and choose whi
 
 Bring your data into AI Data Engine so that you can analyze it. Use *Add system* on the *Data sources* page to connect a file shares group, a database server, or a StorageGRID system. After you add the data source, configure scanning to specify which of its resources AI Data Engine scans to collect metadata. Refer to <<configure-scanning>>.
 
-// RESEARCH: Confirm which source types require Console Agent discovery. Do not apply the discovery prerequisite to direct-add sources unless confirmed.
+// RESEARCH: Confirm which source types require Console agent discovery. Do not apply the discovery prerequisite to direct-add sources unless confirmed.
 
 [[add-file-shares-group]]
 === Add a file shares group

@@ -51,7 +51,7 @@ Traffic on your network connects directly and must stay reachable without the pr
 
 |===
 
-You can address the proxy by hostname or IPv4 address.
+You can address the proxy by host name or IPv4 address.
 
 IMPORTANT: AI Data Engine supports standard forward proxies that tunnel connections with HTTP `CONNECT`, including HTTPS destinations. If your proxy inspects TLS traffic, exempt the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access] from inspection, including the installer download host. TLS-inspecting proxies and some other proxy features aren't supported. See link:../release-notes/known-limitations.html[Known limitations].
 
@@ -66,7 +66,7 @@ The installer uses one proxy for every internet destination and every AI Data En
 
 |`--proxy-host <host[:port]>`
 |None
-|Hostname or IPv4 address of the forward proxy, without `http://` or `https://`. Enables proxy configuration. Accepts an inline port (`host:port`). A port in `--proxy-host` takes precedence over `--proxy-port`.
+|Host name or IPv4 address of the forward proxy, without `http://` or `https://`. Enables proxy configuration. Accepts an inline port (`host:port`). A port in `--proxy-host` takes precedence over `--proxy-port`.
 
 |`--proxy-port <port>`
 |`80` for HTTP, `443` for HTTPS

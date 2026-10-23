@@ -21,7 +21,7 @@ On the system where you downloaded the AI Data Engine installer, run the link:pr
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] link:configure-entra-id-mcp.html[Configure Microsoft Entra ID (Entra ID administrator)]
 [role="quick-margin-para"]
-In the Microsoft Entra admin center, link:configure-entra-id-mcp.html#register-the-ai-data-engine-application[register an application] for this AI Data Engine instance and define its Application ID URI and scope, link:configure-entra-id-mcp.html#create-and-assign-the-power-user-app-role[create the power-user app role] and assign it to your users, and link:configure-entra-id-mcp.html#add-redirect-uris-for-ai-clients[add redirect URIs] for your AI clients. Record the tenant ID and the application (client) ID.
+In the Microsoft Entra admin center, link:configure-entra-id-mcp.html#register-the-ai-data-engine-application[register an application] for this AI Data Engine instance and define its Application ID URI and scope. Then link:configure-entra-id-mcp.html#create-and-assign-the-power-user-app-role[create the power-user app role] and assign it to your users, and link:configure-entra-id-mcp.html#add-redirect-uris-for-ai-clients[add redirect URIs] for your AI clients. Record the tenant ID and the application (client) ID.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] link:connect-entra-id-aide-mcp.html#set-up-an-identity-provider[Connect Entra ID to AI Data Engine (AI Data Engine administrator)]
 [role="quick-margin-para"]

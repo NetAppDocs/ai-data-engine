@@ -18,7 +18,7 @@ For the supported proxy types and the complete parameter reference, see link:con
 * You have _Organization admin_ or greater permissions in NetApp Console.
 * You have sudo or root permissions on the target host to run the install command.
 * Your environment meets all prerequisites as described in link:single-node-prerequisites.html[AIDE single-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
-* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
+* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the AI Data Engine host. The Console agent IP is required to run the install command.
 * You have configured your proxy to allow the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
 * You know the proxy host, port, and scheme (`http` or `https`). If the proxy requires authentication, you also know the username and password.
 * If you use an HTTPS proxy with a privately signed certificate, you have the CA certificate as a PEM file, or a flat directory of `.crt` and `.pem` files, on the target host.
@@ -147,7 +147,7 @@ When you run the install command in a terminal without `--proxy-host` or `--no-p
 |Enter `y`.
 
 |Proxy host or IP
-|Enter the proxy hostname or IPv4 address, optionally with a port (`host:port`).
+|Enter the proxy host name or IPv4 address, optionally with a port (`host:port`).
 
 |Proxy scheme (`https` or `http`)
 |Enter the protocol that your proxy listens on. The default is `https`.

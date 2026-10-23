@@ -9,7 +9,7 @@ summary: Deploy AI Data Engine as an AIDE single-node deployment on a Linux VM t
 :imagesdir: ../media/
 
 [.lead]
-Deploy AI Data Engine (AIDE) as an AIDE single-node deployment, where the installer sets up everything on a single Linux VM that you provide. If your environment requires Kubernetes-based high availability at large scale, you can deploy an AIDE multi-node deployment instead on a Kubernetes cluster that you bring.
+Deploy AI Data Engine (AIDE) as an AIDE single-node deployment, where the installer sets up everything on a single Linux VM that you provide. If your environment requires Kubernetes-based high availability at large scale, you can deploy an AIDE multi-node deployment on a Kubernetes cluster that you bring.
 
 // IE UX Link dependency: The UI links to this page. Do not change the permalink or filename without creating a redirect file.
 == AIDE single-node deployment

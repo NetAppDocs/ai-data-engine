@@ -24,7 +24,7 @@ You can deploy AI Data Engine with a forward proxy, but the following proxy feat
 * SOCKS proxies.
 * Proxy auto-configuration (PAC file or WPAD). Give the installer the proxy host and port directly.
 * A different proxy for different destinations. One proxy carries all AI Data Engine internet traffic.
-* An IPv6 address as the proxy address. Use a hostname instead; the hostname can resolve to IPv6.
+* An IPv6 address as the proxy address. Use a host name instead; the host name can resolve to IPv6.
 * A proxy with an air-gapped installation. The installer rejects proxy options on an air-gapped installation.
 +
 For supported proxy configurations, see link:../deploy/configure-proxy.html[Learn about proxies for AI Data Engine].

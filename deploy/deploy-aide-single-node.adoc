@@ -20,7 +20,7 @@ IMPORTANT: If the target host reaches the internet only through an outbound prox
 * You have _Organization admin_ or greater permissions in NetApp Console.
 * You have sudo or root permissions on the target host to run the install command.
 * Your environment meets all prerequisites as described in link:single-node-prerequisites.html[AIDE single-node deployment prerequisites] and link:aide-requirements.html[AIDE requirements].
-* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the AI Data Engine host. The Console Agent IP is required to run the install command.
+* A NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy[is deployed^] and reachable from the AI Data Engine host. The Console agent IP is required to run the install command.
 
 .Steps
 . In NetApp Console, navigate to *AI data hub* > *AI Data Engine*.

@@ -22,7 +22,7 @@ AI Data Engine scans the data sources that you connect and builds a searchable m
 * *Find access risks.* Identify directories with open permissions so that you can prioritize them for review.
 * *Investigate and organize.* Use metadata filters to find the data you care about, tag it, and save your criteria as a policy that you can monitor over time.
 * *Act on data.* Tag, archive, copy, or delete the files that you've reviewed.
-* *Prepare data for AI.* Let AI clients that you've authorized search your metadata and take actions on files.
+* *Prepare data for AI.* Let AI clients that you've authorized search your metadata and take actions on data.
 
 == Storage optimization and data lifecycle management
 

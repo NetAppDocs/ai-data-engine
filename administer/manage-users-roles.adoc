@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: administer/manage-users-roles.html
-keywords: roles, users, permissions, AI data engine administrator, AI data engine viewer
+keywords: roles, users, permissions, ai data engine administrator, ai data engine viewer
 summary: Control access by assigning each user an administrator or viewer role. Learn about the two roles and their permissions.
 ---
 = Manage users and roles in AI Data Engine
