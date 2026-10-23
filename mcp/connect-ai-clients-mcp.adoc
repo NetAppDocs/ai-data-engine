@@ -9,7 +9,7 @@ summary: Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data
 :imagesdir: ../media/
 
 [.lead]
-Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the AI Data Engine Model Context Protocol (MCP) server so that you can search file metadata and tag files in the collections that you have access to.
+Connect Claude Code, Claude Desktop, Cursor, or OpenCode to the Model Context Protocol (MCP) server for AI Data Engine (AIDE) so that you can search file metadata and tag files in the collections that you have access to.
 
 == Before you begin
 

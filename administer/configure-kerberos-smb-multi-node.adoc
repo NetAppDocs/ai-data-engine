@@ -13,7 +13,7 @@ Scan SMB/CIFS shares from a multi-node AI Data Engine (AIDE) deployment by using
 
 If you have a single-node deployment, refer to link:configure-kerberos-smb-single-node.html[Configure Kerberos for SMB/CIFS shares on a single-node AI Data Engine deployment].
 
-.Before you begin
+== Before you begin
 
 * You have _AI Data Engine administrator_ privileges.
 * You have root access to every node and to the admin host. The admin host is the host where you mount the NFS export and create the keytab. It can be one of the nodes.

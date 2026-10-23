@@ -9,7 +9,7 @@ summary: As an AI Data Engine administrator, connect Microsoft Entra ID to AI Da
 :imagesdir: ../media/
 
 [.lead]
-Connect Microsoft Entra ID to AI Data Engine as an identity provider so that you can authenticate users and control which collections they can work with through the Model Context Protocol (MCP). As an AI Data Engine administrator, you set up the identity provider, configure collections for MCP, and verify your configuration in NetApp Console.
+Connect Microsoft Entra ID to AI Data Engine (AIDE) as an identity provider so that you can authenticate users and control which collections they can work with through the Model Context Protocol (MCP). As an AI Data Engine administrator, you set up the identity provider, configure collections for MCP, and verify your configuration in NetApp Console.
 
 Governed AI access uses Entra ID to authenticate users, and the scopes that you include for each collection determine which collections a user can work with through MCP.
 

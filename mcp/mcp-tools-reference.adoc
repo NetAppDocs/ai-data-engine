@@ -9,7 +9,7 @@ summary: Review the tools that AI clients can use through the AI Data Engine MCP
 :imagesdir: ../media/
 
 [.lead]
-A connected AI client can use a set of tools through the AI Data Engine Model Context Protocol (MCP) server to search and tag files in a collection. Use this information to understand what each tool does and the access that the tools require.
+A connected AI client can use a set of tools through the Model Context Protocol (MCP) server for AI Data Engine (AIDE) to search and tag files in a collection. Use this information to understand what each tool does and the access that the tools require.
 
 == Access requirements
 

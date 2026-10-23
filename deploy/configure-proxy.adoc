@@ -9,7 +9,7 @@ summary: Learn how AI Data Engine works with a forward proxy, and which proxy ty
 :imagesdir: ../media/
 
 [.lead]
-If your AI Data Engine host or cluster cannot reach the internet directly, configure a forward proxy so the installer and AI Data Engine can download components, pull container images, and register with NetApp Console. The proxy options are the same for single-node and multi-node deployments. The steps to prepare for and run the installation differ, so each deployment type has its own workflow.
+If your AI Data Engine (AIDE) host or cluster cannot reach the internet directly, configure a forward proxy so the installer and AI Data Engine can download components, pull container images, and register with NetApp Console. The proxy options are the same for single-node and multi-node deployments. The steps to prepare for and run the installation differ, so each deployment type has its own workflow.
 
 The proxy settings apply only to the k3s runtime and AI Data Engine, not to the host system.
 

@@ -9,7 +9,7 @@ summary: Use end-to-end flows for taking a dashboard finding through investigati
 :imagesdir: ../media/
 
 [.lead]
-These AI Data Engine workflows take you from identifying a storage problem on the dashboard through investigation and action to an ongoing monitoring policy. Each workflow follows the same path: review the dashboard, investigate, act, and save a policy.
+These AI Data Engine (AIDE) workflows take you from identifying a storage problem on the dashboard through investigation and action to an ongoing monitoring policy. Each workflow follows the same path: review the dashboard, investigate, act, and save a policy.
 
 == Identify and act on cold data
 

@@ -9,7 +9,7 @@ summary: Monitor scan status and manage your connected data sources, including p
 :imagesdir: ../media/
 
 [.lead]
-Keep scan coverage aligned with the data you need to analyze. Use the *Data sources* page to check scan progress, investigate gaps in coverage, and manage which systems and data resources AI Data Engine scans.
+Keep scan coverage aligned with the data you need to analyze. Use the *Data sources* page to check scan progress, investigate gaps in coverage, and manage which systems and data resources AI Data Engine (AIDE) scans.
 
 [[view-scan-status-and-details]]
 == View scan status and details

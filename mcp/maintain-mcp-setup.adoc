@@ -9,7 +9,7 @@ summary: Review and update your MCP collections, identity providers, access scop
 :imagesdir: ../media/
 
 [.lead]
-Keep governed AI access in AI Data Engine aligned with your requirements by reviewing and updating your Model Context Protocol (MCP) collections, identity providers, access scopes, and server settings, and by validating access from your AI clients.
+Keep governed AI access in AI Data Engine (AIDE) aligned with your requirements by reviewing and updating your Model Context Protocol (MCP) collections, identity providers, access scopes, and server settings, and by validating access from your AI clients.
 
 == Before you begin
 

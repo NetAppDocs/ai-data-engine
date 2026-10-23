@@ -14,7 +14,7 @@ Identify the owners of your NFS files by name instead of by numeric ID. AI Data 
 
 This mapping doesn't authenticate AI Data Engine to NFS storage. It converts the IDs that AI Data Engine finds during scanning to Active Directory names.
 
-.Before you begin
+== Before you begin
 
 * You have _AI Data Engine administrator_ privileges.
 * You have link:../deploy/aide-requirements.html#networking-requirements[opened the required ports] from AI Data Engine to your Active Directory domain controllers.

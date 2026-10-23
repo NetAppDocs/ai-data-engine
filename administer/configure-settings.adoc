@@ -13,6 +13,10 @@ Cold and stale thresholds help you find storage that you can optimize using AI D
 
 // IE UX Link dependency: The UI links to this page from General settings > "Learn more". Do not change the permalink or filename without creating a redirect file.
 
+== Before you begin
+
+You must have the _AI Data Engine administrator_ role.
+
 == What is cold and stale data?
 
 Cold data:: Files that haven't been accessed within the cold data threshold. Cold data is a key metric your organization can use to identify storage that could be optimized according to your retention and business policies.
@@ -27,10 +31,6 @@ Changes to the cold and stale thresholds take effect after the next scan cycle c
 
 // RESEARCH When do changes to the permission scanning and Active Directory settings take effect (next scan cycle or immediately)?
 // RESEARCH What do the dashboard, Investigation filters, and policies show when cold data, stale data, or permission scanning is disabled?
-
-== Before you begin
-
-You must have the _AI Data Engine administrator_ role.
 
 == Set the cold data threshold
 

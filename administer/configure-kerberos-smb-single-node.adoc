@@ -13,7 +13,7 @@ Scan SMB/CIFS shares from a single-node AI Data Engine (AIDE) deployment by usin
 
 If you have a multi-node deployment, refer to link:configure-kerberos-smb-multi-node.html[Configure Kerberos for SMB/CIFS shares on a multi-node AI Data Engine deployment].
 
-.Before you begin
+== Before you begin
 
 * You have _AI Data Engine administrator_ privileges.
 * You have root access to the AI Data Engine host.

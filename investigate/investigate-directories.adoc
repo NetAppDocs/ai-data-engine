@@ -11,7 +11,8 @@ summary: Audit directory-level permissions across your storage systems to find b
 [.lead]
 When you need to identify which directories are exposed to more users than intended, filter by permissions to find folders that are open to the entire organization. For example, a security administrator who sees exposed directories flagged on the dashboard can find all directories with org-wide access, review who holds read and write permissions, and create a policy to monitor for new exposures after each scan.
 
-.Before you begin
+== Before you begin
+
 * You have connected at least one data source, and it is scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
 
 == Find broadly accessible directories

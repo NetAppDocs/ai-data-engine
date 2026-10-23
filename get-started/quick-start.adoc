@@ -9,7 +9,7 @@ summary: Get AI Data Engine up and running by deploying the service, connecting 
 :imagesdir: ../media/
 
 [.lead]
-Get AI Data Engine up and running by deploying the service, connecting your data sources, and starting your first investigation. You can also let AI clients search your metadata through governed AI access.
+Get AI Data Engine (AIDE) up and running by deploying the service, connecting your data sources, and starting your first investigation. You can also let AI clients search your metadata through governed AI access.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] link:../deploy/aide-requirements.html[Review requirements and select a deployment type]
 [role="quick-margin-para"]

@@ -9,7 +9,7 @@ summary: Set up governed AI access with AI Data Engine by preparing Microsoft En
 :imagesdir: ../media/
 
 [.lead]
-Set up governed AI access with AI Data Engine so that AI clients can search data collections and tag files through the Model Context Protocol (MCP). Prepare the MCP host and Microsoft Entra ID, configure a data collection for MCP, and connect an AI client.
+Set up governed AI access with AI Data Engine (AIDE) so that AI clients can search data collections and tag files through the Model Context Protocol (MCP). Prepare the MCP host and Microsoft Entra ID, configure a data collection for MCP, and connect an AI client.
 
 // IE UX Link dependency: The UI links to this page through the redirect from mcp/configure-mcp-access.html. Do not change the permalink or filename without creating a redirect file and updating the redirect in the redirect folder.
 

@@ -9,7 +9,7 @@ summary: Run the ingress script to set up the AIDE cluster host name and certifi
 :imagesdir: ../media/
 
 [.lead]
-Set up the AIDE cluster host name and certificate that AI clients use to reach the AI Data Engine MCP server. Complete this task before you configure Microsoft Entra ID, because the Application ID URI in Entra ID is built from the AIDE cluster host name.
+Set up the AI Data Engine (AIDE) cluster host name and certificate that AI clients use to reach the AI Data Engine MCP server. Complete this task before you configure Microsoft Entra ID, because the Application ID URI in Entra ID is built from the AIDE cluster host name.
 
 In this task, you run a script to set up the domain and the certificate, make sure that client machines can reach the host, and then verify the host.
 

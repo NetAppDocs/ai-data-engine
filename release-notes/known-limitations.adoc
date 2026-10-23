@@ -9,7 +9,7 @@ summary: Known limitations identify functionality that is not supported in AI Da
 :imagesdir: ../media/
 
 [.lead]
-Known limitations identify functionality that isn't supported in AI Data Engine, or functionality that doesn't interoperate correctly. Review these limitations before deploying or using the product.
+Known limitations identify functionality that isn't supported in AI Data Engine (AIDE), or functionality that doesn't interoperate correctly. Review these limitations before deploying or using the product.
 
 == Deployment
 

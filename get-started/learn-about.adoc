@@ -9,7 +9,7 @@ summary: Learn how AI Data Engine uses metadata to help you reclaim storage capa
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine is a metadata intelligence service that gives you visibility into structured and unstructured data stored on your storage systems. AI Data Engine scans your storage systems and catalogs file system metadata so that you can identify storage optimization opportunities, investigate your data, and enforce governance policies.
+AI Data Engine (AIDE) is a metadata intelligence service that gives you visibility into structured and unstructured data stored on your storage systems. AI Data Engine scans your storage systems and catalogs file system metadata so that you can identify storage optimization opportunities, investigate your data, and enforce governance policies.
 
 // IE UX Link dependency: The UI links to this page from Overview > "Learn more". Do not change the permalink or filename without creating a redirect file.
 

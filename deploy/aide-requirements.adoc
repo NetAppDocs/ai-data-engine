@@ -9,7 +9,7 @@ summary: Review infrastructure and networking requirements before deploying AI D
 :imagesdir: ../media/
 
 [.lead]
-Before you deploy AI Data Engine, review the networking, Kubernetes, sizing, and operating system requirements for your environment. For a single-node deployment, you provide a Linux VM and AI Data Engine provisions everything else automatically. For a multi-node deployment, you bring your own Kubernetes cluster.
+Before you deploy AI Data Engine (AIDE), review the networking, Kubernetes, sizing, and operating system requirements for your environment. For a single-node deployment, you provide a Linux VM and AI Data Engine provisions everything else automatically. For a multi-node deployment, you bring your own Kubernetes cluster.
 
 [[networking-requirements]]
 == Networking requirements
@@ -514,7 +514,7 @@ NOTE: To scale beyond six billion files, contact your NetApp representative for 
 [[kerberos-ad-requirements]]
 == Kerberos and Active Directory requirements
 
-Review these requirements before you scan SMB/CIFS shares with Kerberos authentication or map NFS user and group IDs to Active Directory names. The time synchronization, DNS, and host package requirements apply to Kerberos only. AI Data Engine (AIDE) is a Kerberos client: it authenticates to your existing Kerberos key distribution center (KDC) and doesn't act as a Kerberos server.
+Review these requirements before you scan SMB/CIFS shares with Kerberos authentication or map NFS user and group IDs to Active Directory names. The time synchronization, DNS, and host package requirements apply to Kerberos only. AIDE is a Kerberos client: it authenticates to your existing Kerberos key distribution center (KDC) and doesn't act as a Kerberos server.
 
 === Time synchronization
 

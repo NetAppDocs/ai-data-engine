@@ -9,7 +9,7 @@ summary: Create data collections and enable them for AI access so that connected
 :imagesdir: ../media/
 
 [.lead]
-A collection is a logical container for data sources that you make searchable to AI clients through the AI Data Engine Model Context Protocol (MCP) server. Create collections and enable them for AI access so that connected AI clients can search them.
+A collection is a logical container for data sources that you make searchable to AI clients through the Model Context Protocol (MCP) server for AI Data Engine (AIDE). Create collections and enable them for AI access so that connected AI clients can search them.
 
 == Before you begin
 

@@ -9,7 +9,7 @@ summary: Governed AI access lets AI clients search the metadata in selected AI D
 :imagesdir: ../media/
 
 [.lead]
-Governed AI access lets AI clients use the Model Context Protocol (MCP) to search the metadata in the AI Data Engine collections that you select. You decide which link:manage-data-collections.html#about-data-collections[collections] an AI client can search and who can use them. AI assistants work from your cataloged metadata within the boundaries that you set.
+Governed AI access lets AI clients use the Model Context Protocol (MCP) to search the metadata in the AI Data Engine (AIDE) collections that you select. You decide which link:manage-data-collections.html#about-data-collections[collections] an AI client can search and who can use them. AI assistants work from your cataloged metadata within the boundaries that you set.
 
 // IE UX Link dependency: The UI links to this page from MCP Collections > "Learn how to connect your AI agent". Do not change the permalink or filename without creating a redirect file.
 

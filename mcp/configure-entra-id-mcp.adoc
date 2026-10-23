@@ -9,7 +9,7 @@ summary: As a Microsoft Entra ID administrator, register a dedicated application
 :imagesdir: ../media/
 
 [.lead]
-Governed AI access in AI Data Engine uses Microsoft Entra ID to authenticate users. As a Microsoft Entra ID administrator, you register AI Data Engine in the Microsoft Entra admin center, define the scope and the app role, and add redirect URIs for your AI clients so that users can sign in and work with their authorized collections.
+Governed AI access in AI Data Engine (AIDE) uses Microsoft Entra ID to authenticate users. As a Microsoft Entra ID administrator, you register AI Data Engine in the Microsoft Entra admin center, define the scope and the app role, and add redirect URIs for your AI clients so that users can sign in and work with their authorized collections.
 
 When you finish, give the values that you record to the AI Data Engine administrator, who connects AI Data Engine to Entra ID in NetApp Console. Refer to link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID].
 
