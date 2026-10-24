@@ -54,16 +54,6 @@ indexpage:
           url: /mcp/learn-about-mcp.html
         - title: Quick start for governed AI access
           url: /mcp/quick-start-mcp.html
-        - title: Prepare the MCP host
-          url: /mcp/prepare-mcp-host.html
-        - title: Configure Microsoft Entra ID
-          url: /mcp/configure-entra-id-mcp.html
-        - title: Connect AI Data Engine to Microsoft Entra ID
-          url: /mcp/connect-entra-id-aide-mcp.html
-        - title: Manage data collections
-          url: /mcp/manage-data-collections.html
-        - title: Connect AI clients
-          url: /mcp/connect-ai-clients-mcp.html
         - title: Maintain your MCP setup
           url: /mcp/maintain-mcp-setup.html
     - title: Administer

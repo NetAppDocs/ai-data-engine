@@ -64,6 +64,9 @@ Choose an action based on how certain you are about the data:
 |Delete
 |The data is no longer needed and has no retention requirements. Deletion is permanent, so use it only when you are sure.
 
+|Clean up duplicates
+|Identical copies of a file exist in more than one location and you want to keep only one. You can tag, archive, or delete the redundant copies while retaining one copy. Deleting duplicates is permanent. Refer to <<Investigate and clean up duplicate files>>.
+
 |===
 
 When data might still have value or require further review, choose tagging, archiving, or copying over deleting. Only delete when you are certain the data is safe to remove permanently.
