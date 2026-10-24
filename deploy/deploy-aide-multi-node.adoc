@@ -68,8 +68,6 @@ NOTE: Installation takes about 30 minutes to complete. Timeouts and retries migh
 * The installer detects the IP address of the node that runs the AI Data Engine NGINX ingress and asks you to confirm it. Press Enter to keep the address shown, or type a different address. Use an address that can be reached from outside the cluster. If the detected address is an internal cluster address, type the reachable address instead. Do not enter the Console agent address.
 
 . Monitor the progress screen until the success screen appears and confirms that the AIDE installation is complete.
-+
-If the installation fails, contact NetApp Support.
 
 .Result
 Your AI Data Engine multi-node deployment is deployed and connected to NetApp Console. You can now link:../data-sources/connect-data-source.html[connect a data source] to start scanning.
