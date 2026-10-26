@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: investigate/investigate-unstructured.html
-keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS
-summary: Find and classify files as cold, stale, or large across NFS and SMB/CIFS volumes using metadata filters, then review results, take action as appropriate, or save your filter criteria as a reusable policy.
+keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS, duplicates, duplicate files, file hash
+summary: Find and classify files as cold, stale, large, or duplicated across NFS and SMB volumes using metadata filters, then review results, take action as appropriate, or save your filter criteria as a reusable policy.
 ---
 = Investigate unstructured data in AI Data Engine
 :icons: font
@@ -11,12 +11,13 @@ summary: Find and classify files as cold, stale, or large across NFS and SMB/CIF
 [.lead]
 When file-based storage is growing unexpectedly, filter by last-access time, file size, and owner to find which files are consuming capacity. For example, a storage administrator can identify terabytes of VM snapshots that haven't been accessed in over a year and evaluate whether to archive, delete, or retain them.
 
-.Before you begin
-* At least one data source must be connected and scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
+== Before you begin
+
+* You have connected at least one data source, and it is scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].
 
 == Find cold or stale files by last-access time
 
-Use date-based filters to identify files that haven't been accessed within your organization's cold or stale data thresholds. Thresholds are configurable in *Configuration* > *Settings*. Refer to link:../administer/configure-settings.html[Configure cold and stale data thresholds].
+Find files that haven't been accessed within your organization's cold or stale data thresholds by using date-based filters. You define these thresholds, including the timestamp that each one uses, in the data classification settings. Refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
 
 .Steps
 . From the AI Data Engine UI, select *Investigation*.
@@ -27,8 +28,6 @@ The Unstructured tab is selected by default.
 . To focus on the largest consumers, select *Add filter* again, then select *File size*, and set a minimum value, for example *>1 GiB*.
 +
 Applied filters appear as tags below the filter bar. The results table and item count update as you add each filter.
-
-For a complete list of available filters, refer to link:use-filters.html[Work with filters].
 
 == Group results by owner
 
@@ -42,9 +41,24 @@ The results reorganize to show total file count and size per owner. Select any o
 
 == Review file details
 
-Select any file row to open the detail panel and confirm the file matches your intended scope before taking action.
+Confirm that a file matches your intended scope before you take action. Select any file row to open the detail panel.
 
-The detail panel shows the file's system, storage repository, file owner, and any applied tags or policies. Verify the system and owner before archiving or deleting.
+The detail panel shows the file's system, storage repository, path, size, timestamps, access, file owner, and any applied tags or policies. The *Duplicates* field shows the number of duplicate copies of the file. Verify the system and owner before archiving or deleting.
+
+== Find duplicate files
+
+See how widespread duplicate files are before you decide where to clean up. The *Duplicates* filter lists every file that has one or more identical copies elsewhere in the catalog.
+
+.Steps
+. From the AI Data Engine UI, select *Investigation*.
++
+The Unstructured tab is selected by default.
+. Select *Add filter*, then select *Duplicates*.
++
+The results table lists the files that have duplicate copies.
+. To see every copy of a specific file and its location, select the file name, and then select *View details* next to *Duplicates*.
+
+To review the copies and clean them up, refer to link:take-actions.html[Investigate and clean up duplicate files].
 
 == Act on results or save as a policy
 
@@ -57,8 +71,8 @@ To download the filtered results from the Unstructured tab, select image:icon_do
 
 == Related information
 
-* link:use-filters.html[Work with filters]
 * link:take-actions.html[Take action on your data]
 * link:../policies/create-policy.html[Create a policy]
+* link:../administer/configure-settings.html[Configure data classification thresholds and access scanning]
 * link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
 * link:understand-dashboard.html[Assess storage utilization from the dashboard]

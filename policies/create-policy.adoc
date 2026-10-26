@@ -11,6 +11,8 @@ summary: Save investigation filter criteria as a named policy so you can track t
 [.lead]
 Create a policy when you want to monitor a recurring data condition without repeating the same investigation manually. For example, a data governance manager can save a "large stale files" policy to track that grouping across scan cycles and receive an email update when the impacted file count changes.
 
+// IE UX Link dependency: The UI links to this page from Policies > "Learn more". Do not change the permalink or filename without creating a redirect file.
+
 == About policies
 
 Policies save the filter criteria you define in Investigation as a reusable rule. AI Data Engine evaluates each policy against the metadata catalog after every scan cycle. You can open a policy at any time to view the current matching result set. If you attach a Delete action, AI Data Engine removes matching files after each scan cycle. If you attach an email notification, AI Data Engine sends an update when the impacted file count changes.
@@ -46,20 +48,20 @@ Review the results table to confirm the filter set captures the intended data gr
 
 . To attach an action, select one of the following under *Action*:
 +
-* *Monitor only (no action)* (default): The policy saves as a monitor-only condition.
+* *Monitor only (no action)* (default): Saves the policy as a monitor-only condition.
 * *Send email notification*: Sends an email notification to the recipient you specify.
-* *Delete permanently*: No additional input is required.
+* *Delete permanently*: Requires no additional input.
 +
 CAUTION: The Delete permanently action automatically and irreversibly deletes all files matching this policy after every scan cycle. Verify your filter criteria and confirm you are authorized to delete these files before saving.
 
 . Select *Create*.
 
 .Result
-The policy is saved and appears on the link:manage-policies.html[Policies] page. If you associated an action, AI Data Engine applies that action to files that match the policy criteria.
+AI Data Engine saves the policy, and it appears on the link:manage-policies.html[Policies] page. If you associated an action, AI Data Engine applies that action to files that match the policy criteria.
 
 == Example: identify cold archive files
 
-The following example creates a policy to send an email notification when files that haven't been accessed in over a year are detected.
+The following example creates a policy that sends an email notification when AI Data Engine detects files that haven't been accessed in over a year.
 
 . In Investigation, apply these filters:
 +

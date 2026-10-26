@@ -1,32 +1,36 @@
 ---
 sidebar: sidebar
 permalink: get-started/quick-start.html
-keywords: quick start, deploy, connect, investigate, policies
-summary: Get AI Data Engine up and running by deploying the service, connecting your storage systems, and starting your first investigation.
+keywords: quick start, deploy, connect, investigate, policies, governed ai access, mcp
+summary: Get AI Data Engine up and running by deploying the service, connecting your data sources, and starting your first investigation. Optionally, set up governed AI access for AI clients.
 ---
 = Quick start for AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-Get AI Data Engine up and running by deploying the service, connecting your storage systems, and starting your first investigation.
+Get AI Data Engine (AIDE) up and running by deploying the service, connecting your data sources, and starting your first investigation. You can also let AI clients search your metadata through governed AI access.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] Review requirements
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] link:../deploy/aide-requirements.html[Review requirements and select a deployment type]
 [role="quick-margin-para"]
-Review the link:../deploy/aide-requirements.html[AIDE requirements] and link:../deploy/deployment-overview.html[learn about deployment modes] to determine whether to install AIDE Lite or AIDE Enterprise. AI Data Engine is available in private preview in NetApp Console. Contact your NetApp representative to request access so that you can deploy AI Data Engine.
+Review the requirements, and link:../deploy/deployment-overview.html[learn about deployment types] to decide whether to install an AIDE single-node or multi-node deployment.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] Deploy AI Data Engine
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] link:../deploy/deployment-overview.html[Deploy AI Data Engine]
 [role="quick-margin-para"]
-Deploy link:../deploy/deploy-aide-lite.html[AIDE Lite] or link:../deploy/deploy-enterprise.html[AIDE Enterprise] from NetApp Console. The setup page guides you through selecting your installation location and configuration size and running the install command.
+Deploy an link:../deploy/deploy-aide-single-node.html[AIDE single-node deployment] or an link:../deploy/deploy-aide-multi-node.html[AIDE multi-node deployment] from NetApp Console. The setup page guides you through selecting your installation location and configuration size and running the install command. If your host or cluster reaches the internet only through a proxy, link:../deploy/configure-proxy.html[deploy with a proxy] instead.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] Connect a data source
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png[Three] link:../data-sources/connect-data-source.html[Connect a data source]
 [role="quick-margin-para"]
-link:../data-sources/connect-data-source.html[Connect a data source] to begin scanning. AI Data Engine catalogs file system metadata from the storage systems you specify.
+Connect a data source to begin scanning. AI Data Engine catalogs the metadata of the data sources that you connect.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] Explore your data
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png[Four] link:../investigate/understand-dashboard.html[Explore your data]
 [role="quick-margin-para"]
-Open the link:../investigate/understand-dashboard.html[dashboard] to see storage optimization insights, or go to link:../investigate/investigate-data.html[Investigation] to search and filter your metadata directly.
+Open the dashboard to see storage optimization insights, or go to link:../investigate/investigate-data.html[Investigation] to search and filter your metadata directly.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five] Create a policy
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png[Five] link:../policies/create-policy.html[Create a policy]
 [role="quick-margin-para"]
-link:../policies/create-policy.html[Save your investigation filters as a policy] to monitor files that match the same criteria over time. You can configure a policy to send a notification, permanently delete matching files, or track the results.
+Save your investigation filters as a policy to monitor files that match the same criteria over time. You can configure a policy to send a notification, permanently delete matching files, or track the results.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png[Six] link:../mcp/quick-start-mcp.html[Optional: Set up governed AI access]
+[role="quick-margin-para"]
+Let AI clients search the metadata in the collections you choose. Power users can search metadata and take actions with data.

@@ -1,0 +1,6 @@
+---
+permalink: deploy/deploy-aide-lite.html
+redirect: deploy/deploy-aide-single-node.html
+---
+
+// IE UX Link dependency: The UI still links to this URL, deploy/deploy-aide-lite.html. Do not remove this redirect file or change the redirect target without updating the UI link.

@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: administer/manage-users-roles.html
-keywords: roles, users, permissions, AI data engine administrator, AI data engine viewer
+keywords: roles, users, permissions, ai data engine administrator, ai data engine viewer
 summary: Control access by assigning each user an administrator or viewer role. Learn about the two roles and their permissions.
 ---
 = Manage users and roles in AI Data Engine
@@ -9,7 +9,7 @@ summary: Control access by assigning each user an administrator or viewer role. 
 :imagesdir: ../media/
 
 [.lead]
-Control what each user can view and do in AI Data Engine by assigning them an administrator or viewer role. Before your team starts using AI Data Engine, assign each user the role that matches their required level of access.
+Control what each user can view and do in AI Data Engine (AIDE) by assigning them an administrator or viewer role. Before your team starts using AI Data Engine, assign each user the role that matches their required level of access.
 
 You assign roles through NetApp Console organization settings. AI Data Engine supports two roles.
 
@@ -69,11 +69,19 @@ The AI Data Engine viewer role provides limited access to AI Data Engine. Viewer
 |Yes
 |-
 
+|Actions: Clean up duplicates
+|Yes
+|-
+
 |Manage business tags
 |Yes
 |Yes
 
 |===
+
+== Roles and governed AI access
+
+NetApp Console roles control who can configure governed AI access in AI Data Engine. They don't control which collections an AI client user can search. Microsoft Entra ID scopes that you grant to each collection control that access. For details, refer to link:../mcp/configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access].
 
 == Assign a role to a user
 
@@ -86,7 +94,7 @@ You assign roles in NetApp Console, not within AI Data Engine itself.
 * To add a new user, select *Add user* and enter the user's email address.
 * To update an existing user, select the user from the list.
 . Select the organization, folder, or project, and then choose the *Data Service* category.
-. Assign the *AI data engine administrator* or *AI data engine viewer* role.
+. Assign the *AI Data Engine administrator* or *AI Data Engine viewer* role.
 . Save your changes.
 
 The user receives an email invitation and can access AI Data Engine after accepting it.
@@ -95,3 +103,4 @@ The user receives an email invitation and can access AI Data Engine after accept
 
 * link:../investigate/take-actions.html[Take action on your data]
 * link:../policies/create-policy.html[Create a policy]
+* link:../mcp/manage-data-collections.html[Manage data collections]

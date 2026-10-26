@@ -1,0 +1,146 @@
+---
+sidebar: sidebar
+permalink: mcp/maintain-mcp-setup.html
+keywords: mcp, governed ai access, maintain, update, edit collection, identity provider, user scopes, mcp settings, aide cluster host name, mcp host name, enable connection to mcp, validate access
+summary: Review and update your MCP collections, identity providers, access scopes, and server settings as your requirements change, and then validate access from your AI clients.
+---
+= Maintain your AI Data Engine governed AI access setup
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Keep governed AI access in AI Data Engine (AIDE) aligned with your requirements by reviewing and updating your Model Context Protocol (MCP) collections, identity providers, access scopes, and server settings, and by validating access from your AI clients.
+
+== Before you begin
+
+* You have configured an MCP collection and connected an AI client. Refer to link:quick-start-mcp.html[Quick start for governed AI access with AI Data Engine].
+* You have the *AI Data Engine administrator* role.
+
+Changes don't take effect immediately. If you change Microsoft Entra ID app roles or scopes, users receive the updated access only after their AI client gets a new access token, which can take up to about one hour. Users can sign in again to get a new token sooner. If you add data to a collection, the files become searchable only after AI Data Engine scans and indexes them.
+
+[#review-mcp-server-and-collection-status]
+== Review MCP server and collection status
+
+Review the status of the MCP server and of the collections that your AI clients use, and address any configuration warnings.
+
+.Steps
+
+. In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
+. Review the MCP server status:
+* *Running*: The MCP server is running. AI clients can connect when *Enable connection to MCP* is turned on.
+* *Degraded*: The MCP server is running, but a prerequisite is missing or unhealthy, such as no configured identity provider or a slow response from the metadata catalog. AI clients might not be able to authenticate or retrieve collections.
+* *Offline*: The MCP server is stopped, disabled, or unreachable. AI clients can't connect. If the connection to MCP is turned off, refer to <<enable-or-disable-the-connection-to-mcp,Enable or disable the connection to MCP>>.
+. In the collections list, review the status of each collection that your AI clients use. A collection with a status of *Enabled* is available to AI clients. If volumes in a collection are still being scanned, wait for indexing to finish before you search for new files.
+. Address any configuration warnings:
+* If an identity provider is missing, add it under *Configuration* > *Identity providers*. Refer to link:connect-entra-id-aide-mcp.html#set-up-an-identity-provider[Set up an identity provider]. Confirm that the identity provider's *Connection status* is *Connected*.
+* If a collection shows *Ready to configure*, open its *Actions* menu, select *Configure for MCP*, and select identity providers and user scopes. Refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
+* If a volume in a collection shows a scan error, refer to link:../data-sources/manage-data-sources.html#view-scan-status-and-details[View scan status and details].
+
+[#edit-a-data-collection]
+== Edit a data collection
+
+Update the name, description, or data resources of an MCP collection.
+
+.Steps
+
+. In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
+. Open the collection's *Actions* menu and select *Edit*.
+. Update the name or description as needed.
+. Select or clear data resources to update the collection.
+. Select *Save MCP collection*.
+
+You can't edit, rename, or delete the *All files* collection. You can configure it for MCP. Refer to <<update-identity-providers-or-user-scopes-for-a-collection,Update the identity providers or user scopes for a collection>>.
+
+[#update-an-identity-provider]
+== Update an identity provider
+
+Update an identity provider when the provider configuration changes.
+
+.Steps
+
+. In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *Identity providers*.
+. Open the identity provider for editing.
+. Update the tenant ID, application (client) ID, or name as needed.
+. Select *Save*.
+
+If administrator access is required, ask your administrator to update the identity provider.
+
+[#update-identity-providers-or-user-scopes-for-a-collection]
+== Update the identity providers or user scopes for a collection
+
+Change which identity providers authorize access to a collection, or which user scopes they include, and then copy the updated connection details.
+
+.Before you begin
+
+If the identity provider that you need isn't listed, connect it under *Identity providers* first. Refer to link:connect-entra-id-aide-mcp.html#set-up-an-identity-provider[Set up an identity provider].
+
+.Steps
+
+. In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
+. Open the collection's *Actions* menu and select *Configure for MCP*.
+. Select the identity providers that authorize access to the collection.
+. For each selected identity provider, review *User scopes to include*. Keep *All user scopes*, or select specific scopes and select *Add scopes*.
+. Select *Generate MCP code snippet*.
+. Copy the updated *MCP server URL* or the configuration snippet for your AI client, and then select *Close*.
+
+.Result
+
+The collection uses the identity providers and user scopes that you selected. If the MCP server URL or the configuration snippet changed, update each affected AI client. Refer to <<update-ai-client-connections-and-validate-access,Update AI client connections and validate access>>.
+
+For more information about this task, refer to link:manage-data-collections.html#configure-a-collection-for-mcp[Configure a collection for MCP].
+
+[#enable-or-disable-the-connection-to-mcp]
+== Enable or disable the connection to MCP
+
+Turn on *Enable connection to MCP* to allow AI clients to connect to your MCP collections. The connection is disabled by default. Turn it on after you set up the MCP server and before you generate the MCP code snippet for your AI client. If you turn it off later, AI clients stay blocked until you turn it back on.
+
+.Steps
+
+. In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
+. Select *MCP settings*.
+. Expand *MCP server connection*.
+. Use the *Enable connection to MCP* toggle to turn the connection on or off.
++
+CAUTION: Disabling the MCP server connection blocks all requests from AI clients to all MCP collections, regardless of collection settings. AI clients that are already connected lose access on their next request. Disable the connection only when you intend to suspend access across the server.
+. After you turn the connection on, confirm that the MCP server has a status of *Running*. Refer to <<review-mcp-server-and-collection-status,Review MCP server and collection status>>.
+
+[#review-mcp-server-settings]
+== Review MCP server settings
+
+Review whether AI clients can connect to the MCP server, and review the AIDE cluster host name.
+
+.Steps
+
+. In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
+. Select *MCP settings*.
+. Under *MCP server connection*, review *Enable connection to MCP*. To turn the connection on or off, refer to <<enable-or-disable-the-connection-to-mcp,Enable or disable the connection to MCP>>.
+. Under *MCP hostname*, review the AIDE cluster host name. If you need to change it, enter the updated host name and select *Configure*.
++
+CAUTION: Changing the AIDE cluster host name changes the MCP server URL. AI clients that use the previous URL can't connect until you update their connection settings. The new host name must be on a domain that is verified in your Entra ID tenant. Because the Application ID URI and the scope are built from the host name, you must also update them in Entra ID. Refer to <<update-ai-client-connections-and-validate-access,Update AI client connections and validate access>>.
++
+NOTE: Securing the MCP server with HTTPS requires an SSL/TLS certificate. NetApp Console doesn't manage the certificate. The ingress script sets up the certificate and the AIDE cluster host name. The host name must be on a domain that is verified in your Entra ID tenant. Refer to link:prepare-mcp-host.html[Prepare the MCP host].
+. Select *Close*.
+
+[#update-ai-client-connections-and-validate-access]
+== Update AI client connections and validate access
+
+After you change collections, identity providers, user scopes, or server settings, confirm that your AI clients can still connect and that access matches your intended permissions.
+
+.Steps
+
+. If the MCP server URL or the generated configuration snippet changed, update the connection settings in each affected AI client. Refer to link:connect-ai-clients-mcp.html[Connect AI clients].
+. In each affected AI client, confirm that the client can connect and authenticate.
+. Run a representative search request.
+. Confirm that the expected collection content is accessible and that access matches the intended permissions.
+
+.Result
+
+Your MCP setup reflects your changes, your affected AI clients can connect, and access matches your intended permissions.
+
+== Related information
+
+* link:manage-data-collections.html[Manage data collections]
+* link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access]
+* link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID]
+* link:connect-ai-clients-mcp.html[Connect AI clients to the AI Data Engine MCP server]
+* link:../release-notes/known-limitations.html[Known limitations]
