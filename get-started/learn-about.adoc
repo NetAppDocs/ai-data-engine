@@ -1,46 +1,64 @@
 ---
 sidebar: sidebar
 permalink: get-started/learn-about.html
-keywords: ai data engine, aide, overview, use cases, storage optimization, data governance
-summary: Learn about AI Data Engine, which provides visibility into structured and unstructured data stored on your storage systems.
+keywords: ai data engine, aide, overview, metadata, use cases, storage optimization, data lifecycle, access risk, governed ai access, mcp
+summary: Learn how AI Data Engine uses metadata to help you reclaim storage capacity, find access risks, and organize your data for use with AI clients.
 ---
 = Learn about AI Data Engine
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-AI Data Engine is a metadata intelligence service that gives you visibility into structured and unstructured data stored on your storage systems. By scanning your storage systems and cataloging file system metadata, AI Data Engine helps you identify storage optimization opportunities, investigate your data, and enforce governance policies by analyzing metadata in place, without moving or copying data.
+AI Data Engine (AIDE) is a metadata intelligence service that gives you visibility into structured and unstructured data stored on your storage systems. AI Data Engine scans your storage systems and catalogs file system metadata so that you can identify storage optimization opportunities, investigate your data, and enforce governance policies.
+
+// IE UX Link dependency: The UI links to this page from Overview > "Learn more". Do not change the permalink or filename without creating a redirect file.
 
 == What AI Data Engine does
 
-AI Data Engine scans connected storage systems to extract file system metadata and builds a catalog that is updated after each scan cycle. From this catalog, you can:
+AI Data Engine scans the data sources that you connect and builds a searchable metadata catalog that is refreshed on each scan cycle. From the catalog, you can:
 
-* View storage optimization insights on a dashboard, including which data owners hold potentially reclaimable storage such as files meeting your organization's cold and stale thresholds and duplicate files
-* Investigate your data using flexible metadata filters to build targeted data grouping
-* Create policies that save investigation criteria as reusable rules
-* Take actions on data: tagging, archiving, copying, or deleting files that match policy criteria
+* *Understand your storage.* See how much data you have, who owns it, and where it is.
+* *Reclaim capacity.* Find cold, stale, and duplicate data, and see which data owners hold the most of it, so that you know who to contact about cleanup.
+* *Find access risks.* Identify directories with open permissions so that you can prioritize them for review.
+* *Investigate and organize.* Use metadata filters to find the data you care about, tag it, and save your criteria as a policy that you can monitor over time.
+* *Act on data.* Tag, archive, copy, or delete the files that you've reviewed.
+* *Prepare data for AI.* Let AI clients that you've authorized search your metadata and take actions on data.
 
-== Storage optimization and data governance
+== Storage optimization and data lifecycle management
 
-AI Data Engine focuses on storage optimization and data lifecycle management for structured and unstructured data stored on your storage systems.
+Use metadata to identify data that warrants review, such as files that meet your organization's cold and stale thresholds and duplicate files. Investigate the results before you decide whether to keep, tag, archive, copy, or delete the data.
+
+Storage optimization insights point to opportunities. Capacity that you might reclaim depends on the actions that you choose to take.
+
+== Governed AI access
+
+Governed AI access lets AI clients search your metadata through the Model Context Protocol (MCP), within boundaries that you set. You choose which data to make available by creating collections. A collection is a set of scanned data that you make available to AI clients. You control which collections a user can search by defining the Microsoft Entra ID scopes.
+
+AI clients work with metadata only. They can't retrieve file contents.
+
+link:../mcp/learn-about-mcp.html[Learn more about governed AI access].
 
 == Who uses AI Data Engine
 
-AI Data Engine is designed for the following users:
+The following examples show how different people might use AI Data Engine:
 
-* *Storage administrators* who need to identify and monitor which data owners hold files meeting their organization's cold and stale thresholds, identify duplicate files, and evaluate storage optimization opportunities.
+* *Storage administrators* who need to review files meeting their organization's cold and stale thresholds, identify duplicate files, and evaluate storage optimization opportunities.
 * *IT operations teams* who need a central view of what structured and unstructured data exists across their storage environment.
+* *Data or AI team members* who use an AI client to search the metadata in an authorized collection and to tag the data that they want to work with.
+* *IT leads* who are rolling out AI tools and need to choose which collections AI clients can search and who can use them.
 
-== Where AI Data Engine lives
+== Where AI Data Engine runs
 
-You access AI Data Engine through NetApp Console, under *AI data hub > AI Data Engine*. AI Data Engine is available in private preview. Contact your NetApp representative to request access. You deploy AI Data Engine as AIDE Lite, a single-VM installation, on Linux infrastructure you manage either as a virtual machine in your cloud account or a machine in your on-premises environment. If your environment requires Kubernetes-based high availability at large scale, you can deploy AIDE Enterprise instead.
-
-AI Data Engine scans data on NetApp ONTAP and StorageGRID systems, as well as on non-NetApp systems that support the NFS, SMB/CIFS, or S3 protocols.
+You access AI Data Engine through NetApp Console, under *AI data hub > AI Data Engine*. The scanning and catalog services run on infrastructure that you provide, either in your cloud account or in your on-premises environment. Choose an AIDE single-node deployment on a Linux VM, or an AIDE multi-node deployment on a Kubernetes cluster if your environment requires high availability at large scale.
 
 link:../deploy/deployment-overview.html[Learn more about deployment options].
+
+AI Data Engine scans the supported data sources that you connect. For more information, refer to link:../data-sources/connect-data-source.html[Connect a data source].
+
 
 == Related information
 
 * link:architecture.html[AI Data Engine architecture]
 * link:quick-start.html[Quick start]
+* link:../mcp/learn-about-mcp.html[Learn about governed AI access]
 * link:storage-optimization-workflows.html[Explore storage optimization workflows]

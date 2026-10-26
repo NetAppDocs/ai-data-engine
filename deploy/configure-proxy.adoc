@@ -1,0 +1,124 @@
+---
+sidebar: sidebar
+permalink: deploy/configure-proxy.html
+keywords: proxy, outbound proxy, forward proxy, HTTPS proxy, proxy certificate, proxy authentication, install, proxy host, proxy port, allowlist, CONNECT, installer download, container runtime
+summary: Learn how AI Data Engine works with a forward proxy, and which proxy types and parameters it supports.
+---
+= Learn about proxies for AI Data Engine
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+If your AI Data Engine (AIDE) host or cluster cannot reach the internet directly, configure a forward proxy so the installer and AI Data Engine can download components, pull container images, and register with NetApp Console. The proxy options are the same for single-node and multi-node deployments. The steps to prepare for and run the installation differ, so each deployment type has its own workflow.
+
+The proxy settings apply only to the k3s runtime and AI Data Engine, not to the host system.
+
+== Deploy AI Data Engine with a proxy
+
+Each deployment type has its own topic with the complete procedure, from preparing the environment to running the installer.
+
+* link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy]: The installer configures the proxy for the k3s runtime and for AI Data Engine, including its trust store.
+* link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy]: You configure the container runtime proxy and the CA certificate trust on every node before you run the installer.
+
+== What goes through the proxy
+
+Only internet-bound traffic uses the proxy. All AI Data Engine internet destinations use HTTPS on port 443, so your proxy must allow `CONNECT` to port 443 for each endpoint in link:aide-requirements.html#outbound-internet-access[Outbound internet access].
+
+Traffic on your network connects directly and must stay reachable without the proxy:
+
+* The Console agent (`--cm-host`)
+* NFS, CIFS/SMB, ONTAP, and StorageGRID data sources
+* Active Directory and LDAP
+* The Kubernetes API server and the cluster's internal networks
+
+== Supported proxy configurations
+
+[cols="2,3,2",options="header"]
+|===
+|Configuration |Description |Authentication
+
+|No proxy
+|Direct connection to the internet; no proxy is used.
+|None
+
+|HTTP forward proxy
+|AI Data Engine connects to the proxy over HTTP and tunnels HTTPS destinations with `CONNECT`.
+|None, or HTTP Basic authentication (username and password)
+
+|HTTPS forward proxy
+|AI Data Engine connects to the proxy over TLS. If a private certificate authority (CA) signed the proxy certificate, you supply the CA certificate.
+|None, or HTTP Basic authentication (username and password)
+
+|===
+
+You can address the proxy by host name or IPv4 address.
+
+IMPORTANT: AI Data Engine supports standard forward proxies that tunnel connections with HTTP `CONNECT`, including HTTPS destinations. If your proxy inspects TLS traffic, exempt the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access] from inspection, including the installer download host. TLS-inspecting proxies and some other proxy features aren't supported. See link:../release-notes/known-limitations.html[Known limitations].
+
+The installer uses one proxy for every internet destination and every AI Data Engine component. The proxy settings are set during installation.
+
+[[proxy-parameters]]
+== Proxy configuration parameters
+
+[cols="2,1,3",options="header"]
+|===
+|Parameter |Default |Description
+
+|`--proxy-host <host[:port]>`
+|None
+|Host name or IPv4 address of the forward proxy, without `http://` or `https://`. Enables proxy configuration. Accepts an inline port (`host:port`). A port in `--proxy-host` takes precedence over `--proxy-port`.
+
+|`--proxy-port <port>`
+|`80` for HTTP, `443` for HTTPS
+|Port the proxy listens on. Ignored if the port is already included in `--proxy-host`.
+
+|`--proxy-scheme <http\|https>`
+|`https`
+|Protocol used to connect to the proxy server itself. This is not the scheme of the destinations that the proxy reaches. Most forward proxies listen on plain HTTP, so pass `--proxy-scheme http` for those.
+
+|`--proxy-ca-cert <path>`
+|None
+|Path to a PEM file, or to a flat directory of `.crt` and `.pem` files, that contains the CA certificate that signed the proxy certificate. The installer reads a directory without recursing into subdirectories and merges the files into one bundle. Required for an HTTPS proxy whose certificate is signed by a private CA. Not used with an HTTP proxy.
+
+|`--proxy-user <user>`
+|None
+|Username for basic authentication. With an HTTP proxy, the installer warns that credentials travel to the proxy unencrypted. Requires a password, supplied with `--proxy-password-file` or entered at the prompt.
+
+|`--proxy-password-file <path>`
+|None
+|Path to a local file that contains only the proxy password, with permissions set to `0600` or `0400`. If you omit it, the installer prompts for the password with hidden input.
+
+|`--proxy-type <r>`
+|`r`
+|Type of proxy. `r` is a regular forward proxy and is the default. Don't change it. TLS-inspecting proxies are not supported.
+
+|`--no-proxy`
+|—
+|Explicitly disables proxy configuration and skips proxy prompts. Use it only when the host has direct internet access.
+
+|===
+
+NOTE: The installer doesn't accept `--proxy-password` or the `PROXY_PASSWORD` environment variable. Use `--proxy-password-file` or the interactive prompt instead.
+
+== The installer download
+
+The install command copied from NetApp Console downloads the installer from a content delivery network (CDN) and then runs it in one step. The download doesn't use the proxy. If the target host reaches the internet only through a proxy, you download the installer yourself and run the install command from the extracted installer. The deployment topics describe these steps.
+
+[[proxy-verification]]
+== Proxy verification
+
+Before the installer downloads anything, it runs a check from the installer host. The check confirms that the proxy responds, that the proxy accepts your credentials, and that the proxy certificate is valid for the scheme you chose. If the check fails, the installer stops and names the cause, for example a wrong port, a wrong scheme, or a rejected password (HTTP 407).
+
+For multi-node deployments, the check covers the proxy only. It does not test whether the cluster nodes can reach the proxy.
+
+== Change proxy settings after installation
+
+The proxy settings are set during installation. The installer doesn't run again on an installed cluster. To change the proxy host, port, credentials, or CA certificate after installation, contact NetApp Support.
+
+== Related information
+
+* link:aide-requirements.html[AIDE requirements]
+* link:single-node-prerequisites.html[AIDE single-node deployment prerequisites]
+* link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites]
+* link:deploy-aide-single-node-proxy.html[Deploy AI Data Engine as a single-node deployment with a proxy]
+* link:deploy-aide-multi-node-proxy.html[Deploy AI Data Engine as a multi-node deployment with a proxy]

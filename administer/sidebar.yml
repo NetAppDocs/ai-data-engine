@@ -3,5 +3,15 @@ title: Administer
 entries:
   - title: Manage users and roles
     url: /administer/manage-users-roles.html
-  - title: Configure data thresholds
+  - title: Configure data classification thresholds and access scanning
     url: /administer/configure-settings.html
+  - title: Kerberos for SMB/CIFS shares
+    url: /administer/configure-kerberos-smb.html
+  - title: Configure Kerberos on a single node
+    url: /administer/configure-kerberos-smb-single-node.html
+  - title: Configure Kerberos on multiple nodes
+    url: /administer/configure-kerberos-smb-multi-node.html
+  - title: Configure Active Directory identity mapping for NFS
+    url: /administer/configure-ad-nfs.html
+  - title: Monitor deployment health
+    url: /administer/monitor-deployment-health.html

@@ -1,0 +1,21 @@
+section: mcp
+title: Governed AI access (MCP)
+entries:
+  - title: Learn about governed AI access
+    url: /mcp/learn-about-mcp.html
+  - title: Quick start
+    url: /mcp/quick-start-mcp.html
+  - title: Prepare the MCP host
+    url: /mcp/prepare-mcp-host.html
+  - title: Configure Microsoft Entra ID
+    url: /mcp/configure-entra-id-mcp.html
+  - title: Connect AIDE to Microsoft Entra ID
+    url: /mcp/connect-entra-id-aide-mcp.html
+  - title: Manage data collections
+    url: /mcp/manage-data-collections.html
+  - title: Connect AI clients
+    url: /mcp/connect-ai-clients-mcp.html
+  - title: AIDE MCP tools
+    url: /mcp/mcp-tools-reference.html
+  - title: Maintain your MCP setup
+    url: /mcp/maintain-mcp-setup.html

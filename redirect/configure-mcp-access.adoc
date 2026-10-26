@@ -1,0 +1,6 @@
+---
+permalink: mcp/configure-mcp-access.html
+redirect: mcp/quick-start-mcp.html
+---
+
+// IE UX Link dependency: The UI still links to this URL, mcp/configure-mcp-access.html. Do not remove this redirect file or change the redirect target without updating the UI link.

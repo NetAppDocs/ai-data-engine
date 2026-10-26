@@ -1,0 +1,120 @@
+---
+sidebar: sidebar
+permalink: mcp/manage-data-collections.html
+keywords: mcp, governed ai access, data collections, collection, ai access, scope, create collection, enable collection
+summary: Create data collections and enable them for AI access so that connected AI clients can search them.
+---
+= Manage data collections for AI Data Engine governed AI access
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+A collection is a logical container for data sources that you make searchable to AI clients through the Model Context Protocol (MCP) server for AI Data Engine (AIDE). Create collections and enable them for AI access so that connected AI clients can search them.
+
+== Before you begin
+
+* You must have the _AI Data Engine administrator_ role.
+* You have set up Microsoft Entra ID as an identity provider in AI Data Engine, and its connection status is *Connected*. Refer to link:connect-entra-id-aide-mcp.html#set-up-an-identity-provider[Set up an identity provider].
+* You have created a custom data collection or are using a default collection that includes only the data that AI clients need to search. Refer to <<create-a-data-collection,Create a data collection>>.
+
+[#about-data-collections]
+== About data collections
+
+A collection is a logical container for one or more data sources. AI Data Engine provides a default collection named *All files* that includes every system and volume that AI Data Engine has scanned.
+
+CAUTION: Before you grant a scope access to a collection, confirm that everyone who has that scope is allowed to search the metadata for every file in the collection. If you grant a scope access to *All files*, everyone who has that scope can search the metadata for all scanned data.
+
+To create a collection, refer to <<create-a-data-collection,Create a data collection>>. To change a collection, an identity provider, or the MCP server settings later, refer to link:maintain-mcp-setup.html[Maintain your MCP setup].
+
+[#create-a-data-collection]
+== Create a data collection
+
+Create a data collection to define the data resources that AI clients can search through the MCP server.
+
+.Steps
+
+. In NetApp Console, go to *AI data hub* > *AI Data Engine*.
+. Select *Configuration*, then select *MCP collections*.
+. Select *Create collection*.
+. In *Name*, enter a unique name for the collection.
+. Optional: In *Description*, enter a description to help your team understand the collection's purpose. The description can contain up to 512 characters.
+. Use the *Systems* and *Protocols* filters to narrow the list of data resources.
+. Select the checkbox next to each data resource that you want to include in the collection.
++
+The *Scan status* column shows whether each data resource is *Completed*, *Re-scanning*, or in *Error*. S3 and structured data resources can't be added to a collection.
++
+The *Selected rows* summary displays the number of selected resources, their scanned capacity, and their scanned file count. To clear the selection and start again, select *Reset*.
+. Select *Create MCP collection*.
+
+A confirmation message appears, and the new collection is added to the *Collections* list with a status of *Ready to configure*. Creating the collection doesn't complete its MCP connection configuration.
+
+The *Collections* list shows each collection's name, description, number of volumes, scanned capacity, scanned file count, owner, and status. The owner is *System* for collections that AI Data Engine provides and *User* for collections that you create.
+
+After you create a collection, <<configure-a-collection-for-mcp,configure it for MCP>>.
+
+[#configure-a-collection-for-mcp]
+== Configure a collection for MCP
+
+Select the identity providers and user scopes for an MCP collection, and then obtain the connection details for your AI client.
+
+IMPORTANT: In a power-user session, search isn't filtered by file-level permissions. Users with access to the collection can search every file in it. Include only files that all users assigned to the collection's scopes are allowed to see. Grant a scope access to *All files* only if everyone with that scope is allowed to search all scanned data.
+
+.Before you begin
+
+* You have created an MCP collection, or you are using *All files*. Refer to <<create-a-data-collection,Create a data collection>>.
+* The identity providers that you want to use are connected to AI Data Engine. Refer to link:connect-entra-id-aide-mcp.html#set-up-an-identity-provider[Set up an identity provider].
+* The connection to MCP is enabled. Under *MCP collections* > *MCP settings*, expand *MCP server connection* and confirm that *Enable connection to MCP* is turned on. The connection is disabled by default. Refer to link:maintain-mcp-setup.html#enable-or-disable-the-connection-to-mcp[Enable or disable the connection to MCP].
+* The MCP server has a status of *Running*. Refer to link:maintain-mcp-setup.html#review-mcp-server-and-collection-status[Review MCP server and collection status].
+
+.Steps
+
+. In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
+. Locate the collection that you want to configure, open its *Actions* menu, and select *Configure for MCP*.
+. In the *Select identity providers* step, select one or more identity providers to authenticate and authorize access to the collection.
++
+NOTE: If the identity provider that you need isn't listed, add it under *Identity providers* before you continue. If administrator access is required, ask your administrator to connect the identity provider.
+. For each selected identity provider, use *User scopes to include* to specify the scopes:
+.. To include all user scopes, leave *All user scopes* selected.
+.. To include specific scopes, open the dropdown, select the scopes, and select *Add scopes*.
++
+`power_users` is the only scope in the dropdown, and selecting it gives the same result as *All user scopes*. The scope name must match the scope that you defined in Microsoft Entra ID.
+. Select *Generate MCP code snippet*.
+. In the *Generate MCP code snippet* step, copy the connection details that your AI client requires:
+* To use the endpoint directly, select the copy icon next to *MCP server URL*.
+* To use a client-specific configuration snippet, select the *Claude* tab for Claude Desktop or the *Cursor* tab for Cursor under *Code snippets*, and then select the copy icon. For Claude Code and OpenCode, use the MCP server URL.
++
+Before you share a snippet, confirm that the host is your AIDE cluster host name and not a cluster or service IP address, and that the URL ends in `/mcp/tools` and includes the `collection_id` of this collection. The scope must be `\https://<host>/mcp/tools/power_users`, and the client ID must be the Application (client) ID of your AI Data Engine application in Entra ID.
++
+NOTE: If the *MCP hostname not setup* warning appears, select *MCP settings* to configure the AIDE cluster host name. Refer to link:maintain-mcp-setup.html#review-mcp-server-settings[Review MCP server settings] and link:prepare-mcp-host.html[Prepare the MCP host]. Securing the MCP server with HTTPS requires an SSL/TLS certificate, which the ingress script sets up.
+. Optional: To change the identity providers or user scopes, select *Go back*, and then generate the snippet again.
+. Select *Close*.
+
+.Result
+
+You have the MCP server URL or a client-specific configuration snippet for the selected identity providers and user scopes. Use these details to connect your AI client and validate access to the collection. Make sure that the redirect URI for your AI client is registered in the AI Data Engine application in Entra ID. Use the application's Application (client) ID as the client ID. Refer to link:configure-entra-id-mcp.html#add-redirect-uris-for-ai-clients[Add redirect URIs for your AI clients].
+
+NOTE: Generating connection details doesn't connect or validate your AI client. link:connect-ai-clients-mcp.html[Complete those tasks in the AI client].
+
+A collection isn't available to AI clients until you select identity providers and user scopes. After you complete this task, the collection has a status of *Enabled*.
+
+Users whose tokens carry a granted scope can discover and search the collection. Users without a matching scope can't discover, search, or work with the collection.
+
+== Disable AI access for a collection
+
+Disable AI access for a collection when AI clients no longer need to search it. When you configure a collection for MCP, AI access is enabled automatically.
+
+.Steps
+
+. In NetApp Console, go to *AI data hub* > *AI Data Engine* > *Configuration* > *MCP collections*.
+. Open the collection's *Actions* menu and select *Disable*.
+
+AI clients that use the disabled collection lose access to it after the change applies. Your identity provider and user scope selections are kept. AI clients also can't reach any collection while the connection to MCP is disabled. To block requests to all collections at once, refer to link:maintain-mcp-setup.html#enable-or-disable-the-connection-to-mcp[Enable or disable the connection to MCP].
+
+== Related information
+
+* link:learn-about-mcp.html[Learn about governed AI access]
+* link:maintain-mcp-setup.html[Maintain your MCP setup]
+* link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access]
+* link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID]
+* link:connect-ai-clients-mcp.html[Connect AI clients to the AI Data Engine MCP server]
+* link:../release-notes/known-limitations.html[Known limitations]
