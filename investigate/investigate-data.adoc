@@ -11,6 +11,8 @@ summary: Use the Investigation view to explore file-based storage, database tabl
 [.lead]
 When you need to understand what is consuming storage, identify which database tables are growing unchecked, or find directories with overly permissive access, use metadata filters to investigate your data across all connected systems.
 
+image::aide_mo_ga_investigation_page.png[AI Data Engine investigation view]
+
 // IE UX Link dependency: The UI links to this page from Investigation > "Learn more". Do not change the permalink or filename without creating a redirect file.
 
 == Choose a starting point
