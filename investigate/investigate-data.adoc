@@ -19,7 +19,7 @@ image::aide_mo_ga_investigation_page.png[AI Data Engine investigation view]
 
 Select *Investigation* in the left navigation to open the view. You can also open the Investigation view from the dashboard by selecting *Investigate* in the _Top data resources by reclaimable storage_ table, which applies a filter for that resource automatically.
 
-*Investigation* is organized into three tabs. Select the tab that matches the data type you are investigating.
+*Investigation* is organized into three tabs: *Unstructured*, *Directories*, and *Structured*. Select the tab that matches the data type you are investigating.
 
 [cols="1,2,1",options="header"]
 |===
@@ -29,17 +29,19 @@ Select *Investigation* in the left navigation to open the view. You can also ope
 |Find cold, stale, or duplicate file-based data across NFS and SMB volumes
 |link:investigate-unstructured.html[Investigate unstructured data]
 
-|*Structured*
-|Identify oversized or unused database tables consuming storage
-|link:investigate-structured.html[Investigate structured data]
 
 |*Directories*
 |Audit directory-level permissions and find broadly accessible paths
 |link:investigate-directories.html[Investigate directories]
 
+|*Structured*
+|Identify oversized or unused database tables consuming storage
+|link:investigate-structured.html[Investigate structured data]
+
+
 |===
 
-The summary count and total size at the top of the page update to reflect the active tab (for example, "Unstructured (400M) | 5.7 PiB").
+Each tab label shows a summary of items of that type (for example, "Unstructured (30.4M)").
 
 == Related information
 
