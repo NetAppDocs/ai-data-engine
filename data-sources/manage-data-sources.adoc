@@ -16,6 +16,8 @@ Keep scan coverage aligned with the data you need to analyze. Use the *Data sour
 
 Check scan status to see how scanning is progressing and to identify resources that need attention. Review system-level progress and resource-level details to distinguish scans that are still running from those that are paused or have errors.
 
+image::aide_mo_ga_data_sources_page.png[AI Data Engine data sources and scan status]
+
 If scans stop or pause unexpectedly, check deployment health. Refer to link:../administer/monitor-deployment-health.html[Monitor deployment health and investigate issues].
 
 .Steps

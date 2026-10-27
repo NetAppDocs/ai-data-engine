@@ -11,6 +11,8 @@ summary: Find and classify files as cold, stale, large, or duplicated across NFS
 [.lead]
 When file-based storage is growing unexpectedly, filter by last-access time, file size, and owner to find which files are consuming capacity. For example, a storage administrator can identify terabytes of VM snapshots that haven't been accessed in over a year and evaluate whether to archive, delete, or retain them.
 
+image::aide_mo_ga_investigation_page.png[AI Data Engine unstructured investigation results]
+
 == Before you begin
 
 * You have connected at least one data source, and it is scanning. Refer to link:../data-sources/connect-data-source.html[Connect a data source].

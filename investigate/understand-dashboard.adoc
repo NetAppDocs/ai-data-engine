@@ -13,6 +13,8 @@ Before you can decide what to investigate, you need to understand the state of y
 
 From NetApp Console, select *AI data hub* > *AI Data Engine*. The dashboard opens by default. The dashboard organizes its insights into three tabs: *Storage optimization*, *Access exposure*, and *Structured data*.
 
+image::aide_mo_ga_overview_page.png[AI Data Engine dashboard overview]
+
 == Understand how much storage is affected
 
 Understand how much of your scanned storage is cold, stale, or exposed. The summary panel shows the scale of the problem across your scanned environment:
