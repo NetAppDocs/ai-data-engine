@@ -59,9 +59,9 @@ See which schemas and tables are in your scanned data and compare their row coun
 
 When you have identified a resource or owner worth investigating, use the tables on the *Storage optimization* tab to transition directly into the details.
 
-The _Top data resources by reclaimable storage_ table lists your scanned storage resources ranked by the proportion of data that is duplicated or meets your organization's cold and stale thresholds. Select any row to open the Investigation view filtered to that resource. From there, use the link:investigate-unstructured.html[Unstructured] tab to identify cold or stale files, or the link:investigate-directories.html[Directories] tab to audit permission exposure.
+The _Top data resources by reclaimable storage_ table lists your scanned storage resources ranked by the proportion of data that is duplicated or meets your organization's cold and stale thresholds. Use the link:investigate-unstructured.html[Unstructured] tab to identify cold or stale files, or the link:investigate-directories.html[Directories] tab to audit permission exposure.
 
-The _Top consumers by reclaimable storage_ table shows which data owners hold potentially reclaimable data. Select any row to open the link:investigate-unstructured.html[Investigation] view filtered to that owner's files. From there, you can review results, act on them, or save them as a policy.
+The _Top consumers by reclaimable storage_ table shows which data owners hold potentially reclaimable data. Select *Investigate* to open the link:investigate-unstructured.html[Investigation] view filtered to that owner's files. From there, you can review results, act on them, or save them as a policy.
 
 Reviewing the dashboard doesn't archive or delete data or change directory permissions.
 
