@@ -13,6 +13,8 @@ Learn about new capabilities in AI Data Engine (AIDE).
 
 // IE UX Link dependency: The UI links to this page from About AIDE > "Documentation Link". Do not change the permalink or filename without creating a redirect file.
 
+// IE note: future release notes must be created as includes
+
 == 26 October 2026
 *Version 1.3*
 
