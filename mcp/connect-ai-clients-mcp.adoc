@@ -284,6 +284,4 @@ TIP: Search filters on file name prefix, file type, and owner. If you ask for fi
 * link:prepare-mcp-host.html[Prepare the MCP host]
 * link:manage-data-collections.html[Manage data collections]
 * link:maintain-mcp-setup.html[Maintain your MCP setup]
-* link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access]
-* link:connect-entra-id-aide-mcp.html[Connect AI Data Engine to Microsoft Entra ID]
 * link:../release-notes/known-limitations.html[Known limitations]

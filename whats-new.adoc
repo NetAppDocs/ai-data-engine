@@ -6,7 +6,7 @@ summary: Learn about new capabilities in AI Data Engine.
 ---
 = What's new in AI Data Engine
 :icons: font
-:imagesdir: media/
+:imagesdir: ./media/
 
 [.lead]
 Learn about new capabilities in AI Data Engine (AIDE).

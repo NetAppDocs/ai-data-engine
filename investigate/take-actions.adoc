@@ -97,7 +97,6 @@ Find duplicate copies of a file and remove the redundant ones. Review the copy m
 * You must have the _AI Data Engine administrator_ role.
 
 .Steps
-. In NetApp Console, go to *AI data hub* > *AI Data Engine*.
 . Select *Investigation* > *Unstructured*.
 +
 The table displays file names, sizes, owners, systems, and tags.

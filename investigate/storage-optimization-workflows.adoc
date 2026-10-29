@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar
-permalink: get-started/storage-optimization-workflows.html
+permalink: investigate/storage-optimization-workflows.html
 keywords: storage optimization, cold data, stale data, retention, workflow, dashboard, investigate, policy
 summary: Use end-to-end flows for taking a dashboard finding through investigation, action, and ongoing policy monitoring.
 ---
@@ -17,9 +17,9 @@ These AI Data Engine (AIDE) workflows take you from identifying a storage proble
 You notice on the dashboard that a storage resource has a large amount of data flagged as cold. Cold files haven't been accessed within the configured cold data threshold, which defaults to one year. You can change this threshold in the link:../administer/configure-settings.html[data classification settings].
 
 .Steps
-. From link:../investigate/understand-dashboard.html[the dashboard], identify the resource with the highest concentration of cold data and select *Investigate*.
-. In link:../investigate/investigate-unstructured.html[Investigation], set the *Last accessed* filter to match your configured cold data threshold (default: *1+ year*) and confirm the resources.
-. Review the results to decide link:../investigate/take-actions.html[whether to tag, archive, or delete] the matching files.
+. From link:understand-dashboard.html[the dashboard], identify the resource with the highest concentration of cold data and select *Investigate*.
+. In link:investigate-unstructured.html[Investigation], set the *Last accessed* filter to match your configured cold data threshold (default: *1+ year*) and confirm the resources.
+. Review the results to decide link:take-actions.html[whether to tag, archive, or delete] the matching files.
 . If these resources are worth monitoring on an ongoing basis, link:../policies/create-policy.html[save the filter set as a policy] so that you receive a notification when new files become cold.
 
 == Identify and act on stale data
@@ -30,9 +30,9 @@ AI Data Engine classifies files as stale when they haven't been modified for lon
 NOTE: You can change this threshold in the link:../administer/configure-settings.html[data classification settings].
 
 .Steps
-. From link:../investigate/understand-dashboard.html[the dashboard], identify a resource with significant stale data.
-. In link:../investigate/investigate-unstructured.html[Investigation], apply the *Last modified* filter set to your stale threshold (default *3+ years*).
-. Review the results to decide link:../investigate/take-actions.html[whether to tag, archive, or delete] the matching files.
+. From link:understand-dashboard.html[the dashboard], identify a resource with significant stale data.
+. In link:investigate-unstructured.html[Investigation], apply the *Last modified* filter set to your stale threshold (default *3+ years*).
+. Review the results to decide link:take-actions.html[whether to tag, archive, or delete] the matching files.
 . link:../policies/create-policy.html[Save the filter set as a policy] to track these resources across subsequent scans.
 
 == Manage data retention compliance
@@ -43,7 +43,7 @@ Your organization requires that files older than a certain age are reviewed for 
 NOTE: This threshold is configurable in *Configuration* > *General settings*.
 
 .Steps
-. In link:../investigate/investigate-unstructured.html[Investigation], apply the *Last created* filter set to your retention threshold (default *7+ years*).
+. In link:investigate-unstructured.html[Investigation], apply the *Last created* filter set to your retention threshold (default *7+ years*).
 . Review the results with the relevant stakeholders before acting. Retention-flagged files are often monitored rather than automatically deleted.
 . link:../policies/create-policy.html[Create a policy] with a monitor-only or email notification action so that you receive an alert when new files meet the retention threshold.
 
@@ -53,11 +53,11 @@ NOTE: This threshold is configurable in *Configuration* > *General settings*.
 Multiple identical copies of the same files exist across volumes or shares, a common issue in environments with backup jobs, data migrations, or shared project folders.
 
 .Steps
-. In link:../investigate/investigate-unstructured.html[Investigation], select *Unstructured* and open the details of a file that you suspect has copies, such as a file from a recent data migration.
+. In link:investigate-unstructured.html[Investigation], select *Unstructured* and open the details of a file that you suspect has copies, such as a file from a recent data migration.
 . Next to *Duplicates*, select *View details* to display every copy of the file and its location.
 . Review the matching files and their locations to confirm which copies are redundant.
 . Select the redundant files, and then select *Clean up duplicates*.
-. Under *Action*, select *Delete*. Keep the copy with the *Last modified* option, leave a breadcrumb at the original location, and select *Submit*. Then confirm the deletion in the dialog. For details, refer to link:../investigate/take-actions.html[Investigate and clean up duplicate files].
+. Under *Action*, select *Delete*. Keep the copy with the *Last modified* option, leave a breadcrumb at the original location, and select *Submit*. Then confirm the deletion in the dialog. For details, refer to link:take-actions.html[Investigate and clean up duplicate files].
 . link:../policies/create-policy.html[Create a policy] to track duplicate accumulation over time and receive notifications when the count increases.
 
 == Target cleanup by data owner
@@ -66,15 +66,15 @@ Multiple identical copies of the same files exist across volumes or shares, a co
 Data meeting your organization's cold and stale thresholds is distributed across many owners. Identifying which data owners hold the most files in these categories can help you prioritize cleanup.
 
 .Steps
-. From link:../investigate/understand-dashboard.html[the dashboard], locate the _Top consumers by reclaimable storage_ table.
-. Select an owner row to open link:../investigate/investigate-unstructured.html[Investigation] filtered to that owner's files.
-. Review the results and decide link:../investigate/take-actions.html[whether to tag, archive, or delete] files.
+. From link:understand-dashboard.html[the dashboard], locate the _Top consumers by reclaimable storage_ table.
+. Select an owner row to open link:investigate-unstructured.html[Investigation] filtered to that owner's files.
+. Review the results and decide link:take-actions.html[whether to tag, archive, or delete] files.
 . link:../policies/create-policy.html[Save the filter set as a policy] to monitor how that owner's potentially reclaimable data changes over time.
 
 == Related information
 
-* link:../investigate/understand-dashboard.html[Assess storage utilization from the dashboard]
-* link:../investigate/investigate-data.html[Investigate your data]
-* link:../investigate/investigate-unstructured.html[Investigate unstructured data]
-* link:../investigate/take-actions.html[Take action on your data]
+* link:understand-dashboard.html[Assess storage utilization from the dashboard]
+* link:investigate-data.html[Investigate your data]
+* link:investigate-unstructured.html[Investigate unstructured data]
+* link:take-actions.html[Take action on your data]
 * link:../policies/create-policy.html[Create a policy]

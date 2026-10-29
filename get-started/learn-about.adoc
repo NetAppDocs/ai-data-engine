@@ -61,4 +61,4 @@ AI Data Engine scans the supported data sources that you connect. For more infor
 * link:architecture.html[AI Data Engine architecture]
 * link:quick-start.html[Quick start]
 * link:../mcp/learn-about-mcp.html[Learn about governed AI access]
-* link:storage-optimization-workflows.html[Explore storage optimization workflows]
+* link:../investigate/storage-optimization-workflows.html[Explore storage optimization workflows]

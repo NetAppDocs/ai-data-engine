@@ -12,8 +12,6 @@ indexpage:
           url: /get-started/architecture.html
         - title: Quick start
           url: /get-started/quick-start.html
-        - title: Explore storage optimization workflows
-          url: /get-started/storage-optimization-workflows.html
         - title: What's new
           url: /whats-new.html
         - title: Known limitations
@@ -42,6 +40,8 @@ indexpage:
           url: /investigate/investigate-data.html
         - title: Take actions on data
           url: /investigate/take-actions.html
+        - title: Explore storage optimization workflows
+          url: /investigate/storage-optimization-workflows.html
     - title: Policies and actions
       links:
         - title: Create a policy
