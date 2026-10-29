@@ -49,7 +49,7 @@ AI clients can't list the files that have a tag, and they can add or remove a ta
 
 == Related information
 
-* link:whats-new.html[What's new]
+* link:../whats-new.html[What's new]
 * link:../deploy/deployment-overview.html[Deployment overview]
 * link:../investigate/take-actions.html[Take action on your data]
 * link:../mcp/learn-about-mcp.html[Learn about governed AI access]
