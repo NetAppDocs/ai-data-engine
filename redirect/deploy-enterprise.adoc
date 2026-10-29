@@ -1,6 +1,6 @@
 ---
 permalink: deploy/deploy-enterprise.html
-redirect: deploy/deploy-aide-multi-node.html
+redirect: ai-data-engine/deploy/deploy-aide-multi-node.html
 ---
 
 // IE UX Link dependency: The UI still links to this URL, deploy/deploy-enterprise.html. Do not remove this redirect file or change the redirect target without updating the UI link.
