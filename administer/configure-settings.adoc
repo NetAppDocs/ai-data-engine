@@ -11,6 +11,8 @@ summary: Define which files AI Data Engine classifies as cold or stale data, tur
 [.lead]
 Cold and stale thresholds help you find storage that you can optimize using AI Data Engine (AIDE). Permission scanning and Active Directory integration help you find and understand access risks. Set them to match your organization's data classification, retention, and access policies.
 
+image::aide_mo_ga_configuration_page.png[AI Data Engine general settings]
+
 // IE UX Link dependency: The UI links to this page from General settings > "Learn more". Do not change the permalink or filename without creating a redirect file.
 
 == Before you begin
@@ -76,7 +78,6 @@ For the prerequisites and steps, refer to link:configure-ad-nfs.html[Configure A
 * link:../investigate/understand-dashboard.html[Learn about the AI Data Engine dashboard]
 * link:../investigate/investigate-directories.html[Investigate directories]
 * link:../investigate/investigate-unstructured.html[Investigate unstructured data]
-* link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
-* link:../deploy/aide-requirements.html[AIDE requirements]
+* link:../investigate/storage-optimization-workflows.html[Explore storage optimization workflows]
 * link:manage-users-roles.html[Manage users and roles]
 * link:configure-ad-nfs.html[Configure Active Directory identity mapping for NFS]

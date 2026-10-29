@@ -104,5 +104,4 @@ link:manage-data-collections.html[Manage data collections] and link:connect-ai-c
 * link:configure-entra-id-mcp.html[Configure Microsoft Entra ID for governed AI access]
 * link:manage-data-collections.html[Manage data collections]
 * link:connect-ai-clients-mcp.html[Connect AI clients to the AI Data Engine MCP server]
-* link:maintain-mcp-setup.html[Maintain your MCP setup]
 * link:../release-notes/known-limitations.html[Known limitations]

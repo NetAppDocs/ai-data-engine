@@ -49,12 +49,12 @@ Review the results table to confirm the filter set captures the intended data gr
 . To attach an action, select one of the following under *Action*:
 +
 * *Monitor only (no action)* (default): Saves the policy as a monitor-only condition.
-* *Send email notification*: Sends an email notification to the recipient you specify.
+* *Send email notification*: Sends an email notification to the recipients you specify and allows you to configure notification intervals.
 * *Delete permanently*: Requires no additional input.
 +
 CAUTION: The Delete permanently action automatically and irreversibly deletes all files matching this policy after every scan cycle. Verify your filter criteria and confirm you are authorized to delete these files before saving.
 
-. Select *Create*.
+. Select *Save*.
 
 .Result
 AI Data Engine saves the policy, and it appears on the link:manage-policies.html[Policies] page. If you associated an action, AI Data Engine applies that action to files that match the policy criteria.
@@ -69,8 +69,8 @@ The following example creates a policy that sends an email notification when AI 
 
 . Select *Create policy*.
 . Enter the policy name: *Cold Files — Unaccessed 1 Year*.
-. Select the action *Send email notification* and enter the recipient email address.
-. Select *Create*.
+. Select the action *Send email notification*, select the notification interval, and enter the recipient email address.
+. Select *Save*.
 
 == Related information
 

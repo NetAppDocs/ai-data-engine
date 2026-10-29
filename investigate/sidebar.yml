@@ -13,3 +13,5 @@ entries:
     url: /investigate/investigate-directories.html
   - title: Take actions on data
     url: /investigate/take-actions.html
+  - title: Explore storage optimization workflows
+    url: /investigate/storage-optimization-workflows.html

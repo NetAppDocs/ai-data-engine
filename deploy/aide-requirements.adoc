@@ -552,5 +552,3 @@ To find the active version of AI Data Engine and the NetApp Support contact info
 * link:deployment-overview.html[AIDE deployment overview]
 * link:single-node-prerequisites.html[AIDE single-node deployment prerequisites]
 * link:multi-node-prerequisites.html[AIDE multi-node deployment prerequisites]
-* link:deploy-aide-single-node.html[Deploy AI Data Engine as a single-node deployment]
-* link:deploy-aide-multi-node.html[Deploy AI Data Engine as a multi-node deployment]

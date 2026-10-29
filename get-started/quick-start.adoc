@@ -13,7 +13,7 @@ Get AI Data Engine (AIDE) up and running by deploying the service, connecting yo
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png[One] link:../deploy/aide-requirements.html[Review requirements and select a deployment type]
 [role="quick-margin-para"]
-Review the requirements, and link:../deploy/deployment-overview.html[learn about deployment types] to decide whether to install an AIDE single-node or multi-node deployment.
+Review the requirements and link:../deploy/deployment-overview.html[learn about deployment types] to decide whether to install an AIDE single-node or multi-node deployment.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png[Two] link:../deploy/deployment-overview.html[Deploy AI Data Engine]
 [role="quick-margin-para"]

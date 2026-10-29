@@ -9,13 +9,13 @@ summary: Connect data sources to AI Data Engine and configure the data resources
 :imagesdir: ../media/
 
 [.lead]
-Connect the data sources that you want AI Data Engine (AIDE) to analyze, and choose which of their data resources to scan. AI Data Engine scans connected data sources to collect metadata, and the connection procedure depends on the source type.
+Connect the data sources that you want AI Data Engine (AIDE) to analyze, and choose which of their data resources to scan. AI Data Engine scans connected data sources to collect metadata, and the connection procedure depends on the source type. You complete these tasks in NetApp Console.
 
 // IE UX Link dependency: The UI links to this page from Data sources > "Learn more". Do not change the permalink or filename without creating a redirect file.
 
 == Before you begin
 
-* You must have _AI Data Engine administrator_ privileges to connect and configure data sources.
+* You must have the _AI Data Engine administrator_ role in NetApp Console to connect and configure data sources.
 * For systems connected through NetApp Console discovery, use a Console agent to discover the storage systems in NetApp Console before you add them to AI Data Engine. This applies to all supported storage types, including on-premises ONTAP clusters, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, and Azure NetApp Files. For on-premises ONTAP clusters, refer to link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover on-premises ONTAP clusters] in the NetApp Console documentation. Direct discovery doesn't enable data services such as AI Data Engine.
 * Verify that the network connections required for AI Data Engine to reach your data sources are open. Refer to link:../deploy/aide-requirements.html[AI Data Engine requirements].
 * To scan SMB/CIFS shares with Kerberos authentication, complete the procedure for your deployment type in link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine] first.
