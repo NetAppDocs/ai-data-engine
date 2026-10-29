@@ -2,6 +2,6 @@ section: release-notes
 title: Release notes
 entries:
   - title: What's new
-    url: /release-notes/whats-new.html
+    url: /whats-new.html
   - title: Known limitations
     url: /release-notes/known-limitations.html
