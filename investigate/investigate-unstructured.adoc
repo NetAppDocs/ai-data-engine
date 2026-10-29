@@ -74,5 +74,5 @@ To download the filtered results from the Unstructured tab, select image:icon_do
 * link:take-actions.html[Take action on your data]
 * link:../policies/create-policy.html[Create a policy]
 * link:../administer/configure-settings.html[Configure data classification thresholds and access scanning]
-* link:../get-started/storage-optimization-workflows.html[Explore storage optimization workflows]
+* link:storage-optimization-workflows.html[Explore storage optimization workflows]
 * link:understand-dashboard.html[Assess storage utilization from the dashboard]

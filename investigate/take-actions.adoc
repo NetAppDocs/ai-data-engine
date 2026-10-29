@@ -12,7 +12,7 @@ summary: Act on files you have identified as cold, stale, duplicated, or obsolet
 In AI Data Engine (AIDE), you can enforce your organization's data lifecycle policies by archiving, copying, tagging, or deleting the files that you identified with your filters. For example, a storage administrator who filters to find terabytes of VM snapshots not accessed in over a year can archive them in bulk to a cold storage share or delete them, depending on retention requirements and business policies.
 
 .About this task
-To take action, select one or more items in the Investigation results table using the checkboxes. The action toolbar activates with four options: *Delete*, *Archive*, *Copy*, and *Tag*. To remove duplicate copies of a file, use *Clean up duplicates*. Refer to <<Investigate and clean up duplicate files>>.
+To take action, select one or more items in the Investigation results table using the checkboxes. The action toolbar activates with four options: *Delete*, *Copy*, *Archive*, and *Tag*. To remove duplicate copies of a file, use *Clean up duplicates*. Refer to <<Investigate and clean up duplicate files>>.
 
 The actions available to you depend on your assigned role:
 
@@ -20,11 +20,7 @@ The actions available to you depend on your assigned role:
 |===
 |Action |AI Data Engine administrator |AI Data Engine viewer
 
-|Tag
-|Yes
-|Yes
-
-|Archive
+|Delete
 |Yes
 |-
 
@@ -32,9 +28,13 @@ The actions available to you depend on your assigned role:
 |Yes
 |-
 
-|Delete
+|Archive
 |Yes
 |-
+
+|Tag
+|Yes
+|Yes
 
 |Clean up duplicates
 |Yes
@@ -52,17 +52,17 @@ Choose an action based on how certain you are about the data:
 |===
 |Action |When to use it
 
-|Tag
-|You need more time, or need to coordinate with another team, before committing to archive or delete. Tagging tracks the files without changing their location.
-
-|Archive
-|The data might still have value, but it doesn't belong in primary storage. Archiving moves it to a lower-cost destination while keeping it recoverable.
+|Delete
+|The data is no longer needed and has no retention requirements. Deletion is permanent, so use it only when you are sure.
 
 |Copy
 |The data should exist in a second location, for example for backup or migration purposes. Copying preserves the original in place. You can copy to an NFS or SMB folder, create a filtered FlexClone volume, or transfer items with NetApp Copy and Sync.
 
-|Delete
-|The data is no longer needed and has no retention requirements. Deletion is permanent, so use it only when you are sure.
+|Archive
+|The data might still have value, but it doesn't belong in primary storage. Archiving moves it to a lower-cost destination while keeping it recoverable.
+
+|Tag
+|You need more time, or need to coordinate with another team, before committing to archive or delete. Tagging tracks the files without changing their location.
 
 |Clean up duplicates
 |Identical copies of a file exist in more than one location and you want to keep only one. You can tag, archive, or delete the redundant copies while retaining one copy. Deleting duplicates is permanent. Refer to <<Investigate and clean up duplicate files>>.
@@ -71,28 +71,73 @@ Choose an action based on how certain you are about the data:
 
 When data might still have value or require further review, choose tagging, archiving, or copying over deleting. Only delete when you are certain the data is safe to remove permanently.
 
-== Archive files
+== Delete files
 
-Move files that don't belong in primary storage to a cold storage destination while keeping them recoverable. You can optionally leave a breadcrumb file at the original location so that users can tell why a file was moved.
+Permanently remove files that you no longer need and that have no retention requirements.
 
-CAUTION: Copying or archiving files can change destination permissions, ownership, group information, and timestamps. Cross-protocol transfers can substantially broaden access. Review the destination security settings before transferring sensitive data, and verify permissions afterward.
-
-NOTE: The credentials you provide for an SMB destination are separate from the Active Directory integration. To display user names and permissions in AI Data Engine, refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
+CAUTION: Deletion is permanent and can't be undone. This action deletes source files even if they contain active data.
 
 .Before you begin
 * You must have the _AI Data Engine administrator_ role.
 
 .Steps
-. In the Investigation view, select the files you want to archive.
-. Select *Archive*.
-. In the Archive dialog, select the destination volume protocol:
+. In the Investigation view, select the files you want to delete.
+. Select *Delete*.
+. In the Delete dialog, type *permanently delete* in the confirmation field.
+. Select *Delete*.
+
+.Result
+The selected files are permanently deleted from storage.
+
+== Investigate and clean up duplicate files
+
+Find duplicate copies of a file and remove the redundant ones. Review the copy metadata and locations, and tag duplicates for review, archive them, or permanently delete duplicate copies while retaining one copy.
+
+.Before you begin
+* You must have the _AI Data Engine administrator_ role.
+
+.Steps
+. Select *Investigation* > *Unstructured*.
 +
-* For *NFS*, enter the destination folder path in the format `hostname:/path/to/destination`.
-* For *SMB*, enter the SMB destination folder path in the format `\\Hostname\share_name`. Select the authentication method. For Kerberos, use the FQDN of the host and leave the credentials empty. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine]. For other methods, provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
-. To create a breadcrumb file at the original location, enable *Leave breadcrumb*.
+The table displays file names, sizes, owners, systems, and tags.
+. Optional: Select *Add filter* to narrow the list of files.
+. Select a file name to open its details.
 +
-A breadcrumb file helps users understand why a file was moved.
-. Select *Archive file*.
+Review the file's system, storage repository, path, size, timestamps, access, and owner. The *Duplicates* field displays the number of duplicate copies.
+. Next to *Duplicates*, select *View details*.
++
+The Investigation view applies a *Duplicates* filter that includes files with duplicates and a *File hash* filter that matches the selected file.
+. Review the matching files and their locations.
+. Select the files you want to clean up.
++
+Review the *Selected items* count.
+. Select *Clean up duplicates*.
+. Review the estimated number of files matching the current filters that have duplicate copies.
++
+NOTE: The count is an estimate. Exact duplicates are recalculated when the action runs, and only files confirmed identical are affected.
+. Decide how to handle the duplicates:
++
+* Tag the duplicates for review:
+.. Under *Action*, select *Tag*.
+.. Select *Add*, and then choose the tag to apply. Repeat to add more tags.
+.. Select *Submit*.
+* Archive the duplicates to a destination volume:
+.. Under *Action*, select *Archive*.
+.. Under *At the original location*, select *Remove cleanly* or *Leave a breadcrumb*.
+.. Select the destination volume protocol. For *NFS*, enter the destination folder path in the format `Hostname:/SHAREPATH`. For *SMB*, enter the destination folder path, and then select *Kerberos* or *NTLM* authentication. For NTLM, enter your Active Directory user name and password.
+.. Select *Submit*.
+* Delete the duplicates and keep one copy:
++
+CAUTION: Deletion is permanent and can't be undone.
+
+.. Under *Action*, select *Delete*.
+.. Under *Keep copy with the*, select *Last accessed*, *Last modified*, or *Created*.
+.. Under *At the original location*, select *Remove cleanly* or *Leave a breadcrumb*.
+.. Select *Submit*.
+.. In the *Delete the duplicate copies* dialog, review the number of files to be deleted and the information about retaining one copy.
+.. Enter `permanently delete`, and then select *Delete*.
+
+To exit without submitting an action, select *Cancel*.
 
 == Copy selected items
 
@@ -166,74 +211,28 @@ Confirm that all selected items belong to the same storage repository. If your s
 . Review the number of items to be synced and confirm that it matches the items you intend to transfer.
 . Select *Sync* to proceed with Copy and Sync.
 
-== Delete files
+== Archive files
 
-Permanently remove files that you no longer need and that have no retention requirements.
+Move files that don't belong in primary storage to a cold storage destination while keeping them recoverable. You can optionally leave a breadcrumb file at the original location so that users can tell why a file was moved.
 
-CAUTION: Deletion is permanent and can't be undone. This action deletes source files even if they contain active data.
+CAUTION: Copying or archiving files can change destination permissions, ownership, group information, and timestamps. Cross-protocol transfers can substantially broaden access. Review the destination security settings before transferring sensitive data, and verify permissions afterward.
 
-.Before you begin
-* You must have the _AI Data Engine administrator_ role.
-
-.Steps
-. In the Investigation view, select the files you want to delete.
-. Select *Delete*.
-. In the Delete dialog, type *permanently delete* in the confirmation field.
-. Select *Delete*.
-
-.Result
-The selected files are permanently deleted from storage.
-
-== Investigate and clean up duplicate files
-
-Find duplicate copies of a file and remove the redundant ones. Review the copy metadata and locations, and tag duplicates for review, archive them, or permanently delete duplicate copies while retaining one copy.
+NOTE: The credentials you provide for an SMB destination are separate from the Active Directory integration. To display user names and permissions in AI Data Engine, refer to link:../administer/configure-settings.html[Configure data classification thresholds and access scanning].
 
 .Before you begin
 * You must have the _AI Data Engine administrator_ role.
 
 .Steps
-. In NetApp Console, go to *AI data hub* > *AI Data Engine*.
-. Select *Investigation* > *Unstructured*.
+. In the Investigation view, select the files you want to archive.
+. Select *Archive*.
+. In the Archive dialog, select the destination volume protocol:
 +
-The table displays file names, sizes, owners, systems, and tags.
-. Optional: Select *Add filter* to narrow the list of files.
-. Select a file name to open its details.
+* For *NFS*, enter the destination folder path in the format `hostname:/path/to/destination`.
+* For *SMB*, enter the SMB destination folder path in the format `\\Hostname\share_name`. Select the authentication method. For Kerberos, use the FQDN of the host and leave the credentials empty. Refer to link:../administer/configure-kerberos-smb.html[Kerberos authentication for SMB/CIFS shares in AI Data Engine]. For other methods, provide Active Directory credentials: enter the username in `domain\user` or `user@domain` format, and enter the password.
+. To create a breadcrumb file at the original location, enable *Leave breadcrumb*.
 +
-Review the file's system, storage repository, path, size, timestamps, access, and owner. The *Duplicates* field displays the number of duplicate copies.
-. Next to *Duplicates*, select *View details*.
-+
-The Investigation view applies a *Duplicates* filter that includes files with duplicates and a *File hash* filter that matches the selected file.
-. Review the matching files and their locations.
-. Select the files you want to clean up.
-+
-Review the *Selected items* count.
-. Select *Clean up duplicates*.
-. Review the estimated number of files matching the current filters that have duplicate copies.
-+
-NOTE: The count is an estimate. Exact duplicates are recalculated when the action runs, and only files confirmed identical are affected.
-. Decide how to handle the duplicates:
-+
-* Tag the duplicates for review:
-.. Under *Action*, select *Tag*.
-.. Select *Add*, and then choose the tag to apply. Repeat to add more tags.
-.. Select *Submit*.
-* Archive the duplicates to a destination volume:
-.. Under *Action*, select *Archive*.
-.. Under *At the original location*, select *Remove cleanly* or *Leave a breadcrumb*.
-.. Select the destination volume protocol. For *NFS*, enter the destination folder path in the format `Hostname:/SHAREPATH`. For *SMB*, enter the destination folder path, and then select *Kerberos* or *NTLM* authentication. For NTLM, enter your Active Directory user name and password.
-.. Select *Submit*.
-* Delete the duplicates and keep one copy:
-+
-CAUTION: Deletion is permanent and can't be undone.
-
-.. Under *Action*, select *Delete*.
-.. Under *Keep copy with the*, select *Last accessed*, *Last modified*, or *Created*.
-.. Under *At the original location*, select *Remove cleanly* or *Leave a breadcrumb*.
-.. Select *Submit*.
-.. In the *Delete the duplicate copies* dialog, review the number of files to be deleted and the information about retaining one copy.
-.. Enter `permanently delete`, and then select *Delete*.
-
-To exit without submitting an action, select *Cancel*.
+A breadcrumb file helps users understand why a file was moved.
+. Select *Archive file*.
 
 == Tag files
 

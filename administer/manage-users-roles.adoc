@@ -89,13 +89,14 @@ You assign roles in NetApp Console, not within AI Data Engine itself.
 
 .Steps
 
-. From NetApp Console, go to *Members*.
+. From NetApp Console, select *Administration > Identity and access*.
+. Go to *Members*.
 . Do one of the following:
 * To add a new user, select *Add user* and enter the user's email address.
 * To update an existing user, select the user from the list.
 . Select the organization, folder, or project, and then choose the *Data Service* category.
-. Assign the *AI Data Engine administrator* or *AI Data Engine viewer* role.
-. Save your changes.
+. Assign the *AI data engine administrator* or *AI data engine viewer* role.
+. Add the new role.
 
 The user receives an email invitation and can access AI Data Engine after accepting it.
 

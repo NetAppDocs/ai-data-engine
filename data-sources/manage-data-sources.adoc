@@ -16,12 +16,14 @@ Keep scan coverage aligned with the data you need to analyze. Use the *Data sour
 
 Check scan status to see how scanning is progressing and to identify resources that need attention. Review system-level progress and resource-level details to distinguish scans that are still running from those that are paused or have errors.
 
+image::aide_mo_ga_data_sources_page.png[AI Data Engine data sources and scan status]
+
 If scans stop or pause unexpectedly, check deployment health. Refer to link:../administer/monitor-deployment-health.html[Monitor deployment health and investigate issues].
 
 .Steps
 . From the AI Data Engine UI, select *Data sources*.
 . Locate the system you want to review.
-. Select the system row and open the detail view.
+. Select *View details* in the system row.
 +
 The detail view shows:
 +
@@ -38,7 +40,8 @@ Temporarily stop scanning a system when you don't want AI Data Engine to scan it
 .Steps
 . From the AI Data Engine UI, select *Data sources*.
 . Locate the system you want to pause.
-. Select the system row to open the detail view.
+. Select *View details* in the system row.
+. Select the actions menu next to the data resource.
 . Select *Pause*.
 
 == Resume scanning
@@ -48,7 +51,8 @@ Resume scanning when you're ready for AI Data Engine to scan a paused system aga
 .Steps
 . From the AI Data Engine UI, select *Data sources*.
 . Locate the paused system.
-. Select the system row to open the detail view.
+. Select *View details* in the system row.
+. Select the actions menu next to the data resource.
 . Select *Resume*.
 
 == Scan all data resources
@@ -59,7 +63,7 @@ Refresh metadata across a system after significant data changes so that your ana
 . From the AI Data Engine UI, select *Data sources*.
 . Locate the system you want to scan.
 . Select the actions menu next to the system.
-. Select *Scan all volumes* (there is an equivalent option in the actions menu for shares and buckets).
+. Select *Scan all volumes* (there is an equivalent option in the actions menu for shares, buckets, or schemas).
 
 == Retry failed scans
 
@@ -80,7 +84,7 @@ NOTE: If the share uses Kerberos authentication, AI Data Engine authenticates wi
 .Steps
 . From the AI Data Engine UI, select *Data sources*.
 . Locate the SMB system.
-. Select the system row to open the detail view.
+. Select *View details* in the system row.
 . Select *Edit CIFS credentials*.
 . Enter the updated username and password, then select *Save*.
 
@@ -91,7 +95,7 @@ Include or exclude replicated data in your scan coverage by enabling or disablin
 .Steps
 . From the AI Data Engine UI, select *Data sources*.
 . Locate the system.
-. Select the system row to open the detail view.
+. Select *View details* in the system row.
 . Select *Enable access to DP volumes* or *Disable access to DP volumes*.
 
 == Enable or disable scanning of specific shares, buckets, or volumes
@@ -105,15 +109,15 @@ Focus scan coverage on the data resources you need to analyze without reconfigur
 . In the data resources list, locate the volume, bucket, or share you want to change.
 . Use the *Scanning* toggle to enable or disable scanning for that resource.
 
-== Deactivate AI Data Engine for a system
+== Remove AI Data Engine for a system
 
-Remove a system from active scan coverage when you no longer need AI Data Engine to scan it. Deactivating a system stops all scanning and preserves its configuration. To include the system again, select *Activate scans* on the system row.
+Remove a system from active scan coverage when you no longer need AI Data Engine to scan it. Deactivating a system stops all scanning and preserves its configuration. To add the system again, select *Activate scans* on the system row.
 
 .Steps
 . From the AI Data Engine UI, select *Data sources*.
 . Locate the system you want to deactivate.
 . Select the actions menu next to the system.
-. Select *Deactivate AI Data Engine*.
+. Select *Remove system*.
 
 == Related information
 
