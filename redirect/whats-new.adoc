@@ -1,0 +1,6 @@
+---
+permalink: release-notes/whats-new.html
+redirect: ai-data-engine/whats-new.html
+---
+
+// IE UX Link dependency: The UI links to this URL, release-notes/whats-new.html, from About AIDE > "Documentation Link". Do not remove this redirect file or change the redirect target without updating the UI link.

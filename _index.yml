@@ -15,7 +15,7 @@ indexpage:
         - title: Explore storage optimization workflows
           url: /get-started/storage-optimization-workflows.html
         - title: What's new
-          url: /release-notes/whats-new.html
+          url: /whats-new.html
         - title: Known limitations
           url: /release-notes/known-limitations.html
     - title: Deploy
