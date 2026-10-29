@@ -7,7 +7,7 @@ settings:
     harmony_enabled: true
   release_notes_autogen:
     release_notes_repo: console-relnotes
-  rss_page: "release-notes/whats-new.html"
+  rss_page: "whats-new.html"
 
 sidebar:
   entries:

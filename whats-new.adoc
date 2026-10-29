@@ -1,0 +1,25 @@
+---
+sidebar: sidebar
+permalink: whats-new.html
+keywords: what's new, release notes, AI Data Engine, general availability, ga, version 1.3, storage optimization
+summary: Learn about new capabilities in AI Data Engine.
+---
+= What's new in AI Data Engine
+:icons: font
+:imagesdir: media/
+
+[.lead]
+Learn about new capabilities in AI Data Engine (AIDE).
+
+// IE UX Link dependency: The UI links to this page from About AIDE > "Documentation Link". Do not change the permalink or filename without creating a redirect file.
+
+// IE note: future release notes must be created as includes
+
+== 26 October 2026
+
+include::_whatsnew/2026-10-26_ai-data-engine.adoc[]
+
+
+== Related information
+
+* link:release-notes/known-limitations.html[Known limitations]
