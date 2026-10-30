@@ -17,8 +17,7 @@ Learn about new capabilities in AI Data Engine (AIDE).
 
 == 26 October 2026
 
-include::_whatsnew/2026-10-26_ai-data-engine.adoc[]
-
+include::_whatsnew/2026-10-26.adoc[]
 
 == Related information
 
