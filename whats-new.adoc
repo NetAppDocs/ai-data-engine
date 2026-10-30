@@ -19,7 +19,6 @@ Learn about new capabilities in AI Data Engine (AIDE).
 
 include::_whatsnew/2026-10-26_ai-data-engine.adoc[]
 
-
 == Related information
 
 * link:release-notes/known-limitations.html[Known limitations]
