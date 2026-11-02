@@ -19,7 +19,6 @@ An AIDE single-node deployment and an AIDE multi-node deployment are separate de
 Proxy support is limited::
 You can deploy AI Data Engine with a forward proxy, but the following proxy features aren't supported:
 +
-* TLS-inspecting proxies, which decrypt and re-sign HTTPS traffic with a custom certificate authority.
 * NTLM, Kerberos, or client-certificate authentication to the proxy. Use no authentication or basic authentication.
 * SOCKS proxies.
 * Proxy auto-configuration (PAC file or WPAD). Give the installer the proxy host and port directly.

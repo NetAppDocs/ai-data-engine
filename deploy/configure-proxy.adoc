@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: deploy/configure-proxy.html
-keywords: proxy, outbound proxy, forward proxy, HTTPS proxy, proxy certificate, proxy authentication, install, proxy host, proxy port, allowlist, CONNECT, installer download, container runtime
+keywords: proxy, outbound proxy, forward proxy, HTTPS proxy, TLS inspection, TLS-inspecting proxy, proxy certificate, proxy authentication, install, proxy host, proxy port, allowlist, CONNECT, installer download, container runtime
 summary: Learn how AI Data Engine works with a forward proxy, and which proxy types and parameters it supports.
 ---
 = Learn about proxies for AI Data Engine
@@ -49,11 +49,38 @@ Traffic on your network connects directly and must stay reachable without the pr
 |AI Data Engine connects to the proxy over TLS. If a private certificate authority (CA) signed the proxy certificate, you supply the CA certificate.
 |None, or HTTP Basic authentication (username and password)
 
+|TLS-inspecting proxy
+|The proxy decrypts HTTPS traffic and re-signs the certificate of each destination with its own inspection CA. Set `--proxy-type t` and supply the inspection CA certificate with `--proxy-ca-cert`. The proxy can listen on HTTP or HTTPS.
+|None, or HTTP Basic authentication (username and password)
+
 |===
 
 You can address the proxy by host name or IPv4 address.
 
-IMPORTANT: AI Data Engine supports standard forward proxies that tunnel connections with HTTP `CONNECT`, including HTTPS destinations. If your proxy inspects TLS traffic, exempt the endpoints in link:aide-requirements.html#outbound-internet-access[Outbound internet access] from inspection, including the installer download host. TLS-inspecting proxies and some other proxy features aren't supported. See link:../release-notes/known-limitations.html[Known limitations].
+== Supported proxy types
+
+AI Data Engine supports two proxy types. Set the type with `--proxy-type`.
+
+[cols="2,3,3",options="header"]
+|===
+| |Regular forward proxy (`r`) |TLS-inspecting proxy (`t`)
+
+|How it handles HTTPS traffic
+|Tunnels connections with HTTP `CONNECT` and doesn't change the destination certificates.
+|Decrypts HTTPS traffic and re-signs the certificate of each destination with the proxy's inspection CA.
+
+|`--proxy-ca-cert`
+|Required only if the proxy itself uses HTTPS and its certificate is signed by a private CA.
+|Required. Supply the CA certificate that the proxy uses for inspection. If you omit it, the installer rejects the command before it makes any network connections.
+
+|`--proxy-type`
+|`r` (default)
+|`t`
+|===
+
+A TLS-inspecting proxy is different from an HTTPS proxy. An HTTPS proxy is a proxy that you connect to over TLS (`--proxy-scheme https`). A TLS-inspecting proxy is a proxy that re-signs the certificates of the destinations that you reach through it. A TLS-inspecting proxy can use either scheme.
+
+Some other proxy features aren't supported. See link:../release-notes/known-limitations.html[Known limitations].
 
 The installer uses one proxy for every internet destination and every AI Data Engine component. The proxy settings are set during installation.
 
@@ -78,7 +105,14 @@ The installer uses one proxy for every internet destination and every AI Data En
 
 |`--proxy-ca-cert <path>`
 |None
-|Path to a PEM file, or to a flat directory of `.crt` and `.pem` files, that contains the CA certificate that signed the proxy certificate. The installer reads a directory without recursing into subdirectories and merges the files into one bundle. Required for an HTTPS proxy whose certificate is signed by a private CA. Not used with an HTTP proxy.
+a|Path to a PEM file, or to a flat directory of `.crt` and `.pem` files, that contains the CA certificate for the proxy. The installer reads a directory without recursing into subdirectories and merges the files into one bundle.
+
+This is required when:
+
+* You use an HTTPS proxy whose certificate is signed by a private CA. Supply the CA certificate that signed the proxy certificate.
+* You use a TLS-inspecting proxy (`--proxy-type t`). Supply the CA certificate that the proxy uses for inspection.
+
+Don't specify it for a regular proxy (`--proxy-type r`) that you connect to over HTTP (`--proxy-scheme http`). There is no proxy certificate to verify, so the installer doesn't use the CA certificate.
 
 |`--proxy-user <user>`
 |None
@@ -88,9 +122,9 @@ The installer uses one proxy for every internet destination and every AI Data En
 |None
 |Path to a local file that contains only the proxy password, with permissions set to `0600` or `0400`. If you omit it, the installer prompts for the password with hidden input.
 
-|`--proxy-type <r>`
+|`--proxy-type <r\|t>`
 |`r`
-|Type of proxy. `r` is a regular forward proxy and is the default. Don't change it. TLS-inspecting proxies are not supported.
+|Type of proxy. `r` is a regular forward proxy and is the default. `t` is a TLS-inspecting proxy, which re-signs the certificate of each destination. With `t`, you must also specify `--proxy-ca-cert`.
 
 |`--no-proxy`
 |—
