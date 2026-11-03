@@ -319,12 +319,12 @@ These sizes are recommended baseline configurations optimized for a three to fou
 
 [cols="1,1,1,1,1,1,1,1",options="header"]
 |===
-|Size |vCPU |RAM |Disk |Storage IOPS |Storage throughput |Network |Approximate files
+|Size |vCPU |RAM |Disk|Storage IOPS |Storage throughput |Network |Approximate files
 
 |Small
 |16
 |64 GB
-|500 GB
+|565 GB ^1^ 
 |8,000
 |1,000 MB/s
 |1 GbE
@@ -333,7 +333,7 @@ These sizes are recommended baseline configurations optimized for a three to fou
 |Medium
 |32
 |128 GB
-|2 TB
+|2,065 GB ^1^ 
 |12,000
 |1,500 MB/s
 |1 GbE
@@ -342,7 +342,7 @@ These sizes are recommended baseline configurations optimized for a three to fou
 |Large
 |96
 |192 GB
-|6 TB
+|6,065 GB ^1^ 
 |16,000
 |2,000 MB/s
 |10 GbE
@@ -350,9 +350,9 @@ These sizes are recommended baseline configurations optimized for a three to fou
 
 |===
 
-NOTE: NVMe SSD or other solid-state storage is recommended for all deployment sizes. The disk values in this table reflect AIDE data volume storage only. If the OS, k3s runtime, and AIDE data all share a single disk, add approximately 65 GB to the disk value for your chosen size. For example, a Small deployment on a single disk requires approximately 565 GB total.
+^1^ The disk value is the minimum free space required when the OS, k3s runtime, and AIDE data share a single disk. It includes 65 GB for the OS, k3s, kubelet, and logs, plus the AIDE data volume (500 GB for Small, 2,000 GB for Medium, and 6,000 GB for Large). If these components are on separate disks, see link:single-node-prerequisites.html#single-node-disk-space[disk space in the single-node prerequisites].
 
-NOTE: Use block storage, not NFS, for the AIDE data volume on a single-node deployment. NFS-backed storage can cause underperformance.
+NOTE: NVMe SSD or other solid-state storage is recommended for all deployment sizes. Use block storage, not NFS, for the AIDE data volume on a single-node deployment. NFS-backed storage can cause underperformance.
 
 [[flexible-sizing-single-node]]
 === Flexible sizing guidelines
