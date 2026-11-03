@@ -53,6 +53,7 @@ Before you run the installer, configure the container runtime on every node, con
 * The nodes must reach the NetApp container registry host and the image layer bucket listed in link:aide-requirements.html#outbound-internet-access[Outbound internet access] through the proxy.
 * Keep cluster-internal and node addresses out of the proxy.
 * If you use an HTTPS proxy with a privately signed certificate, the nodes must also trust the proxy CA certificate.
+* If you use a TLS-inspecting proxy, the trusted CA certificates on every node must include the proxy's inspection CA certificate.
 
 The steps depend on your Kubernetes distribution. See the documentation for your distribution.
 

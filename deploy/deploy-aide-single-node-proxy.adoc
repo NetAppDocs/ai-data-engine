@@ -36,13 +36,13 @@ NOTE: Use the installer only for the first installation of AIDE. Do not use it t
 
 == What the installer configures
 
-In a single-node deployment, AI Data Engine owns the VM that it installs on. The installer configures the k3s runtime and AI Data Engine for the proxy. It doesn't change the proxy configuration of the host, such as the operating system package managers. The installer does the following:
+In a single-node deployment, AI Data Engine owns the VM that it installs on. The installer configures the k3s runtime and AI Data Engine for the proxy. It doesn't change the proxy configuration of other software on the host, such as the operating system package managers. The installer does the following:
 
 * Downloads the k3s install script and binary through the proxy. It doesn't give k3s or the kubelet a system-wide proxy.
 * Configures the k3s container runtime to pull images through the proxy.
-* Adds the CA certificate that you supply with `--proxy-ca-cert` to the AI Data Engine trust store.
+* Adds the CA certificate that you supply with `--proxy-ca-cert` to the host trust store and to the AI Data Engine trust store.
 
-You don't configure the k3s container runtime or the trust store.
+You don't configure the k3s container runtime. You supply the CA certificate, and the installer adds it to the trust stores.
 
 == Copy the install command
 
