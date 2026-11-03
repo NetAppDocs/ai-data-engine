@@ -51,7 +51,7 @@ An AIDE multi-node deployment is available in three sizes — Small, Medium, and
 |32 to 64 vCPU, 128 to 256 GB RAM per node
 
 |Storage
-|500 GB to 6 TB SSD block storage, 8,000 to 16,000 IOPS, 1,000 to 2,000 MB/s throughput
+|565 GB to 6,065 GB SSD block storage, 8,000 to 16,000 IOPS, 1,000 to 2,000 MB/s throughput
 |4 to 24 TB total cluster capacity, 8,000 to 16,000 IOPS per node, 1,000 to 2,000 MB/s throughput per node
 
 |Network
