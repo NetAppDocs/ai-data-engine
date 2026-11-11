@@ -67,7 +67,7 @@ Access is granted at the collection level only. You can't grant access to indivi
 
 == How AI clients sign in
 
-Microsoft Entra ID authenticates users. The AI Data Engine MCP server never issues tokens and holds no secret. It only validates tokens that your Entra ID tenant issues.
+Microsoft Entra ID authenticates users. The AI Data Engine MCP server never issues tokens and holds no secret. It only validates tokens that your Entra ID tenant issues. AIDE supports only Microsoft Entra ID in the Azure public (commercial) cloud, which authenticates through `\https://login.microsoftonline.com/`.
 
 When a user connects an AI client, the following happens:
 

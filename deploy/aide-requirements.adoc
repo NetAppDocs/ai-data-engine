@@ -206,7 +206,7 @@ For an online installation, the following endpoints must be reachable. Where a r
 |Both
 
 |`\https://login.microsoftonline.com`
-|Required only if you use governed AI access (MCP). Microsoft Entra ID tenant discovery and signing-key retrieval.
+|Required only if you use governed AI access (MCP). Microsoft Entra ID tenant discovery and signing-key retrieval. AIDE supports only Microsoft Entra ID in the Azure public (commercial) cloud.
 |AI Data Engine
 |Both
 

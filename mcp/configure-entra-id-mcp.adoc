@@ -15,7 +15,9 @@ When you finish, give the values that you record to the AI Data Engine administr
 
 == Before you begin
 
-* You have a Microsoft Entra ID tenant and a role that lets you register applications and grant consent in that tenant, such as Application Administrator or Cloud Application Administrator.
+NOTE: AIDE currently supports only Microsoft Entra ID in the Azure public (commercial) cloud, which authenticates through `\https://login.microsoftonline.com/`.
+
+* You have a Microsoft Entra ID tenant in the Azure public (commercial) cloud and a role that lets you register applications and grant consent in that tenant, such as Application Administrator or Cloud Application Administrator.
 * You have the AIDE cluster host name that the AI Data Engine administrator set up in link:prepare-mcp-host.html[Prepare the MCP host]. The host name must be on a registered DNS domain that is verified in your Entra ID tenant.
 
 == How MCP access works
